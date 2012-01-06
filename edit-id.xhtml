@@ -27,30 +27,68 @@
 
 
 		<xforms:model>
+			<xs:schema elementFormDefault="qualified" attributeFormDefault="unqualified">				
+				<xs:simpleType name="iso8601year">
+					<xs:restriction base="xs:string">
+						<xs:pattern value="\-?(0|1|2)([0-9]{3})"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:schema>
+			
 			<xforms:instance id="doc">
-				<rdf:RDF xmlns:batlas="http://atlantides.org/batlas/" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:foaf="http://xmlns.com/foaf/0.1/"
-					xmlns:gml="http://www.opengis.net/gml/" xmlns:nm="http://nomisma.org/id/" xmlns:ov="http://open.vocab.org/terms/" xmlns:owl="http://www.w3.org/2002/07/owl#"
-					xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2008/05/skos#"
-					xmlns:xhv="http://www.w3.org/1999/xhtml/vocab#" xmlns:xml="http://www.w3.org/XML/1998/namespace">
-					<rdf:Description rdf:about="http://nomisma.org/id/">
-						<dc:title xml:lang="en">Nomisma.org</dc:title>
-						<cc:attributionName xml:lang="en">http://nomisma.org</cc:attributionName>
-						<xhv:license rdf:resource="http://creativecommons.org/licenses/by-nc/3.0/"/>
-						<cc:attributionURL rdf:resource="http://nomisma.org"/>
-					</rdf:Description>
-					<nm:mint rdf:about="http://nomisma.org/id/athens">
-
-						<skos:definition xml:lang="en">The mint at the ancient site of Athens in Attica.</skos:definition>
-						<skos:related rdf:resource="http://pleiades.stoa.org/places/579885"/>
-						<skos:related rdf:resource="http://en.wikipedia.org/wiki/Athens"/>
-						<gml:pos xml:lang="en">37.974722 23.7225</gml:pos>
-						<nm:head1911region rdf:resource="http://nomisma.org/id/attica"/>
-						<nm:latlongsource rdf:resource="http://en.wikipedia.org/wiki/Athens"/>
-						<skos:prefLabel xml:lang="en">Athens</skos:prefLabel>
-
-					</nm:mint>
-				</rdf:RDF>
+				<div typeof="nm:mint" about="[nm:athens]" xmlns="">
+					<div property="skos:prefLabel" xml:lang="en">Athens</div>
+					<div property="skos:definition" xml:lang="en">The mint at the ancient site of Athens in Attica.</div>
+					<div><a rel="nm:head1911region" href="attica">Attica</a>.</div>
+					<div><span property="gml:pos">37.974722 23.7225</span></div>
+					<div><a rel="skos:related" href="http://en.wikipedia.org/wiki/Athens"/></div>
+					<div><a rel="nm:latlongsource" href="http://en.wikipedia.org/wiki/Athens"/></div>
+					<div><a rel="skos:related" href="http://pleiades.stoa.org/places/579885"/></div>
+				</div>
 			</xforms:instance>
+			
+			<!--<div typeof="nm:hoard" about="[nm:igch2159]">
+				<span rel="nm:findspot"><span property="gml:pos">37.12611111 14.85111111</span></span>
+				<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+				<span property="nm:approximateburialdate" content="-300" datatype="xsd:date"/>
+				<div class="nm:editedSource">
+					<pre>2159 Buccheri, 20 km. S of Leontini, 1904 
+(170, 1164)
+    Burial: c. 300 B.C.? (K) 
+    Contents: 2+ AV, 37+ AR
+    Philip II: 2+ st.
+            some tetradr. (jockey and beard-
+        ed horseman rev.)
+    Alexander III: 4+ tetradr. (not of "ultime 
+        e scadenti emissioni")
+    <span rel="nm:mint" resource="thasos">Thasos: 3+ spread-flan tetradr. (barbaric ?) </span>
+    Pegasi: 30+
+    Disposition: Syracuse 3 (Pegasi)
+    Orsi, NSc 1905, p. 437
+    Currò Pisanò, AIIN 1962-4, p. 222
+    Orsi speaks of the hd. as divided among 
+        "persone di Vizzini e Mineo," and Noe 
+        1164, also containing copies of Thasian 
+        tetradr., is surely another account of 
+        the Buccheri hd. Despite the similarity 
+        of date and location there seems no 
+        connection with the only hd. recorded 
+        from Mineo (no. 2184 below)
+    Chronologically the presence of issues of 
+        Thasos is difficult to explain, for even 
+        though their date is earlier than used 
+        to be supposed, it can hardly be earlier 
+        than c. 180 B.C. (cf. ANSMN 12 
+        (1966), p. 61 and note 4), whereas the 
+        rest of the hd. suggests c. 300 B.C. or 
+        even earlier. Since Orsi was able to 
+        record fragments of the hd. only after 
+        dispersal, it is possible that the Thasos 
+        coins do not really belong here
+
+</pre>
+				</div>
+			</div>-->
 
 			<xforms:instance id="control-instance">
 				<controls xmlns="">
@@ -62,58 +100,107 @@
 				</controls>
 			</xforms:instance>
 
-			<xforms:instance id="nm-templates">
-				<templates xmlns="">
-					<nm:mint rdf:about="">
-						<skos:prefLabel xml:lang="en"/>
-					</nm:mint>
-					<nm:material rdf:about="">
-						<skos:prefLabel xml:lang="en"/>
-					</nm:material>
-				</templates>
-			</xforms:instance>
-
 			<xforms:instance id="types">
 				<types>
-					<type>material</type>
-					<type>mint</type>
+					<type typeof="nm:hoard">hoard</type>
+					<type typeof="nm:material">material</type>
+					<type typeof="nm:mint">mint</type>
 				</types>
 			</xforms:instance>
-			
+
 			<xforms:instance id="languages">
-				<languages>
-					<language>en</language>
-					<language>fr</language>
+				<languages>					
+					<language value="en">English</language>
+					<language value="fr">French</language>
+					<language value="de">German</language>
 				</languages>
 			</xforms:instance>
 
+			<!-- hoard templates -->
+			<xforms:instance id="sourcepublication-template">
+				<span rel="nm:sourcepublication" resource="igch" xmlns="">Inventory of Greek Coin Hoards</span>
+			</xforms:instance>
+
+			<xforms:instance id="burial-template">
+				<span property="nm:approximateburialdate" content="" datatype="xsd:date" xmlns=""/>
+			</xforms:instance>
+
+			<xforms:instance id="findspot-template">
+				<span rel="nm:findspot" xmlns="">
+					<span property="gml:pos"/>
+				</span>
+			</xforms:instance>
+			
+			<xforms:instance id="editedsource-template">
+				<div class="nm:editedSource" xmlns="">
+					<pre/>
+				</div>
+			</xforms:instance>
+
+			<!-- other templates -->
+			<xforms:instance id="prefLabel-template">
+				<div property="skos:prefLabel" xml:lang="en" xmlns=""/>
+			</xforms:instance>
+			
+			<xforms:instance id="altLabel-template">
+				<div property="skos:altLabel" xml:lang="" xmlns=""/>
+			</xforms:instance>
+
 			<xforms:instance id="related-template">
-				<skos:related rdf:resource="" xmlns=""/>
+				<div>
+					<a rel="skos:related" href="" xmlns=""/>
+				</div>
 			</xforms:instance>
+
 			<xforms:instance id="definition-template">
-				<skos:definition xml:lang="en" xmlns=""/>
+				<div property="skos:definition" xml:lang="" xmlns=""/>
 			</xforms:instance>
+
+			<xforms:instnace id="coordinates-template">
+				<div xmlns="">
+					<span property="gml:pos"/>
+				</div>
+			</xforms:instnace>
 
 			<xforms:bind nodeset="instance('control-instance')">
 				<xforms:bind nodeset="id" required="true()" type="xs:anyURI"/>
 				<xforms:bind nodeset="type">
 					<xforms:bind constraint="string-length(.) &gt; 0"/>
 				</xforms:bind>
-				<xforms:bind nodeset="prefLabel" required="true()"/>
-				<xforms:bind nodeset="lat" type="xs:double"/>
-				<xforms:bind nodeset="lon" type="xs:double"/>
+				<xforms:bind nodeset="lat" type="xs:double">
+					<xforms:bind constraint=". &gt;= -180 and . &lt;= 180"/>
+				</xforms:bind>
+				<xforms:bind nodeset="lon" type="xs:double">
+					<xforms:bind constraint=". &gt;= -180 and . &lt;= 180"/>
+				</xforms:bind>
 			</xforms:bind>
 
 			<xforms:bind nodeset="instance('doc')">
-				<xforms:bind nodeset="rdf:Description/following-sibling::*">
-					<xforms:bind nodeset="skos:related" required="true()"/>
+				<xforms:bind nodeset="div[@property='skos:prefLabel']" required="true()"/>
+				<xforms:bind nodeset="div[@property='skos:altLabel']" required="true()">
+					<xforms:bind nodeset="@xml:lang" constraint="string-length(.) &gt; 0"/>
+				</xforms:bind>
+				<xforms:bind nodeset="div[@property='skos:definition']" required="true()"/>
+				<xforms:bind nodeset="//a[@rel='skos:related']/@href" required="true()"/>
+				<xforms:bind nodeset="span[@rel='nm:sourcepublication']" required="true()"/>
+				<xforms:bind nodeset="span[@property='nm:approximateburialdate']">
+					<xforms:bind nodeset="@content" required="true()" type="iso8601year"/>
 				</xforms:bind>
 			</xforms:bind>
 
 			<xforms:action ev:event="xforms-model-construct-done">
-				<xforms:setvalue ref="instance('control-instance')/id" value="substring-after(instance('doc')/rdf:Description/following-sibling::*/@rdf:about, 'http://nomisma.org/id/')"/>
-				<xforms:setvalue ref="instance('control-instance')/prefLabel" value="instance('doc')/rdf:Description/following-sibling::*/skos:prefLabel"/>
-				<xforms:setvalue ref="instance('control-instance')/type" value="instance('doc')/rdf:Description/following-sibling::*/local-name()"/>
+				<xforms:setvalue ref="instance('control-instance')/id" value="substring-before(substring-after(instance('doc')/@about, 'nm:'), ']')"/>
+				<xforms:setvalue ref="instance('control-instance')/prefLabel" value="instance('doc')/div[@property='skos:prefLabel']"/>
+				<xforms:setvalue ref="instance('control-instance')/type" value="instance('doc')/@typeof"/>
+				<!-- populate lat, lon -->
+				<xforms:action if="instance('control-instance')/type != 'nm:hoard'">
+					<xforms:setvalue ref="instance('control-instance')/lat" value="tokenize(instance('doc')/div/span[@property='gml:pos'], ' ')[1]"/>
+					<xforms:setvalue ref="instance('control-instance')/lon" value="tokenize(instance('doc')/div/span[@property='gml:pos'], ' ')[2]"/>
+				</xforms:action>
+				<xforms:action if="instance('control-instance')/type = 'nm:hoard'">
+					<xforms:setvalue ref="instance('control-instance')/lat" value="tokenize(instance('doc')/span[@rel='nm:findspot']/span[@property='gml:pos'], ' ')[1]"/>
+					<xforms:setvalue ref="instance('control-instance')/lon" value="tokenize(instance('doc')/span[@rel='nm:findspot']/span[@property='gml:pos'], ' ')[2]"/>
+				</xforms:action>
 			</xforms:action>
 		</xforms:model>
 
@@ -130,18 +217,61 @@
 					<h1>Edit nomisma id</h1>
 					<h2>Options</h2>
 					<div class="trigger_container">
-						<xforms:group ref=".[count(instance('doc')//skos:definition) = 0]">
+						<!-- non-hoard elements -->
+						<xforms:group ref=".[instance('doc')/@typeof != 'nm:hoard']">
+							<xforms:group ref=".[count(instance('doc')/div[@property='skos:definition']) = 0]">
+								<xforms:trigger appearance="minimal">
+									<xforms:label>
+										<xhtml:img src="/apps/nomisma/images/add.gif"/>Definition</xforms:label>
+									<xforms:insert ev:event="DOMActivate" origin="instance('definition-template')" context="instance('doc')"/>
+								</xforms:trigger>
+							</xforms:group>
 							<xforms:trigger appearance="minimal">
 								<xforms:label>
-									<xhtml:img src="/apps/nomisma/images/add.gif"/>Definition</xforms:label>
-								<xforms:insert ev:event="DOMActivate" origin="instance('definition-template')" context="rdf:Description/following-sibling::*"/>
+									<xhtml:img src="/apps/nomisma/images/add.gif"/>Alternate Label</xforms:label>
+								<xforms:insert ev:event="DOMActivate" origin="instance('altLabel-template')" context="instance('doc')" nodeset="./child::node()[last()]"/>
 							</xforms:trigger>
+							<xforms:trigger appearance="minimal">
+								<xforms:label>
+									<xhtml:img src="/apps/nomisma/images/add.gif"/>Related Link</xforms:label>
+								<xforms:insert ev:event="DOMActivate" origin="instance('related-template')" context="instance('doc')" nodeset="./child::node()[last()]"/>
+							</xforms:trigger>
+							<xforms:group ref=".[count(instance('doc')//span[@property='gml:pos']) = 0]">
+								<xforms:trigger appearance="minimal">
+									<xforms:label>
+										<xhtml:img src="/apps/nomisma/images/add.gif"/>Coordinates</xforms:label>
+									<xforms:insert ev:event="DOMActivate" origin="instance('coordinates-template')" context="instance('doc')" nodeset="./child::node()[last()]"/>
+								</xforms:trigger>
+							</xforms:group>
+							<xforms:group ref=".[count(instance('doc')/div[@class='nm:editedSource']) = 0]">
+								<xforms:trigger appearance="minimal">
+									<xforms:label>
+										<xhtml:img src="/apps/nomisma/images/add.gif"/>Edited Source</xforms:label>
+									<xforms:insert ev:event="DOMActivate" origin="instance('editedsource-template')" context="instance('doc')" nodeset="./child::node()[last()]"/>
+								</xforms:trigger>
+							</xforms:group>
 						</xforms:group>
-						<xforms:trigger appearance="minimal">
-							<xforms:label>
-								<xhtml:img src="/apps/nomisma/images/add.gif"/>Related Link</xforms:label>
-							<xforms:insert ev:event="DOMActivate" origin="instance('related-template')" context="rdf:Description/following-sibling::*"/>
-						</xforms:trigger>
+						<xforms:group ref=".[instance('doc')/@typeof = 'nm:hoard']">
+							<xforms:trigger appearance="minimal">
+								<xforms:label>
+									<xhtml:img src="/apps/nomisma/images/add.gif"/>Related Link</xforms:label>
+								<xforms:insert ev:event="DOMActivate" origin="instance('related-template')" context="instance('doc')" nodeset="./child::node()[last()]"/>
+							</xforms:trigger>
+							<xforms:group ref=".[count(instance('doc')//span[@property='gml:pos']) = 0]">
+								<xforms:trigger appearance="minimal">
+									<xforms:label>
+										<xhtml:img src="/apps/nomisma/images/add.gif"/>Findspot</xforms:label>
+									<xforms:insert ev:event="DOMActivate" origin="instance('findspot-template')" context="instance('doc')" nodeset="./child::node()[last()]"/>
+								</xforms:trigger>
+							</xforms:group>
+							<xforms:group ref=".[count(instance('doc')/div[@class='nm:editedSource']) = 0]">
+								<xforms:trigger appearance="minimal">
+									<xforms:label>
+										<xhtml:img src="/apps/nomisma/images/add.gif"/>Edited Source</xforms:label>
+									<xforms:insert ev:event="DOMActivate" origin="instance('editedsource-template')" context="instance('doc')" nodeset="./child::node()[last()]"/>
+								</xforms:trigger>
+							</xforms:group>
+						</xforms:group>
 					</div>
 					<div>
 						<xforms:select1 ref="instance('control-instance')/type">
@@ -153,17 +283,25 @@
 							</xforms:item>
 							<xforms:itemset nodeset="instance('types')/type">
 								<xforms:label ref="."/>
-								<xforms:value ref="."/>
+								<xforms:value ref="@typeof"/>
 							</xforms:itemset>
 							<xforms:action ev:event="xforms-value-changed">
-								<xxforms:variable name="type" select="."/>
+								<xxforms:variable name="typeof" select="."/>
 								<!-- if altering the type from its original value, remove the nm:* and replace with the new type-->
-								<xforms:action if="$type != instance('doc')/rdf:Description/following-sibling::*/local-name()">
-									<xforms:delete nodeset="instance('doc')/rdf:Description/following-sibling::*"/>
-									<xforms:insert origin="instance('nm-templates')/*[local-name()=$type]" context="instance('doc')" nodeset="./child::node()[last()]"/>
-									<!-- set rdf:resource and prefLabel -->
-									<xforms:setvalue ref="instance('doc')/rdf:Description/following-sibling::*/@rdf:about" value="concat('http://nomisma.org/id/', instance('control-instance')/id)"/>
-									<xforms:setvalue ref="instance('doc')/rdf:Description/following-sibling::*/skos:prefLabel" value="instance('control-instance')/prefLabel"/>
+								<xforms:action if="$typeof != instance('doc')/@typeof">
+									<xforms:delete nodeset="instance('doc')/*"/>
+									<xforms:setvalue ref="instance('doc')/@typeof" value="$typeof"/>
+									<!-- re-insert prefLabel if the type is not hoard -->
+									<xforms:insert origin="instance('prefLabel-template')" context="instance('doc')" if="$typeof != 'nm:hoard'"/>
+									<xforms:action if="$typeof = 'nm:hoard'">
+										<!-- clear existing lat and lon -->
+										<xforms:setvalue ref="instance('control-instance')/lat"/>
+										<xforms:setvalue ref="instance('control-instance')/lon"/>
+										<!-- insert required templates -->
+										<xforms:insert origin="instance('sourcepublication-template')" context="instance('doc')"/>
+										<xforms:insert origin="instance('burial-template')" context="instance('doc')" nodeset="./child::node()[last()]"/>
+										<xforms:insert origin="instance('findspot-template')" context="instance('doc')" nodeset="./child::node()[last()]"/>
+									</xforms:action>
 								</xforms:action>
 							</xforms:action>
 						</xforms:select1>
@@ -173,30 +311,83 @@
 							<xforms:label>id</xforms:label>
 							<xforms:alert>Required</xforms:alert>
 							<xforms:action ev:event="xforms-value-changed">
-								<xforms:setvalue ref="instance('doc')/rdf:Description/following-sibling::*/@rdf:about" value="concat('http://nomisma.org/id/', instance('control-instance')/id)"/>
+								<xforms:setvalue ref="instance('doc')/@about" value="concat('[nm:', instance('control-instance')/id, ']')"/>
 							</xforms:action>
 						</xforms:input>
 					</div>
-					<div>
+					<!--<div>
 						<xforms:input ref="instance('control-instance')/prefLabel">
 							<xforms:label>Preferred Label</xforms:label>
 							<xforms:alert>Required</xforms:alert>
 							<xforms:action ev:event="xforms-value-changed">
-								<xforms:setvalue ref="instance('doc')/rdf:Description/following-sibling::*/skos:prefLabel" value="instance('control-instance')/prefLabel"/>
+								<xforms:setvalue ref="instance('doc')/div[@property='skos:prefLabel']" value="instance('control-instance')/prefLabel"/>
 							</xforms:action>
 						</xforms:input>
-					</div>
-					<xforms:group ref="instance('doc')/rdf:Description/following-sibling::*">
-						<xforms:group ref="skos:definition">
+					</div>-->
+					<xforms:group ref="instance('doc')">
+						<xforms:group ref="div[@property='skos:prefLabel']">
+							<div>
+								<xforms:input ref=".">
+									<xforms:label>Preferred Label</xforms:label>
+									<xforms:alert>Required</xforms:alert>
+								</xforms:input>
+							</div>
+						</xforms:group>
+						<xforms:repeat nodeset="div[@property='skos:altLabel']">
+							<div>
+								<xforms:input ref=".">
+									<xforms:label>Alternate Label</xforms:label>
+									<xforms:alert>Required</xforms:alert>
+								</xforms:input>
+								<xforms:select1 ref="@xml:lang">
+									<xforms:item>
+										<xforms:label>Select...</xforms:label>
+										<xforms:value/>
+									</xforms:item>									
+									<xforms:itemset nodeset="instance('languages')/language">
+										<xforms:label ref="."/>
+										<xforms:value ref="@value"/>
+									</xforms:itemset>
+									<xforms:alert>Required</xforms:alert>
+								</xforms:select1>
+								<xforms:trigger appearance="minimal">
+									<xforms:delete ev:event="DOMActivate" context="."/>
+									<xforms:label>
+										<xhtml:img src="/apps/nomisma/images/remove.gif"/>
+									</xforms:label>
+								</xforms:trigger>
+							</div>
+						</xforms:repeat>
+						<xforms:group ref="span[@rel='nm:sourcepublication']">
+							<div>
+								<xforms:input ref=".">
+									<xforms:label>Source Publication</xforms:label>
+									<xforms:alert>Required</xforms:alert>
+								</xforms:input>
+							</div>
+						</xforms:group>
+						<xforms:group ref="span[@property='nm:approximateburialdate']">
+							<div>
+								<xforms:input ref="@content">
+									<xforms:label>Approx. Burial Date</xforms:label>
+									<xforms:alert>Must be date</xforms:alert>
+								</xforms:input>
+							</div>
+						</xforms:group>
+						<xforms:group ref="div[@property='skos:definition']">
 							<div>
 								<xforms:input ref=".">
 									<xforms:label>Definition</xforms:label>
 									<xforms:alert>Required</xforms:alert>
 								</xforms:input>
 								<xforms:select1 ref="@xml:lang">
+									<xforms:item>
+										<xforms:label>Select...</xforms:label>
+										<xforms:value/>
+									</xforms:item>
 									<xforms:itemset nodeset="instance('languages')/language">
 										<xforms:label ref="."/>
-										<xforms:value ref="."/>
+										<xforms:value ref="@value"/>
 									</xforms:itemset>
 								</xforms:select1>
 								<xforms:trigger appearance="minimal">
@@ -207,24 +398,81 @@
 								</xforms:trigger>
 							</div>
 						</xforms:group>
-						<xforms:repeat nodeset="skos:related">
+						<xforms:repeat nodeset="//a[@rel='skos:related']">
 							<div>
-								<xforms:input ref="@rdf:resource">
+								<xforms:input ref="@href">
 									<xforms:label>Related Link</xforms:label>
 									<xforms:alert>Required</xforms:alert>
 								</xforms:input>
 								<xforms:trigger appearance="minimal">
-									<xforms:delete ev:event="DOMActivate" context="."/>
+									<xforms:delete ev:event="DOMActivate" context="parent::div"/>
 									<xforms:label>
 										<xhtml:img src="/apps/nomisma/images/remove.gif"/>
 									</xforms:label>
 								</xforms:trigger>
 							</div>
 						</xforms:repeat>
+						
+						<xforms:group ref=".[count(//span[@property='gml:pos']) = 1]">
+							<xxforms:variable name="label" select="if(instance('doc')/@typeof='nm:hoard') then 'Findspot' else 'Coordinates'"/>
+							<h3><xforms:output value="$label"/></h3>
+							<xforms:trigger appearance="minimal">
+								<xforms:action ev:event="DOMActivate">
+									<xforms:delete context="instance('doc')" nodeset="*[span[@property='gml:pos']]"/>
+									<!-- clear lat and lon -->
+									<xforms:setvalue ref="instance('control-instance')/lat"/>
+									<xforms:setvalue ref="instance('control-instance')/lon"/>
+								</xforms:action>
 
+								<xforms:label>
+									<xhtml:img src="/apps/nomisma/images/remove.gif"/>
+								</xforms:label>
+							</xforms:trigger>
+							<div>
+								<xforms:input ref="instance('control-instance')/lat">
+									<xforms:label>Latitude</xforms:label>
+									<xforms:alert>Must be decimal integer between -180 and 180</xforms:alert>
+									<xforms:action ev:event="xforms-value-changed">
+										<xforms:action if="instance('doc')/@typeof != 'nm:hoard'">
+											<xforms:setvalue ref="instance('doc')/div/span[@property='gml:pos']" value="concat(instance('control-instance')/lat, ' ', instance('control-instance')/lon)"
+											/>
+										</xforms:action>
+										<xforms:action if="instance('doc')/@typeof = 'nm:hoard'">
+											<xforms:setvalue ref="instance('doc')/span[@rel='nm:findspot']/span[@property='gml:pos']"
+												value="concat(instance('control-instance')/lat, ' ', instance('control-instance')/lon)"/>
+										</xforms:action>
+									</xforms:action>
+								</xforms:input>
+							</div>
+							<div>
+								<xforms:input ref="instance('control-instance')/lon">
+									<xforms:label>Longitude</xforms:label>
+									<xforms:alert>Must be decimal integer between -180 and 180</xforms:alert>
+									<xforms:action ev:event="xforms-value-changed">
+										<xforms:action if="instance('doc')/@typeof != 'nm:hoard'">
+											<xforms:setvalue ref="instance('doc')/div/span[@property='gml:pos']" value="concat(instance('control-instance')/lat, ' ', instance('control-instance')/lon)"
+											/>
+										</xforms:action>
+										<xforms:action if="instance('doc')/@typeof = 'nm:hoard'">
+											<xforms:setvalue ref="instance('doc')/span[@rel='nm:findspot']/span[@property='gml:pos']"
+												value="concat(instance('control-instance')/lat, ' ', instance('control-instance')/lon)"/>
+										</xforms:action>
+									</xforms:action>
+								</xforms:input>
+							</div>
+						</xforms:group>
+						
+						<xforms:group ref="div[@class='nm:editedSource']">
+							<h3>Edited Source</h3>
+							<xforms:trigger appearance="minimal">
+								<xforms:delete ev:event="DOMActivate" context="."/>								
+								<xforms:label>
+									<xhtml:img src="/apps/nomisma/images/remove.gif"/>
+								</xforms:label>								
+							</xforms:trigger>
+							<xforms:textarea ref="pre" mediatype="text/html"/>
+						</xforms:group>
 					</xforms:group>
-
-
 				</xhtml:div>
 				<fr:xforms-inspector/>
 			</xhtml:div>
