@@ -102,9 +102,18 @@
 
 			<xforms:instance id="types">
 				<types>
+					<type typeof="nm:authority">authority</type>
+					<type typeof="nm:collection">collection</type>
+					<type typeof="nm:denomination">denomination</type>
+					<type typeof="nm:ethnic">ethnic</type>
 					<type typeof="nm:hoard">hoard</type>
 					<type typeof="nm:material">material</type>
 					<type typeof="nm:mint">mint</type>
+					<type typeof="nm:numismatic_term">numismatic_term</type>
+					<type typeof="nm:person">person</type>
+					<type typeof="nm:roman_emperor">roman_emperor</type>
+					<type typeof="nm:type_series">type_series</type>
+					<type typeof="nm:type_series_item">type_series_item</type>
 				</types>
 			</xforms:instance>
 
@@ -243,13 +252,13 @@
 									<xforms:insert ev:event="DOMActivate" origin="instance('coordinates-template')" context="instance('doc')" nodeset="./child::node()[last()]"/>
 								</xforms:trigger>
 							</xforms:group>
-							<xforms:group ref=".[count(instance('doc')/div[@class='nm:editedSource']) = 0]">
+							<!--<xforms:group ref=".[count(instance('doc')/div[@class='nm:editedSource']) = 0]">
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
 										<xhtml:img src="/apps/nomisma/images/add.gif"/>Edited Source</xforms:label>
 									<xforms:insert ev:event="DOMActivate" origin="instance('editedsource-template')" context="instance('doc')" nodeset="./child::node()[last()]"/>
 								</xforms:trigger>
-							</xforms:group>
+							</xforms:group>-->
 						</xforms:group>
 						<xforms:group ref=".[instance('doc')/@typeof = 'nm:hoard']">
 							<xforms:trigger appearance="minimal">
@@ -462,7 +471,7 @@
 							</div>
 						</xforms:group>
 						
-						<xforms:group ref="div[@class='nm:editedSource']">
+						<!--<xforms:group ref="div[@class='nm:editedSource']">
 							<h3>Edited Source</h3>
 							<xforms:trigger appearance="minimal">
 								<xforms:delete ev:event="DOMActivate" context="."/>								
@@ -471,7 +480,7 @@
 								</xforms:label>								
 							</xforms:trigger>
 							<xforms:textarea ref="pre" mediatype="text/html"/>
-						</xforms:group>
+						</xforms:group>-->
 					</xforms:group>
 				</xhtml:div>
 				<fr:xforms-inspector/>
