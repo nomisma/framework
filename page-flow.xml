@@ -17,13 +17,15 @@
 	<!-- ****************
 	* ADMIN INTERFACE *
 	***************** -->
-	<page path-info="/nomisma/" view="edit-id.xhtml"/>	
+	<page path-info="/nomisma/admin/" view="admin.xhtml"/>
+	<page path-info="/nomisma/admin/edit/" view="edit-id.xhtml"/>	
 
 
 	<!-- ****************
 	* PUBLIC INTERFACE *
 	***************** -->
-	
+	<page path-info="/nomisma/id/(.*).kml" matcher="oxf:perl5-matcher" model="exist-url.xml" view="xpl/id-to-kml.xpl"/>
+	<page path-info="/nomisma/id/(.*)" matcher="oxf:perl5-matcher" model="exist-url.xml" view="xpl/display-id.xpl"/>	
 
 	<epilogue url="oxf:/config/epilogue.xpl"/>
 </config>

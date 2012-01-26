@@ -5,4 +5,4 @@ default: "/exist/rest/db/"
 
 Note: do not forget trailing / after db!
 -->
-<exist-url>http://localhost:8080/exist/rest/db/</exist-url>
+<exist-url>http://localhost:8080/orbeon/exist/rest/db/</exist-url>

@@ -3,17 +3,11 @@
   GLOBAL
   ****************************************
  */
-html {
-	font-size:16px;
-	font-family:arial, helvetica, sans-serif;
-	background-color:silver;
-}
 #bd {
 	padding:5px;
 	background-color:white;
-}
-#doc4 {
-	border:1px solid gray;
+	font-size:16px;
+	font-family:arial, helvetica, sans-serif;
 }
 h1 {
 	margin:0
@@ -47,22 +41,23 @@ a:hover {
 #linked_data a {
 	margin:5px;
 }
+#map{
+	width:100%;
+	height:400px;
+	margin:0;	
+}
 /*
   ***************************************
   HEADER
   ***************************************
  */
+#hd {
+	background-color: rgb(240, 240, 240);
+	border:1px solid #c2b9a9;	
+	padding: 5px 5px 0 5px;
+}
 #banner {
 	background-color: #ebebeb;
-}
-#hd .align-left {
-	text-align:left;
-}
-#hd .align-right {
-	text-align:right;
-}
-#hd .align-center {
-	text-align:center;
 }
 .banner_text {
 	padding:20px;
@@ -76,10 +71,11 @@ a:hover {
   ***************************************
  */
 #ft {
-	padding:10px 0;
-	text-align:center;
-	background-color:#ebebeb;
+	margin:10px 0;
+	padding:5px;
 	width:100%;
+	background-color: rgb(240, 240, 240);
+	border:1px solid #c2b9a9;
 }
 /*
   ****************************************
@@ -145,7 +141,6 @@ a:hover {
   ORBEON XFORM SPECIFIC STYLE
   ****************************************
  */
- 
 #form .xforms-label {
 	float:left;
 	width:10em;
@@ -174,8 +169,8 @@ a:hover {
 	padding:2px;
 	font-size:16px;
 }
-.trigger_container{
-	margin-bottom:20px;	
+.trigger_container {
+	margin-bottom:20px;
 }
 .xforms-submit img {
 	vertical-align: middle
@@ -242,6 +237,14 @@ a:hover {
 	margin:20px auto;
 	width:400px;
 	font-size:12px;
+}
+.success {
+	width:50%;
+	padding:10px;
+	border:1px solid #3c803c;
+	margin:0 auto;
+	background-color:#47e547;
+	color:#3c803c;
 }
 /*
   ****************************************
