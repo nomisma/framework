@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nomisma="http://nomisma.org/id/" version="2.0">
-	<xsl:output method="xhtml" encoding="UTF-8"/>
+	<xsl:output method="xhtml" encoding="UTF-8" doctype-public="-//W3C//DTD XHTML+RDFa 1.0//EN" doctype-system="http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd"/>
+	
 	<!-- change eXist URL if running on a server other than localhost -->
 	<xsl:variable name="exist-url" select="/exist-url"/>
 	<xsl:variable name="display_path">../</xsl:variable>
@@ -55,7 +56,7 @@
 							<div class="yui-b">
 								<div class="yui-g">
 									<div class="yui-u first">
-										<xsl:apply-templates select="document(concat($exist-url, 'nomisma/id/', $id, '.xml'))/div"/>
+										<xsl:copy-of select="document(concat($exist-url, 'nomisma/id/', $id, '.xml'))/div"/>
 									</div>
 									<div class="yui-u">
 										<div id="map"/>
