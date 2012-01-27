@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="xs" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:xxi="http://orbeon.org/oxf/xml/xinclude" xmlns:ov="http://open.vocab.org/terms/" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xi="http://www.w3.org/2001/XInclude"
-	xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-	xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:gml="http://www.opengis.net/gml/" xmlns:batlas="http://atlantides.org/batlas/" xmlns:xhv="http://www.w3.org/1999/xhtml/vocab#"
-	xmlns:exist="http://exist.sourceforge.net/NS/exist" xmlns:skos="http://www.w3.org/2008/05/skos#" xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:cc="http://creativecommons.org/ns#"
-	xmlns:nm="http://nomisma.org/id/" version="2.0">
-	<xsl:output method="html" encoding="UTF-8"/>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nomisma="http://nomisma.org/id/" version="2.0">
+	<xsl:output method="xhtml" encoding="UTF-8"/>
 	<!-- change eXist URL if running on a server other than localhost -->
 	<xsl:variable name="exist-url" select="/exist-url"/>
 	<xsl:variable name="display_path">../</xsl:variable>
@@ -23,9 +17,10 @@
 				<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 				<title>http://nomisma.org/id/<xsl:value-of select="$id"/></title>
 				<base href="http://nomisma.org/id/"/>
-				<!--
-						<link rel="alternate" type="application/rdf+xml" href="http://www.w3.org/2007/08/pyRdfa/extract?uri=http%3A%2F%2Fnomisma.org%2Fid%2Fabila" />
-					-->
+
+				<link rel="alternate" type="application/rdf+xml"
+					href="http://www.w3.org/2007/08/pyRdfa/extract?uri={encode-for-uri(concat('http://admin.numismatics.org:8080/orbeon/nomisma/id/', $id))}"/>
+
 				<link type="application/vnd.google-earth.kml+xml" href="http://nomisma.org/kml/{$id}.kml"/>
 				<link type="application/vnd.google-earth.kml+xml" href="http://nomisma.org/kml/{$id}-all.kml"/>
 
@@ -131,7 +126,7 @@
 
 	<xsl:template match="div[@property='skos:altLabel']">
 		<dt>
-			<xsl:value-of select="nm:normalize-language(@xml:lang)"/>
+			<xsl:value-of select="nomisma:normalize-language(@xml:lang)"/>
 		</dt>
 		<dd>
 			<xsl:for-each select="@*">
@@ -143,7 +138,7 @@
 
 	<xsl:template match="*[local-name()='a'][@rel='skos:related']">
 		<dt>
-			<xsl:value-of select="nm:normalize-href(@href)"/>
+			<xsl:value-of select="nomisma:normalize-href(@href)"/>
 		</dt>
 		<dd>
 			<a>
@@ -156,7 +151,7 @@
 	</xsl:template>
 
 	<!-- ***************** FUNCTIONS ******************* -->
-	<xsl:function name="nm:normalize-language">
+	<xsl:function name="nomisma:normalize-language">
 		<xsl:param name="lang"/>
 
 		<xsl:choose>
@@ -167,7 +162,7 @@
 		</xsl:choose>
 	</xsl:function>
 
-	<xsl:function name="nm:normalize-href">
+	<xsl:function name="nomisma:normalize-href">
 		<xsl:param name="href"/>
 
 		<xsl:choose>
