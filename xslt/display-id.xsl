@@ -56,7 +56,7 @@
 							<div class="yui-b">
 								<div class="yui-g">
 									<div class="yui-u first">
-										<xsl:copy-of select="document(concat($exist-url, 'nomisma/id/', $id, '.xml'))/div"/>
+										<xsl:apply-templates select="document(concat($exist-url, 'nomisma/id/', $id, '.xml'))/div"/>
 									</div>
 									<div class="yui-u">
 										<div id="map"/>
