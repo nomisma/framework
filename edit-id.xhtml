@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ev="http://www.w3.org/2001/xml-events"
-	xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:exist="http://exist.sourceforge.net/NS/exist"
-	xmlns:xxi="http://orbeon.org/oxf/xml/xinclude" xmlns:batlas="http://atlantides.org/batlas/" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:gml="http://www.opengis.net/gml/" xmlns:nm="http://nomisma.org/id/" xmlns:ov="http://open.vocab.org/terms/" xmlns:owl="http://www.w3.org/2002/07/owl#"
-	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2008/05/skos#"
-	xmlns:xhv="http://www.w3.org/1999/xhtml/vocab#" xmlns:xml="http://www.w3.org/XML/1998/namespace">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:fr="http://orbeon.org/oxf/xml/form-runner"
+	xmlns:exist="http://exist.sourceforge.net/NS/exist">
 	<xhtml:head>
 		<title>nomisma.org: Administrative Interface</title>
 		<link rel="stylesheet" type="text/css" href="/apps/nomisma/css/grids-min.css"/>
@@ -47,7 +44,7 @@
 					<lon/>
 				</controls>
 			</xforms:instance>
-			
+
 			<xforms:instance id="status">
 				<status/>
 			</xforms:instance>
@@ -124,6 +121,16 @@
 				</div>
 			</xforms:instnace>
 
+			<!-- Solr instances -->
+			<xforms:instance id="addIndex">
+				<add xmlns=""/>
+			</xforms:instance>
+			<xforms:instance id="sendCommit">
+				<commit/>
+			</xforms:instance>
+
+
+			<!-- **************** BINDINGS ********************** -->
 			<xforms:bind nodeset="instance('control-instance')">
 				<xforms:bind nodeset="id" required="true()" type="xs:anyURI"/>
 				<xforms:bind nodeset="type">
@@ -188,7 +195,22 @@
 
 				<xforms:action ev:event="xforms-submit-done">
 					<xforms:setvalue ref="instance('status')">id saved</xforms:setvalue>
+					<!-- post to solr -->
+					<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-solr.xpl', 'data', instance('doc'), 'data')"/>
+					<xforms:send submission="post-solr-doc"/>
 				</xforms:action>
+			</xforms:submission>
+			
+			<!-- ************************* SOLR SUBMISSIONS ************************** -->
+			<!-- post instance to Solr -->
+			<xforms:submission id="post-solr-doc" action="http://localhost:8080/solr/nomisma/update" ref="instance('addIndex')" instance="addIndex" replace="instance" method="post">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
+				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"/>
+			</xforms:submission>
+			
+			<!-- send commit -->
+			<xforms:submission id="submit-commit" action="http://localhost:8080/solr/nomisma/update" ref="instance('sendCommit')" instance="sendCommit" replace="none" method="post">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Failed to commit to Solr index.</xforms:message>
 			</xforms:submission>
 		</xforms:model>
 
@@ -207,7 +229,7 @@
 							<xforms:output ref="instance('status')"/>
 						</xhtml:div>
 					</xforms:group>
-					
+
 					<xhtml:div class="submission">
 						<xforms:submit submission="save-id" appearance="minimal">
 							<xforms:label class="file_control"><xhtml:img src="{$display_path}images/save.gif" alt="Save"/> Save</xforms:label>
