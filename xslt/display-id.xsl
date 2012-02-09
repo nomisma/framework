@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nomisma="http://nomisma.org/id/" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nm="http://nomisma.org/id/" xmlns:ov="http://open.vocab.org/terms/" xmlns:owl="http://www.w3.org/2002/07/owl#"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:skos="http://www.w3.org/2008/05/skos#" xmlns:batlas="http://atlantides.org/batlas/"
+	xmlns:cc="http://creativecommons.org/ns#" xmlns:nuds="http://nomisma.org/id/nuds" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:gml="http://www.opengis.net/gml/"
+	xmlns:nomisma="http://nomisma.org/id/" version="2.0">
 	<xsl:output method="xhtml" encoding="UTF-8" doctype-public="-//W3C//DTD XHTML+RDFa 1.0//EN" doctype-system="http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd"/>
-	
+
 	<!-- change eXist URL if running on a server other than localhost -->
 	<xsl:variable name="exist-url" select="/exist-url"/>
 	<xsl:variable name="display_path">../</xsl:variable>
@@ -35,7 +38,7 @@
 				<link rel="stylesheet" href="{$display_path}/css/style.css"/>
 
 				<!-- javascript -->
-				<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"/>
+				<!--<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"/>
 				<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.2&amp;sensor=false"/>
 				<script type="text/javascript" src="{$display_path}/javascript/jquery-1.6.1.min.js"/>
 				<script type="text/javascript" src="{$display_path}/javascript/map_functions.js"/>
@@ -43,7 +46,7 @@
 					$(document).ready(function(){
 						initialize_map('<xsl:value-of select="$id"/>');
 					});
-				</script>
+				</script>-->
 
 			</head>
 			<body class="yui-skin-sam">
@@ -56,7 +59,7 @@
 							<div class="yui-b">
 								<div class="yui-g">
 									<div class="yui-u first">
-										<xsl:apply-templates select="document(concat($exist-url, 'nomisma/id/', $id, '.xml'))/div"/>
+										<xsl:apply-templates select="document(concat($exist-url, 'nomisma/id/', $id, '.xml'))/rdf:RDF"/>
 									</div>
 									<div class="yui-u">
 										<div id="map"/>
@@ -81,33 +84,34 @@
 		</html>
 	</xsl:template>
 
-	<xsl:template match="div">
+	<xsl:template match="rdf:RDF">
+		<xsl:apply-templates select="skos:Concept|rdf:Description"/>
+	</xsl:template>
+
+	<xsl:template match="skos:Concept">
 		<div>
-			<xsl:for-each select="@*">
-				<xsl:attribute name="{name()}" select="."/>
-			</xsl:for-each>
 			<h1>
-				<xsl:value-of select="translate(replace(@typeof, 'nm:', ''), '[]', '')"/>
-				<xsl:text>: </xsl:text>
-				<xsl:apply-templates select="div[@property='skos:prefLabel']"/>
-			</h1>
-			<xsl:apply-templates select="div[@property='skos:definition']"/>
-			<xsl:if test="count(div[@property='skos:altLabel']) &gt; 0">
+				<xsl:apply-templates select="skos:prefLabel[@xml:lang='en']"/><xsl:text> (</xsl:text>
+				<a href="{skos:Broader/@rdf:about}"><xsl:value-of select="substring-after(skos:Broader/@rdf:about, 'id/')"/></a>
+				<xsl:text>)</xsl:text>
+			</h1>			
+			<xsl:apply-templates select="skos:definition"/>
+			<xsl:if test="count(skos:altLabel) &gt; 0">
 				<h3>Alternate Labels</h3>
 				<dl>
-					<xsl:apply-templates select="div[@property='skos:altLabel']"/>
+					<xsl:apply-templates select="skos:altLabel"/>
 				</dl>
 			</xsl:if>
-			<xsl:if test="count(descendant::a[@rel='skos:related']) &gt; 0">
+			<xsl:if test="count(skos:related) &gt; 0">
 				<h3>Related Resources</h3>
 				<dl>
-					<xsl:apply-templates select="descendant::*[local-name()='a'][@rel='skos:related']"/>
+					<xsl:apply-templates select="skos:related"/>
 				</dl>
 			</xsl:if>
 		</div>
 	</xsl:template>
 
-	<xsl:template match="div[@property='skos:prefLabel']">
+	<xsl:template match="skos:prefLabel">
 		<span>
 			<xsl:for-each select="@*">
 				<xsl:attribute name="{name()}" select="."/>
@@ -116,7 +120,7 @@
 		</span>
 	</xsl:template>
 
-	<xsl:template match="div[@property='skos:definition']">
+	<xsl:template match="skos:definition">
 		<p>
 			<xsl:for-each select="@*">
 				<xsl:attribute name="{name()}" select="."/>
@@ -125,7 +129,7 @@
 		</p>
 	</xsl:template>
 
-	<xsl:template match="div[@property='skos:altLabel']">
+	<xsl:template match="skos:altLabel">
 		<dt>
 			<xsl:value-of select="nomisma:normalize-language(@xml:lang)"/>
 		</dt>
@@ -137,16 +141,13 @@
 		</dd>
 	</xsl:template>
 
-	<xsl:template match="*[local-name()='a'][@rel='skos:related']">
+	<xsl:template match="skos:related">
 		<dt>
-			<xsl:value-of select="nomisma:normalize-href(@href)"/>
+			<xsl:value-of select="nomisma:normalize-href(@rdf:resource)"/>
 		</dt>
 		<dd>
-			<a>
-				<xsl:for-each select="@*">
-					<xsl:attribute name="{name()}" select="."/>
-				</xsl:for-each>
-				<xsl:value-of select="@href"/>
+			<a href="{@rdf:resource}">
+				<xsl:value-of select="@rdf:resource"/>
 			</a>
 		</dd>
 	</xsl:template>
