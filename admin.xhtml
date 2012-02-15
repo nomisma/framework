@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:fr="http://orbeon.org/oxf/xml/form-runner"
+	xmlns:exist="http://exist.sourceforge.net/NS/exist" xmlns:nm="http://nomisma.org/id/" xmlns:ov="http://open.vocab.org/terms/" xmlns:owl="http://www.w3.org/2002/07/owl#"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2008/05/skos#" xmlns:batlas="http://atlantides.org/batlas/" xmlns:cc="http://creativecommons.org/ns#"
+	xmlns:nuds="http://nomisma.org/id/nuds" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:gml="http://www.opengis.net/gml/">
+	<xhtml:head>
+		<title>nomisma.org: Administrative Interface</title>
+		<link rel="stylesheet" type="text/css" href="/apps/nomisma/css/grids-min.css"/>
+		<link rel="stylesheet" type="text/css" href="/apps/nomisma/css/reset-fonts-grids.css"/>
+		<link rel="stylesheet" type="text/css" href="/apps/nomisma/css/base-min.css"/>
+		<link rel="stylesheet" type="text/css" href="/apps/nomisma/css/fonts-min.css"/>
+
+		<!-- nomisma styling -->
+		<link rel="stylesheet" href="/apps/nomisma/css/style.css"/>
+		<!--<link rel="stylesheet" href="/apps/nomisma/css/themes/smoothness.css"/>-->
+
+		<!--<script type="text/javascript" src="/apps/nomisma/javascript/jquery-1.4.2.min.js"/>
+		<script type="text/javascript" src="/apps/nomisma/javascript/get_components.js"/>
+		<script type="text/javascript" src="/apps/nomisma/javascript/menu.js"/>-->
+
+
+		<xforms:model>
+			<xforms:instance id="exist-url">
+				<xi:include href="exist-url.xml"/>
+			</xforms:instance>
+
+			<xforms:instance id="status">
+				<status/>
+			</xforms:instance>
+
+			<!-- eXist query for types -->
+			<xforms:instance id="eXist-xquery">
+				<exist:query xmlns:exist="http://exist.sourceforge.net/NS/exist" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2008/05/skos#">
+					<exist:text>&lt;report xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"&gt; { for $i in
+						distinct-values(collection()//skos:Concept[skos:broader/@rdf:about='http://nomisma.org/id/numismatic_term']/@rdf:about) return &lt;type> { $i } &lt;/type> }
+						&lt;/report&gt;</exist:text>
+				</exist:query>
+			</xforms:instance>
+
+			<xforms:instance id="types">
+				<exist:result/>
+			</xforms:instance>
+
+			<!-- **************** BINDINGS ********************** -->
+
+			<xforms:action ev:event="xforms-model-construct-done">
+				<xforms:send submission="xquery-collection"/>
+			</xforms:action>
+
+			<!-- ************* SUBMISSIONS **********************-->
+			<!-- ************************* XQUERY FOR TYPES ************************** -->
+			<xforms:submission id="xquery-collection" ref="instance('eXist-xquery')" action="{instance('exist-url')}nomisma/id" method="post" replace="instance" instance="types"
+				xxforms:username="admin" xxforms:password="">
+				<xforms:message level="modal" ev:event="xforms-submit-error">Error querying eXist database.</xforms:message>
+			</xforms:submission>
+		</xforms:model>
+	</xhtml:head>
+
+	<xhtml:body class="yui-skin-sam">
+		<xhtml:div id="doc4">
+			<!-- header -->
+			<xxforms:variable name="display_path">../</xxforms:variable>
+			<xi:include href="header-admin.xml"/>
+			<xhtml:div id="bd">
+				<xhtml:div id="form">
+					<xforms:group ref="instance('status')/text()">
+						<xhtml:div class="success">
+							<xforms:output ref="instance('status')"/>
+						</xhtml:div>
+					</xforms:group>
+					<xhtml:h1>Nomisma Admin</xhtml:h1>
+
+					<xforms:group ref="instance('types')">
+						<xhtml:div class="section">
+							<xhtml:h3>Numismatic Terms</xhtml:h3>
+							<xhtml:ul>
+								<xforms:repeat nodeset="report/type">
+									<xhtml:li>
+										<xhtml:a href="edit/?id={substring-after(., 'id/')}">
+											<xforms:output ref="substring-after(., 'id/')"/>
+										</xhtml:a>
+									</xhtml:li>
+								</xforms:repeat>
+							</xhtml:ul>
+						</xhtml:div>
+					</xforms:group>
+
+					<fr:xforms-inspector/>
+				</xhtml:div>
+			</xhtml:div>
+
+
+
+
+			<!-- footer -->
+			<!--<xi:include href="footer.xml"/>-->
+		</xhtml:div>
+	</xhtml:body>
+</html>
