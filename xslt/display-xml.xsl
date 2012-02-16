@@ -4,7 +4,7 @@
 
 	<!-- change eXist URL if running on a server other than localhost -->
 	<xsl:variable name="exist-url" select="/exist-url"/>
-	<xsl:variable name="id" select="substring-before(tokenize(doc('input:request')/request/request-url, '/')[last()], '.xml')"/>
+	<xsl:variable name="id" select="tokenize(doc('input:request')/request/request-url, '/')[last()]"/>
 	
 
 	<xsl:template match="/">

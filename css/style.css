@@ -41,10 +41,16 @@ a:hover {
 #linked_data a {
 	margin:5px;
 }
-#map{
+#map {
 	width:100%;
 	height:400px;
-	margin:0;	
+	margin:0;
+}
+.external_link {
+	margin-left: 10px;
+}
+ol li, ul li, dl li {
+	list-style-type:none;
 }
 /*
   ***************************************
@@ -53,7 +59,7 @@ a:hover {
  */
 #hd {
 	background-color: rgb(240, 240, 240);
-	border:1px solid #c2b9a9;	
+	border:1px solid #c2b9a9;
 	padding: 5px 5px 0 5px;
 }
 #banner {
@@ -128,6 +134,7 @@ a:hover {
 	display:table;
 	width:100%;
 }
+
 .section {
 	margin-bottom:25px;
 	width:100%;
@@ -231,6 +238,9 @@ a:hover {
 }
 .xxforms-dialog-body>a, .xxforms-dialog-body>span {
 	width:100px;
+}
+.xbl-component{
+	margin:5px 0;	
 }
 .ui-state-error, .ui-state-highlight {
 	padding: 0pt 0.7em;

@@ -16,7 +16,7 @@
 				<skos:prefLabel xml:lang="en">
 					<xsl:value-of select="nuds:descMeta/nuds:title"/>
 				</skos:prefLabel>
-				<skos:definition rdf:resource="http://nomisma.org/id/{$id}.xml"/>
+				<skos:definition rdf:resource="http://nomisma.org/xml/{$id}"/>
 			</skos:Concept>
 		</rdf:RDF>
 	</xsl:template>
