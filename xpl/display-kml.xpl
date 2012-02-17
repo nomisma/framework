@@ -11,9 +11,19 @@
 	<p:param type="input" name="data"/>
 	<p:param type="output" name="data"/>
 	
-	<p:processor name="oxf:unsafe-xslt">		
+	<p:processor name="oxf:request">
+		<p:input name="config">
+			<config>
+				<include>/request/request-url</include>				
+			</config>
+		</p:input>
+		<p:output name="data" id="request"/>
+	</p:processor>
+	
+	<p:processor name="oxf:unsafe-xslt">
+		<p:input name="request" href="#request"/>
 		<p:input name="data" href="#data"/>		
-		<p:input name="config" href="../xslt/id-to-kml.xsl"/>
+		<p:input name="config" href="../xslt/display-kml.xsl"/>
 		<p:output name="data" ref="data"/>
 	</p:processor>
 </p:config>

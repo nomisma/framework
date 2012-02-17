@@ -1,7 +1,7 @@
 <xhtml:html xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ev="http://www.w3.org/2001/xml-events"
 	xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:exist="http://exist.sourceforge.net/NS/exist"
 	xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2008/05/skos#" xmlns:numishare="http://code.google.com/p/numishare/"
-	xmlns:nuds="http://nomisma.org/nuds" xmlns:gml="http://www.opengis.net/gml/">
+	xmlns:nuds="http://nomisma.org/nuds" xmlns:gml="http://www.opengis.net/gml/" xmlns:xlink="http://www.w3.org/1999/xlink">
 	<xhtml:head>
 		<xhtml:title>nomisma.org: Administrative Interface</xhtml:title>
 		<xhtml:link rel="stylesheet" type="text/css" href="/apps/nomisma/css/grids-min.css"/>
@@ -19,13 +19,20 @@
 
 
 		<xforms:model>
-			<!--<xs:schema elementFormDefault="qualified" attributeFormDefault="unqualified">
+			<xs:schema elementFormDefault="qualified" attributeFormDefault="unqualified">
+				<xs:simpleType name="iso8601date">
+					<xs:restriction base="xs:string">
+						<xs:pattern
+							value="(\-?(0|1|2)([0-9]{3})(((01|02|03|04|05|06|07|08|09|10|11|12)((0[1-9])|((1|2)[0-9])|(3[0-1])))|\-((01|02|03|04|05|06|07|08|09|10|11|12)(\-((0[1-9])|((1|2)[0-9])|(3[0-1])))?))?)(/\-?(0|1|2)([0-9]{3})(((01|02|03|04|05|06|07|08|09|10|11|12)((0[1-9])|((1|2)[0-9])|(3[0-1])))|\-((01|02|03|04|05|06|07|08|09|10|11|12)(\-((0[1-9])|((1|2)[0-9])|(3[0-1])))?))?)?"
+						/>
+					</xs:restriction>
+				</xs:simpleType>
 				<xs:simpleType name="iso8601year">
 					<xs:restriction base="xs:string">
 						<xs:pattern value="\-?(0|1|2)([0-9]{3})"/>
 					</xs:restriction>
 				</xs:simpleType>
-				</xs:schema>-->
+			</xs:schema>
 
 			<xforms:instance id="doc">
 				<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:owl="http://www.w3.org/2002/07/owl#"
@@ -37,32 +44,34 @@
 				</rdf:RDF>
 			</xforms:instance>
 
-			<xforms:instance id="object">
-				<nuds:nuds recordType="conceptual" xmlns:nuds="http://nomisma.org/nuds" xmlns:mets="http://www.loc.gov/METS/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml">
-					<nuds:nudsHeader>
-						<nuds:nudsid/>
-						<nuds:publicationStmt>
-							<nuds:publisher/>
-							<nuds:createdBy/>
-							<nuds:date normal=""/>
-							<nuds:langUsage>
-								<nuds:language langcode=""/>
-							</nuds:langUsage>
-						</nuds:publicationStmt>
-						<nuds:rightsStmt>
-							<nuds:copyrightHolder/>
+			<xforms:instance id="coin">
+				<nuds recordType="conceptual" xmlns="http://nomisma.org/nuds" xmlns:mets="http://www.loc.gov/METS/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml">
+					<nudsHeader>
+						<nudsid/>
+						<publicationStmt>
+							<publisher/>
+							<createdBy/>
+							<date normal=""/>
+							<langUsage>
+								<language langcode=""/>
+							</langUsage>
+						</publicationStmt>
+						<rightsStmt>
+							<copyrightHolder/>
 							<!--<date normal=""/>-->
-						</nuds:rightsStmt>
-					</nuds:nudsHeader>
-					<nuds:descMeta>
-						<nuds:title/>
-						<nuds:physDesc/>
-						<nuds:typeDesc>
-							<nuds:objectType/>
-						</nuds:typeDesc>
-						<adminDesc/>
-					</nuds:descMeta>
-				</nuds:nuds>
+						</rightsStmt>
+					</nudsHeader>
+					<descMeta>
+						<title/>
+						<typeDesc>
+							<objectType/>
+						</typeDesc>
+					</descMeta>
+				</nuds>
+			</xforms:instance>
+			
+			<xforms:instance id="kml">
+				<kml xmlns="http://www.opengis.net/kml/2.2"/>
 			</xforms:instance>
 
 			<xforms:instance id="exist-url">
@@ -72,6 +81,7 @@
 			<xforms:instance id="control-instance">
 				<controls xmlns="">
 					<id/>
+					<original_id/>
 					<type/>
 					<prefLabel/>
 					<lat/>
@@ -162,7 +172,7 @@
 					<xforms:bind nodeset="skos:altLabel" required="true()">
 						<xforms:bind nodeset="@xml:lang" constraint="string-length(.) &gt; 0"/>
 					</xforms:bind>
-					<xforms:bind nodeset="skos:definition" required="true()">
+					<xforms:bind nodeset="skos:definition">
 						<xforms:bind nodeset="@xml:lang" constraint="string-length(.) &gt; 0"/>
 					</xforms:bind>
 					<xforms:bind nodeset="skos:related">
@@ -174,10 +184,76 @@
 				</xforms:bind>
 			</xforms:bind>
 
+			<xforms:bind nodeset="instance('coin')">
+				<xforms:bind nodeset="nuds:nudsHeader">
+					<xforms:bind nodeset="nuds:nudsid" required="true()" type="xs:anyURI"/>
+					<xforms:bind nodeset="nuds:publicationStmt">
+						<xforms:bind nodeset="nuds:publisher" required="true()"/>
+						<xforms:bind nodeset="nuds:createdBy" required="true()"/>
+						<xforms:bind nodeset="nuds:date">
+							<xforms:bind nodeset="@normal" type="xs:date"/>
+						</xforms:bind>
+						<xforms:bind nodeset="nuds:project"/>
+						<xforms:bind nodeset="nuds:language" required="true()">
+							<xforms:bind constraint="string-length(@langcode) &gt; 0"/>
+						</xforms:bind>
+					</xforms:bind>
+					<xforms:bind nodeset="nuds:rightsStmt">
+						<xforms:bind nodeset="nuds:copyrightHolder" required="true()"/>
+					</xforms:bind>
+				</xforms:bind>
+				<xforms:bind nodeset="//nuds:reference">
+					<xforms:bind nodeset="nuds:title" required="true()"/>
+					<xforms:bind nodeset="nuds:identifier" required="true()"/>
+				</xforms:bind>
+				<xforms:bind nodeset="nuds:descMeta">
+					<xforms:bind nodeset="nuds:title" required="true()"/>
+					<xforms:bind nodeset="nuds:typeDesc">
+						<xforms:bind nodeset="@xlink:href" required="true()" type="xs:anyURI"/>
+						<xforms:bind nodeset="nuds:objectType">
+							<xforms:bind constraint="string-length(.) &gt; 0"/>
+						</xforms:bind>
+						<xforms:bind nodeset="nuds:date" required="true()">
+							<xforms:bind nodeset="@normal" type="iso8601date"/>
+						</xforms:bind>
+						<xforms:bind nodeset="nuds:denomination">
+							<xforms:bind constraint="string-length(.) &gt; 0"/>
+						</xforms:bind>
+						<xforms:bind nodeset="nuds:manufacture">
+							<xforms:bind constraint="string-length(.) &gt; 0"/>
+						</xforms:bind>
+						<xforms:bind nodeset="nuds:material">
+							<xforms:bind constraint="string-length(.) &gt; 0"/>
+						</xforms:bind>
+						<xforms:bind nodeset="nuds:weightStandard" required="true()" type="xs:decimal">
+							<xforms:bind nodeset="@origin" required="true()"/>
+						</xforms:bind>
+						<xforms:bind nodeset="nuds:authority">
+							<xforms:bind nodeset="*" constraint="string-length(.) &gt; 0">
+								<xforms:bind nodeset="@xlink:title">
+									<xforms:bind constraint="string-length(.) &gt; 0"/>
+								</xforms:bind>
+								<xforms:bind nodeset="@xlink:href">
+									<xforms:bind constraint="string-length(.) &gt; 0"/>
+								</xforms:bind>
+							</xforms:bind>
+						</xforms:bind>
+					</xforms:bind>
+					<xforms:bind nodeset="nuds:associatedObject">
+						<xforms:bind nodeset="@xlink:href" required="true()" type="xs:anyURI"/>
+					</xforms:bind>
+				</xforms:bind>
+			</xforms:bind>
+
+			<!-- tab bindings -->
+			<xforms:bind id="typeDesc-tab" nodeset="instance('coin')/nuds:descMeta/nuds:typeDesc"/>
+			<xforms:bind id="nudsHeader-tab" nodeset="instance('coin')/nuds:nudsHeader"/>
+
 			<xforms:action ev:event="xforms-model-construct-done">
 				<xforms:send submission="xquery-collection"/>
 				<xforms:action if="string(xxforms:get-request-parameter('id'))">
 					<xforms:setvalue ref="instance('control-instance')/id" value="xxforms:get-request-parameter('id')"/>
+					<xforms:setvalue ref="instance('control-instance')/original_id" value="xxforms:get-request-parameter('id')"/>
 					<xforms:send submission="load-id"/>
 				</xforms:action>
 
@@ -205,9 +281,12 @@
 						<xforms:setvalue ref="instance('control-instance')/lat" value="tokenize(instance('doc')/skos:Concept/gml:pos, ' ')[1]"/>
 						<xforms:setvalue ref="instance('control-instance')/lon" value="tokenize(instance('doc')/skos:Concept/gml:pos, ' ')[2]"/>
 					</xforms:action>
-					<xforms:action if="contains(instance('control-instance')/type, 'hoard') or contains(instance('control-instance')/type, 'type_series_item')">
-						<xforms:send submission="load-object"/>
+					<xforms:action if="contains(instance('control-instance')/type, 'type_series_item')">
+						<xforms:send submission="load-coin"/>
 					</xforms:action>
+					<!--<xforms:action if="contains(instance('control-instance')/type, 'hoard')">
+						<xforms:send submission="load-hoard"/>
+					</xforms:action>-->
 				</xforms:action>
 				<!-- if config.xml doesn't exist, then create the exist collection with necessary files -->
 				<xforms:action ev:event="xforms-submit-error">
@@ -222,16 +301,32 @@
 				<xforms:action ev:event="xforms-submit-done">
 					<xforms:setvalue ref="instance('status')">id saved</xforms:setvalue>
 					<!-- post to solr -->
-					<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-solr.xpl', 'data', instance('doc'), 'data')"/>
-					<xforms:send submission="post-solr-doc"/>
+					<!--<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-solr.xpl', 'data', instance('doc'), 'data')"/>
+					<xforms:send submission="post-solr-doc"/>-->
 				</xforms:action>
 			</xforms:submission>
 
-			<xforms:submission id="load-object" serialization="none" method="get" action="{instance('exist-url')}nomisma/objects/{instance('control-instance')/id}.xml" replace="instance"
-				instance="object" xxforms:username="admin" xxforms:password="">
+			<!-- **** NUDS **** -->
+			<xforms:submission id="load-coin" serialization="none" method="get" action="{instance('exist-url')}nomisma/objects/{instance('control-instance')/id}.xml" replace="instance" instance="coin"
+				xxforms:username="admin" xxforms:password="">
 				<xforms:action ev:event="xforms-submit-error">
 					<xforms:message level="modal">Error Loading object</xforms:message>
 				</xforms:action>
+			</xforms:submission>
+
+			<xforms:submission id="save-coin" ref="instance('coin')" xxforms:username="admin" xxforms:password="" action="{instance('exist-url')}nomisma/objects/{instance('control-instance')/id}.xml"
+				method="put" replace="none">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Save Error. Are all required inputs filled?</xforms:message>
+				<xforms:action ev:event="xforms-submit-done">
+					<xforms:insert nodeset="instance('doc')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/nuds-to-rdf.xpl', 'data', instance('coin'), 'data')"/>
+					<xforms:send submission="save-id"/>
+				</xforms:action>
+			</xforms:submission>
+			
+			<!-- **** KML **** -->
+			<xforms:submission id="save-kml" ref="instance('kml')" xxforms:username="admin" xxforms:password="" action="{instance('exist-url')}nomisma/kml/{instance('control-instance')/id}.kml"
+				method="put" replace="none">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to save KML</xforms:message>
 			</xforms:submission>
 
 			<!-- ************************* XQUERY FOR TYPES ************************** -->
@@ -261,6 +356,7 @@
 		<xi:include href="oxf:/xbl/numishare/dynasty/dynasty.xbl" xi:omit-xml-base="true"/>
 		<xi:include href="oxf:/xbl/numishare/material/material.xbl" xi:omit-xml-base="true"/>
 		<xi:include href="oxf:/xbl/numishare/mint/mint.xbl" xi:omit-xml-base="true"/>
+		<xi:include href="oxf:/xbl/numishare/nudsHeader/nudsHeader.xbl" xi:omit-xml-base="true"/>
 		<xi:include href="oxf:/xbl/numishare/reference/reference.xbl" xi:omit-xml-base="true"/>
 		<xi:include href="oxf:/xbl/numishare/region/region.xbl" xi:omit-xml-base="true"/>
 		<xi:include href="oxf:/xbl/numishare/type-undertype/type-undertype.xbl" xi:omit-xml-base="true"/>
@@ -281,11 +377,25 @@
 					</xforms:group>
 
 					<xhtml:div class="submission">
-						<xforms:submit submission="save-id" appearance="minimal">
-							<xforms:label class="file_control"><xhtml:img src="{$display_path}images/save.gif" alt="Save"/> Save</xforms:label>
-						</xforms:submit>
+						<xforms:trigger appearance="minimal">
+							<xforms:label class="file_control"><xhtml:img src="{$display_path}images/save.gif" alt="Save"/>Save</xforms:label>
+							<xforms:action ev:event="DOMActivate">
+								<xforms:action if="contains(instance('control-instance')/type, 'type_series_item')">
+									<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('coin'), 'data')"/>
+									<xforms:send submission="save-kml"/>
+									<xforms:send submission="save-coin"/>
+								</xforms:action>
+								<xforms:action if="not(contains(instance('control-instance')/type, 'type_series_item')) and not(contains(instance('control-instance')/type, 'hoard'))">
+									<xforms:action if="contains(instance('control-instance')/type, 'mint')">
+										<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml.xpl', 'data', instance('doc'), 'data')"/>
+										<xforms:send submission="save-kml"/>
+									</xforms:action>
+									<xforms:send submission="save-id"/>
+								</xforms:action>
+							</xforms:action>
+						</xforms:trigger>
 						<xforms:submit submission="load-id" appearance="minimal">
-							<xforms:label class="file_control"><xhtml:img src="{$display_path}images/recycle-green.png" alt="Load"/> Load</xforms:label>
+							<xforms:label class="file_control"><xhtml:img src="{$display_path}images/recycle-green.png" alt="Load"/>Load</xforms:label>
 						</xforms:submit>
 					</xhtml:div>
 
@@ -325,7 +435,11 @@
 								<xforms:label>id</xforms:label>
 								<xforms:alert>Required</xforms:alert>
 								<xforms:action ev:event="xforms-value-changed">
-									<xforms:setvalue ref="instance('doc')/skos:Concept/@rdf:about" value="concat('http://nomisma.org/id/', instance('control-instance')/id)"/>
+									<xxforms:variable name="id" select="."/>
+									<xforms:setvalue ref="instance('doc')/skos:Concept/@rdf:about" value="concat('http://nomisma.org/id/', $id)"/>
+									<xforms:action if="contains(instance('control-instance')/type, 'type_series_item')">
+										<xforms:setvalue ref="instance('coin')/nuds:nudsHeader/nuds:nudsid" value="$id"/>
+									</xforms:action>
 								</xforms:action>
 							</xforms:input>
 						</xhtml:div>
@@ -363,7 +477,7 @@
 												<xforms:insert ev:event="DOMActivate" origin="instance('coordinates-template')" context="instance('doc')/skos:Concept" nodeset="./child::node()[last()]"
 												/>
 											</xforms:trigger>
-										</xforms:group>										
+										</xforms:group>
 									</xforms:group>
 								</xhtml:div>
 								<xforms:group ref="instance('doc')/skos:Concept">
@@ -410,7 +524,7 @@
 												</xforms:label>
 											</xforms:trigger>
 										</xhtml:div>
-									</xforms:repeat>		
+									</xforms:repeat>
 									<xforms:group ref="skos:definition">
 										<xhtml:div>
 											<xforms:input ref=".">
@@ -495,18 +609,32 @@
 							</xhtml:div>
 						</xforms:case>
 						<xforms:case id="coin-type">
-							<xhtml:div class="section">								
-								<xforms:group ref="instance('object')/nuds:descMeta/nuds:typeDesc">	
+							<xforms:group ref="instance('coin')/nuds:descMeta">
+								<xhtml:div>
+									<xforms:input ref="nuds:title">
+										<xforms:label>Title</xforms:label>
+										<xforms:alert>Required</xforms:alert>
+									</xforms:input>
+								</xhtml:div>
+							</xforms:group>
+							<fr:tabview>
+								<!--**************************************** DESCMETA **********************************-->
+								<fr:tab bind="typeDesc-tab">
+									<fr:label>Descriptive Metadata</fr:label>
 									<xhtml:h2>Typological Description</xhtml:h2>
 									<numishare:type-undertype/>
-								</xforms:group>
-							</xhtml:div>
+								</fr:tab>
+								<fr:tab bind="nudsHeader-tab">
+									<fr:label>Descriptive Metadata</fr:label>
+									<numishare:nudsHeader/>
+								</fr:tab>
+							</fr:tabview>
 						</xforms:case>
 					</xforms:switch>
 				</xhtml:div>
 
 			</xhtml:div>
-			<fr:xforms-inspector/>
+<!--			<fr:xforms-inspector/>-->
 			<!-- footer -->
 			<!--<xi:include href="footer.xml"/>-->
 		</xhtml:div>

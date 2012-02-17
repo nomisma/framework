@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nm="http://nomisma.org/id/" xmlns:owl="http://www.w3.org/2002/07/owl#"
-	xmlns:exsl="http://exslt.org/common" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:skos="http://www.w3.org/2008/05/skos#"
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nm="http://nomisma.org/id/" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:exsl="http://exslt.org/common"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:skos="http://www.w3.org/2008/05/skos#"
 	xmlns:numishare="http://code.google.com/p/numishare/" xmlns:nuds="http://nomisma.org/id/nuds" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml/"
 	xmlns:nomisma="http://nomisma.org/id/" version="2.0">
 	<xsl:output method="xhtml" encoding="UTF-8"/>
 
 	<!-- change eXist URL if running on a server other than localhost -->
-	<xsl:variable name="exist-url" select="/exist-url"/>
 	<xsl:variable name="display_path">../</xsl:variable>
 
 
 	<xsl:template match="/">
-		<xsl:variable name="id" select="tokenize(doc('input:request')/request/request-url, '/')[last()]"/>
+		<xsl:variable name="id" select="tokenize(rdf:RDF/skos:Concept/@rdf:about, '/')[last()]"/>
+		<xsl:variable name="type" select="tokenize(rdf:RDF/skos:Concept/skos:broader/@rdf:about, '/')[last()]"/>
 
 		<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:batlas="http://atlantides.org/batlas/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:gml="http://www.opengis.net/gml/"
 			xmlns:nm="http://nomisma.org/id/" xmlns:ov="http://open.vocab.org/terms/" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -38,15 +38,17 @@
 				<link rel="stylesheet" href="{$display_path}/css/style.css"/>
 
 				<!-- javascript -->
-				<!--<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"/>
-				<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.2&amp;sensor=false"/>
-				<script type="text/javascript" src="{$display_path}/javascript/jquery-1.6.1.min.js"/>
-				<script type="text/javascript" src="{$display_path}/javascript/map_functions.js"/>
-				<script type="text/javascript">
+				<xsl:if test="contains($type, 'hoard') or contains($type, 'type_series_item') or contains($type, 'mint')">
+					<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"/>
+					<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.2&amp;sensor=false"/>
+					<script type="text/javascript" src="{$display_path}/javascript/jquery-1.6.1.min.js"/>
+					<script type="text/javascript" src="{$display_path}/javascript/map_functions.js"/>
+					<script type="text/javascript">
 					$(document).ready(function(){
 						initialize_map('<xsl:value-of select="$id"/>');
 					});
-				</script>-->
+				</script>
+				</xsl:if>
 
 			</head>
 			<body class="yui-skin-sam">
@@ -59,7 +61,7 @@
 							<div class="yui-b">
 								<div class="yui-g">
 									<div class="yui-u first">
-										<xsl:apply-templates select="document(concat($exist-url, 'nomisma/id/', $id, '.xml'))/rdf:RDF"/>
+										<xsl:apply-templates select="/rdf:RDF/skos:Concept"/>
 									</div>
 									<div class="yui-u">
 										<div id="map"/>
@@ -84,12 +86,16 @@
 		</html>
 	</xsl:template>
 
-	<xsl:template match="rdf:RDF">
-		<xsl:apply-templates select="skos:Concept|rdf:Description"/>
-	</xsl:template>
-
 	<xsl:template match="skos:Concept">
 		<div>
+			<h1>
+				<xsl:apply-templates select="skos:prefLabel[@xml:lang='en']"/>
+				<xsl:text> (</xsl:text>
+				<a href="{skos:broader/@rdf:about}">
+					<xsl:value-of select="substring-after(skos:broader/@rdf:about, 'id/')"/>
+				</a>
+				<xsl:text>)</xsl:text>
+			</h1>
 			<xsl:choose>
 				<xsl:when test="contains(skos:broader/@rdf:about, 'type_series_item')">
 					<xsl:variable name="object">
@@ -100,14 +106,6 @@
 				</xsl:when>
 				<xsl:when test="contains(skos:broader/@rdf:about, 'hoard')"> hoard </xsl:when>
 				<xsl:otherwise>
-					<h1>
-						<xsl:apply-templates select="skos:prefLabel[@xml:lang='en']"/>
-						<xsl:text> (</xsl:text>
-						<a href="{skos:broader/@rdf:about}">
-							<xsl:value-of select="substring-after(skos:broader/@rdf:about, 'id/')"/>
-						</a>
-						<xsl:text>)</xsl:text>
-					</h1>
 					<xsl:apply-templates select="skos:definition"/>
 					<xsl:if test="count(skos:altLabel) &gt; 0">
 						<h3>Alternate Labels</h3>
