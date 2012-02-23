@@ -1,7 +1,7 @@
 <xhtml:html xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ev="http://www.w3.org/2001/xml-events"
 	xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:exist="http://exist.sourceforge.net/NS/exist"
 	xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2008/05/skos#" xmlns:numishare="http://code.google.com/p/numishare/"
-	xmlns:nuds="http://nomisma.org/nuds" xmlns:gml="http://www.opengis.net/gml/" xmlns:xlink="http://www.w3.org/1999/xlink">
+	xmlns:nuds="http://nomisma.org/nuds" xmlns:nh="http://nomisma.org/nudsHoard" xmlns:gml="http://www.opengis.net/gml/" xmlns:xlink="http://www.w3.org/1999/xlink">
 	<xhtml:head>
 		<xhtml:title>nomisma.org: Administrative Interface</xhtml:title>
 		<xhtml:link rel="stylesheet" type="text/css" href="/apps/nomisma/css/grids-min.css"/>
@@ -68,6 +68,34 @@
 						</typeDesc>
 					</descMeta>
 				</nuds>
+			</xforms:instance>
+			
+			<xforms:instance id="hoard">
+				<nudsHoard xmlns="http://nomisma.org/nudsHoard" xmlns:nuds="http://nomisma.org/nuds" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<nudsHeader>
+						<nudsid/>
+						<publicationStmt>
+							<publisher/>
+							<createdBy/>
+							<date normal=""/>
+							<langUsage>
+								<language langcode=""/>
+							</langUsage>
+						</publicationStmt>
+						<rightsStmt>
+							<copyrightHolder/>
+							<!--<date normal=""/>-->
+						</rightsStmt>
+					</nudsHeader>
+					<descMeta>
+						<hoardDesc>
+							<findspot/>
+						</hoardDesc>
+						<contentsDesc>
+							<contents/>
+						</contentsDesc>
+					</descMeta>
+				</nudsHoard>
 			</xforms:instance>
 			
 			<xforms:instance id="kml">
@@ -265,6 +293,9 @@
 				<xforms:action if="contains(instance('control-instance')/type, 'type_series_item')">
 					<xforms:toggle case="coin-type"/>
 				</xforms:action>
+				<xforms:action if="contains(instance('control-instance')/type, 'hoard')">
+					<xforms:toggle case="hoard-case"/>
+				</xforms:action>
 				<xforms:action if="not(contains(instance('control-instance')/type, 'type_series_item')) and not(contains(instance('control-instance')/type, 'hoard'))">
 					<xforms:toggle case="default"/>
 				</xforms:action>
@@ -283,6 +314,9 @@
 					</xforms:action>
 					<xforms:action if="contains(instance('control-instance')/type, 'type_series_item')">
 						<xforms:send submission="load-coin"/>
+					</xforms:action>
+					<xforms:action if="contains(instance('control-instance')/type, 'hoard')">
+						<xforms:send submission="load-hoard"/>
 					</xforms:action>
 					<!--<xforms:action if="contains(instance('control-instance')/type, 'hoard')">
 						<xforms:send submission="load-hoard"/>
@@ -319,6 +353,23 @@
 				<xforms:message ev:event="xforms-submit-error" level="modal">Save Error. Are all required inputs filled?</xforms:message>
 				<xforms:action ev:event="xforms-submit-done">
 					<xforms:insert nodeset="instance('doc')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/nuds-to-rdf.xpl', 'data', instance('coin'), 'data')"/>
+					<xforms:send submission="save-id"/>
+				</xforms:action>
+			</xforms:submission>
+			
+			<!-- **** NUDSHOARD **** -->
+			<xforms:submission id="load-hoard" serialization="none" method="get" action="{instance('exist-url')}nomisma/objects/{instance('control-instance')/id}.xml" replace="instance" instance="hoard"
+				xxforms:username="admin" xxforms:password="">
+				<xforms:action ev:event="xforms-submit-error">
+					<xforms:message level="modal">Error Loading object</xforms:message>
+				</xforms:action>
+			</xforms:submission>
+			
+			<xforms:submission id="save-hoard" ref="instance('hoard')" xxforms:username="admin" xxforms:password="" action="{instance('exist-url')}nomisma/objects/{instance('control-instance')/id}.xml"
+				method="put" replace="none">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Save Error. Are all required inputs filled?</xforms:message>
+				<xforms:action ev:event="xforms-submit-done">
+					<xforms:insert nodeset="instance('doc')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/nudsHoard-to-rdf.xpl', 'data', instance('hoard'), 'data')"/>
 					<xforms:send submission="save-id"/>
 				</xforms:action>
 			</xforms:submission>
@@ -384,6 +435,11 @@
 									<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('coin'), 'data')"/>
 									<xforms:send submission="save-kml"/>
 									<xforms:send submission="save-coin"/>
+								</xforms:action>
+								<xforms:action if="contains(instance('control-instance')/type, 'hoard')">
+									<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('hoard'), 'data')"/>
+									<xforms:send submission="save-kml"/>
+									<xforms:send submission="save-hoard"/>
 								</xforms:action>
 								<xforms:action if="not(contains(instance('control-instance')/type, 'type_series_item')) and not(contains(instance('control-instance')/type, 'hoard'))">
 									<xforms:action if="contains(instance('control-instance')/type, 'mint')">
@@ -629,6 +685,9 @@
 									<numishare:nudsHeader/>
 								</fr:tab>
 							</fr:tabview>
+						</xforms:case>
+						<xforms:case id="hoard-case">
+							hoard
 						</xforms:case>
 					</xforms:switch>
 				</xhtml:div>

@@ -9,8 +9,8 @@
 	font-size:16px;
 	font-family:arial, helvetica, sans-serif;
 }
-h1 {
-	margin:0
+h1, h2, h3 {
+	margin: .5em 0;
 }
 #form h1,#form h2, #form h3, #form h4,#form h5,#form h6 {
 	display:inline;
@@ -51,6 +51,16 @@ a:hover {
 }
 ol li, ul li, dl li {
 	list-style-type:none;
+}
+ul{
+	margin:.5em 0 .5em 1em;
+}
+#lod{
+	text-align:right;
+	margin:1em 0;
+}
+.option{
+	margin-left:1em;	
 }
 /*
   ***************************************

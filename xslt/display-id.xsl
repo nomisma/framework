@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nm="http://nomisma.org/id/" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:exsl="http://exslt.org/common"
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:skos="http://www.w3.org/2008/05/skos#"
-	xmlns:numishare="http://code.google.com/p/numishare/" xmlns:nuds="http://nomisma.org/id/nuds" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml/"
-	xmlns:nomisma="http://nomisma.org/id/" version="2.0">
+	xmlns:numishare="http://code.google.com/p/numishare/" xmlns:nh="http://nomisma.org/nudsHoard" xmlns:nuds="http://nomisma.org/nuds" xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:gml="http://www.opengis.net/gml/" xmlns:nomisma="http://nomisma.org/id/" version="2.0">
 	<xsl:output method="xhtml" encoding="UTF-8"/>
 
 	<!-- change eXist URL if running on a server other than localhost -->
@@ -64,6 +64,28 @@
 										<xsl:apply-templates select="/rdf:RDF/skos:Concept"/>
 									</div>
 									<div class="yui-u">
+										<div id="lod">
+											<h3>Data Options</h3>
+											<span class="option">
+												<a href="{$id}.rdf">
+													<img src="{$display_path}images/rdf-medium.gif" alt="RDF"/>
+												</a>
+											</span>
+											<xsl:if test="contains($type, 'hoard') or contains($type, 'type_series_item') or contains($type, 'mint')">
+												<span class="option">
+													<a href="{$id}.kml">
+														<img src="{$display_path}images/kml-medium.png" alt="KML"/>
+													</a>
+												</span>
+											</xsl:if>
+											<xsl:if test="contains($type, 'hoard') or contains($type, 'type_series_item')">
+												<span class="option">
+													<a href="{$display_path}xml/{$id}">
+														<img src="{$display_path}images/xml.png" alt="XML"/>
+													</a>
+												</span>
+											</xsl:if>
+										</div>
 										<div id="map"/>
 									</div>
 								</div>
@@ -99,12 +121,18 @@
 			<xsl:choose>
 				<xsl:when test="contains(skos:broader/@rdf:about, 'type_series_item')">
 					<xsl:variable name="object">
-						<xsl:copy-of select="document(skos:definition/@rdf:resource)/*[local-name()='nuds']"/>
+						<xsl:copy-of select="document(skos:definition/@rdf:resource)/nuds:nuds"/>
 					</xsl:variable>
 					<h3>Typological Attributes</h3>
-					<xsl:apply-templates select="exsl:node-set($object)//*[local-name()='typeDesc']"/>
+					<xsl:apply-templates select="exsl:node-set($object)/descendant::nuds:typeDesc"/>
 				</xsl:when>
-				<xsl:when test="contains(skos:broader/@rdf:about, 'hoard')"> hoard </xsl:when>
+				<xsl:when test="contains(skos:broader/@rdf:about, 'hoard')">
+					<xsl:variable name="object">
+						<xsl:copy-of select="document(skos:definition/@rdf:resource)/nh:nudsHoard"/>
+					</xsl:variable>
+					<xsl:apply-templates select="exsl:node-set($object)/descendant::nh:hoardDesc"/>
+					<xsl:apply-templates select="exsl:node-set($object)/descendant::nh:contentsDesc/nh:contents"/>
+				</xsl:when>
 				<xsl:otherwise>
 					<xsl:apply-templates select="skos:definition"/>
 					<xsl:if test="count(skos:altLabel) &gt; 0">
@@ -166,7 +194,7 @@
 	</xsl:template>
 
 	<!-- ****************** COIN-TYPE AND HOARD TEMPLATES **************************** -->
-	<xsl:template match="*[local-name()='typeDesc']">
+	<xsl:template match="nuds:typeDesc">
 		<ul>
 			<xsl:apply-templates mode="descMeta"/>
 		</ul>
@@ -242,7 +270,7 @@
 			<xsl:otherwise>
 				<li>
 					<xsl:choose>
-						<xsl:when test="parent::physDesc">
+						<xsl:when test="parent::nuds:physDesc">
 							<h3>
 								<xsl:value-of select="numishare:regularize_node(local-name())"/>
 							</h3>
@@ -259,6 +287,53 @@
 				</li>
 			</xsl:otherwise>
 		</xsl:choose>
+	</xsl:template>
+
+	<xsl:template match="nh:hoardDesc">
+		<h2>Hoard Description</h2>
+		<ul>
+			<xsl:apply-templates mode="descMeta"/>
+		</ul>
+	</xsl:template>
+
+	<xsl:template match="nh:contents">
+		<h2>Contents</h2>
+		<xsl:apply-templates select="descendant::nh:coin|descendant::nh:coinGrp"/>
+	</xsl:template>
+
+	<xsl:template match="nh:coin|nh:coinGrp">
+		<div class="coin-group" style="border-bottom:1px solid silver">
+			<h3>
+				<xsl:text>Coin</xsl:text>
+				<xsl:if test="local-name()='coinGrp'">
+					<xsl:text> Group: </xsl:text>
+					<xsl:value-of select="@count"/>
+					<xsl:text> </xsl:text>
+					<xsl:value-of select="if(number(@count) = 1) then 'coin' else 'coins'"/>
+				</xsl:if>
+			</h3>
+			<xsl:variable name="typeDesc_resource">
+				<xsl:if test="string(nuds:typeDesc/@xlink:href)">
+					<xsl:value-of select="nuds:typeDesc/@xlink:href"/>
+				</xsl:if>
+			</xsl:variable>
+			<xsl:variable name="typeDesc">
+				<xsl:choose>
+					<xsl:when test="string($typeDesc_resource)">
+						<xsl:copy-of select="document(concat($typeDesc_resource, '.xml'))/nuds:nuds/nuds:descMeta/nuds:typeDesc"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:copy-of select="nuds:typeDesc"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:variable>
+
+			<!-- apply templates -->
+			<xsl:apply-templates select="nuds:physDesc"/>
+			<xsl:apply-templates select="exsl:node-set($typeDesc)/nuds:typeDesc">
+				<xsl:with-param name="typeDesc_resource" select="$typeDesc_resource"/>
+			</xsl:apply-templates>
+		</div>
 	</xsl:template>
 
 	<!-- ***************** FUNCTIONS ******************* -->
