@@ -318,9 +318,6 @@
 					<xforms:action if="contains(instance('control-instance')/type, 'hoard')">
 						<xforms:send submission="load-hoard"/>
 					</xforms:action>
-					<!--<xforms:action if="contains(instance('control-instance')/type, 'hoard')">
-						<xforms:send submission="load-hoard"/>
-					</xforms:action>-->
 				</xforms:action>
 				<!-- if config.xml doesn't exist, then create the exist collection with necessary files -->
 				<xforms:action ev:event="xforms-submit-error">
@@ -334,9 +331,10 @@
 
 				<xforms:action ev:event="xforms-submit-done">
 					<xforms:setvalue ref="instance('status')">id saved</xforms:setvalue>
+					<xforms:setvalue ref="instance('control-instance')/original_id" value="instance('control-instance')/id"/>
 					<!-- post to solr -->
-					<!--<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-solr.xpl', 'data', instance('doc'), 'data')"/>
-					<xforms:send submission="post-solr-doc"/>-->
+					<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-solr.xpl', 'data', instance('doc'), 'data')"/>
+					<xforms:send submission="post-solr-doc"/>
 				</xforms:action>
 			</xforms:submission>
 
@@ -378,6 +376,20 @@
 			<xforms:submission id="save-kml" ref="instance('kml')" xxforms:username="admin" xxforms:password="" action="{instance('exist-url')}nomisma/kml/{instance('control-instance')/id}.kml"
 				method="put" replace="none">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to save KML</xforms:message>
+			</xforms:submission>
+			
+			<!-- **** DELETE **** -->
+			<xforms:submission id="delete-id" action="{instance('exist-url')}nomisma/id/{instance('control-instance')/original_id}.xml" method="delete" replace="none"
+				xxforms:username="admin" xxforms:password="">
+				<xforms:message level="modal" ev:event="xforms-submit-error">Error deleting id.</xforms:message>
+			</xforms:submission>
+			<xforms:submission id="delete-object" action="{instance('exist-url')}nomisma/objects/{instance('control-instance')/original_id}.xml" method="delete" replace="none"
+				xxforms:username="admin" xxforms:password="">
+				<xforms:message level="modal" ev:event="xforms-submit-error">Error deleting nuds or nudsHoard record.</xforms:message>
+			</xforms:submission>
+			<xforms:submission id="delete-kml" action="{instance('exist-url')}nomisma/kml/{instance('control-instance')/original_id}.kml" method="delete" replace="none"
+				xxforms:username="admin" xxforms:password="">
+				<xforms:message level="modal" ev:event="xforms-submit-error">Error deleting KML.</xforms:message>
 			</xforms:submission>
 
 			<!-- ************************* XQUERY FOR TYPES ************************** -->
@@ -429,7 +441,76 @@
 
 					<xhtml:div class="submission">
 						<xforms:trigger appearance="minimal">
-							<xforms:label class="file_control"><xhtml:img src="{$display_path}images/save.gif" alt="Save"/>Save</xforms:label>
+							<xforms:label class="file_control"><xhtml:img src="{$display_path}images/save.gif" alt="Save"/>Save</xforms:label>							
+							<xforms:action ev:event="DOMActivate">
+								<xforms:action if="string-length(instance('control-instance')/original_id) = 0 or instance('control-instance')/original_id = instance('control-instance')/id">
+									<xforms:action if="contains(instance('control-instance')/type, 'type_series_item')">
+										<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('coin'), 'data')"/>
+										<xforms:send submission="save-kml"/>
+										<xforms:send submission="save-coin"/>
+									</xforms:action>
+									<xforms:action if="contains(instance('control-instance')/type, 'hoard')">
+										<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('hoard'), 'data')"/>
+										<xforms:send submission="save-kml"/>
+										<xforms:send submission="save-hoard"/>
+									</xforms:action>
+									<xforms:action if="not(contains(instance('control-instance')/type, 'type_series_item')) and not(contains(instance('control-instance')/type, 'hoard'))">
+										<xforms:action if="contains(instance('control-instance')/type, 'mint')">
+											<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml.xpl', 'data', instance('doc'), 'data')"/>
+											<xforms:send submission="save-kml"/>
+										</xforms:action>
+										<xforms:send submission="save-id"/>
+									</xforms:action>
+								</xforms:action>	
+								<xforms:action if="string-length(instance('control-instance')/original_id) &gt; 0 and instance('control-instance')/original_id != instance('control-instance')/id">
+									<xforms:dispatch target="save-dialog" name="fr-show"/>
+								</xforms:action>
+							</xforms:action>
+						</xforms:trigger>
+						<xforms:submit submission="load-id" appearance="minimal">
+							<xforms:label class="file_control"><xhtml:img src="{$display_path}images/recycle-green.png" alt="Load"/>Load</xforms:label>
+						</xforms:submit>
+					</xhtml:div>
+					
+					<!-- dialogs -->
+					<fr:alert-dialog id="save-dialog">
+						<fr:label>Save</fr:label>
+						<fr:message>The id has been changed from its original value</fr:message>
+						<fr:positive-choice>
+							<fr:label>Save: Replace</fr:label>
+							<xforms:action ev:event="DOMActivate">
+								<!-- delete old id first -->
+								<xforms:action if="contains(instance('control-instance')/type, 'type_series_item') or contains(instance('control-instance')/type, 'hoard')">
+									<xforms:send submission="delete-object"/>
+									<xforms:send submission="delete-kml"/>
+								</xforms:action>
+								<xforms:action if="contains(instance('control-instance')/type, 'mint')">
+									<xforms:send submission="delete-kml"/>
+								</xforms:action>
+								<xforms:send submission="delete-id"/>
+								
+								<!-- create new objects -->
+								<xforms:action if="contains(instance('control-instance')/type, 'type_series_item')">
+									<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('coin'), 'data')"/>
+									<xforms:send submission="save-kml"/>
+									<xforms:send submission="save-coin"/>
+								</xforms:action>
+								<xforms:action if="contains(instance('control-instance')/type, 'hoard')">
+									<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('hoard'), 'data')"/>
+									<xforms:send submission="save-kml"/>
+									<xforms:send submission="save-hoard"/>
+								</xforms:action>
+								<xforms:action if="not(contains(instance('control-instance')/type, 'type_series_item')) and not(contains(instance('control-instance')/type, 'hoard'))">
+									<xforms:action if="contains(instance('control-instance')/type, 'mint')">
+										<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml.xpl', 'data', instance('doc'), 'data')"/>
+										<xforms:send submission="save-kml"/>
+									</xforms:action>
+									<xforms:send submission="save-id"/>
+								</xforms:action>
+							</xforms:action>
+						</fr:positive-choice>
+						<fr:negative-choice>
+							<fr:label>Save: Don't Replace</fr:label>
 							<xforms:action ev:event="DOMActivate">
 								<xforms:action if="contains(instance('control-instance')/type, 'type_series_item')">
 									<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('coin'), 'data')"/>
@@ -449,11 +530,11 @@
 									<xforms:send submission="save-id"/>
 								</xforms:action>
 							</xforms:action>
-						</xforms:trigger>
-						<xforms:submit submission="load-id" appearance="minimal">
-							<xforms:label class="file_control"><xhtml:img src="{$display_path}images/recycle-green.png" alt="Load"/>Load</xforms:label>
-						</xforms:submit>
-					</xhtml:div>
+						</fr:negative-choice>
+						<fr:neutral-choice>
+							<fr:label>Cancel</fr:label>
+						</fr:neutral-choice>			
+					</fr:alert-dialog>
 
 					<xhtml:h1>Edit nomisma id</xhtml:h1>
 					<xforms:group ref="instance('control-instance')">
@@ -691,9 +772,8 @@
 						</xforms:case>
 					</xforms:switch>
 				</xhtml:div>
-
 			</xhtml:div>
-<!--			<fr:xforms-inspector/>-->
+			<!--<fr:xforms-inspector/>-->
 			<!-- footer -->
 			<!--<xi:include href="footer.xml"/>-->
 		</xhtml:div>

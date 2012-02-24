@@ -461,6 +461,7 @@
 		<field name="prefLabel" type="text_general" indexed="true" stored="true"/>
 		<field name="altLabel" type="text_general" indexed="true" stored="true" multiValued="true"/>
 		<field name="related" type="string" indexed="true" stored="true" multiValued="true"/>
+		<field name="object_uri" type="string" indexed="true" stored="true" multiValued="true"/>
 		<field name="definition" type="text_general" indexed="true" stored="true"/>
 		<field name="pos" type="string" indexed="true" stored="true"/>
 		<field name="burial_start" type="sint" indexed="true" stored="true"/>
