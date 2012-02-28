@@ -47,7 +47,7 @@
 					$xml .= '<rdf:RDF xmlns:nm="http://nomisma.org/id/" xmlns:ov="http://open.vocab.org/terms/" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 					xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:skos="http://www.w3.org/2008/05/skos#" xmlns:nuds="http://nomisma.org/id/nuds" xmlns:foaf="http://xmlns.com/foaf/0.1/"
 					xmlns:gml="http://www.opengis.net/gml/">';		
-					$xml .= "\n\t" . '<skos:Concept rdf:about="http://nomisma.org/id/' . $id . '"/>';
+					$xml .= "\n\t" . '<skos:Concept rdf:about="http://nomisma.org/id/' . $id . '">';
 					$xml .= "\n\t\t" . '<skos:broader rdf:about="http://nomisma.org/id/' . $typeof . '"/>';
 					foreach ($prefLabels as $prefLabel){
 						$lang = (strlen($prefLabel->getAttribute('xml:lang')) > 0) ? $prefLabel->getAttribute('xml:lang') : 'en';
@@ -66,11 +66,11 @@
 					}
 					foreach ($related_links as $related){
 						$lang = (strlen($related->getAttribute('xml:lang')) > 0) ? $related->getAttribute('xml:lang') : 'en';
-						$xml .= "\n\t\t" . '<skos:related rdf:resource="' . $related->getAttribute('href') . '" xml:lang="' . $lang . '"/>';					
+						$xml .= "\n\t\t" . '<skos:related rdf:resource="' . str_replace('&', '&amp;', $related->getAttribute('href')) . '" xml:lang="' . $lang . '"/>';					
 					}	
 					foreach ($latlongsources as $source){
 						$lang = (strlen($source->getAttribute('xml:lang')) > 0) ? $source->getAttribute('xml:lang') : 'en';
-						$xml .= "\n\t\t" . '<nm:latlongsource rdf:resource="' . $source->getAttribute('href') . '" xml:lang="' . $lang . '"/>';			
+						$xml .= "\n\t\t" . '<nm:latlongsource rdf:resource="' . str_replace('&', '&amp;', $source->getAttribute('href')) . '" xml:lang="' . $lang . '"/>';			
 					}		
 					$xml .= "\n\t</skos:Concept>\n</rdf:RDF>\n";		
 					echo 'Writing ' . $file . "\n";

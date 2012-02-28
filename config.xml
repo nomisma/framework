@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<url/>
+	<solr_url>http://localhost:8080/solr/nomisma/</solr_url>
+</config>

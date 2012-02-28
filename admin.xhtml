@@ -24,35 +24,115 @@
 			<xforms:instance id="exist-url">
 				<xi:include href="exist-url.xml"/>
 			</xforms:instance>
+			
+			<xforms:instance id="config">
+				<config xmlns=""/>
+			</xforms:instance>
 
 			<xforms:instance id="status">
 				<status/>
 			</xforms:instance>
 
+			<xforms:instance id="identifier">
+				<id xmlns=""/>
+			</xforms:instance>
+
+			<xforms:instance id="rdf">
+				<rdf:RDF xmlns=""/>
+			</xforms:instance>
+
+			<xforms:instance id="kml">
+				<kml xmlns="http://www.opengis.net/kml/2.2"/>
+			</xforms:instance>
+
 			<!-- eXist query for types -->
+			<xforms:instance id="types">
+				<types/>
+			</xforms:instance>
+
+			<xforms:instance id="type-template">
+				<type xmlns=""/>
+			</xforms:instance>
+
+			<!-- eXist instances -->
 			<xforms:instance id="eXist-xquery">
-				<exist:query xmlns:exist="http://exist.sourceforge.net/NS/exist" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2008/05/skos#">
+				<exist:query>
 					<exist:text>&lt;report xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"&gt; { for $i in
 						distinct-values(collection()//skos:Concept[skos:broader/@rdf:about='http://nomisma.org/id/numismatic_term']/@rdf:about) return &lt;type> { $i } &lt;/type> }
 						&lt;/report&gt;</exist:text>
 				</exist:query>
 			</xforms:instance>
 
-			<xforms:instance id="types">
+			<xforms:instance id="eXist-result">
 				<exist:result/>
+			</xforms:instance>
+
+			<!-- Solr instances -->
+			<xforms:instance id="solr-doc">
+				<add xmlns=""/>
+			</xforms:instance>
+
+			<xforms:instance id="addIndex">
+				<add xmlns=""/>
+			</xforms:instance>
+
+			<xforms:instance id="sendCommit">
+				<commit/>
 			</xforms:instance>
 
 			<!-- **************** BINDINGS ********************** -->
 
 			<xforms:action ev:event="xforms-model-construct-done">
+				<xforms:send submission="load-config"/>
 				<xforms:send submission="xquery-collection"/>
+				<xforms:action ev:event="xforms-submit-done" xxforms:iterate="instance('eXist-result')/report/type">
+					<xxforms:variable name="type" select="."/>
+					<xforms:setvalue ref="instance('type-template')" value="$type"/>
+					<xforms:insert origin="instance('type-template')" context="instance('types')" nodeset="./child::node()[last()]"/>
+				</xforms:action>
 			</xforms:action>
 
 			<!-- ************* SUBMISSIONS **********************-->
 			<!-- ************************* XQUERY FOR TYPES ************************** -->
-			<xforms:submission id="xquery-collection" ref="instance('eXist-xquery')" action="{instance('exist-url')}nomisma/id" method="post" replace="instance" instance="types"
+			<xforms:submission id="xquery-collection" ref="instance('eXist-xquery')" action="{instance('exist-url')}nomisma/id" method="post" replace="instance" instance="eXist-result"
 				xxforms:username="admin" xxforms:password="">
 				<xforms:message level="modal" ev:event="xforms-submit-error">Error querying eXist database.</xforms:message>
+			</xforms:submission>
+			
+			<xforms:submission id="load-config" serialization="none" method="get" action="{instance('exist-url')}nomisma/config.xml" replace="instance"
+				instance="config" xxforms:username="admin" xxforms:password="">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to load config</xforms:message>
+			</xforms:submission>
+
+			<xforms:submission id="load-id" serialization="none" method="get" action="{instance('exist-url')}/nomisma/id/{instance('identifier')}.xml" replace="instance" instance="rdf"
+				xxforms:username="admin" xxforms:password="">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Cannot load object: <xforms:output ref="instance('identifier')"/></xforms:message>
+				<xforms:action ev:event="xforms-submit-done">
+					<!-- extract Solr document, put into addIndex -->
+					<xforms:insert nodeset="instance('solr-doc')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-solr.xpl', 'data', instance('rdf'), 'data')"/>
+					<xforms:insert context="instance('addIndex')" nodeset="./child::node()[last()]" origin="instance('solr-doc')/doc"/>
+					<!-- generate KML, post to eXist [only mints for now] -->
+					<xforms:action if="contains(instance('rdf')/skos:Concept/skos:broader/@rdf:about, 'mint')">
+						<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml.xpl', 'data', instance('rdf'), 'data')"/>
+						<xforms:send submission="save-kml"/>
+					</xforms:action>
+				</xforms:action>
+			</xforms:submission>
+
+			<!-- **** KML **** -->
+			<xforms:submission id="save-kml" ref="instance('kml')" xxforms:username="admin" xxforms:password="" action="{instance('exist-url')}nomisma/kml/{instance('identifier')}.kml" method="put"
+				replace="none">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to save KML</xforms:message>
+			</xforms:submission>
+
+			<!--  **** SOLR SUBMISSIONS  **** -->
+			<xforms:submission id="post-solr-doc" action="{instance('config')/solr_url}update" ref="instance('addIndex')" instance="addIndex" replace="instance" method="post">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
+				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"/>
+			</xforms:submission>
+
+			<xforms:submission id="submit-commit" action="{instance('config')/solr_url}update" ref="instance('sendCommit')" instance="sendCommit" replace="none" method="post">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Failed to commit to Solr index.</xforms:message>
 			</xforms:submission>
 		</xforms:model>
 	</xhtml:head>
@@ -70,12 +150,33 @@
 						</xhtml:div>
 					</xforms:group>
 					<xhtml:h1>Nomisma Admin</xhtml:h1>
+					<xhtml:ul>
+						<xhtml:li>
+							<xforms:trigger appearance="minimal">
+								<xforms:label>Regenerate Solr/KML</xforms:label>
+								<xforms:action ev:event="DOMActivate">
+									<xforms:setvalue ref="instance('eXist-xquery')/exist:text">&lt;report> { for $foo in collection() return &lt;item> {
+										substring-after($foo/rdf:RDF/skos:Concept/@rdf:about, 'id/') } &lt;/item> } &lt;/report></xforms:setvalue>
+									<xforms:send submission="xquery-collection"/>
+									<xforms:action ev:event="xforms-submit-done">
+										<xforms:action xxforms:iterate="instance('eXist-result')/report/item">
+											<xxforms:variable name="id" select="."/>
+											<xforms:setvalue ref="instance('identifier')" value="$id"/>
+											<xforms:send submission="load-id"/>
+										</xforms:action>
+										<xforms:send submission="post-solr-doc"/>
+										<xforms:setvalue ev:event="xforms-submit-done" ref="instance('status')">nomisma ids re-indexed into Solr.</xforms:setvalue>
+									</xforms:action>
+								</xforms:action>
+							</xforms:trigger>
+						</xhtml:li>
+					</xhtml:ul>
 
 					<xforms:group ref="instance('types')">
 						<xhtml:div class="section">
 							<xhtml:h3>Numismatic Terms</xhtml:h3>
 							<xhtml:ul>
-								<xforms:repeat nodeset="report/type">
+								<xforms:repeat nodeset="type">
 									<xhtml:li>
 										<xhtml:a href="edit/?id={substring-after(., 'id/')}">
 											<xforms:output ref="substring-after(., 'id/')"/>
@@ -86,7 +187,7 @@
 						</xhtml:div>
 					</xforms:group>
 
-					<fr:xforms-inspector/>
+				<!--<fr:xforms-inspector/>-->
 				</xhtml:div>
 			</xhtml:div>
 

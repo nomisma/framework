@@ -105,6 +105,10 @@
 			<xforms:instance id="exist-url">
 				<xi:include href="exist-url.xml"/>
 			</xforms:instance>
+			
+			<xforms:instance id="config">
+				<config xmlns=""/>
+			</xforms:instance>
 
 			<xforms:instance id="control-instance">
 				<controls xmlns="">
@@ -278,6 +282,7 @@
 			<xforms:bind id="nudsHeader-tab" nodeset="instance('coin')/nuds:nudsHeader"/>
 
 			<xforms:action ev:event="xforms-model-construct-done">
+				<xforms:send submission="load-config"/>
 				<xforms:send submission="xquery-collection"/>
 				<xforms:action if="string(xxforms:get-request-parameter('id'))">
 					<xforms:setvalue ref="instance('control-instance')/id" value="xxforms:get-request-parameter('id')"/>
@@ -302,6 +307,11 @@
 			</xforms:action>
 
 			<!-- ************* SUBMISSIONS **********************-->
+			<xforms:submission id="load-config" serialization="none" method="get" action="{instance('exist-url')}nomisma/config.xml" replace="instance"
+				instance="config" xxforms:username="admin" xxforms:password="">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to load config</xforms:message>
+			</xforms:submission>
+			
 			<xforms:submission id="load-id" serialization="none" method="get" action="{instance('exist-url')}nomisma/id/{instance('control-instance')/id}.xml" replace="instance" instance="doc"
 				xxforms:username="admin" xxforms:password="">
 				<xforms:action ev:event="xforms-submit-done">
@@ -400,13 +410,13 @@
 
 			<!-- ************************* SOLR SUBMISSIONS ************************** -->
 			<!-- post instance to Solr -->
-			<xforms:submission id="post-solr-doc" action="http://localhost:8080/solr/nomisma/update" ref="instance('addIndex')" instance="addIndex" replace="instance" method="post">
+			<xforms:submission id="post-solr-doc" action="{instance('config')/solr_url}update" ref="instance('addIndex')" instance="addIndex" replace="instance" method="post">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
 				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"/>
 			</xforms:submission>
 
 			<!-- send commit -->
-			<xforms:submission id="submit-commit" action="http://localhost:8080/solr/nomisma/update" ref="instance('sendCommit')" instance="sendCommit" replace="none" method="post">
+			<xforms:submission id="submit-commit" action="{instance('config')/solr_url}update" ref="instance('sendCommit')" instance="sendCommit" replace="none" method="post">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Failed to commit to Solr index.</xforms:message>
 			</xforms:submission>
 		</xforms:model>

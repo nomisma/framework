@@ -3,6 +3,7 @@
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:skos="http://www.w3.org/2008/05/skos#"
 	xmlns:numishare="http://code.google.com/p/numishare/" xmlns:nh="http://nomisma.org/nudsHoard" xmlns:nuds="http://nomisma.org/nuds" xmlns:xlink="http://www.w3.org/1999/xlink"
 	xmlns:gml="http://www.opengis.net/gml/" xmlns:nomisma="http://nomisma.org/id/" version="2.0">
+	<xsl:include href="footer-public.xsl"/>
 	<xsl:output method="xhtml" encoding="UTF-8"/>
 
 	<!-- change eXist URL if running on a server other than localhost -->
@@ -93,16 +94,7 @@
 						</div>
 
 					</div>
-					<div id="ft">
-						<div class="center">
-							<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/"><img alt="Creative Commons License" style="border-width:0"
-									src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png"/></a><br/><span xmlns:dc="http://purl.org/dc/elements/1.1/" property="dc:title">Nomisma.org</span> by <a
-								xmlns:cc="http://creativecommons.org/ns#" href="http://nomisma.org" property="cc:attributionName" rel="cc:attributionURL">http://nomisma.org</a> is licensed under a <a
-								rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">Creative Commons Attribution-Noncommercial 3.0 License</a>. </div>
-						<div class="center">
-							<span style="color:gray">All data in nomisma.org is preliminary and in the process of being updated.</span>
-						</div>
-					</div>
+					<xsl:call-template name="footer-public"/>
 				</div>
 			</body>
 		</html>

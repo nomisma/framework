@@ -24,9 +24,9 @@
 		<field name="typeof">
 			<xsl:value-of select="substring-after(skos:broader/@rdf:about, 'id/')"/>
 		</field>
-		<xsl:if test="string(skos:prefLabel[@xml:lang='en'])">
+		<xsl:if test="string(skos:prefLabel[@xml:lang='en'][1])">
 			<field name="prefLabel">
-				<xsl:value-of select="skos:prefLabel[@xml:lang='en']"/>
+				<xsl:value-of select="skos:prefLabel[@xml:lang='en'][1]"/>
 			</field>
 		</xsl:if>
 		<xsl:for-each select="skos:prefLabel[@xml:lang!='en']">
