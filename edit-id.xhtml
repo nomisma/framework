@@ -560,6 +560,9 @@
 										<xforms:action if="contains($typeof, 'type_series_item')">
 											<xforms:toggle case="coin-type"/>
 										</xforms:action>
+										<xforms:action if="contains($typeof, 'hoard')">
+											<xforms:toggle case="hoard-case"/>
+										</xforms:action>
 										<xforms:action if="not(contains($typeof, 'type_series_item')) and not(contains($typeof, 'hoard'))">
 											<xforms:toggle case="default"/>
 										</xforms:action>
@@ -577,6 +580,9 @@
 									<xforms:action if="contains(instance('control-instance')/type, 'type_series_item')">
 										<xforms:setvalue ref="instance('coin')/nuds:nudsHeader/nuds:nudsid" value="$id"/>
 									</xforms:action>
+									<xforms:action if="contains(instance('control-instance')/type, 'hoard')">
+										<xforms:setvalue ref="instance('hoard')/nh:nudsHeader/nh:nudsid" value="$id"/>
+									</xforms:action>
 								</xforms:action>
 							</xforms:input>
 						</xhtml:div>
@@ -587,34 +593,31 @@
 							<xhtml:div class="section">
 								<xhtml:h2>Options</xhtml:h2>
 								<xhtml:div class="trigger_container">
-									<!-- non-hoard elements -->
-									<xforms:group ref=".[not(contains(instance('doc')/skos:Concept/skos:broader/@rdf:about, 'hoard'))]">
-										<xforms:group ref=".[count(instance('doc')/skos:Concept/skos:definition) = 0]">
-											<xforms:trigger appearance="minimal">
-												<xforms:label>
-													<xhtml:img src="/apps/nomisma/images/add.gif"/>Definition</xforms:label>
-												<xforms:insert ev:event="DOMActivate" origin="instance('definition-template')" context="instance('doc')/skos:Concept"/>
-											</xforms:trigger>
-										</xforms:group>
+									<xforms:group ref=".[count(instance('doc')/skos:Concept/skos:definition) = 0]">
 										<xforms:trigger appearance="minimal">
 											<xforms:label>
-												<xhtml:img src="/apps/nomisma/images/add.gif"/>Alternate Label</xforms:label>
-											<xforms:insert ev:event="DOMActivate" origin="instance('altLabel-template')" context="instance('doc')/skos:Concept" nodeset="./child::node()[last()]"/>
-											<!--<xforms:delete ev:event="DOMActivate" context="div[@property='skos:altLabel'][last()]" nodeset="@*[contains(name(), 'xmlns')]"/>-->
+												<xhtml:img src="/apps/nomisma/images/add.gif"/>Definition</xforms:label>
+											<xforms:insert ev:event="DOMActivate" origin="instance('definition-template')" context="instance('doc')/skos:Concept"/>
 										</xforms:trigger>
+									</xforms:group>
+									<xforms:trigger appearance="minimal">
+										<xforms:label>
+											<xhtml:img src="/apps/nomisma/images/add.gif"/>Alternate Label</xforms:label>
+										<xforms:insert ev:event="DOMActivate" origin="instance('altLabel-template')" context="instance('doc')/skos:Concept" nodeset="./child::node()[last()]"/>
+										<!--<xforms:delete ev:event="DOMActivate" context="div[@property='skos:altLabel'][last()]" nodeset="@*[contains(name(), 'xmlns')]"/>-->
+									</xforms:trigger>
+									<xforms:trigger appearance="minimal">
+										<xforms:label>
+											<xhtml:img src="/apps/nomisma/images/add.gif"/>Related Link</xforms:label>
+										<xforms:insert ev:event="DOMActivate" origin="instance('related-template')" context="instance('doc')/skos:Concept" nodeset="./child::node()[last()]"/>
+									</xforms:trigger>
+									<xforms:group ref=".[count(instance('doc')/skos:Concept/gml:pos) = 0]">
 										<xforms:trigger appearance="minimal">
 											<xforms:label>
-												<xhtml:img src="/apps/nomisma/images/add.gif"/>Related Link</xforms:label>
-											<xforms:insert ev:event="DOMActivate" origin="instance('related-template')" context="instance('doc')/skos:Concept" nodeset="./child::node()[last()]"/>
+												<xhtml:img src="/apps/nomisma/images/add.gif"/>Coordinates</xforms:label>
+											<xforms:insert ev:event="DOMActivate" origin="instance('coordinates-template')" context="instance('doc')/skos:Concept" nodeset="./child::node()[last()]"
+											/>
 										</xforms:trigger>
-										<xforms:group ref=".[count(instance('doc')/skos:Concept/gml:pos) = 0]">
-											<xforms:trigger appearance="minimal">
-												<xforms:label>
-													<xhtml:img src="/apps/nomisma/images/add.gif"/>Coordinates</xforms:label>
-												<xforms:insert ev:event="DOMActivate" origin="instance('coordinates-template')" context="instance('doc')/skos:Concept" nodeset="./child::node()[last()]"
-												/>
-											</xforms:trigger>
-										</xforms:group>
 									</xforms:group>
 								</xhtml:div>
 								<xforms:group ref="instance('doc')/skos:Concept">
@@ -773,7 +776,7 @@
 					</xforms:switch>
 				</xhtml:div>
 			</xhtml:div>
-			<!--<fr:xforms-inspector/>-->
+			<fr:xforms-inspector/>
 			<!-- footer -->
 			<!--<xi:include href="footer.xml"/>-->
 		</xhtml:div>
