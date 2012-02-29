@@ -3,12 +3,13 @@
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:skos="http://www.w3.org/2008/05/skos#"
 	xmlns:numishare="http://code.google.com/p/numishare/" xmlns:nh="http://nomisma.org/nudsHoard" xmlns:nuds="http://nomisma.org/nuds" xmlns:xlink="http://www.w3.org/1999/xlink"
 	xmlns:gml="http://www.opengis.net/gml/" xmlns:nomisma="http://nomisma.org/id/" version="2.0">
+	<xsl:include href="header-public.xsl"/>
 	<xsl:include href="footer-public.xsl"/>
 	<xsl:output method="xhtml" encoding="UTF-8"/>
 
 	<!-- change eXist URL if running on a server other than localhost -->
 	<xsl:variable name="display_path">../</xsl:variable>
-
+	<xsl:variable name="pipeline">display</xsl:variable>
 
 	<xsl:template match="/">
 		<xsl:variable name="id" select="tokenize(rdf:RDF/skos:Concept/@rdf:about, '/')[last()]"/>
@@ -54,9 +55,7 @@
 			</head>
 			<body class="yui-skin-sam">
 				<div id="doc4">
-					<div id="hd">
-						<h1>header</h1> insert menu here: <span style="float:right"><a href="{$display_path}admin/edit/?id={$id}">edit id</a></span>
-					</div>
+					<xsl:call-template name="header-public"/>
 					<div id="bd">
 						<div id="yui-main">
 							<div class="yui-b">

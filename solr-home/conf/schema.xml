@@ -464,6 +464,7 @@
 		<field name="object_uri" type="string" indexed="true" stored="true" multiValued="true"/>
 		<field name="definition" type="text_general" indexed="true" stored="true"/>
 		<field name="pos" type="string" indexed="true" stored="true"/>
+		<field name="georef" type="string" indexed="true" stored="true"/>
 		<field name="burial_start" type="sint" indexed="true" stored="true"/>
 		<field name="burial_end" type="sint" indexed="true" stored="true"/>
 		<field name="timestamp" type="date" indexed="true" stored="true"/>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:datetime="http://exslt.org/dates-and-times" xmlns:nm="http://nomisma.org/id/" xmlns:owl="http://www.w3.org/2002/07/owl#"
 	xmlns:exsl="http://exslt.org/common" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:skos="http://www.w3.org/2008/05/skos#"
-	xmlns:numishare="http://code.google.com/p/numishare/" xmlns:nuds="http://nomisma.org/id/nuds" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml/" exclude-result-prefixes="#all" version="2.0">
+	xmlns:numishare="http://code.google.com/p/numishare/" xmlns:nuds="http://nomisma.org/id/nuds" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml/"
+	exclude-result-prefixes="#all" version="2.0">
 	<xsl:output method="xml" encoding="UTF-8"/>
 
 	<xsl:template match="/">
@@ -11,11 +12,11 @@
 	</xsl:template>
 
 	<xsl:template match="rdf:RDF">
-		<doc>			
-			<xsl:apply-templates select="skos:Concept"/>			
+		<doc>
+			<xsl:apply-templates select="skos:Concept"/>
 		</doc>
 	</xsl:template>
-	
+
 	<xsl:template match="skos:Concept">
 		<xsl:variable name="id" select="substring-after(@rdf:about, 'id/')"/>
 		<field name="id">
@@ -44,11 +45,21 @@
 				<xsl:value-of select="skos:definition/@rdf:resource"/>
 			</field>
 		</xsl:if>
-		<xsl:for-each select="gml:pos">
+		<xsl:if test="count(gml:pos) = 1">
+			<xsl:variable name="pos" select="tokenize(gml:pos, ' ')"/>
 			<field name="pos">
-				<xsl:value-of select="."/>
+				<xsl:value-of select="gml:pos"/>
 			</field>
-		</xsl:for-each>
+			<field name="georef">
+				<xsl:value-of select="concat('http://nomisma.org/id/', $id)"/>
+				<xsl:text>|</xsl:text>
+				<xsl:value-of select="normalize-space(skos:prefLabel[@xml:lang='en'][1])"/>
+				<xsl:text>|</xsl:text>
+				<xsl:value-of select="$pos[2]"/>
+				<xsl:text>,</xsl:text>
+				<xsl:value-of select="$pos[1]"/>
+			</field>
+		</xsl:if>
 		<xsl:for-each select="skos:related">
 			<field name="related">
 				<xsl:value-of select="@rdf:resource"/>

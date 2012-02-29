@@ -32,6 +32,9 @@
 	<!-- Atom feed -->
 	<page path-info="/nomisma/feed/" model="exist-url.xml" view="xpl/feed.xpl"/>
 	
+	<!-- KML service -->
+	<page path-info="/nomisma/query.kml" model="exist-url.xml" view="xpl/solr-to-kml.xpl"/>
+	
 	<!-- index -->
 	<page path-info="/nomisma/" model="exist-url.xml" view="xpl/index.xpl"/>
 
