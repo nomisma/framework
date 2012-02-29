@@ -13,9 +13,9 @@
 		<xhtml:link rel="stylesheet" href="/apps/nomisma/css/style.css"/>
 		<!--<link rel="stylesheet" href="/apps/nomisma/css/themes/smoothness.css"/>-->
 
-		<!--<script type="text/javascript" src="/apps/nomisma/javascript/jquery-1.4.2.min.js"/>
-		<script type="text/javascript" src="/apps/nomisma/javascript/get_components.js"/>
-		<script type="text/javascript" src="/apps/nomisma/javascript/menu.js"/>-->
+		<!--<script type="text/javascript" src="{$display_path}javascript/jquery-1.4.2.min.js"/>
+		<script type="text/javascript" src="{$display_path}javascript/get_components.js"/>
+		<script type="text/javascript" src="{$display_path}javascript/menu.js"/>-->
 
 
 		<xforms:model>
@@ -166,7 +166,7 @@
 			<xforms:instance id="eXist-xquery">
 				<exist:query xmlns:exist="http://exist.sourceforge.net/NS/exist" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2008/05/skos#">
 					<exist:text>&lt;report xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"&gt; { for $i in
-						distinct-values(collection()//skos:Concept[skos:broader/@rdf:about='http://nomisma.org/id/numismatic_term']/@rdf:about) return &lt;type> { $i } &lt;/type> }
+						distinct-values(collection()//skos:Concept/skos:broader/@rdf:about) where string-length(substring-after($i, 'id/')) &gt; 0 order by substring-after($i, 'id/') return &lt;type> { $i } &lt;/type> }
 						&lt;/report&gt;</exist:text>
 				</exist:query>
 			</xforms:instance>
@@ -480,6 +480,12 @@
 						<xforms:submit submission="load-id" appearance="minimal">
 							<xforms:label class="file_control"><xhtml:img src="{$display_path}images/recycle-green.png" alt="Load"/>Load</xforms:label>
 						</xforms:submit>
+						<xforms:trigger appearance="minimal">
+							<xforms:label class="file_control"><xhtml:img src="{$display_path}images/remove.gif" alt="Delete"/>Delete</xforms:label>			
+							<xforms:action ev:event="DOMActivate">
+								
+							</xforms:action>
+						</xforms:trigger>
 					</xhtml:div>
 					
 					<!-- dialogs -->
@@ -606,25 +612,25 @@
 									<xforms:group ref=".[count(instance('doc')/skos:Concept/skos:definition) = 0]">
 										<xforms:trigger appearance="minimal">
 											<xforms:label>
-												<xhtml:img src="/apps/nomisma/images/add.gif"/>Definition</xforms:label>
+												<xhtml:img src="{$display_path}images/add.gif"/>Definition</xforms:label>
 											<xforms:insert ev:event="DOMActivate" origin="instance('definition-template')" context="instance('doc')/skos:Concept"/>
 										</xforms:trigger>
 									</xforms:group>
 									<xforms:trigger appearance="minimal">
 										<xforms:label>
-											<xhtml:img src="/apps/nomisma/images/add.gif"/>Alternate Label</xforms:label>
+											<xhtml:img src="{$display_path}images/add.gif"/>Alternate Label</xforms:label>
 										<xforms:insert ev:event="DOMActivate" origin="instance('altLabel-template')" context="instance('doc')/skos:Concept" nodeset="./child::node()[last()]"/>
 										<!--<xforms:delete ev:event="DOMActivate" context="div[@property='skos:altLabel'][last()]" nodeset="@*[contains(name(), 'xmlns')]"/>-->
 									</xforms:trigger>
 									<xforms:trigger appearance="minimal">
 										<xforms:label>
-											<xhtml:img src="/apps/nomisma/images/add.gif"/>Related Link</xforms:label>
+											<xhtml:img src="{$display_path}images/add.gif"/>Related Link</xforms:label>
 										<xforms:insert ev:event="DOMActivate" origin="instance('related-template')" context="instance('doc')/skos:Concept" nodeset="./child::node()[last()]"/>
 									</xforms:trigger>
 									<xforms:group ref=".[count(instance('doc')/skos:Concept/gml:pos) = 0]">
 										<xforms:trigger appearance="minimal">
 											<xforms:label>
-												<xhtml:img src="/apps/nomisma/images/add.gif"/>Coordinates</xforms:label>
+												<xhtml:img src="{$display_path}images/add.gif"/>Coordinates</xforms:label>
 											<xforms:insert ev:event="DOMActivate" origin="instance('coordinates-template')" context="instance('doc')/skos:Concept" nodeset="./child::node()[last()]"
 											/>
 										</xforms:trigger>
@@ -670,7 +676,7 @@
 											<xforms:trigger appearance="minimal">
 												<xforms:delete ev:event="DOMActivate" context="."/>
 												<xforms:label>
-													<xhtml:img src="/apps/nomisma/images/remove.gif"/>
+													<xhtml:img src="{$display_path}images/remove.gif"/>
 												</xforms:label>
 											</xforms:trigger>
 										</xhtml:div>
@@ -694,7 +700,7 @@
 											<xforms:trigger appearance="minimal">
 												<xforms:delete ev:event="DOMActivate" context="."/>
 												<xforms:label>
-													<xhtml:img src="/apps/nomisma/images/remove.gif"/>
+													<xhtml:img src="{$display_path}images/remove.gif"/>
 												</xforms:label>
 											</xforms:trigger>
 										</xhtml:div>
@@ -708,7 +714,7 @@
 											<xforms:trigger appearance="minimal">
 												<xforms:delete ev:event="DOMActivate" context="."/>
 												<xforms:label>
-													<xhtml:img src="/apps/nomisma/images/remove.gif"/>
+													<xhtml:img src="{$display_path}images/remove.gif"/>
 												</xforms:label>
 											</xforms:trigger>
 										</xhtml:div>
@@ -725,7 +731,7 @@
 											</xforms:action>
 
 											<xforms:label>
-												<xhtml:img src="/apps/nomisma/images/remove.gif"/>
+												<xhtml:img src="{$display_path}images/remove.gif"/>
 											</xforms:label>
 										</xforms:trigger>
 										<xhtml:div>
@@ -786,7 +792,7 @@
 					</xforms:switch>
 				</xhtml:div>
 			</xhtml:div>
-			<fr:xforms-inspector/>
+<!--			<fr:xforms-inspector/>-->
 			<!-- footer -->
 			<!--<xi:include href="footer.xml"/>-->
 		</xhtml:div>
