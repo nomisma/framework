@@ -60,8 +60,10 @@ function initialize_map(q) {
 	}
 	
 	function onFeatureSelect(event) {
-		var message = '';
-		message =  '<div style="font-size:10px"><a href="' + event.feature.attributes['description'] + '" target="_blank">'  + event.feature.attributes['name'] +  '</a></div>';		
+		var pos = event.feature.attributes['description'].indexOf('id/');
+		var length = event.feature.attributes['description'].length;
+		var id = event.feature.attributes['description'].substr(pos, length);
+		var message =  '<div style="font-size:10px"><a href="' + id + '" target="_blank">'  + event.feature.attributes['name'] +  '</a></div>';		
 		popup = new OpenLayers.Popup.FramedCloud("id", event.feature.geometry.bounds.getCenterLonLat(), null, message, null, true, onPopupClose);
 		event.popup = popup;
 		map.addPopup(popup);
