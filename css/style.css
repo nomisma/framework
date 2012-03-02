@@ -294,6 +294,32 @@ ul{
 	text-decoration:underline;
 }
 /*
+  ****************************************
+  BROWSE
+  ****************************************
+ */
+ .result-doc{
+ 	padding:10px;
+ 	border-bottom:1px solid silver;
+ }
+ .odd{
+ 	background-color:#ebebeb;	
+ }
+ .typeof{
+ 	font-size:80%;
+ 	float:right;
+ }
+ .quick_search, .exclude{
+ 	margin:10px 0;	
+ }
+ .checkall, .uncheckall{
+ 	color:#8BADCF;
+ 	cursor:pointer;
+ }
+ .checkall:hover, .uncheckall:hover{
+ 	color:#627eb7;	
+ }
+/*
   ***************************************
   jQuery UI Menubar @VERSION
   ***************************************

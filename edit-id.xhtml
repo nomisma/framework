@@ -127,9 +127,11 @@
 
 			<xforms:instance id="languages">
 				<languages xmlns="">
+					<language value="nl">Dutch</language>
 					<language value="en">English</language>
 					<language value="fr">French</language>
 					<language value="de">German</language>
+					<language value="el">Greek</language>
 					<language value="it">Italian</language>
 				</languages>
 			</xforms:instance>
@@ -200,7 +202,9 @@
 
 			<xforms:bind nodeset="instance('doc')">
 				<xforms:bind nodeset="skos:Concept">
-					<xforms:bind nodeset="skos:prefLabel" required="true()"/>
+					<xforms:bind nodeset="skos:prefLabel" required="true()">
+						<xforms:bind nodeset="@xml:lang" constraint="string-length(.) &gt; 0"/>
+					</xforms:bind>
 					<xforms:bind nodeset="skos:altLabel" required="true()">
 						<xforms:bind nodeset="@xml:lang" constraint="string-length(.) &gt; 0"/>
 					</xforms:bind>
@@ -616,6 +620,12 @@
 											<xforms:insert ev:event="DOMActivate" origin="instance('definition-template')" context="instance('doc')/skos:Concept"/>
 										</xforms:trigger>
 									</xforms:group>
+									<xforms:trigger appearance="minimal">
+										<xforms:label>
+											<xhtml:img src="{$display_path}images/add.gif"/>Preferred Label</xforms:label>
+										<xforms:insert ev:event="DOMActivate" origin="instance('prefLabel-template')" context="instance('doc')/skos:Concept" nodeset="./child::node()[last()]"/>
+										<!--<xforms:delete ev:event="DOMActivate" context="div[@property='skos:altLabel'][last()]" nodeset="@*[contains(name(), 'xmlns')]"/>-->
+									</xforms:trigger>
 									<xforms:trigger appearance="minimal">
 										<xforms:label>
 											<xhtml:img src="{$display_path}images/add.gif"/>Alternate Label</xforms:label>

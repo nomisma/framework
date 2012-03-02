@@ -102,7 +102,12 @@
 	<xsl:template match="skos:Concept">
 		<div>
 			<h1>
-				<xsl:apply-templates select="skos:prefLabel[@xml:lang='en']"/>
+				<span>
+					<xsl:for-each select="skos:prefLabel[@xml:lang='en']/@*">
+						<xsl:attribute name="{name()}" select="."/>
+					</xsl:for-each>
+					<xsl:value-of select="skos:prefLabel[@xml:lang='en']"/>
+				</span>
 				<xsl:text> (</xsl:text>
 				<a href="{skos:broader/@rdf:about}">
 					<xsl:value-of select="substring-after(skos:broader/@rdf:about, 'id/')"/>
@@ -126,6 +131,12 @@
 				</xsl:when>
 				<xsl:otherwise>
 					<xsl:apply-templates select="skos:definition"/>
+					<xsl:if test="count(skos:prefLabel[@xml:lang!='en']) &gt; 0">
+						<h3>Preferred Labels</h3>
+						<dl>
+							<xsl:apply-templates select="skos:prefLabel[@xml:lang != 'en']"/>
+						</dl>
+					</xsl:if>
 					<xsl:if test="count(skos:altLabel) &gt; 0">
 						<h3>Alternate Labels</h3>
 						<dl>
@@ -143,15 +154,6 @@
 		</div>
 	</xsl:template>
 
-	<xsl:template match="skos:prefLabel">
-		<span>
-			<xsl:for-each select="@*">
-				<xsl:attribute name="{name()}" select="."/>
-			</xsl:for-each>
-			<xsl:value-of select="."/>
-		</span>
-	</xsl:template>
-
 	<xsl:template match="skos:definition">
 		<p>
 			<xsl:for-each select="@*">
@@ -161,7 +163,7 @@
 		</p>
 	</xsl:template>
 
-	<xsl:template match="skos:altLabel">
+	<xsl:template match="skos:altLabel|skos:prefLabel">
 		<dt>
 			<xsl:value-of select="nomisma:normalize-language(@xml:lang)"/>
 		</dt>
@@ -395,10 +397,13 @@
 		<xsl:param name="lang"/>
 
 		<xsl:choose>
+			<xsl:when test="$lang='nl'">Dutch</xsl:when>
 			<xsl:when test="$lang='de'">German</xsl:when>
+			<xsl:when test="$lang='el'">Greek</xsl:when>
 			<xsl:when test="$lang='en'">English</xsl:when>
 			<xsl:when test="$lang='fr'">French</xsl:when>
 			<xsl:when test="$lang='it'">Italian</xsl:when>
+			<xsl:otherwise>Undefined Language</xsl:otherwise>
 		</xsl:choose>
 	</xsl:function>
 

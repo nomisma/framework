@@ -93,6 +93,12 @@
 			<xforms:instance id="addIndex">
 				<add xmlns=""/>
 			</xforms:instance>
+			
+			<xforms:instance id="deleteAll">
+				<delete xmlns="">
+					<query>id:*</query>
+				</delete>
+			</xforms:instance>
 
 			<xforms:instance id="sendCommit">
 				<commit/>
@@ -177,6 +183,10 @@
 				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
 				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"/>
 			</xforms:submission>
+			
+			<xforms:submission id="delete-all-from-solr" action="{instance('config')/solr_url}update" ref="instance('deleteAll')" instance="deleteAll" replace="none" method="post">
+				<xforms:send ev:event="xforms-submit-done" submission="commit"/>
+			</xforms:submission>
 
 			<xforms:submission id="submit-commit" action="{instance('config')/solr_url}update" ref="instance('sendCommit')" instance="sendCommit" replace="none" method="post">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Failed to commit to Solr index.</xforms:message>
@@ -202,6 +212,7 @@
 							<xforms:trigger appearance="minimal">
 								<xforms:label>Regenerate Solr/KML</xforms:label>
 								<xforms:action ev:event="DOMActivate">
+									<xforms:send submission="delete-all-from-solr"/>
 									<xforms:setvalue ref="instance('eXist-xquery')/exist:text">&lt;report> { for $foo in collection() return &lt;item> {
 										substring-after($foo/rdf:RDF/skos:Concept/@rdf:about, 'id/') } &lt;/item> } &lt;/report></xforms:setvalue>
 									<xforms:send submission="xquery-collection"/>

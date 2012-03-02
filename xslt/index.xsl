@@ -37,7 +37,7 @@
 				</script>
 			</head>
 			<body class="yui-skin-sam">
-				<div id="doc4" class="yui-t5">
+				<div id="doc4" class="yui-t4">
 					<xsl:call-template name="header-public"/>
 					<div id="bd">
 						<div id="yui-main">

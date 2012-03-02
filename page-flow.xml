@@ -35,6 +35,8 @@
 	<!-- KML service -->
 	<page path-info="/nomisma/query.kml" model="exist-url.xml" view="xpl/solr-to-kml.xpl"/>
 	
+	<page path-info="/nomisma/browse/" model="exist-url.xml" view="xpl/browse.xpl"/>
+	
 	<!-- index -->
 	<page path-info="/nomisma/" model="exist-url.xml" view="xpl/index.xpl"/>
 
