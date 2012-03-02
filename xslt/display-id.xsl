@@ -31,20 +31,22 @@
 				<link type="application/vnd.google-earth.kml+xml" href="http://nomisma.org/kml/{$id}-all.kml"/>
 
 				<!-- styling -->
-				<link rel="stylesheet" type="text/css" href="{$display_path}/css/grids-min.css"/>
-				<link rel="stylesheet" type="text/css" href="{$display_path}/css/reset-fonts-grids.css"/>
-				<link rel="stylesheet" type="text/css" href="{$display_path}/css/base-min.css"/>
-				<link rel="stylesheet" type="text/css" href="{$display_path}/css/fonts-min.css"/>
+				<link rel="stylesheet" type="text/css" href="{$display_path}css/grids-min.css"/>
+				<link rel="stylesheet" type="text/css" href="{$display_path}css/reset-fonts-grids.css"/>
+				<link rel="stylesheet" type="text/css" href="{$display_path}css/base-min.css"/>
+				<link rel="stylesheet" type="text/css" href="{$display_path}css/fonts-min.css"/>
+				<link rel="stylesheet" type="text/css" href="{$display_path}css/jquery-ui-1.8.12.custom.css"/>
 
 				<!-- nomisma styling -->
-				<link rel="stylesheet" href="{$display_path}/css/style.css"/>
+				<link rel="stylesheet" href="{$display_path}css/style.css"/>
 
 				<!-- javascript -->
 				<xsl:if test="contains($type, 'hoard') or contains($type, 'type_series_item') or contains($type, 'mint')">
 					<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"/>
 					<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.2&amp;sensor=false"/>
-					<script type="text/javascript" src="{$display_path}/javascript/jquery-1.6.1.min.js"/>
-					<script type="text/javascript" src="{$display_path}/javascript/map_functions.js"/>
+					<script type="text/javascript" src="{$display_path}javascript/jquery-1.6.1.min.js"/>
+					<script type="text/javascript" src="{$display_path}javascript/map_functions.js"/>
+					<script type="text/javascript" src="{$display_path}javascript/menu.js"/>
 					<script type="text/javascript">
 					$(document).ready(function(){
 						initialize_map('<xsl:value-of select="$id"/>');

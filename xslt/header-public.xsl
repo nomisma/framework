@@ -9,6 +9,19 @@
 					<a href="{$display_path}admin/edit/?id={tokenize(rdf:RDF/skos:Concept/@rdf:about, '/')[last()]}">edit id</a>
 				</span>
 			</xsl:if>
+			<ul role="menubar" id="menu" class="menubar ui-menubar ui-widget-header ui-helper-clearfix">
+				<li role="presentation" class="ui-menubar-item">
+					<a aria-haspopup="true" role="menuitem" class="ui-button ui-widget ui-button-text-only ui-menubar-link" tabindex="-1" href="{$display_path}.">
+						<span class="ui-button-text">Home</span>
+					</a>
+				</li>
+				
+				<li role="presentation" class="ui-menubar-item">
+					<a aria-haspopup="true" role="menuitem" class="ui-button ui-widget ui-button-text-only ui-menubar-link" tabindex="-1" href="{$display_path}browse/">
+						<span class="ui-button-text">Browse</span>
+					</a>
+				</li>				
+			</ul>
 		</div>
 	</xsl:template>
 </xsl:stylesheet>

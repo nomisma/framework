@@ -93,12 +93,14 @@
 				<link rel="stylesheet" type="text/css" href="{$display_path}css/reset-fonts-grids.css"/>
 				<link rel="stylesheet" type="text/css" href="{$display_path}css/base-min.css"/>
 				<link rel="stylesheet" type="text/css" href="{$display_path}css/fonts-min.css"/>
+				<link rel="stylesheet" type="text/css" href="{$display_path}css/jquery-ui-1.8.12.custom.css"/>
 
 				<link rel="stylesheet" href="{$display_path}css/style.css"/>
 
 				<!-- javascript -->
 				<script type="text/javascript" src="{$display_path}javascript/jquery-1.6.1.min.js"/>
 				<script type="text/javascript" src="{$display_path}javascript/browse_functions.js"/>
+				<script type="text/javascript" src="{$display_path}javascript/menu.js"/>
 			</head>
 			<body class="yui-skin-sam">
 				<div id="doc4" class="yui-t1">

@@ -74,8 +74,9 @@ ul{
  */
 #hd {
 	background-color: rgb(240, 240, 240);
-	border:1px solid #c2b9a9;
-	padding: 5px 5px 0 5px;
+	border-top:1px solid #c2b9a9;
+	border-left:1px solid #c2b9a9;
+	border-right:1px solid #c2b9a9;
 }
 #banner {
 	background-color: #ebebeb;
