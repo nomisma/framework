@@ -1,7 +1,8 @@
-<xhtml:html xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ev="http://www.w3.org/2001/xml-events"
-	xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:exist="http://exist.sourceforge.net/NS/exist"
-	xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2008/05/skos#" xmlns:numishare="http://code.google.com/p/numishare/"
-	xmlns:nuds="http://nomisma.org/nuds" xmlns:nh="http://nomisma.org/nudsHoard" xmlns:gml="http://www.opengis.net/gml/" xmlns:xlink="http://www.w3.org/1999/xlink">
+<xhtml:html xmlns="http://www.w3.org/1999/xhtml" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:fr="http://orbeon.org/oxf/xml/form-runner"
+	xmlns:exist="http://exist.sourceforge.net/NS/exist" xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2008/05/skos#"
+	xmlns:numishare="http://code.google.com/p/numishare/" xmlns:nuds="http://nomisma.org/nuds" xmlns:nh="http://nomisma.org/nudsHoard" xmlns:gml="http://www.opengis.net/gml/"
+	xmlns:xlink="http://www.w3.org/1999/xlink">
 	<xhtml:head>
 		<xhtml:title>nomisma.org: Administrative Interface</xhtml:title>
 		<xhtml:link rel="stylesheet" type="text/css" href="/apps/nomisma/css/grids-min.css"/>
@@ -35,13 +36,12 @@
 			</xs:schema>
 
 			<xforms:instance id="doc">
-				<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:owl="http://www.w3.org/2002/07/owl#"
-					xmlns:gml="http://www.opengis.net/gml/" xmlns:skos="http://www.w3.org/2008/05/skos#" xmlns:nm="http://nomisma.org/id/">
-					<skos:Concept rdf:about="">
-						<skos:broader rdf:about=""/>
-						<skos:prefLabel xml:lang="en"/>
-					</skos:Concept>
-				</rdf:RDF>
+				<div xmlns="http://www.w3.org/1999/xhtml"
+					prefix="=nm: http://nomisma.org/id/ dcterms: http://purl.org/dc/terms/ rdfs: http://www.w3.org/2000/01/rdf-schema# foaf: http://xmlns.com/foaf/0.1/ rdf:  http://www.w3.org/1999/02/22-rdf-syntax-ns# owl:  http://www.w3.org/2002/07/owl# rdfs: http://www.w3.org/2000/01/rdf-schema#	 rdfa: http://www.w3.org/ns/rdfa#"
+					about="" typeof="">
+					<div property="skos:prefLabel" xml:lang="en"/>
+					<div property="skos:definition" xml:lang="en"/>
+				</div>
 			</xforms:instance>
 
 			<xforms:instance id="coin">
@@ -69,7 +69,7 @@
 					</descMeta>
 				</nuds>
 			</xforms:instance>
-			
+
 			<xforms:instance id="hoard">
 				<nudsHoard xmlns="http://nomisma.org/nudsHoard" xmlns:nuds="http://nomisma.org/nuds" xmlns:xlink="http://www.w3.org/1999/xlink">
 					<nudsHeader>
@@ -97,7 +97,7 @@
 					</descMeta>
 				</nudsHoard>
 			</xforms:instance>
-			
+
 			<xforms:instance id="kml">
 				<kml xmlns="http://www.opengis.net/kml/2.2"/>
 			</xforms:instance>
@@ -105,7 +105,7 @@
 			<xforms:instance id="exist-url">
 				<xi:include href="exist-url.xml"/>
 			</xforms:instance>
-			
+
 			<xforms:instance id="config">
 				<config xmlns=""/>
 			</xforms:instance>
@@ -145,36 +145,42 @@
 			</xforms:instance>
 
 			<xforms:instance id="prefLabel-template">
-				<skos:prefLabel xml:lang="" xmlns=""/>
+				<div property="skos:prefLabel" xml:lang=""/>
 			</xforms:instance>
 
 			<xforms:instance id="altLabel-template">
-				<skos:altLabel xml:lang="" xmlns=""/>
+				<div property="skos:altLabel" xml:lang=""/>
 			</xforms:instance>
 
 			<xforms:instance id="related-template">
-				<skos:related xmlns="" rdf:resource=""/>
+				<div>
+					<a rel="skos:related" xml:lang="" href=""/>
+				</div>
+			</xforms:instance>
+
+			<xforms:instance id="latlongsource-template">
+				<div>
+					<a rel="nm:latlongsource" xml:lang="" href=""/>
+				</div>
 			</xforms:instance>
 
 			<xforms:instance id="definition-template">
-				<skos:definition xml:lang="" xmlns=""/>
+				<div property="skos:definition" xml:lang=""/>
 			</xforms:instance>
 
 			<xforms:instnace id="coordinates-template">
-				<gml:pos xmlns=""/>
+				<div property="gml:pos"/>
 			</xforms:instnace>
 
 			<!-- eXist query for types -->
 			<xforms:instance id="eXist-xquery">
-				<exist:query xmlns:exist="http://exist.sourceforge.net/NS/exist" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2008/05/skos#">
-					<exist:text>&lt;report xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"&gt; { for $i in
-						distinct-values(collection()//skos:Concept/skos:broader/@rdf:about) where string-length(substring-after($i, 'id/')) &gt; 0 order by substring-after($i, 'id/') return &lt;type> { $i } &lt;/type> }
-						&lt;/report&gt;</exist:text>
+				<exist:query xmlns:exist="http://exist.sourceforge.net/NS/exist">
+					<exist:text>&lt;report&gt; { for $i in distinct-values(collection()//xhtml:div/@typeof) where string-length(normalize-space($i)) &gt; 0order by substring-after($i,
+						'nm:') return &lt;type> { substring-after($i, 'nm:') } &lt;/type> } &lt;/report&gt;</exist:text>
 				</exist:query>
 			</xforms:instance>
 
-			<xforms:instance id="types">
-				<exist:result/>
+			<xforms:instance id="types">tring-le <exist:result/>
 			</xforms:instance>
 
 			<!-- Solr instances -->
@@ -193,30 +199,28 @@
 					<xforms:bind constraint="string-length(.) &gt; 0"/>
 				</xforms:bind>
 				<xforms:bind nodeset="lat" type="xs:double">
-					<xforms:bind constraint=". &gt;= -180 and . &lt;= 180"/>
+					<xforms:bind constraint=". &gt; -180 and . &lt; 180"/>
 				</xforms:bind>
 				<xforms:bind nodeset="lon" type="xs:double">
-					<xforms:bind constraint=". &gt;= -180 and . &lt;= 180"/>
+					<xforms:bind constraint=". &gt; -180 and . &lt; 180"/>
 				</xforms:bind>
 			</xforms:bind>
 
 			<xforms:bind nodeset="instance('doc')">
-				<xforms:bind nodeset="skos:Concept">
-					<xforms:bind nodeset="skos:prefLabel" required="true()">
-						<xforms:bind nodeset="@xml:lang" constraint="string-length(.) &gt; 0"/>
-					</xforms:bind>
-					<xforms:bind nodeset="skos:altLabel" required="true()">
-						<xforms:bind nodeset="@xml:lang" constraint="string-length(.) &gt; 0"/>
-					</xforms:bind>
-					<xforms:bind nodeset="skos:definition">
-						<xforms:bind nodeset="@xml:lang" constraint="string-length(.) &gt; 0"/>
-					</xforms:bind>
-					<xforms:bind nodeset="skos:related">
-						<xforms:bind nodeset="@rdf:resource" required="true()" type="xs:anyURI"/>
-					</xforms:bind>
-					<xforms:bind nodeset="nm:latlongsource">
-						<xforms:bind nodeset="@rdf:resource" required="true()" type="xs:anyURI"/>
-					</xforms:bind>
+				<xforms:bind nodeset="xhtml:div[@property='skos:prefLabel']" required="true()">
+					<xforms:bind nodeset="@xml:lang" constraint="string-length(.) &gt; 0"/>
+				</xforms:bind>
+				<xforms:bind nodeset="xhtml:div[@property='skos:altLabel']" required="true()">
+					<xforms:bind nodeset="@xml:lang" constraint="string-length(.) &gt; 0"/>
+				</xforms:bind>
+				<xforms:bind nodeset="xhtml:div[@property='skos:definition']">
+					<xforms:bind nodeset="@xml:lang" constraint="string-length(.) &gt; 0"/>
+				</xforms:bind>
+				<xforms:bind nodeset="xhtml:div/xhtml:a[@rel='skos:related']">
+					<xforms:bind nodeset="@href" required="true()" type="xs:anyURI"/>
+				</xforms:bind>
+				<xforms:bind nodeset="xhtml:div/xhtml:a[@rel='nm:latlongsource']">
+					<xforms:bind nodeset="@href" required="true()" type="xs:anyURI"/>
 				</xforms:bind>
 			</xforms:bind>
 
@@ -299,37 +303,37 @@
 			</xforms:action>
 
 			<xforms:action ev:event="xforms-ready">
-				<xforms:action if="contains(instance('control-instance')/type, 'type_series_item')">
+				<xforms:action if="instance('control-instance')/type = 'type_series_item'">
 					<xforms:toggle case="coin-type"/>
 				</xforms:action>
-				<xforms:action if="contains(instance('control-instance')/type, 'hoard')">
+				<xforms:action if="instance('control-instance')/type = 'hoard'">
 					<xforms:toggle case="hoard-case"/>
 				</xforms:action>
-				<xforms:action if="not(contains(instance('control-instance')/type, 'type_series_item')) and not(contains(instance('control-instance')/type, 'hoard'))">
+				<xforms:action if="not(instance('control-instance')/type = 'type_series_item') and not(instance('control-instance')/type = 'hoard')">
 					<xforms:toggle case="default"/>
 				</xforms:action>
 			</xforms:action>
 
 			<!-- ************* SUBMISSIONS **********************-->
-			<xforms:submission id="load-config" serialization="none" method="get" action="{instance('exist-url')}nomisma/config.xml" replace="instance"
-				instance="config" xxforms:username="admin" xxforms:password="">
+			<xforms:submission id="load-config" serialization="none" method="get" action="{instance('exist-url')}nomisma/config.xml" replace="instance" instance="config" xxforms:username="admin"
+				xxforms:password="">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to load config</xforms:message>
 			</xforms:submission>
-			
+
 			<xforms:submission id="load-id" serialization="none" method="get" action="{instance('exist-url')}nomisma/id/{instance('control-instance')/id}.xml" replace="instance" instance="doc"
 				xxforms:username="admin" xxforms:password="">
 				<xforms:action ev:event="xforms-submit-done">
-					<xforms:setvalue ref="instance('control-instance')/prefLabel" value="instance('doc')/skos:Concept/skos:prefLabel"/>
-					<xforms:setvalue ref="instance('control-instance')/type" value="instance('doc')/skos:Concept/skos:broader/@rdf:about"/>
-					<xforms:action if="not(contains(instance('control-instance')/type, 'hoard')) and not(contains(instance('control-instance')/type, 'type_series_item'))">
+					<xforms:setvalue ref="instance('control-instance')/prefLabel" value="instance('doc')/div[@property='skos:prefLabel'][@xml:lang='en']"/>
+					<xforms:setvalue ref="instance('control-instance')/type" value="substring-after(instance('doc')/@typeof, 'nm:')"/>
+					<xforms:action if="not(instance('control-instance')/type = 'hoard') and not(instance('control-instance')/type = 'type_series_item')">
 						<!-- populate lat, lon -->
-						<xforms:setvalue ref="instance('control-instance')/lat" value="tokenize(instance('doc')/skos:Concept/gml:pos, ' ')[1]"/>
-						<xforms:setvalue ref="instance('control-instance')/lon" value="tokenize(instance('doc')/skos:Concept/gml:pos, ' ')[2]"/>
+						<xforms:setvalue ref="instance('control-instance')/lat" value="tokenize(instance('doc')/xhtml:div[@property='gml:pos'], ' ')[1]"/>
+						<xforms:setvalue ref="instance('control-instance')/lon" value="tokenize(instance('doc')/xhtml:div[@property='gml:pos'], ' ')[2]"/>
 					</xforms:action>
-					<xforms:action if="contains(instance('control-instance')/type, 'type_series_item')">
+					<xforms:action if="instance('control-instance')/type = 'type_series_item'">
 						<xforms:send submission="load-coin"/>
 					</xforms:action>
-					<xforms:action if="contains(instance('control-instance')/type, 'hoard')">
+					<xforms:action if="instance('control-instance')/type = 'hoard'">
 						<xforms:send submission="load-hoard"/>
 					</xforms:action>
 				</xforms:action>
@@ -368,41 +372,41 @@
 					<xforms:send submission="save-id"/>
 				</xforms:action>
 			</xforms:submission>
-			
+
 			<!-- **** NUDSHOARD **** -->
-			<xforms:submission id="load-hoard" serialization="none" method="get" action="{instance('exist-url')}nomisma/objects/{instance('control-instance')/id}.xml" replace="instance" instance="hoard"
-				xxforms:username="admin" xxforms:password="">
+			<xforms:submission id="load-hoard" serialization="none" method="get" action="{instance('exist-url')}nomisma/objects/{instance('control-instance')/id}.xml" replace="instance"
+				instance="hoard" xxforms:username="admin" xxforms:password="">
 				<xforms:action ev:event="xforms-submit-error">
 					<xforms:message level="modal">Error Loading object</xforms:message>
 				</xforms:action>
 			</xforms:submission>
-			
-			<xforms:submission id="save-hoard" ref="instance('hoard')" xxforms:username="admin" xxforms:password="" action="{instance('exist-url')}nomisma/objects/{instance('control-instance')/id}.xml"
-				method="put" replace="none">
+
+			<xforms:submission id="save-hoard" ref="instance('hoard')" xxforms:username="admin" xxforms:password=""
+				action="{instance('exist-url')}nomisma/objects/{instance('control-instance')/id}.xml" method="put" replace="none">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Save Error. Are all required inputs filled?</xforms:message>
 				<xforms:action ev:event="xforms-submit-done">
 					<xforms:insert nodeset="instance('doc')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/nudsHoard-to-rdf.xpl', 'data', instance('hoard'), 'data')"/>
 					<xforms:send submission="save-id"/>
 				</xforms:action>
 			</xforms:submission>
-			
+
 			<!-- **** KML **** -->
 			<xforms:submission id="save-kml" ref="instance('kml')" xxforms:username="admin" xxforms:password="" action="{instance('exist-url')}nomisma/kml/{instance('control-instance')/id}.kml"
 				method="put" replace="none">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to save KML</xforms:message>
 			</xforms:submission>
-			
+
 			<!-- **** DELETE **** -->
-			<xforms:submission id="delete-id" action="{instance('exist-url')}nomisma/id/{instance('control-instance')/original_id}.xml" method="delete" replace="none"
-				xxforms:username="admin" xxforms:password="">
+			<xforms:submission id="delete-id" action="{instance('exist-url')}nomisma/id/{instance('control-instance')/original_id}.xml" method="delete" replace="none" xxforms:username="admin"
+				xxforms:password="">
 				<xforms:message level="modal" ev:event="xforms-submit-error">Error deleting id.</xforms:message>
 			</xforms:submission>
-			<xforms:submission id="delete-object" action="{instance('exist-url')}nomisma/objects/{instance('control-instance')/original_id}.xml" method="delete" replace="none"
-				xxforms:username="admin" xxforms:password="">
+			<xforms:submission id="delete-object" action="{instance('exist-url')}nomisma/objects/{instance('control-instance')/original_id}.xml" method="delete" replace="none" xxforms:username="admin"
+				xxforms:password="">
 				<xforms:message level="modal" ev:event="xforms-submit-error">Error deleting nuds or nudsHoard record.</xforms:message>
 			</xforms:submission>
-			<xforms:submission id="delete-kml" action="{instance('exist-url')}nomisma/kml/{instance('control-instance')/original_id}.kml" method="delete" replace="none"
-				xxforms:username="admin" xxforms:password="">
+			<xforms:submission id="delete-kml" action="{instance('exist-url')}nomisma/kml/{instance('control-instance')/original_id}.kml" method="delete" replace="none" xxforms:username="admin"
+				xxforms:password="">
 				<xforms:message level="modal" ev:event="xforms-submit-error">Error deleting KML.</xforms:message>
 			</xforms:submission>
 
@@ -455,27 +459,27 @@
 
 					<xhtml:div class="submission">
 						<xforms:trigger appearance="minimal">
-							<xforms:label class="file_control"><xhtml:img src="{$display_path}images/save.gif" alt="Save"/>Save</xforms:label>							
+							<xforms:label class="file_control"><xhtml:img src="{$display_path}images/save.gif" alt="Save"/>Save</xforms:label>
 							<xforms:action ev:event="DOMActivate">
 								<xforms:action if="string-length(instance('control-instance')/original_id) = 0 or instance('control-instance')/original_id = instance('control-instance')/id">
-									<xforms:action if="contains(instance('control-instance')/type, 'type_series_item')">
+									<xforms:action if="instance('control-instance')/type = 'type_series_item'">
 										<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('coin'), 'data')"/>
 										<xforms:send submission="save-kml"/>
 										<xforms:send submission="save-coin"/>
 									</xforms:action>
-									<xforms:action if="contains(instance('control-instance')/type, 'hoard')">
+									<xforms:action if="instance('control-instance')/type = 'hoard'">
 										<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('hoard'), 'data')"/>
 										<xforms:send submission="save-kml"/>
 										<xforms:send submission="save-hoard"/>
 									</xforms:action>
-									<xforms:action if="not(contains(instance('control-instance')/type, 'type_series_item')) and not(contains(instance('control-instance')/type, 'hoard'))">
+									<xforms:action if="not(instance('control-instance')/type = 'type_series_item') and not(instance('control-instance')/type = 'hoard')">
 										<xforms:action if="contains(instance('control-instance')/type, 'mint')">
 											<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml.xpl', 'data', instance('doc'), 'data')"/>
 											<xforms:send submission="save-kml"/>
 										</xforms:action>
 										<xforms:send submission="save-id"/>
 									</xforms:action>
-								</xforms:action>	
+								</xforms:action>
 								<xforms:action if="string-length(instance('control-instance')/original_id) &gt; 0 and instance('control-instance')/original_id != instance('control-instance')/id">
 									<xforms:dispatch target="save-dialog" name="fr-show"/>
 								</xforms:action>
@@ -485,13 +489,11 @@
 							<xforms:label class="file_control"><xhtml:img src="{$display_path}images/recycle-green.png" alt="Load"/>Load</xforms:label>
 						</xforms:submit>
 						<xforms:trigger appearance="minimal">
-							<xforms:label class="file_control"><xhtml:img src="{$display_path}images/remove.gif" alt="Delete"/>Delete</xforms:label>			
-							<xforms:action ev:event="DOMActivate">
-								
-							</xforms:action>
+							<xforms:label class="file_control"><xhtml:img src="{$display_path}images/remove.gif" alt="Delete"/>Delete</xforms:label>
+							<xforms:action ev:event="DOMActivate"> </xforms:action>
 						</xforms:trigger>
 					</xhtml:div>
-					
+
 					<!-- dialogs -->
 					<fr:alert-dialog id="save-dialog">
 						<fr:label>Save</fr:label>
@@ -500,7 +502,7 @@
 							<fr:label>Save: Replace</fr:label>
 							<xforms:action ev:event="DOMActivate">
 								<!-- delete old id first -->
-								<xforms:action if="contains(instance('control-instance')/type, 'type_series_item') or contains(instance('control-instance')/type, 'hoard')">
+								<xforms:action if="instance('control-instance')/type = 'type_series_item' or instance('control-instance')/type = 'hoard'">
 									<xforms:send submission="delete-object"/>
 									<xforms:send submission="delete-kml"/>
 								</xforms:action>
@@ -508,19 +510,19 @@
 									<xforms:send submission="delete-kml"/>
 								</xforms:action>
 								<xforms:send submission="delete-id"/>
-								
+
 								<!-- create new objects -->
-								<xforms:action if="contains(instance('control-instance')/type, 'type_series_item')">
+								<xforms:action if="instance('control-instance')/type = 'type_series_item'">
 									<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('coin'), 'data')"/>
 									<xforms:send submission="save-kml"/>
 									<xforms:send submission="save-coin"/>
 								</xforms:action>
-								<xforms:action if="contains(instance('control-instance')/type, 'hoard')">
+								<xforms:action if="instance('control-instance')/type = 'hoard'">
 									<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('hoard'), 'data')"/>
 									<xforms:send submission="save-kml"/>
 									<xforms:send submission="save-hoard"/>
 								</xforms:action>
-								<xforms:action if="not(contains(instance('control-instance')/type, 'type_series_item')) and not(contains(instance('control-instance')/type, 'hoard'))">
+								<xforms:action if="not(instance('control-instance')/type = 'type_series_item') and not(instance('control-instance')/type = 'hoard')">
 									<xforms:action if="contains(instance('control-instance')/type, 'mint')">
 										<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml.xpl', 'data', instance('doc'), 'data')"/>
 										<xforms:send submission="save-kml"/>
@@ -532,17 +534,17 @@
 						<fr:negative-choice>
 							<fr:label>Save: Don't Replace</fr:label>
 							<xforms:action ev:event="DOMActivate">
-								<xforms:action if="contains(instance('control-instance')/type, 'type_series_item')">
+								<xforms:action if="instance('control-instance')/type = 'type_series_item'">
 									<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('coin'), 'data')"/>
 									<xforms:send submission="save-kml"/>
 									<xforms:send submission="save-coin"/>
 								</xforms:action>
-								<xforms:action if="contains(instance('control-instance')/type, 'hoard')">
+								<xforms:action if="instance('control-instance')/type = 'hoard'">
 									<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('hoard'), 'data')"/>
 									<xforms:send submission="save-kml"/>
 									<xforms:send submission="save-hoard"/>
 								</xforms:action>
-								<xforms:action if="not(contains(instance('control-instance')/type, 'type_series_item')) and not(contains(instance('control-instance')/type, 'hoard'))">
+								<xforms:action if="not(instance('control-instance')/type = 'type_series_item') and not(instance('control-instance')/type = 'hoard')">
 									<xforms:action if="contains(instance('control-instance')/type, 'mint')">
 										<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml.xpl', 'data', instance('doc'), 'data')"/>
 										<xforms:send submission="save-kml"/>
@@ -553,7 +555,7 @@
 						</fr:negative-choice>
 						<fr:neutral-choice>
 							<fr:label>Cancel</fr:label>
-						</fr:neutral-choice>			
+						</fr:neutral-choice>
 					</fr:alert-dialog>
 
 					<xhtml:h1>Edit nomisma id</xhtml:h1>
@@ -567,23 +569,25 @@
 									<xforms:value/>
 								</xforms:item>
 								<xforms:itemset nodeset="instance('types')/report/type">
-									<xforms:label ref="substring-after(., 'id/')"/>
+									<xforms:label ref="."/>
 									<xforms:value ref="."/>
 								</xforms:itemset>
 								<xforms:action ev:event="xforms-value-changed">
 									<xxforms:variable name="typeof" select="."/>
 									<!-- if altering the type from its original value, remove all but skos:broader and set new value-->
-									<xforms:action if="$typeof != instance('doc')/skos:Concept/skos:broader/@rdf:about">
-										<xforms:delete nodeset="instance('doc')/skos:Concept/*[not(name()='skos:broader')]"/>
-										<xforms:setvalue ref="instance('doc')/skos:Concept/skos:broader/@rdf:about" value="$typeof"/>
+									<xforms:action if="$typeof != substring-after(instance('doc')/@typeof, 'nm:')">
+										<xforms:delete nodeset="instance('doc')/*"/>
+										<xforms:insert origin="instance('prefLabel-template')" context="instance('doc')"/>
+										<xforms:insert origin="instance('definition-template')" context="instance('doc')" nodeset="./child::node()[last()]"/>
+										<xforms:setvalue ref="instance('doc')/@typeof" value="concat('nm:', $typeof)"/>
 										<!-- set case, depending on $typeof -->
-										<xforms:action if="contains($typeof, 'type_series_item')">
+										<xforms:action if="$typeof = 'type_series_item'">
 											<xforms:toggle case="coin-type"/>
 										</xforms:action>
-										<xforms:action if="contains($typeof, 'hoard')">
+										<xforms:action if="$typeof = 'hoard'">
 											<xforms:toggle case="hoard-case"/>
 										</xforms:action>
-										<xforms:action if="not(contains($typeof, 'type_series_item')) and not(contains($typeof, 'hoard'))">
+										<xforms:action if="not($typeof = 'type_series_item') and not($typeof = 'hoard')">
 											<xforms:toggle case="default"/>
 										</xforms:action>
 									</xforms:action>
@@ -596,11 +600,11 @@
 								<xforms:alert>Required</xforms:alert>
 								<xforms:action ev:event="xforms-value-changed">
 									<xxforms:variable name="id" select="."/>
-									<xforms:setvalue ref="instance('doc')/skos:Concept/@rdf:about" value="concat('http://nomisma.org/id/', $id)"/>
-									<xforms:action if="contains(instance('control-instance')/type, 'type_series_item')">
+									<xforms:setvalue ref="instance('doc')/@about" value="concat('[nm:', $id, ']')"/>
+									<xforms:action if="instance('control-instance')/type = 'type_series_item'">
 										<xforms:setvalue ref="instance('coin')/nuds:nudsHeader/nuds:nudsid" value="$id"/>
 									</xforms:action>
-									<xforms:action if="contains(instance('control-instance')/type, 'hoard')">
+									<xforms:action if="instance('control-instance')/type = 'hoard'">
 										<xforms:setvalue ref="instance('hoard')/nh:nudsHeader/nh:nudsid" value="$id"/>
 									</xforms:action>
 								</xforms:action>
@@ -613,41 +617,38 @@
 							<xhtml:div class="section">
 								<xhtml:h2>Options</xhtml:h2>
 								<xhtml:div class="trigger_container">
-									<xforms:group ref=".[count(instance('doc')/skos:Concept/skos:definition) = 0]">
+									<xforms:trigger appearance="minimal">
+										<xforms:label>
+											<xhtml:img src="{$display_path}images/add.gif"/>Preferred Label</xforms:label>
+										<xforms:insert ev:event="DOMActivate" origin="instance('prefLabel-template')" context="instance('doc')" nodeset="./child::node()[last()]"/>
+									</xforms:trigger>
+									<xforms:group ref=".[count(instance('doc')/xhtml:div[@property='skos:definition']) = 0]">
 										<xforms:trigger appearance="minimal">
 											<xforms:label>
 												<xhtml:img src="{$display_path}images/add.gif"/>Definition</xforms:label>
-											<xforms:insert ev:event="DOMActivate" origin="instance('definition-template')" context="instance('doc')/skos:Concept"/>
+											<xforms:insert ev:event="DOMActivate" origin="instance('definition-template')" context="instance('doc')"/>
 										</xforms:trigger>
 									</xforms:group>
 									<xforms:trigger appearance="minimal">
 										<xforms:label>
-											<xhtml:img src="{$display_path}images/add.gif"/>Preferred Label</xforms:label>
-										<xforms:insert ev:event="DOMActivate" origin="instance('prefLabel-template')" context="instance('doc')/skos:Concept" nodeset="./child::node()[last()]"/>
-										<!--<xforms:delete ev:event="DOMActivate" context="div[@property='skos:altLabel'][last()]" nodeset="@*[contains(name(), 'xmlns')]"/>-->
-									</xforms:trigger>
-									<xforms:trigger appearance="minimal">
-										<xforms:label>
 											<xhtml:img src="{$display_path}images/add.gif"/>Alternate Label</xforms:label>
-										<xforms:insert ev:event="DOMActivate" origin="instance('altLabel-template')" context="instance('doc')/skos:Concept" nodeset="./child::node()[last()]"/>
-										<!--<xforms:delete ev:event="DOMActivate" context="div[@property='skos:altLabel'][last()]" nodeset="@*[contains(name(), 'xmlns')]"/>-->
+										<xforms:insert ev:event="DOMActivate" origin="instance('altLabel-template')" context="instance('doc')" nodeset="./child::node()[last()]"/>
 									</xforms:trigger>
 									<xforms:trigger appearance="minimal">
 										<xforms:label>
 											<xhtml:img src="{$display_path}images/add.gif"/>Related Link</xforms:label>
-										<xforms:insert ev:event="DOMActivate" origin="instance('related-template')" context="instance('doc')/skos:Concept" nodeset="./child::node()[last()]"/>
+										<xforms:insert ev:event="DOMActivate" origin="instance('related-template')" context="instance('doc')" nodeset="./child::node()[last()]"/>
 									</xforms:trigger>
-									<xforms:group ref=".[count(instance('doc')/skos:Concept/gml:pos) = 0]">
+									<xforms:group ref=".[count(instance('doc')/xhtml:div[@property='gml:pos']) = 0]">
 										<xforms:trigger appearance="minimal">
 											<xforms:label>
 												<xhtml:img src="{$display_path}images/add.gif"/>Coordinates</xforms:label>
-											<xforms:insert ev:event="DOMActivate" origin="instance('coordinates-template')" context="instance('doc')/skos:Concept" nodeset="./child::node()[last()]"
-											/>
+											<xforms:insert ev:event="DOMActivate" origin="instance('coordinates-template')" context="instance('doc')" nodeset="./child::node()[last()]"/>
 										</xforms:trigger>
 									</xforms:group>
 								</xhtml:div>
-								<xforms:group ref="instance('doc')/skos:Concept">
-									<xforms:repeat nodeset="skos:prefLabel">
+								<xforms:group ref="instance('doc')">
+									<xforms:repeat nodeset="xhtml:div[@property='skos:prefLabel']">
 										<xhtml:div>
 											<xforms:input ref=".">
 												<xforms:label>Preferred Label</xforms:label>
@@ -664,9 +665,25 @@
 												</xforms:itemset>
 												<xforms:alert>Required</xforms:alert>
 											</xforms:select1>
+											<xforms:group ref=".[count(instance('doc')/xhtml:div[@property='skos:prefLabel'][@xml:lang='en']) &gt; 1]">
+												<xforms:trigger appearance="minimal">
+													<xforms:delete ev:event="DOMActivate" context="."/>
+													<xforms:label>
+														<xhtml:img src="{$display_path}images/remove.gif"/>
+													</xforms:label>
+												</xforms:trigger>
+											</xforms:group>
+											<xforms:group ref=".[not(@xml:lang='en')]">
+												<xforms:trigger appearance="minimal">
+													<xforms:delete ev:event="DOMActivate" context="."/>
+													<xforms:label>
+														<xhtml:img src="{$display_path}images/remove.gif"/>
+													</xforms:label>
+												</xforms:trigger>
+											</xforms:group>
 										</xhtml:div>
 									</xforms:repeat>
-									<xforms:repeat nodeset="skos:altLabel">
+									<xforms:repeat nodeset="xhtml:div[@property='skos:altLabel']">
 										<xhtml:div>
 											<xforms:input ref=".">
 												<xforms:label>Alternate Label</xforms:label>
@@ -691,7 +708,7 @@
 											</xforms:trigger>
 										</xhtml:div>
 									</xforms:repeat>
-									<xforms:group ref="skos:definition">
+									<xforms:group ref="xhtml:div[@property='skos:definition']">
 										<xhtml:div>
 											<xforms:input ref=".">
 												<xforms:label>Definition</xforms:label>
@@ -715,9 +732,9 @@
 											</xforms:trigger>
 										</xhtml:div>
 									</xforms:group>
-									<xforms:repeat nodeset="skos:related">
+									<xforms:repeat nodeset="xhtml:div/xhtml:a[@rel='skos:related']">
 										<xhtml:div>
-											<xforms:input ref="@rdf:resource">
+											<xforms:input ref="@href">
 												<xforms:label>Related Link</xforms:label>
 												<xforms:alert>Required</xforms:alert>
 											</xforms:input>
@@ -730,7 +747,7 @@
 										</xhtml:div>
 									</xforms:repeat>
 
-									<xforms:group ref=".[count(gml:pos) = 1]">
+									<xforms:group ref=".[count(xhtml:div[@property='gml:pos']) = 1]">
 										<xhtml:h3>Coordinates</xhtml:h3>
 										<xforms:trigger appearance="minimal">
 											<xforms:action ev:event="DOMActivate">
@@ -749,8 +766,8 @@
 												<xforms:label>Latitude</xforms:label>
 												<xforms:alert>Must be decimal integer between -180 and 180</xforms:alert>
 												<xforms:action ev:event="xforms-value-changed">
-													<xforms:setvalue ref="instance('doc')/skos:Concept/gml:pos" value="concat(instance('control-instance')/lat, ' ', instance('control-instance')/lon)"
-													/>
+													<xforms:setvalue ref="instance('doc')/div[@property='gml:pos']"
+														value="concat(instance('control-instance')/lat, ' ', instance('control-instance')/lon)"/>
 												</xforms:action>
 											</xforms:input>
 										</xhtml:div>
@@ -759,17 +776,17 @@
 												<xforms:label>Longitude</xforms:label>
 												<xforms:alert>Must be decimal integer between -180 and 180</xforms:alert>
 												<xforms:action ev:event="xforms-value-changed">
-													<xforms:setvalue ref="instance('doc')/skos:Concept/gml:pos" value="concat(instance('control-instance')/lat, ' ', instance('control-instance')/lon)"
-													/>
+													<xforms:setvalue ref="instance('doc')/div[@property='gml:pos']"
+														value="concat(instance('control-instance')/lat, ' ', instance('control-instance')/lon)"/>
 												</xforms:action>
 											</xforms:input>
 										</xhtml:div>
-										<xhtml:div>
+										<!--<xhtml:div>
 											<xforms:input ref="nm:latlongsource/@rdf:resource">
 												<xforms:label>Source</xforms:label>
 												<xforms:alert>Required</xforms:alert>
 											</xforms:input>
-										</xhtml:div>
+										</xhtml:div>-->
 									</xforms:group>
 								</xforms:group>
 							</xhtml:div>
@@ -796,13 +813,11 @@
 								</fr:tab>
 							</fr:tabview>
 						</xforms:case>
-						<xforms:case id="hoard-case">
-							hoard
-						</xforms:case>
+						<xforms:case id="hoard-case"> hoard </xforms:case>
 					</xforms:switch>
 				</xhtml:div>
 			</xhtml:div>
-<!--			<fr:xforms-inspector/>-->
+			<fr:xforms-inspector/>
 			<!-- footer -->
 			<!--<xi:include href="footer.xml"/>-->
 		</xhtml:div>
