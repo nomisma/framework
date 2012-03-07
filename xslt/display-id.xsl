@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nm="http://nomisma.org/id/" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:exsl="http://exslt.org/common"
-	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:skos="http://www.w3.org/2008/05/skos#"
-	xmlns:numishare="http://code.google.com/p/numishare/" xmlns:nh="http://nomisma.org/nudsHoard" xmlns:nuds="http://nomisma.org/nuds" xmlns:xlink="http://www.w3.org/1999/xlink"
-	xmlns:gml="http://www.opengis.net/gml/" xmlns:nomisma="http://nomisma.org/id/" version="2.0">
+<xsl:stylesheet xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:datetime="http://exslt.org/dates-and-times"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2008/05/skos#" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:nuds="http://nomisma.org/nuds" xmlns:nh="http://nomisma.org/nudsHoard" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:exsl="http://exslt.org/common" xmlns:nomisma="http://nomisma.org/id/"
+	version="2.0" exclude-result-prefixes="#all">
 	<xsl:include href="header-public.xsl"/>
 	<xsl:include href="footer-public.xsl"/>
-	<xsl:output method="xhtml" encoding="UTF-8"/>
+	<xsl:output method="xhtml" encoding="UTF-8" media-type="application/xhtml+xml" indent="yes"/>
 
 	<!-- change eXist URL if running on a server other than localhost -->
 	<xsl:variable name="display_path">../</xsl:variable>
 	<xsl:variable name="pipeline">display</xsl:variable>
 
-	<xsl:template match="/">
-		<xsl:variable name="id" select="tokenize(rdf:RDF/skos:Concept/@rdf:about, '/')[last()]"/>
-		<xsl:variable name="type" select="tokenize(rdf:RDF/skos:Concept/skos:broader/@rdf:about, '/')[last()]"/>
+	<xsl:variable name="id" select="substring-after(translate(/xhtml:div/@about, '[]', ''), 'nm:')"/>
+	<xsl:variable name="type" select="substring-after(/xhtml:div/@typeof, 'nm:')"/>
 
+	<xsl:template match="/">
 		<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:batlas="http://atlantides.org/batlas/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:gml="http://www.opengis.net/gml/"
 			xmlns:nm="http://nomisma.org/id/" xmlns:ov="http://open.vocab.org/terms/" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 			xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2008/05/skos#">
@@ -25,7 +25,7 @@
 				<base href="http://nomisma.org/id/"/>
 
 				<link rel="alternate" type="application/rdf+xml"
-					href="http://www.w3.org/2007/08/pyRdfa/extract?uri={encode-for-uri(concat('http://admin.numismatics.org:8080/orbeon/nomisma/id/', $id))}"/>
+					href="http://www.w3.org/2007/08/pyRdfa/extract?uri={encode-for-uri(concat('http://nomisma.org/id/', $id))}"/>
 
 				<link type="application/vnd.google-earth.kml+xml" href="http://nomisma.org/kml/{$id}.kml"/>
 				<link type="application/vnd.google-earth.kml+xml" href="http://nomisma.org/kml/{$id}-all.kml"/>
@@ -35,23 +35,21 @@
 				<link rel="stylesheet" type="text/css" href="{$display_path}css/reset-fonts-grids.css"/>
 				<link rel="stylesheet" type="text/css" href="{$display_path}css/base-min.css"/>
 				<link rel="stylesheet" type="text/css" href="{$display_path}css/fonts-min.css"/>
-				<link rel="stylesheet" type="text/css" href="{$display_path}css/jquery-ui-1.8.12.custom.css"/>
-
 				<!-- nomisma styling -->
 				<link rel="stylesheet" href="{$display_path}css/style.css"/>
+				<link rel="stylesheet" type="text/css" href="{$display_path}css/jquery-ui-1.8.12.custom.css"/>
 
 				<!-- javascript -->
-				<xsl:if test="contains($type, 'hoard') or contains($type, 'type_series_item') or contains($type, 'mint')">
+				<xsl:if test="$type = 'hoard' or $type = 'type_series_item' or $type = 'mint'">
 					<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"/>
 					<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.2&amp;sensor=false"/>
 					<script type="text/javascript" src="{$display_path}javascript/jquery-1.6.1.min.js"/>
 					<script type="text/javascript" src="{$display_path}javascript/map_functions.js"/>
 					<script type="text/javascript" src="{$display_path}javascript/menu.js"/>
 					<script type="text/javascript">
-					$(document).ready(function(){
-						initialize_map('<xsl:value-of select="$id"/>');
-					});
-				</script>
+						$(document).ready(function () {
+							initialize_map('<xsl:value-of select="$id"/>');
+					});</script>
 				</xsl:if>
 
 			</head>
@@ -63,7 +61,7 @@
 							<div class="yui-b">
 								<div class="yui-g">
 									<div class="yui-u first">
-										<xsl:apply-templates select="/rdf:RDF/skos:Concept"/>
+										<xsl:apply-templates select="/xhtml:div"/>
 									</div>
 									<div class="yui-u">
 										<div id="lod">
@@ -73,14 +71,14 @@
 													<img src="{$display_path}images/rdf-medium.gif" alt="RDF"/>
 												</a>
 											</span>
-											<xsl:if test="contains($type, 'hoard') or contains($type, 'type_series_item') or contains($type, 'mint')">
+											<xsl:if test="$type = 'hoard' or $type = 'type_series_item' or $type = 'mint'">
 												<span class="option">
 													<a href="{$id}.kml">
 														<img src="{$display_path}images/kml-medium.png" alt="KML"/>
 													</a>
 												</span>
 											</xsl:if>
-											<xsl:if test="contains($type, 'hoard') or contains($type, 'type_series_item')">
+											<xsl:if test="$type = 'hoard' or $type = 'type_series_item'">
 												<span class="option">
 													<a href="{$display_path}xml/{$id}">
 														<img src="{$display_path}images/xml.png" alt="XML"/>
@@ -101,54 +99,54 @@
 		</html>
 	</xsl:template>
 
-	<xsl:template match="skos:Concept">
+	<xsl:template match="xhtml:div">
 		<div>
 			<h1>
 				<span>
-					<xsl:for-each select="skos:prefLabel[@xml:lang='en']/@*">
+					<xsl:for-each select="xhtml:div[@property='skos:prefLabel'][@xml:lang='en']/@*">
 						<xsl:attribute name="{name()}" select="."/>
 					</xsl:for-each>
-					<xsl:value-of select="skos:prefLabel[@xml:lang='en']"/>
+					<xsl:value-of select="xhtml:div[@property='skos:prefLabel'][@xml:lang='en']"/>
 				</span>
 				<xsl:text> (</xsl:text>
-				<a href="{skos:broader/@rdf:about}">
-					<xsl:value-of select="substring-after(skos:broader/@rdf:about, 'id/')"/>
+				<a href="http://nomisma.org/id/{$type}">
+					<xsl:value-of select="$type"/>
 				</a>
 				<xsl:text>)</xsl:text>
 			</h1>
 			<xsl:choose>
-				<xsl:when test="contains(skos:broader/@rdf:about, 'type_series_item')">
+				<xsl:when test="$type = 'type_series_item'">
 					<xsl:variable name="object">
-						<xsl:copy-of select="document(skos:definition/@rdf:resource)/nuds:nuds"/>
+						<xsl:copy-of select="document(xhtml:div/xhtml:a[@rel='owl:sameAs']/@href)/nuds:nuds"/>
 					</xsl:variable>
 					<h3>Typological Attributes</h3>
 					<xsl:apply-templates select="exsl:node-set($object)/descendant::nuds:typeDesc"/>
 				</xsl:when>
-				<xsl:when test="contains(skos:broader/@rdf:about, 'hoard')">
+				<xsl:when test="$type = 'hoard'">
 					<xsl:variable name="object">
-						<xsl:copy-of select="document(skos:definition/@rdf:resource)/nh:nudsHoard"/>
+						<xsl:copy-of select="document(xhtml:div/xhtml:a[@rel='owl:sameAs']/@href)/nh:nudsHoard"/>
 					</xsl:variable>
 					<xsl:apply-templates select="exsl:node-set($object)/descendant::nh:hoardDesc"/>
 					<xsl:apply-templates select="exsl:node-set($object)/descendant::nh:contentsDesc/nh:contents"/>
 				</xsl:when>
 				<xsl:otherwise>
-					<xsl:apply-templates select="skos:definition"/>
-					<xsl:if test="count(skos:prefLabel[@xml:lang!='en']) &gt; 0">
+					<xsl:apply-templates select="xhtml:div[@property='skos:definition']"/>
+					<xsl:if test="count(xhtml:div[@property='skos:prefLabel'][@xml:lang!='en']) &gt; 0">
 						<h3>Preferred Labels</h3>
 						<dl>
-							<xsl:apply-templates select="skos:prefLabel[@xml:lang != 'en']"/>
+							<xsl:apply-templates select="xhtml:div[@property='skos:prefLabel'][@xml:lang != 'en']"/>
 						</dl>
 					</xsl:if>
-					<xsl:if test="count(skos:altLabel) &gt; 0">
+					<xsl:if test="count(xhtml:div[@property='skos:altLabel']) &gt; 0">
 						<h3>Alternate Labels</h3>
 						<dl>
-							<xsl:apply-templates select="skos:altLabel"/>
+							<xsl:apply-templates select="xhtml:div[@property='skos:altLabel']"/>
 						</dl>
 					</xsl:if>
-					<xsl:if test="count(skos:related) &gt; 0">
+					<xsl:if test="count(xhtml:div/xhtml:a[@rel='skos:related']) &gt; 0">
 						<h3>Related Resources</h3>
 						<dl>
-							<xsl:apply-templates select="skos:related"/>
+							<xsl:apply-templates select="xhtml:div/xhtml:a[@rel='skos:related']"/>
 						</dl>
 					</xsl:if>
 				</xsl:otherwise>
@@ -156,7 +154,7 @@
 		</div>
 	</xsl:template>
 
-	<xsl:template match="skos:definition">
+	<xsl:template match="xhtml:div[@property='skos:definition']">
 		<p>
 			<xsl:for-each select="@*">
 				<xsl:attribute name="{name()}" select="."/>
@@ -165,7 +163,7 @@
 		</p>
 	</xsl:template>
 
-	<xsl:template match="skos:altLabel|skos:prefLabel">
+	<xsl:template match="xhtml:div[@property='skos:altLabel']|xhtml:div[@property='skos:prefLabel']">
 		<dt>
 			<xsl:value-of select="nomisma:normalize-language(@xml:lang)"/>
 		</dt>
@@ -177,13 +175,16 @@
 		</dd>
 	</xsl:template>
 
-	<xsl:template match="skos:related">
+	<xsl:template match="xhtml:a[@rel='skos:related']">
 		<dt>
-			<xsl:value-of select="nomisma:normalize-href(@rdf:resource)"/>
+			<xsl:value-of select="nomisma:normalize-href(@href)"/>
 		</dt>
 		<dd>
-			<a href="{@rdf:resource}">
-				<xsl:value-of select="@rdf:resource"/>
+			<a href="{@href}">
+				<xsl:for-each select="@*">
+					<xsl:attribute name="{name()}" select="."/>
+				</xsl:for-each>
+				<xsl:value-of select="@href"/>
 			</a>
 		</dd>
 	</xsl:template>
@@ -216,7 +217,7 @@
 								<xsl:value-of select="concat(upper-case(substring(@xlink:role, 1, 1)), substring(@xlink:role, 2))"/>
 							</xsl:when>
 							<xsl:otherwise>
-								<xsl:value-of select="numishare:regularize_node(local-name())"/>
+								<xsl:value-of select="nomisma:regularize_node(local-name())"/>
 							</xsl:otherwise>
 						</xsl:choose>
 						<xsl:text>: </xsl:text>
@@ -267,12 +268,12 @@
 					<xsl:choose>
 						<xsl:when test="parent::nuds:physDesc">
 							<h3>
-								<xsl:value-of select="numishare:regularize_node(local-name())"/>
+								<xsl:value-of select="nomisma:regularize_node(local-name())"/>
 							</h3>
 						</xsl:when>
 						<xsl:otherwise>
 							<h4>
-								<xsl:value-of select="numishare:regularize_node(local-name())"/>
+								<xsl:value-of select="nomisma:regularize_node(local-name())"/>
 							</h4>
 						</xsl:otherwise>
 					</xsl:choose>
@@ -332,7 +333,7 @@
 	</xsl:template>
 
 	<!-- ***************** FUNCTIONS ******************* -->
-	<xsl:function name="numishare:regularize_node">
+	<xsl:function name="nomisma:regularize_node">
 		<xsl:param name="name"/>
 		<xsl:choose>
 			<xsl:when test="$name='acknowledgment'">Acknowledgment</xsl:when>

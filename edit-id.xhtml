@@ -12,11 +12,10 @@
 
 		<!-- nomisma styling -->
 		<xhtml:link rel="stylesheet" href="/apps/nomisma/css/style.css"/>
-		<!--<link rel="stylesheet" href="/apps/nomisma/css/themes/smoothness.css"/>-->
+		<xhtml:link rel="stylesheet" href="/apps/nomisma/css/jquery-ui-1.8.12.custom.css"/>
 
-		<!--<script type="text/javascript" src="{$display_path}javascript/jquery-1.4.2.min.js"/>
-		<script type="text/javascript" src="{$display_path}javascript/get_components.js"/>
-		<script type="text/javascript" src="{$display_path}javascript/menu.js"/>-->
+		<xhtml:script type="text/javascript" src="/apps/nomisma/javascript/jquery-1.6.1.min.js"/>
+		<xhtml:script type="text/javascript" src="/apps/nomisma/javascript/menu.js"/>
 
 
 		<xforms:model>
@@ -175,8 +174,8 @@
 			<!-- eXist query for types -->
 			<xforms:instance id="eXist-xquery">
 				<exist:query xmlns:exist="http://exist.sourceforge.net/NS/exist">
-					<exist:text>&lt;report&gt; { for $i in distinct-values(collection()//xhtml:div/@typeof) where string-length(normalize-space($i)) &gt; 0order by substring-after($i,
-						'nm:') return &lt;type> { substring-after($i, 'nm:') } &lt;/type> } &lt;/report&gt;</exist:text>
+					<exist:text>&lt;report&gt; { for $i in distinct-values(collection()//xhtml:div/@typeof) where contains($i, 'nm:') order by substring-after(normalize-space($i),
+						'nm:') return &lt;type> { substring-after(normalize-space($i), 'nm:') } &lt;/type> } &lt;/report&gt;</exist:text>
 				</exist:query>
 			</xforms:instance>
 
@@ -222,6 +221,9 @@
 				<xforms:bind nodeset="xhtml:div/xhtml:a[@rel='nm:latlongsource']">
 					<xforms:bind nodeset="@href" required="true()" type="xs:anyURI"/>
 				</xforms:bind>
+				<xforms:bind nodeset="xhtml:div[@property='gml:pos']"
+					constraint="(number(substring-before(., ' ')) &gt; -180 and number(substring-before(., ' ')) &lt; 180) and (number(substring-after(., ' ')) &gt; -180 and number(substring-after(., ' ')) &lt; 180)"
+				> </xforms:bind>
 			</xforms:bind>
 
 			<xforms:bind nodeset="instance('coin')">
@@ -447,6 +449,7 @@
 		<xhtml:div id="doc4">
 			<!-- header -->
 			<xxforms:variable name="display_path">../../</xxforms:variable>
+			<xxforms:variable name="admin_path">../</xxforms:variable>
 			<xi:include href="header-admin.xml"/>
 
 			<xhtml:div id="bd">
@@ -622,13 +625,11 @@
 											<xhtml:img src="{$display_path}images/add.gif"/>Preferred Label</xforms:label>
 										<xforms:insert ev:event="DOMActivate" origin="instance('prefLabel-template')" context="instance('doc')" nodeset="./child::node()[last()]"/>
 									</xforms:trigger>
-									<xforms:group ref=".[count(instance('doc')/xhtml:div[@property='skos:definition']) = 0]">
-										<xforms:trigger appearance="minimal">
-											<xforms:label>
-												<xhtml:img src="{$display_path}images/add.gif"/>Definition</xforms:label>
-											<xforms:insert ev:event="DOMActivate" origin="instance('definition-template')" context="instance('doc')"/>
-										</xforms:trigger>
-									</xforms:group>
+									<xforms:trigger appearance="minimal">
+										<xforms:label>
+											<xhtml:img src="{$display_path}images/add.gif"/>Definition</xforms:label>
+										<xforms:insert ev:event="DOMActivate" origin="instance('definition-template')" context="instance('doc')"/>
+									</xforms:trigger>
 									<xforms:trigger appearance="minimal">
 										<xforms:label>
 											<xhtml:img src="{$display_path}images/add.gif"/>Alternate Label</xforms:label>
@@ -665,7 +666,7 @@
 												</xforms:itemset>
 												<xforms:alert>Required</xforms:alert>
 											</xforms:select1>
-											<xforms:group ref=".[count(instance('doc')/xhtml:div[@property='skos:prefLabel'][@xml:lang='en']) &gt; 1]">
+											<xforms:group ref=".[@xml:lang='en' and count(instance('doc')/xhtml:div[@property='skos:prefLabel'][@xml:lang='en']) &gt; 1]">
 												<xforms:trigger appearance="minimal">
 													<xforms:delete ev:event="DOMActivate" context="."/>
 													<xforms:label>
@@ -708,7 +709,7 @@
 											</xforms:trigger>
 										</xhtml:div>
 									</xforms:repeat>
-									<xforms:group ref="xhtml:div[@property='skos:definition']">
+									<xforms:repeat nodeset="xhtml:div[@property='skos:definition']">
 										<xhtml:div>
 											<xforms:input ref=".">
 												<xforms:label>Definition</xforms:label>
@@ -724,14 +725,24 @@
 													<xforms:value ref="@value"/>
 												</xforms:itemset>
 											</xforms:select1>
-											<xforms:trigger appearance="minimal">
-												<xforms:delete ev:event="DOMActivate" context="."/>
-												<xforms:label>
-													<xhtml:img src="{$display_path}images/remove.gif"/>
-												</xforms:label>
-											</xforms:trigger>
+											<xforms:group ref=".[@xml:lang='en' and count(instance('doc')/xhtml:div[@property='skos:definition'][@xml:lang='en']) &gt; 1]">
+												<xforms:trigger appearance="minimal">
+													<xforms:delete ev:event="DOMActivate" context="."/>
+													<xforms:label>
+														<xhtml:img src="{$display_path}images/remove.gif"/>
+													</xforms:label>
+												</xforms:trigger>
+											</xforms:group>
+											<xforms:group ref=".[not(@xml:lang='en')]">
+												<xforms:trigger appearance="minimal">
+													<xforms:delete ev:event="DOMActivate" context="."/>
+													<xforms:label>
+														<xhtml:img src="{$display_path}images/remove.gif"/>
+													</xforms:label>
+												</xforms:trigger>
+											</xforms:group>
 										</xhtml:div>
-									</xforms:group>
+									</xforms:repeat>
 									<xforms:repeat nodeset="xhtml:div/xhtml:a[@rel='skos:related']">
 										<xhtml:div>
 											<xforms:input ref="@href">
@@ -766,7 +777,7 @@
 												<xforms:label>Latitude</xforms:label>
 												<xforms:alert>Must be decimal integer between -180 and 180</xforms:alert>
 												<xforms:action ev:event="xforms-value-changed">
-													<xforms:setvalue ref="instance('doc')/div[@property='gml:pos']"
+													<xforms:setvalue ref="instance('doc')/xhtml:div[@property='gml:pos']"
 														value="concat(instance('control-instance')/lat, ' ', instance('control-instance')/lon)"/>
 												</xforms:action>
 											</xforms:input>
@@ -776,7 +787,7 @@
 												<xforms:label>Longitude</xforms:label>
 												<xforms:alert>Must be decimal integer between -180 and 180</xforms:alert>
 												<xforms:action ev:event="xforms-value-changed">
-													<xforms:setvalue ref="instance('doc')/div[@property='gml:pos']"
+													<xforms:setvalue ref="instance('doc')/xhtml:div[@property='gml:pos']"
 														value="concat(instance('control-instance')/lat, ' ', instance('control-instance')/lon)"/>
 												</xforms:action>
 											</xforms:input>
@@ -817,9 +828,9 @@
 					</xforms:switch>
 				</xhtml:div>
 			</xhtml:div>
-			<fr:xforms-inspector/>
+			<!--<fr:xforms-inspector/>-->
 			<!-- footer -->
-			<!--<xi:include href="footer.xml"/>-->
+			<xi:include href="footer-admin.xml"/>
 		</xhtml:div>
 	</xhtml:body>
 </xhtml:html>

@@ -21,10 +21,11 @@
 				<link rel="stylesheet" type="text/css" href="{$display_path}css/reset-fonts-grids.css"/>
 				<link rel="stylesheet" type="text/css" href="{$display_path}css/base-min.css"/>
 				<link rel="stylesheet" type="text/css" href="{$display_path}css/fonts-min.css"/>
-				<link rel="stylesheet" type="text/css" href="{$display_path}css/jquery-ui-1.8.12.custom.css"/>
+				
 
 				<!-- nomisma styling -->
 				<link rel="stylesheet" href="{$display_path}css/style.css"/>
+				<link rel="stylesheet" type="text/css" href="{$display_path}css/jquery-ui-1.8.12.custom.css"/>
 
 				<!-- javascript -->
 				<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"/>

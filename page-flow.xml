@@ -26,7 +26,7 @@
 	***************** -->
 	<page path-info="/nomisma/xml/(.*)" matcher="oxf:perl5-matcher" model="exist-url.xml" view="xpl/display-xml.xpl"/>
 	<page path-info="/nomisma/id/(.*).kml" matcher="oxf:perl5-matcher" view="http://localhost:8080/orbeon/exist/rest/db/nomisma/kml/${1}.kml"/>
-	<page path-info="/nomisma/id/(.*).rdf" matcher="oxf:perl5-matcher" view="http://localhost:8080/orbeon/exist/rest/db/nomisma/id/${1}.xml"/>	
+	<page path-info="/nomisma/id/(.*).rdf" matcher="oxf:perl5-matcher" model="http://localhost:8080/orbeon/exist/rest/db/nomisma/id/${1}.xml" view="xpl/display-rdf.xpl"/>	
 	<page path-info="/nomisma/id/(.*)" matcher="oxf:perl5-matcher" model="http://localhost:8080/orbeon/exist/rest/db/nomisma/id/${1}.xml" view="xpl/display-id.xpl"/>
 	
 	<!-- Atom feed -->

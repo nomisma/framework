@@ -46,10 +46,10 @@ a:hover {
 	height:400px;
 	margin:0;
 }
-#indexMap{
+#indexMap {
 	width:100%;
 	height:400px;
-	margin:2em 0;	
+	margin:2em 0;
 }
 .external_link {
 	margin-left: 10px;
@@ -57,35 +57,35 @@ a:hover {
 ol li, ul li, dl li {
 	list-style-type:none;
 }
-ul{
+ul {
 	margin:.5em 0 .5em 1em;
 }
-#lod{
+#lod {
 	text-align:right;
 	margin:1em 0;
 }
-.option{
-	margin-left:1em;	
+.option {
+	margin-left:1em;
+}
+.edit-me{
+	font-size:10px;
+	letter-spacing:normal;
+	float:right;
 }
 /*
   ***************************************
   HEADER
   ***************************************
  */
-#hd {
+#banner {
 	background-color: rgb(240, 240, 240);
 	border-top:1px solid #c2b9a9;
 	border-left:1px solid #c2b9a9;
 	border-right:1px solid #c2b9a9;
-}
-#banner {
-	background-color: #ebebeb;
-}
-.banner_text {
-	padding:20px;
-	font-size:24px;
+	font-size: 24px;
 	font-weight:bold;
 	letter-spacing:4px;
+	padding:5px;
 }
 /*
   ***************************************
@@ -150,7 +150,6 @@ ul{
 	display:table;
 	width:100%;
 }
-
 .section {
 	margin-bottom:25px;
 	width:100%;
@@ -255,8 +254,8 @@ ul{
 .xxforms-dialog-body>a, .xxforms-dialog-body>span {
 	width:100px;
 }
-.xbl-component{
-	margin:5px 0;	
+.xbl-component {
+	margin:5px 0;
 }
 .ui-state-error, .ui-state-highlight {
 	padding: 0pt 0.7em;
@@ -299,27 +298,27 @@ ul{
   BROWSE
   ****************************************
  */
- .result-doc{
- 	padding:10px;
- 	border-bottom:1px solid silver;
- }
- .odd{
- 	background-color:#ebebeb;	
- }
- .typeof{
- 	font-size:80%;
- 	float:right;
- }
- .quick_search, .exclude{
- 	margin:10px 0;	
- }
- .checkall, .uncheckall{
- 	color:#8BADCF;
- 	cursor:pointer;
- }
- .checkall:hover, .uncheckall:hover{
- 	color:#627eb7;	
- }
+.result-doc {
+	padding:10px;
+	border-bottom:1px solid silver;
+}
+.odd {
+	background-color:#ebebeb;
+}
+.typeof {
+	font-size:80%;
+	float:right;
+}
+.quick_search, .exclude {
+	margin:10px 0;
+}
+.checkall, .uncheckall {
+	color:#8BADCF;
+	cursor:pointer;
+}
+.checkall:hover, .uncheckall:hover {
+	color:#627eb7;
+}
 /*
   ***************************************
   jQuery UI Menubar @VERSION

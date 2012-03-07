@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xhtml:div id="ft" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-	test
+	<xhtml:div style="text-align:center">
+		For further explanation of nomisma usage, please consult wiki/Sebastian/Ethan
+	</xhtml:div>
 </xhtml:div>

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nm="http://nomisma.org/id/" xmlns:owl="http://www.w3.org/2002/07/owl#"
-	xmlns:exsl="http://exslt.org/common" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:skos="http://www.w3.org/2008/05/skos#"
-	xmlns:numishare="http://code.google.com/p/numishare/" xmlns:nuds="http://nomisma.org/id/nuds" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml/" exclude-result-prefixes="#all" version="2.0">
-	<xsl:output method="xml" encoding="UTF-8"/>
+<xsl:stylesheet xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:datetime="http://exslt.org/dates-and-times"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:nuds="http://nomisma.org/id/nuds" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:exsl="http://exslt.org/common" exclude-result-prefixes="#all"
+	version="2.0">
+	<xsl:output method="xml" encoding="UTF-8" media-type="application/vnd.google-earth.kml+xml"/>
 
 
-	<xsl:template match="/">		
-		<xsl:apply-templates select="rdf:RDF"/>
+	<xsl:template match="/">
+		<xsl:apply-templates select="/xhtml:div"/>
 	</xsl:template>
-	
-	<xsl:template match="rdf:RDF">
-		<xsl:variable name="lat" select="substring-before(//gml:pos, ' ')"/>
-		<xsl:variable name="lon" select="substring-after(//gml:pos, ' ')"/>
-		
+
+	<xsl:template match="xhtml:div">
+		<xsl:variable name="lat" select="substring-before(xhtml:div[@property='gml:pos'], ' ')"/>
+		<xsl:variable name="lon" select="substring-after(xhtml:div[@property='gml:pos'], ' ')"/>
+
 		<kml xmlns="http://www.opengis.net/kml/2.2">
 			<Document>
 				<Style xmlns="" id="mint">
@@ -43,7 +43,9 @@
 					</IconStyle>
 				</Style>
 				<Placemark>
-					<name><xsl:value-of select="skos:Concept/skos:prefLabel[@xml:lang='en']"/></name>
+					<name>
+						<xsl:value-of select="xhtml:div[@property='skos:prefLabel'][@xml:lang='en']"/>
+					</name>
 					<styleUrl>#mint</styleUrl>
 					<description><!--<xsl:value-of select="'&lt;![CDATA['"/><xsl:copy-of select="."/><xsl:text>]]&gt;</xsl:text>--></description>
 					<Point>
@@ -53,7 +55,4 @@
 			</Document>
 		</kml>
 	</xsl:template>
-
-
-
 </xsl:stylesheet>

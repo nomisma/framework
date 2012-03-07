@@ -12,12 +12,11 @@
 		<link rel="stylesheet" type="text/css" href="/apps/nomisma/css/fonts-min.css"/>
 
 		<!-- nomisma styling -->
-		<link rel="stylesheet" href="/apps/nomisma/css/style.css"/>
-		<!--<link rel="stylesheet" href="/apps/nomisma/css/themes/smoothness.css"/>-->
+		<xhtml:link rel="stylesheet" href="/apps/nomisma/css/style.css"/>
+		<xhtml:link rel="stylesheet" href="/apps/nomisma/css/jquery-ui-1.8.12.custom.css"/>
 
-		<!--<script type="text/javascript" src="/apps/nomisma/javascript/jquery-1.4.2.min.js"/>
-		<script type="text/javascript" src="/apps/nomisma/javascript/get_components.js"/>
-		<script type="text/javascript" src="/apps/nomisma/javascript/menu.js"/>-->
+		<xhtml:script type="text/javascript" src="/apps/nomisma/javascript/jquery-1.6.1.min.js"/>
+		<xhtml:script type="text/javascript" src="/apps/nomisma/javascript/menu.js"/>
 
 
 		<xforms:model>
@@ -37,8 +36,8 @@
 				<id xmlns=""/>
 			</xforms:instance>
 
-			<xforms:instance id="rdf">
-				<rdf:RDF xmlns=""/>
+			<xforms:instance id="id">
+				<div xmlns=""/>
 			</xforms:instance>
 
 			<xforms:instance id="kml">
@@ -46,15 +45,12 @@
 			</xforms:instance>
 
 			<xforms:instance id="term-template">
-				<rdf:RDF xmlns:ov="http://open.vocab.org/terms/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:owl="http://www.w3.org/2002/07/owl#"
-					xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:gml="http://www.opengis.net/gml/" xmlns:batlas="http://atlantides.org/batlas/" xmlns:nuds="http://nomisma.org/id/nuds"
-					xmlns:skos="http://www.w3.org/2008/05/skos#" xmlns:cc="http://creativecommons.org/ns#" xmlns:nm="http://nomisma.org/id/">
-					<skos:Concept rdf:about="">
-						<skos:broader rdf:about="http://nomisma.org/id/numismatic_term"/>
-						<skos:prefLabel xml:lang="en"/>
-						<skos:definition xml:lang="en"/>
-					</skos:Concept>
-				</rdf:RDF>
+				<div xmlns="http://www.w3.org/1999/xhtml"
+					prefix="=nm: http://nomisma.org/id/     dcterms: http://purl.org/dc/terms/     rdfs: http://www.w3.org/2000/01/rdf-schema#      foaf: http://xmlns.com/foaf/0.1/     rdf:  http://www.w3.org/1999/02/22-rdf-syntax-ns#     owl:  http://www.w3.org/2002/07/owl#     rdfs: http://www.w3.org/2000/01/rdf-schema#     rdfa: http://www.w3.org/ns/rdfa#     "
+					about="" typeof="nm:numismatic_term">
+					<div property="skos:prefLabel" xml:lang="en"/>
+					<div property="skos:definition" xml:lang="en"/>
+				</div>
 			</xforms:instance>
 
 			<xforms:instance id="control-instance">
@@ -75,9 +71,8 @@
 			<!-- eXist instances -->
 			<xforms:instance id="eXist-xquery">
 				<exist:query>
-					<exist:text>&lt;report xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"&gt; { for $i in
-						distinct-values(collection()//skos:Concept[skos:broader/@rdf:about='http://nomisma.org/id/numismatic_term']/@rdf:about) order by substring-after($i, 'id/') return &lt;type> { $i } &lt;/type> }
-						&lt;/report&gt;</exist:text>
+					<exist:text>&lt;report&gt; { for $i in distinct-values(collection()//xhtml:div/@typeof) where contains($i, 'nm:') order by substring-after(normalize-space($i), 'nm:')
+						return &lt;type> { substring-after(normalize-space($i), 'nm:') } &lt;/type> } &lt;/report&gt;</exist:text>
 				</exist:query>
 			</xforms:instance>
 
@@ -93,7 +88,7 @@
 			<xforms:instance id="addIndex">
 				<add xmlns=""/>
 			</xforms:instance>
-			
+
 			<xforms:instance id="deleteAll">
 				<delete xmlns="">
 					<query>id:*</query>
@@ -106,15 +101,18 @@
 
 			<!-- **************** BINDINGS ********************** -->
 			<xforms:bind nodeset="instance('term-template')">
-				<xforms:bind nodeset="skos:Concept">
-					<xforms:bind nodeset="@rdf:about" type="xs:anyURI"/>
-					<xforms:bind nodeset="skos:prefLabel" required="true()"/>
-					<xforms:bind nodeset="skos:definition" required="true()"/>
-				</xforms:bind>
+				<xforms:bind nodeset="@about" type="xs:anyURI"/>
+				<xforms:bind nodeset="xhtml:div[@property='skos:prefLabel']" required="true()"/>
+				<xforms:bind nodeset="xhtml:div[@property='skos:definition']" required="true()"/>
 			</xforms:bind>
 
 			<xforms:bind nodeset="instance('control-instance')">
 				<xforms:bind nodeset="id" required="true()" type="xs:ID"/>
+			</xforms:bind>
+
+			<xforms:bind nodeset="instance('config')">
+				<xforms:bind nodeset="url" required="true()" type="xs:anyURI"/>
+				<xforms:bind nodeset="solr_url" required="true()" type="xs:anyURI"/>
 			</xforms:bind>
 
 			<!-- **************** xforms-model-construct-done ********************** -->
@@ -140,23 +138,23 @@
 				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to load config</xforms:message>
 			</xforms:submission>
 
-			<xforms:submission id="load-id" serialization="none" method="get" action="{instance('exist-url')}/nomisma/id/{instance('identifier')}.xml" replace="instance" instance="rdf"
+			<xforms:submission id="load-id" serialization="none" method="get" action="{instance('exist-url')}/nomisma/id/{instance('identifier')}.xml" replace="instance" instance="id"
 				xxforms:username="admin" xxforms:password="">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Cannot load object: <xforms:output ref="instance('identifier')"/></xforms:message>
 				<xforms:action ev:event="xforms-submit-done">
 					<!-- extract Solr document, put into addIndex -->
-					<xforms:insert nodeset="instance('solr-doc')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-solr.xpl', 'data', instance('rdf'), 'data')"/>
+					<xforms:insert nodeset="instance('solr-doc')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-solr.xpl', 'data', instance('id'), 'data')"/>
 					<xforms:insert context="instance('addIndex')" nodeset="./child::node()[last()]" origin="instance('solr-doc')/doc"/>
 					<!-- generate KML, post to eXist [only mints for now] -->
-					<xforms:action if="contains(instance('rdf')/skos:Concept/skos:broader/@rdf:about, 'mint')">
-						<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml.xpl', 'data', instance('rdf'), 'data')"/>
+					<xforms:action if="instance('id')/@typeof = 'nm:mint'">
+						<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml.xpl', 'data', instance('id'), 'data')"/>
 						<xforms:send submission="save-kml"/>
 					</xforms:action>
 				</xforms:action>
 			</xforms:submission>
 
 			<xforms:submission id="save-id" ref="instance('term-template')" xxforms:username="admin" xxforms:password=""
-				action="{instance('exist-url')}nomisma/id/{substring-after(instance('term-template')/skos:Concept/@rdf:about, 'id/')}.xml" method="put" replace="none">
+				action="{instance('exist-url')}nomisma/id/{substring-after(translate(instance('term-template')/@about, '[]', ''), 'nm:')}.xml" method="put" replace="none">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Save Error. Are all required inputs filled?</xforms:message>
 				<xforms:action ev:event="xforms-submit-done">
 					<xxforms:hide dialog="add-term"/>
@@ -166,9 +164,17 @@
 					<xforms:send submission="post-solr-doc"/>
 
 					<!-- remove inputs after save -->
-					<xforms:setvalue ref="instance('term-template')/skos:Concept/@rdf:about"/>
-					<xforms:setvalue ref="instance('term-template')/skos:Concept/skos:prefLabel"/>
-					<xforms:setvalue ref="instance('term-template')/skos:Concept/skos:definition"/>
+					<xforms:setvalue ref="instance('term-template')/@about"/>
+					<xforms:setvalue ref="instance('term-template')/xhtml:div[@property='skos:prefLabel']"/>
+					<xforms:setvalue ref="instance('term-template')/xhtml:div[@property='skos:definition']"/>
+				</xforms:action>
+			</xforms:submission>
+
+			<!-- **** Config **** -->
+			<xforms:submission id="save-config" ref="instance('config')" xxforms:username="admin" xxforms:password="" action="{instance('exist-url')}nomisma/config.xml" method="put" replace="none">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to save config</xforms:message>
+				<xforms:action ev:event="xforms-submit-done">
+					<xforms:setvalue ref="instance('status')">Config saved.</xforms:setvalue>
 				</xforms:action>
 			</xforms:submission>
 
@@ -183,7 +189,7 @@
 				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
 				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"/>
 			</xforms:submission>
-			
+
 			<xforms:submission id="delete-all-from-solr" action="{instance('config')/solr_url}update" ref="instance('deleteAll')" instance="deleteAll" replace="none" method="post">
 				<xforms:send ev:event="xforms-submit-done" submission="commit"/>
 			</xforms:submission>
@@ -198,6 +204,7 @@
 		<xhtml:div id="doc4">
 			<!-- header -->
 			<xxforms:variable name="display_path">../</xxforms:variable>
+			<xxforms:variable name="admin_path">./</xxforms:variable>
 			<xi:include href="header-admin.xml"/>
 			<xhtml:div id="bd">
 				<xhtml:div id="form">
@@ -214,7 +221,7 @@
 								<xforms:action ev:event="DOMActivate">
 									<xforms:send submission="delete-all-from-solr"/>
 									<xforms:setvalue ref="instance('eXist-xquery')/exist:text">&lt;report> { for $foo in collection() return &lt;item> {
-										substring-after($foo/rdf:RDF/skos:Concept/@rdf:about, 'id/') } &lt;/item> } &lt;/report></xforms:setvalue>
+										substring-after(translate($foo/xhtml:div/@about, '[]', ''), 'nm:') } &lt;/item> } &lt;/report></xforms:setvalue>
 									<xforms:send submission="xquery-collection"/>
 									<xforms:action ev:event="xforms-submit-done">
 										<xforms:action xxforms:iterate="instance('eXist-result')/report/item">
@@ -235,18 +242,43 @@
 							<xhtml:h3>Numismatic Terms</xhtml:h3>
 							<xforms:trigger appearance="minimal">
 								<xforms:label>
-									<xhtml:img src="/apps/nomisma/images/add.gif"/>Add Term</xforms:label>
+									<xhtml:img src="{$display_path}images/add.gif"/>Add Term</xforms:label>
 								<xxforms:show dialog="add-term" ev:event="DOMActivate"/>
 							</xforms:trigger>
 							<xhtml:ul>
 								<xforms:repeat nodeset="type">
 									<xhtml:li>
-										<xhtml:a href="edit/?id={substring-after(., 'id/')}">
-											<xforms:output ref="substring-after(., 'id/')"/>
+										<xhtml:a href="edit/?id={.}">
+											<xforms:output ref="."/>
 										</xhtml:a>
 									</xhtml:li>
 								</xforms:repeat>
 							</xhtml:ul>
+						</xhtml:div>
+					</xforms:group>
+
+					<xforms:group ref="instance('config')">
+						<xhtml:div class="section">
+							<xhtml:h3>Configuration</xhtml:h3>
+							<xhtml:div>
+								<xforms:input ref="url">
+									<xforms:label>Public URL</xforms:label>
+									<xforms:alert>Required</xforms:alert>
+								</xforms:input>
+							</xhtml:div>
+							<xhtml:div>
+								<xforms:input ref="solr_url">
+									<xforms:label>Solr URL</xforms:label>
+									<xforms:alert>Required</xforms:alert>
+								</xforms:input>
+							</xhtml:div>
+							<xforms:trigger>
+								<xforms:label>Save Config</xforms:label>
+								<!-- save collections and XML files to config -->
+								<xforms:action ev:event="DOMActivate">
+									<xforms:send submission="save-config"/>
+								</xforms:action>
+							</xforms:trigger>
 						</xhtml:div>
 					</xforms:group>
 
@@ -258,19 +290,19 @@
 								<xforms:alert>Required, must be xs:ID</xforms:alert>
 								<xforms:action ev:event="xforms-value-changed">
 									<xxforms:variable name="id" select="."/>
-									<xforms:setvalue ref="instance('term-template')/skos:Concept/@rdf:about" value="concat('http://nomisma.org/id/', $id)"/>
+									<xforms:setvalue ref="instance('term-template')/@about" value="concat('[nm:', $id, ']')"/>
 								</xforms:action>
 							</xforms:input>
 						</xhtml:div>
-						<xforms:group ref="instance('term-template')/skos:Concept">
+						<xforms:group ref="instance('term-template')">
 							<xhtml:div>
-								<xforms:input ref="skos:prefLabel">
+								<xforms:input ref="xhtml:div[@property='skos:prefLabel']">
 									<xforms:label>Label</xforms:label>
 									<xforms:alert>Required</xforms:alert>
 								</xforms:input>
 							</xhtml:div>
 							<xhtml:div>
-								<xforms:input ref="skos:definition">
+								<xforms:input ref="xhtml:div[@property='skos:definition']">
 									<xforms:label>Definition</xforms:label>
 									<xforms:alert>Required</xforms:alert>
 								</xforms:input>
@@ -284,14 +316,11 @@
 							</xforms:action>
 						</xforms:trigger>
 					</xxforms:dialog>
+
 				</xhtml:div>
+				<!--				<fr:xforms-inspector/>-->
 			</xhtml:div>
-
-
-
-
-			<!-- footer -->
-			<!--<xi:include href="footer.xml"/>-->
+			<xi:include href="footer-admin.xml"/>
 		</xhtml:div>
 	</xhtml:body>
 </html>
