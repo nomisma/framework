@@ -212,7 +212,7 @@
 				<xforms:bind nodeset="xhtml:div[@property='skos:altLabel']" required="true()">
 					<xforms:bind nodeset="@xml:lang" constraint="string-length(.) &gt; 0"/>
 				</xforms:bind>
-				<xforms:bind nodeset="xhtml:div[@property='skos:definition']">
+				<xforms:bind nodeset="xhtml:div[@property='skos:definition']" required="true()">
 					<xforms:bind nodeset="@xml:lang" constraint="string-length(.) &gt; 0"/>
 				</xforms:bind>
 				<xforms:bind nodeset="xhtml:div/xhtml:a[@rel='skos:related']">
@@ -724,6 +724,7 @@
 													<xforms:label ref="."/>
 													<xforms:value ref="@value"/>
 												</xforms:itemset>
+												<xforms:alert>Required</xforms:alert>
 											</xforms:select1>
 											<xforms:group ref=".[@xml:lang='en' and count(instance('doc')/xhtml:div[@property='skos:definition'][@xml:lang='en']) &gt; 1]">
 												<xforms:trigger appearance="minimal">
