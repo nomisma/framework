@@ -43,6 +43,10 @@
 				</div>
 			</xforms:instance>
 
+			<xforms:instance id="dump">
+				<test xmlns=""/>
+			</xforms:instance>
+
 			<xforms:instance id="coin">
 				<nuds recordType="conceptual" xmlns="http://nomisma.org/nuds" xmlns:mets="http://www.loc.gov/METS/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml">
 					<nudsHeader>
@@ -167,15 +171,15 @@
 				<div property="skos:definition" xml:lang=""/>
 			</xforms:instance>
 
-			<xforms:instnace id="coordinates-template">
+			<xforms:instance id="coordinates-template">
 				<div property="gml:pos"/>
-			</xforms:instnace>
+			</xforms:instance>
 
 			<!-- eXist query for types -->
 			<xforms:instance id="eXist-xquery">
 				<exist:query xmlns:exist="http://exist.sourceforge.net/NS/exist">
-					<exist:text>&lt;report&gt; { for $i in distinct-values(collection()//xhtml:div/@typeof) where contains($i, 'nm:') order by substring-after(normalize-space($i),
-						'nm:') return &lt;type> { substring-after(normalize-space($i), 'nm:') } &lt;/type> } &lt;/report&gt;</exist:text>
+					<exist:text>&lt;report&gt; { for $i in distinct-values(collection()//xhtml:div/@typeof) where contains($i, 'nm:') order by substring-after(normalize-space($i), 'nm:')
+						return &lt;type> { substring-after(normalize-space($i), 'nm:') } &lt;/type> } &lt;/report&gt;</exist:text>
 				</exist:query>
 			</xforms:instance>
 
@@ -188,6 +192,11 @@
 			</xforms:instance>
 			<xforms:instance id="sendCommit">
 				<commit/>
+			</xforms:instance>
+			<xforms:instance id="deleteId">
+				<delete xmlns="">
+					<id/>
+				</delete>
 			</xforms:instance>
 
 
@@ -207,13 +216,13 @@
 
 			<xforms:bind nodeset="instance('doc')">
 				<xforms:bind nodeset="xhtml:div[@property='skos:prefLabel']" required="true()">
-					<xforms:bind nodeset="@xml:lang" constraint="string-length(.) &gt; 0"/>
+					<xforms:bind nodeset="@xml:lang" constraint="string-length(.) &gt; 0 and count(parent::node()/parent::node()/xhtml:div[@property='skos:prefLabel'][@xml:lang='en']) = 1"/>
 				</xforms:bind>
 				<xforms:bind nodeset="xhtml:div[@property='skos:altLabel']" required="true()">
 					<xforms:bind nodeset="@xml:lang" constraint="string-length(.) &gt; 0"/>
 				</xforms:bind>
 				<xforms:bind nodeset="xhtml:div[@property='skos:definition']" required="true()">
-					<xforms:bind nodeset="@xml:lang" constraint="string-length(.) &gt; 0"/>
+					<xforms:bind nodeset="@xml:lang" constraint="string-length(.) &gt; 0  and count(parent::node()/parent::node()/xhtml:div[@property='skos:definition'][@xml:lang='en']) = 1"/>
 				</xforms:bind>
 				<xforms:bind nodeset="xhtml:div/xhtml:a[@rel='skos:related']">
 					<xforms:bind nodeset="@href" required="true()" type="xs:anyURI"/>
@@ -223,7 +232,7 @@
 				</xforms:bind>
 				<xforms:bind nodeset="xhtml:div[@property='gml:pos']"
 					constraint="(number(substring-before(., ' ')) &gt; -180 and number(substring-before(., ' ')) &lt; 180) and (number(substring-after(., ' ')) &gt; -180 and number(substring-after(., ' ')) &lt; 180)"
-				> </xforms:bind>
+				/>
 			</xforms:bind>
 
 			<xforms:bind nodeset="instance('coin')">
@@ -291,6 +300,9 @@
 			<xforms:bind id="typeDesc-tab" nodeset="instance('coin')/nuds:descMeta/nuds:typeDesc"/>
 			<xforms:bind id="nudsHeader-tab" nodeset="instance('coin')/nuds:nudsHeader"/>
 
+			<!-- delete trigger binding -->
+			<xforms:bind id="delete-trigger" nodeset="instance('dump')" relevant="string-length(instance('control-instance')/original_id) &gt; 0"/>
+
 			<xforms:action ev:event="xforms-model-construct-done">
 				<xforms:send submission="load-config"/>
 				<xforms:send submission="xquery-collection"/>
@@ -299,9 +311,6 @@
 					<xforms:setvalue ref="instance('control-instance')/original_id" value="xxforms:get-request-parameter('id')"/>
 					<xforms:send submission="load-id"/>
 				</xforms:action>
-
-				<!--<xforms:setvalue ref="instance('control-instance')/id" value="substring-before(substring-after(instance('doc')/@about, 'nm:'), ']')"/>-->
-
 			</xforms:action>
 
 			<xforms:action ev:event="xforms-ready">
@@ -351,6 +360,8 @@
 
 				<xforms:action ev:event="xforms-submit-done">
 					<xforms:setvalue ref="instance('status')">id saved</xforms:setvalue>
+
+					<!-- update the original id for the purpose of resaving -->
 					<xforms:setvalue ref="instance('control-instance')/original_id" value="instance('control-instance')/id"/>
 					<!-- post to solr -->
 					<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-solr.xpl', 'data', instance('doc'), 'data')"/>
@@ -425,6 +436,11 @@
 				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"/>
 			</xforms:submission>
 
+			<xforms:submission id="delete-id-from-solr" action="{instance('config')/solr_url}update" ref="instance('deleteId')" instance="deleteId" replace="instance" method="post">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
+				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"/>
+			</xforms:submission>
+
 			<!-- send commit -->
 			<xforms:submission id="submit-commit" action="{instance('config')/solr_url}update" ref="instance('sendCommit')" instance="sendCommit" replace="none" method="post">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Failed to commit to Solr index.</xforms:message>
@@ -455,111 +471,77 @@
 			<xhtml:div id="bd">
 				<xhtml:div id="form">
 					<xforms:group ref="instance('status')/text()">
-						<xhtml:div class="success">
-							<xforms:output ref="instance('status')"/>
-						</xhtml:div>
+						<div class="ui-state-highlight ui-corner-all">
+							<p>
+								<span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"/>
+								<strong>Status:</strong>
+								<xforms:output ref="instance('status')"/>
+							</p>
+						</div>
 					</xforms:group>
 
+					<xforms:group
+						ref=".[count(instance('doc')/xhtml:div[@property='skos:prefLabel']/@xml:lang) &gt; count(instance('doc')/xhtml:div[@property='skos:prefLabel']/@xml:lang[not(preceding::xhtml:div[@property='skos:prefLabel']/@xml:lang = .)])]">
+						<div class="ui-state-error ui-corner-all">
+							<p>
+								<span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"/>
+								<strong>Alert:</strong> Preferred label languages must be unique. </p>
+						</div>
+					</xforms:group>
+
+					<xforms:group
+						ref=".[count(instance('doc')/xhtml:div[@property='skos:definition']/@xml:lang) &gt; count(instance('doc')/xhtml:div[@property='skos:definition']/@xml:lang[not(preceding::xhtml:div[@property='skos:definition']/@xml:lang = .)])]">
+						<div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
+							<p>
+								<span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"/>
+								<strong>Alert:</strong> Definition languages must be unique. </p>
+						</div>
+					</xforms:group>
+
+					<xhtml:p>
+						<a href="{$admin_path}">&lt;&lt;Return</a>
+					</xhtml:p>
+
 					<xhtml:div class="submission">
-						<xforms:trigger appearance="minimal">
-							<xforms:label class="file_control"><xhtml:img src="{$display_path}images/save.gif" alt="Save"/>Save</xforms:label>
-							<xforms:action ev:event="DOMActivate">
-								<xforms:action if="string-length(instance('control-instance')/original_id) = 0 or instance('control-instance')/original_id = instance('control-instance')/id">
-									<xforms:action if="instance('control-instance')/type = 'type_series_item'">
-										<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('coin'), 'data')"/>
-										<xforms:send submission="save-kml"/>
-										<xforms:send submission="save-coin"/>
-									</xforms:action>
-									<xforms:action if="instance('control-instance')/type = 'hoard'">
-										<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('hoard'), 'data')"/>
-										<xforms:send submission="save-kml"/>
-										<xforms:send submission="save-hoard"/>
-									</xforms:action>
-									<xforms:action if="not(instance('control-instance')/type = 'type_series_item') and not(instance('control-instance')/type = 'hoard')">
-										<xforms:action if="contains(instance('control-instance')/type, 'mint')">
-											<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml.xpl', 'data', instance('doc'), 'data')"/>
+						<xforms:group
+							ref="instance('doc')[count(xhtml:div[@property='skos:prefLabel']/@xml:lang) = count(xhtml:div[@property='skos:prefLabel']/@xml:lang[not(preceding::xhtml:div[@property='skos:prefLabel']/@xml:lang = .)]) and count(xhtml:div[@property='skos:definition']/@xml:lang) = count(xhtml:div[@property='skos:definition']/@xml:lang[not(preceding::xhtml:div[@property='skos:definition']/@xml:lang = .)])]">
+							<xforms:trigger appearance="minimal">
+								<xforms:label class="file_control"><xhtml:img src="{$display_path}images/save.gif" alt="Save"/>Save</xforms:label>
+								<xforms:action ev:event="DOMActivate">
+									<xforms:action if="string-length(instance('control-instance')/original_id) = 0 or instance('control-instance')/original_id = instance('control-instance')/id">
+										<xforms:action if="instance('control-instance')/type = 'type_series_item'">
+											<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('coin'), 'data')"/>
 											<xforms:send submission="save-kml"/>
+											<xforms:send submission="save-coin"/>
 										</xforms:action>
-										<xforms:send submission="save-id"/>
+										<xforms:action if="instance('control-instance')/type = 'hoard'">
+											<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('hoard'), 'data')"/>
+											<xforms:send submission="save-kml"/>
+											<xforms:send submission="save-hoard"/>
+										</xforms:action>
+										<xforms:action if="not(instance('control-instance')/type = 'type_series_item') and not(instance('control-instance')/type = 'hoard')">
+											<xforms:action if="contains(instance('control-instance')/type, 'mint')">
+												<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml.xpl', 'data', instance('doc'), 'data')"/>
+												<xforms:send submission="save-kml"/>
+											</xforms:action>
+											<xforms:send submission="save-id"/>
+										</xforms:action>
+									</xforms:action>
+									<xforms:action
+										if="string-length(instance('control-instance')/original_id) &gt; 0 and instance('control-instance')/original_id != instance('control-instance')/id">
+										<xforms:dispatch target="save-dialog" name="fr-show"/>
 									</xforms:action>
 								</xforms:action>
-								<xforms:action if="string-length(instance('control-instance')/original_id) &gt; 0 and instance('control-instance')/original_id != instance('control-instance')/id">
-									<xforms:dispatch target="save-dialog" name="fr-show"/>
-								</xforms:action>
-							</xforms:action>
-						</xforms:trigger>
+							</xforms:trigger>
+						</xforms:group>
 						<xforms:submit submission="load-id" appearance="minimal">
 							<xforms:label class="file_control"><xhtml:img src="{$display_path}images/recycle-green.png" alt="Load"/>Load</xforms:label>
 						</xforms:submit>
-						<xforms:trigger appearance="minimal">
+						<xforms:trigger appearance="minimal" bind="delete-trigger">
 							<xforms:label class="file_control"><xhtml:img src="{$display_path}images/remove.gif" alt="Delete"/>Delete</xforms:label>
-							<xforms:action ev:event="DOMActivate"> </xforms:action>
+							<xforms:dispatch ev:event="DOMActivate" target="delete-dialog" name="fr-show"/>
 						</xforms:trigger>
 					</xhtml:div>
-
-					<!-- dialogs -->
-					<fr:alert-dialog id="save-dialog">
-						<fr:label>Save</fr:label>
-						<fr:message>The id has been changed from its original value</fr:message>
-						<fr:positive-choice>
-							<fr:label>Save: Replace</fr:label>
-							<xforms:action ev:event="DOMActivate">
-								<!-- delete old id first -->
-								<xforms:action if="instance('control-instance')/type = 'type_series_item' or instance('control-instance')/type = 'hoard'">
-									<xforms:send submission="delete-object"/>
-									<xforms:send submission="delete-kml"/>
-								</xforms:action>
-								<xforms:action if="contains(instance('control-instance')/type, 'mint')">
-									<xforms:send submission="delete-kml"/>
-								</xforms:action>
-								<xforms:send submission="delete-id"/>
-
-								<!-- create new objects -->
-								<xforms:action if="instance('control-instance')/type = 'type_series_item'">
-									<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('coin'), 'data')"/>
-									<xforms:send submission="save-kml"/>
-									<xforms:send submission="save-coin"/>
-								</xforms:action>
-								<xforms:action if="instance('control-instance')/type = 'hoard'">
-									<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('hoard'), 'data')"/>
-									<xforms:send submission="save-kml"/>
-									<xforms:send submission="save-hoard"/>
-								</xforms:action>
-								<xforms:action if="not(instance('control-instance')/type = 'type_series_item') and not(instance('control-instance')/type = 'hoard')">
-									<xforms:action if="contains(instance('control-instance')/type, 'mint')">
-										<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml.xpl', 'data', instance('doc'), 'data')"/>
-										<xforms:send submission="save-kml"/>
-									</xforms:action>
-									<xforms:send submission="save-id"/>
-								</xforms:action>
-							</xforms:action>
-						</fr:positive-choice>
-						<fr:negative-choice>
-							<fr:label>Save: Don't Replace</fr:label>
-							<xforms:action ev:event="DOMActivate">
-								<xforms:action if="instance('control-instance')/type = 'type_series_item'">
-									<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('coin'), 'data')"/>
-									<xforms:send submission="save-kml"/>
-									<xforms:send submission="save-coin"/>
-								</xforms:action>
-								<xforms:action if="instance('control-instance')/type = 'hoard'">
-									<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('hoard'), 'data')"/>
-									<xforms:send submission="save-kml"/>
-									<xforms:send submission="save-hoard"/>
-								</xforms:action>
-								<xforms:action if="not(instance('control-instance')/type = 'type_series_item') and not(instance('control-instance')/type = 'hoard')">
-									<xforms:action if="contains(instance('control-instance')/type, 'mint')">
-										<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml.xpl', 'data', instance('doc'), 'data')"/>
-										<xforms:send submission="save-kml"/>
-									</xforms:action>
-									<xforms:send submission="save-id"/>
-								</xforms:action>
-							</xforms:action>
-						</fr:negative-choice>
-						<fr:neutral-choice>
-							<fr:label>Cancel</fr:label>
-						</fr:neutral-choice>
-					</fr:alert-dialog>
 
 					<xhtml:h1>Edit nomisma id</xhtml:h1>
 					<xforms:group ref="instance('control-instance')">
@@ -618,37 +600,38 @@
 					<xforms:switch>
 						<xforms:case id="default">
 							<xhtml:div class="section">
-								<xhtml:h2>Options</xhtml:h2>
-								<xhtml:div class="trigger_container">
-									<xforms:trigger appearance="minimal">
-										<xforms:label>
-											<xhtml:img src="{$display_path}images/add.gif"/>Preferred Label</xforms:label>
-										<xforms:insert ev:event="DOMActivate" origin="instance('prefLabel-template')" context="instance('doc')" nodeset="./child::node()[last()]"/>
-									</xforms:trigger>
-									<xforms:trigger appearance="minimal">
-										<xforms:label>
-											<xhtml:img src="{$display_path}images/add.gif"/>Definition</xforms:label>
-										<xforms:insert ev:event="DOMActivate" origin="instance('definition-template')" context="instance('doc')"/>
-									</xforms:trigger>
-									<xforms:trigger appearance="minimal">
-										<xforms:label>
-											<xhtml:img src="{$display_path}images/add.gif"/>Alternate Label</xforms:label>
-										<xforms:insert ev:event="DOMActivate" origin="instance('altLabel-template')" context="instance('doc')" nodeset="./child::node()[last()]"/>
-									</xforms:trigger>
-									<xforms:trigger appearance="minimal">
-										<xforms:label>
-											<xhtml:img src="{$display_path}images/add.gif"/>Related Link</xforms:label>
-										<xforms:insert ev:event="DOMActivate" origin="instance('related-template')" context="instance('doc')" nodeset="./child::node()[last()]"/>
-									</xforms:trigger>
-									<xforms:group ref=".[count(instance('doc')/xhtml:div[@property='gml:pos']) = 0]">
+								<xforms:group ref="instance('doc')">
+									<xhtml:h2>Options</xhtml:h2>
+									<xhtml:div class="trigger_container">
 										<xforms:trigger appearance="minimal">
 											<xforms:label>
-												<xhtml:img src="{$display_path}images/add.gif"/>Coordinates</xforms:label>
-											<xforms:insert ev:event="DOMActivate" origin="instance('coordinates-template')" context="instance('doc')" nodeset="./child::node()[last()]"/>
+												<xhtml:img src="{$display_path}images/add.gif"/>Preferred Label</xforms:label>
+											<xforms:insert ev:event="DOMActivate" origin="instance('prefLabel-template')" context="instance('doc')" nodeset="./child::node()[last()]"/>
 										</xforms:trigger>
-									</xforms:group>
-								</xhtml:div>
-								<xforms:group ref="instance('doc')">
+										<xforms:trigger appearance="minimal">
+											<xforms:label>
+												<xhtml:img src="{$display_path}images/add.gif"/>Definition</xforms:label>
+											<xforms:insert ev:event="DOMActivate" origin="instance('definition-template')" context="instance('doc')"/>
+										</xforms:trigger>
+										<xforms:trigger appearance="minimal">
+											<xforms:label>
+												<xhtml:img src="{$display_path}images/add.gif"/>Alternate Label</xforms:label>
+											<xforms:insert ev:event="DOMActivate" origin="instance('altLabel-template')" context="instance('doc')" nodeset="./child::node()[last()]"/>
+										</xforms:trigger>
+										<xforms:trigger appearance="minimal">
+											<xforms:label>
+												<xhtml:img src="{$display_path}images/add.gif"/>Related Link</xforms:label>
+											<xforms:insert ev:event="DOMActivate" origin="instance('related-template')" context="instance('doc')" nodeset="./child::node()[last()]"/>
+										</xforms:trigger>
+										<xforms:group ref=".[count(xhtml:div[@property='gml:pos']) = 0 and instance('control-instance')/type = 'mint']">
+											<xforms:trigger appearance="minimal">
+												<xforms:label>
+													<xhtml:img src="{$display_path}images/add.gif"/>Coordinates</xforms:label>
+												<xforms:insert ev:event="DOMActivate" origin="instance('coordinates-template')" context="instance('doc')" nodeset="./child::node()[last()]"/>
+											</xforms:trigger>
+										</xforms:group>
+									</xhtml:div>
+
 									<xforms:repeat nodeset="xhtml:div[@property='skos:prefLabel']">
 										<xhtml:div>
 											<xforms:input ref=".">
@@ -664,17 +647,9 @@
 													<xforms:label ref="."/>
 													<xforms:value ref="@value"/>
 												</xforms:itemset>
-												<xforms:alert>Required</xforms:alert>
+												<xforms:alert>Required; English label most occur once.</xforms:alert>
 											</xforms:select1>
-											<xforms:group ref=".[@xml:lang='en' and count(instance('doc')/xhtml:div[@property='skos:prefLabel'][@xml:lang='en']) &gt; 1]">
-												<xforms:trigger appearance="minimal">
-													<xforms:delete ev:event="DOMActivate" context="."/>
-													<xforms:label>
-														<xhtml:img src="{$display_path}images/remove.gif"/>
-													</xforms:label>
-												</xforms:trigger>
-											</xforms:group>
-											<xforms:group ref=".[not(@xml:lang='en')]">
+											<xforms:group ref=".[count(instance('doc')/xhtml:div[@property='skos:prefLabel']) &gt; 1]">
 												<xforms:trigger appearance="minimal">
 													<xforms:delete ev:event="DOMActivate" context="."/>
 													<xforms:label>
@@ -724,17 +699,9 @@
 													<xforms:label ref="."/>
 													<xforms:value ref="@value"/>
 												</xforms:itemset>
-												<xforms:alert>Required</xforms:alert>
+												<xforms:alert>Required; English label most occur once.</xforms:alert>
 											</xforms:select1>
-											<xforms:group ref=".[@xml:lang='en' and count(instance('doc')/xhtml:div[@property='skos:definition'][@xml:lang='en']) &gt; 1]">
-												<xforms:trigger appearance="minimal">
-													<xforms:delete ev:event="DOMActivate" context="."/>
-													<xforms:label>
-														<xhtml:img src="{$display_path}images/remove.gif"/>
-													</xforms:label>
-												</xforms:trigger>
-											</xforms:group>
-											<xforms:group ref=".[not(@xml:lang='en')]">
+											<xforms:group ref=".[count(instance('doc')/xhtml:div[@property='skos:definition']) &gt; 1]">
 												<xforms:trigger appearance="minimal">
 													<xforms:delete ev:event="DOMActivate" context="."/>
 													<xforms:label>
@@ -793,15 +760,92 @@
 												</xforms:action>
 											</xforms:input>
 										</xhtml:div>
-										<!--<xhtml:div>
-											<xforms:input ref="nm:latlongsource/@rdf:resource">
-												<xforms:label>Source</xforms:label>
-												<xforms:alert>Required</xforms:alert>
-											</xforms:input>
-										</xhtml:div>-->
 									</xforms:group>
 								</xforms:group>
 							</xhtml:div>
+
+							<!--**************************************** DIALOGS **********************************-->
+							<fr:alert-dialog id="save-dialog">
+								<fr:label>Save</fr:label>
+								<fr:message>The id has been changed from its original value</fr:message>
+								<fr:positive-choice>
+									<fr:label>Save: Replace</fr:label>
+									<xforms:action ev:event="DOMActivate">
+										<!-- delete old id first -->
+										<xforms:action if="instance('control-instance')/type = 'type_series_item' or instance('control-instance')/type = 'hoard'">
+											<xforms:send submission="delete-object"/>
+											<xforms:send submission="delete-kml"/>
+										</xforms:action>
+										<xforms:action if="contains(instance('control-instance')/type, 'mint')">
+											<xforms:send submission="delete-kml"/>
+										</xforms:action>
+										<xforms:send submission="delete-id"/>
+										<xforms:setvalue ref="instance('deleteId')/id" value="instance('control-instance')/original_id"/>
+										<xforms:send submission="delete-id-from-solr"/>
+
+										<!-- create new objects -->
+										<xforms:action if="instance('control-instance')/type = 'type_series_item'">
+											<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('coin'), 'data')"/>
+											<xforms:send submission="save-kml"/>
+											<xforms:send submission="save-coin"/>
+										</xforms:action>
+										<xforms:action if="instance('control-instance')/type = 'hoard'">
+											<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('hoard'), 'data')"/>
+											<xforms:send submission="save-kml"/>
+											<xforms:send submission="save-hoard"/>
+										</xforms:action>
+										<xforms:action if="not(instance('control-instance')/type = 'type_series_item') and not(instance('control-instance')/type = 'hoard')">
+											<xforms:action if="contains(instance('control-instance')/type, 'mint')">
+												<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml.xpl', 'data', instance('doc'), 'data')"/>
+												<xforms:send submission="save-kml"/>
+											</xforms:action>
+											<xforms:send submission="save-id"/>
+										</xforms:action>
+									</xforms:action>
+								</fr:positive-choice>
+								<fr:negative-choice>
+									<fr:label>Save: Don't Replace</fr:label>
+									<xforms:action ev:event="DOMActivate">
+										<xforms:action if="instance('control-instance')/type = 'type_series_item'">
+											<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('coin'), 'data')"/>
+											<xforms:send submission="save-kml"/>
+											<xforms:send submission="save-coin"/>
+										</xforms:action>
+										<xforms:action if="instance('control-instance')/type = 'hoard'">
+											<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('hoard'), 'data')"/>
+											<xforms:send submission="save-kml"/>
+											<xforms:send submission="save-hoard"/>
+										</xforms:action>
+										<xforms:action if="not(instance('control-instance')/type = 'type_series_item') and not(instance('control-instance')/type = 'hoard')">
+											<xforms:action if="contains(instance('control-instance')/type, 'mint')">
+												<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml.xpl', 'data', instance('doc'), 'data')"/>
+												<xforms:send submission="save-kml"/>
+											</xforms:action>
+											<xforms:send submission="save-id"/>
+										</xforms:action>
+									</xforms:action>
+								</fr:negative-choice>
+								<fr:neutral-choice>
+									<fr:label>Cancel</fr:label>
+								</fr:neutral-choice>
+							</fr:alert-dialog>
+
+							<fr:alert-dialog id="delete-dialog">
+								<fr:label>Delete</fr:label>
+								<fr:message>Do you wish to delete this id from nomisma?</fr:message>
+								<fr:positive-choice>
+									<fr:label>Yes</fr:label>
+									<xforms:action ev:event="DOMActivate">
+										<xforms:setvalue ref="instance('deleteId')/id" value="instance('control-instance')/original_id"/>
+										<xforms:send submission="delete-id"/>
+										<xforms:send submission="delete-id-from-solr"/>
+										<xforms:setvalue ref="instance('status')">id deleted.</xforms:setvalue>
+									</xforms:action>
+								</fr:positive-choice>
+								<fr:negative-choice>
+									<fr:label>No</fr:label>
+								</fr:negative-choice>
+							</fr:alert-dialog>
 						</xforms:case>
 						<xforms:case id="coin-type">
 							<xforms:group ref="instance('coin')/nuds:descMeta">
