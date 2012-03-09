@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:datetime="http://exslt.org/dates-and-times"
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:datetime="http://exslt.org/dates-and-times"
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2008/05/skos#" xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:nuds="http://nomisma.org/nuds" xmlns:nh="http://nomisma.org/nudsHoard" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:exsl="http://exslt.org/common" xmlns:nomisma="http://nomisma.org/id/"
-	version="2.0" exclude-result-prefixes="#all">
+	version="2.0" exclude-result-prefixes="nh nuds exsl xsl datetime nomisma">
 	<xsl:include href="header-public.xsl"/>
 	<xsl:include href="footer-public.xsl"/>
-	<xsl:output method="xhtml" encoding="UTF-8" media-type="application/xhtml+xml" indent="yes"/>
+	<xsl:output method="xhtml" encoding="UTF-8" media-type="application/xhtml+rdfa" indent="yes" doctype-public="-//W3C//DTD XHTML+RDFa 1.0//EN" doctype-system="http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd"/>
 
 	<!-- change eXist URL if running on a server other than localhost -->
 	<xsl:variable name="display_path">../</xsl:variable>
@@ -15,12 +15,10 @@
 	<xsl:variable name="type" select="substring-after(/xhtml:div/@typeof, 'nm:')"/>
 
 	<xsl:template match="/">
-		<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:batlas="http://atlantides.org/batlas/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:gml="http://www.opengis.net/gml/"
-			xmlns:nm="http://nomisma.org/id/" xmlns:ov="http://open.vocab.org/terms/" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-			xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2008/05/skos#">
+		<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 			<head>
 				<link rel="x-pelagios-oac-serialization" title="Pelagios compatible version" type="application/rdf+xml" href="http://nomisma.org/nomisma.org.pelagios.rdf"/>
-				<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+				<meta http-equiv="Content-Type" content="application/xhtml+rdfa; charset=utf-8"/>
 				<title>http://nomisma.org/id/<xsl:value-of select="$id"/></title>
 				<base href="http://nomisma.org/id/"/>
 
@@ -40,8 +38,8 @@
 
 				<!-- javascript -->
 				<xsl:if test="$type = 'hoard' or $type = 'type_series_item' or $type = 'mint'">
-					<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"/>
-					<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.2&amp;sensor=false"/>
+					<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js">//</script>
+					<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.2&amp;sensor=false">//</script>
 					<script type="text/javascript" src="{$display_path}javascript/jquery-1.6.1.min.js"/>
 					<script type="text/javascript" src="{$display_path}javascript/map_functions.js"/>
 					<script type="text/javascript" src="{$display_path}javascript/menu.js"/>
@@ -53,7 +51,47 @@
 
 			</head>
 			<body class="yui-skin-sam">
-				<xsl:apply-templates select="/xhtml:div"/>
+				<div id="doc4">
+					<xsl:call-template name="header-public"/>
+					<div id="bd">
+						<div id="yui-main">
+							<div class="yui-b">
+								<div class="yui-g">
+									<div class="yui-u first">
+										<xsl:apply-templates select="/xhtml:div"/>
+									</div>
+									<div class="yui-u">
+										<div id="lod">
+											<h3>Data Options</h3>
+											<span class="option">
+												<a href="{$id}.rdf">
+													<img src="{$display_path}images/rdf-medium.gif" alt="RDF"/>
+												</a>
+											</span>
+											<xsl:if test="$type = 'hoard' or $type = 'type_series_item' or $type = 'mint'">
+												<span class="option">
+													<a href="{$id}.kml">
+														<img src="{$display_path}images/kml-medium.png" alt="KML"/>
+													</a>
+												</span>
+											</xsl:if>
+											<xsl:if test="$type = 'hoard' or $type = 'type_series_item'">
+												<span class="option">
+													<a href="{$display_path}xml/{$id}">
+														<img src="{$display_path}images/xml.png" alt="XML"/>
+													</a>
+												</span>
+											</xsl:if>
+										</div>
+										<div id="map"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<xsl:call-template name="footer-public"/>
+				</div>
 			</body>
 		</html>
 	</xsl:template>

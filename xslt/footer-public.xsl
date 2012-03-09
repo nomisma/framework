@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
-	
 	<xsl:template name="footer-public">
-		<div id="ft">
+		<div id="ft"  xmlns="http://www.w3.org/1999/xhtml">
 			<div class="center">
 				<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/"><img alt="Creative Commons License" style="border-width:0"
 					src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png"/></a><br/><span xmlns:dc="http://purl.org/dc/elements/1.1/" property="dc:title">Nomisma.org</span> by <a
