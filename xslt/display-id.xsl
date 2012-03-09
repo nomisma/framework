@@ -43,10 +43,6 @@
 					<script type="text/javascript" src="{$display_path}javascript/jquery-1.6.1.min.js"/>
 					<script type="text/javascript" src="{$display_path}javascript/map_functions.js"/>
 					<script type="text/javascript" src="{$display_path}javascript/menu.js"/>
-					<script type="text/javascript">
-						$(document).ready(function () {
-							initialize_map('<xsl:value-of select="$id"/>');
-					});</script>
 				</xsl:if>
 
 			</head>
@@ -84,6 +80,11 @@
 											</xsl:if>
 										</div>
 										<div id="map"></div>
+										<script defer="defer" type="text/javascript">
+											$(document).ready(function () {
+												initialize_map('<xsl:value-of select="$id"/>');
+											});
+										</script>
 									</div>
 								</div>
 							</div>
