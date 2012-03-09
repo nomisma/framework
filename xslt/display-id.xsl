@@ -24,8 +24,7 @@
 				<title>http://nomisma.org/id/<xsl:value-of select="$id"/></title>
 				<base href="http://nomisma.org/id/"/>
 
-				<link rel="alternate" type="application/rdf+xml"
-					href="http://www.w3.org/2007/08/pyRdfa/extract?uri={encode-for-uri(concat('http://nomisma.org/id/', $id))}"/>
+				<link rel="alternate" type="application/rdf+xml" href="http://www.w3.org/2007/08/pyRdfa/extract?uri={encode-for-uri(concat('http://nomisma.org/id/', $id))}"/>
 
 				<link type="application/vnd.google-earth.kml+xml" href="http://nomisma.org/kml/{$id}.kml"/>
 				<link type="application/vnd.google-earth.kml+xml" href="http://nomisma.org/kml/{$id}-all.kml"/>
@@ -100,7 +99,7 @@
 	</xsl:template>
 
 	<xsl:template match="xhtml:div">
-		<div>
+		<div typeof="{@typeof}" about="{@about}">
 			<h1>
 				<span>
 					<xsl:for-each select="xhtml:div[@property='skos:prefLabel'][@xml:lang='en']/@*">
@@ -131,6 +130,7 @@
 				</xsl:when>
 				<xsl:otherwise>
 					<xsl:apply-templates select="xhtml:div[@property='skos:definition']"/>
+					<xsl:apply-templates select="xhtml:div[@property='gml:pos']"/>
 					<xsl:if test="count(xhtml:div[@property='skos:prefLabel'][@xml:lang!='en']) &gt; 0">
 						<h3>Preferred Labels</h3>
 						<dl>
@@ -156,10 +156,25 @@
 
 	<xsl:template match="xhtml:div[@property='skos:definition']">
 		<p>
-			<xsl:for-each select="@*">
-				<xsl:attribute name="{name()}" select="."/>
-			</xsl:for-each>
-			<xsl:value-of select="."/>
+			<b>Definition (<xsl:value-of select="nomisma:normalize-language(@xml:lang)"/>): </b>
+			<span>
+				<xsl:for-each select="@*">
+					<xsl:attribute name="{name()}" select="."/>
+				</xsl:for-each>
+				<xsl:value-of select="."/>
+			</span>
+		</p>
+	</xsl:template>
+
+	<xsl:template match="xhtml:div[@property='gml:pos']">
+		<p>
+			<b>Latitude Longitude: </b>
+			<span>
+				<xsl:for-each select="@*">
+					<xsl:attribute name="{name()}" select="."/>
+				</xsl:for-each>
+				<xsl:value-of select="."/>
+			</span>
 		</p>
 	</xsl:template>
 
