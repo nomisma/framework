@@ -41,7 +41,7 @@ a:hover {
 #linked_data a {
 	margin:5px;
 }
-#map {
+#map, #small {
 	width:100%;
 	height:400px;
 	margin:0;

@@ -5,7 +5,6 @@
 	version="2.0" exclude-result-prefixes="nh nuds exsl xsl datetime nomisma">
 	<xsl:include href="header-public.xsl"/>
 	<xsl:include href="footer-public.xsl"/>
-	<xsl:output method="xhtml" encoding="UTF-8" media-type="application/xhtml+rdfa" indent="yes" doctype-public="-//W3C//DTD XHTML+RDFa 1.0//EN" doctype-system="http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd"/>
 
 	<!-- change eXist URL if running on a server other than localhost -->
 	<xsl:variable name="display_path">../</xsl:variable>
@@ -15,13 +14,11 @@
 	<xsl:variable name="type" select="substring-after(/xhtml:div/@typeof, 'nm:')"/>
 
 	<xsl:template match="/">
-		<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+		<html xml:lang="en">
 			<head>
 				<link rel="x-pelagios-oac-serialization" title="Pelagios compatible version" type="application/rdf+xml" href="http://nomisma.org/nomisma.org.pelagios.rdf"/>
 				<meta http-equiv="Content-Type" content="application/xhtml+rdfa; charset=utf-8"/>
 				<title>http://nomisma.org/id/<xsl:value-of select="$id"/></title>
-				<base href="http://nomisma.org/id/"/>
-
 				<link rel="alternate" type="application/rdf+xml" href="http://www.w3.org/2007/08/pyRdfa/extract?uri={encode-for-uri(concat('http://nomisma.org/id/', $id))}"/>
 
 				<link type="application/vnd.google-earth.kml+xml" href="http://nomisma.org/kml/{$id}.kml"/>
@@ -38,7 +35,7 @@
 
 				<!-- javascript -->
 				<xsl:if test="$type = 'hoard' or $type = 'type_series_item' or $type = 'mint'">
-					<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js">//</script>
+					<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"/>
 					<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.2&amp;sensor=false">//</script>
 					<script type="text/javascript" src="{$display_path}javascript/jquery-1.6.1.min.js"/>
 					<script type="text/javascript" src="{$display_path}javascript/map_functions.js"/>
@@ -79,12 +76,14 @@
 												</span>
 											</xsl:if>
 										</div>
-										<div id="map"></div>
-										<script defer="defer" type="text/javascript">
-											$(document).ready(function () {
-												initialize_map('<xsl:value-of select="$id"/>');
-											});
-										</script>
+										<xsl:if test="$type = 'hoard' or $type = 'type_series_item' or $type = 'mint'">
+											<div id="map"/>
+											<script defer="defer" type="text/javascript">
+												$(document).ready(function () {
+													initialize_map('<xsl:value-of select="$id"/>');
+												});
+											</script>
+										</xsl:if>
 									</div>
 								</div>
 							</div>
