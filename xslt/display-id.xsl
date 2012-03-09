@@ -53,47 +53,7 @@
 
 			</head>
 			<body class="yui-skin-sam">
-				<div id="doc4">
-					<xsl:call-template name="header-public"/>
-					<div id="bd">
-						<div id="yui-main">
-							<div class="yui-b">
-								<div class="yui-g">
-									<div class="yui-u first">
-										<xsl:apply-templates select="/xhtml:div"/>
-									</div>
-									<div class="yui-u">
-										<div id="lod">
-											<h3>Data Options</h3>
-											<span class="option">
-												<a href="{$id}.rdf">
-													<img src="{$display_path}images/rdf-medium.gif" alt="RDF"/>
-												</a>
-											</span>
-											<xsl:if test="$type = 'hoard' or $type = 'type_series_item' or $type = 'mint'">
-												<span class="option">
-													<a href="{$id}.kml">
-														<img src="{$display_path}images/kml-medium.png" alt="KML"/>
-													</a>
-												</span>
-											</xsl:if>
-											<xsl:if test="$type = 'hoard' or $type = 'type_series_item'">
-												<span class="option">
-													<a href="{$display_path}xml/{$id}">
-														<img src="{$display_path}images/xml.png" alt="XML"/>
-													</a>
-												</span>
-											</xsl:if>
-										</div>
-										<div id="map"/>
-									</div>
-								</div>
-							</div>
-						</div>
-
-					</div>
-					<xsl:call-template name="footer-public"/>
-				</div>
+				<xsl:apply-templates select="/xhtml:div"/>
 			</body>
 		</html>
 	</xsl:template>
@@ -134,7 +94,7 @@
 					<xsl:if test="count(xhtml:div[@property='skos:prefLabel'][@xml:lang!='en']) &gt; 0">
 						<h3>Preferred Labels</h3>
 						<dl>
-							<xsl:apply-templates select="xhtml:div[@property='skos:prefLabel'][@xml:lang != 'en']"/>
+							<xsl:apply-templates select="xhtml:div[@property='skos:prefLabel']"/>
 						</dl>
 					</xsl:if>
 					<xsl:if test="count(xhtml:div[@property='skos:altLabel']) &gt; 0">
