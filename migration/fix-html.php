@@ -18,7 +18,7 @@
 	if(count($files) > 0){
 		foreach ($files as $file){			
 			if (file_exists($id_dir . $file)){					
-				$doc = new DOMDocument();
+				$doc = new DOMDocument('1.0', 'UTF-8');
 				$doc->load($id_dir . $file);
 				$xpath = new DOMXpath($doc);
 
@@ -30,9 +30,12 @@
 					$id = $div->getAttribute('about');
 					$typeof = $div->getAttribute('typeof');
 				}
-				
+				if ($typeof == 'nm:hoard'){
+					echo 'Writing ' . $file . "\n";
+					$doc->save($id_dir . str_replace('.txt', '.xml', $file));
+				}
 				//generate XML, ignore hoard, type_series_item, numismatic_term
-				if ($typeof != 'nm:hoard' && $typeof != 'nm:type_series_item'){
+				elseif ($typeof != 'nm:hoard' && $typeof != 'nm:type_series_item'){
 					$prefLabels = $xpath->query('//div[@property="skos:prefLabel"]');
 					$altLabels = $xpath->query('//span[@property="skos:altLabel"]');
 					$definitions = $xpath->query('//div[@property="skos:definition"]');

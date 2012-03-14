@@ -2,7 +2,7 @@
 	xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:fr="http://orbeon.org/oxf/xml/form-runner"
 	xmlns:exist="http://exist.sourceforge.net/NS/exist" xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2008/05/skos#"
 	xmlns:numishare="http://code.google.com/p/numishare/" xmlns:nuds="http://nomisma.org/nuds" xmlns:nh="http://nomisma.org/nudsHoard" xmlns:gml="http://www.opengis.net/gml/"
-	xmlns:xlink="http://www.w3.org/1999/xlink">
+	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:kml="http://www.opengis.net/kml/2.2">
 	<xhtml:head>
 		<xhtml:title>nomisma.org: Administrative Interface</xhtml:title>
 		<xhtml:link rel="stylesheet" type="text/css" href="/apps/nomisma/css/grids-min.css"/>
@@ -104,6 +104,10 @@
 			<xforms:instance id="kml">
 				<kml xmlns="http://www.opengis.net/kml/2.2"/>
 			</xforms:instance>
+			
+			<xforms:instance id="kml-all">
+				<kml xmlns="http://www.opengis.net/kml/2.2"/>
+			</xforms:instance>
 
 			<xforms:instance id="exist-url">
 				<xi:include href="exist-url.xml"/>
@@ -178,12 +182,26 @@
 			<!-- eXist query for types -->
 			<xforms:instance id="eXist-xquery">
 				<exist:query xmlns:exist="http://exist.sourceforge.net/NS/exist">
-					<exist:text>&lt;report&gt; { for $i in distinct-values(collection()//xhtml:div/@typeof) where contains($i, 'nm:') order by substring-after(normalize-space($i), 'nm:')
-						return &lt;type> { substring-after(normalize-space($i), 'nm:') } &lt;/type> } &lt;/report&gt;</exist:text>
+					<exist:text>&lt;report&gt; { for $i in distinct-values(collection()//xhtml:div/@typeof) where contains($i, 'nm:') order by substring-after(normalize-space($i), 'nm:') return
+						&lt;type> { substring-after(normalize-space($i), 'nm:') } &lt;/type> } &lt;/report&gt;</exist:text>
 				</exist:query>
 			</xforms:instance>
 
-			<xforms:instance id="types">tring-le <exist:result/>
+			<xforms:instance id="types">
+				<exist:result/>
+			</xforms:instance>
+
+			<xforms:instance id="findspots-xquery">
+				<exist:query xmlns:exist="http://exist.sourceforge.net/NS/exist">
+					<exist:text>&lt;report&gt; { for $i in collection()//xhtml:div[@typeof='nm:hoard'][descendant::xhtml:span[@rel='nm:mint'][@resource="athens"]] return &lt;findspot&gt; &lt;id&gt; {
+						substring-after(translate($i/@about, '[]', ''), 'nm:') } &lt;/id&gt; &lt;pos&gt; { if(string($i/descendant::xhtml:span[@property='nm:findspot']/@content)) then
+						$i/descendant::xhtml:span[@property='nm:findspot']/@content/text() else $i/descendant::xhtml:span[@property='gml:pos']/text() } &lt;/pos&gt; &lt;/findspot&gt; }
+						&lt;/report&gt;</exist:text>
+				</exist:query>
+			</xforms:instance>
+
+			<xforms:instance id="findspots">
+				<exist:result/>
 			</xforms:instance>
 
 			<!-- Solr instances -->
@@ -409,6 +427,11 @@
 				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to save KML</xforms:message>
 			</xforms:submission>
 
+			<xforms:submission id="save-kml-all" ref="instance('kml-all')" xxforms:username="admin" xxforms:password=""
+				action="{instance('exist-url')}nomisma/kml/{instance('control-instance')/id}-all.kml" method="put" replace="none">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to save KML-all</xforms:message>
+			</xforms:submission>
+
 			<!-- **** DELETE **** -->
 			<xforms:submission id="delete-id" action="{instance('exist-url')}nomisma/id/{instance('control-instance')/original_id}.xml" method="delete" replace="none" xxforms:username="admin"
 				xxforms:password="">
@@ -426,6 +449,16 @@
 			<!-- ************************* XQUERY FOR TYPES ************************** -->
 			<xforms:submission id="xquery-collection" ref="instance('eXist-xquery')" action="{instance('exist-url')}nomisma/id" method="post" replace="instance" instance="types"
 				xxforms:username="admin" xxforms:password="">
+				<xforms:message level="modal" ev:event="xforms-submit-error">Error querying eXist database.</xforms:message>
+			</xforms:submission>
+
+			<xforms:submission id="xquery-findspots" ref="instance('findspots-xquery')" action="{instance('exist-url')}nomisma/id" method="post" replace="instance" instance="findspots"
+				xxforms:username="admin" xxforms:password="">
+				<!-- if the xquery is complete, generate the 'all' kml file -->
+				<xforms:action ev:event="xforms-submit-done">
+					<xforms:insert nodeset="instance('kml-all')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml-all.xpl', 'data', instance('findspots'), 'data')"/>
+					<xforms:insert context="instance('kml-all')/kml:Document" nodeset="./child::node()[last()]" origin="instance('kml')/kml:Document/kml:Placemark"/>
+				</xforms:action>
 				<xforms:message level="modal" ev:event="xforms-submit-error">Error querying eXist database.</xforms:message>
 			</xforms:submission>
 
@@ -523,12 +556,17 @@
 											<xforms:action if="contains(instance('control-instance')/type, 'mint')">
 												<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml.xpl', 'data', instance('doc'), 'data')"/>
 												<xforms:send submission="save-kml"/>
+												
+												<!-- generate 'all' KML -->
+												<!-- first set query to current id of mint -->
+												<xforms:setvalue ref="instance('findspots-xquery')/exist:text" value="replace(instance('findspots-xquery')/exist:text, 'resource=&#x0022;[a-z]+&#x0022;', concat('resource=&#x0022;', instance('control-instance')/id, '&#x0022;'))"/>
+												<xforms:send submission="xquery-findspots"/>
+												<xforms:send submission="save-kml-all"/>
 											</xforms:action>
 											<xforms:send submission="save-id"/>
 										</xforms:action>
 									</xforms:action>
-									<xforms:action
-										if="string-length(instance('control-instance')/original_id) &gt; 0 and instance('control-instance')/original_id != instance('control-instance')/id">
+									<xforms:action if="string-length(instance('control-instance')/original_id) &gt; 0 and instance('control-instance')/original_id != instance('control-instance')/id">
 										<xforms:dispatch target="save-dialog" name="fr-show"/>
 									</xforms:action>
 								</xforms:action>
@@ -873,7 +911,7 @@
 					</xforms:switch>
 				</xhtml:div>
 			</xhtml:div>
-			<!--<fr:xforms-inspector/>-->
+<!--			<fr:xforms-inspector/>-->
 			<!-- footer -->
 			<xi:include href="footer-admin.xml"/>
 		</xhtml:div>

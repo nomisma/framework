@@ -12,7 +12,7 @@ function initialize_map(id) {
 	 	eventListeners: {'loadend': kmlLoaded },
 		strategies: [new OpenLayers.Strategy.Fixed()],
 		protocol: new OpenLayers.Protocol.HTTP({
-	               url: id + '.kml',
+	               url: id + '-all.kml',
 	                format: new OpenLayers.Format.KML({
 	                    extractStyles: true, 
 	                    extractAttributes: true
