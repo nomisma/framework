@@ -12,7 +12,6 @@
 	<p:param type="output" name="data"/>
 	
 	<p:processor name="oxf:unsafe-xslt">
-		<!--<p:input name="request" href="#request"/>-->
 		<p:input name="data" href="#data"/>		
 		<p:input name="config" href="../xslt/display-id.xsl"/>
 		<p:output name="data" id="html"/>
@@ -21,7 +20,7 @@
 	<p:processor name="oxf:xml-converter">
 		<p:input name="config">
 			<config>
-				<content-type>application/xhtml+xml</content-type>
+				<content-type>text/html</content-type>
 				<encoding>utf-8</encoding>
 				<version>1.0</version>
 				<public-doctype>-//W3C//DTD XHTML+RDFa 1.0//EN</public-doctype>

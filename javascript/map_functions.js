@@ -6,8 +6,7 @@ function initialize_map(id) {
                         new OpenLayers.Control.ScaleLine()
                     ]
 	});
-	//map.addLayer(new OpenLayers.Layer.Google("Google Physical", {type: google.maps.MapTypeId.TERRAIN}));
-	map.addLayer(new OpenLayers.Layer.WMS( "OpenLayers WMS", "http://vmap0.tiles.osgeo.org/wms/vmap0", {layers: 'basic'} ));
+	map.addLayer(new OpenLayers.Layer.Google("Google Physical", {type: google.maps.MapTypeId.TERRAIN}));
 	var kmlLayer = new OpenLayers.Layer.Vector("KML", {
 	 	eventListeners: {'loadend': kmlLoaded },
 		strategies: [new OpenLayers.Strategy.Fixed()],

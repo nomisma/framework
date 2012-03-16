@@ -35,25 +35,27 @@
 						</Icon>
 					</IconStyle>
 				</Style>
-				<xsl:apply-templates select="descendant::findspot"/>
+				<xsl:apply-templates select="descendant::point"/>
 			</Document>
 		</kml>
 
 
 	</xsl:template>
 
-	<xsl:template match="findspot">
-		<xsl:variable name="lat" select="substring-before(pos, ' ')"/>
-		<xsl:variable name="lon" select="substring-after(pos, ' ')"/>
-		<Placemark>
-			<name>
-				<xsl:value-of select="id"/>
-			</name>
-			<styleUrl>#mapped</styleUrl>
-			<description><!--<xsl:value-of select="'&lt;![CDATA['"/><xsl:copy-of select="."/><xsl:text>]]&gt;</xsl:text>--></description>
-			<Point>
-				<coordinates><xsl:value-of select="$lon"/>,<xsl:value-of select="$lat"/>,0</coordinates>
-			</Point>
-		</Placemark>
+	<xsl:template match="point">
+		<xsl:if test="string(pos)">
+			<xsl:variable name="lat" select="substring-before(pos, ' ')"/>
+			<xsl:variable name="lon" select="substring-after(pos, ' ')"/>
+			<Placemark>
+				<name>
+					<xsl:value-of select="id"/>
+				</name>
+				<styleUrl>#mapped</styleUrl>
+				<description><!--<xsl:value-of select="'&lt;![CDATA['"/><xsl:copy-of select="."/><xsl:text>]]&gt;</xsl:text>--></description>
+				<Point>
+					<coordinates><xsl:value-of select="$lon"/>,<xsl:value-of select="$lat"/>,0</coordinates>
+				</Point>
+			</Placemark>
+		</xsl:if>
 	</xsl:template>
 </xsl:stylesheet>

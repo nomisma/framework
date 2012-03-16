@@ -17,7 +17,7 @@
 		<html xml:lang="en">
 			<head>
 				<link rel="x-pelagios-oac-serialization" title="Pelagios compatible version" type="application/rdf+xml" href="http://nomisma.org/nomisma.org.pelagios.rdf"/>
-				<meta http-equiv="Content-Type" content="application/xhtml+rdfa; charset=utf-8"/>
+				<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 				<title>http://nomisma.org/id/<xsl:value-of select="$id"/></title>
 				<link rel="alternate" type="application/rdf+xml" href="http://www.w3.org/2007/08/pyRdfa/extract?uri={encode-for-uri(concat('http://nomisma.org/id/', $id))}"/>
 
@@ -35,13 +35,13 @@
 
 				<!-- javascript -->
 				<xsl:if test="$type = 'hoard' or $type = 'type_series_item' or $type = 'mint'">
-					<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"/>
+					<script type="text/javascript" src="{$display_path}javascript/jquery-1.6.1.min.js">//</script>					
+					<script type="text/javascript" src="{$display_path}javascript/menu.js">//</script>
+					<script type="text/javascript" src="{$display_path}javascript/xhtml-document-write.js">//</script>
+					<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js">//</script>
 					<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.2&amp;sensor=false">//</script>
-					<script type="text/javascript" src="{$display_path}javascript/jquery-1.6.1.min.js"/>
-					<script type="text/javascript" src="{$display_path}javascript/map_functions.js"/>
-					<script type="text/javascript" src="{$display_path}javascript/menu.js"/>
+					<script type="text/javascript" src="{$display_path}javascript/map_functions.js">//</script>
 				</xsl:if>
-
 			</head>
 			<body class="yui-skin-sam">
 				<div id="doc4">
@@ -63,18 +63,18 @@
 											</span>
 											<xsl:if test="$type = 'hoard' or $type = 'type_series_item' or $type = 'mint'">
 												<span class="option">
-													<a href="{$id}.kml">
+													<a href="{$id}-all.kml">
 														<img src="{$display_path}images/kml-medium.png" alt="KML"/>
 													</a>
 												</span>
 											</xsl:if>
-											<xsl:if test="$type = 'hoard' or $type = 'type_series_item'">
+											<!--<xsl:if test="$type = 'hoard' or $type = 'type_series_item'">
 												<span class="option">
 													<a href="{$display_path}xml/{$id}">
 														<img src="{$display_path}images/xml.png" alt="XML"/>
 													</a>
 												</span>
-											</xsl:if>
+											</xsl:if>-->
 										</div>
 										<xsl:if test="$type = 'hoard' or $type = 'type_series_item' or $type = 'mint'">
 											<div id="map"/>
@@ -120,11 +120,15 @@
 					<xsl:apply-templates select="exsl:node-set($object)/descendant::nuds:typeDesc"/>
 				</xsl:when>
 				<xsl:when test="$type = 'hoard'">
-					<xsl:variable name="object">
+					<xsl:apply-templates select="xhtml:div[@property='skos:definition']"/>
+					<xsl:copy-of select="xhtml:div[@class='nm:editedSource']/xhtml:pre/*"/>
+						
+					
+					<!--<xsl:variable name="object">
 						<xsl:copy-of select="document(xhtml:div/xhtml:a[@rel='owl:sameAs']/@href)/nh:nudsHoard"/>
 					</xsl:variable>
 					<xsl:apply-templates select="exsl:node-set($object)/descendant::nh:hoardDesc"/>
-					<xsl:apply-templates select="exsl:node-set($object)/descendant::nh:contentsDesc/nh:contents"/>
+					<xsl:apply-templates select="exsl:node-set($object)/descendant::nh:contentsDesc/nh:contents"/>-->
 				</xsl:when>
 				<xsl:otherwise>
 					<xsl:apply-templates select="xhtml:div[@property='skos:definition']"/>

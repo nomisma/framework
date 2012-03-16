@@ -31,7 +31,52 @@
 					$typeof = $div->getAttribute('typeof');
 				}
 				if ($typeof == 'nm:hoard'){
-					echo 'Writing ' . $file . "\n";
+					$root = $doc->firstChild;
+					
+					//create <div property="skos:prefLabel" xml:lang="en"/>
+					$labelNode = $doc->createElement('div', preg_replace("/\[nm:(.*)\]/", "$1", $id));
+					
+					//create <div property="skos:definition" xml:lang="en"/>
+					$definitionNode = $doc->createElement('div', preg_replace("/\[nm:(.*)\]/", "$1", $id) . ' from Inventory of Greek Coin Hoards');
+					
+					//create attributes for prefLabel
+					$labelProperty = $doc->createAttribute('property');
+					$labelLang = $doc->createAttribute('xml:lang');
+					$labelProperty->value = 'skos:prefLabel';
+					$labelLang->value = 'en';
+					
+					//insert attributes into prefLabel
+					$insertLabelProperty = $labelNode->appendChild($labelProperty);
+					$insertLabelLang = $labelNode->appendChild($labelLang);
+					
+					//insert prefLabel
+					$insertLabel = $root->appendChild($labelNode);
+					
+					//create attributes for definition
+					$definitionProperty = $doc->createAttribute('property');
+					$definitionLang = $doc->createAttribute('xml:lang');
+					$definitionProperty->value = 'skos:definition';
+					$definitionLang->value = 'en';
+					
+					//insert attributes into definition
+					$insertDefinitionProperty = $definitionNode->appendChild($definitionProperty);
+					$insertDefinitionLang = $definitionNode->appendChild($definitionLang);
+					
+					//insert definition
+					$insertDefinition = $root->appendChild($definitionNode);
+					
+					//create attributes for root node
+					$rootXmlns = $doc->createAttribute('xmlns');
+					$rootPrefix = $doc->createAttribute('prefix');
+					$rootXmlns->value = 'http://www.w3.org/1999/xhtml';
+					$rootPrefix->value = '=nm: http://nomisma.org/id/ dcterms: http://purl.org/dc/terms/ rdfs: http://www.w3.org/2000/01/rdf-schema# foaf: http://xmlns.com/foaf/0.1/ rdf:  http://www.w3.org/1999/02/22-rdf-syntax-ns# owl:  http://www.w3.org/2002/07/owl# rdfs: http://www.w3.org/2000/01/rdf-schema# rdfa: http://www.w3.org/ns/rdfa#';
+					
+					//insert attributes into root
+					$insertRootXmlns = $root->appendChild($rootXmlns);
+					$insertRootPrefix = $root->appendChild($rootPrefix);
+					
+					//echo $doc->saveXML();	
+					echo 'Writing ' . $file . "\n";				
 					$doc->save($id_dir . str_replace('.txt', '.xml', $file));
 				}
 				//generate XML, ignore hoard, type_series_item, numismatic_term
@@ -88,7 +133,7 @@
 					$fileName = $id_dir . str_replace('.txt', '', $file) . '.xml';
 					$writeFile = fopen($fileName, 'w') or die("can't open file");
 					fwrite($writeFile, $xml);
-				}				
+				}
 			}		
 		}
 	}

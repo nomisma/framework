@@ -43,10 +43,6 @@
 				</div>
 			</xforms:instance>
 
-			<xforms:instance id="dump">
-				<test xmlns=""/>
-			</xforms:instance>
-
 			<xforms:instance id="coin">
 				<nuds recordType="conceptual" xmlns="http://nomisma.org/nuds" xmlns:mets="http://www.loc.gov/METS/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml">
 					<nudsHeader>
@@ -191,17 +187,38 @@
 				<exist:result/>
 			</xforms:instance>
 
+			<!-- instances associated with gathering findspots associated with a particular mint -->
 			<xforms:instance id="findspots-xquery">
 				<exist:query xmlns:exist="http://exist.sourceforge.net/NS/exist">
-					<exist:text>&lt;report&gt; { for $i in collection()//xhtml:div[@typeof='nm:hoard'][descendant::xhtml:span[@rel='nm:mint'][@resource="athens"]] return &lt;findspot&gt; &lt;id&gt; {
-						substring-after(translate($i/@about, '[]', ''), 'nm:') } &lt;/id&gt; &lt;pos&gt; { if(string($i/descendant::xhtml:span[@property='nm:findspot']/@content)) then
-						$i/descendant::xhtml:span[@property='nm:findspot']/@content/text() else $i/descendant::xhtml:span[@property='gml:pos']/text() } &lt;/pos&gt; &lt;/findspot&gt; }
+					<exist:text>&lt;report&gt; { for $i in collection()//xhtml:div[@typeof='nm:hoard'][descendant::*[@rel='nm:mint'][@resource="athens"]] return &lt;point&gt; &lt;id&gt; {
+						substring-after(translate($i/@about, '[]', ''), 'nm:') } &lt;/id&gt; &lt;pos&gt; { if(string($i/descendant::*[@property='nm:findspot']/@content)) then
+						$i/descendant::*[@property='nm:findspot']/@content/text() else $i/descendant::*[@property='gml:pos']/text() } &lt;/pos&gt; &lt;/point&gt; }
 						&lt;/report&gt;</exist:text>
 				</exist:query>
 			</xforms:instance>
 
 			<xforms:instance id="findspots">
 				<exist:result/>
+			</xforms:instance>
+			
+			<!-- instances for generating hoard KML -->
+			<xforms:instance id="mints">
+				<points xmlns=""/>
+			</xforms:instance>
+			
+			<xforms:instance id="point-template">
+				<point xmlns="">
+					<id/>
+					<pos/>
+				</point>
+			</xforms:instance>
+			
+			<xforms:instance id="identifier">
+				<id xmlns=""/>
+			</xforms:instance>
+			
+			<xforms:instance id="temp-id">
+				<div xmlns=""/>
 			</xforms:instance>
 
 			<!-- Solr instances -->
@@ -362,13 +379,25 @@
 					<xforms:action if="instance('control-instance')/type = 'type_series_item'">
 						<xforms:send submission="load-coin"/>
 					</xforms:action>
-					<xforms:action if="instance('control-instance')/type = 'hoard'">
+					<!--<xforms:action if="instance('control-instance')/type = 'hoard'">
 						<xforms:send submission="load-hoard"/>
-					</xforms:action>
+					</xforms:action>-->
 				</xforms:action>
 				<!-- if config.xml doesn't exist, then create the exist collection with necessary files -->
 				<xforms:action ev:event="xforms-submit-error">
-					<xforms:message level="modal">Error Loading id</xforms:message>
+					<xforms:message level="modal">Error loading id</xforms:message>
+				</xforms:action>
+			</xforms:submission>
+			
+			<xforms:submission id="load-temp-id" serialization="none" method="get" action="{instance('exist-url')}nomisma/id/{instance('identifier')}.xml" replace="instance" instance="temp-id"
+				xxforms:username="admin" xxforms:password="">
+				<xforms:action ev:event="xforms-submit-done">
+					<xforms:setvalue ref="instance('point-template')/id" value="instance('temp-id')/xhtml:div[@property='skos:prefLabel'][@xml:lang='en']"/>
+					<xforms:setvalue ref="instance('point-template')/pos" value="instance('temp-id')/xhtml:div[@property='gml:pos']"/>
+					<xforms:insert origin="instance('point-template')" context="instance('mints')"/>
+				</xforms:action>
+				<xforms:action ev:event="xforms-submit-error">
+					<xforms:message level="modal">Error loading temporary id</xforms:message>
 				</xforms:action>
 			</xforms:submission>
 
@@ -481,7 +510,7 @@
 		</xforms:model>
 
 		<!-- XBL components -->
-		<xi:include href="oxf:/xbl/numishare/cp-name/cp-name.xbl" xi:omit-xml-base="true"/>
+		<!--<xi:include href="oxf:/xbl/numishare/cp-name/cp-name.xbl" xi:omit-xml-base="true"/>
 		<xi:include href="oxf:/xbl/numishare/type-date/type-date.xbl" xi:omit-xml-base="true"/>
 		<xi:include href="oxf:/xbl/numishare/denomination/denomination.xbl" xi:omit-xml-base="true"/>
 		<xi:include href="oxf:/xbl/numishare/description/description.xbl" xi:omit-xml-base="true"/>
@@ -491,7 +520,7 @@
 		<xi:include href="oxf:/xbl/numishare/nudsHeader/nudsHeader.xbl" xi:omit-xml-base="true"/>
 		<xi:include href="oxf:/xbl/numishare/reference/reference.xbl" xi:omit-xml-base="true"/>
 		<xi:include href="oxf:/xbl/numishare/region/region.xbl" xi:omit-xml-base="true"/>
-		<xi:include href="oxf:/xbl/numishare/type-undertype/type-undertype.xbl" xi:omit-xml-base="true"/>
+		<xi:include href="oxf:/xbl/numishare/type-undertype/type-undertype.xbl" xi:omit-xml-base="true"/>-->
 	</xhtml:head>
 
 	<xhtml:body class="yui-skin-sam">
@@ -548,9 +577,22 @@
 											<xforms:send submission="save-coin"/>
 										</xforms:action>
 										<xforms:action if="instance('control-instance')/type = 'hoard'">
-											<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('hoard'), 'data')"/>
+											<!-- save kml for findspot alone -->							
+											<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml.xpl', 'data', instance('doc'), 'data')"/>
 											<xforms:send submission="save-kml"/>
-											<xforms:send submission="save-hoard"/>
+											
+											<!-- save kml for findspot + associated mints -->
+											<xforms:action xxforms:iterate="instance('doc')//xhtml:span[@rel='nm:mint']">
+												<xxforms:variable name="resource" select="@resource"/>
+												<xforms:setvalue ref="instance('identifier')" value="$resource"/>
+												<xforms:send submission="load-temp-id"/>
+											</xforms:action>
+											<xforms:insert nodeset="instance('kml-all')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml-all.xpl', 'data', instance('mints'), 'data')"/>
+											<xforms:insert context="instance('kml-all')/kml:Document" nodeset="./child::node()[last()]" origin="instance('kml')/kml:Document/kml:Placemark"/>
+											<xforms:send submission="save-kml-all"/>
+											
+											<!-- save id -->
+											<xforms:send submission="save-id"/>
 										</xforms:action>
 										<xforms:action if="not(instance('control-instance')/type = 'type_series_item') and not(instance('control-instance')/type = 'hoard')">
 											<xforms:action if="contains(instance('control-instance')/type, 'mint')">
@@ -559,7 +601,7 @@
 												
 												<!-- generate 'all' KML -->
 												<!-- first set query to current id of mint -->
-												<xforms:setvalue ref="instance('findspots-xquery')/exist:text" value="replace(instance('findspots-xquery')/exist:text, 'resource=&#x0022;[a-z]+&#x0022;', concat('resource=&#x0022;', instance('control-instance')/id, '&#x0022;'))"/>
+												<xforms:setvalue ref="instance('findspots-xquery')/exist:text" value="replace(instance('findspots-xquery')/exist:text, 'resource=&#x0022;[^&#x0022;]+&#x0022;', concat('resource=&#x0022;', instance('control-instance')/id, '&#x0022;'))"/>
 												<xforms:send submission="xquery-findspots"/>
 												<xforms:send submission="save-kml-all"/>
 											</xforms:action>
@@ -828,9 +870,9 @@
 											<xforms:send submission="save-coin"/>
 										</xforms:action>
 										<xforms:action if="instance('control-instance')/type = 'hoard'">
-											<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('hoard'), 'data')"/>
+											<!--<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('hoard'), 'data')"/>
 											<xforms:send submission="save-kml"/>
-											<xforms:send submission="save-hoard"/>
+											<xforms:send submission="save-hoard"/>-->
 										</xforms:action>
 										<xforms:action if="not(instance('control-instance')/type = 'type_series_item') and not(instance('control-instance')/type = 'hoard')">
 											<xforms:action if="contains(instance('control-instance')/type, 'mint')">
@@ -850,9 +892,9 @@
 											<xforms:send submission="save-coin"/>
 										</xforms:action>
 										<xforms:action if="instance('control-instance')/type = 'hoard'">
-											<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('hoard'), 'data')"/>
+											<!--<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('hoard'), 'data')"/>
 											<xforms:send submission="save-kml"/>
-											<xforms:send submission="save-hoard"/>
+											<xforms:send submission="save-hoard"/>-->
 										</xforms:action>
 										<xforms:action if="not(instance('control-instance')/type = 'type_series_item') and not(instance('control-instance')/type = 'hoard')">
 											<xforms:action if="contains(instance('control-instance')/type, 'mint')">
@@ -886,7 +928,8 @@
 							</fr:alert-dialog>
 						</xforms:case>
 						<xforms:case id="coin-type">
-							<xforms:group ref="instance('coin')/nuds:descMeta">
+							coin-type
+							<!--<xforms:group ref="instance('coin')/nuds:descMeta">
 								<xhtml:div>
 									<xforms:input ref="nuds:title">
 										<xforms:label>Title</xforms:label>
@@ -895,7 +938,7 @@
 								</xhtml:div>
 							</xforms:group>
 							<fr:tabview>
-								<!--**************************************** DESCMETA **********************************-->
+								<!-\-**************************************** DESCMETA **********************************-\->
 								<fr:tab bind="typeDesc-tab">
 									<fr:label>Descriptive Metadata</fr:label>
 									<xhtml:h2>Typological Description</xhtml:h2>
@@ -905,13 +948,13 @@
 									<fr:label>Descriptive Metadata</fr:label>
 									<numishare:nudsHeader/>
 								</fr:tab>
-							</fr:tabview>
+							</fr:tabview>-->
 						</xforms:case>
 						<xforms:case id="hoard-case"> hoard </xforms:case>
 					</xforms:switch>
 				</xhtml:div>
 			</xhtml:div>
-<!--			<fr:xforms-inspector/>-->
+			<!--<fr:xforms-inspector/>-->
 			<!-- footer -->
 			<xi:include href="footer-admin.xml"/>
 		</xhtml:div>

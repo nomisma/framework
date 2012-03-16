@@ -38,10 +38,10 @@
 					<xsl:value-of select="xhtml:div[@property='owl:sameAs']/@href"/>
 				</field>
 			</xsl:if>
-			<xsl:if test="count(xhtml:div[@property='gml:pos']) = 1">
-				<xsl:variable name="pos" select="tokenize(xhtml:div[@property='gml:pos'], ' ')"/>
+			<xsl:if test="count(descendant::*[@property='gml:pos']) = 1 or count(descendant::*[@property='nm:findspot']) = 1">
+				<xsl:variable name="pos" select="if (string(descendant::*[@property='gml:pos'])) then tokenize(descendant::*[@property='gml:pos'], ' ') else tokenize(descendant::*[@property='nm:findspot'], ' ')"/>
 				<field name="pos">
-					<xsl:value-of select="xhtml:div[@property='gml:pos']"/>
+					<xsl:value-of select="if (string(descendant::*[@property='gml:pos'])) then descendant::*[@property='gml:pos'] else descendant::*[@property='nm:findspot']"/>
 				</field>
 				<field name="georef">
 					<xsl:value-of select="concat('http://nomisma.org/id/', $id)"/>

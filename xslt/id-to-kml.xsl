@@ -4,18 +4,39 @@
 	version="2.0">
 	<xsl:output method="xml" encoding="UTF-8" media-type="application/vnd.google-earth.kml+xml"/>
 
-
 	<xsl:template match="/">
 		<xsl:apply-templates select="/xhtml:div"/>
 	</xsl:template>
 
 	<xsl:template match="xhtml:div">
-		<xsl:variable name="lat" select="substring-before(xhtml:div[@property='gml:pos'], ' ')"/>
-		<xsl:variable name="lon" select="substring-after(xhtml:div[@property='gml:pos'], ' ')"/>
+		<xsl:variable name="pos">
+			<xsl:choose>
+				<xsl:when test="string(descendant::*[@property='gml:pos'])">
+					<xsl:value-of select="descendant::*[@property='gml:pos']"/>
+				</xsl:when>
+				<xsl:when test="string(descendant::*[@property='nm:findspot']/@content)">
+					<xsl:value-of select="descendant::*[@property='nm:findspot']/@content"/>
+				</xsl:when>
+			</xsl:choose>
+		</xsl:variable>
+
+		<xsl:variable name="style">
+			<xsl:choose>
+				<xsl:when test="@typeof='nm:mint'">
+					<xsl:text>#mint</xsl:text>
+				</xsl:when>
+				<xsl:when test="@typeof='nm:hoard'">
+					<xsl:text>#hoard</xsl:text>
+				</xsl:when>
+			</xsl:choose>
+		</xsl:variable>
+
+		<xsl:variable name="lat" select="substring-before($pos, ' ')"/>
+		<xsl:variable name="lon" select="substring-after($pos, ' ')"/>
 
 		<kml xmlns="http://www.opengis.net/kml/2.2">
 			<Document>
-				<Style xmlns="" id="mint">
+				<Style id="mint">
 					<IconStyle>
 						<scale>1</scale>
 						<hotSpot x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
@@ -24,7 +45,7 @@
 						</Icon>
 					</IconStyle>
 				</Style>
-				<Style xmlns="" id="hoard">
+				<Style id="hoard">
 					<IconStyle>
 						<scale>1</scale>
 						<hotSpot x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
@@ -33,7 +54,7 @@
 						</Icon>
 					</IconStyle>
 				</Style>
-				<Style xmlns="" id="mapped">
+				<Style id="mapped">
 					<IconStyle>
 						<scale>1</scale>
 						<hotSpot x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
@@ -46,7 +67,9 @@
 					<name>
 						<xsl:value-of select="xhtml:div[@property='skos:prefLabel'][@xml:lang='en']"/>
 					</name>
-					<styleUrl>#mint</styleUrl>
+					<styleUrl>
+						<xsl:value-of select="$style"/>
+					</styleUrl>
 					<description><!--<xsl:value-of select="'&lt;![CDATA['"/><xsl:copy-of select="."/><xsl:text>]]&gt;</xsl:text>--></description>
 					<Point>
 						<coordinates><xsl:value-of select="$lon"/>,<xsl:value-of select="$lat"/>,0</coordinates>
