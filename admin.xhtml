@@ -220,10 +220,13 @@
 							<xxforms:variable name="resource" select="@resource"/>
 							<xforms:setvalue ref="instance('temp-identifier')" value="$resource"/>
 							<xforms:send submission="load-temp-id"/>
-						</xforms:action>
+						</xforms:action>						
 						<xforms:insert nodeset="instance('kml-all')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml-all.xpl', 'data', instance('mints'), 'data')"/>
 						<xforms:insert context="instance('kml-all')/kml:Document" nodeset="./child::node()[last()]" origin="instance('kml')/kml:Document/kml:Placemark"/>
 						<xforms:send submission="save-kml-all"/>
+						
+						<!-- delete all of the points from the mints instance for each id -->
+						<xforms:delete nodeset="instance('mints')/*"/>
 					</xforms:action>
 				</xforms:action>
 			</xforms:submission>
