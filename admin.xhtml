@@ -141,11 +141,6 @@
 			<xforms:instance id="sendCommit">
 				<commit/>
 			</xforms:instance>
-
-			<xforms:instance id="count">
-				<count>1</count>
-			</xforms:instance>
-
 			<!-- **************** BINDINGS ********************** -->
 			<xforms:bind nodeset="instance('term-template')">
 				<xforms:bind nodeset="@about" type="xs:anyURI"/>
@@ -215,8 +210,6 @@
 						<xforms:action if="count(instance('findspots')//point) = 0 and string(instance('id')/xhtml:div[@property='gml:pos'])">
 							<xforms:send submission="save-kml-as-all"/>
 						</xforms:action>
-
-						<xforms:setvalue ref="instance('count')" value="number(instance('count')) + 1"/>
 					</xforms:action>
 					<xforms:action if="instance('id')/@typeof = 'nm:hoard'">
 						<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml.xpl', 'data', instance('id'), 'data')"/>
@@ -346,7 +339,7 @@
 					<xhtml:ul>
 						<xhtml:li>
 							<xforms:trigger appearance="minimal">
-								<xforms:label>Regenerate Solr</xforms:label>
+								<xforms:label>Reindex all to Solr</xforms:label>
 								<xforms:action ev:event="DOMActivate">
 									<xforms:send submission="delete-all-from-solr"/>
 									<xforms:setvalue ref="instance('eXist-xquery')/exist:text">&lt;report> { for $i in collection() return &lt;item> {
@@ -366,10 +359,27 @@
 						</xhtml:li>
 						<xhtml:li>
 							<xforms:trigger appearance="minimal">
-								<xforms:label>Regenerate KML</xforms:label>
+								<xforms:label>Regenerate KML for mints</xforms:label>
 								<xforms:action ev:event="DOMActivate">
-									<xforms:send submission="delete-kml"/>
-									<xforms:setvalue ref="instance('eXist-xquery')/exist:text">&lt;report> { for $i in collection()//xhtml:div[@typeof='nm:hoard' or @typeof='nm:mint'] return &lt;item> {
+									<xforms:setvalue ref="instance('eXist-xquery')/exist:text">&lt;report> { for $i in collection()//xhtml:div[@typeof='nm:mint'] return &lt;item> {
+										substring-after(translate($i/@about, '[]', ''), 'nm:') } &lt;/item> } &lt;/report></xforms:setvalue>
+									<xforms:send submission="xquery-collection"/>
+									<xforms:action ev:event="xforms-submit-done">
+										<xforms:action xxforms:iterate="instance('eXist-result')/report/item">
+											<xxforms:variable name="id" select="."/>
+											<xforms:setvalue ref="instance('identifier')" value="$id"/>
+											<xforms:send submission="load-id-for-kml"/>
+										</xforms:action>
+										<xforms:setvalue ev:event="xforms-submit-done" ref="instance('status')">KML regenerated for ids.</xforms:setvalue>
+									</xforms:action>
+								</xforms:action>
+							</xforms:trigger>
+						</xhtml:li>
+						<xhtml:li>
+							<xforms:trigger appearance="minimal">
+								<xforms:label>Regenerate KML for hoards</xforms:label>
+								<xforms:action ev:event="DOMActivate">
+									<xforms:setvalue ref="instance('eXist-xquery')/exist:text">&lt;report> { for $i in collection()//xhtml:div[@typeof='nm:hoard'] return &lt;item> {
 										substring-after(translate($i/@about, '[]', ''), 'nm:') } &lt;/item> } &lt;/report></xforms:setvalue>
 									<xforms:send submission="xquery-collection"/>
 									<xforms:action ev:event="xforms-submit-done">
