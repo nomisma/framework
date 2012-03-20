@@ -160,12 +160,7 @@
 			<!-- **************** xforms-model-construct-done ********************** -->
 			<xforms:action ev:event="xforms-model-construct-done">
 				<xforms:send submission="load-config"/>
-				<xforms:send submission="xquery-collection"/>
-				<xforms:action ev:event="xforms-submit-done" xxforms:iterate="instance('eXist-result')/report/type">
-					<xxforms:variable name="type" select="."/>
-					<xforms:setvalue ref="instance('type-template')" value="$type"/>
-					<xforms:insert origin="instance('type-template')" context="instance('types')" nodeset="./child::node()[last()]"/>
-				</xforms:action>
+				<xforms:send submission="xquery-terms"/>
 			</xforms:action>
 
 			<!-- ************* SUBMISSIONS **********************-->
@@ -220,11 +215,11 @@
 							<xxforms:variable name="resource" select="@resource"/>
 							<xforms:setvalue ref="instance('temp-identifier')" value="$resource"/>
 							<xforms:send submission="load-temp-id"/>
-						</xforms:action>						
+						</xforms:action>
 						<xforms:insert nodeset="instance('kml-all')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml-all.xpl', 'data', instance('mints'), 'data')"/>
 						<xforms:insert context="instance('kml-all')/kml:Document" nodeset="./child::node()[last()]" origin="instance('kml')/kml:Document/kml:Placemark"/>
 						<xforms:send submission="save-kml-all"/>
-						
+
 						<!-- delete all of the points from the mints instance for each id -->
 						<xforms:delete nodeset="instance('mints')/*"/>
 					</xforms:action>
@@ -273,7 +268,17 @@
 				xxforms:username="admin" xxforms:password="">
 				<xforms:message level="modal" ev:event="xforms-submit-error">Error querying eXist database.</xforms:message>
 			</xforms:submission>
-			
+
+			<xforms:submission id="xquery-terms" ref="instance('eXist-xquery')" action="{instance('exist-url')}nomisma/id" method="post" replace="instance" instance="eXist-result"
+				xxforms:username="admin" xxforms:password="">
+				<xforms:message level="modal" ev:event="xforms-submit-error">Error querying eXist database.</xforms:message>
+				<xforms:action ev:event="xforms-submit-done" xxforms:iterate="instance('eXist-result')/report/type">
+					<xxforms:variable name="type" select="."/>
+					<xforms:setvalue ref="instance('type-template')" value="$type"/>
+					<xforms:insert origin="instance('type-template')" context="instance('types')" nodeset="./child::node()[last()]"/>
+				</xforms:action>
+			</xforms:submission>
+
 			<xforms:submission id="delete-kml" ref="instance('delete-kml-xquery')" action="{instance('exist-url')}nomisma/id" method="post" replace="instance" instance="eXist-result"
 				xxforms:username="admin" xxforms:password="">
 				<xforms:message level="modal" ev:event="xforms-submit-error">Error querying eXist database.</xforms:message>
@@ -345,8 +350,8 @@
 								<xforms:label>Reindex all to Solr</xforms:label>
 								<xforms:action ev:event="DOMActivate">
 									<xforms:send submission="delete-all-from-solr"/>
-									<xforms:setvalue ref="instance('eXist-xquery')/exist:text">&lt;report> { for $i in collection() return &lt;item> {
-										substring-after(translate($i/xhtml:div/@about, '[]', ''), 'nm:') } &lt;/item> } &lt;/report></xforms:setvalue>
+									<xforms:setvalue ref="instance('eXist-xquery')/exist:text">&lt;report> { for $i in collection() return &lt;item> { substring-after(translate($i/xhtml:div/@about,
+										'[]', ''), 'nm:') } &lt;/item> } &lt;/report></xforms:setvalue>
 									<xforms:send submission="xquery-collection"/>
 									<xforms:action ev:event="xforms-submit-done">
 										<xforms:action xxforms:iterate="instance('eXist-result')/report/item">
@@ -397,6 +402,14 @@
 							</xforms:trigger>
 						</xhtml:li>
 					</xhtml:ul>
+
+					<xhtml:div class="section">
+						<xhtml:h3>IDs</xhtml:h3>
+						<xhtml:p>
+							<xhtml:img src="{$display_path}images/add.gif"/>
+							<xhtml:a href="edit/">Create New ID</xhtml:a>
+						</xhtml:p>
+					</xhtml:div>
 
 					<xforms:group ref="instance('types')">
 						<xhtml:div class="section">

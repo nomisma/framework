@@ -79,6 +79,24 @@
 					echo 'Writing ' . $file . "\n";				
 					$doc->save($id_dir . str_replace('.txt', '.xml', $file));
 				}
+				//rewrite coin-types, with XML document declaration
+				elseif ($typeof == 'nm:type_series_item'){
+					
+					$root = $doc->firstChild;
+					
+					//create attributes for root node
+					$rootXmlns = $doc->createAttribute('xmlns');
+					$rootPrefix = $doc->createAttribute('prefix');
+					$rootXmlns->value = 'http://www.w3.org/1999/xhtml';
+					$rootPrefix->value = '=nm: http://nomisma.org/id/ dcterms: http://purl.org/dc/terms/ rdfs: http://www.w3.org/2000/01/rdf-schema# foaf: http://xmlns.com/foaf/0.1/ rdf:  http://www.w3.org/1999/02/22-rdf-syntax-ns# owl:  http://www.w3.org/2002/07/owl# rdfs: http://www.w3.org/2000/01/rdf-schema# rdfa: http://www.w3.org/ns/rdfa#';
+					
+					//insert attributes into root
+					$insertRootXmlns = $root->appendChild($rootXmlns);
+					$insertRootPrefix = $root->appendChild($rootPrefix);
+					
+					echo 'Writing ' . $file . "\n";		
+					$doc->save($id_dir . str_replace('.txt', '.xml', $file));
+				}
 				//generate XML, ignore hoard, type_series_item, numismatic_term
 				elseif ($typeof != 'nm:hoard' && $typeof != 'nm:type_series_item'){
 					$prefLabels = $xpath->query('//div[@property="skos:prefLabel"]');

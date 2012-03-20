@@ -34,7 +34,7 @@
 				<link rel="stylesheet" type="text/css" href="{$display_path}css/jquery-ui-1.8.12.custom.css"/>
 
 				<!-- javascript -->
-				<xsl:if test="$type = 'hoard' or $type = 'type_series_item' or $type = 'mint'">
+				<xsl:if test="$type = 'hoard' or $type = 'mint'">
 					<script type="text/javascript" src="{$display_path}javascript/jquery-1.6.1.min.js">//</script>					
 					<script type="text/javascript" src="{$display_path}javascript/menu.js">//</script>
 					<script type="text/javascript" src="{$display_path}javascript/xhtml-document-write.js">//</script>
@@ -61,7 +61,7 @@
 													<img src="{$display_path}images/rdf-medium.gif" alt="RDF"/>
 												</a>
 											</span>
-											<xsl:if test="$type = 'hoard' or $type = 'type_series_item' or $type = 'mint'">
+											<xsl:if test="$type = 'hoard' or $type = 'mint'">
 												<span class="option">
 													<a href="{$id}-all.kml">
 														<img src="{$display_path}images/kml-medium.png" alt="KML"/>
@@ -76,7 +76,7 @@
 												</span>
 											</xsl:if>-->
 										</div>
-										<xsl:if test="$type = 'hoard' or $type = 'type_series_item' or $type = 'mint'">
+										<xsl:if test="$type = 'hoard'or $type = 'mint'">
 											<div id="map"/>
 											<script defer="defer" type="text/javascript">
 												$(document).ready(function () {
@@ -112,13 +112,13 @@
 				<xsl:text>)</xsl:text>
 			</h1>
 			<xsl:choose>
-				<xsl:when test="$type = 'type_series_item'">
+				<!--<xsl:when test="$type = 'type_series_item'">
 					<xsl:variable name="object">
 						<xsl:copy-of select="document(xhtml:div/xhtml:a[@rel='owl:sameAs']/@href)/nuds:nuds"/>
 					</xsl:variable>
 					<h3>Typological Attributes</h3>
 					<xsl:apply-templates select="exsl:node-set($object)/descendant::nuds:typeDesc"/>
-				</xsl:when>
+				</xsl:when>-->
 				<xsl:when test="$type = 'hoard'">
 					<xsl:apply-templates select="xhtml:div[@property='skos:definition']"/>
 					<xsl:copy-of select="xhtml:div[@class='nm:editedSource']/xhtml:pre/*"/>

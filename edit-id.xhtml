@@ -127,6 +127,10 @@
 			<xforms:instance id="status">
 				<status/>
 			</xforms:instance>
+			
+			<xforms:instance id="dump">
+				<dump/>
+			</xforms:instance>
 
 			<xforms:instance id="languages">
 				<languages xmlns="">
@@ -339,8 +343,8 @@
 			<xforms:bind id="delete-trigger" nodeset="instance('dump')" relevant="string-length(instance('control-instance')/original_id) &gt; 0"/>
 
 			<xforms:action ev:event="xforms-model-construct-done">
-				<xforms:send submission="load-config"/>
 				<xforms:send submission="xquery-collection"/>
+				<xforms:send submission="load-config"/>
 				<xforms:action if="string(xxforms:get-request-parameter('id'))">
 					<xforms:setvalue ref="instance('control-instance')/id" value="xxforms:get-request-parameter('id')"/>
 					<xforms:setvalue ref="instance('control-instance')/original_id" value="xxforms:get-request-parameter('id')"/>
@@ -349,6 +353,7 @@
 			</xforms:action>
 
 			<xforms:action ev:event="xforms-ready">
+				<xforms:send submission="xquery-collection"/>
 				<xforms:action if="instance('control-instance')/type = 'type_series_item'">
 					<xforms:toggle case="coin-type"/>
 				</xforms:action>
@@ -465,6 +470,7 @@
 			<xforms:submission id="delete-id" action="{instance('exist-url')}nomisma/id/{instance('control-instance')/original_id}.xml" method="delete" replace="none" xxforms:username="admin"
 				xxforms:password="">
 				<xforms:message level="modal" ev:event="xforms-submit-error">Error deleting id.</xforms:message>
+				<xforms:setvalue ref="instance('status')" ev:event="xforms-submit-done">id deleted.  Click "Return" to go back to Admin panel.</xforms:setvalue>
 			</xforms:submission>
 			<xforms:submission id="delete-object" action="{instance('exist-url')}nomisma/objects/{instance('control-instance')/original_id}.xml" method="delete" replace="none" xxforms:username="admin"
 				xxforms:password="">
@@ -473,6 +479,10 @@
 			<xforms:submission id="delete-kml" action="{instance('exist-url')}nomisma/kml/{instance('control-instance')/original_id}.kml" method="delete" replace="none" xxforms:username="admin"
 				xxforms:password="">
 				<xforms:message level="modal" ev:event="xforms-submit-error">Error deleting KML.</xforms:message>
+			</xforms:submission>
+			<xforms:submission id="delete-kml-all" action="{instance('exist-url')}nomisma/kml/{instance('control-instance')/original_id}-all.kml" method="delete" replace="none" xxforms:username="admin"
+				xxforms:password="">
+				<xforms:message level="modal" ev:event="xforms-submit-error">Error deleting KML 'all'.</xforms:message>
 			</xforms:submission>
 
 			<!-- ************************* XQUERY FOR TYPES ************************** -->
@@ -653,6 +663,9 @@
 											<xforms:toggle case="hoard-case"/>
 										</xforms:action>
 										<xforms:action if="not($typeof = 'type_series_item') and not($typeof = 'hoard')">
+											<xforms:action if="$typeof = 'mint'">
+												<xforms:insert origin="instance('coordinates-template')" context="instance('doc')"/>
+											</xforms:action>
 											<xforms:toggle case="default"/>
 										</xforms:action>
 									</xforms:action>
@@ -808,18 +821,6 @@
 
 									<xforms:group ref=".[count(xhtml:div[@property='gml:pos']) = 1]">
 										<xhtml:h3>Coordinates</xhtml:h3>
-										<xforms:trigger appearance="minimal">
-											<xforms:action ev:event="DOMActivate">
-												<xforms:delete context="."/>
-												<!-- clear lat and lon -->
-												<xforms:setvalue ref="instance('control-instance')/lat"/>
-												<xforms:setvalue ref="instance('control-instance')/lon"/>
-											</xforms:action>
-
-											<xforms:label>
-												<xhtml:img src="{$display_path}images/remove.gif"/>
-											</xforms:label>
-										</xforms:trigger>
 										<xhtml:div>
 											<xforms:input ref="instance('control-instance')/lat">
 												<xforms:label>Latitude</xforms:label>
@@ -919,7 +920,8 @@
 										<xforms:setvalue ref="instance('deleteId')/id" value="instance('control-instance')/original_id"/>
 										<xforms:send submission="delete-id"/>
 										<xforms:send submission="delete-id-from-solr"/>
-										<xforms:setvalue ref="instance('status')">id deleted.</xforms:setvalue>
+										<xforms:send submission="delete-kml"/>
+										<xforms:send submission="delete-kml-all"/>
 									</xforms:action>
 								</fr:positive-choice>
 								<fr:negative-choice>
