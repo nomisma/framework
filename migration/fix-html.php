@@ -110,7 +110,7 @@
 					
 					$xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
 					$xml .= '<div xmlns="http://www.w3.org/1999/xhtml"
-    prefix="=nm: http://nomisma.org/id/
+    prefix="nm: http://nomisma.org/id/
     dcterms: http://purl.org/dc/terms/
     rdfs: http://www.w3.org/2000/01/rdf-schema# 
     foaf: http://xmlns.com/foaf/0.1/
