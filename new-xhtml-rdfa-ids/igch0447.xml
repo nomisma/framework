@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0447">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-280" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.3491666667 22.3819444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+447 Jabukovac, 20 km. NW of Negotin, 
+    S. Serbia, Yugoslavia, before 1920
+    Burial: c. 280 B.C. 
+    Contents: 29 AR
+    Alexander III: 12 early post. tetradr. 
+        (<span rel="mint" resource="amphipolis">Amphipolis 1</span>, <span rel="mint" resource="pella_macedon">Pella 3</span>, <span rel="mint" resource="priene">Priene 1</span>, <span rel="mint" resource="antigoneia_syria">Anti-
+        goneia 1</span>, <span rel="mint" resource="babylon">Babylon 3</span>, <span rel="mint" resource="alexandria_egypt">Alexandria 1</span>, 
+        unc. 2)
+            5 dr. (<span rel="mint" resource="teos">Teos 1</span>, <span rel="mint" resource="colophon">Colophon 
+        3</span>, <span rel="mint" resource="sardes">Sardes 1</span>)
+    Imit. Alexander III: 4 tetradr.
+    <span rel="mint" resource="athens">Athens:</span> 1 tetradr.
+    Antiochus I: 1 tetradr. (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Ti-
+        grim</span>)
+    East Celts: 5 Philip II imit. 
+            1 <span rel="mint" resource="larissa">Larissa imit.</span>
+    Disposition: Negotin
+    Vucković-Todorović, Starinar 20 (1969), pp. 391-
+        403, illus.
+    The author considers this and no. 458 
+        below (Noe 959) to be portions of the 
+        same hd. from Jabukovac. If so, how-
+        ever, his burial date of c. 280 B.C. fails 
+        to take into account a coin of Attalus I 
+        which provides the basis for Hunter's 
+        burial date of c. 220 for Noe 959. 
+        Moreover, the provenance of Noe 959 
+        is now considered to be Zemun, near 
+        Belgrade, and not south Serbia
+</pre>
+</div>
+</div>

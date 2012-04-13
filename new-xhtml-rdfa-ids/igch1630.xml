@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1630">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1630 Palestine, 1930 
+(788)
+    Burial: 2nd-1st cent. B.C. (Westermark) 
+    Contents: 86+ AR
+    Antiochus VII: tetradr. (<span rel="mint" resource="tyre">Tyre</span>) 
+    Demetrius II: tetradr. (<span rel="mint" resource="tyre">Tyre</span>) 
+    <span rel="mint" resource="tyre">Tyre: tetradr.</span>
+    Disposition: dispersed. Poor photos on file 
+        in ANS
+    Kadman, INCJ, hoard 13
+    Probably the same hd. as no. 1629 above
+</pre>
+</div>
+</div>

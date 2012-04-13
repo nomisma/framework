@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1071">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-275" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">45.3836111111 38.4397222222</span></span></div>
+<div class="nm:editedSource">
+<pre>1071 Staro-Nizhne-Steblievskaia 
+    environs, Krasnoarmeisk raion, Krasnodar 
+    Territory, RSFSR, 1943
+    Burial: c. 300-275 B.C.
+    Contents: c. 200 AE
+    <span rel="mint" resource="panticapaeum">Panticapaeum: AE</span>
+    Disposition: Gelendzhik (Gelendzhik Raion
+        Regional Mus.) 4 (as BMC 23)
+    Pakhomov VIII, 1904
+    Possibly from the same hd. as no. 1072
+</pre>
+</div>
+</div>

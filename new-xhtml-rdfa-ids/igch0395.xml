@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0395">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-325" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-320" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.1391666667 25.61</span></span></div>
+<div class="nm:editedSource">
+<pre>
+395 Samovodene, just N of Veliko Târ-
+    novo, Bulgaria, 1957
+    Burial: c. 325-320 B.C. (T) 
+    Contents: 66 AV
+    Philip II: 51 st. (<span rel="mint" resource="macedonia">Macedonian mints; 
+        symbols listed)</span>
+    Alexander III: 15 lifetime or very early 
+        post. st. (symbols listed; prob. <span rel="mint" resource="amphipolis">Amphi-
+        polis 4,</span> <span rel="mint" resource="tarsus">Tarsus 1,</span> <span rel="mint" resource="sidon">Sidon 6,</span> <span rel="mint" resource="salamis_cyprus">Salamis 1,</span> 
+        unc. 3)
+    Disposition: Veliko Târnovo 20
+    Gerasimov, BIAB 22 (1959), p. 362
+</pre>
+</div>
+</div>

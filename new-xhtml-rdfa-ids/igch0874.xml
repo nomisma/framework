@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0874">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.7241666667 24.8569444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+874 Golem monastir, c. 20 km. W of 
+    Kârdzali, Bulgaria, 1938
+    Burial: c. 200 B.C. (T) 
+    Contents: 40+ AR. Pot hoard
+    Alexander III: 28 tetradr. (S) 
+    <span rel="mint" resource="maroneia">Maroneia: 1 st. (S)</span>
+    Lysimachus: 9 tetradr. (S 8; P 1) 
+    Cavarus: 1 tetradr. (P)
+    Antiochus I: 3 tetradr. (S 2; P 1) 
+    Seleucus III: 2 tetradr. (S 1; P 1)
+    Disposition: Sofia 40 as noted; Pleven 4 as 
+        noted
+    Gerasimov, BIAB 12 (1938), p. 455
+</pre>
+</div>
+</div>

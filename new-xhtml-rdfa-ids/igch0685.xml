@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0685">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">47.2 22.3</span></span></div>
+<div class="nm:editedSource">
+<pre>
+685 Sacalasau, 30 km. NE of Oradea, Ru-
+    mania, 1935
+    Burial: 1st cent. B.C.? (Mitrea)
+    Contents: 31+ AR. Pot hoard with AR 
+        jewelry
+    <span rel="mint" resource="apollonia_illyria">Apollonia, Illyria: dr.</span> 
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: dr.</span>
+    <span rel="mint" resource="rome">Roman Rep.: den.</span>
+    Disposition: Cluj 8 (dr.); L. Ruzicka 23 (dr.)
+    Popescu, Dacia 1937-40, p. 192 
+    Information from M. Macrea
+</pre>
+</div>
+</div>

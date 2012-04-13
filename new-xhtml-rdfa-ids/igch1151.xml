@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1151">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-47" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-44" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">45.2952777778 35.7741666667</span></span></div>
+<div class="nm:editedSource">
+<pre>1151 Cherniakovo (formerly Sultanovka), 
+    Lenino (formerly Sem' Kolodezey) raion, 
+    Crimea oblast, Ukraine, 1852
+    Burial: 47-44 B.C.
+    Contents: 100+ AE
+    Asander: AE (as BMC 1?)
+    Disposition: Leningrad 15 (merged with 
+        main collection)
+    Liutsenko, p. 16
+</pre>
+</div>
+</div>

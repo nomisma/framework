@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1163">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-525" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-500" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1163 <span property="nm:findspot" content="36.433333 28.216667">Rhodes?</span>, before 1941
+    Burial: c. 525-500 B.C. (M) 
+    Contents: 10+ AR
+    <span rel="mint" resource="camirus">Camirus: didr.</span>
+    Disposition: New York 6
+    The hd. may also have contained coins of
+        Cnidus, but no details are known
+</pre>
+</div>
+</div>

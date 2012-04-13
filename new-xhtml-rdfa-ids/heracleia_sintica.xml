@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="heracleia_sintica">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Heracleia Sintica</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Heracleia Sintica in Macedonia.</div>
+ <div property="gml:pos">41.433395 23.250111</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Heraclea_Sintica"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/491616"/>
+</div>

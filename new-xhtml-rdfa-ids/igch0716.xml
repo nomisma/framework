@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0716">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-357" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+716 Thrace ?, 1933-1934 
+(1107)
+    Burial: c. 357 B.C. (Robinson) 
+    Contents: 41 AR.
+    <span rel="mint" resource="abdera_thrace">Abdera: 4 st.</span>
+    <span rel="mint" resource="byzantium">Byzantium: 1 tetradr.</span>
+    <span rel="mint" resource="thasos">Thasos: 1 tetradr.; 27 didr.; 7 dr.; 1 triob.</span>
+    Disposition: London 13; New York 7; R. C. 
+        Lockett 2
+    Robinson, NC 1934, pp. 244-54, illus. 
+    Le Rider, Deux trésors, pp. 47-8
+</pre>
+</div>
+</div>

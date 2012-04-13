@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="taxila">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Taxila</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Taxila in India.</div>
+ <div property="gml:pos">33.745685 72.815207</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Taxila"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/60083"/>
+</div>

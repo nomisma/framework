@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1779">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-122" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">32.4713888889 44.4152777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1779 Babylon, Babylonia, before 1914 
+(117)
+    Burial: soon after 122 B.C. (Le Rider) 
+    Contents: 56+ AE
+    <span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Tigrim: 23+</span>
+    Mithradates II, Parthia: 33+ Charax Spa-
+        sinou (overstruck on Hyspaosines of 
+        Characene)
+    Disposition: New York 6
+    de la Fuÿe, RN 1919, p. 74 
+    Newell, NNM 26 (1925) 
+    Le Rider, Suse, pp. 387 f.
+</pre>
+</div>
+</div>

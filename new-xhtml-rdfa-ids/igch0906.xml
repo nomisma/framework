@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0906">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-150" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.1422222222 24.7472222222</span></span></div>
+<div class="nm:editedSource">
+<pre>
+906 Plovdiv (anc. Philippopolis) environs, 
+(822)    Bulgaria, 1934
+    Burial: 150-100 B.C. (Le Rider) 
+    Contents: 25 AR
+    Alexander III: 2 dr.
+    Philip III: 1 dr.
+    <span rel="mint" resource="byzantium">Byzantium: 20 dr.*</span>
+    Lysimachus: 1 tetradr. 
+    Nicomedes II: 1 tetradr.
+    Disposition: dispersed
+    Gerasimov, BIAB 11 (1937), p. 316
+* Identified as 4th cent. dr. but see Le Rider, 
+        Deux trésors, p. 50, note 2
+</pre>
+</div>
+</div>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2168">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.662984 14.835992</span></span></div>
+<div class="nm:editedSource">
+<pre>2168 Aderno (anc. Adranum), 1906 
+    Burial: 4th cent. B.C. (K)
+    Contents: 1+ AR
+    <span rel="mint" resource="corinth">Corinth: dr.</span>
+    Disposition: Syracuse
+    Currò Pisanò, AIIN 1962-4, p. 222
+</pre>
+</div>
+</div>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="ebura_cerealis">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Ebura Cerealis</div>
+ <div property="skos:definition" xml:lang="en">The mint at the unlocated ancient site of Ebura Cerealis in Hispania Ulterior.</div>
+ <div rel="uncertain_value"><span property="gml:pos">37.45 -3.916667</span></div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/260546"/>
+</div>

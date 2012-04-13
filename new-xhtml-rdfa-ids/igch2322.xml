@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2322">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-240" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.8144444444 0.52</span></span></div>
+<div class="nm:editedSource">
+<pre>2322 Tortosa, 1863
+(1122, 209?)
+    Burial: 240 B.C. (Guadan) 
+    Contents: 6 AR
+    <span rel="mint" resource="emporiae">Emporiae: 2 dr.</span>
+    <span rel="mint" resource="rhoda">Rhoda: 3 dr.</span>
+    <span rel="mint" resource="ebusus">Ebusus: 1 didr.</span>
+    Disposition: unknown
+    Zobel y Zangroniz, MNE 1877-9, pp. 144-5
+    de Guadan, Numisma 16 (1955), p. 14; MPER, 
+        pp. 79-80
+    In the opinion of Zobel, the hd. from the 
+        mines of Cartagena (Noe 209, cf. 
+        de Guadan MPER, pp. 87-8) was 
+        part of this hd.
+</pre>
+</div>
+</div>

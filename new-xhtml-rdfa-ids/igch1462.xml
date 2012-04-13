@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1462">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-85" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-80" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1462 Asia Minor, 1961
+    Burial: c. 85-80 B.C. (Kleiner) 
+    Contents: 25+ AR
+    Cistophori: <span rel="mint" resource="pergamum">Pergamum 24,
+    <a rel="nm:item" href="http://numismatics.org/collection/1962.121.1">ANS 1962.121.1</a></span>
+    <span rel="mint" resource="tralles">Tralles 1</span>
+    Disposition: New York 2 coins and casts of 
+        others
+    Information from C. Boehringer 
+    To be published by F. Kleiner
+</pre>
+</div>
+</div>

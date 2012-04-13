@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0527">
+<span rel="nm:findspot"><span property="gml:pos">44.62277778 27.32138889</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-125" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+527 Amara environs, c. 90 km. E of Bucha-
+(382)     rest, Rumania, 1933
+    Burial: c. 125-100 B.C. (Mitrea) 
+    Contents: 8 AR
+    Alexander III: 4 dr.
+    <span rel="mint" resource="thasos">Thasos: 4 spread-flan tetradr.</span>
+    Disposition: E. Caraianopol, Bucharest 
+    CNA 10 (1934), p. 52
+† Golescu, BulMuzMilitNat. 5 (1941-2), nos. 9-10,
+        53
+    Mitrea, ED 10 (1945), p. 50 (says 4 tetradr. of
+        Alexander)
+    Erroneously listed in Noe under the name 
+        of the collector
+</pre>
+</div>
+</div>

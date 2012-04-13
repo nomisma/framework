@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1397">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.8108333333 31.7336111111</span></span></div>
+<div class="nm:editedSource">
+<pre>1397 Yunak, c. 80 km. NE of Aksehir (anc. 
+    Claneus?), Galatian-Phrygian border, 1965
+    Burial: c. 300 B.C. (M)
+    Contents: 16 AR
+    Alexander III: lifetime and early post. dr. 
+        (<span rel="mint" resource="abydus">Abydus 1</span>, <span rel="mint" resource="lampsacus">Lampsacus 2</span>, <span rel="mint" resource="colophon">Colophon 1</span>, 
+        unc. mints 12)
+    Disposition: Ankara (inv. no. 1675) 
+    Information from Saadet Taner
+</pre>
+</div>
+</div>

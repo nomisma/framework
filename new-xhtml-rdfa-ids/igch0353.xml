@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0353">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-30" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.9427777778 22.9519444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+353 Corinth, 1931 
+(269)
+    Burial: c. 30 B.C.
+    Contents: 11 AE. From excavations 
+    <span rel="mint" resource="corcyra">Corcyra:</span>2
+    <span rel="mint" resource="elis">Elis:</span> 2
+    <span rel="mint" resource="lacedaemon">Lacedaemon:</span> 7
+    Disposition: Old Corinth
+    Edwards, Hesperia 1937, p. 247 (offertory-box
+</pre>
+</div>
+</div>

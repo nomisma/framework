@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="volsinii">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Volsinii</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Volsinii in Etruria.</div>
+ <div property="gml:pos">42.644852 11.986114</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Volsinii"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/413389"/>
+</div>

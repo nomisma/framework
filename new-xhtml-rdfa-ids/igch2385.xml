@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2385">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-50" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.7741666667 4.83222222222</span></span></div>
+<div class="nm:editedSource">
+<pre>2385 Glanum (mod. St.-Rémy-de-Pro-
+    vence), 20 km. S of Avignon, 1955
+    Burial: c. 50 B.C.
+    Contents: 46 AR, 75 AE. From excavations
+    <span rel="mint" resource="massalia">Massalia: 4 dr.
+            42 fr.
+            71 AE</span>
+    <span rel="mint" resource="gallic">Gallic: 4 AE (or potin)</span>
+    Disposition: St.-Rémy-de-Provence
+    Rolland, RN 1956, pp. 89-99
+</pre>
+</div>
+</div>

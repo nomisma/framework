@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0742">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-320" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.5638888889 24.8991666667</span></span></div>
+<div class="nm:editedSource">
+<pre>
+742 Gorni Domljan, c. 40 km. N of Plov-
+    div, Bulgaria, 1962
+    Burial: c. 330-320 B.C. (T)
+    Contents: 69 AR. In bronze vase 
+    <span rel="mint" resource="thasos">Thasos: 16 st.</span>
+    <span rel="mint" resource="apollonia_pontica">Apollonia Pontica: 1 tetrob.</span> 
+    <span rel="mint" resource="parium">Parium: 52 hemidr.</span>
+    Disposition: Karlovo
+    Gerasimov, BIAB 27 (1964), p. 237
+</pre>
+</div>
+</div>

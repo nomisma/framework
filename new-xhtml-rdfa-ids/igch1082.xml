@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1082">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-250" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">47.1805555556 35.1175</span></span></div>
+<div class="nm:editedSource">
+<pre>1082 Tokarevka (formerly Poniatovka), 
+(825)     Belozerka raion, Kherson oblast, 
+    Ukraine, 1824
+    Burial: c. 300-250 B.C.
+    Contents: c. 600 AE. Pot hoard
+    <span rel="mint" resource="olbia">Olbia: AE; (as AMNG I.1, pl. 9, 26-29)</span> 
+    Disposition: dispersed
+    Goshkevich, pp. 41, 73
+    Stempkovskii, Bibliograficheskie listy 24 (St. Pe-
+        tersburg, 1825, publ. 1826), p. 336 = 
+        Journal de St. Petersbourg 1825, p. 506, 
+        no. 118
+</pre>
+</div>
+</div>

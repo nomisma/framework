@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2119">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-390" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-380" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.7311111111 13.1836111111</span></span></div>
+<div class="nm:editedSource">
+<pre>2119 Contessa, 15 km. SW of Corleone, 
+(261)     1888
+    Burial: 390-380 B.C. (Jenkins) 
+    Contents: 113 AR
+    <span rel="mint" resource="rhegium">Rhegium: 2 tetradr. (latest as Herzfelder 
+        78b)</span>
+    <span rel="mint" resource="agrigentum">Acragas: 2 tetradr.</span>
+    <span rel="mint" resource="camarina">Camarina: 1 tetradr.</span>
+    <span rel="mint" resource="catana">Catana: 4 tetradr.</span>
+    <span rel="mint" resource="eryx">Eryx: 5 tetradr. (all from same obv. die) </span>
+    <span rel="mint" resource="gela">Gela: 10 tetradr. (to Jenkins 400)</span>
+    <span rel="mint" resource="himera">Himera: 1 tetradr.</span>
+    <span rel="mint" resource="leontini">Leontini: 3 tetradr.</span>
+    <span rel="mint" resource="messana">Messana: 16 tetradr.</span>
+    <span rel="mint" resource="motya">Motya: 6 tetradr.</span>
+    <span rel="mint" resource="segesta">Segesta: 2 tetradr.</span>
+    <span rel="mint" resource="selinus_sicily">Selinus: 1 tetradr.</span>
+    <span rel="mint" resource="syracuse">Syracuse: 4 decadr. (1 Cimon; 3 Euaine-
+        tos)
+            27 tetradr. (to Tudeer, Per. III) </span>
+    <span rel="mint" resource="siculo_punic">Siculo-Punic: 14 tetradr. (horse/palm-tree) </span>
+    Ziz: 10 tetradr. (incl. 8 from same obv. die
+        with hippocamp symbol)
+    <span rel="mint" resource="leucas">Leucas: 2 st. (cantharus and ivy-branch 
+        symbols, both same obv. die)</span>
+    <span rel="mint" resource="athens">Athens: 3 tetradr. (4th cent.)</span>
+    Disposition: Palermo
+† Salinas, NSc 1888, pp. 302-13, illus.
+    Evans, NC 1891, pp. 268-70, 364-73
+    Tusa Cutroni, AIIN 1956, p. 208, no. X (adds 
+        12 pieces to Salinas list)
+    Jenkins, Gela, p. 149
+</pre>
+</div>
+</div>

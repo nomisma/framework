@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1387">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-75" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.8752777778 35.455</span></span></div>
+<div class="nm:editedSource">
+<pre>1387 Merzifon, 1967
+    Burial: c. 75 B.C. (Pfeiler) 
+    Contents: 25 AE
+    <span rel="mint" resource="amasia">Amasia: 1</span> 
+    <span rel="mint" resource="amisus">Amisus: 16</span>
+    <span rel="mint" resource="comana">Comana: 1</span>
+    <span rel="mint" resource="amastris">Amastris: 3</span>
+    <span rel="mint" resource="sinope">Sinope: 3</span>
+    <span rel="mint" resource="dia">Dia: 1</span>
+    Disposition: dispersed
+</pre>
+</div>
+</div>

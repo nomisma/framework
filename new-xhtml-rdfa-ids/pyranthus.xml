@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="pyranthus">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Pyranthus</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Pyranthus in Crete.</div>
+ <div property="gml:pos">35.079935 25.203857</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/590022"/>
+</div>

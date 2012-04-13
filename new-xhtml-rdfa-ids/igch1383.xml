@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1383">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-80" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.9141666667 38.3808333333</span></span></div>
+<div class="nm:editedSource">
+<pre>1383 Giresun (anc. Cerasus-Pharnacia), 
+    Pontus, 1933
+    Burial: c. 80 B.C. (M) 
+    Contents: 55 AR
+    <span rel="mint" resource="athens">Athens:</span> 18 New Style tetradr. (including 
+        1 Ο ΔΕΜΟΣ)
+    Mithradates VI: 22 tetradr. (latest 84/3 B.C.) 
+    Nicomedes II-III: 7 tetradr.
+    Cistophori: <span rel="mint" resource="pergamum">Pergamum 1</span>,  <span rel="mint" resource="ephesus">Ephesus 1</span>, <span rel="mint" resource="apamea_phrygiae">Apa-
+        meia 1</span>
+    Ariarathes VI: 1 dr.
+    Ariarathes IX: 1 dr.
+    Ariobarzanes I: 1 dr.
+    Antiochus VII: 2 tetradr. (<span rel="mint" resource="antiocheia_syria">Antiocheia</span>)
+    Disposition: Istanbul
+    Thompson, Athens, pp. 524 f. 
+    To be published by F. Kleiner
+</pre>
+</div>
+</div>

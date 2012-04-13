@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="atarneus">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Atarneus</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Atarneus in Mysia.</div>
+ <div property="gml:pos">39.093987 26.927974</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Atarneus"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/550469"/>
+</div>

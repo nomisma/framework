@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="hyria_campania">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Hyria Campania (Hyrietes, Hyrianoi)</div>
+ <div property="skos:definition" xml:lang="en">Stub for the approximate location of Hyria in Campania.</div>
+ <div rel="uncertain_value"><span property="gml:pos">40.973 14.518</span></div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/438737"/>
+</div>

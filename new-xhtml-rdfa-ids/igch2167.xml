@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2167">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.0580555556 14.8925</span></span></div>
+<div class="nm:editedSource">
+<pre>2167 Palazzolo (anc. Acrae), 1903
+    Burial: 4th cent. B.C. (K) 
+    Contents: 13 AR
+    <span rel="mint" resource="syracuse">Syracuse: 6 fr. </span>
+    <span rel="mint" resource="corinth">Corinth: 7 dr.</span>
+    Disposition: Syracuse
+    Currò Pisanò AIIN 1962-4, pp. 222, 239
+</pre>
+</div>
+</div>

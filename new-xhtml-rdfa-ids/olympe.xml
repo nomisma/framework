@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="olympe">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Olympe</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Olympe in Illyricum.</div>
+ <div property="gml:pos">40.416667 19.583333</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Olympe"/>
+</div>

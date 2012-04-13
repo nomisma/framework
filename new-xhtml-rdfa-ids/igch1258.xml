@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1258">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-390" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-380" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.3498805556 33.2474527778</span></span></div>
+<div class="nm:editedSource">
+<pre>1258 Bereket, c. 30 km. N of Gilindere 
+    (anc. Celenderis), Cilicia, 1958
+    Burial: c. 390-380 B.C.
+    Contents: 35 AR. In bronze amphora 
+    <span rel="mint" resource="celenderis">Celenderis: double-sigloi</span>
+    Disposition: Ankara (inv. no. 1444) 
+    Taner, Belleten 1966, pp. 173-80, illus.
+</pre>
+</div>
+</div>

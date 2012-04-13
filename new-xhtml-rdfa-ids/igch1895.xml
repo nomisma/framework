@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1895">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-440" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.4630555556 17.2502777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1895 Taranto, Calabria, 1951
+    Burial: c. 440 B.C. (K)
+    Contents: 33 AR
+    <span rel="mint" resource="taras">Taras: 6 st. (1 hippocamp; 5 oecist)</span>
+    <span rel="mint" resource="laues">Laus: 1 st. (double-relief)</span>
+    <span rel="mint" resource="metapontum">Metapontum: 10 st. (incuse)</span>
+    <span rel="mint" resource="sybaris">Sybaris: 2 st.</span>
+    <span rel="mint" resource="caulonia">Caulonia: 4 st. (double-relief)</span>
+    <span rel="mint" resource="croton">Croton: 10 st. (incuse: 9 rev. tripod; 1 
+        eagle)</span>
+    Disposition: Taranto
+    Tamburello, AIIN 1954, p. 164
+</pre>
+</div>
+</div>

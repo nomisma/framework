@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0493">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-150" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-125" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.6133333333 25.3947222222</span></span></div>
+<div class="nm:editedSource">
+<pre>
+493 Novae, near Svistov, NE of Pleven, 
+    Bulgaria, 1958
+    Burial: c. 150-125 B.C. (T) 
+    Contents: 40 AR. Pot hoard
+    <span rel="mint" resource="macedonia_1st_region">Macedonia, 1st Region: tetradr.</span> 
+    Disposition: Svisov 8
+    Gerasimov, BIAB 25 (5962), p. 228
+</pre>
+</div>
+</div>

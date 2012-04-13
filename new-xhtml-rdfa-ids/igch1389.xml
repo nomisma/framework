@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1389">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-65" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1389 Pontus, 1963
+    Burial: c. 65 B.C. (Pfeiler) 
+    Contents: 44 AE
+    <span rel="mint" resource="amisus">Amisus: 42</span> 
+    <span rel="mint" resource="sinope">Sinope: 1</span>
+    Unc. mint: 1
+    Disposition: Ankara (inv. no. 1592) 
+    Information from Saadet Taner
+</pre>
+</div>
+</div>

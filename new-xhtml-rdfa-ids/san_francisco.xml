@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="san_francisco">
+ <div property="skos:prefLabel" xml:lang="en">San Francisco</div>
+ <div property="skos:definition" xml:lang="en">The United States mint in the city of San Francisco, California.</div>
+ <div property="gml:pos">37.7793 -122.4192</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/San_Francisco"/>
+</div>

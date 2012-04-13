@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0625">
+<span rel="nm:findspot"><span property="gml:pos">44.47416667 26.07888889</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-70" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+625 Herastrau, outskirts of Bucharest, Ru-
+    mania, 1938
+    Burial: early 1st cent. B.C. (Popescu) 
+    Contents: 152 AR. With AR objects 
+    <span rel="mint" resource="thasos">Thasos: spread-flan tetradr. incl. imit.</span> 
+    Disposition: Bucharest (Inst. Arch.) 59
+    Moisil, Balcania 1944, pp. 14-5
+† Popescu, Dacia 1945-7, pp. 35-51, illus.
+</pre>
+</div>
+</div>

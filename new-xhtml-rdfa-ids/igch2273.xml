@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2273">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-250" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.3347222222 8.91388888889</span></span></div>
+<div class="nm:editedSource">
+<pre>2273 Decimoputzu, near Cagliari, Sar-
+(301)     dinia, 1879
+    Burial: c. 250 B.C. (Jenkins)
+    Contents: 1000? AE. Pot hoard
+    Carthage: <span rel="mint" resource="sardinia">Sardinian mint (as Forteleoni 
+        series IV; many overstruck)? </span>
+    Disposition: dispersed
+    NSc 1879, p. 164
+</pre>
+</div>
+</div>

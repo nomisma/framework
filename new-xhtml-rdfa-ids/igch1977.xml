@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1977">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-270" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.4841666667 18.0525</span></span></div>
+<div class="nm:editedSource">
+<pre>1977 Torchiarolo, 15 km. S of Brindisi, 
+(1119)     Calabria, 1926
+    Burial: c. 270 B.C. (K) 
+    Contents: 1849 AR
+    <span rel="mint" resource="peripolium">Peripolium: 1 fr.</span>
+    <span rel="mint" resource="cumae">Cumae: 1 st.</span>
+    <span rel="mint" resource="hyria_campania">Hyria: 4 st.</span>
+    <span rel="mint" resource="neapolis_campania">Neapolis: 6 st.</span>
+    <span rel="mint" resource="nola">Nola: 5 st.</span>
+    <span rel="mint" resource="arpi">Arpi: 1 fr.</span>
+    <span rel="mint" resource="taras">Taras: 27 st. (24 to Per. V; 3 Per. VII-
+        VIII)
+            1418 fr.</span>
+    <span rel="mint" resource="heraclea_lucaniae">Heracleia: 1 st. (pl.); 70 fr.</span>
+    <span rel="mint" resource="laues">Laus: 2 fr.</span>
+    <span rel="mint" resource="metapontum">Metapontum: 27 st.; 22 fr.</span>
+    <span rel="mint" resource="poseidonia">Poseidonia: 8 st.; 13 fr.</span>
+    <span rel="mint" resource="sybaris">Sybaris: 2 st.; 11 fr.</span>
+    <span rel="mint" resource="thurium">Thurium: 16 st.; 84 fr.</span>
+    <span rel="mint" resource="velia">Velia: 10 st.; 4 dr.</span>
+    <span rel="mint" resource="caulonia">Caulonia: 2 st.; 2 fr.</span>
+    <span rel="mint" resource="croton">Croton: 6 st.; 16 fr.</span>
+    <span rel="mint" resource="pandosia_bruttium">Pandosia: 1 fr.</span>
+    <span rel="mint" resource="terina">Terina: 3 st.; 32 fr.</span>
+    Pegasi: 11 st. (<span rel="mint" resource="corinth">Corinth 4</span>, <span rel="mint" resource="anactorium">Anactorium 3</span>, 
+        <span rel="mint" resource="leucas">Leucas 2</span>, <span rel="mint" resource="thyrrheium">Thyrrheium 2</span>)
+    <span rel="mint" resource="rome">Roman Rep.: 1 st. (Mars/horse hd., 
+        ROMANO)</span>
+    Unc.: 42
+    Disposition: Taranto
+† Breglia, Memorie Reale Accademia di Archeologia, 
+        Lettere e Belle Arti, Naples VI (1939), 
+        pp. 39-76
+    Stazio, AIIN 1965-7, pp. 41-4
+    Crawford, RRCH 11
+    See no. 1978 below for another possible 
+        section of this hd.; the small number 
+        of st. of Per. VII-VIII listed above is 
+        surprising. Breglia no. 1807 (Pegasus 
+        with plow symbol) was attributed by 
+        her to Thyrrheium; it has been re-
+        attributed above to Corinth (cf. Ravel,
+        nos. 1021-4)
+</pre>
+</div>
+</div>

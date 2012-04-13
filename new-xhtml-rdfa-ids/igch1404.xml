@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1404">
+<span rel="nm:findspot"><span property="gml:pos">39.65305556 31.99472222</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-223" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1404 Gordium, 1963
+    Burial: c. 223 B.C.
+    Contents: 5+AV. Pot hoard from excavations
+    Philip II: 1 st. (<span rel="mint" resource="pella_macedon">Pella</span>)
+    Alexander III: 2 early post. st. (<span rel="mint" resource="lampsacus">Lampsacus 
+        1</span>, <span rel="mint" resource="babylon">Babylon 1</span>)
+    Antiochus I: 1 octadr. (<span rel="mint" resource="antiocheia_syria">Antiocheia</span> or
+        <span rel="mint" resource="apameia_syria">Apameia</span>)
+    Seleucus III: 1 octadr. (<span rel="mint" resource="antiocheia_syria">Antiocheia</span>)
+    Disposition: Ankara
+    Cox, ANSMN 12 (1966), pp. 51-5, illus.
+</pre>
+</div>
+</div>

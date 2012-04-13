@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0444">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-280" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.6247222222 22.9725</span></span></div>
+<div class="nm:editedSource">
+<pre>
+444 Thessalonica, Macedonia, before 1897 
+(896)
+    Burial: c. 280 B.C. (T) 
+    Contents: 157 AR
+    Alexander III: 104 lifetime and early post. 
+        tetradr. (<span rel="mint" resource="amphipolis">Amphipolis 39,</span> <span rel="mint" resource="pella_macedon">Pella 2</span>, unc. 
+        <span rel="mint" resource="macedonia">Maced. 2,</span> <span rel="mint" resource="sicyon">Sicyon 1,</span> <span rel="mint" resource="peloponnesus">Pelop. 2,</span> <span rel="mint" resource="abydus">Abydus? 
+        1,</span> <span rel="mint" resource="sardes">Sardes 5,</span> <span rel="mint" resource="miletus">Miletus 1,</span> <span rel="mint" resource="side">Side 2,</span> <span rel="mint" resource="tarsus">Tarsus 3,</span> 
+        <span rel="mint" resource="citium">Citium 1,</span> <span rel="mint" resource="salamis_cyprus">Salamis 5,</span> <span rel="mint" resource="myriandrus">Myriandrus 1,</span> 
+        <span rel="mint" resource="aradus">Aradus 3,</span> <span rel="mint" resource="sidon">Sidon 3,</span> <span rel="mint" resource="tyre">Tyre 2,</span> <span rel="mint" resource="ace_ptolemais">Ace 1,</span> 
+        <span rel="mint" resource="carrhae">Carrhae 1,</span> <span rel="mint" resource="babylon">Babylon 16,</span> <span rel="mint" resource="ecbatana">Ecbatana 1,</span> 
+        <span rel="mint" resource="alexandreia_troas">Alexandreia 2,</span> unc. 10)
+    Philip III: 14 tetradr. (<span rel="mint" resource="salamis_cyprus">Salamis 1,</span> <span rel="mint" resource="aradus">Aradus 5,</span>
+        <span rel="mint" resource="sidon">Sidon 2,</span> <span rel="mint" resource="babylon">Babylon 5,</span> <span rel="mint" resource="susa">Susa 1</span>) 
+    Demetrius Poliorcetes: 7 tetradr. (<span rel="mint" resource="amphipolis">Amphi-
+        polis 3,</span> <span rel="mint" resource="pella_macedon">Pella 3,</span> <span rel="mint" resource="euboea">Euboea? 1</span>) 
+    Audoleon: 1 tetradr.
+    Lysimachus: 31 lifetime tetradr. (<span rel="mint" resource="lysimachia">Lysi-
+        macheia 1,</span> <span rel="mint" resource="sestus">Sestus 1,</span> <span rel="mint" resource="lampsacus">Lampsacus 11,</span>
+        <span rel="mint" resource="sardes">Sardes 3,</span> <span rel="mint" resource="alexandreia_troas">Alexandreia Troas 1,</span> <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia 4</span>, <span rel="mint" resource="amphipolis">Amphipolis 2,</span> <span rel="mint" resource="pella_macedon">Pella 6,</span> unc. 2)
+    Disposition: F. Walla, Vienna (Cat. VI, 
+        1897-8)
+    Newell, Tyrus, p. 11; Demetrius, pp. 117-8, 
+        163-4; Newell's record of varieties on file 
+         ANS
+</pre>
+</div>
+</div>

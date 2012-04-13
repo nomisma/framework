@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0618">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.1980555556 26.5863888889</span></span></div>
+<div class="nm:editedSource">
+<pre>
+618 Curcani, 50 km. SSE of Bucharest, 
+    Rumania, c. 1935
+    Burial: 2nd-1st cent. B.C. 
+    Contents: 36 AE
+    <span rel="mint" resource="cyzicus">Cyzicus (as BMC 147-53, 161-4)</span> 
+    Disposition: G. Buzdugan, Bucharest
+    Preda, SCIV 1966, pp. 363-70, illus.
+</pre>
+</div>
+</div>

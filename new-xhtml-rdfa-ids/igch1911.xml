@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1911">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-387" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.0944444444 15.7541666667</span></span></div>
+<div class="nm:editedSource">
+<pre>1911 Reggio, Chiesa Pepe, Bruttium, 1913 
+(857)
+    Burial: c. 387 B.C. (Jenkins)
+    Contents: c. 97 AR. Pot hoard
+    <span rel="mint" resource="rhegium">Rhegium: 7 tetradr. (to Herzfelder 92) </span>
+    <span rel="mint" resource="agrigentum">Acragas: 1 tetradr.</span>
+    <span rel="mint" resource="catana">Catana: 1 tetradr. (facing Apollo hd., 
+        possibly intrusive) </span>
+    <span rel="mint" resource="gela">Gela: 4 tetradr. (to Jenkins 392)</span>
+    <span rel="mint" resource="himera">Himera: 1 tetradr. </span>
+    <span rel="mint" resource="leontini">Leontini: 6 tetradr. </span>
+    <span rel="mint" resource="messana">Messana: 9 tetradr. </span>
+    <span rel="mint" resource="selinus_sicily">Selinus: 1 tetradr.</span>
+    <span rel="mint" resource="syracuse">Syracuse: 35 tetradr. (to Tudeer 86-7) </span>
+    <span rel="mint" resource="athens">Athens: 3 tetradr. (5th cent. type) </span>
+    Unidentified: 2 tetradr.
+    Disposition: Reggio 70
+    Putorti, NSc 1914, pp. 159-60; BLM 1913, 5411 
+    Jenkins, Gela, p. 157
+</pre>
+</div>
+</div>

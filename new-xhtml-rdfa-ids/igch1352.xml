@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1352">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.0377777778 27.4238888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1352 Bodrum (anc. Halicarnassus), Caria, 
+(477)     1888
+    Burial: 2nd-1st cent. B.C. 
+    Contents: 8 AR, c. 20 AE
+    <span rel="mint" resource="halicarnassus">Halicarnassus: 2 dr. (as BMC 43 ff.)
+            c. 20 AE. (as BMC 20 ff.)</span> 
+    <span rel="mint" resource="myndus">Myndus: 6 dr. (as BMC 1 ff.)</span>
+    Disposition: dispersed 
+    Paton, NC 1890, pp. 279 f.
+</pre>
+</div>
+</div>

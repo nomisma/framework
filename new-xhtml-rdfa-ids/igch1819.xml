@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1819">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-28" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">32.1888888889 48.2577777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1819 Susa?, before 1909 
+(1021)
+    Burial: after 28 B.C.
+    Contents: 50+ AR
+    Attambelus I, <span rel="mint" resource="characene">Characene: tetradr. (latest
+        284 S.E. = 29/8 B.C.)</span>
+    Disposition: London 27
+    Hill, NNM 14 (1922)
+    The coins were bought at Amara, on the
+        Tigris, c. 180 km. above Basra
+</pre>
+</div>
+</div>

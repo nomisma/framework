@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0007">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.3933333333 25.4616666667</span></span></div>
+<div class="nm:editedSource">
+<pre>
+7 Santorin (anc. Thera), 1821
+(920)
+    Burial: c. <span property="nm:approximateburialdate_start" content="-500" datatype="xsd:date">500</span>-<span property="nm:approximateburialdate_end" content="-490" datatype="xsd:date">490</span> B.C. (Holloway)
+    Contents: 760 AR
+    <span rel="mint" resource="aegina">Aegina: 541 st.</span>
+    <span rel="mint" resource="andros">Andros</span> or<span rel="mint" resource="ceos">Ceos: 1 st.
+          <a rel="contains" href="http://www.sixbid.com/nav.php?lot=175&amp;p=viewlot&amp;sid=100">The New York Sale 20 (2009) lot 175</a></span>
+    <span rel="mint" resource="naxos">Naxos: 15 st. (14 with cantharus, at least
+        one wreathed; 1 with satyr hd.)
+          <a rel="contains" href="http://www.cngcoins.com/Coin.aspx?CoinID=138652">Nomos 1 (2009) lot 88</a></span>
+    <span rel="mint" resource="paros">Paros: 2 st.</span>
+    <span rel="mint" resource="siphnos">Siphnos: 3 st.</span>
+    <span rel="mint" resource="thera">Thera?: 23 st.</span>
+    <span rel="mint" resource="cyzicus">Cyzicus: 2 st. (as Traité pl. 16,25)</span>
+    <span rel="mint" resource="dardanus">Dardanus?: 1 st. (cock obv.; possibly the
+        Montagu piece, cf. no. 6 above,
+        Cyclades 1889)</span>
+    <span rel="mint" resource="miletus">Miletus?: 48 st. (as Traité pl. 19,11 [47] 
+    14 [1])*</span>
+    <span rel="mint" resource="caria">Unc. Caria?: 41 st. (Kraay, Greek Coins, 
+        no. 687 for type and attrib.)</span>
+    Unc. mint : 1 st. (boar's hd.)
+            82 fr. (boar's hd.; Aeginetan 
+    tetrob. according to Babelon [Traité 
+    II.1, p. 625] but the stater weighs 
+    c. 14.50 gms.)
+    Disposition: London some; Copenhagen
+† Wroth, NC 1884, pp. 269-80, illus. 
+    Greenwell, NC 1890, pp. 13-9
+    BMCIonia, pp. xxxii ff.
+    Holloway, ANSMN 10 (1962), pp. 6-7
+    *Noe describes all 48 as inscribed ΟϒΛ but 
+        Wroth (p. 273) says that type does not 
+        seem to have been in the hd.
+    See also no. 8 below
+</pre>
+</div>
+</div>

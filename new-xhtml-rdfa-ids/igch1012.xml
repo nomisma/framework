@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1012">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-370" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-330" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">45.2105555556 36.7161111111</span></span></div>
+<div class="nm:editedSource">
+<pre>1012 Taman' Peninsula, Krasnodar Ter-
+    ritory, RSFSR, 1866-1867
+    Burial: mid 4th cent. B.C.
+    Contents: AV, EL
+    <span rel="mint" resource="panticapaeum">Panticapaeum: 4 st. (as BMC 1)</span> 
+    <span rel="mint" resource="cyzicus">Cyzicus: 2 st.
+            3 hecte</span>
+    Disposition: dispersed
+    Goertz, Drevnosti 2 (Moscow, 1870), pp. 236-8
+        (letters from Liutsenko) = Arkheologiches-
+        kaia topografiia Tamanskogo poluostrova
+        (Moscow, 1870), pp. 45-6 = Sobranie
+        sochinenii I (St. Petersburg, 1898), pp. 54-5 
+    Liutsenko, p. 26
+    Zograph, "Zolotye monety," 3, 5
+    Shelov, VDI 1949, no. 2, pp. 96-7
+    Shelov considers this a hd.; Zograph, a 
+        find of separate coins. Liutsenko, in 
+        his letter to Goertz, speaks of a find,
+        provenance unknown, of "two gold 
+        double Cyzicene staters and three 
+        quarter-staters, a few silver coins of 
+        Apollonia, three gold staters of Panti-
+        capaeum, etc."
+</pre>
+</div>
+</div>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="camarina">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Camarina</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Camarina in Sicily.</div>
+ <div property="gml:pos">36.872287 14.447788</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Camarina"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/462126"/>
+</div>

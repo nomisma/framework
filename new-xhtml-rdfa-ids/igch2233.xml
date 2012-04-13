@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2233">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-212" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.0738888889 15.2786111111</span></span></div>
+<div class="nm:editedSource">
+<pre>2233 Syracuse, 1904
+(1031)
+    Burial: 212 B.C.
+    Contents: 200+ AR
+    <span rel="mint" resource="syracuse">Syracuse (types of democracy, 215-12 B.C.) </span>
+    Disposition: J. Hirsch Nov. 27, 1905, 246-
+        54 and Vorwort
+    Orsi, NSc 1905, pp. 389-90
+</pre>
+</div>
+</div>

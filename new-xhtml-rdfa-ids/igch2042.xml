@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2042">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.05977 11.60428</span></span></div>
+<div class="nm:editedSource">
+<pre>2042 Val d'Orcia, Etruria, 1930 
+(1154 = 651)
+    Burial: 3rd cent. B.C. (K) 
+    Contents: 133+ AR
+    <span rel="mint" resource="populonia">Populonia: 131 didr. (as Sambon 42 ff. 
+        [111]; 61 f. [20])
+            2 dr. (as S. 73)</span>
+    Disposition: E. Bonsi Casuccini coll., Chiusi 
+        (part); Siena (part)
+    Bianchi Bandinelli, StudEtr 1932, pp. 543-53, 
+        illus.
+    Noe 651 (Maremma 1932?) seems to be the 
+        same hd.; the contents are identical 
+        except for the additional mention of 
+        Sambon 28
+</pre>
+</div>
+</div>

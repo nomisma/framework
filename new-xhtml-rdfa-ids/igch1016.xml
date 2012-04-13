@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1016">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-370" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-330" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">46.6891666667 31.9016666667</span></span></div>
+<div class="nm:editedSource">
+<pre>1016 Olbia (mod. Parutino), 1956 
+    Burial: mid 4th cent. B.C.
+    Contents: 5 AE
+    <span rel="mint" resource="olbia">Olbia: 4 AE (as AMNG I.1, pl. 9, 8 [1], 13 
+        [2], 22? [1])</span>
+    <span rel="mint" resource="istrus">Istrus: 1 AE (as AMNG I.1, pl. 8, 7)</span>
+    Disposition: Leningrad (Institute)
+    Information from P. O. Karyszkowski
+</pre>
+</div>
+</div>

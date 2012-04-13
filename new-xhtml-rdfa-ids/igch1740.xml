@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1740">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.7897222222 43.8513888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1740 Leninakan (formerly Alexandropol), 
+(36)     Armenia 1900-1909
+    Burial: 1st century B.C.
+    Contents: AR
+    Tigranes I of Armenia: "several" tetradr. 
+    Disposition: Unknown
+    Pakhomov I, p. 39, no. 26
+    Vasmer p. 283
+</pre>
+</div>
+</div>

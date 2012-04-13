@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0495">
+<span rel="nm:findspot"><span property="gml:pos">43.31666667 24.56638889</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-150" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-125" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+495 Gortalovo, near Pleven, Bulgaria, 1951
+    Burial: c. 150-125 B.C. (T)
+    Contents: 14 AR
+    <span rel="mint" resource="macedonia_1st_region">Macedonia, 1st Region: 7 tetradr.</span>
+    <a rel="mint" href="thasos">Thasos</a>: 7 spread-flan tetradr.
+    Disposition: dispersed
+    Gerasimov, BIAB 28 (1952), p. 404
+</pre>
+</div>
+</div>

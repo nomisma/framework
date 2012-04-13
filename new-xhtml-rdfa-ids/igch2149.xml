@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2149">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-310" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>2149 Sicily, 1877
+    Burial: c. 310 B.C.? (K)
+    Contents: 65 AR
+        Pegasi
+    <span rel="mint" resource="corinth">Corinth: 32 (to Per. V with Ε, Ν, ΑΛ, Α, 
+        ΑΡ, ΔΙ)</span>
+    <span rel="mint" resource="ambracia">Ambracia: 3 (as Ravel 6, -/P78, 163) </span>
+    <span rel="mint" resource="anactorium">Anactorium: 2 (leaf, temple-key)</span>
+    <span rel="mint" resource="argos_amphilochicum">Argos: 1 (obv. dog, ΑΡ)</span>
+    <span rel="mint" resource="corcyra">Corcyra: 1 (ΚΟΡ)</span>
+    <span rel="mint" resource="dyrrhachium_epidmanus">Dyrrhachium: 6</span>
+    <span rel="mint" resource="leucas">Leucas: 19 (incl. caduceus [11]; wreath [2];
+        pentagram, cock, grapes, hippocamp, 
+        amphora)</span>
+    <span rel="mint" resource="thyrrheium">Thyrrheium: 1 (ear-ring)</span>
+    Disposition: Palermo
+    Tusa Cutroni, AIIN 1956, p. 207, no. VI; 
+        † 1958-9, pp. 167-77
+</pre>
+</div>
+</div>

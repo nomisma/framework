@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1415">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-170" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-133" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.7547222222 30.5519444444</span></span></div>
+<div class="nm:editedSource">
+<pre>1415 Afyon-Karahissar (anc. Prymnessus), 
+    Phrygia, before 1876
+    Burial: before 133 B.C.
+    Contents: 120+ AR
+    <span rel="mint" resource="apamea_phrygiae">Apameia, Phrygia: 10+ cist.</span>
+    Unc. mints: 110+ cist.
+    Disposition: dispersed
+    Meyer, ZfN 1876, p. 149
+</pre>
+</div>
+</div>

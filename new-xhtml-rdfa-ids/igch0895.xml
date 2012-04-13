@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0895">
+<span rel="nm:findspot"><span property="gml:pos">44.6925 27.95</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-150" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+895 Hîrsova (anc. Carsium), c. 72 km. NW 
+    of Constanta, Rumania, 1965
+    Burial: c. 150-125 B.C. or later (T) 
+    Contents: 9 AR. Pot hoard
+    <span rel="mint" resource="macedonia_1st_region">Macedonia, 1st Region: 3 tetradr.</span>
+    <span rel="mint" resource="thasos">Thasos: 6 spread-flan tetradr.</span>
+    Disposition: Bucharest (Hist. Mus.)
+    Mitrea, Dacia 1967, p. 380
+</pre>
+</div>
+</div>

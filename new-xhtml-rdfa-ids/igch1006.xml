@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1006">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-350" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">46.6891666667 31.9016666667</span></span></div>
+<div class="nm:editedSource">
+<pre>1006 Olbia (mod. Parutino), Ochakov 
+(750)     raion, Nikolaev oblast, Ukraine, 1905 
+    Burial: 400-350 B.C.?
+    Contents: 108 AE. With a black-glazed plate 
+    <span rel="mint" resource="olbia">Olbia: aes grave</span>
+    Disposition: Leningrad 15 (as AMNG I.1,
+        pl. 8, 3 [8], 4 [7])
+    Bertier de la Garde, NS (Russian) 1911, p. 90
+        (describes coins as AMNG I.1, pl. 8, 2)
+    Further information from IU. Diukov (Her-
+        mitage material)
+    The Hermitage records of B. V. Farma-
+        kovskii show that the 15 coins there 
+        were part of a hd. found at Olbia in 
+        1905. Details of the hd.'s discovery 
+        coincide with those given by Bertier 
+        de la Garde, ruling out the possibility 
+        of two different hoards
+</pre>
+</div>
+</div>

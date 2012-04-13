@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="cherson">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Cherson</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Cherson in Tauric Chersonese.</div>
+ <div property="gml:pos">44.611627 33.493302</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/226564"/>
+</div>

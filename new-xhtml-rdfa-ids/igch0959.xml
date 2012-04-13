@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0959">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-70" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.5061111111 27.4766666667</span></span></div>
+<div class="nm:editedSource">
+<pre>
+959 Burgas district, Bulgaria, 1966 
+    Burial: early 1st cent. B.C. (Price)
+    Contents: 132+ AR. Pot hoard
+    Alexander III: 131 late post. tetradr. 
+        (<span rel="mint" resource="mesembria">Mesembria 86</span>, <span rel="mint" resource="odessus">Odessus 45</span>)
+    Lysimachus: 1 late post. tetradr. (<span rel="mint" resource="byzantium">By-
+        zantium</span>)
+    Disposition: dispersed
+    Gerasimov, BIAB 30 (1967), p. 187
+</pre>
+</div>
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0479">
+<span rel="nm:findspot"><span property="gml:pos">40.52027778 22.20527778</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-160" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+479 Beroea, Macedonia, 1962
+    Burial: c. 160 B.C. (Oeconomides, Picard) 
+    Contents: 5 AR
+    <a rel="mint" href="thasos">Thasos</a>: 1 spread-flan tetradr.
+    <span rel="mint" resource="athens">Athens:</span> 4 New Style tetradr. (to 171 B.C.) 
+    Disposition: Athens
+    Varoucha, A Delt 1963, Chronika, p. 4, illus. 
+    Thompson, ANSMN 12 (1966), p. 60
+    Possibly part of no. 481 below
+</pre>
+</div>
+</div>

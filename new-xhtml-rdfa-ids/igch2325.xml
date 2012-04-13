@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2325">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-237" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-218" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.5983333333 -1.31416666667</span></span></div>
+<div class="nm:editedSource">
+<pre>2325 Mazarron, 30 km. W of Cartagena, 
+(665)     1861
+    Burial: 237-18 B.C. (Villaronga) 
+    Contents: 90+ AR
+    <span rel="mint" resource="hispano-punic">Hispano-Punic: 51 didr. (as Robinson 2)
+            1 hexadr.; 2 tetradr.; 7 
+        tridr. (as R. 6)
+            1 hexadr.; 7 didr. (as R. 
+        7b, c, e)
+            18 didr. (as R. 7i)</span>
+    Disposition: Madrid 7
+    Zobel y Zangroniz-Mommsen, MonatsbBerlin 
+        1863, pp. 248-62, illus.
+† Zobel y Zangroniz, MNE 1877-9, pp. 157-62 
+    Vives, MH I, pp. 48-9, notas 1, 8, 13, 19-25 
+    Navascues, Las monedas hispanicas del Museo
+        Arqueológico Nacional de Madrid II (Barce-
+        lona, 1971), nos. 439, 444, 457-9, 462-3 
+    Villaronga, MHC (forthcoming)
+</pre>
+</div>
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0999">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-450" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">46.8108333333 31.8763888889</span></span></div>
+<div class="nm:editedSource">
+<pre>
+999 Kozyrka-Bogdanovka region, just N
+    of Parutino, Ochakov raion, Nikolaev 
+    Oblast, Ukraine, 1867
+    Burial: c. 450 B.C. (Karyszkowski) 
+    Contents: c. 100 AE
+    <span rel="mint" resource="olbia">Olbia: aes grave (as AMNG I.1, pl. 8, 3)</span> 
+    Disposition: dispersed
+† Liutsenko (letter from P. Burachkov) 
+    Zograph, p. 123, note 4
+</pre>
+</div>
+</div>

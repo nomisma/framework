@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1914">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-380" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.98078 16.20491</span></span></div>
+<div class="nm:editedSource">
+<pre>1914 Maruggio, 30 km. SE of Taranto, 
+(662)     Calabria, 1905
+    Burial: c. 380 B.C.
+    Contents: 48 AR
+     <span rel="mint" resource="taras">Taras: 2 st.; 2 dr.; 2 fr. </span>
+     <span rel="mint" resource="metapontum">Metapontum: 4 dr.; 1 fr.</span>
+     <span rel="mint" resource="sybaris">Sybaris: 5 dr.; 2 fr. </span>
+     <span rel="mint" resource="thurium">Thurium: 1 st.; 6 dr. </span>
+     <span rel="mint" resource="velia">Velia: 9 dr.</span>
+     <span rel="mint" resource="caulonia">Caulonia: 1 st.; 7 dr. </span>
+     <span rel="mint" resource="croton">Croton: 2 st.; 4 dr.</span>
+    Disposition: Taranto
+    Quagliati, NSc 1906, pp. 215-7
+</pre>
+</div>
+</div>

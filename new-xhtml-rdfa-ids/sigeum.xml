@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="sigeum">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Sigeum</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Sigeum in Troas.</div>
+ <div property="gml:pos">39.993701 26.184284</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Sigeion"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/550877"/>
+</div>

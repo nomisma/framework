@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0954">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.4047222222 28.4158333333</span></span></div>
+<div class="nm:editedSource">
+<pre>
+954 Bâlgarevo, c. 60 km. N of Varna, Bul-
+    garia, 1968
+    Burial: c. 100 B.C. (T)
+    Contents: 4 AV, 4 AE. From excavations 
+    Lysimachus: 4 late post. st. (<span rel="mint" resource="byzantium">Byzantium 1</span>,
+        <span rel="mint" resource="tomis">Tomis 3</span>)
+    Acrosandrus, Scythian dynast: 4 AE 
+    Disposition: Tolbuhin
+    Reported by T. Gerasimov
+</pre>
+</div>
+</div>

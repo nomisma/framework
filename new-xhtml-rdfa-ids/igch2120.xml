@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2120">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-390" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-380" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.5302777778 15.1138888889</span></span></div>
+<div class="nm:editedSource">
+<pre>2120 Ognina, 4 km. NE of Catana, 1923
+(749)
+    Burial: 390-380 B.C. ? (Jenkins)
+    Contents: 309+ AR. Pot hoard
+    <span rel="mint" resource="rhegium">Rhegium: 6 tetradr. </span>
+    <span rel="mint" resource="agrigentum">Acragas: 7 tetradr.; 19 didr.
+    <a rel="nm:item" href="http://numismatics.org/collection/1967.152.114">ANS 1967.152.114</a></span>
+    <span rel="mint" resource="camarina">Camarina: 4 tetradr. </span>
+    <span rel="mint" resource="catana">Catana: 20 tetradr.; 2 didr.
+    <a rel="nm:item" href="http://numismatics.org/collection/1967.152.119">ANS 1967.152.119</a></span>
+    <span rel="mint" resource="gela">Gela: 29 tetradr. (to Jenkins 483)
+            12 didr.</span>
+    <span rel="mint" resource="himera">Himera: 1 tetradr. </span>
+    <span rel="mint" resource="leontini">Leontini: 13 tetradr. </span>
+    <span rel="mint" resource="messana">Messana: 49 tetradr. </span>
+    <span rel="mint" resource="motya">Motya: 1 didr.</span>
+    <span rel="mint" resource="naxus">Naxus: 1 tetradr.; 1 didr. </span>
+    <span rel="mint" resource="segesta">Segesta: 28 didr.
+    <a rel="nm:item" href="http://www.artmuseums.harvard.edu/collection/detail.dot?objectid=2004.66">Harvard Art Museums 2004.66</a></span>
+    <span rel="mint" resource="selinus_sicily">Selinus: 8 tetradr.</span>
+    <span rel="mint" resource="syracuse">Syracuse: 97 tetradr. (to Tudeer 81)</span>
+    Ziz: 1 tetradr.
+    <span rel="mint" resource="athens">Athens: 5 tetradr.</span>
+    Pegasi: 5 st. (incl. <span rel="mint" resource="ambracia">Ambracia</span>, as Ravel, p. 71)
+    Disposition: Syracuse (1957 and 1959) 23 
+        (Rhegium 1, Acragas 2, Camarina 1, 
+        Catana 5, Gela 2, Messana 2, Segesta 4, 
+        Selinus 1, Syracuse 5); New York 2 
+        (Acragas, Catana)
+† Columba, AttiMemIIN 1925, pp. 1-19, illus. 
+    Currò Pisanò, AIIN 1962-4, pp. 225, 239 
+    Jenkins, Gela, p. 156
+</pre>
+</div>
+</div>

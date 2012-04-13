@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="untikesken">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Untikesken</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Untikesken (also known as Emporiae) in Hispania Citerior.</div>
+ <div property="gml:pos">42.132111 3.108503</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Emporiae"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/252998"/>
+</div>

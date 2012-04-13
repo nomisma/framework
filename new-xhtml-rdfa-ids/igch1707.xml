@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1707">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-145" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">30.9675 30.1738888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1707 Kom Truga, near Alexandria, 1932 
+    Burial: c. 145 B.C. (Jenkins)
+    Contents: 100 AE
+    Ptolemy VI: (type of Svoronos 1425) 
+    Disposition: Alexandreia
+    Adriani, AMGR 1932-3 (Alexandria, 1934), pp. 
+        44-6
+</pre>
+</div>
+</div>

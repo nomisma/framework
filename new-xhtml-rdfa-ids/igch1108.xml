@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1108">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-150" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.0416666667 42.7155555556</span></span></div>
+<div class="nm:editedSource">
+<pre>1108 Mestia, Georgia, 1912 
+(1026)
+    Burial: 3rd cent. B.C. or later 
+    Contents: c. 200 AV
+    Alexander III: st.
+    Disposition: dispersed
+† IAK 46 (1913) Suppl., p. 135 
+    Pakhomov I, 15
+    Zograph, "Zolotye monety," 29
+    Possibly from the same hd. as nos. 1109 
+        and/or 1110 below
+</pre>
+</div>
+</div>

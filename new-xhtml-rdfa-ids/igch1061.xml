@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1061">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.6 33.53</span></span></div>
+<div class="nm:editedSource">
+<pre>1061 Olbia (mod. Parutino), 1949 
+    Burial: late 4th cent. B.C.
+    Contents: 50 AE. In ancient pit in agora 
+    <span rel="mint" resource="olbia">Olbia: 25 fish-shaped AE
+            21 AE (as AMNG I.1, pl. 9, 6 [1],
+        8 [2], 13 [4], 14 [1], 23 [13])</span> 
+    <span rel="mint" resource="panticapaeum">Panticapaeum: 1AE (as Minns, pl. 5, 19)</span> 
+    Unc.: 3 AE
+    Disposition: Kiev
+    Information from P. O. Karyszkowski
+</pre>
+</div>
+</div>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1209">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-360" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1209 <span property="nm:findspot" content="36.86 28.26">Marmaris (anc. Physcus) environs, 
+    Caria</span>, 1970-1
+    Burial: c. 360 B.C. (M) 
+    Contents: 84+ AR
+    <span rel="mint" resource="rhodes">Rhodes: tetradr.
+           <a rel="contains" href="http://www.cngcoins.com/Coin.aspx?CoinID=152992">CNG Triton XIII (2010), lot 210</a></span>
+    Disposition: dispersed
+</pre>
+</div>
+</div>

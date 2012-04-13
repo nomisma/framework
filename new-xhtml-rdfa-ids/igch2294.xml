@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2294">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-230" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">31.9675 15.0555555556</span></span></div>
+<div class="nm:editedSource">
+<pre>2294 Wadi Sofeggin, 250 km. SE of Tri-
+    poli, 1965
+    Burial: late 3rd cent. B.C. (Jenkins) 
+    Contents: 32 AE
+    Carthage: 31 <span rel="mint" resource="sardinia">Sardinian mint (as SNGCop.
+        144 [6]; 192 [25])</span>
+            1 <span rel="mint" resource="carthage">Carthage mint (as SNGCop. 
+        307)</span>
+    Disposition: Tripoli
+    di Vita, Libya Antigua 1966 Suppl., p. 80, illus.
+</pre>
+</div>
+</div>

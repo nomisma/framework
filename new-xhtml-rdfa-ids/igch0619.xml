@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0619">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.0005555556 25.0141666667</span></span></div>
+<div class="nm:editedSource">
+<pre>
+619 Troianul (formerly Belitori), 92 km. 
+    SW of Bucharest, 1943
+    Burial: c. 100 B.C.? (Mitrea) 
+    Contents: 430 AR
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: dr. incl. imit.</span> 
+    Disposition: Bucharest (Inst. Arch.)
+    Nestor, Raport asupra activit. Muzeului National 
+        de antichiati (Bucharest, 1944), pp. 57-60
+</pre>
+</div>
+</div>

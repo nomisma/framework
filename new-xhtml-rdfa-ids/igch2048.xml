@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2048">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.805049 13.912754</span></span></div>
+<div class="nm:editedSource">
+<pre>2048 Tortoreto, 32 km. ESE of Ascoli Pi-
+(1121)     ceno, Picenum, 1896
+    Burial: c. 200 B.C. (Crawford) 
+    Contents: 247 AE
+    <span rel="mint" resource="ariminum">Ariminum: 7</span>
+    <span rel="mint" resource="cosa">Cosa: 2 </span>
+    <span rel="mint" resource="cales">Cales: 2 </span>
+    <span rel="mint" resource="neapolis_campania">Neapolis: 15</span>
+    <span rel="mint" resource="teanum">Teanum: 1</span>
+    <span rel="mint" resource="arpi">Arpi: 2 </span>
+    <span rel="mint" resource="salapia">Salapia: 1</span>
+    <span rel="mint" resource="carthage">Carthage: 1</span>
+    Unc.: 20
+    <span rel="mint" resource="rome">Roman Rep.: 196 (see Crawford)</span>
+    Disposition: Teramo
+    De Petra, NSc 1896, p. 366-8 
+    Thomsen, ERC I, p. 118
+    Crawford, RRCH 101
+</pre>
+</div>
+</div>

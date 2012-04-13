@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0267">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-150" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-140" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+267 Achaea?, before 1940
+    Burial: c. 150-140 B.C. (T)
+    Contents: 48 AR
+    <span rel="mint" resource="thespiae">Thespiae?:</span> 1 triob.
+    <span rel="mint" resource="chalcis">Chalcis:</span> 10 dr.
+    <span rel="mint" resource="histiaea">Histiaea:</span> 2 tetrob.
+    <span rel="mint" resource="sicyon">Sicyon:</span> 31 triob.
+    <span rel="mint" resource="achaean_league">Achaean League:</span> 3 triob. (1 <span rel="mint" resource="megara">Megara,</span> 2 <span rel="mint" resource="elis">Elis 
+        of late style)</span>
+    <span rel="mint" resource="megalopolis">Megalopolis:</span> 1 triob.
+    Disposition: Athens
+    Oeconomides, Archaiologike Analecta ex Athenōn 
+        1968, Part II, pp. 73-6, illus.
+    See no. 260 above
+</pre>
+</div>
+</div>

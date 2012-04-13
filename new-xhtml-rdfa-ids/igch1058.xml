@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1058">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.6 33.53</span></span></div>
+<div class="nm:editedSource">
+<pre>1058 Olbia (mod. Parutino), 1951 
+    Burial: late 4th cent. B.C.
+    Contents: 45 AE. In basement room in upper 
+        town; 13 fish-shaped AE in one ancient 
+        pit and 16 in another
+     <span rel="mint" resource="olbia">Olbia: 29 fish-shaped AE
+            14 AE (as AMNG I.1, pl. 9, 4 [1],
+        8 [2], 10-11 [1], 13 [4], 16 [2], 22 [1], 
+        23 [2]; pl. 10, 1 [1])</span>
+    Unc.: 2 AE
+    Disposition: Kiev
+    Information from P. O. Karyszkowski
+</pre>
+</div>
+</div>

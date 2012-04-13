@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2138">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-350" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-325" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>2138 Sicily, 1879
+(971)
+    Burial: 350-25 B.C. (K)
+    Contents: 52 AE
+    <span rel="mint" resource="adranum">Adranum: 15 litrae (Apollo/lyre, 8 restruck 
+        on Syracuse)</span>
+    <span rel="mint" resource="syracuse">Syracuse:</span> 3 litrae (Athena/dolphins and 
+        star)
+    Unc.: 3 attributed Alaesa (KAINON, 
+        horse/griffin)
+            31 (*Zeus/eagle)
+* BMC, Locri nos. 20-3, but perhaps a 
+        Sicilian mint is to be preferred
+    Disposition: Rollin and Feuardent, Paris
+    Head, NC 1879, pp. 217-8
+</pre>
+</div>
+</div>

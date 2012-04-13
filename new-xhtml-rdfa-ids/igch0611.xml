@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0611">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.6925 21.6313888889</span></span></div>
+<div class="nm:editedSource">
+<pre>
+611 Moldova Veche, c. 72 km. W of Turnu 
+    Severin, Rumania, 1879
+    Burial: 2nd-1st cent. B.C. (T)
+    Contents: AR
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: dr. (many)</span>
+    Disposition: private coll. (the majority)
+    Berkeszi, TRÉ 23 (1907), p. 28 
+    Mitrea, ED 10 (1945), p. 88, no.
+</pre>
+</div>
+</div>

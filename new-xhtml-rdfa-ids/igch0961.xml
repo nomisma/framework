@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0961">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-70" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.5005555556 24.9411111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+961 Madanja, Smoljan district, Bulgaria, 
+(636)     1936
+    Burial: early 1st cent. B.C. (T)
+    Contents: 11 AR
+    Alexander III: 1 tetradr.
+    Imit. <span rel="mint" resource="thasos">Thasos: 10 spread-flan tetradr.</span>
+    Disposition: dispersed
+    Gerasimov, BIAB 11 (1937), p. 322
+</pre>
+</div>
+</div>

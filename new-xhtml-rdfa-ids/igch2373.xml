@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2373">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-170" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-130" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.737405 5.375719</span></span></div>
+<div class="nm:editedSource">
+<pre>2373 Cadenet, 30 km. N of Aix, 1869 
+(176)
+    Burial: mid 2nd cent. B.C. (Jenkins) 
+    Contents: 1800 AR. Pot hoard
+    <span rel="mint" resource="massalia">Massalia: dr.</span>
+    Disposition: Marseille (part); de Saulcy 
+        (part)
+    de la Saussaye, RN 1860, pp. 485-90 
+    Carpentin, RN 1861, pp. 397-406, illus. 
+    Blanchet, Traité, p. 597, no. 250 bis
+</pre>
+</div>
+</div>

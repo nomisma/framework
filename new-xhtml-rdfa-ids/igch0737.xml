@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0737">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-320" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.6963888889 23.3169444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+737 Sofia environs, Bulgaria, 1950
+    Burial: c. 330-320 B.C. (T) 
+    Contents: 83 AR
+    Philip II: 17 tetradr.
+    <span rel="mint" resource="the_thracian_chersonese">Thracian Chersonese: 50 hemidr.</span> 
+    <span rel="mint" resource="parium">Parium: 16 hemidr.</span>
+    Disposition: Sofia coll.
+    Gerasimov, BIAB 18 (1952), p. 403
+</pre>
+</div>
+</div>

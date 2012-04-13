@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1136">
+<span rel="nm:findspot"><span property="gml:pos">47.83333333 34.93333333</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-130" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1136 Khortitsa Island, in the city of Zapo-
+    rozh'e, Ukraine, 1929
+    Burial: late 2nd cent. B.C.?
+    Contents: 11+ AE
+    <span rel="mint" resource="amasia">Amasia: 2 AE (as RGA I.1, suppl. C, 19)</span> 
+    <span rel="mint" resource="amisus">Amisus: 5 AE (as RGA I.1, pl. 7, 7 [2]; unc.
+        [3])</span>
+    <span rel="mint" resource="gaziura">Gaziura: 1 AE (as RGA I.1, pl. 12, 13)</span>
+    <span rel="mint" resource="taulara">Taulara: 1 AE</span> 
+    <span rel="mint" resource="pergamum">Pergamum: 1 AE</span>
+    Disposition: museum material lost during 
+        war
+    Zograph, Ol'viia 1940, p. 295
+† Dobrovol's'kii, Arkheologiia 7 (Kiev, 1952), p. 87, 
+    no. 94 (in Ukrainian)
+</pre>
+</div>
+</div>

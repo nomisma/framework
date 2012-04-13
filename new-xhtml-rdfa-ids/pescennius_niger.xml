@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="authority" about="pescennius_niger">
+ <div property="skos:prefLabel" xml:lang="en">Pescennius Niger</div>
+ <div property="skos:definition" xml:lang="en">Roman usurper from 193 to 194.</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Pescennius_Niger"/>
+ <div><img alt=" " rel="foaf:depiction" src="http://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/B_werdeg28.jpg/220px-B_werdeg28.jpg"/><br/>Credit: Wikipedia.</div>
+</div>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1401">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-280" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.6547222222 31.9952777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1401 Gordium, Phrygia, 1959
+    Burial: c. 280 B.C.
+    Contents: 50 AR. Pot hoard from excavations
+    Alexander III: 47 lifetime and early post. 
+        dr. (<span rel="mint" resource="lampsacus">Lampsacus 10</span>, <span rel="mint" resource="abydus">Abydus 8</span>, <span rel="mint" resource="teos">Teos 2</span>, 
+        <span rel="mint" resource="colophon">Colophon 9</span>, <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia 1</span>, <span rel="mint" resource="miletus">Miletus 7</span>, <span rel="mint" resource="sardes">
+        Sardes 7</span>, unc. mints 3)
+    Lysimachus: 3 lifetime dr. (<span rel="mint" resource="lysimachia">Lysimacheia 1</span>, 
+        <span rel="mint" resource="colophon">Colophon 1</span>, <span rel="mint" resource="ephesus">Ephesus 1</span>)
+    Disposition: Ankara
+    Cox, ANSMN 12 (1966), pp. 27-33, illus.
+</pre>
+</div>
+</div>

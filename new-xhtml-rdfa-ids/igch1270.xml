@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1270">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1270 Asia Minor, 1962
+    Burial: 4th cent. B.C. (M)
+    Contents: c. 1000 AR
+    <span rel="mint" resource="persia">Persia: sigloi (king carrying spear, king 
+        with dagger)</span>
+    Disposition: Athens 5; Geneva 111
+    BCH 1962, p. 422 
+    SM 1963, p. 20
+</pre>
+</div>
+</div>

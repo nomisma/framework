@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="temesa">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Temesa</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Temesa in Bruttium.</div>
+ <div property="gml:pos">39.036454 16.159633</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Campora_San_Giovanni"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/452469"/>
+</div>

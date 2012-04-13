@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="illici">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Illici</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Illici in Hispania Citerior.</div>
+ <div property="gml:pos">38.239600 -0.695300</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Illici"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/265922"/>
+</div>

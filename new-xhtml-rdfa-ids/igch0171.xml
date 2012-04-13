@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0171">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.7305555556 22.7561111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+171 Mycenae, Argolis, 1895 
+(716)
+    Burial: <span property="nm:approximateburialdate_start" content="-250" datatype="xsd:date">240</span>-<span property="nm:approximateburialdate_end" content="-240" datatype="xsd:date">240</span> B.C. (Hackens) 
+    Contents: 3786 AR. Found in 3 pots
+    <span rel="mint" resource="leucas">Leucas:</span> 1 st.
+    <span rel="mint" resource="corinth">Corinth:</span> 7 St.; 254 dr.; 35 triob.
+    <span rel="mint" resource="phlius">Phlius:</span> 82 triob.; 51 trihemiob.
+    <span rel="mint" resource="argos_argolis">Argos:</span> 1763 triob. ; 1175 trihemiob.; 416 ob. 
+    Ptolemy II: 2 tetradr.
+    Disposition: Athens
+† Lambropoulos, ArchEph 1896, pp. 137-200 (well 
+        illus.)
+    Hackens, Antidorum W. Peremans, pp. 91-2
+</pre>
+</div>
+</div>

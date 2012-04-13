@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0516">
+<span rel="nm:findspot"><span property="gml:pos">46.35916667 25.80305556</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-150" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-125" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+516 Jigodin, 70 km. NNE of Sf. Gheorghe, 
+    Rumania, 1938
+    Burial: c. 150-125 B.C. (T)
+    Contents: 19+ AR. Pot hoard
+    <span rel="mint" resource="macedonia_1st_region">Macedonia, 1st Region: 1 tetradr.</span>
+    <span rel="mint" resource="maroneia">Maroneia: 1 spread-flan tetradr.</span> 
+    <span rel="mint" resource="thasos">Thasos: 15 spread-flan tetradr.</span>
+    Disposition: Sf. Gheorghe 17 as listed
+    Székely, Székely nemzeti Múzeum Kiadányai 5 
+        (Sfantu-Gheorghe, 1946), pp. 33-8 and p. 51 
+        (French summary), illus.
+</pre>
+</div>
+</div>

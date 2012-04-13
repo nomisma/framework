@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1804">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-140" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">32.1888888889 48.2577777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1804 Susa, Susiana, 1933-1934
+(1023)
+    Burial: after 140 B.C. (Le Rider)
+    Contents: 97 AR. Pot hoard, from excava-
+        tions
+    Alexander III: 5 lifetime and early post. 
+        dr. (<span rel="mint" resource="lampsacus">Lampsacus 3</span>, <span rel="mint" resource="colophon">Colophon 1</span>, <span rel="mint" resource="babylon">Baby-
+        lon 1</span>)
+            6 late post. tetradr. (<span rel="mint" resource="cyme_aeolis">Cyme
+        1</span>, <span rel="mint" resource="temnus">Temnus 1</span>, <span rel="mint" resource="miletus">Miletus 1</span>, <span rel="mint" resource="alabanda">Alabanda 1</span>,
+       <span rel="mint" resource="perge"> Perge 1 with anchor ctmk.</span>, <span rel="mint" resource="asia_minor">unc. Asia 
+        Minor 1</span>)
+    Eastern imit. Alexander III: 11 tetradr. 
+    Philip III: 1 dr. (<span rel="mint" resource="colophon">Colophon</span>)
+    Lysimachus: 4 post. tetradr. (<span rel="mint" resource="byzantium">Byzantium 1</span>,
+        <span rel="mint" resource="lysimachia">Lysimacheia 1</span>, <span rel="mint" resource="cius">Cius 1</span>, <span rel="mint" resource="cyzicus">Cyzicus 1</span>)
+    Antiochus II: 1 tetradr. (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Ti-
+        grim</span>)
+    Seleucus III: 1 tetradr. (<span rel="mint" resource="antiocheia_syria">Antiocheia</span>) 
+    Antiochus III: 3 tetradr. (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad 
+        Tigrim 1</span>, <span rel="mint" resource="antiocheia_syria">Antiocheia 2</span>)
+    Seleucus IV: 4 tetradr. (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Ti-
+        grim 2</span>, <span rel="mint" resource="antiocheia_syria">Antiocheia 2</span>)
+    Antiochus IV: 8 tetradr. (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Ti-
+        grim 1</span>, <span rel="mint" resource="susa">Susa 4</span>, <span rel="mint" resource="antiocheia_syria">Antiocheia 1</span>, <span rel="mint" resource="ace_ptolemais">Ace 1</span>, 
+        <span rel="mint" resource="soli-pompeiopolis">Soli 1</span>)
+            1 dr. (<span rel="mint" resource="ecbatana">Ecbatana</span>)
+    Antiochus V: 4 tetradr. (<span rel="mint" resource="antiocheia_syria">Antiocheia</span>) 
+    Demetrius I: 10 tetradr. (<span rel="mint" resource="susa">Susa 4</span>, <span rel="mint" resource="antiocheia_syria">An-
+        tiocheia 5</span>, unc. western mint 1)
+            1 dr. (<span rel="mint" resource="ecbatana">Ecbatana</span>) 
+    Alexander I Bala: 21 tetradr. (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia
+        ad Tigrim 8</span>, <span rel="mint" resource="susa">Susa 7</span>, <span rel="mint" resource="charax_spasinou">Antiocheia-
+        Charax Spasinou 2</span>, <span rel="mint" resource="ecbatana">Ecbatana I, 3</span>)
+            1 dr. (<span rel="mint" resource="antiocheia_syria">Antiocheia</span>) 
+    Demetrius II: 4 tetradr. (<span rel="mint" resource="susa">Susa 1 </span>, <span rel="mint" resource="charax_spasinou">An-
+        tiocheia-Charax Spasinou 2</span>, <span rel="mint" resource="antiocheia_syria">Antio-
+        cheia? 1</span>)
+            1 dr. (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Tigrim </span>) 
+    <span rel="mint" resource="aradus">Aradus: 1 dr. </span>
+    Kamniskires I, Elymaïs: 1 tetradr. (<span rel="mint" resource="susa">Susa </span>) 
+    Harithat, king of Hagar: 2 tetradr.
+    Abal, king of Hagar: 2 tetradr. 
+    Mithradates I, Parthia: 3 dr. (unc. mint) 
+    Euthydemus I, Bactria: 1 tetradr.
+    Disposition: Paris 71; Teheran 25
+    Unvalla, RN 1935, pp. 155-8
+† Le Rider, Suse, pp. 246-8, illus. 
+    Fischer, SM 1968, p. 11
+    For the attribution of Seleucid coins to 
+        Antiocheia-Charax Spasinou and of the 
+        tetradrachm to Demetrius II, Susa, 
+        see O. Mørkholm, AArch. 1965, pp. 
+        150, 152 ff.; ANSMN 16 (1970), pp. 
+        31-4
+</pre>
+</div>
+</div>

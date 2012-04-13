@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0673">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-31" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.3191666667 23.795</span></span></div>
+<div class="nm:editedSource">
+<pre>
+673 Dolj, Craiova district, Rumania, 19th 
+    cent.
+    Burial: c. 31 B.C.
+    Contents: 139 AR
+    <span rel="mint" resource="apollonia_illyria">Apollonia, Illyria: 1 dr.</span>
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: 135 dr.</span>
+    <span rel="mint" resource="rome">Roman Rep.: 3 den. (latest M. Antony)</span> 
+    Disposition: Bucharest (Acad.)
+    Dimian, SCIV 1955, p. 305
+</pre>
+</div>
+</div>

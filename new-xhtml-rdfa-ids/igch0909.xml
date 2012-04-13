@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0909">
+<span rel="nm:findspot"><span property="gml:pos">42.16583333 25.60277778</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-125" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+909 Meričleri, c. 25 km. N of Haskovo, 
+    Bulgaria, 1909
+    Burial: c. 125-100 B.C. (T) 
+    Contents: c. 700 AR
+    <span rel="mint" resource="thasos">Thasos: spread-flan tetradr.</span>
+    Disposition: dispersed
+    Tsontchev, AnnuaireMusNatArchPlovdiv 1960,
+        p. 206
+    According to Tsontchev this is not the 
+        same lid. as no. 908 above (Noe 675). 
+        The latter was found in a different 
+        place, somewhat to the west of Me-
+        ričleri
+</pre>
+</div>
+</div>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="apameia_myrlea">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Apameia (Myrleia)</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Apameia (originally Myrlea) in Bithynia.</div>
+ <div property="gml:pos">40.376389 28.883333</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Apamea_Myrlea"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/511194"/>
+</div>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="avenio">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Avenio</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Avenio in Gaul.</div>
+ <div property="gml:pos">43.950668 4.806612</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Avignon"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/148004"/>
+</div>

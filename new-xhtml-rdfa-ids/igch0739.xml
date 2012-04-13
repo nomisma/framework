@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0739">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-320" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.3494444444 26.4980555556</span></span></div>
+<div class="nm:editedSource">
+<pre>
+739 Didymotichon, Thrace, c. 1870-1875 
+(327)
+    Burial: c. 330-320 B.C. (T) 
+    Contents: 1000+ AR
+    <span rel="mint" resource="abdera_thrace">Abdera: dr. (some)</span>
+    <span rel="mint" resource="apollonia_pontica">Apollonia Pontica: tetrob. (c. 10)</span> 
+    <span rel="mint" resource="maroneia">Maroneia: tetrob. (some)</span>
+    <span rel="mint" resource="the_thracian_chersonese">Thracian Chersonese: hemidr. (three-fourths 
+        of find)</span>
+    <span rel="mint" resource="parium">Parium: hemidr. (many)</span>
+    Disposition: unknown
+    Tacchella, RN 1898, pp. 214-5
+    Le Rider, Deux trésors, p. 52, note 4
+    Tacchella includes as part of the same bd. 
+        the 20 late tetradr. of no. 960 below 
+        but it seems almost certain that two 
+        separate finds are involved
+</pre>
+</div>
+</div>

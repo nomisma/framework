@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2069">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-490" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-470" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.43 14.4791666667</span></span></div>
+<div class="nm:editedSource">
+<pre>2069 Serra Orlando (anc. Morgantina), 
+    4 km. NE of Piazza Armerina, 1957 
+    Burial: 490-80 B.C. (Sjöqvist); 480-70 (K) 
+    Contents: 3 AR. Probably a hoard fallen from
+        upper story of house
+    <span rel="mint" resource="syracuse">Syracuse: tetradr. </span>
+    Disposition: Syracuse
+    Sjöqvist, AJA 1958, p. 156, illus.
+</pre>
+</div>
+</div>

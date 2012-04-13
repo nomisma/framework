@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="neapolis_macedon">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Neapolis</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Neapolis in Macedonia.</div>
+ <div property="gml:pos">40.933608 24.413063</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Kavala"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/501523"/>
+</div>

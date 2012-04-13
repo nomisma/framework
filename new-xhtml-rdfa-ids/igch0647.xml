@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0647">
+<span rel="nm:findspot"><span property="gml:pos">43.92833333 25.35638889</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-81" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+647 Poroschia, 7 km. S of Alexandria, Ru-
+    mania, 1943 or earlier
+    Burial: after 81 B.C. (Mitrea)
+    Contents: 124 AR
+    <span rel="mint" resource="thasos">Thasos: 39 spread-flan tetradr.</span> 
+    <span rel="mint" resource="rome">Roman Rep.: 85 den.</span>
+    Disposition: dispersed
+† Moisil, Balcania 1944, p. 13, nos. 7-8, illus. 
+    Spiru, SCN 3 (1960), p. 553
+    The two reports seem to refer to the same 
+        hd. although Spiru says it was found
+        in 1927-28
+</pre>
+</div>
+</div>

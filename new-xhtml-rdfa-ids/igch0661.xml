@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0661">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-54" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.8108333333 21.3891666667</span></span></div>
+<div class="nm:editedSource">
+<pre>
+661 Lunca, near Bazias, 65 km. SW of 
+(628)     Resita, Rumania, c. 1912
+    Burial: after 54 B.C. (Mitrea)
+    Contents: 52 AR
+    <span rel="mint" resource="apollonia_illyria">Apollonia, Illyria: 3 dr.</span>
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: 10 dr.</span>
+    Imit. Philip II: 1 tetradr.
+    <span rel="mint" resource="rome">Roman Rep.: 38 den.</span>
+    Disposition: dispersed
+    Harsanyi, NK 1912, p. 141
+</pre>
+</div>
+</div>

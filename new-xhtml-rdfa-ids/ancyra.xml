@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="ancyra">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Ancyra</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Ancyra in Galatia.</div>
+ <div property="gml:pos">39.943198 32.860538</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/619103"/>
+</div>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2311">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-370" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-330" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.622448 -0.096931</span></span></div>
+<div class="nm:editedSource">
+<pre>2311 Morella, 60 km. SW of Tortosa, 1862 
+(706)
+    Burial: mid 4th cent. B.C. (Guadan)
+    Contents: 21 AR
+    <span rel="mint" resource="emporiae">Emporiae and unc. Spanish: 9 fr. </span>
+    <span rel="mint" resource="massalia">Massalia: 5 fr.</span>
+    <span rel="mint" resource="massalia">Massalia?: 6 fr. (incl. some types as Auriol) </span>
+    <span rel="mint" resource="taras">Taras: 1 fr. (?)</span>
+    Disposition: Paris 17 (cf. CMG 476-7, 
+        485-7, 489-95, 510, 520, 524, 553-4)
+† Zobel y Zangroniz, MNE 1877-9, p. 118, illus. 
+    Amoros, MEAD, pp. 18, 34, 40, 50 (cf. p. 18,
+        no. 17 for possible presence of Taras coin) 
+    de Guadan, Numisma 16 (1955), p. 14; MPER,
+        pp. 78-9
+</pre>
+</div>
+</div>

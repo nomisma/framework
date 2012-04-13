@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1834">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">35.0186111111 69.1694444444</span></span></div>
+<div class="nm:editedSource">
+<pre>1834 Charikar ?, c. 55 km. N of Cabul (anc. 
+    Cabura, Paropamisadae), c. 1840
+    Burial: 2nd cent. B.C. (Le Rider)
+    Contents: 31 AE 
+    Eucratides: 13 
+    Apollodotus I: 18 
+    Disposition: unknown
+    Haughton, NC 1948, p. 103
+    Possibly two hds.
+</pre>
+</div>
+</div>

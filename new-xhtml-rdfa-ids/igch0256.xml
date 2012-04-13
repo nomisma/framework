@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0256">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-120" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.3969444444 25.2677777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+256 Delos, 1931
+(319)
+    Burial: c. 150 B.C. (T); c. 120 (Lewis) 
+    Contents: 20 AR. From excavations 
+    <span rel="mint" resource="athens">Athens:</span> 18 New Style tetradr.
+            2 New Style dr.
+    Disposition: Myconos?
+    Kambanis, BCH 1934, p. 122, note 
+    Thompson, Athens, p. 519
+    (among Kambanis' notes is the statement 
+        that the latest issue is of Euryklei-
+        Ariara and that he saw the hd. in the 
+        Myconos museum)
+</pre>
+</div>
+</div>

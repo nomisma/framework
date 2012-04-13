@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0901">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-150" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.2066666667 27.9088888889</span></span></div>
+<div class="nm:editedSource">
+<pre>
+901 Varna (anc. Odessus), Bulgaria, 1946 
+    Burial: 150-100 B.C. (T)
+    Contents: 15+ AR
+    Alexander III: late post. tetradr. (<span rel="mint" resource="mesembria">Me-
+        sembria)</span>
+    Disposition: dispersed
+    Gerasimov, BIAB 17 (1950), p. 316
+</pre>
+</div>
+</div>

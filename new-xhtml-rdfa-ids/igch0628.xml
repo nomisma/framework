@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0628">
+<span rel="nm:findspot"><span property="gml:pos">44.24777778 26.92333333</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-70" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+628 Bosneagu, c. 65 km. ESE of Bucha-
+    rest, Rumania, 1962
+    Burial: early 1st cent. B.C. (Mitrea) 
+    Contents: 31 AR. Pot hoard
+    <span rel="mint" resource="maroneia">Maroneia: 1 spread-flan tetradr.</span>
+    <span rel="mint" resource="thasos">Thasos: 30 spread-flan tetradr. incl. imit.</span> 
+    Disposition: Calarasi
+    Mitrea, SCIV 1963, p. 467
+    Atanasiu, RevMuz 4 (1964), pp. 51-2, illus.
+</pre>
+</div>
+</div>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1179">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-460" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1179 <span property="nm:findspot" content="38.5 26.0">Chios?, Ionia</span>, c. 1933
+(249)
+    Burial: c. 460 B.C. (M)
+    Contents: 26+ AR
+    <span rel="mint" resource="chios">Chios: st.</span> 
+    Disposition: dispersed
+    Casts in ANS
+</pre>
+</div>
+</div>

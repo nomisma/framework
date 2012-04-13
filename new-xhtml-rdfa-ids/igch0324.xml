@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0324">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-130" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-70" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.3997222222 25.2666666667</span></span></div>
+<div class="nm:editedSource">
+<pre>
+324 Delos, 1968
+    Burial: late 2nd-early 1st cent. B.C. 
+    Contents: 13 AE. Pot hoard, from excavations 
+    <span rel="mint" resource="athens">Athens ("Delian types")</span>
+    Disposition: Delos
+    Foster-Hackens, Archaeometry 1969, pp. 70- 1 
+        illus.
+</pre>
+</div>
+</div>

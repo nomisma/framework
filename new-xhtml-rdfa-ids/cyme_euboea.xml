@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="cyme_euboea">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Cyme</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Cyme in Euboea. The existence of the site and mint are uncertain. Coins previously attributed to this mint are now assigned to Athens.</div>
+ <div property="gml:pos">38.633333 24.1</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Kymi"/>
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1767">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-210" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">29.4458333333 48.2741666667</span></span></div>
+<div class="nm:editedSource">
+<pre>1767 Failaka (anc. Icarus), island in the 
+    Persian Gulf off Kuwait, 1960
+    Burial: 210-200 B.C.
+    Contents: 13 AR, From excavations
+    Imit. Alexander III: 12 tetradr. (from 
+         <span rel="mint" resource="gerrha">Gerrha?</span>)
+    Antiochus III: 1 tetradr. ( <span rel="mint" resource="susa">Susa</span>)
+    Disposition: Kuwait
+    Mørkholm, Kuml 1960, pp. 199-207, illus.
+</pre>
+</div>
+</div>

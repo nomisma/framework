@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1973">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-275" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.2707 16.2208</span></span></div>
+<div class="nm:editedSource">
+<pre>1973 Gerace (anc. Locri), 1906 
+(426)
+    Burial: c. 275 B.C. (K)
+    Contents: 70+ AR
+    Pyrrhus: tetradr. (Zeus/Dione)
+    Disposition: Riccio 6; Lloyd 1 (SNG 656); 
+        Syracuse 1; Hess-Leu, Apr. 2, 1958, 
+        160 (erroneously 'Cacace')
+    Orsi, RIN 1908, pp. 339-40
+    Currò Pisanò AIIN 1962-4, pp. 232, 238 (giving 
+        date of discovery as 1904)
+</pre>
+</div>
+</div>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1904">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-410" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-405" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.4213888889 15.0044444444</span></span></div>
+<div class="nm:editedSource">
+<pre>1904 Paestum (anc. Poseidonia), Lucania,
+(782)     1858
+    Burial: c. 410-405 B.C. (K)
+    Contents: 1000+ AR
+    <span rel="mint" resource="taras">Taras: st. (to horsemen, Per. II)</span> 
+    <span rel="mint" resource="heraclea_lucaniae">Heracleia: 2 st.; fr.</span> 
+    <span rel="mint" resource="metapontum">Metapontum: st. (to Noe 334-44) </span>
+    <span rel="mint" resource="poseidonia">Poseidonia: very many st.</span>
+    <span rel="mint" resource="sybaris">Sybaris</span>
+    <span rel="mint" resource="thurium">Thurium: very many st. </span>
+    <span rel="mint" resource="caulonia">Caulonia</span>
+    <span rel="mint" resource="croton"> Croton</span>
+    <span rel="mint" resource="velia">Velia: st.; dr.</span>
+    Disposition: dispersed
+† Sambon, Sur un dépôt de monnaies grecques trouvé 
+        dans une terve de l'ancienne Lucanie (Naples, 
+        1858)
+    Sambon, Recherches, pp. 30-2
+    Evans, NC 1889, pp. 39-42
+    Pozzi, AIIN 1962-4, pp. 147-58
+    Kraay, SNR 1970, pp. 47-72
+    Sambon records the presence in this hd.. of 
+        a number of Campano-Tarentine st.; 
+        Pozzi accordingly dates the burial c. 
+        300 B.C. In view of the total absence of 
+        coins which can be dated between 400 
+        and 300 B.C. Kraay regards the asso-
+        ciation of Campano-Tarentine st. as 
+        mistaken, and treats the hd. as a late 
+        5th cent. burial
+</pre>
+</div>
+</div>

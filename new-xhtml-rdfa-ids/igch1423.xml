@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1423">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-280" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.6377777778 32.8913888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1423 Armenak (= Ermenak; anc. Germa-
+(67)     nicopolis), Cilicia Tracheia, 1927
+    Burial: c. 280 B.C. (Newell) 
+    Contents: 1957+ AR
+    Alexander III: 265 lifetime and early 
+        post. tetradr. (<span rel="mint" resource="amphipolis">Amphipolis 94
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45042">ANS 1944.100.45042</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45008">ANS 1944.100.45008</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45034">ANS 1944.100.45034</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45068">ANS 1944.100.45068</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45010">ANS 1944.100.45010</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45009">ANS 1944.100.45009</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45030">ANS 1944.100.45030</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45029">ANS 1944.100.45029</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45055">ANS 1944.100.45055</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45023">ANS 1944.100.45023</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45065">ANS 1944.100.45065</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45066">ANS 1944.100.45066</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45031">ANS 1944.100.45031</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45041">ANS 1944.100.45041</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45053">ANS 1944.100.45053</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45011">ANS 1944.100.45011</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45067">ANS 1944.100.45067</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45007">ANS 1944.100.45007</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45056">ANS 1944.100.45056</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45043">ANS 1944.100.45043</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45022">ANS 1944.100.45022</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45033">ANS 1944.100.45033</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45054">ANS 1944.100.45054</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45017">ANS 1944.100.45017</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45028">ANS 1944.100.45028</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45050">ANS 1944.100.45050</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45049">ANS 1944.100.45049</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45016">ANS 1944.100.45016</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45062">ANS 1944.100.45062</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45063">ANS 1944.100.45063</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45039">ANS 1944.100.45039</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45040">ANS 1944.100.45040</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45059">ANS 1944.100.45059</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45060">ANS 1944.100.45060</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45069">ANS 1944.100.45069</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45035">ANS 1944.100.45035</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45047">ANS 1944.100.45047</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45061">ANS 1944.100.45061</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45048">ANS 1944.100.45048</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45036">ANS 1944.100.45036</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45024">ANS 1944.100.45024</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45038">ANS 1944.100.45038</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45045">ANS 1944.100.45045</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45044">ANS 1944.100.45044</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45052">ANS 1944.100.45052</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45051">ANS 1944.100.45051</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45046">ANS 1944.100.45046</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45025">ANS 1944.100.45025</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45014">ANS 1944.100.45014</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45032">ANS 1944.100.45032</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45064">ANS 1944.100.45064</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45012">ANS 1944.100.45012</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45018">ANS 1944.100.45018</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45037">ANS 1944.100.45037</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45013">ANS 1944.100.45013</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45019">ANS 1944.100.45019</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45020">ANS 1944.100.45020</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45026">ANS 1944.100.45026</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45027">ANS 1944.100.45027</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45021">ANS 1944.100.45021</a></span>, 
+        <span rel="mint" resource="pella_macedon">Pella 6</span>, 
+        <span rel="mint" resource="sicyon">Sicyon 10</span>, <span rel="mint" resource="greece">unc. Greece 9</span>, <span rel="mint" resource="lampsacus">Lampsacus 2</span>, 
+        <span rel="mint" resource="miletus">Miletus 1</span>, <span rel="mint" resource="chios">Chios 2</span>, <span rel="mint" resource="sardes">Sardes 3</span>, <span rel="mint" resource="myriandrus">Myrian-
+        drus 1</span>, <span rel="mint" resource="paphus">Paphus 1</span>,  <span rel="mint" resource="salamis_cyprus">Salamis 2</span>, unc. 
+        <span rel="mint" resource="cyprus">Cyprus</span> or <span rel="mint" resource="cilicia">Cilicia 1</span>, <span rel="mint" resource="aradus">Aradus 5</span>, <span rel="mint" resource="byblus">Byblus 2</span>, 
+        <span rel="mint" resource="tyre">Tyre 3</span>, <span rel="mint" resource="ace_ptolemais">Ace 1</span>, <span rel="mint" resource="babylon">Babylon 10</span>)
+            1171 dr. (<span rel="mint" resource="lysimachia">Lysimacheia 1</span>, 
+        <span rel="mint" resource="lampsacus">Lampsacus 60</span>, <span rel="mint" resource="abydus">Abydus 50</span>, <span rel="mint" resource="colophon">Colophon 
+        83</span>, <span rel="mint" resource="ephesus">Ephesus 3</span>, <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia 55</span>, <span rel="mint" resource="miletus">Miletus 
+        31</span>, <span rel="mint" resource="priene">Priene 3</span>, <span rel="mint" resource="teos">Teos 18</span>, <span rel="mint" resource="chios">Chios 1</span>, <span rel="mint" resource="sardes">Sardes 
+        48</span>, <span rel="mint" resource="salamis_cyprus">Salamis 3</span>, <span rel="mint" resource="aradus">Aradus 1</span>, <span rel="mint" resource="carrhae">Carrhae 1</span>, 
+        unc. mints 71, barb. imit. 18
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45226">ANS 1944.100.45226</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45227">ANS 1944.100.45227</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45224">ANS 1944.100.45224</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45246">ANS 1944.100.45246</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45225">ANS 1944.100.45225</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45249">ANS 1944.100.45249</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45250">ANS 1944.100.45250</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45244">ANS 1944.100.45244</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45164">ANS 1944.100.45164</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45219">ANS 1944.100.45219</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45245">ANS 1944.100.45245</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45232">ANS 1944.100.45232</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45233">ANS 1944.100.45233</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45221">ANS 1944.100.45221</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45162">ANS 1944.100.45162</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45217">ANS 1944.100.45217</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45163">ANS 1944.100.45163</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45218">ANS 1944.100.45218</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45229">ANS 1944.100.45229</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45230">ANS 1944.100.45230</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45161">ANS 1944.100.45161</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45231">ANS 1944.100.45231</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45247">ANS 1944.100.45247</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45222">ANS 1944.100.45222</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45248">ANS 1944.100.45248</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45223">ANS 1944.100.45223</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45228">ANS 1944.100.45228</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45242">ANS 1944.100.45242</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45160">ANS 1944.100.45160</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45241">ANS 1944.100.45241</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45216">ANS 1944.100.45216</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45243">ANS 1944.100.45243</a>
+    Philip III: 17 tetradr. (<span rel="mint" resource="myriandrus">Myriandrus 1</span>, <span rel="mint" resource="aradus">Ara-
+        dus 2</span>, <span rel="mint" resource="marathus">Marathus 2</span>, <span rel="mint" resource="babylon">Babylon 2</span>)
+            56 dr. (<span rel="mint" resource="lampsacus">Lampsacus 1</span>,  <span rel="mint" resource="abydus">Abydus 2</span>, 
+        <span rel="mint" resource="colophon">Colophon 8</span>, <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia 3</span>, <span rel="mint" resource="teos">Teos 1</span>, <span rel="mint" resource="sardes">Sardes
+        11</span>, <span rel="mint" resource="side">Side? 3</span>, <span rel="mint" resource="babylon">Babylon 1</span>, unc. mints 2)
+    Lysimachus: 394 lifetime tetradr. (<span rel="mint" resource="amphipolis">Amphi-
+        polis 21</span>, <span rel="mint" resource="pella_macedon">Pella 15</span>, <span rel="mint" resource="aenus">Aenus 1</span>, <span rel="mint" resource="odessus">Odessus ? 1</span>, 
+        <span rel="mint" resource="perinthus">Perinthus 2</span>, <span rel="mint" resource="lysimachia">Lysimacheia 9</span>, <span rel="mint" resource="sestus">Sestus 17</span>, 
+        <span rel="mint" resource="lampsacus">Lampsacus 113</span>, <span rel="mint" resource="abydus">Abydus 16</span>, <span rel="mint" resource="cius">Cius 3</span>, 
+        Heracleia 6, <span rel="mint" resource="pergamum">Pergamum 6,</span> <span rel="mint" resource="alexandreia_troas">Alexandreia 
+        Troas 6</span>, <span rel="mint" resource="mytilene">Mytilene 3</span>, <span rel="mint" resource="colophon">Colophon 1</span>, 
+       <span rel="mint" resource="ephesus">Ephesus 6</span>, <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia 38</span>, <span rel="mint" resource="sardes">Sardes 21</span>, 
+        unc. mints 7)
+            42 dr. (<span rel="mint" resource="lysimachia">Lysimacheia 1</span>, <span rel="mint" resource="sestus">Sestus 
+        3</span>, <span rel="mint" resource="lampsacus">Lampsacus 1</span>, <span rel="mint" resource="abydus">Abydus 1</span>, <span rel="mint" resource="mytilene">Mytilene 1</span>,
+        <span rel="mint" resource="colophon">Colophon 3</span>, <span rel="mint" resource="ephesus">Ephesus 7</span>, <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia 2</span>, 
+        <span rel="mint" resource="teos">Teos 1</span>)
+    Seleucus I: 9 tetradr. (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Tigrim 
+        4</span>, <span rel="mint" resource="ecbatana">Ecbatana 2</span>, <span rel="mint" resource="carrhae">Carrhae 1</span>, <span rel="mint" resource="seleuceia_pieria">Seleuceia 
+        Pieria 1</span>, <span rel="mint" resource="sardes">Sardes 1</span>)
+            3 dr. (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Tigrim</span> 
+        <span rel="mint" resource="ecbatana">Ecbatana 1</span>, <span rel="mint" resource="laodiceia_ad_mare">Laodiceia ad mare 1</span>)
+    Disposition: New York 963, as detailed 
+        above
+    Information from E. T. Newell
+    The coins of Alexander III from Priene and 
+        Chios are generally dated later in the 
+        3rd cent. B.C. and may be intrusive. 
+        For the Seleucid coins cf. ESM and 
+        WSM, indices of hds.
+</pre>
+</div>
+</div>

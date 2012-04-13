@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="chersonesus_crete">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Chersonesus</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Chersonesus in Crete.</div>
+ <div property="dcterms:partOf" resource="crete"/>
+<div property="gml:pos">35.319165 25.388567</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Hersonissos"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/589744"/>
+</div>

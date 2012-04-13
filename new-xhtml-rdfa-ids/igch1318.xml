@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1318">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-190" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.4766666667 28.1138888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1318 Sardes, Lydia, 1911 
+(926)
+    Burial: c. 190 B.C. (Franke)
+    Contents: 60 AR. Pot hoard from excavations
+    Alexander III: 4 lifetime and early post. 
+        tetradr. (<span rel="mint" resource="amphipolis">Amphipolis 2</span>, <span rel="mint" resource="babylon">Babylon 1</span>, 
+        unc. mint 1)
+            26 late post. tetradr. (<span rel="mint" resource="mytilene">Myti-
+        lene 1</span>, <span rel="mint" resource="rhodes">Rhodes 3</span>, <span rel="mint" resource="phaselis">Phaselis 1</span>, <span rel="mint" resource="aspendus">Aspendus
+        6</span>, <span rel="mint" resource="perge">Perge 6</span>, <span rel="mint" resource="aradus">Aradus 4</span>, unc. mint 5) 
+    <span rel="mint" resource="alabanda">Alabanda: 1 tetradr.</span>
+    <span rel="mint" resource="perge">Perge: 2 tetradr.</span>
+    <span rel="mint" resource="side">Side: 13 tetradr.</span>
+    Seleucus I: 1 tetradr. (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Tigrim</span>)
+    Antiochus I: 1 tetradr. (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Ti-
+        grim</span>)
+    Antiochus II: 1 tetradr. (<span rel="mint" resource="ecbatana">Ecbatana</span>) 
+    Seleucus II: 1 tetradr. (<span rel="mint" resource="apameia_syria">Apameia</span>) 
+    Antiochus Hierax: 1 tetradr. (<span rel="mint" resource="sardes">Sardes</span>) 
+    Seleucus III: 1 tetradr. (<span rel="mint" resource="susa">Susa</span>)
+    Antiochus III:: 8 tetradr. (<span rel="mint" resource="ecbatana">Ecbatana 2</span>, 
+        <span rel="mint" resource="nisibis">Nisibis 1</span>, <span rel="mint" resource="antiocheia_syria">Antiocheia 2</span>, <span rel="mint" resource="apameia_syria">Apameia 2</span>, 
+        <span rel="mint" resource="laodiceia_ad_mare">Laodiceia 1</span>)
+    Disposition: Istanbul
+    Bell, Sardis XI (Leiden, 1916), p. v, pp. 1 ff. 
+    Franke, AM 1961, pp. 201 ff.
+    Seyrig, RN 1963, p. 59
+</pre>
+</div>
+</div>

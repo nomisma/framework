@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1134">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-130" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.5769444444 33.5180555556</span></span></div>
+<div class="nm:editedSource">
+<pre>1134 Cherronesus (near mod. Sevastopol'), 
+    1903
+    Burial: late 2nd cent. B.C.
+    Contents: c. 50 AR., c. 200 AE
+    <span rel="mint" resource="cherronesus">Cherronesus: dr. (as BMC 2)
+            hemidr. (as Minns, pl. 4, 18) 
+            AE (as BMC 7-8; Minns, pl. 4, 
+        11, 19, 20)
+        (coins with variant types, different 
+        magistrates, ctmks.)</span>
+    Disposition: dispersed
+    Bertier de la Garde, ZOOID 26 (1906), pp. 250-76
+</pre>
+</div>
+</div>

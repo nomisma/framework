@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0427">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">46.1583333333 24.4658333333</span></span></div>
+<div class="nm:editedSource">
+<pre>
+427 Atel (formerly Hetzeldorf), c. 60 km. 
+    NE of Sibiu, Rumania, c. 1877
+    Burial: late 4th cent. B.C.? (Mitrea) 
+    Contents: AV
+    Philip II: st.
+    Disposition: Sighisoara (lyceum) 1
+    Gooss, AEM 1 (1877), p. 125
+</pre>
+</div>
+</div>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2281">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-238" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>2281 Tunisia, 1928
+(1139)
+    Burial: 238 B.C.
+    Contents: 39 AE
+    Carthage: 21 unc. mint (as SNGCop. 226) 
+            17 <span rel="mint" resource="libya">Libyan mint (as SNGCop. 
+        244 [12]; 235 [2]; 233 [3])</span>
+            1 <span rel="mint" resource="sardinia">Sardinian mint (as SNGCop.
+        246)</span>
+    Disposition: London 15, Copenhagen 5 
+        (SNG 226-30 "Tripoli hoard")
+    Robinson, NC 1943, p. 6
+    Said to have been found at Tripoli, Libya,
+        but really from Tunis (E.S.G.R.)
+</pre>
+</div>
+</div>

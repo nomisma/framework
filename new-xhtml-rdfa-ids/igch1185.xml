@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1185">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div class="nm:editedSource">
+<pre>1185 <span property="nm:findspot" content="36.16611111 27.97722222">Rhodes, 1880</span>
+    Burial: c. <span property="nm:approximateburialdate" content="-450" datatype="xsd:date">450 B.C.</span> (M) 
+    Contents: 41+ AR
+    <span rel="mint" resource="dicaea_thrace">Dicaea: 1 didr.</span> 
+    <span rel="mint" resource="thasos">Thasos: 8 didr.</span> 
+    <span rel="mint" resource="lete">Lete: 3 didr.</span> 
+    <span rel="mint" resource="mende">Mende: 1 tetradr.</span> 
+    <span rel="mint" resource="neapolis_macedon">Neapolis: 1 didr.</span>
+    <span rel="mint" resource="stageira">Stagira: 1 tetradr.; 2 didr.</span>
+    <span rel="mint" resource="thraco-macedonian">Unc. Thraco-Maced: 3 didr.</span>
+    <span rel="mint" resource="aegina">Aegina: 2 didr.</span> 
+    <span rel="mint" resource="tenos">Tenos: 1 didr.</span> 
+    <span rel="mint" resource="thera">Thera?: 1 didr.</span> 
+    <span rel="mint" resource="phocaea">Phocaea: 1 tetradr.</span>
+    <span rel="mint" resource="ialysus">Ialysus: 1 fr.</span> 
+    <span rel="mint" resource="lycia">Lycia: 3 st.</span>
+    <span rel="mint" resource="phaselis">Phaselis: 1 double-siglos</span>
+    <span rel="mint" resource="soli-pompeiopolis">Soli: 1 double-siglos</span>
+    <span rel="mint" resource="cyrene">Cyrene: 3 tetradr., 3 dr.</span>
+    <span rel="mint" resource="barce">Barce: 1 dr.</span>
+    <span rel="mint" resource="teucheira">Barce and Teuchira: 1 tetradr.</span> 
+    <span rel="mint" resource="euhesperides">Euesperides: 2 dr.</span>
+    Disposition: Brussels 40
+    Naster, Lucien de Hirsch (Brussels, 1959), p. 148, 
+        no. 887
+</pre>
+</div>
+</div>

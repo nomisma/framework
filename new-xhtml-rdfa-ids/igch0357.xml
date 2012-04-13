@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0357">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-480" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-450" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.5144444444 23.8244444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+357 Hierissos, near anc. Acanthus, Mace-
+(486)     donia, 1934
+    Burial: c. 480-450 B.C.? (T)
+    Contents: 150+ AR
+    <span rel="mint" resource="acanthus">Acanthus:</span> tetradr. and fr.
+    Disposition: dispersed
+    Desneux, RBN 1949, pp. 42, 49-52, some illus.
+</pre>
+</div>
+</div>

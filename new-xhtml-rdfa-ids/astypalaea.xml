@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="astypalaea">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Astypalaea</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Astypalaea, island off the coast of Caria.</div>
+ <div property="gml:pos">36.55 26.35</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Astypalaia"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/599536"/>
+</div>

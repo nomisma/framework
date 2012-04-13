@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0753">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-320" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.1969444444 25.9533333333</span></span></div>
+<div class="nm:editedSource">
+<pre>
+753 Trojanovo, c. 40 km. S of Stara Za-
+    gora, Bulgaria, 1961
+    Burial: c. 330-320 B.C. (T)
+    Contents: 552 AR. Pot hoard
+    <span rel="mint" resource="the_thracian_chersonese">Thracian Chersonese: 441 hemidr.</span> 
+    <span rel="mint" resource="parium">Parium: 111 hemidr.</span>
+    Disposition: Stara Zagora
+    Gerasimov, BIAB 26 (1963), p. 265 
+† Nikolov, Arkheologiia V.4 (1963), pp. 41-2
+</pre>
+</div>
+</div>

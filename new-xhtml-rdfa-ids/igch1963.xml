@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1963">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-280" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.675 16.0958333333</span></span></div>
+<div class="nm:editedSource">
+<pre>1963 Vibo Valentia (= Hipponium; for-
+(1159)     merly Monteleone), Bruttium, 1927
+    Burial: c. 280 B.C.? (K) 
+    Contents: c. 70 AR
+    <span rel="mint" resource="metapontum">Metapontum</span> 
+    <span rel="mint" resource="thurium">Thurium</span>
+    <span rel="mint" resource="velia">Velia: 7 st.</span>
+    <span rel="mint" resource="croton">Croton: 4 st. (3 incuse; 1 Apollo hd./tripod) </span>
+    <span rel="mint" resource="locri_epizephyrii">Locri: 9 st. (8 Pegasi; 1 Zeus/eagle)</span> 
+    <span rel="mint" resource="terina">Terina: 1 st.</span>
+    Disposition: Reggio (in 1969) 4 (1 Croton 
+        dumpy incuse; 1 Croton Apollo hd./ 
+        tripod; 1 Velia; 1 Pegasus)
+    Toraldo, NSc 1928, p. 240 
+    Catanuto, NSc 1932, pp. 393-4
+    The hd. was originally reported to contain 
+        Metapontum, Thurium, Velia and 
+        Locri, which is probably the most 
+        reliable description of its contents. The 
+        material eventually confiscated con-
+        sisted of the last four items above, 
+        together with a miscellany of Greek, 
+        Roman and modern AE
+</pre>
+</div>
+</div>

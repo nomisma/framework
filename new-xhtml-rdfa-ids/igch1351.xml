@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1351">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.9783009 27.0081067</span></span></div>
+<div class="nm:editedSource">
+<pre>1351 Calymna, Caria, before 1922
+(190)
+    Burial: 2nd-1st cent. B.C.
+    Contents: "many" AE 
+    <span rel="mint" resource="miletus">Miletus (as BMC 134 ff.)</span>
+    Disposition: London some 
+    Hill, NC 1923, p. 227
+</pre>
+</div>
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0439">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.9936111111 24.5833333333</span></span></div>
+<div class="nm:editedSource">
+<pre>
+439 Scarisoara, c. 33 km. SE of Bucharest, 
+    Rumania, 1950-1952
+    Burial: c. 300 B.C.
+    Contents: 11+ AR. Pot hoard 
+    <span rel="mint" resource="istrus">Istrus: 9 dr.</span>
+    Imit. Philip II: 2 tetradr. 
+    Disposition: Oltenita
+    Preda, Dacia 1966, pp. 221-35, illus.; SCN 4 
+        (1968), pp. 441-2, illus.
+</pre>
+</div>
+</div>

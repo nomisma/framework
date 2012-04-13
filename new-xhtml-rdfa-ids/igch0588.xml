@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0588">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">47.2263888889 22.7966666667</span></span></div>
+<div class="nm:editedSource">
+<pre>
+588 Simleul, 71 km. WNW of Cluj, Ru-
+(981)     mania, 1907
+    Burial: 2nd-1st cent. B.C. (T)
+    Contents: 72 AR
+    <span rel="mint" resource="apollonia_illyria">Apollonia, Illyria: 42 dr.</span>
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: 27 dr., 3 imit.</span>
+    Disposition: Budapest
+    Harsányi, NK 1908, pp. 113-5
+</pre>
+</div>
+</div>

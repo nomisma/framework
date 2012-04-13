@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1157">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-575" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-560" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.659722 27.297778</span></span></div>
+<div class="nm:editedSource">
+<pre>1157 Priene, Ionia, before 1875
+    Burial: c. 575-560 B.C. (Barron)
+    Contents: 11? EL
+    <span rel="mint" resource="samos">Samos: 1 half-st.?; 2? sixths; 2 twelfths</span>
+    <span rel="mint" resource="lydia">Lydia: 1 twenty-fourth; 1 forty-eighth; 
+        2 ninety-sixths</span>
+    Unc. mints: 1 twenty-fourth; 1 ninety-
+        sixth
+    Disposition: BM 11?
+    Head, NC 1875, pp. 273-6
+    BMCIonia, p. 5, 16; p. 6, 27; p. 13, 59; p. 15, 
+        69-70
+    BMCLydia, p. 4, nos. 21, 23, 25, 26
+    Barron, Samos, pp. 15-6
+    The half-stater and one of the sixths from 
+        Samos are only mentioned by Head 
+        and were acquired separately
+</pre>
+</div>
+</div>

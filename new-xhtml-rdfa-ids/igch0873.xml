@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0873">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.4855555556 26.5072222222</span></span></div>
+<div class="nm:editedSource">
+<pre>
+873 Jambol (anc. Cabyle) environs, Bul-
+(510)     garia, 1930
+    Burial: c. 200 B.C. (T)
+    Contents: 72 AR
+    Alexander III: 71 late post. tetradr. 
+    Cavarus: 1 tetradr.
+    Disposition: Sofia (Cavarus)
+    Mouchmov, BIAB 6 (1930-1), p. 318
+</pre>
+</div>
+</div>

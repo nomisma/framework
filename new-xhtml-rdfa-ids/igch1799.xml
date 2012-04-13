@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1799">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-210" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">32.18922 48.257785</span></span></div>
+<div class="nm:editedSource">
+<pre>1799 Susa, Susiana, 1948-1949
+    Burial: c. 210-200 B.C. (Le Rider) 
+    Contents: 20 AR. From excavations
+    Alexander III: 19 lifetime and early post.
+        dr. (<span rel="mint" resource="lampsacus">Lampsacus 5</span>, <span rel="mint" resource="abydus">Abydus 5</span>, <span rel="mint" resource="colophon">Colophon
+        4</span>, <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia 3</span>, <span rel="mint" resource="miletus">Miletus</span>, <span rel="mint" resource="sardes">Sardes 1</span>) 
+    Lysimachus: 1 lifetime dr. (<span rel="mint" resource="colophon">Colophon</span>)
+    Disposition: Paris 10; Teheran 10
+† Le Rider, Suse, pp. 243-4, illus. 
+    Fischer, SM 1968, p. 10
+</pre>
+</div>
+</div>

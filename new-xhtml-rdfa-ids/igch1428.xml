@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1428">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.6527777778 29.1666666667</span></span></div>
+<div class="nm:editedSource">
+<pre>1428 Fethie (anc. Antiphellus) environs, 
+(413)     Lycia, before 1925
+    Burial: 3rd cent. B.C. (M)
+    Contents: 48+ AR
+    <span rel="mint" resource="rhodes">Rhodes: didr. (latest as BMC 130)</span> 
+    Disposition: Istanbul
+</pre>
+</div>
+</div>

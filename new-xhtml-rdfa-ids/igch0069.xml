@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0069">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div class="nm:editedSource">
+<pre>
+69 Peloponnesus, 1954
+    Burial: c. <span property="nm:approximateburialdate_start" content="-350" datatype="xsd:date">350</span>-<span property="nm:approximateburialdate_end" content="-325" datatype="xsd:date">325</span> B.C. (T)
+    Contents: 25 AR
+    <span rel="mint" resource="locri opuntii">Locri Opuntii:</span> 2 triob. (as BMC 9-13 [1];
+        42-4 [1])
+    <span rel="mint" resource="histiaea">Histiaea:</span> 2 tetrob. (as BMC 26)
+    <span rel="mint" resource="aegina">Aegina:</span> 1 st. (tortoise, as BMC pl. 24, 12)
+            1 dr. (as BMC pl. 25, 7)
+    <span rel="mint" resource="sicyon">Sicyon:</span> 10 triob.
+    <span rel="mint" resource="pellene">Pellene:</span> 1 triob. (as BMC pl. 6, 10) 
+    <span rel="mint" resource="elis">Elis:</span> 2 triob. (as BMC pl. 13, 9)
+    <span rel="mint" resource="argos_argolis">Argos:</span> 1 dr. (BMC pl. 27, 12; same obv. 
+        die)
+    <span rel="mint" resource="megalopolis">Megalopolis:</span> 2 triob. (var. of BMC pl. 
+        32, 11)
+    <span rel="mint" resource="mantineia">Mantineia:</span> 1 triob. (as BMC pl. 35, 1) 
+    <span rel="mint" resource="pheneus">Pheneus:</span> 1 dr. (var. BMC pl. 36, 8) 
+    <span rel="mint" resource="tegea">Tegea:</span> 1 triob. (as BMC pl. 37, 11)
+    Disposition: New York 4 (Sicyon, Elis, 
+        Argos, Pheneus); photos of remaining 
+        21 coins on file in ANS
+    Information from S. P. Noe
+</pre>
+</div>
+</div>

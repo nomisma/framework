@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="perge">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Perge</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Perge in Pamphylia.</div>
+ <div property="gml:pos">36.962229 30.855068</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Perga"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/639048"/>
+</div>

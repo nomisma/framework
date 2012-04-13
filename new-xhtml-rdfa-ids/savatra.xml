@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="savatra">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Savatra</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Savatra in Lycaonia.</div>
+ <div property="gml:pos">37.959034 33.134068</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/648780"/>
+</div>

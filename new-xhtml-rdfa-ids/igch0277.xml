@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0277">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-140" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-130" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.8077777778 23.975</span></span></div>
+<div class="nm:editedSource">
+<pre>
+277 Keratea, Attica, 1954
+    Burial: c. 140-130 B.C. (T)
+    Contents: 131 AE. Pot hoard
+    <span rel="mint" resource="athens">Athens:</span> 103 New Style (as Svoronos pl. 22,
+        53-8 [13]; pl. 81 [68]; pl. 24, 62 ff. [22])
+            1 "Eleusinian" type (as Sv. pl.
+        103, 50-6
+            27 "Delian" types (as Sv. pl. 107, 
+        50-4 [25]; 75 ff. [1]; pl. 106, 1-7 [1])
+    Disposition: New York
+    Thompson, Athens, pp. 526 ff.
+</pre>
+</div>
+</div>

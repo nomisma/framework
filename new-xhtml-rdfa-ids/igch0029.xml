@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0029">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.4552777778 22.4202777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+29 Tegea environs, Arcadia, c. 1875 
+(1080)
+    Burial: c. <span property="nm:approximateburialdate_start" content="-430" datatype="xsd:date">430</span>-<span property="nm:approximateburialdate_end" content="-400" datatype="xsd:date">400</span> B.C. (T)
+    Contents: AR
+    <span rel="mint" resource="arcadia">Arcadia (federal):</span>"many" triob.
+    <span rel="mint" resource="mantineia">Mantineia:</span> 2 triob. (bear/dolphin, bear/ 
+        acorn)
+            "some" ob. (acorn/M)
+    Disposition: priv. coll. Greece
+    de Longpérier, RN 1874-7, p. 167
+</pre>
+</div>
+</div>

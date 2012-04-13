@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2185">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-289" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.8730555556 14.4416666667</span></span></div>
+<div class="nm:editedSource">
+<pre>2185 Camarina environs, c. 1928 
+    Burial: c. 289 B.C. (Jenkins)
+    Contents: c. 76 EL, 2 AV, 269 AR
+    Lot A-Camarina, 1928
+    <span rel="mint" resource="camarina">Camarina: 1 fr.</span>
+    <span rel="mint" resource="syracuse">Syracuse: 5 EL "50-litra"
+            5 EL "25-litra"
+            2 AV st. (Agathocles)</span>
+    <span rel="mint" resource="siculo_punic">Siculo-Punic: 1 tetradr. (Heracles/horse
+        hd.)</span>
+    <span rel="mint" resource="carthago_nova">Carthage: 3 EL (Jenkins-Lewis, Grp. V)</span>
+        Pegasi
+    <span rel="mint" resource="corinth">Corinth: 9 st. (Per. V, mainly ΑΡ, ΔΙ) 
+            7 dr.</span>
+    <span rel="mint" resource="anactorium">Anactorium: 20 (incl. bucranium ΚΛΕΟ 
+        [3]; altar ΔΩ [9]; club ΕΠΙ [1]; thy-
+        miaterion ΔϒΣΙ [1])</span>
+    <span rel="mint" resource="argos_amphilochicum">Argos: 16 (Cor. helmet [1]; shield and ΔΙ 
+        [13]; spear [2])</span>
+    <span rel="mint" resource="coronta">Coronta?: I</span>
+    <span rel="mint" resource="hipponium">Hipponium: 1 (as BMC pl. 39, 2)</span>
+    <span rel="mint" resource="leucas">Leucas: 9 (incl. Α in wreath [3]; helmet 
+        ΤΙ [1])</span>
+    <span rel="mint" resource="syracuse">Syracuse: 6 (Agathocles [3]; Agathocles, 
+        reduced wt. [3])</span>
+    <span rel="mint" resource="thyrrheium">Thyrrheium: 17 (ear-ring [13]; Boeotian 
+        shield [4])</span>
+    Unc.: 4
+    Lot B-Scoglitti (4 km. N of Camarina), 
+        1938
+    <span rel="mint" resource="rhegium">Rhegium: 1 tetradr.</span>
+    <span rel="mint" resource="messana">Messana: 1 tetradr.</span>
+    <span rel="mint" resource="syracuse">Syracuse: 3 tetradr. (5th cent.)
+            19 EL "50-litra"
+            13 EL "24-litra"
+            10 tetradr. (Agathocles, quadr.
+        [1]; Nike and trophy [9]) </span>
+    <span rel="mint" resource="siculo_punic">Siculo-Punic: 1 tetradr. (Heracles/horse
+        hd.)</span>
+    <span rel="mint" resource="carthago_nova">Carthage: 31 EL st. (Jenkins-Lewis, Grp. 
+        IV, 4; Grp. V, 27)</span>
+    <span rel="mint" resource="athens">Athens: 1 tetradr.</span>
+        Pegasi
+    <span rel="mint" resource="corinth">Corinth: 32 st.; 5 dr.</span>
+    <span rel="mint" resource="ambracia">Ambracia: 1</span>
+    <span rel="mint" resource="anactorium">Anactorium: 17 (incl. altar ΔΩ [7]; club 
+        ΕΠΙ [1]; fillet ΝΑϒ [1]; thymiaterion 
+        ΛϒΣΙ [1])</span>
+    <span rel="mint" resource="argos_amphilochicum">Argos: 23 (shield ΔΙ [17]; Cor. helmet [6]) </span>
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: 1</span>
+    <span rel="mint" resource="leucas">Leucas: 14</span>
+    <span rel="mint" resource="metropolis_acarnania">Metropolis: 1</span>
+    <span rel="mint" resource="syracuse">Syracuse: 5 (Agathocles, reduced wt.) </span>
+    <span rel="mint" resource="thyrrheium">Thyrrheium: 45 (ear-ring [28]; Boeotian 
+        shield [16])</span>
+    Unc.: 16 (most are probably <span rel="mint" resource="argos_amphilochicum">Argos</span>)
+    Lot C-Associated with Lot B are the fol-
+        lowing, probably intrusive:
+    <span rel="mint" resource="taras">Taras: 6 (Evans Per. V-VIII)</span>
+    <span rel="mint" resource="heraclea_lucaniae">Heracleia: 1 didr. (reduced wt.)</span>
+     <span rel="mint" resource="locri_epizephyrii">Locri: 2</span>
+    <span rel="mint" resource="carthage">Carthage: 1 (as SNGLloyd 1666)</span>
+    Also <span rel="mint" resource="cappadocia">Cappadocia</span>, <span rel="mint" resource="the_thracian_chersonese">Thr. Chersonese</span>, Philip II 
+        AV, <span rel="mint" resource="bruttii">Brettii AR</span>, <span rel="mint" resource="rome">Roman Rep. AR</span>
+    Disposition: Syracuse
+    Currò Pisanò (Lot A) AIIN 1962-4, p. 226; (Lots 
+        B and C) p. 227
+    Jenkins-Lewis, Carthage, (Lot A) p. 57 (first 
+        group); (Lots B and C) p. 57 (second group)
+    Despite the widely separate dates at which 
+        Lots A and B entered the collection at 
+        Syracuse, the similar location and the 
+        close parallelism of contents strongly 
+        suggests that both are parts of the 
+        same find, as assumed by Jenkins-
+        Lewis
+</pre>
+</div>
+</div>

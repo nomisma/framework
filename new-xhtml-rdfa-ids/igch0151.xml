@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0151">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">35.0547222222 24.9436111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+151 Mitropolis, near anc. Gortyna, Crete, 
+    1915
+    Burial: <span property="nm:approximateburialdate_start" content="-280" datatype="xsd:date">280</span>-<span property="nm:approximateburialdate_end" content="-270" datatype="xsd:date">270</span> B.C.
+    Contents: 49+ AR
+    Pegasi: 10 st. (<span rel="mint" resource="corinth">Corinth 3,</span> <span rel="mint" resource="thyrrheium">Thyrrheium 4,</span>
+        <span rel="mint" resource="anactorium">Anactorium 1,</span> <span rel="mint" resource="syracuse">Syracuse 1,</span> <span rel="mint" resource="argos_amphilochicum">Argos
+        Amph. 1)</span>
+    <span rel="mint" resource="argos_argolis">Argos: 5 tetrob.</span> 
+    <span rel="mint" resource="cydonia">Cydonia: 1 didr.; 3 dr.</span>
+    <span rel="mint" resource="gortyna">Gortyna: 1 dr.</span>
+    <span rel="mint" resource="itanus">Itanus: 1 dr.</span>
+    <span rel="mint" resource="lyttus">Lyttus: 1 dr.</span>
+    <span rel="mint" resource="cyrene">Cyrene: 27 didr.</span>
+    Disposition: Herakleion 49
+    Le Rider, Monn. crét., pp. 7-11, 47-8
+</pre>
+</div>
+</div>

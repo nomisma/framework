@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="salviana">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Salviana</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Salviana in Numidia.</div>
+  <div rel="uncertain_value"><span property="gml:pos">36.135656 6.256714</span></div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/311138"/>
+</div>

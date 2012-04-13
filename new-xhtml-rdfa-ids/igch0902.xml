@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0902">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-150" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.2491666667 26.5713888889</span></span></div>
+<div class="nm:editedSource">
+<pre>
+902 Târgoviste environs, Bulgaria, 1921-
+(404)    1922
+    Burial: 150-100 B.C. (T)
+    Contents: 45 AR. Pot hoard
+    Alexander III: late post. tetradr. (at least 
+        1 of <span rel="mint" resource="mesembria">Mesembria)</span>
+    Disposition: dispersed
+    Mouchmov, BIAB 1 (1921-2), p. 243
+</pre>
+</div>
+</div>

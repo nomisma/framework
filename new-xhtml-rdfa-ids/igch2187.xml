@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2187">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-270" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>2187 Sicily, date unknown 
+    Burial: early 3rd cent. B.C. (K) 
+    Contents: 169 AR
+        Pegasi
+    <span rel="mint" resource="corinth">Corinth: 47 st. (Per. IV [26]; Per. V incl. 
+        Α, ΑΛ, ΑΡ, ΔΙ [21])
+            10 dr.</span>
+    Acarnania: 1
+    <span rel="mint" resource="alyzia">Alyzia: 2</span>
+    <span rel="mint" resource="ambracia">Ambracia: 19</span>
+    <span rel="mint" resource="anactorium">Anactorium: 12 (to ΔΩ and altar [3]; 
+        ΝΑϒ and fillet [1])</span>
+    <span rel="mint" resource="argos_amphilochicum">Argos: 9</span>
+    <span rel="mint" resource="coronta">Coronta?: 1</span>
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: 6</span>
+    <span rel="mint" resource="echinus">Echinus?: 1</span>
+    <span rel="mint" resource="hipponium">Hipponium: 1 (no. 168, listed as unc.; cf. 
+        SNGOxford 1537)</span>
+    <span rel="mint" resource="leucas">Leucas: 40 (incl. ΣΩ and crescent)</span>
+    Locri: 1
+    <span rel="mint" resource="metropolis">Metropolis: 1</span>
+    <span rel="mint" resource="syracuse">Syracuse: 2 (Agathocles, reduced wt.) </span>
+    <span rel="mint" resource="terina">Terina: 1</span>
+    <span rel="mint" resource="thebes">Thyrrheium: 12 (ear-ring [7]; Cor. helmet
+        [5])</span>
+    Unc.: 2 st.; 1 dr.
+    The following ix are associated with this 
+        hd., but there is no certain evidence 
+        for the connection:
+    <span rel="mint" resource="capua">Capua?: 3</span>
+    <span rel="mint" resource="bruttii">Brettii: 1</span>
+    <span rel="mint" resource="agrigentum">Acragas: 1</span>
+    <span rel="mint" resource="syracuse">Syracuse: 25 (incl. Hieron II)</span>
+    <span rel="mint" resource="siculo_punic">Siculo-Punic: 1</span>
+    <span rel="mint" resource="argos_amphilochicum">Argos: 2</span>
+    Disposition: Naples
+    Pozzi, AIIN 1958-9, pp. 95-124, illus.
+    There is no certainty that this hd. was
+        found in Sicily rather than S. Italy
+</pre>
+</div>
+</div>

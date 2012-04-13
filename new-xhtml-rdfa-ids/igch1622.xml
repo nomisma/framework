@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1622">
+<span rel="nm:findspot"><span property="gml:pos">32.96444444 35.49583333</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-49" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1622 Safad (anc. Seph), Galilee, before 1877
+(879)
+    Burial: after 49 B.C. (Westermark) 
+    Contents: 6+ AR
+    <span rel="mint" resource="ascalon">Ascalon: tetradr. (latest yr. 55 = 49 B.C.)</span>
+    Disposition: London 3; Athens 2; Svoronos 
+        IV, pl. Δ, 25
+    de Saulcy, RN 1874-7, pp. 126-7 (= BMC 18-20)
+    Feuardent, RN 1874-7, pp. 192-3 (= Athens,
+        Svoronos II, 1878, 1883)
+    Kadman, INCJ, hoard 8
+    For the Ascalon era see Brett, AJA 1937, 
+        pp. 452 ff.
+</pre>
+</div>
+</div>

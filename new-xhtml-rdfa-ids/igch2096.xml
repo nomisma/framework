@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2096">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-403" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.831636 15.259824</span></span></div>
+<div class="nm:editedSource">
+<pre>2096 Schisò (anc. Naxus), 1852 
+(931)
+    Burial: c. 403 B.C. (Jenkins) 
+    Contents: 2000+ AR
+    <span rel="mint" resource="rhegium">Rhegium</span>
+    <span rel="mint" resource="agrigentum">Acragas (incl. tetradr. with quadr.) </span>
+    <span rel="mint" resource="camarina">Camarina</span>
+    <span rel="mint" resource="catana">Catana (incl. dr. signed ΕϒΑΙ, and issue 
+        with facing Silenus hd.)</span>
+    <span rel="mint" resource="gela">Gela (incl. tetradr. of Jenkins Grp. IX) </span>
+    <span rel="mint" resource="himera">Himera (galloping quadr.)</span>
+    <span rel="mint" resource="leontini">Leontini</span>
+    <span rel="mint" resource="messana">Messana (incl. 3 with rev. seated Pan) </span>
+    <span rel="mint" resource="motya">Motya</span>
+    <span rel="mint" resource="naxus">Naxus: c. 170 (to Cahn 109)</span>
+    <span rel="mint" resource="segesta">Segesta </span>
+    <span rel="mint" resource="selinus_sicily">Selinus</span>
+    <span rel="mint" resource="syracuse">Syracuse (incl. dr. of Leucaspis type) </span>
+    <span rel="mint" resource="athens">Athens</span>
+    Disposition: de Luynes 24 (nos. 785-6, 
+        789-90, 793, 848, 901-2, 904-5, 955, 
+        962, 977, 998, 1017-8, 1022, 1062,
+        1065, 1070 ?, 1108, 1116, 1212, 1251)
+    Pogwisch, BullInst 1853, pp. 153-8 
+    Riccio, BullInst 1854, p. xxxix 
+    Cavedoni, BullInst 1855, p. 171 
+    Evans, NC 1891, pp. 374-6
+    Cahn, Naxos, p. 85
+    Jenkins, Gela, p. 158
+    In Numismatica 1939, p. 33 Magnaguti 
+        gives the date as 1851 and the find-
+        spot as "Sciarudda, presso Giardini, 
+        sulla sponda del mare"
+</pre>
+</div>
+</div>

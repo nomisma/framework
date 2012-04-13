@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1943">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.0590 10.6153</span></span></div>
+<div class="nm:editedSource">
+<pre>1943 Campiglia Marittima, 14 km. N of 
+(194)     Piombino, Etruria, 1932
+    Burial: 4th cent. B.C. ? (K) 
+    Contents: 18+ AV, AR?
+    <span rel="mint" resource="etruria">Etruscan: 5+ 50-unit pieces
+            8+ 25-unit pieces 
+            2+ 12 1/2-unit pieces 
+            3+ 10-unit pieces
+            <a rel="nm:item" href="http://numismatics.org/collection/1967.152.5">ANS 1967.152.5</a>
+            <a rel="nm:item" href="http://numismatics.org/collection/1967.152.6">ANS 1967.152.6</a>
+            <a rel="nm:item" href="http://numismatics.org/collection/1967.152.7">ANS 1967.152.7</a></span>
+Disposition: New York 3 (SNG 1-3); de 
+        Nanteuil 3 (as the New York pieces); 
+        Lloyd 8 (SNG 9-14, 17-18); Naville 
+        July 3, 1933, 4-8 (5 = Lloyd 10)
+    A 1936 letter from Ravel in the ANS states that 
+        at the time the gold appeared on the market, 
+        there also appeared a "pretty large quan-
+        tity" of Populonian silver, which Ravel 
+        believed was found with the gold. The silver 
+        included examples of Sambon 28, 35, 41a, 
+        47, 50, 52, 56, 60a, 73, and probably others
+</pre>
+</div>
+</div>

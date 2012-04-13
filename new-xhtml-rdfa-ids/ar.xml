@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="material" about="ar">
+ <div property="skos:prefLabel" xml:lang="en">Silver</div>
+ <div property="skos:altLabel" xml:lang="la">Argentum</div>
+ <div property="skos:definition" xml:lang="en">'AR' is the numismatic abbreviation for silver.</div>
+</div>

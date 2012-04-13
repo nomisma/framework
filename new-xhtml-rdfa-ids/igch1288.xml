@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1288">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.4832805556 37.3000361111</span></span></div>
+<div class="nm:editedSource">
+<pre>1288 Pazarlik (anc. Kastabos), Caria, 1960 
+    Burial: c. 300 B.C. (Price)
+    Contents: 4 AR, 171 AE
+    Demetrius Poliorcetes: 1 AE
+    <span rel="mint" resource="erythrae">Erythrae: 1 AE</span>
+    <span rel="mint" resource="rhodes">Rhodes: 4 AR, 169 AE</span>
+    Disposition: Izmir
+    Price in Cook-Plommer, The Sanctuary of 
+    Hemithea at Kastabos (Cambridge, 1966), 
+        pp. 68-71, illus.
+</pre>
+</div>
+</div>

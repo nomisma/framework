@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0051">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div class="nm:editedSource">
+<pre>
+51 Peloponnesus, 1821 
+(797)
+    Burial: c. <span property="nm:approximateburialdate_start" content="-375" datatype="xsd:date">375</span>-<span property="nm:approximateburialdate_end" content="-350" datatype="xsd:date">350</span> B.C.? (T) 
+    Contents: AR (many)
+    <span rel="mint" resource="boeotia">Boeotian mints</span>
+    <span rel="mint" resource="sicyon">Sicyon</span>
+    <span rel="mint" resource="elis">Elis</span>
+    <span rel="mint" resource="argos_argolis">Argos: tetradr.</span>
+    Disposition: unknown
+    Borrell, NC 1844, pp. 42-9, note 13
+</pre>
+</div>
+</div>

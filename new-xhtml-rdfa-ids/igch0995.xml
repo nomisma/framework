@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0995">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-500" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-470" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">46.5980555556 31.4105555556</span></span></div>
+<div class="nm:editedSource">
+<pre>
+995 Berezan' Island (anc. Leuke), off the 
+    Dnieper-Bug estuary, Ukraine, 1909 
+    Burial: early 5th cent. B.C.?
+    Contents: 7 AE. Inside a building
+    <span rel="mint" resource="olbia">Olbia: 6 fish-shaped AE
+        1 aes grave ("small; Medusa and 
+        wheel," more probably as Zograph, 
+        pl. 31, 3, than AMNG I.1, pl. 8, 2)</span>
+    Disposition: museum material lost during 
+        war
+† Shtern, ZOOID 28 (1910), "Protokoly," pp. 89-90 
+    OAK 1909-10 (publ. 1913), p.
+</pre>
+</div>
+</div>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="tiberias">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Tiberias</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Tiberias in Galilaea.</div>
+ <div property="gml:pos">32.775458 35.542011</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/678431"/>
+</div>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0551">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.3119444444 24.4463888889</span></span></div>
+<div class="nm:editedSource">
+<pre>
+551 Mikrochorion, Drama district, Mace-
+    donia, 1938
+    Burial: 2nd cent. B.C. (T) 
+    Contents: 37 AE
+    Cassander: 1
+    <span rel="mint" resource="amphipolis">Amphipolis: 13</span>
+    <span rel="mint" resource="pella_macedon">Pella: 20</span>
+    <span rel="mint" resource="thessalonica">Thessalonica: 1</span>
+    Unc. <span rel="mint" resource="macedonia">Macedon: 2</span>
+    Disposition: Athens 4 (1 ea. of Cassander,
+        Amphipolis, Pella, Thessalonica)
+    A hd. from Macedonia 1938 with 13 Amphi-
+        polis, 20 Pella and 2 unc. Macedon 
+        (reported by W. Schwabacher) would 
+        seem to belong with the 4 Athens 
+        acquisitions from Mikrochorion
+</pre>
+</div>
+</div>

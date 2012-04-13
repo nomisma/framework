@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0634">
+<span rel="nm:findspot"><span property="gml:pos">45.40944444 23.32611111</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-70" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+634 Pestera Bolii, 41 km. N of Tîrgu Jiu, 
+    Rumania, before 1961
+    Burial: early 1st cent. B.C.
+    Contents: AR
+    <span rel="mint" resource="thasos">Thasos: spread-flan tetradr. incl. imit.</span> 
+    Disposition: Deva 12 imit.
+    Mitrea, Dacia 1962, p. 535
+</pre>
+</div>
+</div>

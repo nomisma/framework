@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0820">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.7166666667 23.7666666667</span></span></div>
+<div class="nm:editedSource">
+<pre>
+820 Ribno, Nevrokop district, Bulgaria, 
+(866)     1921-1922
+    Burial: late 4th cent. B.C. (T)
+    Contents: 20-30 AR 
+    Philip II: tetradr. 
+    Disposition: dispersed
+    Mouchmov, BIAB 1 (1921-2), p. 242
+</pre>
+</div>
+</div>

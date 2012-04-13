@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="synaus">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Synaus</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Synaus in Phrygia.</div>
+ <div property="gml:pos">39.0923209 28.981736</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/609537"/>
+</div>

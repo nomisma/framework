@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0608">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.7158333333 25.3247222222</span></span></div>
+<div class="nm:editedSource">
+<pre>
+608 Gaiesti, 70 km. NW of Bucharest, Ru-
+    mania, 1946
+    Burial: 2nd-1st cent. B.C. (T)
+    Contents: 22+ AR
+    <span rel="mint" resource="apollonia_illyria">Apollonia, Illyria: 11 dr. incl. 1 imit.</span> 
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: 11 dr.</span>
+    Disposition: I. E. Dimian, Bucharest 22
+    Dimian, SCIV 1955, pp. 304-5
+</pre>
+</div>
+</div>

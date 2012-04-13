@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1933">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.8255555556 16.5447222222</span></span></div>
+<div class="nm:editedSource">
+<pre>1933 Taranto, 1919 
+(1055)
+    Burial: late 4th cent. B.C. (Vlasto) 
+    Contents: 23+ AR
+    <span rel="mint" resource="taras">Taras: 13+ st. (to Per. V: besides those 
+        listed below, as Evans pl. 6, 2 [2]; 
+        6 [1]; 7 [2]; 9 [1 fdc]</span>
+    <span rel="mint" resource="heraclea_lucaniae">Heracleia: 3 st.</span>
+    <span rel="mint" resource="metapontum">Metapontum: 1 dist.
+            3 st. (SNGLloyd 370; as 
+        SNGOxford 740-1 [1]; NC 1918, pl. 6, 
+        1 [1], both fdc)</span>
+    <span rel="mint" resource="thurium">Thurium: 1 st.</span>
+    <span rel="mint" resource="velia">Velia: 2 st.</span>
+    Disposition: Vlasto 5 (Cat. 303, 451, 453, 
+        462, 664); Lloyd 1 (SNG 370); Ratto,
+        Jan. 28, 1929 (Côte), 162 (= Vlasto
+        451), 163 (= Vlasto 453), 199 (= NC 
+        1926, pl. 11, 20), 285 (= Vlasto 664)
+    Vlasto, NC 1926, pp. 198-9, 203-4, illus. 
+    Stazio, AIIN 1965-7, p. 55
+    Letter from Vlasto in ANS
+    The contents of the hd., changed from Noe 
+        1055, are based on Vlasto's article and 
+        a rereading of his letter. This letter 
+        describes 8 Tarentine staters (the 6 
+        under Contents, Vlasto 664, and Ratto 
+        199); a 9th is described in NC 1926 
+        (pl. 11, 19); and the first four coins 
+        above from Viasto's catalog are also 
+        there ascribed to this hd. The source of 
+        Noe's figure of 27 for the Tarentine 
+        coins is unknown, as is the evidence 
+        for his inclusion of Sybaris and Croton
+</pre>
+</div>
+</div>

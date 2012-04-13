@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0092">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.5247222222 21.5277777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+92 Makryneia, Acarnania, 1859 
+    Burial: c. <span property="nm:approximateburialdate_start" content="-315" datatype="xsd:date">315</span>-<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date">300</span> B.C. (Oeconomides) 
+    Contents: 6 AV
+    Philip II: 2 st.
+    Alexander III: 3 st. (<span rel="mint" resource="magnesia_ad_maeandrum">Magnesia 1,</span> <span rel="mint" resource="babylon">Babylon</span> 
+        1, unc. 1)
+    Philip III: 1 st.
+    Disposition: Athens
+    Information from M. Oeconomides
+</pre>
+</div>
+</div>

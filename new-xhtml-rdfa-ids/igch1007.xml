@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1007">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-350" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">46.6891666667 31.9016666667</span></span></div>
+<div class="nm:editedSource">
+<pre>1007 Olbia (mod. Parutino), 1968 
+    Burial: 400-350 B.C.?
+    Contents: 12 AE
+    <span rel="mint" resource="olbia">Olbia: aes grave (as AMNG I.1, pl. 8, 4)</span> 
+    Disposition: Leningrad (Institute)
+    Gilevich, NE 10 (1972), pp. 15-8, illus.
+</pre>
+</div>
+</div>

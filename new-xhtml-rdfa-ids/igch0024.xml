@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0024">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.6722222222 21.4425</span></span></div>
+<div class="nm:editedSource">
+<pre>
+24 Pyrgos environs, Elis, 1944
+    Burial: <span property="nm:approximateburialdate_start" content="-450" datatype="xsd:date">450</span>-<span property="nm:approximateburialdate_end" content="-425" datatype="xsd:date">425</span> B.C. (T)
+    Contents: 48+ AR
+    <span rel="mint" resource="elis">Elis: st. (through Seltman's Ser. VIII)</span> 
+    Disposition: New York, some ex Berry
+    Details on types in ANS
+    Although the reports specify two separate 
+        hds., it seems possible that this is a 
+        second section of Kyparissia 1940,
+        no. 23 above
+</pre>
+</div>
+</div>

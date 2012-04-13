@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1063">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-270" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.6 33.53</span></span></div>
+<div class="nm:editedSource">
+<pre>1063 Olbia (mod. Parutino), Ochakov 
+    raion, Nikolaev oblast, Ukraine, 1946 
+    Burial: late 4th-early 3rd cent. B.C.
+    Contents: 53 AE. On floor of one room in
+        agora; aes grave and 5 fish-shaped
+        coins in ancient pit
+    <span rel="mint" resource="olbia">Olbia: 21 fish-shaped AE, (anepigraphic [19]; 
+        as AMNG I.1, pl. 8, 6 [2])
+            1 aes grave (as Burachkov, pl. 1, 8)
+            27 AE (as AMNG I.1, pl. 9, 8 [2],
+        10-11 [6], 13 [11], 16 [1], 22 [2], 23 [5])</span> 
+    <span rel="mint" resource="panticapaeum">Panticapaeum: 1 AE (as BMC 17)</span>
+    Unc.: 3 AE
+    Disposition: Kiev
+    Kbarko, "Ol'viia," pp. 351-2, nos. 171-209 (with
+        omissions and inaccurate descriptions)
+</pre>
+</div>
+</div>

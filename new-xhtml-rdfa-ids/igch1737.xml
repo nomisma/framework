@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1737">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-125" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.445 48.8338888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1737 Kabala, Kutkashen raion, c. 80 km. 
+    NW of Shemakha (in anc. Albania), Azer-
+    baidzhan, 1966
+    Burial: 125-100 B.C. (M) 
+    Contents: 593+ AR
+    Alexander III: 7 dr.
+    Imit. Alexander III: 4 tetradr., 436 dr. 
+    Lysimachus: 2 post. tetradr. (<span rel="mint" resource="byzantium">Byzantium</span>) 
+    Seleucus IV: 3 tetradr.
+    Antiochus IV: 16 tetradr.
+    Antiochus V: 7 tetradr.
+    Demetrius I: 43 tetradr.
+    Alexander I Bala: 17 tetradr.
+    Demetrius II: 2 tetradr.
+    Antiochus VI: 2 tetradr.
+    Antiochus VII: 36 tetradr.
+    Seleucid  imit.:  3 tetradr.
+    Mithradates I, <span rel="mint" resource="parthia">Parthia: 4 dr. (as Sellwood 
+        10-11, 2 ea.</span>)
+    Phraates II: 1 dr. (as Sellwood 16) 
+    Diodotus I, <span rel="mint" resource="bactria">Bactria: 1 tetradr.</span>
+    Eucratides I: 4 tetradr.
+    Disposition: Baku
+    Babaev-Kaziev, NE 9 (1971), pp. 16-32, illus.
+    The coins are described according to Ba-
+        baev and Kaziev
+</pre>
+</div>
+</div>

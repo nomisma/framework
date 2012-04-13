@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1168">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-500" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-490" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1168 Asia Minor, western, c. 1962 
+    Burial: c. 500-490 B.C. (Pfeiler) 
+    Contents: c. 200 AR (fr.)
+    <span rel="mint" resource="cyzicus">Cyzicus: 1</span>
+    <span rel="mint" resource="ephesus">Ephesus: 2</span>
+    <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia?: "hundreds"</span>
+    <span rel="mint" resource="miletus">Miletus: c. 40</span> 
+    Unc. mints: 4
+    Disposition: Athens 9
+    Varoucha, A Delt 1963 B p. 7, illus. 
+    Welz, SM 1965, pp. 1-2
+    Pfeiler, SNR 1966, pp. 12-4
+    Varoucha's no. 3, a coin from Magnesia, 
+        has been excluded because it is much 
+        later than the rest and presumably
+        belongs to another hd., no. 1183 below
+</pre>
+</div>
+</div>

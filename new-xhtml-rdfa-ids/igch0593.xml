@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0593">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">46.0680555556 23.5713888889</span></span></div>
+<div class="nm:editedSource">
+<pre>
+593 Alba Iulia, Rumania, before 1887 
+    Burial: 2nd-1st cent. B.C. (T)
+    Contents: AR
+    <span rel="mint" resource="apollonia_illyria">Apollonia, Illyria: dr.</span> 
+    Disposition: dispersed
+    Téglás, OTTÉ 1887, p. 64, no. 34
+</pre>
+</div>
+</div>

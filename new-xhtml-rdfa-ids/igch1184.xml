@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1184">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-455" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1184 <span property="nm:findspot" content="38.33 26.31">Erythrae (mod. Çesme), Ionia</span>, c. 1923
+(403)
+    Burial: c. 455 B.C. (Healy)
+    Contents: 79+ EL, 16+ AR
+    <span rel="mint" resource="lesbos">Lesbos: 57 EL sixths
+    <a rel="nm:item" href="http://numismatics.org/collection/1944.100.44292">ANS 1944.100.44292</a></span>
+    <span rel="mint" resource="clazomenae">Clazomenae: 3 didr.</span> 
+    <span rel="mint" resource="erythrae">Erythrae: 3 didr.
+    <a rel="nm:item" href="http://numismatics.org/collection/1977.999.45">ANS 1977.999.45</a></span>
+    <span rel="mint" resource="phocaea">Phocaea: 11 EL sixths
+    <a rel="nm:item" href="http://numismatics.org/collection/1944.100.46737">ANS 1944.100.46737</a></span>
+    <span rel="mint" resource="chios">Chios: 10 dr.</span>
+    Unc. mints: 11 EL halves
+    <span><a rel="nm:item" href="http://numismatics.org/collection/1967.152.431">ANS 1967.152.431</a></span>
+    Disposition: London 1; New York 3 (Lesbos 
+        2, unc. 1); Jameson 13 (Cat. 2242, 
+        2276-84,2292-3, 2598)
+    Hill, NC 1925, pp. 12 f., no. 40, illus.
+    Newell's list of varieties on file in ANS
+</pre>
+</div>
+</div>

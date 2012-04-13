@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1239">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-335" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-334" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.8558333333 29.1236111111</span></span></div>
+<div class="nm:editedSource">
+<pre>1239 Prinkipo (now Büjük Ada; anc. 
+(841)     Pityusa), Bithynia, 1930
+    Burial: 335-334 B.C.
+    Contents: 200+ EL, 47+ AV. With gold ring 
+    Philip II: 27+ AV st.
+    <span rel="mint" resource="panticapaeum">Panticapaeum: 16+ AV st.</span>
+    <span rel="mint" resource="cyzicus">Cyzicus: 200+ EL St.</span> 
+    <span rel="mint" resource="lampsacus">Lampsacus: 4+ AV st.</span>
+    Disposition: Istanbul 207; Jameson 2 (Cat.
+        2570, 2574)
+    Regling, ZfN 1931, pp. 1-46, illus.
+    The lot in Istanbul comprises 160 Cyzicene 
+        staters, but apparently at least 40 
+        appeared in trade
+</pre>
+</div>
+</div>

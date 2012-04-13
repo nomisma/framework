@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0546">
+<span rel="nm:findspot"><span property="gml:pos">46.57777778 24.90027778</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-125" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+546 Magherani, 24 km. E of Tîrgu Mures, 
+    Rumania, before 1960
+    Burial: c. 125-100 B.C. (T)
+    Contents: 5 AR
+    <span rel="mint" resource="thasos">Thasos: spread-flan tetradr.</span>
+    Disposition: Sîngeorgiul de Padure 1
+    Zoltán, SCN 3 (1960), p. 555
+</pre>
+</div>
+</div>

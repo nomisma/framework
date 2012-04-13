@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0567">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-130" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.9497222222 16.0875</span></span></div>
+<div class="nm:editedSource">
+<pre>
+567 Kruinwa, Bosnia, Yugoslavia, c. 1932 
+(580)
+    Burial: late 2nd cent. B.C. (T)
+    Contents: c. 100 AE. With Italic AE bar 
+    <span rel="mint" resource="carthage">Carthage (cf. Müller nos. 131-160)</span> 
+    <span rel="mint" resource="numidia">Numidia (mostly Micipsa)</span>
+    Disposition: unknown
+    Gaettens, BlM 1934, PP, 17-8
+</pre>
+</div>
+</div>

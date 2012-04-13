@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0582">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">47.2 22.3</span></span></div>
+<div class="nm:editedSource">
+<pre>
+582 Sacalasau, 30 km. NE of Oradea, Ru-
+    mania, c. 1907
+    Burial: 2nd-1st cent. B.C. (T)
+    Contents: 20 AR. Pot hoard
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: dr.</span>
+    Disposition:
+    Harsányi, NK 1908, p. 113
+</pre>
+</div>
+</div>

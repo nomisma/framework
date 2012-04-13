@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1954">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.3098 10.5194</span></span></div>
+<div class="nm:editedSource">
+<pre>1954 Cecina, 32 km. SSW of Livorno, 
+(226)     Etruria, 1858
+    Burial: c. 300 B.C.? (K) 
+    Contents: 5 AV, 84 AR
+    <span rel="mint" resource="massalia">Massalia: 4 ob.</span>
+    <span rel="mint" resource="populonia">Populonia: 5 "quinarii" (as Sambon 82?)</span> 
+    Unc.: obv. wheel (as S. 26)
+            3 obv. male hd. (as S. 79)
+    Types not specified: 5 AV
+    Disposition: Florence 11; possibly also 
+        Jameson 17 and Weber 70 (later 
+        SNGLloyd 26), on which see no. 1875 
+        above (Volterra 1868)
+    Gamurrini, PerNumSfrag 1874, p. 68, note 1
+    Sambon under nos. 26 and 70 says that 
+        these types were represented in the 
+        Sovana find of 1858. Since both types 
+        are mentioned by Gamurrini, Sovana 
+        here appears to be a mistake for 
+        Cecina
+</pre>
+</div>
+</div>

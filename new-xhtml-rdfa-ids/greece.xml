@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="nomisma_region" about="greece">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Greece</div>
+ <div property="skos:definition" xml:lang="en">The ancient region of Greece.</div>
+ <div rel="uncertain_value"><span property="gml:pos">38.7712164 22.1044922</span></div>
+</div>

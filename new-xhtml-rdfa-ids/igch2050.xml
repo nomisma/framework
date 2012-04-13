@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2050">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-208" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-150" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.5630555556 11.0341666667</span></span></div>
+<div class="nm:editedSource">
+<pre>2050 San Cesario, 16 km. SE of Modena, 
+(699)     Gallia Cispadana, 1834
+    Burial: 208-150 B.C. (Crawford)
+    Contents: 6 AR, 2 AE
+    <span rel="mint" resource="massalia">Massalia: 1 dr.; 4 ob. (all barbarous) </span>
+    <span rel="mint" resource="ariminum">Ariminum: 1 AE</span>
+    <span rel="mint" resource="rome">Roman Rep.: 1 vict.; 1 semis</span>
+    Disposition: unknown
+    Cavedoni, BullInst 1843, p. 199 
+    Thomsen, ERC I, p. 108
+    Crawford, RRCH 111
+</pre>
+</div>
+</div>

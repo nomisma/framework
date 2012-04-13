@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="cephallenia">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">The mint of the ancient site of Cephallenia in Greece.</div>
+ <div property="gml:pos">38.2 20.5</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Kefalonia"/>
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0811">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.9386111111 27.2844444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+811 Brâgma, c. 20 km. S of Silistra, Bul-
+    garia, 1964
+    Burial: late 4th cent. B.C. (T)
+    Contents: 10 AR. Pot hoard
+    <span rel="mint" resource="istrus">Istrus: dr.</span>
+    Disposition: Silistra
+    Gerasimov, BIAB 28 (1965), p. 247; SCN 5 
+        (1971), pp. 18-9
+</pre>
+</div>
+</div>

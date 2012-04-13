@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1050">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-315" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">45.3575 36.4777777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1050 Kerch' (anc. Panticapaeum), Crimea 
+(559)     oblast, Ukraine, 1926
+    Burial: 330-315 B.C.? (Shelov)
+    Contents: 50-100 AE
+    <span rel="mint" resource="panticapaeum">Panticapaeum: AE (at least 2 as BMC 20)</span> 
+    Disposition: dispersed
+    Vasmer, 37
+</pre>
+</div>
+</div>

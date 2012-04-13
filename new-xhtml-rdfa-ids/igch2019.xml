@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2019">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-230" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.9091666667 16.5863888889</span></span></div>
+<div class="nm:editedSource">
+<pre>2019 Catanzaro environs, Bruttium, 1967 
+    Burial: late 3rd cent. B.C. (K)
+    Contents: c. 36 AR
+    <span rel="mint" resource="neapolis_campania">Neapolis: 1 st. (obv. elephant symbol, rev. 
+        BI)</span>
+    <span rel="mint" resource="taras">Taras: 1 st. (Per. VIII Λ ϒΚΙΝΟΣ) </span>
+    <span rel="mint" resource="campano-tarentine">Campano-Tarentine: 2 st. (dolphin; dolphin 
+        and trident symbols)</span>
+    <span rel="mint" resource="heraclea_lucaniae">Heracleia: 1 st. (as SNGOxford 641) </span>
+    <span rel="mint" resource="bruttii">Brettii: 25 st. (Nike/river-god as Scheu, 
+        NC 1962, nos. 6 [2], 12?, 13, 15, 17, 21
+        [2], 26 [2], 29 [2], 45, 52, 53 [2], 54 [2],
+        56, 57 [2], 58 [2]; and obv. bucranium, 
+        rev. round shield [2]
+            4 st. (Hera/Zeus as Scheu, nos. 
+        68, 70, 78, 84)</span>
+    <span rel="mint" resource="carthage">Carthage: 1 half-shekel (as NC 1964, pl. 
+        5, 14)</span>
+    <span rel="mint" resource="rome">Roman Rep.: 1 st. (Apollo hd./horse) </span>
+    Disposition: dispersed
+    Seen in commerce
+</pre>
+</div>
+</div>

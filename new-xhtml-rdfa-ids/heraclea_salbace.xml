@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="heraclea_salbace">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Heraclea Salbace</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Heraclea Salbace in Caria.</div>
+ <div property="gml:pos">37.623500 28.984700</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/638857"/>
+</div>

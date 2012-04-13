@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2116">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-390" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.0569444444 14.3172222222</span></span></div>
+<div class="nm:editedSource">
+<pre>2116 Piano Rizzuto, 7 km. E of Gela, 1900 
+(1095)
+    Burial: c. 390 B.C. (Jenkins)
+    Contents: 21 AR. Pot hoard, intact
+    <span rel="mint" resource="rhegium">Rhegium: 1 tetradr.</span>
+    <span rel="mint" resource="agrigentum">Acragas: 2 didr.</span>
+    <span rel="mint" resource="catana">Catana: 1 tetradr.</span>
+    <span rel="mint" resource="gela">Gela: 2 tetradr. (to Jenkins 484)</span>
+    <span rel="mint" resource="leontini">Leontini: 3 tetradr.; 1 didr.</span>
+    <span rel="mint" resource="messana">Messana: 1 tetradr.</span>
+    <span rel="mint" resource="segesta">Segesta: 2 didr.</span>
+    <span rel="mint" resource="syracuse">Syracuse: 7 tetradr. (to Tudeer 82)</span> 
+    <span rel="mint" resource="ambracia">Ambracia: 1 st. (as Ravel NNM 37, 113)</span>
+    Disposition: Syracuse
+† Orsi, AttiMemIIN 1919, pp. 1-22, illus.; 1921,
+        pp. 3-4
+    Currò Pisanò, AIIN 1962-4, p. 222 
+        Jenkins, Gela, pp. 149-50
+</pre>
+</div>
+</div>

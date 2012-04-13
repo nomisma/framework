@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0951">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.3694444444 24.4686111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+951 Dragomir, 1960
+    Burial: 2nd cent. B.C. (T) 
+    Contents: 16+ AR. Pot hoard 
+    <span rel="mint" resource="athens">Athens:</span> New Style tetradr.
+    Disposition: Plovdiv 16 from a larger hoard
+    Gerasimov, BIAB 26 (1963), p. 258
+</pre>
+</div>
+</div>

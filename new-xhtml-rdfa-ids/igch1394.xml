@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1394">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-325" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-320" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.8108333333 35.1830555556</span></span></div>
+<div class="nm:editedSource">
+<pre>1394 Küchük Köhne, c. 35 km. E of Yoz-
+(581)     gat, Galatian-Cappadocian border, 
+    1930
+    Burial: c. 325-320 B.C. (Newell)
+    Contents: 28 AR. Pot hoard
+    <span rel="mint" resource="amisus">Amisus: 4 sigloi</span>
+    <span rel="mint" resource="sinope">Sinope: 14 dr.</span>
+    <span rel="mint" resource="tarsus">Tarsus: 10 double-sigloi (Mazaeus 6, time 
+        of Alexander 4)</span>
+    Disposition: Ankara ?
+    Newell, NNM 46 (1931), pp. 1-33, illus. 
+    Schlumberger, L'argent grec, p. 8, no. 6
+</pre>
+</div>
+</div>

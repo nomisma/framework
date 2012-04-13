@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2140">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-350" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.9786111111 15.2005555556</span></span></div>
+<div class="nm:editedSource">
+<pre>2140 Cassibile, 15 km. SW of Syracuse, 
+    1961
+    Burial: 350-300 B.C. (K); c. 325 (Currò) 
+    Contents: 7+ AE
+    <span rel="mint" resource="syracuse">Syracuse (Zeus/horse [3]; Zeus/thunderbolt
+        [4])</span>
+    Part of a much larger hoard
+    Disposition: Syracuse 7
+    Currò Pisanò, AIIN 1962-4, pp. 231, 237, 253-4
+</pre>
+</div>
+</div>

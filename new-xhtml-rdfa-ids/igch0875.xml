@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0875">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">46.2036111111 28.0213888889</span></span></div>
+<div class="nm:editedSource">
+<pre>
+875 Murgeni, c. 30 km. E of Bîrlad, Ru-
+    mania, 1936
+    Burial: 3rd cent. B.C. (Mitrea)
+    Contents: 7 AR
+    Philip II: 1 tetradr.
+    Imit. Philip II: 6 tetradr.
+    Disposition: I. Dimian, Bucharest
+    Dimian, SCIV 1955, p. 303
+</pre>
+</div>
+</div>

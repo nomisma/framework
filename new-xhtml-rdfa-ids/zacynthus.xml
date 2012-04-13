@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="zacynthus">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Zacynthus</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Zacynthus on Zacynthus, off Elis.</div>
+ <div property="gml:pos">37.783333 20.9</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Zakynthos_(city)"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/456135"/>
+</div>

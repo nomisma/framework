@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2357">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-230" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.5766666667 3.90277777778</span></span></div>
+<div class="nm:editedSource">
+<pre>2357 Lattes (anc. Latera), near Montpellier, 
+    1965
+    Burial: end of 3rd cent. B.C.
+    Contents: 2000 AR. From excavations 
+    <span rel="mint" resource="massalia">Massalia: ob.</span>
+    Disposition: Paris (1/3); Montpellier (1/3)
+† Majurel, et al., Ogam 1966, pp. 275-88, illus. 
+        (1890 specimens); 1967, p. 397 (c. 100 more 
+        specimens)
+</pre>
+</div>
+</div>

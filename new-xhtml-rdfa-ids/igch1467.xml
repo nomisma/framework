@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1467">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1467 Asia Minor, 1968
+    Burial: 1st cent. B.C. (M)
+    Contents: c. 200 AR
+    Cistophori: <span rel="mint" resource="pergamum">Pergamum</span>, <span rel="mint" resource="ephesus">Ephesus</span>, <span rel="mint" resource="tralles">Tralles</span>, 
+        <span rel="mint" resource="apamea_phrygiae">Apameia</span>
+    Disposition: dispersed
+</pre>
+</div>
+</div>

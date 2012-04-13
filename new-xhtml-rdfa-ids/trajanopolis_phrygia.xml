@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="trajanopolis_phrygia">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Trajanopolis Phrygiae</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Trajanopolis in Phrygia.</div>
+ <div property="gml:pos">38.713925 29.517157</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/609559"/>
+</div>

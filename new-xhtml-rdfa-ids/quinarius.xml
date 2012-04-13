@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="denomination" about="quinarius">
+ <div property="skos:prefLabel" xml:lang="en">Quinarius</div>
+ <div property="skos:prefLabel" xml:lang="en">Roman silver coin worth 5 or 8 asses.</div>
+</div>

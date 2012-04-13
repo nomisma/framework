@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0123">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.0413888889 22.1113888889</span></span></div>
+<div class="nm:editedSource">
+<pre>
+123 Kalamata, Messenia, 1849
+    Burial: c. <span property="nm:approximateburialdate" content="-300" datatype="xsd date">300</span> B.C.? (T)
+    Contents: 27 AV
+    Philip II: 1 st.
+    Alexander III: 26 st.
+    Disposition: Athens 3 (Alexanders of Ace, 
+        Babylon, Alexandreia)
+    Information from M. Oeconomides
+</pre>
+</div>
+</div>

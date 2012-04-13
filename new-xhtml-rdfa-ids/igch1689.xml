@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1689">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-235" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">30.5852777778 31.5025</span></span></div>
+<div class="nm:editedSource">
+<pre>1689 Zagazig (anc. Bubastis), 1905 
+(1180)
+    Burial: c. 235 B.C. (Jenkins)
+    Contents: 200 AR
+    Arsinoe II: decadr. (to Svoronos 947, year 
+        MM = 235 B.C.)
+        <span> <a rel="nm:item" href="http://numismatics.org/collection/1944.100.76261">ANS 1944.100.76261</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1964.79.59">ANS 1964.79.59</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1967.152.627">ANS 1967.152.627</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.43632">ANS 1944.100.43632</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.75928">ANS 1944.100.75928</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.75929">ANS 1944.100.75929</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.75930">ANS 1944.100.75930</a></span>
+    Disposition: New York 5
+    Eddé, Boll. di Num. 1905, p. 129; RassNum. 1906, 
+        pp. 31-5, illus.
+</pre>
+</div>
+</div>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2126">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-350" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.193753 15.55521</span></span></div>
+<div class="nm:editedSource">
+<pre>2126 Messina, 1948
+    Burial: 400-350 B.C. (K)
+    Contents: 60+ AR. Found in sea
+    <span rel="mint" resource="syracuse">Syracuse:</span> c. 60 decadr. (incl. not more than 
+        5 Cimon)
+    Tetradr.
+    Disposition: dispersed
+    Note in BM
+</pre>
+</div>
+</div>

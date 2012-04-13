@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0393">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-320" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.2069444444 24.1638888889</span></span></div>
+<div class="nm:editedSource">
+<pre>
+393 Lukovit environs, E of Vraca, Bul-
+    garia, 1942
+    Burial: c. 330-320 B.C. (T)
+    Contents: 50 AR
+    <span rel="mint" resource="the_thracian_chersonese">Thracian Chersonese: 45 hemidr.</span> 
+    <span rel="mint" resource="parium">Parium: 5 hemidr.</span>
+    Disposition: dispersed
+    Gerasimov, BIAB 15 (1946), p. 239
+</pre>
+</div>
+</div>

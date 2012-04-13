@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0035">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.0966666667 21.4194444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+35 Lappa, Elis, 1938
+    Burial: 5th cent. B.C. (T) 
+    Contents: 101 AR
+    <span rel="mint" resource="phocis">Phocis:</span> 1 triob. 
+    <span rel="mint" resource="aegina">Aegina:</span> 40 st. 
+            2 dr.
+    <span rel="mint" resource="elis">Elis:</span> 32 st.
+            17 dr.
+            9 triob.
+    Disposition: Athens
+    Varoucha, BCH 1939, p. 288
+</pre>
+</div>
+</div>

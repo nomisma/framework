@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="carson_city">
+ <div property="skos:prefLabel" xml:lang="en">Carson City</div>
+ <div property="skos:definition" xml:lang="en">The United States mint in the city of Carson City, Nevada.</div>
+ <div property="gml:pos">39.160833 -119.753889</div>
+ <div property="skos:related cite" href="http://en.wikipedia.org/wiki/Carson_City,_Nevada"/>
+</div>

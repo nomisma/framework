@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1315">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-250" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.1188888889 26.3888888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1315 Karini, Lesbos, 1888
+(534, 721)
+    Burial: c. 250-200 B.C. (Newell)
+    Contents: c. 300  AE
+    <span rel="mint" resource="mytilene">Mytilene (as BMC 96 ff.)</span>
+    Disposition: New York 121
+    BMCTroas, p. 192, note
+† Newell, NNM 68 (1935), pp. 34-42, illus.
+    The combination of the two Noe entries 
+        was already suggested by Newell 
+        (pp. 41 f.)
+</pre>
+</div>
+</div>

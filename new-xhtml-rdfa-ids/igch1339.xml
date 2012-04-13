@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1339">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.3736111111 26.1366666667</span></span></div>
+<div class="nm:editedSource">
+<pre>1339 Chios ?, c. 1933 
+(250)
+    Burial: 2nd cent. B.C. (M)
+    Contents: 39+ AE 
+    <span rel="mint" resource="chios">Chios (as BMC 58 ff.)
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.595">ANS 1934.999.595</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.605">ANS 1934.999.605</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.569">ANS 1934.999.569</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.581">ANS 1934.999.581</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.571">ANS 1934.999.571</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.574">ANS 1934.999.574</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.594">ANS 1934.999.594</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.604">ANS 1934.999.604</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.606">ANS 1934.999.606</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.582">ANS 1934.999.582</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.583">ANS 1934.999.583</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.593">ANS 1934.999.593</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.603">ANS 1934.999.603</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.589">ANS 1934.999.589</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.590">ANS 1934.999.590</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.600">ANS 1934.999.600</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.579">ANS 1934.999.579</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.580">ANS 1934.999.580</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.575">ANS 1934.999.575</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.599">ANS 1934.999.599</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.587">ANS 1934.999.587</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/0000.999.19865">ANS 0000.999.19865</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.576">ANS 1934.999.576</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.578">ANS 1934.999.578</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.601">ANS 1934.999.601</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.602">ANS 1934.999.602</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.598">ANS 1934.999.598</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.585">ANS 1934.999.585</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.572">ANS 1934.999.572</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.577">ANS 1934.999.577</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.586">ANS 1934.999.586</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1934.999.573">ANS 1934.999.573</a></span>
+     Disposition: New York 39
+</pre>
+</div>
+</div>

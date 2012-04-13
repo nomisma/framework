@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1373">
+<span rel="nm:findspot"><span property="gml:pos">41.00583333 39.72833333</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-170" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1373 Trabzon (anc. Trapezus), Pontus, 
+    1947 or earlier
+    Burial: early 2nd cent. B.C. (M) 
+    Contents: 3+ AR
+    <span rel="mint" resource="athens">Athens:</span> 2 New Style tetradr. 
+    Eumenes II: 1 tetradr.
+    Disposition: dispersed
+    Information from E. S. G. Robinson
+    According to Thompson's chronology, the 
+        two Athenian coins are dated 187/6 
+        and 186/5 B.C.
+</pre>
+</div>
+</div>

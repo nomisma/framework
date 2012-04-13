@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0116">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div class="nm:editedSource">
+<pre>
+116 Thessaly ?, c. 1925 
+    Burial: c. <span property="nm:approximateburialdate" content="-300" datatype="xsd date">300</span> B.C. (T) 
+    Contents: 27 AE
+    Philip II : 1
+    Cassander: 14
+    <span rel="mint" resource="atrax">Atrax:</span> 1 (Rogers 169) 
+    <span rel="mint" resource="larissa">Larissa:</span> 2 (R 284) 
+    <span rel="mint" resource="metropolis_thessaly">Metropolis:</span> 1 (R 408) 
+    <span rel="mint" resource="orthe">Orthe:</span> 1 (R 421)
+    <span rel="mint" resource="pelinna">Pelinna:</span> 2 (R 432) 
+    <span rel="mint" resource="phacium">Phacium:</span> 1 (R 444) 
+    <span rel="mint" resource="pharsalus">Pharsalus:</span> 1 (R 505)
+    <span rel="mint" resource="elea">Elea, Epirus:</span> 1 (BMC 6, over Philip II) 
+    Pyrrhus: 2 (BMC 40)
+    Disposition: unknown
+    Information from Seyrig
+</pre>
+</div>
+</div>

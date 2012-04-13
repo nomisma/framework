@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0957">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.6738888889 26.5619444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+957 Adrianople (now Edirne) environs, 
+(14)     Thrace, before 1789
+    Burial: 2nd-1st cent. B.C. (T)
+    Contents: AR
+    <span rel="mint" resource="apollonia_illyria">Apollonia, Illyria: dr.</span>
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: dr.</span> 
+    Disposition: unknown
+    Sestini, Lettere ... Ainslieana 1 (Leghorn, 1789), 
+        p. 130, note 1
+    Although Sestini indicates that the deposit 
+        was found in the vicinity of Adri-
+        anople, its contents suggest a prove-
+        nance further north
+</pre>
+</div>
+</div>

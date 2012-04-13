@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0355">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-500" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.7361111111 22.1869444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+355 Ishtib (mod. Stip), S. Serbia, Yugo-
+(495)     slavia, c. 1912
+    Burial: c. 500 B.C. (T) 
+    Contents: AR
+    Macedonian tribes (mostly <span rel="mint" resource="derrones">Derrones</span>): 
+        octadr.
+    Disposition: New York 3 (1 Derrones, 1
+        <span rel="mint" resource="bisaltae">Bisaltae</span>, 1 <span rel="mint" resource="orrescii">Orrescii</span>) and casts of a few 
+        others possibly from the same hd.; 
+        Berlin 1 or 2; Belgrade 1; private coll. 
+        Greece 1; Jameson 1946, 1948; Pozzi 
+        708; Egger Jan. 15, 1912, 235
+    BlM 1913, p. 5411, illus. (1 Berlin coin)* 
+    Svoronos, JIAN 1919, pp. 9-10, 12-3, 25, some 
+        illus.
+    Saria, NZ 1927, p. 12, illus. (1 Belgrade coin)
+* The 2 octadr. cited in the BlM as part of 
+        the Kaliandra 1913 hd., no. 358 below, 
+        otherwise containing only Mende 
+        tetradr., almost certainly belong to the 
+        find from Ishtib and were probably 
+        confused with coins from the Kaliandra 
+        hd. by Ritsos who acquired a major 
+        portion of both finds
+</pre>
+</div>
+</div>

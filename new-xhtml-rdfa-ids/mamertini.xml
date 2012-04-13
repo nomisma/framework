@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="mamertini">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Mamertini</div>
+ <div property="skos:definition" xml:lang="en">The mint of the ancient Mamertini at an uncertain location in Sicily.</div>
+  <div rel="uncertain_value"><span property="gml:pos">38.18 15.55</span></div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Mamertines"/>
+</div>

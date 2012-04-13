@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0817">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">46.7680555556 22.3761111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+817 Cabesti, c. 17 km. WSW of Bîrlad, 
+    Rumania, 1962
+    Burial: late 4th cent. B.C. (Mitrea) 
+    Contents: c. 30 AR. Pot hoard
+    <span rel="mint" resource="istrus">Istrus: dr.</span>
+    Disposition: Gh. Gheorghiu-Dej 9; Bucha-
+        rest (Inst. Arch.) 4
+    Mitrea, StudClas 7 (1965), p. 165 
+    Chitescu, SCN 4 (1968), pp. 446-7, illus.
+</pre>
+</div>
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2125">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-350" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.0316666667 15.0655555556</span></span></div>
+<div class="nm:editedSource">
+<pre>2125 Canicattini, 20 km. W of Syracuse, 
+(198)     1896
+    Burial: 400-350 B.C. (K) 
+    Contents: 80 AR
+    <span rel="mint" resource="syracuse">Syracuse: 6 decadr.</span>
+    Other Greek mints: tetradr.
+    <span rel="mint" resource="siculo_punic">Siculo-Punic: tetradr. </span>
+    Disposition: dispersed
+    Orsi's notes
+</pre>
+</div>
+</div>

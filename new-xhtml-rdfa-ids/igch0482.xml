@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0482">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-148" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+482 Macedonia ?, 1958
+    Burial: after 148 B.C. (Oeconomides, Picard) 
+    Contents: 4+ AR
+    <span rel="mint" resource="athens">Athens:</span> 4 New Style tetradr. (to Thompson 
+        149/8 B.C.)
+    Disposition: Athens
+    Varoucha, BCH 1960, p. 485
+</pre>
+</div>
+</div>

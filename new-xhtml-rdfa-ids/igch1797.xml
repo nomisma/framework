@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1797">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-250" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">29.934444 52.891389</span></span></div>
+<div class="nm:editedSource">
+<pre>1797 Persepolis, Persis, 1934-5
+(807)
+    Burial: c. 250 B.C. (M)
+    Contents: 10 AR. From excavations 
+    Seleucus I: 1 tetradr. (<span rel="mint" resource="susa">Persepolis</span>) 
+    Bagadat: 1 tetradr. (<span rel="mint" resource="istakhr">Istakhr?)</span>
+    Oborzus: 1 tetradr. (<span rel="mint" resource="istakhr">Istakhr?)</span>
+    Autophradates I: 7 tetradr. (<span rel="mint" resource="istakhr">Istakhr?)</span> 
+    Disposition: Teheran
+    Newell, ESM, pp. 559-61
+</pre>
+</div>
+</div>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2368">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">45.114014 5.326896</span></span></div>
+<div class="nm:editedSource">
+<pre>2368 Saint-Romans, 35 km. W of Gre-
+    noble, 1960
+    Burial: 3rd-2nd cent. B.C. (Jenkins) 
+    Contents: 3000 AR. Pot hoard
+    <span rel="mint" resource="massalia">Massalia: ob.</span>
+    Disposition: unknown, mainly dispersed
+    Gallia 1962, pp. 646-7, illus.
+</pre>
+</div>
+</div>

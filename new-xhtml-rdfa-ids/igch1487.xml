@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1487">
+<span rel="nm:findspot"><span property="gml:pos">34.44333333 35.81972222</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-375" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1487 Al-Mina, 1936
+    Burial: c. 375 B.C. (Robinson)
+    Contents: 25 AR. Pot hoard from excavations 
+    <span rel="mint" resource="athens">Athens and imit.: 18 tetradr.</span>
+    <span rel="mint" resource="aradus">Aradus: 7 ob.</span>
+    Disposition: London
+    For references see no. 1486 above
+</pre>
+</div>
+</div>

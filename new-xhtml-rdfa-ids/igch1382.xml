@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1382">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-85" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.6566666667 35.8230555556</span></span></div>
+<div class="nm:editedSource">
+<pre>1382 Amasya (anc. Amasia), Pontus, 1968 
+    Burial: c. 85 B.C. (Pfeiler)
+    Contents: 207 AE
+    <span rel="mint" resource="amisus">Amisus: 177</span>
+    <span rel="mint" resource="cabeira">Cabeira: 1</span>
+    <span rel="mint" resource="comana">Comana: 1</span>
+    <span rel="mint" resource="gaziura">Gaziura: 1</span>
+    <span rel="mint" resource="amastris">Amastris: 10</span>
+    <span rel="mint" resource="sinope">Sinope: 17</span>
+    Disposition: dispersed
+</pre>
+</div>
+</div>

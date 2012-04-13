@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="bizya">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Bizya</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Bizya in Thrace.</div>
+ <div property="gml:pos">41.572702 27.765289</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/511190"/>
+</div>

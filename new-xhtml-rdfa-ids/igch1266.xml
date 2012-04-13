@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1266">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-340" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.6527777778 29.1666666667</span></span></div>
+<div class="nm:editedSource">
+<pre>1266 Fethiye (formerly Makri; anc. Tel-
+(641)     messus), Lycia, 1929
+    Burial: c. 340 B.C. (M) 
+    Contents: 67 AR
+    <span rel="mint" resource="ephesus">Ephesus: 49 tetradr.</span> 
+    Mausolus: 12 tetradr. 
+    Hidrieus: 5 tetradr. 
+    <span rel="mint" resource="cos">Cos: 1 tetradr.</span>
+    Disposition: London 36; Oxford 31 
+    Hill, NC 1930, p. 285
+</pre>
+</div>
+</div>

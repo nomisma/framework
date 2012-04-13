@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1897">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-430" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.0944444444 15.7541666667</span></span></div>
+<div class="nm:editedSource">
+<pre>1897 Reggio, Bruttium, 1876 
+(855, part)
+    Burial: c. 430 B.C. (K)
+    Contents: AR. Pot hoard
+    <span rel="mint" resource="rhegium">Rhegium: fr. (lion hd. facing/RΕ or RΕC 
+        between olive branches)</span>
+    Disposition: dispersed
+    NSc 1876, p. 95 (= p. 261)
+</pre>
+</div>
+</div>

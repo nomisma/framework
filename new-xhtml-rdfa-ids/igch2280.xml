@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2280">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-250" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-240" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.1258333333 8.81888888889</span></span></div>
+<div class="nm:editedSource">
+<pre>2280 Abbasanta, 30 km. NE of Oristano, 
+(2)     Sardinia, before 1900
+    Burial: c. 250-240 B.C. (Jenkins)
+    Contents: 300 AE
+    Carthage:  <span rel="mint" resource="sardinia">Sardinian mint (as SNGCop. 
+        216, 219)</span>
+    Disposition: unknown
+    Bornemann, BlM 1900, p. 119
+</pre>
+</div>
+</div>

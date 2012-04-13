@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0066">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.48 22.3569444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+66 Myonia, near Delphi, Phocis, 1899
+(717)
+    Burial: <span property="nm:approximateburialdate_start" content="-335" datatype="xsd:date">335</span>-<span property="nm:approximateburialdate_end" content="-330" datatype="xsd:date">330</span> B.C. (T)
+    Contents: 12+ AR
+    <span rel="mint" resource="delphi">Delphi:</span> 11+ Amphictionic st. 
+    <span rel="mint" resource="athens">Athens:</span> 1 tetradr.
+    Disposition: Athens 5 (4 Delphi, 1 Athens); 
+        Warren 3 (758-60); Boston 2 (Brett 
+        977-8); Ward 1 (475A); Berlin
+    Svoronos, JIAN 5899, pp. 297-9, illus. 
+    Regling, Klio 1906, p. 505, note 2 
+    Raven, NC 1950, pp. 10-11
+    The bronze coins of Noe 717 do not belong 
+        to the hd.
+</pre>
+</div>
+</div>

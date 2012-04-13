@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1229">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1229 Troas, before 1882 
+(1132)
+    Burial: 4th cent. B.C. (M) 
+    Contents: 16+ AE
+    <span rel="mint" resource="cebren">Cebren: 11</span>
+    <span rel="mint" resource="gargara">Gargara: 1</span>
+    <span rel="mint" resource="neandria">Neandria: 1</span>
+    <span rel="mint" resource="ophrynium">Ophrynium: 1</span>
+    <span rel="mint" resource="scepsis">Scepsis: 1</span>
+    <span rel="mint" resource="sigeum">Sigeum: 1</span>
+    Disposition: dispersed. Hoffman, Jan. 6, 
+        1882, nos. 1433-7
+    Robert, Études, p. 84
+</pre>
+</div>
+</div>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1926">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-340" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-330" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.3925 17.4447222222</span></span></div>
+<div class="nm:editedSource">
+<pre>1926 Lizzano, 20 km. SE of Taranto, Cala-
+    bria, 1950
+    Burial: c. 340-330 B.C. (K) 
+    Contents: 43+ AR, 1 AE
+     <span rel="mint" resource="taras">Taras: 14 st. (1 hippocamp; 2 Per. II; 10 
+        Per. III; 1 Per. VIII)</span>
+     <span rel="mint" resource="metapontum">Metapontum: 6 st. (incl. 1 Leucippus) </span>
+     <span rel="mint" resource="poseidonia">Poseidonia: 1 st. (Kraay, Atti e Mem. Soc. 
+        M. Gr. 1967, p. 121, no. 6)</span>
+     <span rel="mint" resource="thurium">Thurium: 9 st. (incl. 1 Molossus; 1 SNG0x-
+        ford 949; ΙΦΜ on rev.)</span>
+     <span rel="mint" resource="velia">Velia: 2 st. (1 SNGOxford 1167-8; 1 1169-
+        74)</span>
+     <span rel="mint" resource="caulonia">Caulonia: 6 st.</span>
+     <span rel="mint" resource="croton">Croton: 3 st. (dumpy incuse, worn)</span>
+     <span rel="mint" resource="terina">Terina: 2 st.</span>
+    Molossians: 1 AE (thunderbolt on shield/ 
+        wreath)
+    Disposition: Taranto
+    Tamburello, AIIN 1954, pp. 163-4 
+    Details noted by K in 1968
+    If the Taras Per. VIII is excluded as in-
+        trusive, the remainder can be regarded 
+        as belonging to a lid, buried in the 
+        third quarter of the 4th cent.
+</pre>
+</div>
+</div>

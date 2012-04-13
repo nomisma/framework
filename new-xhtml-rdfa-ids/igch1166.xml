@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1166">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-500" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-490" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1166 <span property="nm:findspot" content="38.423889 27.142778">Bairakli, Izmir (anc. Smyrna), Ionia</span>,
+    1951
+    Burial: c. 500-490 B.C. (Robinson)
+    Contents: 20 AR. Pot hoard, with AR pectoral, 
+        from excavations
+    <span rel="mint" resource="smyrna">Unc. mint (Smyrna?): 14 ob.</span>
+    <span rel="mint" resource="sardes">Lydia: 2 sigloi</span> 
+    <span rel="mint" resource="persia">Persia: 4 sigloi</span>
+    Disposition: Izmir
+    JHS 1952, p. 106
+    Schlumberger, I: argent grec, p. 6, no. 2
+    Robinson, NC 1958, p. 188; † 1960, pp. 31-3, 
+        illus.
+</pre>
+</div>
+</div>

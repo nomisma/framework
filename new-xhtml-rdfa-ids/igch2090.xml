@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2090">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-415" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.715 15.0908333333</span></span></div>
+<div class="nm:editedSource">
+<pre>2090 Pachino, extreme SE Sicily, 1960
+    Burial: c. 415 B.C.
+    Contents: 100-200 AR
+    <span rel="mint" resource="agrigentum">Acragas: tetradr. (as Rizzo, MGS, pl. 1, 
+        16, fdc)</span>
+    <span rel="mint" resource="catana">Catana: tetradr. (as R., pl. 11, 7-8; not
+        9-15)</span>
+    <span rel="mint" resource="gela">Gela: tetradr. (to Jenkins 476, fresh) </span>
+    <span rel="mint" resource="leontini">Leontini: tetradr. (to R., pl. 24, 13, 15)</span>
+    <span rel="mint" resource="messana">Messana: tetradr. (as R, pl. 25, 10, 13-14; 
+        not pl. 26)</span>
+    <span rel="mint" resource="syracuse">Syracuse: tetradr. (many as Boehringer 
+        722 but also Tudeer 24, 29) </span>
+    Disposition: dispersed
+    Jenkins, Gela, pp. 159-60
+</pre>
+</div>
+</div>

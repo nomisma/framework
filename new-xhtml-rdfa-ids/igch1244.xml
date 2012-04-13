@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1244">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-365" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.1791666667 33.2344444444</span></span></div>
+<div class="nm:editedSource">
+<pre>1244 Karaman, 1947-8
+    Burial: c. 365 B.C. 
+    Contents: 1300+ AR 
+    <span rel="mint" resource="athens">Athens:</span> 5+ tetradr.
+    <span rel="mint" resource="sinope">Sinope: 30+ dr.</span>
+    <span rel="mint" resource="aspendus">Aspendus: 393+ double-sigloi</span> 
+    Pharnabazus, <span rel="mint" resource="cilicia">Cilicia: 108+ double-sigloi</span> 
+    Datames, <span rel="mint" resource="cilicia">Cilicia: 355+ double-sigloi</span> 
+    Disposition: Copenhagen 84
+    Mørkholm, AArch 1959, pp. 184-201, illus.
+</pre>
+</div>
+</div>

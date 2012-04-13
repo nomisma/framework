@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1653">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-370" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-330" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">29.9788888889 31.1338888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1653 Giza pyramids, 1950
+    Burial: mid 4th cent. B.C. (Jenkins)
+    Contents: 2 AR. Pot hoard with scarabs and 
+        beads, from excavations
+    <span rel="mint" resource="sidon">Sidon: 1 double-shekel
+            1 half-shekel</span>
+    Disposition: unknown
+    Robinson, NC 1950, p. 298
+</pre>
+</div>
+</div>

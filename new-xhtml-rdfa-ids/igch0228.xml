@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0228">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.6544444444 20.7105555556</span></span></div>
+<div class="nm:editedSource">
+<pre>
+228 Grammenon, E of Larissa, Thessaly, 
+(451)     1889
+    Burial: c. 180-170 B.C. (Price) 
+    Contents: 130 AR
+    Philip V: 1 dr. 
+    <span rel="mint" resource="macedonia">Macedonia:</span> 27 tetrob.
+    <span rel="mint" resource="histiaea">Histiaea:</span> 53 tetrob.
+    <span rel="mint" resource="rhodes">Rhodes:</span> 49 dr.
+    Disposition: Athens
+    Svoronos, JIAN 1901, pp. 83-90
+    Robert, Études, pp. 191-2 (for geography and 
+        date of discovery)
+</pre>
+</div>
+</div>

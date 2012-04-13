@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="dium_macedon">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Dium</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Dium in Macedon.</div>
+ <div property="gml:pos">40.172688 22.486065</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Dion,_Pieria"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/491572"/>
+</div>

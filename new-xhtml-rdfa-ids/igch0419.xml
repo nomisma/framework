@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0419">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.1844444444 16.6008333333</span></span></div>
+<div class="nm:editedSource">
+<pre>
+419 Cittavecchia, Lesina (anc. Pharos), 
+(254)     Dalmatia, Yugoslavia, 1836
+    Burial: 4th cent. B.C.? (T) 
+    Contents: c. 162 AE
+    <span rel="mint" resource="heracleia_illyricum">Heracleia, Illyria: 49</span> 
+    <span rel="mint" resource="issa">Issa: 55</span>
+    <span rel="mint" resource="pharos">Pharos: 58</span>
+    Disposition: unknown
+    Steinbüchel, Num J 1837, p. 165
+    Rathgeber, Bull.dell' InstCorrArch 1838, pp. 
+        89-91,93-4
+    Ljubić, AfÖG 11 (1853), pp. 132-5
+    Brunsmid, Die Inschriften and Münzen der 
+        griechischen Städte Dalmatians (Vienna, 
+        1898), p. 35
+    See also no. 418 above
+</pre>
+</div>
+</div>

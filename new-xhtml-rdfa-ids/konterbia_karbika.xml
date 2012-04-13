@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="konterbia_karbika">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Konterbia Karbika</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Konterbia Karbika in Hispania.</div>
+ <div property="gml:pos">40.1475 -2.688889</div>
+</div>

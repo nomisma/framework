@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="rhodes">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Rhodes</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Rhodes on Rhodes, off Caria.</div>
+ <div property="gml:pos">36.433333 28.216667</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Rhodes_%28city%29"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/590030"/>
+</div>

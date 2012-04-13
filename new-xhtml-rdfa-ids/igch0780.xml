@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0780">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-325" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-310" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.1488888889 24.7522222222</span></span></div>
+<div class="nm:editedSource">
+<pre>
+780 Plovdiv (anc. Philippopolis), Bulgaria, 
+    1937
+    Burial: c. 325-310 B.C. (T) 
+    Contents: 70 AE
+    Alexander III
+    Disposition: Plovdiv
+    Gerasimov, BIAB 12 (1938), p. 453
+</pre>
+</div>
+</div>

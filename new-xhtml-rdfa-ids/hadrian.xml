@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="roman_emperor" about="hadrian">
+ <div property="skos:prefLabel" xml:lang="en">Hadrian</div>
+ <div>Roman Emperor from 10 August 117 to 10 July 138.</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Hadrian"/>
+</div>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1434">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-130" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.5772222222 36.1719444444</span></span></div>
+<div class="nm:editedSource">
+<pre>1434 Iskenderun (anc. Alexandreia ad Is-
+    sum) environs, Cilicia, c. 1961
+    Burial: c. 130 B.C. (M)
+    Contents: c. 20 AR
+    Antiochus VII: tetradr. (<span rel="mint" resource="antiocheia_syria">Antiocheia c. 10</span>, 
+        <span rel="mint" resource="damascus">Damascus 2+</span>)
+    Disposition: dispersed
+</pre>
+</div>
+</div>

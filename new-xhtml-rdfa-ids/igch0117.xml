@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0117">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.5536111111 21.7708333333</span></span></div>
+<div class="nm:editedSource">
+<pre>
+117 Tricca (mod. Trikkala), Thessaly, 1938 
+    Burial: c. <span property="nm:approximateburialdate" content="-300" datatype="xsd date">300</span> B.C. (Oeconomides, 
+        Hackens) *
+    Contents: 38 AR
+    Alexander III: 1 tetradr. (<span rel="mint" resource="sicyon">Sicyon); 1 dr.</span> 
+    <span rel="mint" resource="thessalian_league">Thessalian League:</span> 2 double-vict.; 1 dr. 
+    <span rel="mint" resource="larissa">Larissa:</span> 1 dr.
+    <span rel="mint" resource="boeotia">Boeotia:</span> 28 st.
+    <span rel="mint" resource="athens">Athens:</span> 1 tetradr. (4th-3rd cent.)
+    <span rel="mint" resource="aegina">Aegina:</span> 1 st. (archaic)
+    <span rel="mint" resource="sicyon">Sicyon:</span> 2 st.
+    Disposition: Athens
+    Varoucha, BCH 1938, p. 446; 1939, p. 288
+* Assuming, as seems likely, that the Thes-
+        salian coins are intrusive
+</pre>
+</div>
+</div>

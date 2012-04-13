@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1327">
+<span rel="nm:findspot"><span property="gml:pos">39.35944444 27.57166667</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-130" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1327 Yesilhisar environs, near Savastepe 
+    (anc. Ceraseis), Mysia, 1963
+    Burial: 130 B.C. (Kleiner)
+    Contents: 104 AR
+    Cistophori: <span rel="mint" resource="pergamum">Pergamum 37</span>, <span rel="mint" resource="ephesus">Ephesus 33 (to
+        yr. 4)</span>, <span rel="mint" resource="sardes">Sardes 2</span>, <span rel="mint" resource="tralles">Tralles 19</span>, <span rel="mint" resource="apamea_phrygiae">Apameia 8</span>, 
+        <span rel="mint" resource="laodiceia_ad_lycum">Laodiceia 1</span>
+    Disposition: Istanbul 100
+    Oçlay, Istanbul ArkMüzYilligi 1964, pp. 58-63 
+        (Turkish), 171-7 (English). Nos. 30-37, 
+        69-70 and 91 are intrusions
+    To be published by F. Kleiner
+</pre>
+</div>
+</div>

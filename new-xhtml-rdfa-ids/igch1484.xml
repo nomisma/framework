@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1484">
+<span rel="nm:findspot"><span property="gml:pos">37.58916667 36.92805556</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-500" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-400" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1484 Marash (anc. Antiocheia ad Taurum), 
+(647)     Commagene, 1898
+    Burial: 5th cent. B.C. (Schlumberger)
+    Contents: 100 AR
+    <span rel="mint" resource="athens">Athens:</span> tetradr.
+    Disposition: Istanbul?
+    A JA 1899, p. 251
+    NC 1900, p. 374
+    Schlumberger, L'argent grec, p. 8, no. 8
+</pre>
+</div>
+</div>

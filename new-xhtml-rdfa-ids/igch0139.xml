@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0139">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.9583333333 21.7880555556</span></span></div>
+<div class="nm:editedSource">
+<pre>
+139 Chandrinos, Pylos district, Messenia, 
+    1963
+    Burial: <span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date">300</span>-<span property="nm:approximateburialdate_end" content="-275" datatype="xsd:date">275</span> B.C. 
+    Contents: 5 AE
+    <span rel="mint" resource="corinth">Corinth:</span> 3
+    <span rel="mint" resource="argos_argolis">Argos:</span> 2
+    Disposition: Athens
+    Varoucha, A Delt 1964, Chronika, p. 10
+</pre>
+</div>
+</div>

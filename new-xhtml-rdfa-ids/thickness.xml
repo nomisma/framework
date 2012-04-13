@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="numismatic_term" about="thickness">
+ <div property="skos:prefLabel" xml:lang="en">Thickness</div>
+ <div property="skos:definition" xml:lang="en">The thickness of an object.</div>
+</div>

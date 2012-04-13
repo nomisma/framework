@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1576">
+<span rel="nm:findspot"><span property="gml:pos">35.13611111 36.74861111</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-70" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1576 Hama (anc. Epiphaneia), Seleucis,
+    1937
+    Burial: c. 70 B.C.
+    Contents: 5 AR. From excavations 
+    <span rel="mint" resource="aradus">Aradus: tetradr. (to 73/2 B.C.)</span> 
+    Disposition: Copenhagen
+    Thomsen, Hama, Fouilles et recherches 3 (in press)
+</pre>
+</div>
+</div>

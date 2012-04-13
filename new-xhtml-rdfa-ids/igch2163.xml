@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2163">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>2163 Sicily, date unknown 
+    Burial: late 4th cent. B.C. (K)
+    Contents: 18 AE
+    <span rel="mint" resource="siculo_punic">Siculo-Punic: 3 (Persephone/horse, 1 re-
+        struck on palm-tree/horse hd.)</span>
+    <span rel="mint" resource="siculo_punic">Ziz: 11 (Hera/bull as Gabrici, Monetazione, 
+        pl. 10, 34 [5]; male hd./Pegasus, as G., 
+        p. 195, nos. 35 ff. [6])</span>
+    Disposition: Palermo
+    Tusa Cutroni, AIIN 1956, p. 210, no. XX
+</pre>
+</div>
+</div>

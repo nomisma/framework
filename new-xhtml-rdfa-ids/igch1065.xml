@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1065">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-275" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">45.2755555556 36.9713888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1065 Phanagoria environs (near mod. Sen-
+    naia), Taman' Peninsula, Krasnodar Ter-
+    ritory, RSFSR, 1872
+    Burial: c. 300-275 B.C.
+    Contents: 10 AE. In burial
+    <span rel="mint" resource="panticapaeum">Panticapaeum: AE (as BMC 21-22)</span> 
+    Disposition: dispersed
+† OAK 1872 (publ. 1875), p. xii 
+    Pakhomov III, 688
+</pre>
+</div>
+</div>

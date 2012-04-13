@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0777">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-320" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-315" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.2805555556 27.6130555556</span></span></div>
+<div class="nm:editedSource">
+<pre>
+777 Jasna poljana, c. 30 km. SE of Burgas, 
+    Bulgaria, 1969
+    Burial: c. 320-315 B.C. (T)
+    Contents: 24+ AV 
+    Philip II: 10 st. 
+    Alexander III: 14 st.
+    Disposition: Burgas 24 as listed
+    Information from G. Le Rider
+</pre>
+</div>
+</div>

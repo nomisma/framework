@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1331">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-125" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.6597222222 27.2977777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1331 Priene, 1895-8
+(838)
+    Burial: c. 125 B.C.
+    Contents: 4272 AE. In bronze kettle from 
+        excavations
+    <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia, Ionia: 10</span>
+    <span rel="mint" resource="miletus">Miletus: 1</span>
+    <span rel="mint" resource="priene">Priene: 4257</span>
+    <span rel="mint" resource="iasus">Iasus: I</span>
+    Unc.: 3
+    Disposition: Berlin
+    Regling, Prime, pp. 172-4
+</pre>
+</div>
+</div>

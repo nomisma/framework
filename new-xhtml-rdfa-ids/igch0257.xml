@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0257">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-175" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-145" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.1755555556 20.5694444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+257 Cephallenia, Elis, 1934 
+(228)
+    Burial: c. 175-145 B.C. (T)
+    Contents: 146 AR
+     <span rel="mint" resource="aetolian_league">Aetolian League:</span> 1 triob.
+     <span rel="mint" resource="locri_opuntii">Locri Opuntii:</span> 1 triob.
+     <span rel="mint" resource="boeotia">Boeotia:</span> 1 triob. 
+     <span rel="mint" resource="sicyon">Sicyon:</span> 7 triob.
+     <span rel="mint" resource="achaean_league">Achaean League:</span> 75 triob.
+     <span rel="mint" resource="messene">Messene:</span> 1 triob. 
+     <span rel="mint" resource="lacedaemon">Lacedaemon:</span> 3 triob.
+     <span rel="mint" resource="argos_argolis">Argos:</span> 41 triob.
+     <span rel="mint" resource="arcadian_league">Arcadian League:</span> 16 triob.
+    Disposition: Athens
+    AA 1935, p. 177 
+    BCH 1935, p. 243
+</pre>
+</div>
+</div>

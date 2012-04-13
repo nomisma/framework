@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="moda">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Moda</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Moda on Crete.</div>
+  <div rel="uncertain_value"><span property="gml:pos">35.46 23.65</span></div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/589938"/>
+</div>

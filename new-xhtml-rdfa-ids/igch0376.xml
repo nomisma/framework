@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0376">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-348" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.2925 23.3427777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+376 Olynthus, 1928
+(756)
+    Burial: c. 348 B.C. (Clement)
+    Contents: 35 AR. From excavations 
+    <span rel="mint" resource="chalcidian_league">Chalcidian League: 1 tetradr.; 27 tetrob.</span> 
+    Perdiccas II: 7 tetrob.
+    Disposition: Athens
+    Robinson, Olynthus III, pp. 12 ff., illus. 
+    Robinson-Clement, Olynthus IX, pp. 167-8, illus. 
+        (hd. II)
+</pre>
+</div>
+</div>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0178">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div class="nm:editedSource">
+<pre>
+178 Euboea?, 1966
+    Burial: <span property="nm:approximateburialdate_start" content="-230" datatype="xsd:date">230</span>-<span property="nm:approximateburialdate_end" content="-220" datatype="xsd:date">220</span> B.C. (Picard) 
+    Contents: 19 AR
+    Alexander III: 1 dr.
+    <span rel="mint" resource="chalcis">Chalcis:</span> 11 dr.; 7 triob.
+    Disposition: dispersed
+    Information from M. Oeconomides
+</pre>
+</div>
+</div>

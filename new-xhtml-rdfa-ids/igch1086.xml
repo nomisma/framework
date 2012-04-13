@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1086">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-250" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">46.7055555556 31.8977777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1086 Olbia (mod. Parutino), Ochakov 
+    raion, Nikolaev oblast, Ukraine, 1946
+    Burial: c. 300-250 B.C.
+    Contents: 10 AE. On floor of one room in
+        agora; 8 together and 2 separately
+    <span rel="mint" resource="olbia">Olbia: 2 fish-shaped AE
+            4 aes grave (as AMNG I.1, pl. 8, 2 
+        [3]; Burachkov, pl. 1, 6 [1])
+            3 AE (as AMNG I.1, pl. 9, 23 [2], 
+        26-29 [1])</span>
+    <span rel="mint" resource="istrus">Istrus: 1 AE (as AMNG I.1, pl. 8, 7)</span> 
+    Disposition: Kiev
+    Kharko, "Ol'viia," pp. 350-1, nos. 155-64
+</pre>
+</div>
+</div>

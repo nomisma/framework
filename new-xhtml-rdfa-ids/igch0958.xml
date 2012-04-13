@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0958">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-70" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">45.8766666667 27.2255555556</span></span></div>
+<div class="nm:editedSource">
+<pre>
+958 Marasesti, c. 73 km. NW of Galati, 
+(646)     Rumania, 1909
+    Burial: early 1st cent. B.C. (Mitrea) 
+    Contents: c. 800 AV. Pot hoard
+    Philip II: 4 st.
+    Alexander III: 64 lifetime and post. st. 
+        (<span rel="mint" resource="amphipolis">Amphipolis 7</span>, <span rel="mint" resource="lysimachia">Lysimacheia? 1</span>, <span rel="mint" resource="lampsacus">Lamp-
+        sacus 6</span>, <span rel="mint" resource="abydus">Abydus 6</span>, <span rel="mint" resource="miletus">Miletus 4</span>, <span rel="mint" resource="aradus">Aradus 2</span>,<span rel="mint" resource="sidon">Sidon 1</span>, <span rel="mint" resource="ace_ptolemais">Ace 1</span>, <span rel="mint" resource="babylon">Babylon 8</span>, <span rel="mint" resource="callatis">Callatis 14</span>, 
+        <span rel="mint" resource="odessus">Odessus 7</span>, unc. 7)
+    Philip III: 2 st. (<span rel="mint" resource="abydus">Abydus 1</span>, <span rel="mint" resource="aradus">Aradus 1</span>)
+    Lysimachus: 11 lifetime st. (<span rel="mint" resource="lysimachia">Lysimacheia 
+        3</span>, <span rel="mint" resource="lampsacus">Lampsacus 1</span>, <span rel="mint" resource="abydus">Abydus 2</span>, <span rel="mint" resource="alexandreia_troas">Alex-
+        andreia Troas 4</span>, unc. 1)
+            7 post. st. (<span rel="mint" resource="tomis">Tomis 2</span>, <span rel="mint" resource="callatis">Cal-
+        latis 2</span>, <span rel="mint" resource="byzantium">Byzantium 2</span>, unc. 1)
+    Disposition: New York 23; Vienna, Berlin, 
+        Paris some; Bucharest (Acad.) 1 Alex-
+        ander and 79 casts
+† Moisil, BSNR 11 (1914), pp. 25-6; CNA 14 
+        (1939), pp. 142-3
+    Iliescu, Caiet selectiv 8 (1963), p. 329 (1 Alex-
+        ander)
+    Newell's record of coins he had seen supplemented 
+        by information from B. Mitrea
+</pre>
+</div>
+</div>

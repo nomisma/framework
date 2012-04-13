@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1169">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-500" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-480" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1169 Caria?, 1947
+    Burial: c. 500-480 B.C. (M)
+    Contents: 42+ AR
+    <span rel="mint" resource="caria">Unc. Carian mint: hemidr. (as Traité II.1, 
+        nos. 1002-3)</span>
+    Disposition: Oxford 10
+    BSA 1957, pp. 95 f.
+</pre>
+</div>
+</div>

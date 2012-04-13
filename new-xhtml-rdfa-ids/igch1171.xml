@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1171">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-480" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1171 <span property="nm:findspot" content="38.5 26.0">Chios, Ionia</span>, 1890
+(241)
+    Burial: c. 480 B.C. (Regling)
+    Contents: 9 EL, 4 AR
+    <span rel="mint" resource="cyzicus">Cyzicus: 7 st., 2 sixths</span>
+    <span rel="mint" resource="chios">Chios: 4 didr.</span>
+    Disposition: dispersed
+    Greenwell, NC 1893, p. 82, illus. 
+    Regling, ZfN 1931, p. 25, no. 5
+</pre>
+</div>
+</div>

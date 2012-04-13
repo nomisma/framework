@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1898">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-430" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.0808333333 17.13</span></span></div>
+<div class="nm:editedSource">
+<pre>1898 Cotrone, 5 km. N of Croton, Brut-
+(277, 506)     tium, 1927
+    Burial: c. 430 B.C. (K)
+    Contents: 130+ AR. Pot hoard, dispersed and 
+        partly recovered
+    <span rel="mint" resource="taras">Taras: 20 st. (to horsemen, Per. I)</span> 
+    <span rel="mint" resource="laus">Laus: 1 st. (double-relief)</span>
+    <span rel="mint" resource="metapontum">Metapontum: 12 st. (to Noe 310)</span> 
+    <span rel="mint" resource="poseidonia">Poseidonia: 4 st. (double-relief)</span> 
+    <span rel="mint" resource="sybaris">Sybaris: 1 st.</span>
+    <span rel="mint" resource="thurium">Thurium: 4 st.; 2 fr.</span>
+    <span rel="mint" resource="velia">Velia: 1 st.; 2 fr.</span>
+    <span rel="mint" resource="caulonia">Caulonia: 22 st.; 1 fr.</span>
+    <span rel="mint" resource="croton">Croton: 41 st.; 3 fr.</span>
+    <span rel="mint" resource="terina">Terina: 7 st.</span>
+    Probably intrusive:
+    <span rel="mint" resource="thebes">Croton: 11 fr. (see no. 1939 below) </span>
+    <span rel="mint" resource="thebes">Leontini: 2 tetradr.</span>
+    <span rel="mint" resource="syracuse">Syracuse: 1 tetradr.; 1 AE (Hieron II)</span>
+    Disposition: Reggio 133 (as listed by Cata-
+        nuto); Vlasto 2 (Cat. 69, 245, from Noe 
+        506); Ginori, coins of Thurium (SNG-
+        Oxford 883 and 887, both formerly 
+        Ginori, may be from N. 506)
+† Catanuto, NSc 1932, pp. 387-92 (= N. 277 
+        including intrusive items)
+† Kraay, SNR 1970, pp. 69-71 (for details of 
+        N. 506, and for the common source of 
+        N. 277 and 506)
+    See also no. 1939 below
+</pre>
+</div>
+</div>

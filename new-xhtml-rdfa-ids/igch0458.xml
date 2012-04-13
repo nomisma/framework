@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0458">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-220" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.8361111111 20.4113888889</span></span></div>
+<div class="nm:editedSource">
+<pre>
+458 Zemun, on the Save River opp. Bel-
+(959)     grade, Yugoslavia, 1924
+    Burial: c. 220 B.C. (Hunter) 
+    Contents: 195+ AR
+    Alexander III: 41 early post. tetradr. 
+        (<span rel="mint" resource="amphipolis">Amphipolis 5
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.28888">ANS 1944.100.28888</a></span>, 
+        <span rel="mint" resource="pella_macedon">Pella 3
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.29456">ANS 1944.100.29456</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.29459">ANS 1944.100.29459</a></span>, 
+        <span rel="mint" resource="sicyon">Sicyon 1
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.29643">ANS 1944.100.29643</a></span>, 
+        <span rel="mint" resource="miletus">Miletus 2
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.32004">ANS 1944.100.32004</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.31965">ANS 1944.100.31965</a></span>, 
+        <span rel="mint" resource="sardes">Sardes 1</span>, <span rel="mint" resource="side">Side 1</span>, <span rel="mint" resource="tarsus">Tarsus 1</span>, 
+        <span rel="mint" resource="salamis_cyprus">Salamis 1</span>, <span rel="mint" resource="aradus">Aradus 4</span>, <span rel="mint" resource="marathus">Marathus 1</span>, 
+        <span rel="mint" resource="byblus">Byblus 1
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.35093">ANS 1944.100.35093</a></span>, 
+        <span rel="mint" resource="sidon">Sidon 1</span>, <span rel="mint" resource="babylon">Babylon 6</span>, <span rel="mint" resource="ecbatana">Ecba-
+        tana 1</span>, unc. 12)
+        39 dr. (<span rel="mint" resource="euboea">Euboea 1</span>, <span rel="mint" resource="lampsacus">Lamp-
+        sacus 6</span>, <span rel="mint" resource="abydus">Abydus 2</span>, <span rel="mint" resource="colophon">Colophon 7</span>, <span rel="mint" resource="magnesia_ad_maeandrum">Mag-
+        nesia 3</span>, <span rel="mint" resource="miletus">Miletus 1</span>, <span rel="mint" resource="teos">Teos 1</span>, <span rel="mint" resource="sardes">Sardes 3</span>, 
+        unc. 15
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.26655">ANS 1944.100.26655</a>)
+    Philip III: 2 tetradr. (<span rel="mint" resource="damascus">Damascus</span>, <span rel="mint" resource="aradus">Aradus</span>)
+    Lysimachus: 3 tetradr. 
+       (<span rel="mint" resource="lampsacus">Lampsacus
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.77466">ANS 1944.100.77466</a></span> 
+        unc. 2
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.81589">ANS 1944.100.81589</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.81764">ANS 1944.100.81764</a>)
+    Demetrius Poliorcetes: 1 tetradr. (<span rel="mint" resource="pella_macedon">Pella
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.13771">ANS 1944.100.13771</a></span>)
+        <span rel="mint" resource="athens">Athens: 1 tetradr.
+        <a href="http://numismatics.org/collection/1944.100.24420" rel="nm:item">ANS 1944.100.24420</a></span>
+    Eumenes I: 1 tetradr.
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.43177">ANS 1944.100.43177</a>
+    Attalus I: 1 tetradr.
+    Seleucus I: 2 tetradr. (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Tigrim
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.44934">ANS 1944.100.44934</a></span>, 
+        <span rel="mint" resource="susa">Susa
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.73348">ANS 1944.100.73348</a></span>)
+    Antiochus I: 1 tetradr. (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Ti-
+        grim
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.45791">ANS 1944.100.45791</a></span>)
+    Celtic Imit.: 102+ tetradr. (types of Larissa, 
+        Philip II, Alex. III)
+    Disposition: Belgrade 159 (casts of 71 Alex. 
+        types in ANS); New York 31 tetradr.
+    Saria, NZ 1927, p. 11
+    Pink, Münzprägung der Ostkelten, p. 61
+    Newell, WSM, p. 187
+† Hunter, ANSMN 13 (1967), pp. 17-40, illus.
+    The provenance of this hd., under Noe 959 
+        as south Serbia, is now thought to be 
+        further north at Zemun
+    See also no. 447 above
+</pre>
+</div>
+</div>

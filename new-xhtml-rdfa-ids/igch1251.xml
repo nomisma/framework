@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1251">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-440" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-430" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.1977777778 29.8466666667</span></span></div>
+<div class="nm:editedSource">
+<pre>1251 Lycia, c. 20 km. E of Kas (anc. Anti-
+    phellus), 1961
+    Burial: 440-430 B.C. 
+    Contents: 100+ AR
+    <span rel="mint" resource="athens">Athens:</span> 3+ tetradr. 
+    <span rel="mint" resource="lycia">Lycia dynasts: 96+ st.</span>
+    Disposition: dispersed 
+    Mørkholm, JNG 1964, p. 69
+</pre>
+</div>
+</div>

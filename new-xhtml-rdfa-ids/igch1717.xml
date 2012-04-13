@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1717">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-80" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">31.2025 29.9119444444</span></span></div>
+<div class="nm:editedSource">
+<pre>1717 Alexandria, 1933
+    Burial: c. 80 B.C. (Jenkins)
+    Contents: 40 AE. From tomb at Moustafa 
+        Pacha necropolis
+    Ptolemy IX Soter II (as Svoronos 1698, 
+        1702)
+    Disposition: Alexandreia
+    Adriani, AMGR 1933-5 (Alexandreia, 1938),
+        p. 158 (cf. pp. 159, 165, 173 for further coins
+        from same site, incl. Ptolemy IV, VI, IX) 
+    REG 1938, p. 183
+</pre>
+</div>
+</div>

@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2084">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-455" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-435" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.5836111111 12.8247222222</span></span></div>
+<div class="nm:editedSource">
+<pre>2084 Selinunte, 1923
+(953)
+    Burial: c. 455 B.C. (Herzfelder); c. 435 
+        (Jenkins)
+    Contents: 475 AR
+    <span rel="mint" resource="agrigentum">Acragas: 3 tetradr.; 88 didr.</span>
+    <span rel="mint" resource="catana">Catana: 2 tetradr.</span>
+    <span rel="mint" resource="gela">Gela: 25 tetradr. (to Jenkins 378)
+            70 didr.
+            <a rel="nm:item" href="http://numismatics.org/collection/1957.172.560">ANS 1957.172.560</a>
+            <a rel="nm:item" href="http://numismatics.org/collection/1957.172.555">ANS 1957.172.555</a></span>
+    <span rel="mint" resource="himera">Himera: 1 tetradr.; 1 didr.; 2 dr. (archaic) </span>
+    <span rel="mint" resource="leontini">Leontini: 19 tetradr. (incl. Apollo hds.) 
+            8 didr.
+            <a rel="nm:item" href="http://numismatics.org/collection/1957.172.575">ANS 1957.172.575</a>
+            <a rel="nm:item" href="http://numismatics.org/collection/1925.172.24">ANS 1925.172.24</a></span>
+    <span rel="mint" resource="messana">Messana: 20 tetradr.</span>
+    <span rel="mint" resource="selinus_sicily">Selinus: 25 tetradr. (to Schwabacher 11)
+            75 didr. (Heracles/Hypsas)
+            <a rel="nm:item" href="http://numismatics.org/collection/1957.172.628">ANS 1957.172.628</a>
+            <a rel="nm:item" href="http://numismatics.org/collection/1957.172.630">ANS 1957.172.630</a>
+            <a rel="nm:item" href="http://numismatics.org/collection/1957.172.629">ANS 1957.172.629</a>
+            <a rel="nm:item" href="http://numismatics.org/collection/1957.172.624">ANS 1957.172.624</a>
+            <a rel="nm:item" href="http://numismatics.org/collection/1957.172.625">ANS 1957.172.625</a>
+            <a rel="nm:item" href="http://numismatics.org/collection/1925.172.30">ANS 1925.172.30</a>
+            <a rel="nm:item" href="http://numismatics.org/collection/1925.172.29">ANS 1925.172.29</a>
+            <a rel="nm:item" href="http://numismatics.org/collection/1957.172.626">ANS 1957.172.626</a>
+            <a rel="nm:item" href="http://numismatics.org/collection/1957.172.627">ANS 1957.172.627</a></span>
+    <span rel="mint" resource="syracuse">Syracuse: 132 tetradr. (to Boehringer 604)
+            4 didr.
+            <a rel="nm:item" href="http://numismatics.org/collection/1957.172.1850">ANS 1957.172.1850</a>
+            <a rel="nm:item" href="http://numismatics.org/collection/1925.172.58">ANS 1925.172.58</a>
+            <a rel="nm:item" href="http://numismatics.org/collection/1957.172.1818">ANS 1957.172.1818</a>
+            <a rel="nm:item" href="http://numismatics.org/collection/1957.172.1831">ANS 1957.172.1831</a></span>
+    Disposition: Hoyt Miller 36 (presumably 
+        most are now New York but only 7 can 
+        be firmly identified: 3 Gela, 1 Himera,
+        1 Leontini, 2 Syracuse); A. H. Lloyd 
+        117 (incl. SNG 800-1, 808, 891, 952,
+        959, 961-2, 966, 969, 1019, 1052-6, 
+        1059, 1220, 1225, 1230, 1241-66, 1308,
+        1316, 1318, 1320, 1322-3, 1328-30, 
+        1333-8, 1341). Twelve coins of Selinus 
+        given to BM by Lloyd in 1924 (Ill. 
+        Lond. News 1924, p. 1246), obviously 
+        from this hd., are presumably included 
+        in the 117 acquired by him
+† Lloyd, NC 1925, pp. 277-300, illus. 
+    Herzfelder, Rhegion, pp. 47-9 
+    Jenkins, Gela, pp. 66, 159
+</pre>
+</div>
+</div>

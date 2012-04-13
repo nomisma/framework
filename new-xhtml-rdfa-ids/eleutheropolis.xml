@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="eleutheropolis">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Eleutheropolis</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Eleutheropolis in Judea.</div>
+ <div property="gml:pos">31.620770 34.887973</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/687854"/>
+</div>

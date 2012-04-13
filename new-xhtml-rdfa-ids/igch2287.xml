@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2287">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-216" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.3980555556 8.65861111111</span></span></div>
+<div class="nm:editedSource">
+<pre>2287 Pozzomaggiore, 40 km. SSE of Sas-
+(832)     sari, Sardinia, 1928-1929
+    Burial: c. 216 B.C. (Jenkins)
+    Contents: 3007+ AE
+    Carthage: 3006 <span rel="mint" resource="sardinia">Sardinian mint (as SNGCop. 
+        246 [3000]; 387 [6])</span>
+            1 unc. mint (as SNGCop. 226)
+    Disposition: Cagliari
+    Boehringer, AA 1929, p. 161 
+    Taramelli, NSc 1930, pp. 105-10
+</pre>
+</div>
+</div>

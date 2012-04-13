@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="germanicia_caesareia">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Caesareia Germanicia</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Caesareia Germanicia in Commagene.</div>
+ <div property="gml:pos">37.586682 36.925326</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Kahramanmaras"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/658474"/>
+</div>

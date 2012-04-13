@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0771">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-320" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.1902777778 28.6447222222</span></span></div>
+<div class="nm:editedSource">
+<pre>
+771 Constanta (anc. Tomis), Rumania, 
+    1938-1942
+    Burial: c. 330-320 B.C. (T)
+    Contents: c. 30-40 AR. Pot hoard 
+    <span rel="mint" resource="apollonia_pontica">Apollonia Pontica: diob.</span>
+    <span rel="mint" resource="mesembria">Mesembria: diob.</span>
+    Disposition: Bucharest (Acad.)
+    Moisil, Cabinetul numismatic 1938-42, p. 5, nos. 
+        40,42
+</pre>
+</div>
+</div>

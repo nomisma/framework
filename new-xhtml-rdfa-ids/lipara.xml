@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="lipara">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Lipara</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Lipara on Lipara, off Sicily.</div>
+ <div property="gml:pos">38.467419 14.953897</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Lipara"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/462283"/>
+</div>

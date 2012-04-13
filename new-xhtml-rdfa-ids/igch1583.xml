@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1583">
+<span rel="nm:findspot"><span property="gml:pos">34.54388889 36.07972222</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-30" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1583 Akkar, c. 45 km. SW of Homs (anc. 
+    Emesa), Seleucis, 1951
+    Burial: c. 30 B.C. (Westermark) 
+    Contents: 16+ AR
+    Seleucus VI: 2 tetradr. ( <span rel="mint" resource="antiocheia_syria">Antiocheia</span>) 
+    Antiochus X: 9 tetradr. ( <span rel="mint" resource="antiocheia_syria">Antiocheia</span>) 
+    Philip Philadelphus: 4 tetradr. ( <span rel="mint" resource="antiocheia_syria">Antiocheia</span>) 
+    Phraates IV: 1 tetradr. (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Ti-
+        grim, yr. 280 = 33/2 B.C.</span>)
+    Disposition: dispersed
+    Seyrig, Trésors du Levant (in press)
+</pre>
+</div>
+</div>

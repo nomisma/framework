@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="roman_emperor" about="commodus">
+ <div property="skos:prefLabel" xml:lang="en">Commodus</div>
+ <div property="skos:definition" xml:lang="en">Roman emperor from 31 August 177 – 31 December 192.</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Commodus"/>
+</div>

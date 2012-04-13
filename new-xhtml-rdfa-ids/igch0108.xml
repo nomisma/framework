@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0108">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.7305555556 22.7561111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+108 Mycenae, 1939
+    Burial: late 4th cent. B.C. (T) 
+    Contents: 9 AR. From excavations
+    <span rel="mint" resource="phocis">Phocis:</span> 2 hemidr.
+    <span rel="mint" resource="thebes">Thebes:</span> 1 hemidr.
+    <span rel="mint" resource="aegina">Aegina:</span> 3 st. (2 turtles, 1 tortoise)
+    <span rel="mint" resource="sicyon">Sicyon:</span> 1 tetradr. (cf. BMC 46, good 
+        condition)
+    <span rel="mint" resource="argos_argolis">Argos:</span> 2 hemidr. (early)
+    Disposition: Nauplion
+    Wace, BSA 1950, p. 224
+    To be published by J. Dengate
+</pre>
+</div>
+</div>

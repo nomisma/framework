@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1754">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-310" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-305" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.581515 43.533325</span></span></div>
+<div class="nm:editedSource">
+<pre>1754 Chorsabad, c. 35 km. NE of Mosul, 
+(561)     in anc. Assyria, 1934?
+    Burial: c. 310-305 B.C. (Newell)
+    Contents: 9 AR
+    Alexander III: 6 lifetime and early post. 
+        tetradr. (<span rel="mint" resource="amphipolis">Amphipolis 1</span>, <span rel="mint" resource="byblus">Byblus 1</span>, 
+        <span rel="mint" resource="sidon">Sidon 1</span>, <span rel="mint" resource="babylon">Babylon 3</span>)
+    Philip III: 3 tetradr. (<span rel="mint" resource="babylon">Babylon 1</span>, <span rel="mint" resource="susa">Susa 2</span>) 
+    Disposition: unknown
+    Found in the temple of Nabu by an archaeological 
+        expedition of the Oriental Institute, Chicago
+</pre>
+</div>
+</div>

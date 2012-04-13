@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0244">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.3947222222 21.8338888889</span></span></div>
+<div class="nm:editedSource">
+<pre>
+244 Naupactus environs, Locris, 1967 
+    Burial: 175-150 B.C. (T)
+    Contents: 65 AE
+    <span rel="mint" resource="aetolia">Aetolia:</span> 58
+    <span rel="mint" resource="oeta">Oetaei:</span> 7
+    Disposition: Athens
+    Oeconomides, A Delt 1968, Chronika, p. 12
+</pre>
+</div>
+</div>

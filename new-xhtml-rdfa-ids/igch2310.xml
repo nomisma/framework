@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2310">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-450" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-400" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.2602777778 -5.54555555556</span></span></div>
+<div class="nm:editedSource">
+<pre>2310 El Arahal, 40 km. SE of Seville, 1962
+    Burial: 450-400 B.C. (Jenkins) 
+    Contents: 6 AR
+    <span rel="mint" resource="metapontum">Metapontum: 2 st.</span> 
+    <span rel="mint" resource="agrigentum">Acragas: 1 tetradr. </span>
+    <span rel="mint" resource="gela">Gela: 1 didr.</span>
+    <span rel="mint" resource="leontini">Leontini: 1 tetradr. </span>
+    <span rel="mint" resource="segesta">Segesta: 1 didr.</span>
+    Disposition: R. B. Lewis
+    Lewis, NC 1962, pp. 425-7, illus.
+</pre>
+</div>
+</div>

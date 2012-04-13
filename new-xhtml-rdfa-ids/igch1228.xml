@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1228">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1228 <span property="nm:findspot" content="39.9928214 26.1856019">Sigeum, Troas</span>, 1852
+(979)
+    Burial: 4th cent. B.C. (M)
+    Contents: AE
+    Achaeum or <span rel="mint" resource="achilleion">Achilleum: 1</span>
+    <span rel="mint" resource="cebren">Cebren: many</span>
+    <span rel="mint" resource="ilium">Ilium: many</span>
+    <span rel="mint" resource="neandria">Neandria: many</span>
+    Disposition: Berlin I; Sotheby, July 12, 
+        1852, p. 18, no. 151
+    For the question Achaeum/Achilleum see 
+        most recently Robert, Études, p. 8, 
+        note 4
+</pre>
+</div>
+<a href="http://nomisma.org/kml/igch1228.kml">Google kml file.</a>
+</div>

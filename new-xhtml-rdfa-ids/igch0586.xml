@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0586">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">46.3 22.3833333333</span></span></div>
+<div class="nm:editedSource">
+<pre>
+586 Gura Vaii (= Baia de Cris, formerly 
+(120, 471)     Körösbánya), c. 78 km. NE of 
+    Arad, Rumania, 1850
+    Burial: 2nd-1st cent. B.C. (T)
+    Contents: 71 AR. Pot hoard with AR jewelry 
+    <span rel="mint" resource="apollonia_illyria">Apollonia, Illyria: dr.</span>
+    Disposition: Vienna 52
+† Seidl, AfÖG 6 (1851), pp. 237-8 (Körösbánya); 15 
+        (1856), p. 321
+    MittZentralKomm 1856, p. 102
+    Mitrea, ED 10 (1945), p. 94
+</pre>
+</div>
+</div>

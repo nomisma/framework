@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="massalia">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Massalia</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Massalia in Gaul.</div>
+ <div property="gml:pos">43.296854 5.382499</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Marseille"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/148127"/>
+</div>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="volaterrae">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Volaterrae</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Volaterrae in Etruria.</div>
+ <div property="gml:pos">43.401431 10.861106</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Volterra"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/403292"/>
+</div>

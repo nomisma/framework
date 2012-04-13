@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2018">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-230" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>2018 Bruttium, date unknown 
+    Burial: late 3rd cent. B.C. (K) 
+    Contents: 53+ AE
+    <span rel="mint" resource="bruttii">Brettii: various types</span>
+    Disposition: Oxford (ex Evans)
+    Milne, NC 1944, pp. 114-5
+</pre>
+</div>
+</div>

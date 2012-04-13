@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2061">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-500" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.8216666667 15.2316666667</span></span></div>
+<div class="nm:editedSource">
+<pre>2061 Calatabiano, 5 km. SW of Taormina, 
+    before 1946
+    Burial: c. 500 B.C. (K) 
+    Contents: 8+ AR
+    <span rel="mint" resource="zancle">Zancle: 6+ dr.</span>
+    <span rel="mint" resource="naxus">Naxus: 2+ dr.</span>
+    Disposition: Syracuse, 6 Zancle (Gagliardi 
+        coll.); Käppeli, 2 Naxus (Kunstwerke 
+        der Antike, F17-18)
+    Rizzo, MGS 1, pp. 141, fig. 31 and 143, fig. 33b
+</pre>
+</div>
+</div>

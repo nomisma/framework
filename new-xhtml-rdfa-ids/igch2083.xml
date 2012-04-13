@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2083">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-450" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-445" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.853793 15.288105</span></span></div>
+<div class="nm:editedSource">
+<pre>2083 Taormina (anc. Tauromenium), 1891 
+(1042)
+    Burial: 450-45 B.C. (K)
+    Contents: 64 AR
+    <span rel="mint" resource="syracuse">Syracuse:</span> tetradr. (to Boehringer 538) 
+    Disposition: von Renner 61
+    von Renner, NZ 1892, pp. 1-39, illus.
+</pre>
+</div>
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0042">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div class="nm:editedSource">
+<pre>
+42 Euboea (or Boeotia), 1951
+    Burial: c. <span property="nm:approximateburialdate" content="-400" datatype="xsd date">400</span> B.C. 
+    Contents: c. 350 AR
+    <span rel="mint" resource="tanagra">Tanagra:</span>1 st.
+    <span rel="mint" resource="thebes">Thebes:</span> 68-70 st. (some ctmk. on shield) 
+    <span rel="mint" resource="euboean_league">Euboean League:</span> 30 st.
+    <span rel="mint" resource="athens">Athens:</span> 2 tetradr.
+    <span rel="mint" resource="sicyon">Sicyon:</span> 1 st.
+    Disposition: unknown
+    Wallace, NNM 134 (1956), pp. 49-50, no. 3, 
+        137-9, some illus.
+</pre>
+</div>
+</div>

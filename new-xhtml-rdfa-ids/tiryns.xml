@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="tiryns">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Tiryns</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Tiryns in Argolis.</div>
+ <div property="gml:pos">37.596719 22.799814</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Tiryns"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/570740"/>
+</div>

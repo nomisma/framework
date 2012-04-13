@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="rhodiapolis">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Rhodiapolis</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Rhodiapolis in Lycia.</div>
+ <div property="gml:pos">36.3871996 30.268085</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/639078"/>
+</div>

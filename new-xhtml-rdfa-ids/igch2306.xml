@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2306">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.3491666667 6.62944444444</span></span></div>
+<div class="nm:editedSource">
+<pre>2306 Constantine, (anc. Cirta), 300 km. E 
+(258)     of Algiers, Algeria, 1912
+    Burial: 1st cent. B.C. (Jenkins)
+    Contents: 237 AR 
+    <span rel="mint" resource="massalia">Massalia: 12 dr. </span>
+     Celtiberian: 75 den.
+    <span rel="mint" resource="athens">Athens: 14 New Style tetradr.</span>
+    <span rel="mint" resource="rome">Roman Rep.: 136 den. (to c. 79 B.C.) </span>
+    Disposition: Constantine
+    Charrier, Description des monnaies de la Numidie 
+        et de la Mauretanie (Macon, 1912), p. 10, 
+        note 1 (poor data: Athens given as "Athens 
+        or Carthage")
+    Note by E. S. G. Robinson (1 Athens seen)
+</pre>
+</div>
+</div>

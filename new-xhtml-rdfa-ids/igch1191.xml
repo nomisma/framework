@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1191">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-450" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-440" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.1469444444 26.0122222222</span></span></div>
+<div class="nm:editedSource">
+<pre>1191 Phanae on Chios, Ionia, 1913
+(244, 245)
+    Burial: c. 450-440 B.C. (M)
+    Contents: 59 AR. Pot hoard from excavations 
+    <span rel="mint" resource="chios">Chios: 15 didr.; 44 tetrob.</span>
+    Disposition: Athens
+    AA 1915, p. 200 
+    AJA 1920, p. 94
+    The references leave no doubt that Noe 244 
+        and 245 are a single hd.
+</pre>
+</div>
+</div>

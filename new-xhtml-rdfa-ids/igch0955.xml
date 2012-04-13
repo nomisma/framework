@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0955">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.8644444444 25.985</span></span></div>
+<div class="nm:editedSource">
+<pre>
+955 Biser, c. 46 km. E of Haskovo, Bul-
+    garia, 1967
+    Burial: 2nd-1st cent. B.C. (T)
+    Contents: 20 AR. Pot hoard
+    Lysimachus: late post. tetradr. (<span rel="mint" resource="byzantium">By-
+        zantium</span>)
+    Disposition: Sofia
+    Reported by T. Gerasimov
+</pre>
+</div>
+</div>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0047">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.9369444444 23.6444444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+47 Piraeus, 1882
+(817)
+    Burial: c. <span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date">400</span>-<span property="nm:approximateburialdate_end" content="-380" datatype="xsd:date">380</span> B.C. (Regling) 
+    Contents: c. 80 EL. Pot hoard 
+    <span rel="mint" resource="cyzicus">Cyzicus:</span> st.
+    Disposition: unknown
+    Greenwell, NC 1887, p. 42 (a handwritten note in 
+        Greenwell's copy of the article raises the 
+        total to 80 and adds that no Alexander, 
+        were in the hd.)
+    Regling, ZfN 1931,  p. 26
+</pre>
+</div>
+</div>

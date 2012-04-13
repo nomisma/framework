@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="new_orleans">
+ <div property="skos:prefLabel" xml:lang="en">New Orleans</div>
+ <div property="skos:definition" xml:lang="en">The United States mint in the city of New Orleans, Louisiana.</div>
+<div property="gml:pos">29.966667 -90.05</div>
+</div>

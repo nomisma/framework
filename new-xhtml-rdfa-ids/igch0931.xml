@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0931">
+<span rel="nm:findspot"><span property="gml:pos">44.83722222 28.41333333</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-125" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+931 Mâcin (anc. Arrubium), c. 20 km. SSE 
+    of Galati, Rumania, 1965
+    Burial: c. 125-100 B.C. (T)
+    Contents: AR. Pot hoard
+    <span rel="mint" resource="thasos">Thasos: spread-flan tetradr.</span>
+    Disposition: Bucharest (Hist. Mus.) some
+    Mitrea, Dacia 1967, p. 380
+</pre>
+</div>
+</div>

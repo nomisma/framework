@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0275">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-140" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-80" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.9736111111 23.7288888889</span></span></div>
+<div class="nm:editedSource">
+<pre>
+275 Athens (Plaka), c. 1942
+    Burial: c. 140-130 B.C. (T); c. 87 (Price)
+    Contents: 85 AE. Pot hoard
+    <span rel="mint" resource="athens">Athens:</span> 1 3rd cent. (as Svoronos pl. 24,
+        42)
+            80 New Style (as Sv. pl. 22, 53-8 
+        [15]; pl. 81 [41]; pl. 24, 62 ff. [24])
+            4 "Delian" type (as Sv. pl. 107, 
+        50 ff.)
+    Disposition: Evelpidis coll., Athens
+    Thompson, Athens, pp. 526 ff. 
+    Price, NC 1964, pp. 27-36
+</pre>
+</div>
+</div>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0412">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-315" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-310" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.6208333333 22.8361111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+412 Ruzanci, near Vraca, Bulgaria, 1929-
+(872)     1930
+    Burial: c. 315-310 B.C. (T)
+    Contents: AR. Hoard?
+    Patraus: tetradr.
+    Disposition: Sofia 2
+    Mouchmov, BIAB 6 (1930-1), p. 315
+</pre>
+</div>
+</div>

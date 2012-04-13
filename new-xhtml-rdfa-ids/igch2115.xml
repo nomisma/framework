@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2115">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-370" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.72 15.1805555556</span></span></div>
+<div class="nm:editedSource">
+<pre>2115 Giarre Riposto, 20 km. S of Taor-
+(432)     mina, c. 1907
+    Burial: early 4th cent. B.C. (K)
+    Contents: 3+ AR
+    <span rel="mint" resource="naxus">Naxus: 1 tetradr. (Cahn 106.1)</span>
+    <span rel="mint" resource="siculo_punic">Ziz: 2 tetradr. (early types)</span>
+    Disposition: Jameson 3 (nos. 678, 689-90)
+    Jameson Cat 4 (1932), "Erratum supplemen-
+        taire," nos. 678, 689-90. Nos. 689-90 were 
+        acquired from Egger Sale, Jan. 1908 (nos. 
+        54-5), and are a part of a group of Ziz 
+        tetradr. (nos. 54-61), which may come from 
+        a single hd. No. 678 came from Hirsch Sale 
+        Nov. 11, 1907, no. 214, which includes two 
+        more similar Ziz tetradr., and two very rare 
+        tetradr. of Panormus
+</pre>
+</div>
+</div>

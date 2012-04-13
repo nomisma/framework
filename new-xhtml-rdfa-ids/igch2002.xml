@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2002">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-230" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.5313888889 17.5886111111</span></span></div>
+<div class="nm:editedSource">
+<pre>2002 Francavilla Fontana, 35 km. E of 
+(414)     Taranto, Calabria, 1926
+    Burial: c. 230 B.C. (K)
+    Contents: c. 120 AR
+    <span rel="mint" resource="taras">Taras: 85 st. (2 Per. VII; 80 Per. VIII;
+        3 Per. IX C, F)</span>
+    <span rel="mint" resource="thurium">Thurium: 1 st. (reduced weight) </span>
+    Disposition: Taranto 86
+    Quagliati, AttiMemIIN 6 (1930), pp. 90-8, illus.
+</pre>
+</div>
+</div>

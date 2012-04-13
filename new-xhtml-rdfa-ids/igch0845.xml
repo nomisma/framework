@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0845">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.5725 25.1841666667</span></span></div>
+<div class="nm:editedSource">
+<pre>
+845 Turija, c. 18 km. N of Stara Zagora, 
+    Bulgaria, 1951
+    Burial: c. 300 B.C. (T) 
+    Contents: 15 AE
+    Philip II
+    Alexander III 
+    Seuthes III
+    Disposition: dispersed
+    Gerasimov, BIAB 18 (1952), p. 404
+</pre>
+</div>
+</div>

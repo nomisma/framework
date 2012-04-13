@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1420">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.7238888889 30.2772222222</span></span></div>
+<div class="nm:editedSource">
+<pre>1420 Burdur (anc. district of Pisidia) en-
+    virons, 1968
+    Burial: 1st cent. B.C. (M) 
+    Contents: 198 AE
+    <span rel="mint" resource="termessus_minor">Termessus Minor: 1 (as SNGCop. 142)</span> 
+    <span rel="mint" resource="attaleia">Attaleia: 5 (as BMC 1-2 [3]; 3-4 [1]) </span>
+    <span rel="mint" resource="perge">Perge: 23 (as BMC 4 ff. [16]; 15 ff. [3])</span> 
+    <span rel="mint" resource="side">Side: 2 (as BMC 63 ff.)</span>
+    <span rel="mint" resource="adada">Adada: 1 (as BMC 1)</span>
+    <span rel="mint" resource="ariassus">Ariassus: 131 (8 Apollo/eagle, 123 Zeus/ 
+        humped bull)</span>
+    <span rel="mint" resource="ceraitae">Ceraïtae: 2 (as SNGvonA. 5052 [1]; BMC 
+        1 ff. [1])</span>
+    <span rel="mint" resource="comama">Comama: 2 (as Kleinas. Münzen II, p. 378, 
+        no. 4 [1]; SNGvonA. 5064 [1]) </span>
+    <span rel="mint" resource="cremna">Cremna: 1 (as BMC 1)</span>
+    <span rel="mint" resource="etenna">Etenna: 1 (as BMC 1 ff.)</span>
+    <span rel="mint" resource="isinda">Isinda: 1 (as BMC 5-6)</span>
+    <span rel="mint" resource="pednelissos">Pednelissus: 1 (Apollo/humped bull)</span> 
+    <span rel="mint" resource="sagalassus">Sagalassus: 1 (as SNGCop. 194)</span>
+    <span rel="mint" resource="selge">Selge: 3 (as BMC 38 ff. [2]; 59 ff. [1])</span> 
+    <span rel="mint" resource="termessus_major">Termessus Major: 21 (as BMC 1 f. [2]; 3 ff. 
+        [6]; 18 ff. [13])</span> 
+    Unc. mints: 2
+    Disposition: Istanbul
+    Oçlay, Istanbul ArkMüzYilligi 1969, pp. 289-
+        304, illus.
+    25 more coins, mostly from the Imperial 
+        period, were included in the hd. but 
+        are undoubtedly intrusive
+</pre>
+</div>
+</div>

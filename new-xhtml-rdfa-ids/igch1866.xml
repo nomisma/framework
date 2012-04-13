@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1866">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">31.2227777778 74.6172222222</span></span></div>
+<div class="nm:editedSource">
+<pre>1866 Amarkot, near Dera Ghazi Khan, on 
+    the Indus River, Punjab, Pakistan, 1899 
+    Burial: 1st cent. B.C. (Le Rider)
+    Contents: 221 AR Pot hoard 
+    Apollodotus II: dr.
+    Disposition: unknown
+    Vost, JASB 1909, pp. 307-8 
+    Jenkins, INSI 1959, p. 29
+</pre>
+</div>
+</div>

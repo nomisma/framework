@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1537">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-190" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.1458333333 36.1383333333</span></span></div>
+<div class="nm:editedSource">
+<pre>1537 Kosseir, near Antakya (anc. Antioch), 
+    Seleucis, 1949
+    Burial: c. 190 B.C. (Seyrig)
+    Contents: 82 + AR
+    Alexander III: 21 late post. tetradr. (<span rel="mint" resource="mesembria">Me-
+        sembria 2</span>, <span rel="mint" resource="assus">Assus 2</span>, <span rel="mint" resource="chios">Chios 1</span>, <span rel="mint" resource="colophon">Colophon 
+        1</span>, <span rel="mint" resource="miletus">Miletus 1</span>, <span rel="mint" resource="rhodes">Rhodes 2</span>, <span rel="mint" resource="phaselis">Phaselis 4 to 
+        yr. 24</span>, <span rel="mint" resource="perge">Perge 3 to yr. 20</span>, <span rel="mint" resource="sillyum">Sillyum? 1</span>, 
+        <span rel="mint" resource="aspendus">Aspendus 3 to yr. 19</span>, <span rel="mint" resource="aradus">Aradus 1 of 
+        yr. 69</span>)
+    Lysimachus: 1 lifetime tetradr. (<span rel="mint" resource="lampsacus">Lampsa-
+        cus</span>)
+            4 post. tetradr. (<span rel="mint" resource="aenus">Aenus 1</span>, 
+        <span rel="mint" resource="calchedon">Calchedon 1</span>, <span rel="mint" resource="tenedos">Tenedos 1</span>, unc. mint 1) 
+    Prusias I: 1 tetradr.
+    <span rel="mint" resource="side">Side: 9 tetradr.</span>
+    Antiochus III: 4 tetradr. (<span rel="mint" resource="antiocheia_syria">Antiocheia 1 as 
+        WSM 1094</span>, <span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Tigrim 1 as 
+        ESM 254</span>, <span rel="mint" resource="ecbatana">Ecbatana 1 as ESM 608</span>, 
+        unc. mint 1 as WSM 1695)
+    Disposition: Antakya 9
+    Seyrig, Antiq. syr. 6 (Paris, 1966), p. 10, note 1 = 
+        Syria 1958, p. 196, note 1; RN 1963, pp. 42, 
+        62; Trésors du Levant (in press)
+    Le Rider, CIN 1961. Relazioni 74
+</pre>
+</div>
+</div>

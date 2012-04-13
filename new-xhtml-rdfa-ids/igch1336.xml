@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1336">
+<span rel="nm:findspot"><span property="gml:pos">40.58777778 27.555</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-110" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1336 Marmara (anc. Proconnesus), Mysia, 
+(655)     1863
+    Burial: c. 110-100 B.C. (M) 
+    Contents: c. 70 AR. Pot hoard
+    Lysimachus: 11 post? tetradr. 
+    <span rel="mint" resource="athens">Athens:</span> 1 tetradr.
+    Nicomedes II-III: 8 tetradr. (latest 117/6 
+        B.C.)
+    <span rel="mint" resource="cyzicus">Cyzicus: 5 tetradr. (as BMC 146)</span> 
+    <span rel="mint" resource="pergamum">Pergamum: 1 cist.</span>
+    Disposition: dispersed
+    Waddington, RN 1865, pp. 25-8, illus. (= Mé-
+        langes II (Paris, 1867), pp. 57-60 
+    Thompson, Athens, p. 523
+</pre>
+</div>
+</div>

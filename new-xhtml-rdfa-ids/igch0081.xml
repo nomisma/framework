@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0081">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div class="nm:editedSource">
+<pre>
+81 Greece, central?, c. 1911 
+(461)
+    Burial: c. <span property="nm:approximateburialdate" content="-319" datatype="xsd date">319</span> B.C. (Newell)
+    Contents: 37+ AR
+    Philip II: 1 tetradr. (<span rel="mint" resource="amphipolis">Amphipolis</span>) 
+    Alexander III: 28 lifetime and early post.
+        tetradr. (<span rel="mint" resource="amphipolis">Amphipolis 15,</span> <span rel="mint" resource="pella_macedon">Pella 6,</span> <span rel="mint" resource="side">Side
+        4,</span> <span rel="mint" resource="citium">Citium 1,</span> <span rel="mint" resource="aradus">Aradus 1,</span> <span rel="mint" resource="babylon">Babylon 1</span>) 
+    <span rel="mint" resource="boeotia">Boeotia:</span> 2 st.
+    <span rel="mint" resource="athens">Athens:</span> 3 tetradr.
+    <span rel="mint" resource="sicyon">Sicyon:</span> 3 dr.
+    Disposition: unknown
+    <a rel="dc:references" href="http://www.numismatics.org/Archives/Newellbio#archival">Record</a> by E. T. Newell on file in ANS
+</pre>
+</div>
+</div>

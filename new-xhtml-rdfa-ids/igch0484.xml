@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0484">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-150" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-125" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.8952777778 22.8622222222</span></span></div>
+<div class="nm:editedSource">
+<pre>
+484 Gaber, near Sofia, Bulgaria, 1960
+    Burial: c. 150-125 B.C. (T)
+    Contents: AR
+    <span rel="mint" resource="macedonia_1st_region">Macedonia, 1st Region: tetradr. (3 well-
+        preserved specimens with AP)</span> 
+    Disposition: dispersed
+    Gerasimov, BIAB 26 (1963), p. 257
+    A large hd. which may have contained 
+        other coinages
+</pre>
+</div>
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0615">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.2619444444 24.9472222222</span></span></div>
+<div class="nm:editedSource">
+<pre>
+615 Aleksandrovo, 20 km. NE of Loveč, 
+    Bulgaria, 1941
+    Burial: 2nd-1st cent. B.C. (T)
+    Contents: 1016 AR. Pot hoard
+    <span rel="mint" resource="apollonia_illyria">Apollonia, Illyria: dr.</span>
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: dr.</span>
+    Disposition: dispersed
+    Gerasimov, BIAB 15 (1946), p. 235
+</pre>
+</div>
+</div>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="amblada">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Amblada</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Amblada in Pisidia.</div>
+ <div property="gml:pos">37.520983 31.737947</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/638741"/>
+</div>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1850">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">27.4169444444 76.1622222222</span></span></div>
+<div class="nm:editedSource">
+<pre>1850 Bairat, c. 80 km. NE of Jaipur, Ra-
+    jasthan, India, 1936-1937
+    Burial: 1st cent. B.C. (Le Rider) 
+    Contents: 33 AR
+    Heliocles II: 1
+    Menander: 16
+    Apollodotus I?: 1
+    Antialcidas: 1
+    Hermaeus: 6
+    Indian punch-marked: 8
+    Disposition: Jaipur
+    Gupta, JNSI 1946, pp. 24-9
+    The denomination of the Indo-Greek coins 
+        is not stated; they were presumably 
+        dr.
+</pre>
+</div>
+</div>

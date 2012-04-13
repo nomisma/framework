@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="bruttii">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Bruttium</div>
+ <div property="skos:definition" xml:lang="en">The mint of uncertain location of the Bruttii in ancient Bruttium.</div>
+ <div rel="uncertain_value"><span property="gml:pos">39.25 16.25</span></div>
+<div property="skos:related" resource="http://en.wikipedia.org/wiki/Bruttii"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/452275"/>
+</div>

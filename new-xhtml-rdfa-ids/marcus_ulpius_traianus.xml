@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="person" about="marcus_ulpius_traianus">
+ <div property="skos:prefLabel" xml:lang="en">Marcus Ulpius Traianus</div>
+ <div property="skos:definition" xml:lang="en">Father of the Emperor <a href="trajan">Trajan</a>.</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Marcus_Ulpius_Traianus_(senator)"/>
+</div>

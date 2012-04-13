@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0318">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-70" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">35.0113888889 25.7358333333</span></span></div>
+<div class="nm:editedSource">
+<pre>
+318 Hierapytna (mod. Hierapetra) ?, Crete, 
+(434)     1935 ?
+    Burial: 2nd cent. or later (see note) 
+    Contents: 12+ AR.
+    Perseus: 1 dr.
+    <span rel="mint" resource="cydonia">Cydonia:</span> 1 triob. 
+    <span rel="mint" resource="gortyna">Gortyna:</span> 1 dr. 
+    <span rel="mint" resource="cyrene">Cyrene:</span> didr.
+    Disposition: London 3 (Perseus and Cretan 
+        coins)
+    Note from E. S. G. Robinson, no further details
+    It seems possible that this small lot 
+        represents fragments of two separate 
+        hds.: the Cyrene didr. from Crete 1936 
+        (no. 154 above) and the London coins 
+        from Hierapytna 1933 ? (no. 352 below)
+</pre>
+</div>
+</div>

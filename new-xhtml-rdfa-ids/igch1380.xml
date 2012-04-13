@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1380">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-85" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.3086111111 36.3322222222</span></span></div>
+<div class="nm:editedSource">
+<pre>1380 Samsun (anc. Amisus), Pontus, before 
+(906)     1925
+    Burial: c. 85 B.C. (Pfeiler)
+    Contents: 17+ AE
+    <span rel="mint" resource="amisus">Amisus: 12+</span> 
+    <span rel="mint" resource="cabeira">Cabeira: 1</span>
+    <span rel="mint" resource="amastris">Amastris: 2+</span> 
+    <span rel="mint" resource="sinope">Sinope: 2+</span>
+    Disposition: Istanbul
+    The discrepancy between the numbers of 
+        coins here listed and those given by 
+        Noe (from Regling) may be explained 
+        on the assumption that some coins 
+        have inadvertently been transferred to 
+        no. 1379 above
+</pre>
+</div>
+</div>

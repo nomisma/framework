@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2152">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-220" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.5883333333 12.8261111111</span></span></div>
+<div class="nm:editedSource">
+<pre>2152 Selinunte, 1876
+    Burial: c. 300 B.C. or c. 220 (K) 
+    Contents: 16 AR, I AE
+        Pegasi
+    <span rel="mint" resource="corinth">Corinth: 7 (incl. Per. V with Γ, Ι, ΑΛ, ΑΡ) </span>
+    <span rel="mint" resource="ambracia">Ambracia: 1 (as Ravel 176)</span>
+    <span rel="mint" resource="anactorium">Anactorium: 2 (1 altar and ΔΩ)</span>
+    <span rel="mint" resource="leucas">Leucas: 3 (caduceus [2]; stylis [1]) </span>
+    <span rel="mint" resource="thyrrheium">Thyrrheium: 2 (ear-ring)</span>
+    Unc.: AE
+    <span rel="mint" resource="rome">Rome: 1 quadrig. (legend incuse)</span>
+    Disposition: Palermo
+    NSc 1876, p. 15
+    Tusa Cutroni, AIIN 1956, p. 206
+    This association of a quadrig. (not before 
+        c. 230 B.C.) with a group of pegasi 
+        terminating c. 300 B.C. is suspect
+</pre>
+</div>
+</div>

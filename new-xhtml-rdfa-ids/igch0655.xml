@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0655">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-73" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">45.7655555556 22.8661111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+655 Hunedoara district, southern Tran-
+    sylvania, Rumania, before 1915
+    Burial: after 73 B.C. (T)
+    Contents: 74 AR. Pot hoard
+    <span rel="mint" resource="apollonia_illyria">Apollonia, Illyria</span>, and <span rel="mint" resource="dyrrhachii">Dyrrhachium: 32 dr.</span> 
+    <span rel="mint" resource="rome">Roman Rep.: 42 den.</span>
+    Disposition: Budapest
+    Kerekes, NK 1915, p. 70
+</pre>
+</div>
+</div>

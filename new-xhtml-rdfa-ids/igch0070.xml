@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0070">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.4294444444 22.4327777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+70 Kirrha, near Delphi, Phocis, 1938
+    Burial: <span property="nm:approximateburialdate_start" content="-350" datatype="xsd:date">350</span>-<span property="nm:approximateburialdate_end" content="-325" datatype="xsd:date">325</span> B.C. (Oeconomides, 
+        Hackens)
+    Contents: 42 AR. From excavations
+    Philip II: 2 tetradr.
+    <span rel="mint" resource="larissa">Larissa, Thess.:</span> 4 dr.
+    <span rel="mint" resource="locri opuntii">Locri Opuntii: 1 triob.;</span> 1 ob. 
+    <span rel="mint" resource="phocis">Phocis:</span> 2 triob.
+    <span rel="mint" resource="delphi">Delphi:</span> 1 trihemiob.
+    <span rel="mint" resource="boeotia">Boeotia:</span> 19 triob.
+    <span rel="mint" resource="sicyon">Sicyon:</span> 12 triob.
+    Disposition: Athens
+    Lemerle, BCH 1938, p. 446
+</pre>
+</div>
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0594">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">46.3169444444 22.2466666667</span></span></div>
+<div class="nm:editedSource">
+<pre>
+594 Dieci (formerly Déecs), c. So km. NW 
+(302)     of Deva, Rumania, 1902-1903 
+    Burial: 2nd-1st cent. B.C. (T)
+    Contents: c. 200 AR
+    <span rel="mint" resource="apollonia_illyria">Apollonia, Illyria: 26 dr.</span> 
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: 146 dr.</span> 
+    Disposition: dispersed
+    Gohl, NK 1908, pp. 110-3
+</pre>
+</div>
+</div>

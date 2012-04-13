@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0893">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-150" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-125" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.6738888889 26.5619444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+893 Adrianople (now Edirne) environs, 
+(13)     Thrace, before 1789
+    Burial: c. 150-125 B.C. (T) 
+    Contents: AR
+    <span rel="mint" resource="macedonia_1st_region">Macedonia, 1st Region: tetradr.</span> 
+    Disposition: unknown
+    Sestini, Lettere . . . Ainslieana 1 (Leghorn, 1789), 
+        p. 130, note 1
+</pre>
+</div>
+</div>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2034">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-230" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.8547222222 13.5997222222</span></span></div>
+<div class="nm:editedSource">
+<pre>2034 Ascoli Piceno (anc. Asculum), Pice-
+(70)     num, 1883
+    Burial: late 3rd cent. B.C. (Crawford)
+    Contents: 87 AR. Pot hoard 
+    <span rel="mint" resource="cales">Cales: 4 st.</span>
+    <span rel="mint" resource="neapolis_campania">Neapolis: 21 st.</span>
+    <span rel="mint" resource="campano-tarentine">Campano-Tarentine: 4 st.</span>
+    <span rel="mint" resource="rome">Roman Rep.: 10 st. (ROMANO; ROMA) 
+            48 quadrig.</span>
+    Disposition: Silveri-Gentiloni 25
+    Helbig, BullInst 1884, p. 140
+    Le Gentilhomme, RN 1934, pp. 3-4 
+    Thomsen, ERC I, p. 101
+    Crawford, RRCH 59
+</pre>
+</div>
+</div>

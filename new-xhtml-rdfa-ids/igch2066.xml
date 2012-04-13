@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2066">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-485" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.0744444444 14.2377777778</span></span></div>
+<div class="nm:editedSource">
+<pre>2066 Gela, 1956
+    Burial: c. 485 B.C. (Jenkins) 
+    Contents: c. 1076 AR. Pot hoard
+    <span rel="mint" resource="rhegium">Rhegium: - (1) tetradr. (lion hd./calf hd.) </span>
+    <span rel="mint" resource="agrigentum">Acragas: 410 (387) didr.</span>
+    <span rel="mint" resource="gela">Gela: 254 (251) didr. (to Jenkins 40) </span>
+    <span rel="mint" resource="zancle">Zancle: 3 (2) tetradr. (Samian types) </span>
+    <span rel="mint" resource="syracuse">Syracuse: 31 (16) tetradr. (to Boehringer
+        46)
+            2 (2) didr.</span>
+    <span rel="mint" resource="acanthus">Acanthus: 2 (2+ 2 in commerce) tetradr. </span>
+    <span rel="mint" resource="athens">Athens: 166 (187) tetradr. (archaic)</span>
+    Disposition: Gela 870
+    Griffo, AIIN 1958-9, pp. 301-2 
+    Raven, Essays Robinson, p. 48, note 1
+    Jenkins, Gala, pp. 20-1, 150-1, illus.
+    The hd. was found on the site of a suburban 
+        shrine. After dispersal the major part 
+        (870 coins) was recovered. The figures 
+        given above are those of Griffo, fol-
+        lowed by Jenkins' figures based on 
+        material on exhibition at the Gela 
+        Museum. In addition to the above 
+        types Griffo lists 1 tetradr. each of 
+        Leontini and Acragas, which are prob-
+        ably intrusive
+</pre>
+</div>
+</div>

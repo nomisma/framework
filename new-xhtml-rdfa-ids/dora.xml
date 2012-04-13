@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="dora">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Dora</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Dora in Phoenicia.</div>
+ <div property="gml:pos">32.615982 34.927477</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Tel_Dor"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/678121"/>
+</div>

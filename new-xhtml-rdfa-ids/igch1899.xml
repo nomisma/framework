@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1899">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-460" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-425" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.0944444444 15.7541666667</span></span></div>
+<div class="nm:editedSource">
+<pre>1899 Reggio, Bruttium, 1853 
+(854)
+    Burial: 460-425 B.C. (K) 
+    Contents: AR. Pot hoard
+    <span rel="mint" resource="rhegium">Rhegium</span> 
+    <span rel="mint" resource="agrigentum">Acragas</span> 
+    <span rel="mint" resource="catana">Catana</span>
+    <span rel="mint" resource="messana">Messana </span>
+    <span rel="mint" resource="syracuse">Syracuse</span> 
+    <span rel="mint" resource="athens">Athens</span>
+    Disposition: dispersed
+    Pogwisch, BullInst 1853, p. 154
+    The only chronological clue is that the 
+        coins were "tutte bighe," by which is 
+        apparently meant the walking rather 
+        than the galloping quadriga. The 
+        presence of coins of Catana presumably 
+        implies a date of burial after the re-
+        foundation in 461 B.C.
+</pre>
+</div>
+</div>

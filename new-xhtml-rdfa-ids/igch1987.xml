@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1987">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-250" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.9183333333 16.2522222222</span></span></div>
+<div class="nm:editedSource">
+<pre>1987 S. Eufemia Lamezia, 8 km. SW of 
+(916)     Nicastro, Bruttium, 1865
+    Burial: 300-250 B.C. (K)
+    Contents: AE. In a tomb with jewelry etc. 
+    <span rel="mint" resource="syracuse">Syracuse:</span> Agathocles (incl. Soteira type) 
+    Disposition: dispersed
+    Francica, Oggetti di arta greca nel Secolo III (Pa-
+        lermo, n.d.) illus.
+    Lenormant, La Grande Grèce 3 (Paris, 1884), p. 98 
+    Marshall, Catalogue of the jewellery in Brit. Mus. 
+        (London, 1911), p. 241
+</pre>
+</div>
+</div>

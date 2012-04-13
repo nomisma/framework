@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0765">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-320" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.7038888889 27.2552777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+765 Ajtos, c. 25 km. NW of Burgas, Bul-
+    garia, 1953
+    Burial: c. 330-320 B.C. (T)
+    Contents: 15 AR. Pot hoard 
+    <span rel="mint" resource="apollonia_pontica">Apollonia Pontica: tetrob.</span> 
+    Disposition: Sofia 1
+    Gerasimov, BIAB 20 (1955), p. 605
+</pre>
+</div>
+</div>

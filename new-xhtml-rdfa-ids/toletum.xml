@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="toletum">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Toletum</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Toletum in Hispania.</div>
+ <div property="gml:pos">39.856680 -4.024491</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Toledo,_Spain"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/266066"/>
+</div>

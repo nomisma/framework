@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0559">
+<span rel="nm:findspot"><span property="gml:pos">40.71666667 19.46638889</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-168" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+559 Bakërr (anc. Apollonia), 11 km. W of 
+    Fier, Albania, 1969
+    Burial: before 168 B.C. (T)
+    Contents: 441 AR. Pot hoard
+    <span rel="mint" resource="thasos">Thasos: 3 spread-flan tetradr.</span>
+    <span rel="mint" resource="apollonia_illyria">Apollonia: 133 dr.; 4 hemidr.</span> 
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: 107 dr.; 8 hemidr.</span>
+    <span rel="mint" resource="cassope">Cassope: 2 dr. (as Franke, p. 76, no. 68 [1],
+        V 39-R 65 [1])</span>
+    <span rel="mint" resource="epirus">Epirote Rep.: 5 didr.
+            88 dr. (Zeus/eagle)
+            46 dr. (Zeus and Dione/ful-
+        men)
+            41 hemidr.</span>
+    <span rel="mint" resource="athens">Athens:</span> New Style tetradr.
+    Disposition: Tiranë
+    Ceka, Studia Albanica 1972, no. pp. 49-68, illus.
+</pre>
+</div>
+</div>

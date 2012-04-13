@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="tarsus">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Tarsus</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Tarsus in Cilicia.</div>
+ <div><span property="gml:pos">36.916667 34.9</span></div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/648789"/>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Tarsus,_Mersin"/>
+</div>

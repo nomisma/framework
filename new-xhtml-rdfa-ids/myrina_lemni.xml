@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="myrina_lemni">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Myrina</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Myrina on Lemnos.</div>
+ <div property="gml:pos">39.878652 25.061860</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/550755"/>
+</div>

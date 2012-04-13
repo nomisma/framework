@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="theisoa-achaean_league">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Mint of the ancient site of Theisoa (Achaean League) in Arcadia.</div>
+ <div property="gml:pos">37.679167 21.552778</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Theisoa,_Greece"/>
+</div>

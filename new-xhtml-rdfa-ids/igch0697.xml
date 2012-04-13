@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0697">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-480" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-450" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.9677777778 27.5333333333</span></span></div>
+<div class="nm:editedSource">
+<pre>
+697 Tekirdag (anc. Bisanthe), Thrace, 
+    1957
+    Burial: c. 480-450 B.C. (T)
+    Contents: 66+ AR
+    <span rel="mint" resource="parium">Parium: dr. (archaic)</span>
+    Disposition: Istanbul 65; Athens 1
+    Varoucha, BCH 1960, p. 493, illus.; supple-
+        mented by information from N. Olcay
+</pre>
+</div>
+</div>

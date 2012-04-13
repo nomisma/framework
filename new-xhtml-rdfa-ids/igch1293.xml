@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1293">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-280" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.6205555556 27.4380555556</span></span></div>
+<div class="nm:editedSource">
+<pre>1293 Manissa (anc. Magnesia ad Sipylum) 
+    Lydia, 1971
+    Burial: c. 280 B.C. 
+    Contents: 24 AR
+    Alexander III: 20 lifetime and early post. 
+        tetradr. (<span rel="mint" resource="amphipolis">Amphipolis 5</span>, <span rel="mint" resource="pella_macedon">Pella? 1</span>, <span rel="mint" resource="miletus">Mile-
+        tus 1</span>, <span rel="mint" resource="citium">Citium 1</span>, <span rel="mint" resource="salamis_cyprus">Salamis 2</span>, <span rel="mint" resource="byblus">Byblus 2</span>, <span rel="mint" resource="ace_ptolemais">Ace 1</span>, <span rel="mint" resource="damascus">Damascus 1</span>, <span rel="mint" resource="babylon">Babylon 5</span>, <span rel="mint" resource="alexandria_egypt">Alex-
+        andreia 1</span>)
+    Philip III: 1 tetradr. (<span rel="mint" resource="babylon">Babylon</span>) 
+    Lysimachus: 2 tetradr. (<span rel="mint" resource="lampsacus">Lampsacus 1</span>, 
+        <span rel="mint" resource="sardes">Sardes 1</span>)
+    Seleucus I: 1 tetradr. (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Tigrim</span>)
+    Disposition: dispersed 
+    Pfeiler, SM 1971, pp. 61-7, illus.
+</pre>
+</div>
+</div>

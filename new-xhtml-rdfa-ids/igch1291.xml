@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1291">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-310" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-280" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.44 28.2116666667</span></span></div>
+<div class="nm:editedSource">
+<pre>1291 Rhodes (the city), 1967
+    Burial: c. 310-280 B.C. (Ashton)
+    Contents: 18 AR. In lamp
+    <span rel="mint" resource="rhodes">Rhodes: 1 didr.; 17 hemidr.</span>
+    Disposition: Rhodes 
+    Information from R. Ashton
+</pre>
+</div>
+</div>

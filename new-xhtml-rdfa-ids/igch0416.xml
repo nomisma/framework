@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0416">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.7027777778 16.6375</span></span></div>
+<div class="nm:editedSource">
+<pre>
+416 Sinj, 25 km. NE of Split, Dalmatia, 
+    Yugoslavia, before 1939
+    Burial: 4th cent. B.C. (T)
+    Contents: c. 30 AR
+    <span rel="mint" resource="damastium">Damastium: tetradr.</span>
+    Disposition: dispersed
+    May, Damastion, p. 8, note 4
+</pre>
+</div>
+</div>

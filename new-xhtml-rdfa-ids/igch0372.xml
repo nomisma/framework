@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0372">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-348" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.2925 23.3427777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+372 Olynthus, Macedonia, 1931 
+(758)
+    Burial: c. 348 B.C. (Clement) 
+    Contents: 34 AR. From excavations 
+    <span rel="mint" resource="acanthus">Acanthus: 1 tetradr.</span> 
+    <span rel="mint" resource="chalcidian_league">Chalcidian League: 33 tetradr.</span> 
+    Disposition: Athens
+    Robinson, Olynthus VI, pp. 12-3, illus. 
+    Robinson-Clement, Olynthus IX, pp. 171-3, illus. 
+        (hd. IV)
+    Schwabacher, AJA 1938, pp. 74-6 (authenticity 
+        of 6 Dikaios tetradr.)
+</pre>
+</div>
+</div>

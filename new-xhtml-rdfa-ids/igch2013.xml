@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2013">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-211" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-208" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.000113 15.695915</span></span></div>
+<div class="nm:editedSource">
+<pre>2013 Motta S. Giovanni, 12 km. S of 
+    Reggio, Bruttium, 1950
+    Burial: 211-208 B.C. (Crawford) 
+    Contents: 113 AE. Pot hoard.
+    <span rel="mint" resource="rhegium">Rhegium: 110 (various types) </span>
+    Unc.: 2
+    <span rel="mint" resource="rome">Roman Rep.: 1 as (halved, anon.)</span>
+    Disposition: Reggio 55; remainder to land-
+        owner and finder
+† Procopio, AIIN 1954, pp. 58-9 
+    Crawford, RRCH 80
+</pre>
+</div>
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2286">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-216" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.2605555556 8.76777777778</span></span></div>
+<div class="nm:editedSource">
+<pre>2286 Macomer, (anc. Macopsisa), 60 km. 
+(634)     SSE of Sassari, Sardinia, 1890 
+    Burial: c. 216 B.C. (Jenkins)
+    Contents: 300 AE
+    Carthage: 2 <span rel="mint" resource="siculo_punic">Sicilian mint (as SNGCop. 
+        94, 109)</span>
+            298 <span rel="mint" resource="sardinia">Sardinian mint (as SNGCop. 
+        246, 387)</span>
+    Disposition: Ratto, Genoa
+    Bornemann, BlM 1900, p. 118 and note 2
+</pre>
+</div>
+</div>

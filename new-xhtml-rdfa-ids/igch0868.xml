@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0868">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-250" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.1216666667 25.4019444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+868 Comotini (formerly Gumuldjina), 
+(470)     Thrace, date unknown
+    Burial: c. 250-200 B.C. (T)
+    Contents: 217 AE
+    <span rel="mint" resource="abdera_thrace">Abdera (as AMNG II.1, nos. 235-7; many 
+        overstruck and ctmk.)</span>
+    Disposition: Istanbul
+    Regling's ms. notes
+</pre>
+</div>
+</div>

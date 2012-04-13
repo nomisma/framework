@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0374">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-348" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.2925 23.3427777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+374 Olynthus, 1934
+(764)
+    Burial: 348 B.C. (Clement)
+    Contents: c. 84 AR. Pot hoard, not from 
+        excavations
+    <span rel="mint" resource="acanthus">Acanthus: 3 tetradr.</span>
+    <span rel="mint" resource="amphipolis">Amphipolis: 2 tetradr.</span>
+    <span rel="mint" resource="chalcidian_league">Chalcidian League: 19 tetradr.; c. 60 tetrob.</span>
+    Disposition: New York
+    Robinson-Clement, Olynthus IX, pp. 186-90, 
+        illus. (hd. X)
+    Some of the tetradr. may belong to hd. IX, 
+        no. 373 above
+</pre>
+</div>
+</div>

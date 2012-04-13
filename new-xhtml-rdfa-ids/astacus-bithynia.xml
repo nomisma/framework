@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="astacus-bithynia">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Astacus</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Astacus in Bithynia.</div>
+ <div property="gml:pos">40.714558 29.928794</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/%C4%B0zmit"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/511169"/>
+</div>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0011">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.9113888889 22.9997222222</span></span></div>
+<div class="nm:editedSource">
+<pre>
+11 Isthmia, near Corinth, 1954 
+    Burial: c. <span property="nm:approximateburialdate" content="-480" datatype="xsd date">480</span> B.C.
+    Contents: 135 AR. From excavations; be-
+        neath floor of Temple of Poseidon and 
+        associated fill
+    <span rel="mint" resource="eretria">Eretria: 1 fr.</span>
+    <span rel="mint" resource="aegina">Aegina: 43 st.; 18 dr. and fr. (some pl.)</span>
+    <span rel="mint" resource="corinth">Corinth: 14 st.; 12 dr.; 30 fr. (some pl.)</span> 
+    <span rel="mint" resource="sicyon">Sicyon: 1 fr.</span>
+    <span rel="mint" resource="argos_argolis">Argos: 3 fr.</span>
+    <span rel="mint" resource="tegea">Tegea: 2 fr.</span>
+    <span rel="mint" resource="naxos">Naxos: 1 fr.</span>
+    Unc.: 10
+    Disposition: Old Corinth
+    Broneer, Hesperia 1955, pp. 135-6, some illus.
+</pre>
+</div>
+</div>

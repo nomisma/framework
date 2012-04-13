@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0310">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.6194444444 19.9194444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+310 Corfu (anc. Corcyra), 1862
+(264)
+    Burial: 2nd cent. B.C.? (T)
+    Contents: 14 AE
+    <span rel="mint" resource="corcyra">Corcyra (as BMC nos. 451, 455, 460)</span>
+    Disposition: Oxford
+    Milne, NC 1936, p. 255
+</pre>
+</div>
+</div>

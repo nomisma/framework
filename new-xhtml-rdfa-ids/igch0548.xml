@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0548">
+<span rel="nm:findspot"><span property="gml:pos">44.91 25.32694444</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-110" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+548 Adînca, c. 12 km. E of Tirgoviste, 
+    Rumania, 1953
+    Burial: c. 110-100 B.C.
+    Contents: 52 AR. Pot hoard
+    Imit. Philip II: 46 tetradr.
+    <span rel="mint" resource="thasos">Thasos: 6 spread-flan tetradr.</span>
+    Disposition: Bucharest (Inst. Arch.) 23; 
+        Tirgoviste 23; Ploiesti 6
+    Preda, SCN 2 (1958), pp. 380-9, illus.
+</pre>
+</div>
+</div>

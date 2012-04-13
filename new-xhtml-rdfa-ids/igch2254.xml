@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2254">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-450" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.515533 15.076404</span></span></div>
+<div class="nm:editedSource">
+<pre>2254 Cibali, Catana district, 1907 
+    Burial: ?
+    Contents: 10 AE
+    <span rel="mint" resource="catana">Catana</span>
+    Disposition: Syracuse
+    Currò Pisanò, AIIN 1962-4, p. 223
+</pre>
+</div>
+</div>

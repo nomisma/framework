@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0623">
+<span rel="nm:findspot"><span property="gml:pos">44.58972222 25.53916667</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-70" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+623 Brîncoveanu, c. 42 km. WNW of 
+    Bucharest, Rumania, 1967
+    Burial: early 1st cent. B.C. 
+    Contents: 93 AR. Pot hoard
+    Alexander III: 2 late post. tetradr. (<span rel="mint" resource="odessus">Odes-
+        sus</span>)
+    <span rel="mint" resource="macedonia_1st_region">Macedonia, 1st Region: 67 tetradr. incl. 
+        imit.</span>
+    Lysimachus: 1 post. tetradr. (<span rel="mint" resource="byzantium">Byzantium</span>) 
+    <span rel="mint" resource="thasos">Thasos: 16 spread-flan tetradr. incl. imit.</span>
+    Disposition: Bucharest (Inst. Arch.) 86 as 
+        listed
+    Mitrea, SCIV 1969, p. 262
+</pre>
+</div>
+</div>

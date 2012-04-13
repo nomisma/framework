@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="methymna">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Methymna</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Methymna on Lesbos.</div>
+ <div property="gml:pos">39.366667 26.166667</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Molyvos"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/550738"/>
+</div>

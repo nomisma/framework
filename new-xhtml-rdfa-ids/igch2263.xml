@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2263">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-320" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.5025 8.47083333333</span></span></div>
+<div class="nm:editedSource">
+<pre>2263 Villanova ( = Monteleone), 25 km. S 
+(1162)     of Sassari, Sardinia, 1883
+    Burial: c. 320 B.C. (Jenkins)
+    Contents: 38 AV
+    <span rel="mint" resource="carthage">Carthage: st. (Carthage mint)</span>
+    Disposition: Cagliari 12
+    NSc 1883, p. 24 (poor details)
+    Jenkins-Lewis, Carthage, p. 61, hoard XXIII
+</pre>
+</div>
+</div>

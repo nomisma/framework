@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1598">
+<span rel="nm:findspot"><span property="gml:pos">33.26833333 35.20972222</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-126" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-125" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1598 Sur (anc. Tyre) environs, Phoenicia, 
+    c. 1966
+    Burial: c. 126-125 B.C.
+    Contents: 14 AR
+    Alexander I Bala: 1 tetradr. (<span rel="mint" resource="tyre">Tyre</span>) 
+    Antiochus VII: 2 tetradr. (<span rel="mint" resource="tyre">Tyre</span>)
+    Demetrius II: 6 tetradr.; 5 didr. (<span rel="mint" resource="tyre">Tyre, 
+        latest date 187 S.E.</span>)
+    Disposition: dispersed
+    Fischer, SM 1968, pp. 51-2
+</pre>
+</div>
+</div>

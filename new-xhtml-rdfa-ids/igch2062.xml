@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2062">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-493" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.191946 15.555153</span></span></div>
+<div class="nm:editedSource">
+<pre>2062 Messina, 1895
+(686)
+    Burial: c. 493 B.C. (Evans)
+    Contents: c. 186 AR. Found during road work
+    <span rel="mint" resource="zancle">Zancle: 156 dr. (6 rev. dolphin etc. incuse; 
+        150 rev. shell in incuse square) </span>
+    <span rel="mint" resource="naxus">Naxus: 30 dr.</span>
+    Disposition: London (NC 1900, pl. 1, 1); 
+        Jameson 638, 672; SNGLloyd 1073-4; 
+        Ward 221
+† Evans, NG 1896, pp. 100-7, illus. 
+    Cahn, Naxos, p. 85
+</pre>
+</div>
+</div>

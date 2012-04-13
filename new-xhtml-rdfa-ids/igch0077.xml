@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0077">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.9427777778 22.9519444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+77 Corinth, 1930
+(267)
+    Burial: c. <span property="nm:approximateburialdate_start" content="-327" datatype="xsd:date">327</span>-<span property="nm:approximateburialdate_end" content="-325" datatype="xsd:date">325</span> B.C.
+    Contents: 51 N. From excavations; found 
+        with gold necklace
+    Philip II: 41 lifetime and early post. st. 
+        (<span rel="mint" resource="pella_macedon">Pella,</span> <span rel="mint" resource="amphipolis">Amphipolis</span>)
+    Alexander III: 10 lifetime st. (<span rel="mint" resource="amphipolis">Amphipolis 
+        4,</span> <span rel="mint" resource="tarsus">Tarsus 3,</span> <span rel="mint" resource="salamis_cyprus">Salamis 1,</span> <span rel="mint" resource="sidon">Sidon 1,</span> unc. 1)
+    Disposition: Athens
+    Edwards-Thompson, AJA 1970, pp. 343-50, illus.
+        (with references to earlier publications)
+</pre>
+</div>
+</div>

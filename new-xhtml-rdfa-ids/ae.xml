@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="material" about="ae">
+ <div property="skos:prefLabel" xml:lang="en">Bronze</div>
+<div>Alternate label: "<span property="skos:altLabel" xml:lang="la">Aes</span>"</div>
+ <div property="skos:definition" xml:lang="en">'AE' is the numismatic abbreviation for bronze.</div>
+</div>

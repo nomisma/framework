@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1701">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-180" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1701 Delta, 1927-1928
+    Burial: c. 200-180 B.C. (Jenkins) 
+    Contents: 24 AR
+    Alexander III: 6 late post. tetradr. (<span rel="mint" resource="assus">Assus ?</span>, 
+        <span rel="mint" resource="temnus">Temnus</span>, <span rel="mint" resource="mytilene">Mytilene</span>, <span rel="mint" resource="erythrae">Erythrae</span>, <span rel="mint" resource="asia_minor">unc. 
+        Asia Minor with bucranium symbol</span>, <span rel="mint" resource="heracleia_pontica">Heracleia</span>)
+    Antigonus Gonatas: 10 tetradr. (as SNG-
+        Cop. 1199 [2], 1200 [1], 1201 [4], 1202
+        [2], with trident symbol [1]) 
+    Lysimachus: 1 late post. tetradr. (<span rel="mint" resource="byzantium">Byzan-
+        tium</span>)
+    Ptolemy I: 2 tetradr. (Alexander hd./ 
+        Athena)
+    Ptolemy V: 5 tetradr.
+    Disposition: New York 8 (Antigonus 2, 
+        Lysimachus 1, Alexander 5)
+    Partial list by C. T. Seltman in ANS
+</pre>
+</div>
+</div>

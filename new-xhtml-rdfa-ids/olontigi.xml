@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="olontigi">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Olontigi</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Olontigi in Hispania.</div>
+ <div property="gml:pos">37.305179 -6.248394</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Aznalc&#xE1;zar"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/256339"/>
+</div>

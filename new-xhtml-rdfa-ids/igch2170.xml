@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2170">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-270" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.0755555556 15.2761111111</span></span></div>
+<div class="nm:editedSource">
+<pre>2170 Syracuse, c. 1770
+(1027)
+    Burial: late 4th-early 3rd cent. B.C. (K) 
+    Contents: 200 lbs AR
+    <span rel="mint" resource="syracuse">Syracuse:</span> Pegasi*
+* Early writers attribute all pegasi to Syra-
+        cuse; assuming a Sicilian pound of
+        about 320 gm., the hd. would have 
+        contained about 7400 pegasi
+    Disposition: dispersed
+    Eckhel, Doctrina num. vet. 1 (Leipzig, 1826), 
+        p. lxxxii
+</pre>
+</div>
+</div>

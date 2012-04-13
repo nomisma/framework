@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="nemausus">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Nemausus</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Nemausus in Gaul.</div>
+ <div property="gml:pos">43.834874999999997 4.3602780000000001</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/148142"/>
+</div>

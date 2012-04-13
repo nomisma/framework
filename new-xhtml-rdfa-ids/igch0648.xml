@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0648">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-79" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">47.2 22.3</span></span></div>
+<div class="nm:editedSource">
+<pre>
+648 Derna, c. 30 km. NE of Oradea, Ru-
+    mania, before 1940
+    Burial: after 79 B.C.
+    Contents: AR. Pot hoard with Dacian 
+        jewelry
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: dr.</span>
+    <span rel="mint" resource="rome">Roman Rep.: den. (1 of 79 B.C.)</span> 
+    Disposition: dispersed
+    Daicoviciu, Dacia 1937-40, pp. 322-3
+</pre>
+</div>
+</div>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1279">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-350" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1279 <span property="nm:findspot" content="35.11 33.14">Meniko, near anc. Tamassus</span>, 1952 
+    Burial: c. 350 B.C.
+    Contents: 394 AR. Pot hoard
+    <span rel="mint" resource="amathus">Amathus: 2 fr.</span> 
+    <span rel="mint" resource="lapethus">Lapethus: 2 fr.</span> 
+    <span rel="mint" resource="marium">Marium: 1 fr.</span> 
+    <span rel="mint" resource="salamis_cyprus">Salamis: 36 fr.</span>
+    Unc. Cypriote mint: 353 fr. (as BMC 
+        Unc. F)
+    Disposition: Nicosia
+    Karageorghis, Opuscula Atheniensia 1965, pp. 
+        9-36, illus.
+</pre>
+</div>
+</div>

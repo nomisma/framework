@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0576">
+<span rel="nm:findspot"><span property="gml:pos">43.64777778 25.14027778</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-130" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+576 Belene, on the Danube W of Svistov, 
+    Bulgaria, 1882
+    Burial: late 2nd cent. B.C. ? (T) 
+    Contents: AR
+    <span rel="mint" resource="thasos">Thasos: 1 spread-flan tetradr.</span> 
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium 3 dr.</span>
+    Disposition: Athens 4 as listed
+</pre>
+</div>
+</div>

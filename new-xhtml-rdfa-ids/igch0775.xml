@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0775">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-320" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.4 23.8158333333</span></span></div>
+<div class="nm:editedSource">
+<pre>
+775 Stambolovo, Ihtiman district, SE of 
+    Sofia, Bulgaria, 1936
+    Burial: c. 320 B.C.? (T)
+    Contents: 22 AV. Pot hoard
+    Philip II: 17 st.
+    Alexander III: 5 st.
+    Disposition: dispersed
+    Gerasimov, BIAB 11 (1937), p. 324
+</pre>
+</div>
+</div>

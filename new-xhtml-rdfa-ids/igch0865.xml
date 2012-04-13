@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0865">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-250" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.8463888889 28.1288888889</span></span></div>
+<div class="nm:editedSource">
+<pre>
+865 Daeni, c. 75 km. NW of Constanta, 
+    Rumania, c. 1957
+    Burial: c. 250 B.C. (T)
+    Contents: 102 AV. Pot hoard 
+    Alexander III: 57 st.
+    Lysimachus: 45 st.
+        Many from <span rel="mint" resource="euxine_region">Euxine mints</span>
+    Disposition: Bucharest 90 (Inst. Arch. 75; 
+        Acad. 15); Galati 12
+† Mitrea, Dacia 1958, pp. 493-4; 1959, p. 603
+† Iliescu, Caiet selectiv 8 (1963), pp. 326-8 (descrip-
+        tion of 15 coins at Academy: chiefly 
+        Alexanders of Callatis, 1 post. Lysimachus 
+        from an unc. mint)
+</pre>
+</div>
+</div>

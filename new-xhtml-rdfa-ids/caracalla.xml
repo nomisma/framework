@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="roman_emperor" about="caracalla">
+ <div property="skos:prefLabel" xml:lang="en">Caracalla</div>
+ <div property="skos:definition" xml:lang="en">Roman emperor from 198 to 217.</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Caracalla"/>
+ <div><span rel="foaf:depiction"><img alt=" " src="http://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Caracalla.jpg/220px-Caracalla.jpg"/></span><br/>Credit: Wikipedia.</div>
+</div>

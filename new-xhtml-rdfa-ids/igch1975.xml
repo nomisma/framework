@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1975">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-272" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.4630555556 17.2502777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1975 Taranto ?, Calabria, before 1900 
+(1049)
+    Burial: c. 272 B.C. (Vlasto) 
+    Contents: 433 AR
+    <span rel="mint" resource="taras">Taras: 432 st. (4 Per. VI; 61 Per. VII; 367 
+        Per. VIII A6, C2, C3)
+          <a rel="contains" href="http://www.cngcoins.com/Coin.aspx?CoinID=139616">CNG 81 (2009), lot 70</a></span>
+    <span rel="mint" resource="heraclea_lucaniae">Heracleia: 1 st. (reduced weight)</span>
+    Disposition: E. P. Warren from whom 
+        Berlin 7, London 29, Vlasto 11 (Cat. 
+        747, 754, 758, 826, 829, 831-3, 873-5)
+† Vlasto, NC 1930, pp. 107-63, illus. 
+    Stazio, AIIN 1965-7, p. 25
+</pre>
+</div>
+</div>

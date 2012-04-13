@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1283">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-305" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-270" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.7077777778 28.7236111111</span></span></div>
+<div class="nm:editedSource">
+<pre>1283 Aphrodisias, Caria, 1969
+    Burial: 305 B.C. or later (MacDonald) 
+    Contents: 11 AR
+    Alexander III: 9 dr. (<span rel="mint" resource="abydus">Abydus 1</span>, <span rel="mint" resource="miletus">Miletus 1</span>, 
+       <span rel="mint" resource="sardes">Sardes 1</span>, <span rel="mint" resource="teos">Teos 1</span>, <span rel="mint" resource="colophon">Colophon 4</span>, unc. 1) 
+    Philip III: 1 dr. (unc. mint)
+    Disposition: Aphrodisias (museum under 
+        construction) to as above
+    Erim, Türk Arkeoloji Dergisi 1969, p. 93, illus. 
+        (10 obv. only)
+    To be published by K. Erim and D. MacDonald
+</pre>
+</div>
+</div>

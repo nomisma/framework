@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1059">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.6 33.53</span></span></div>
+<div class="nm:editedSource">
+<pre>1059 Olbia (mod. Parutino), 1957 
+    Burial: late 4th cent. B.C.
+    Contents: 43 A. Under layer of ashes and 
+        earth, at approximately the same level
+    <span rel="mint" resource="olbia">Olbia: 2 aes grave (as Burachkov, pl. 1, 6)
+            36 AE (as AMNG I.1, pl. 9, 4 [2],
+        8 [7], 11 [3], 13 [7], 16 [1], 20 [3],
+        22 [8], 23 [4]; pl. 10, 1 [1])</span>
+    Unc.: 5 AE
+    Disposition: Leningrad (Institute)
+    Information from P. O. Karyszkowski
+</pre>
+</div>
+</div>

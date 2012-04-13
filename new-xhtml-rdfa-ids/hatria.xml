@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="hatria">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Hatria</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Hatria in Picenum.</div>
+ <div property="gml:pos">42.580200 13.981081</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Atri,_Italy"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/413163"/>
+</div>

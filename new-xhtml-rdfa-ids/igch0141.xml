@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0141">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.3644444444 22.9330555556</span></span></div>
+<div class="nm:editedSource">
+<pre>
+141 Volos, Thessaly, c. 1937 
+    Burial: c. <span property="nm:approximateburialdate_start" content="-290" datatype="xsd:date">290</span>-<span property="nm:approximateburialdate_end" content="-275" datatype="xsd:date">275</span> B.C. (T) 
+    Contents: 16 AR
+    Alexander III: 2 dr. (<span rel="mint" resource="magnesia_ad_maeandrum">Magnesia</span> )
+    Lysimachus: 1 lifetime tetradr. <span rel="mint" resource="lampsacus">(Lamp-
+        sacus)</span>
+    <span rel="mint" resource="athens">Athens:</span> 13 tetradr.
+    Disposition: Athens
+    BCH 1938, p. 416
+</pre>
+</div>
+</div>

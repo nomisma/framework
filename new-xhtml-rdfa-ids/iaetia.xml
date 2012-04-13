@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="iaetia">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Iaetia</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Iaetia in Sicily.</div>
+ <div property="gml:pos">37.967325 13.197999</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/San_Giuseppe_Jato"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/462258"/>
+</div>

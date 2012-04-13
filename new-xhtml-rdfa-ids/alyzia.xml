@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="alyzia">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Alyz(e)ia</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Alyz(e)ia in Acarnania.</div>
+ <div property="gml:pos">38.713373 20.951657</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Alyzia"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/530793"/>
+</div>

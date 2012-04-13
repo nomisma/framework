@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0910">
+<span rel="nm:findspot"><span property="gml:pos">41.94583333 25.07638889</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-125" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+910 Tursko pole, c. 45 km. W of Haskovo, 
+    Bulgaria, 1958
+    Burial: c. 125-100 B.C. (T)
+    Contents: 60 AR. Pot hoard
+    <span rel="mint" resource="thasos">Thasos: spread-flan tetradr. (all with Μ)</span> 
+    Disposition: Haskovo
+    Gerasimov, BIAB 25 (1962), p. 232
+</pre>
+</div>
+</div>

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="propontis">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Propontis</div>
+ <div property="skos:definition" xml:lang="en">Stub for the approximate location of an uncertain mint of coins in the name of Lysimachus, King of Thrace.</div>
+ <div rel="uncertain_value"><span property="gml:pos">41.0462168 27.5097656</span></div>
+</div>

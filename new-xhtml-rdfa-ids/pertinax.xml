@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="roman_emperor" about="pertinax">
+ <div property="skos:prefLabel" xml:lang="en">Pertinax</div>
+ <div property="skos:definition" xml:lang="en">Roman emperor from 1 January 193 – 28 March 193.</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Pertinax"/>
+</div>

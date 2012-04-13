@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1566">
+<span rel="nm:findspot"><span property="gml:pos">34.83861111 35.90694444</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-112" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-70" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1566 Arndt (anc. Marathus), N. Phoenicia, 
+    1947
+    Burial: after 112-111 B.C.
+    Contents: 27 AE
+    <span rel="mint" resource="aradus">Aradus: 12 (as BMC 300 ff.; yrs. 129, 130,
+        148)</span>
+    <span rel="mint" resource="marathus">Marathus: 15 (as BMC 34 ff.; yrs. 130, 142, 
+        148)</span>
+    Disposition: dispersed
+    Seyrig, RN 1964, pp. 45-7
+</pre>
+</div>
+</div>

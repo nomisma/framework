@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1993">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-240" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.6341666667 17.0347222222</span></span></div>
+<div class="nm:editedSource">
+<pre>1993 Mottola, 25 km. NW of Taranto, Ca-
+(712)     labria, 1926
+    Burial: c. 240 B.C.
+    Contents: 96 AR
+    <span rel="mint" resource="taras">Taras: st. (Per. VIII)</span>
+    Disposition: Taranto
+    Quagliati, AttiMemIIN 1930, pp. 73-4, illus.
+</pre>
+</div>
+</div>

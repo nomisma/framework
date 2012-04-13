@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0485">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-150" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-125" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.3666666667 21.2333333333</span></span></div>
+<div class="nm:editedSource">
+<pre>
+485 Krusevo, Gabrovo district, Bulgaria, 
+    1959
+    Burial: c. 150-125 B.C. (T) 
+    Contents: 70 AR. Pot hoard
+    <span rel="mint" resource="macedonia_1st_region">Macedonia, 1st Region: tetradr.</span>
+    Disposition: Sevlievo 50; Sofia 2
+    Gerasimov, BIAB 25 (1962), p. 230
+</pre>
+</div>
+</div>

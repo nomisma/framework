@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="thera">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Thera</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Thera on Thera in the Aegean.</div>
+ <div property="gml:pos">36.363374 25.477816</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Thera"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/599971"/>
+</div>

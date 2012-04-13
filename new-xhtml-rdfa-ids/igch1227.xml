@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1227">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.1 26.5566666667</span></span></div>
+<div class="nm:editedSource">
+<pre>1227 Lesbos?, 1936
+(614)
+    Burial: 4th cent. B.C.? (M) 
+    Contents: 19 AR, 74 BIL, 10 AE
+    <span rel="mint" resource="athens">Athens:</span> 3 fr. (as BMC 112)
+    <span rel="mint" resource="elaea">Elaea: 1 AE</span>
+    <span rel="mint" resource="lesbos">Lesbos: 74 billon fr.</span>
+    <span rel="mint" resource="mytilene">Mytilene: 9 fr.
+            5 AE
+            1 dr. (as BMC 32 ff.)</span>
+    <span rel="mint" resource="eresus">Eresus: 1 AE (as BMC 4-5)</span>
+    <span rel="mint" resource="nesos">Nesos: 1 AE (as BMC 3-4)</span>
+    <span rel="mint" resource="phocaea">Phocaea: 1 fr. (as BMC 84)</span>
+    <span rel="mint" resource="cnidus">Cnidus: 2 AR</span>
+    Unc. mint: 3 fr. (as BMC, Samos 12-6) 
+    Unc. mints: 2 AE
+    Disposition: London 5
+    Information from E. S. G. Robinson
+    The combination of early AR (Phocaea and 
+        unc. mint) with late AE and AR from 
+        Lesbos is peculiar and throws some 
+        doubt on this hd.
+</pre>
+</div>
+</div>

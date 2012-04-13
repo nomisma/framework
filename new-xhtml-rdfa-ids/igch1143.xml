@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1143">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-80" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">45.2752777778 36.7469444444</span></span></div>
+<div class="nm:editedSource">
+<pre>1143 Fantalovskaia, Taman' Peninsula, 
+    Krasnodar Territory, RSFSR, 1963
+    Burial: c. 80 B.C.
+    Contents: 487+ AR. Pot hoard
+    <span rel="mint" resource="panticapaeum">Panticapaeum: 337 didr. (as BMC 11)</span> 
+    <span rel="mint" resource="gorgippia">Gorgippia: 15 didr. (types of BMC Panti-
+        capaeum 11)</span>
+    <span rel="mint" resource="phanagoria">Phanagoria: 135 didr. (types of BMC 
+        Panticapaeum 11)</span>
+    Disposition: Anapa 485; Moscow (Pushkin) 
+        2; private coll. 20-30
+    Salov, VDI 1965, no.2, pp. 101-2
+† Golenko, VDI 1965, no. 4, pp. 141-58
+</pre>
+</div>
+</div>

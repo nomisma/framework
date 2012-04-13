@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2142">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-325" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.5883333333 12.8261111111</span></span></div>
+<div class="nm:editedSource">
+<pre>2142 Selinunte, 1903 
+(952)
+    Burial: c. 325 B.C.? (K) 
+    Contents: c. 20 AV
+    <span rel="mint" resource="carthage">Carthage</span>
+    Disposition: dispersed
+    Ricci, Boll. di Num. 1903, inside back cover of 
+        May-June issue
+    The date assumes that the coins really 
+        were gold and not high-grade electrum
+</pre>
+</div>
+</div>

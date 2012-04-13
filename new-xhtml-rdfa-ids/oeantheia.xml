@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="oeantheia">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Oeantheia</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Oeantheia in Locris.</div>
+ <div property="gml:pos">38.342137 22.191004</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Galaxidi"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/540969"/>
+</div>

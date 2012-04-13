@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0846">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.5844444444 24.8469444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+846 Sokolica (formerly Dogandzi), SW of 
+(334)     Gabrovo, Bulgaria, 1912
+    Burial: c. 300 B.C. (T)
+    Contents: 17 AE
+    Seuthes III (1 over Cassander, 2 over 
+        Lysimachus)
+    Disposition: Sofia
+    Mouchmov, NZ 1918, pp. 52-4, illus.; BIAB 2 
+        (1923-4), pp. 174-7, illus. (corrects earlier 
+        article on sequence of striking)
+</pre>
+</div>
+</div>

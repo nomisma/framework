@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0212">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.3902777778 19.8855555556</span></span></div>
+<div class="nm:editedSource">
+<pre>
+212 Qesarat, c. 15 km. NW of Tepelenë, 
+    Albania, 1963
+    Burial: c. 200 B.C. (Ceka) 
+    Contents: 4 AR, 45 AE. Pot hoard
+    <span rel="mint" resource="apollonia_illyria">Apollonia: </span> 1 dr.; 2 AE 
+    <span rel="mint" resource="byllis">Byllis: </span> 18 AE
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: </span> 1 dr.
+    <span rel="mint" resource="epirus">Epirote Rep.:</span> 2 dr.; 21 AE 
+    Unc.: 4 AE
+    Disposition: Tiranë
+    Information from H. Ceka
+</pre>
+</div>
+</div>

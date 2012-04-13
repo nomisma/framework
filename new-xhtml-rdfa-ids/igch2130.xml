@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2130">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-350" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-340" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.1072222222 13.9386111111</span></span></div>
+<div class="nm:editedSource">
+<pre>2130 Licata (anc. Phintias), 1926 
+(618)
+    Burial: c. 350-340 B.C. (Jenkins) 
+    Contents: 91 AR
+    <span rel="mint" resource="rhegium">Rhegium: 1 tetradr.</span>
+    <span rel="mint" resource="gela">Gela: 4 tetradr.</span>
+    <span rel="mint" resource="leontini">Leontini: 2 tetradr.</span>
+    <span rel="mint" resource="messana">Messana: 1 tetradr.</span>
+    <span rel="mint" resource="selinus_sicily">Selinus: 1 tetradr.</span>
+    <span rel="mint" resource="syracuse">Syracuse: 3 tetradr.</span>
+    <span rel="mint" resource="athens">Athens: 4 tetradr. (2 5th cent.; 2 4th) </span>
+        Pegasi
+    <span rel="mint" resource="corinth">Corinth: 54 (51) (Ravel Per. IV; 1 of Per. V 
+        with Ε)</span>
+    <span rel="mint" resource="ambracia">Ambracia: 4 (5) (to Ravel 110)</span>
+    <span rel="mint" resource="corcyra">Corcyra: 2</span>
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: 2</span>
+    <span rel="mint" resource="leucas">Leucas: 13 (14) (ΛΕϒ issues, some with 
+        caduceus)</span>
+    Unc.: 1 (Potidaea)
+    Disposition: Syracuse (totals in parentheses 
+        are those of Jenkins, Gela)
+    Currò Pisanò AIIN 1962-4, pp. 226, 238 
+    Jenkins, ANSCent., p. 375; Gela, p. 153
+    Jenkins lists 1 Himera in place of 1 Selinus 
+        of Currò
+</pre>
+</div>
+</div>

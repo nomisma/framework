@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="anticyra">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Anticyra</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Anticyra in Phocis.</div>
+ <div property="gml:pos">38.375439 22.626059</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Anticyra"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/540642"/>
+</div>

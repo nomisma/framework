@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0001">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div class="nm:editedSource">
+<pre>
+1 <span property="nm:findspot" content="35 24.75">Matala environs, port of Phaestus, Crete</span>, 
+    1943
+    Burial: c. <span property="nm:approximateburialdate_start" content="-550" datatype="xsd:date">550</span>-<span property="nm:approximateburialdate_end" content="-525" datatype="xsd:date">525 B.C.</span> (Holloway) 
+    Contents: 71 AR. Pot hoard
+    <span rel="mint" resource="aegina">Aegina: 70 st.</span>
+    Disposition: Oxford 69 (68 Aegina, 1 Thera), 
+        casts (2 Aegina)
+    Dunbabin, BSA 42 (1947), p. 192
+    Brown, NC 1950, p. 186 
+    Kraay, JHS 1964, p. 79
+    Le Rider, Monn. crét., p. 168
+† Holloway, ANSMN 17 (1971), pp. 1-21, illus.
+</pre>
+</div>
+</div>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1894">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-440" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1894 South Italy, 1963 ?
+    Burial: c. 440 B.C. (K) 
+    Contents: AR
+    <span rel="mint" resource="taras">Taras: 2 st. (1 incuse, cf. Vlasto Cat. 62-9; 
+        1 cf. Vlasto Cat. 145-6)</span>
+    <span rel="mint" resource="metapontum">Metapontum: st. ("both thick and broad 
+        incuse")</span>
+    <span rel="mint" resource="sybaris">Sybaris: 1 incuse st.</span>
+    <span rel="mint" resource="sybaris">Sybaris</span>-<span rel="mint" resource="laues">Laus</span>: 1 st. (as NC 1958, pl. 3, 11-2) 
+    <span rel="mint" resource="thurium">Thurium: 2 early st.</span>
+    <span rel="mint" resource="caulonia">Caulonia: incuse st. (to Noe 60)</span>
+    <span rel="mint" resource="croton">Croton: to dumpy incuse st. (incl. eagle
+        rev.; 1 rev. Corinthian helmet incuse;
+        1 dumpy incuse, obv. ΤΕ, rev. tripod)</span>
+    Disposition: Oxford 1 Metapontum (Noe 
+        100)
+    Information from correspondents
+</pre>
+</div>
+</div>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0131">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.6313888889 22.7194444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+131 Argos, 1967?
+    Burial: early 3rd cent. B.C. 
+    Contents: 6+ AR
+    Alexander III: 4 tetradr. (<span rel="mint" resource="pella_macedon">Pella,</span> <span rel="mint" resource="sicyon">Sicyon,</span> 
+        <span rel="mint" resource="ace_ptolemais">Ace,</span> <span rel="mint" resource="babylon">Babylon)</span>
+    <span rel="mint" resource="athens">Athens:</span> 2 tetradr.
+    Disposition: Athens 6
+    Oeconomides, A Delt 1968, Chronika, p. 12, illus.; 
+        1969, Chronika, pp. 7-8, illus.
+</pre>
+</div>
+</div>

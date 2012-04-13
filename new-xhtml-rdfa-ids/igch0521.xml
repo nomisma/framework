@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0521">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-125" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.1283333333 25.6938888889</span></span></div>
+<div class="nm:editedSource">
+<pre>
+521 Gorna Orjahovica, c. 7 km. N of 
+    Veliko Târnovo, Bulgaria, 1939
+    Burial: c. 125 B.C. (Price)
+    Contents: 355 AR. In bronze vase
+    Alexander III: 7 late post. tetradr. (<span rel="mint" resource="mesembria">Me-
+        sembria)</span>
+    Philip III: 1 tetradr. (<span rel="mint" resource="babylon">Babylon)</span> 
+    <span rel="mint" resource="macedonia_1st_region">Macedonia, 1st Region: 338 tetradr.</span> 
+            <span rel="mint" resource="macedonia_2st_region">2nd Region: 2 tetradr.</span>
+    Imit. <span rel="mint" resource="macedonia_1st_region">Macedonia, 1st Region: 7 tetradr.</span>
+    Disposition: dispersed
+    Gerasimov, BIAB 13 (1939), p. 342
+</pre>
+</div>
+</div>

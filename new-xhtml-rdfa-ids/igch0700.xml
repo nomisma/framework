@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0700">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-450" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">45.0861111111 29.0844444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+700 Mahmudia, c. 22 km. SE of Tulcea, 
+    Rumania, 1949
+    Burial: c. 450 B.C.
+    Contents: 10 AR
+    <span rel="mint" resource="istrus">Istrus: dr. or st. (early)</span>
+    Disposition: Bucharest (Acad) 2; Con-
+        stanta 2
+    Canarache, Ateliere monetare (Studii si referate 
+        privind istoria României 1, Bucharest, 1954),
+        p. 186; Pontice 1968, p. 136, illus.
+</pre>
+</div>
+</div>

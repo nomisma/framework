@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="heliopolis">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Heliopolis</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Heliopolis in Coele Syria, Syria.</div>
+ <div property="gml:pos">34.015363 36.200556</div>
+<div property="skos:related" resource="http://en.wikipedia.org/wiki/Baalbek"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/678179"/>
+</div>

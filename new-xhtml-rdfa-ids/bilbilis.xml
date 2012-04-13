@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="bilbilis">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Bilbilis</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Bilbilis in Hispania Citerior.</div>
+ <div property="gml:pos">41.382010 -1.603219</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Calatayud"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/246247"/>
+</div>

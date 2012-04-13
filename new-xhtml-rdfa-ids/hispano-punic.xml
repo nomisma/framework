@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="hispano-punic">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Hispano-Punic</div>
+ <div property="skos:definition" xml:lang="en">Stub for the approximate location of production of the coinages of Punic Spain.</div>
+ <div rel="uncertain_value"><span property="gml:pos">36.8224776 -6.1578369</span></div>
+</div>

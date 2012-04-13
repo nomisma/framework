@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2375">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-170" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-130" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.9386111111 4.88305555556</span></span></div>
+<div class="nm:editedSource">
+<pre>2375 Valence, 90 km. S of Lyon, 1902 
+(1155)
+    Burial: mid 2nd cent. B.C. (Rolland) 
+    Contents: 415 AR. Pot hoard
+    <span rel="mint" resource="massalia">Massalia: ob.</span>
+    <span rel="mint" resource="gallic">Gallic: 15</span>
+    Disposition: E. Poncet 20
+    Poncet, RN 1903, pp. 87-99, illus.
+    Blanchet, Traité, p. 553, no. 59
+    Rolland, RN 1959-60, p. 48 (18 obols examined)
+</pre>
+</div>
+</div>

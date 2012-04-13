@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="calynda">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Calynda</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Calynda in Lycia.</div>
+ <div property="gml:pos">36.739613 28.831094</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Calynda"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/638891"/>
+</div>

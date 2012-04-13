@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1105">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">45.3427777778 36.4719444444</span></span></div>
+<div class="nm:editedSource">
+<pre>1105 Kerch' (anc. Panticapaeum), before 
+(550)     1884
+    Burial: 3rd cent. B.C.?
+    Contents: c. 1000 AE
+    <span rel="mint" resource="panticapaeum">Panticapaeum: AE (type unknown)</span> 
+    Disposition: dispersed
+    Burachkov, p. 19
+    Possibly from the same hd. as nos. 1068 or 
+        1069 above
+</pre>
+</div>
+</div>

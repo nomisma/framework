@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1870">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">32.1038888889 76.2761111111</span></span></div>
+<div class="nm:editedSource">
+<pre>1870 Tappa Mewa, near Kangra,
+(525)     c. 140 km. NE of Amritsar, Punjab, 
+    India, 1892
+    Burial: 1st cent. B.C. (Le Rider) 
+    Contents: 75 AR
+    Apollodotus II: 21 dr. 
+    Amoegha-bhuti: 54 dr.
+    Disposition: unknown
+    PASB 1893, pp. 11-2 
+    RN 1894, p. 132
+</pre>
+</div>
+</div>

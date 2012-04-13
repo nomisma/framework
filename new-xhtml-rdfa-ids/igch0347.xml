@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0347">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-85" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-50" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.3997222222 25.2666666667</span></span></div>
+<div class="nm:editedSource">
+<pre>
+347 Delos, 1905 
+(306a)
+    Burial: c. 85-80 B.C. (T); c. 78 or later
+        (Lewis)
+    Contents: 35 AR. From excavations
+    <span rel="mint" resource="athens">Athens:</span> 13 New Style tetradr.
+            22 New Style dr. (incl. 2 Sullan)
+    Disposition: Athens (except 7 which were 
+        exchanged)
+    Svoronos, JIAN 1906, pp. 254-5
+    Roussel, Délos, p. 48, note 4
+† Thompson, Athens (Delos A), pp. 514-5, illus. 
+        (14 coins)
+    Lewis, NC 1962, p. 283
+</pre>
+</div>
+</div>

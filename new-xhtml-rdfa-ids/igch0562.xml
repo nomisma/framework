@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0562">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-130" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.0563888889 19.5705555556</span></span></div>
+<div class="nm:editedSource">
+<pre>
+562 Rentzi (Rrenc, Gajtan), near Shkodër, 
+(860)     Albania, 1900
+    Burial: late 2nd cent. B.C. (T) 
+    Contents: 8+ AE
+    <span rel="mint" resource="scodra">Scodra: 5</span> 
+    Genthius 2
+    Ballaeus: 1
+    Unc. +
+    Disposition: dispersed
+† Scholz, MonatsblNumGesWien 1901, pp. 123-7, 
+        illus.
+    Islami, Studia Albanica 1 (1966), pp. 225-49, 
+        passim
+    Noe erroneously included other coins in 
+        the hd.
+</pre>
+</div>
+</div>

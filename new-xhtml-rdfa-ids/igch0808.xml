@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0808">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-350" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">46.1752777778 30.4577777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+808 Roksolany (anc. Niconium), Ovidio-
+    pol' raion, Odessa oblast, Ukraine, 1960 
+    Burial: 350-300 B.C. (Golenko)
+    Contents: 6 AE
+    <span rel="mint" resource="tyras">Tyra: (as AMNG I.1, pl. 12, 11)</span> 
+    Disposition: Odessa
+    Ashrafian, Kratkie Soobshcheniia Odesskogo Go-
+        sudarstvennogo Arkheologicheskogo Muzeia 
+        1961 (Odessa, 1963), p. 100
+† Zaginailo, MASP 5 (1966), pp. 103, 122, nos. 
+        113-8
+</pre>
+</div>
+</div>

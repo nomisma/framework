@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="sepphoris">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Sepphoris</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Sepphoris in Galilaea.</div>
+ <div property="gml:pos">32.754110 35.283791</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/678387"/>
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0805">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.3922222222 25.4222222222</span></span></div>
+<div class="nm:editedSource">
+<pre>
+805 Hisar, c. 40 km. S of Haskovo, Bul-
+    garia, 1962
+    Burial: 4th cent. B.C. (T)
+    Contents: c. 300 AE
+    <span rel="mint" resource="maroneia">Maroneia: small AE (horse/grapes)</span> 
+    Disposition: Sofia 25; Harmanli 124
+    Gerasimov, BIAB 27 (1964), p. 241; 28 (1965),
+        p. 250
+</pre>
+</div>
+</div>

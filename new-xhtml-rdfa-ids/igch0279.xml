@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0279">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-140" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-130" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.8844444444 24.0127777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+279 Porto Rafti, Attica, 1967
+    Burial: c. 140-130 B.C. (T) 
+    Contents: 16 AE
+    <span rel="mint" resource="athens">Athens:</span> 3 (3rd cent.)
+            13 (New Style, as Svoronos pl. 22, 
+        54 ff. and pl. 81)
+    Disposition: Athens
+    Oeconomides, A Delt 1968, Chronika, p. 12
+</pre>
+</div>
+</div>

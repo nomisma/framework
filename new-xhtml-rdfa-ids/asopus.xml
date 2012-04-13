@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="asopus">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Asopus</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Asopus in Laconia.</div>
+ <div property="gml:pos">36.730440 22.854554</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Asopos"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/570129"/>
+</div>

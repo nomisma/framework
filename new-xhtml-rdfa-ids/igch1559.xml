@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1559">
+<span rel="nm:findspot"><span property="gml:pos">34.54388889 36.07972222</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-150" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1559 Akkar, c. 45 km. SW of Homs (anc. 
+    Emesa), Seleucis, 1956
+    Burial: c. 150 B.C. (Seyrig) 
+    Contents: 69 AR
+    Alexander III: 39 late post. tetradr. (<span rel="mint" resource="temnus">Tem-
+        nus 37</span>, <span rel="mint" resource="miletus">Miletus 1</span>, <span rel="mint" resource="alabanda">Alabanda 1</span>)
+    <span rel="mint" resource="syros">Syros: 1 tetradr.</span>
+    <span rel="mint" resource="aegae_aeolis">Aegae: 2 tetradr.</span>
+    <span rel="mint" resource="cyme_aeolis">Cyme: 5 tetradr.</span>
+    <span rel="mint" resource="myrina_aeolis">Myrina: 12 tetradr.</span>
+    <span rel="mint" resource="heraclea_ad_latmum">Heracleia Ioniae: 2 tetradr.</span>
+    <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia Ioniae: 5 tetradr.</span>
+    <span rel="mint" resource="smyrna">Smyrna: 2 tetradr.</span>
+    Alexander I Bala: 1 tetradr. (<span rel="mint" resource="antiocheia_syria">Antiocheia as 
+        SMA 171</span>)
+    Disposition: dispersed
+    Seyrig, Trésors du Levant (in press)
+</pre>
+</div>
+</div>

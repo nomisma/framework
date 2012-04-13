@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2328">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-213" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-209" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.87477 -0.752077</span></span></div>
+<div class="nm:editedSource">
+<pre>2328 Mogente, 65 km. NNW of Alicante, 
+(700)     1910
+    Burial: 213-209 B.C. (Villaronga) 
+    Contents: 147+ AR
+    <span rel="mint" resource="hispano-punic">Hispano-Punic: 6 dr. (as Robinson 2) 
+            1 didr. (as R. 3)
+            1 hexadr., 3 tetradr., 2 
+        tridr., 26 hemidr. (as R. 6)
+            15 didr., 22 dr., 39 hemidr. 
+        (as R. 7)
+            1 fr. (as Vives MH, pl. 
+        11, 8)</span>
+    <span rel="mint" resource="emporiae">Emporiae: 3 dr.
+            26 fr.</span>
+    <span rel="mint" resource="ebusus">Ebusus: 2 hemidr.</span>
+    <span rel="mint" resource="syracuse">Syracuse, Gelon II: 1 dr.</span>
+    <span rel="mint" resource="rome">Roman Rep.: 1 half-vict.</span>
+    Disposition: London 6; Madrid (Instituto 
+        Valencia de Don Juan) 23
+† Gestoso y Acosta, Boletin de la Real Academia de 
+        la Historia 56 (1910), pp. 460-5
+    Hill, NC 1913, pp. 274-5, illus.
+    Vives, MH I, p. 25, nos. 26, 32-4; pp. 48-9, nos.
+        2-7, 11-2, 14, 19, 20-2; p. 66, nos. 6, 8; illus. 
+    Amoros, Dracmes, p. 51; MEAD, pp. 33-4 
+    Garcia y Bellido, Hispania Graeca I (Barcelona,
+        1948), p. 225
+    de Guadan, Numisma 16 (1955), pp. 16-7; 
+        MPER, pp. 117-25
+    Villaronga, Arse-Saguntum, p. 92; MHC (forth-
+        coming)
+    Crawford, RRCH 91
+</pre>
+</div>
+</div>

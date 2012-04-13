@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="achilleion">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Stub for the ancient site of Achilleion in Troas.</div>
+ <div property="gml:pos">39.989747 26.188666</div>
+ <div property="skos:related" resource="http://atlantides.org/batlas/achilleion-56-c2"/>
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0778">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-325" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-310" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.0791666667 24.5936111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+778 Brestovza, c. 14 km. S of Plovdiv, 
+    Bulgaria, 1968
+    Burial: c. 325-310 B.C. (T) 
+    Contents: 135 AE. Pot hoard 
+    Philip II: 94
+    Alexander III: 41
+    Disposition: Plovdiv
+    Reported by T. Gerasimov
+</pre>
+</div>
+</div>

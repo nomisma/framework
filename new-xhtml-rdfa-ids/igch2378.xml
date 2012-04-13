@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2378">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.4766666667 5.11361111111</span></span></div>
+<div class="nm:editedSource">
+<pre>2378 Bouches-du-Rhône, near l'Étang de 
+(887)     Berre, 1834
+    Burial: 2nd cent. B.C. (Jenkins)
+    Contents: 600 AR
+    <span rel="mint" resource="massalia">Massalia: 500-600 (ob. ?)</span>
+    <span rel="mint" resource="gallic">Gallic: 20+ AR (inc. Avenio, Caenicenses, 
+        monnaies-à-la-croix)</span>
+    <span rel="mint" resource="rome">Roman Rep.: 1 den.</span>
+    Disposition: unknown
+    Marquis de Lagoy, Description de quelques mon-
+        naies inédites de Massalia etc. (Aix, 1834), 
+        pp. 25, 29 and note 1
+    Baron Chaudruc de Crazannes, RN 1839, p. 167 
+    Allotte de la Fuÿe, Tourdan, pp. 50-1
+    Blanchet, Traité, p. 545, no. 26
+    Allen, NC 1969, p. 66, no. 26
+    This hd., it is clear, did not contain the 
+        archaic coins also described by Lagoy 
+        (op. cit.); these were analogous to the 
+        types of the Auriol hoard and were not 
+        from a hd. but from excavations at 
+        St.-Rémy (anc. Glanum), cf. Babelon 
+        Traité II.1, p. 1578. The Massalia coins 
+        in the present hd. were never described
+</pre>
+</div>
+</div>

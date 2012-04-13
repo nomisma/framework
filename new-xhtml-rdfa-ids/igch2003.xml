@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2003">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-230" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.3952777778 18.1347222222</span></span></div>
+<div class="nm:editedSource">
+<pre>2003 Surbo, 8 km. N of Lecce, Calabria, 
+(1016)     1928
+    Burial: c. 230 B.C. (Breglia) 
+    Contents: 63 AR
+    <span rel="mint" resource="taras">Taras: 57 st. (4 Per. VII; 49 Per. VIII;
+        4 Per. IX C, E, G)</span>
+    <span rel="mint" resource="heraclea_lucaniae">Heracleia: 1 st. (reduced weight) </span>
+    <span rel="mint" resource="metapontum">Metapontum: 1 st. (plow symbol)</span>
+    <span rel="mint" resource="argos_amphilochicim">Argos: 1 Pegasus</span>
+    <span rel="mint" resource="rome">Roman Rep.: 3 quadrig.</span>
+    Disposition: Taranto
+† Breglia, AttiMemIIN 8 (1934), pp. 56-61, illus. 
+    Stazio, AIIN 1965-7, pp. 44-5
+    Crawford, RRCH 37
+    Breglia (p. 56) refers to 59 Taras, though
+        her list (pp. 54-5) totals only 57
+</pre>
+</div>
+</div>

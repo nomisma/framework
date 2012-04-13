@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1807">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-125" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">32.1888888889 48.2577777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1807 Susa, Susiana, 1933-4 
+(1024)
+    Burial: 125 B.C. (Le Rider) 
+    Contents: 162+ AE. From excavations
+    Antiochus III: 4 (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Tigrim</span>)
+    Seleucus IV: 1 (<span rel="mint" resource="susa">Susa</span>) 
+    Antiochus VII: 8 (<span rel="mint" resource="susa">Susa</span>) 
+    <span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Tigrim: 3 </span>
+    Hyknapses: 1 (<span rel="mint" resource="susa">Susa?</span>) 
+    Kamniskires I: 5 (<span rel="mint" resource="susa">Susa</span>) 
+    Tigraeus: 56 (<span rel="mint" resource="susa">Susa</span>)
+    Mithradates I, Parthia: 12 (<span rel="mint" resource="susa">Susa</span>)
+    Phraates II: 37 (<span rel="mint" resource="susa">Susa</span>)
+    Phraates II or Artabanus 1: 7 (<span rel="mint" resource="susa">Susa</span>)
+    Artabanus I: 28 (<span rel="mint" resource="susa">Susa</span>)
+    Disposition: Paris; Teheran
+    Unvalla, RN 1935, pp. 158-60
+† Le Rider, Suse, pp. 249-50, illus.
+    Unvalla gives the hoard total as 186 
+</pre>
+</div>
+</div>

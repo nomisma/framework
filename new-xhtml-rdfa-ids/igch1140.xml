@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1140">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-90" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-80" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">45.1955555556 36.5997222222</span></span></div>
+<div class="nm:editedSource">
+<pre>1140 Cape Tyzla (anc. Corocondame), Ta-
+    man' Peninsula, Krasnodar Territory, 
+    RSFSR, 1913
+    Burial: 90-80 B.C.
+    Contents: 10 AR. In burial
+    <span rel="mint" resource="panticapaeum">Panticapaeum: dr. (as Minns, pl. 6, 7)</span> 
+    Disposition: museum material lost during 
+        war
+† OAK 1913-5 (publ. 1918), p. 140 
+    Pakhomov III, 707
+</pre>
+</div>
+</div>

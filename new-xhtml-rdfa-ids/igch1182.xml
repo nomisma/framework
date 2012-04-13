@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1182">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-460" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.1130555556 27.1372222222</span></span></div>
+<div class="nm:editedSource">
+<pre>1182, Asia Minor, western, 1963
+    Burial: c. 460 B.C. (M)
+    Contents: c. 50 AR. With "hacksilber"
+    <span rel="mint" resource="abdera_thrace">Abdera: 1 octadr.</span>
+    <span rel="mint" resource="thasos">Thasos: 1 didr.</span>
+    <span rel="mint" resource="acanthus">Acanthus: several tetradr.</span>
+    Alexander I, Maced.: 5+ octadr.
+    <span rel="mint" resource="panticapaeum">Panticapaeum: 1 dr.</span>
+    <span rel="mint" resource="athens">Athens:</span> many tetradr.
+    <span rel="mint" resource="aegina">Aegina: 2 didr.</span>
+    <span rel="mint" resource="ephesus">Ephesus: 1 dr.</span>
+    <span rel="mint" resource="phaselis">Phaselis: 1 double siglos</span>
+    <span rel="mint" resource="cyprus">Cyprus, unc. mint: 3 st. (as BMC pl. 25, 5)</span>
+    Disposition: dispersed
+</pre>
+</div>
+</div>

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="authority" about="lucius_aelius_caesar">
+ <div property="skos:prefLabel" xml:lang="en">Lucius Aelius Caesar</div>
+ <div property="skos:definition" xml:lang="en">Adopted son of the emperor <a href="hadrian">Hadrian</a>.</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Lucius_Aelius"/>
+</div>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0342">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-86" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.34 23.6561111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+342 Chaidari, Attica, 1929
+(230)
+    Burial: c. 86 B.C. (T) 
+    Contents: 483 AE
+    Demetrius Poliorcetes: 1
+    <span rel="mint" resource="imbros">Imbros:</span> 1 (as SNGCop. 967)
+    <span rel="mint" resource="lemnos">Lemnos,</span> Athenian Cleruchs: 3 (Athena hd./ 
+        Zeus hd., ΑΘΕ-ΛΗΜΝ)
+    <span rel="mint" resource="athens">Athens:</span> 3 (3rd cent.)
+            475 New Style (late types)
+    Disposition: Athens
+    Constantopoulos, BCH 1929, p. 492
+    According to recent information this hd. 
+        and nos. 341 and 343 are very likely 
+    a single find
+</pre>
+</div>
+</div>

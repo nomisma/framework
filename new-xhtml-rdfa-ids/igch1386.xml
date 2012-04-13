@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1386">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-75" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.8752777778 35.455</span></span></div>
+<div class="nm:editedSource">
+<pre>1386 Merzifon, c. 40 km. NW of Amasya 
+    (anc. Amasia), Pontus, 1968
+    Burial: c. 75 B.C. (Pfeiler) 
+    Contents: 61 AE
+    <span rel="mint" resource="panticapaeum">Panticapaeum: 1</span> 
+    <span rel="mint" resource="amisus">Amisus: 43</span>
+    <span rel="mint" resource="comana">Comana: 1</span>
+    <span rel="mint" resource="amastris">Amastris: 14</span>
+    <span rel="mint" resource="sinope">Sinope: 2</span>
+    Disposition: dispersed
+</pre>
+</div>
+</div>

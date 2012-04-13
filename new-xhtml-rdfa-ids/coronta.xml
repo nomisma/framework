@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="coronta">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Coronta</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Coronta in Acarnania.</div>
+ <div property="gml:pos">38.588086 21.159936</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Coronta"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/530961"/>
+</div>

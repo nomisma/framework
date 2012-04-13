@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1959">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-280" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.3830555556 16.8227777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1959 Metaponto, Lucania, 1955
+    Burial: c. 280 B.C. (Lo Porto) 
+    Contents: 196+ AR. Pot hoard
+    <span rel="mint" resource="taras">Taras: 62 st. (to Per. VIII)
+            1 diob.</span>
+    <span rel="mint" resource="heraclea_lucaniae">Heracleia: 17 st. (incl. 1 reduced weight) 
+            1 diob.</span>
+    <span rel="mint" resource="metapontum">Metapontum: 108 st. (mainly late Demeter 
+        hd.)</span>
+    <span rel="mint" resource="thurium">Thurium: 3 st. (full weight)</span>
+    <span rel="mint" resource="croton">Croton: 4 st. (incl. 1 reduced weight)</span>
+    Disposition: Metaponto
+    Neutsch, AA 1956, p. 279-82, illus. (includes some 
+        coins not in Lo Porto)
+† Lo Porto, NSc 1966, pp. 176-83, illus.
+    Stazio, AIIN 1965-7, pp. 49-52
+</pre>
+</div>
+</div>

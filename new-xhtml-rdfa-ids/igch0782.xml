@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0782">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-325" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-310" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.2619444444 24.9472222222</span></span></div>
+<div class="nm:editedSource">
+<pre>
+782 Aleksandrovo, c. 20 km. NW of Stara 
+    Zagora, Bulgaria, 1948
+    Burial: c. 325-310 B.C. (T)
+    Contents: c. 100 AE. Pot hoard
+    Philip II
+    Alexander III
+    Disposition: Kazanlâk 12; Pazardzik 3
+    Gerasimov, BIA8 17 (1950), p. 322
+</pre>
+</div>
+</div>

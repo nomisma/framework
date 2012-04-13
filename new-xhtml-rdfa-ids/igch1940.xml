@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1940">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.06954 16.61063</span></span></div>
+<div class="nm:editedSource">
+<pre>1940 Palombaio, near Bitonto, 15 km. W 
+(790)     of Bari, Apulia, 1910
+    Burial: 4th cent. B.C. (K) 
+    Contents: 16 AR
+    <span rel="mint" resource="taras">Taras: 9 st.</span>
+    <span rel="mint" resource="heraclea_lucaniae">Heracleia: 1 st. (as Work 32 ff.)</span> 
+    <span rel="mint" resource="metapontum">Metapontum: 5 st.</span>
+    <span rel="mint" resource="terina">Terina: 1 st.</span>
+    Disposition: unknown
+    Selvaggi, Apulia 1910, p. 58 
+    Stazio, AIIN 1965-7, p. 57
+    Vlasto believed this to be a part of the
+        Ionian Shore hd., no. 1916 above
+</pre>
+</div>
+</div>

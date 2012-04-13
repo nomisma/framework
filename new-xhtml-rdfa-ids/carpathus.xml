@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="carpathus">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Carpathus</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Carpathus on Carpathus, Caria.</div>
+ <div property="gml:pos">35.583333 27.133333</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Karpathos"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/589841"/>
+</div>

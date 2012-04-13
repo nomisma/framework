@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1561">
+<span rel="nm:findspot"><span property="gml:pos">35.52472222 35.78583333</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-140" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1561 Latakia (anc. Laodiceia ad Mare) 
+    environs, Seleucis, 1950
+    Burial: c. 140 B.C. (Westermark) 
+    Contents: 9 AR
+    Alexander III: 6 late post. tetradr. (<span rel="mint" resource="temnus">Tem-
+        nus 2</span>, <span rel="mint" resource="alabanda">Alabanda 3</span>, <span rel="mint" resource="miletus">Miletus 1</span>) 
+    Lysimachus: 1 lifetime tetradr. (<span rel="mint" resource="heracleia_pontica">Heracleia
+        Pontica</span>)
+            1 post. tetradr. (<span rel="mint" resource="lampsacus">Lampsacus</span>) 
+    Alexander I Bala: 1 tetradr. (<span rel="mint" resource="antiocheia_pontica">Antiocheia</span>)
+    Disposition: dispersed
+    Seyrig, Trésors du Levant (in press)
+</pre>
+</div>
+</div>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="ace_ptolemais">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Ptolemais-Ake</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Ptolemais-Ake in Phoenicia.</div>
+ <div property="gml:pos">32.921776 35.077005</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Acre,_Israel"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/678010"/>
+</div>

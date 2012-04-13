@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0633">
+<span rel="nm:findspot"><span property="gml:pos">45.17805556 24.355</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-70" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+633 Vladesti, 5 km. WNW of Rîmnicu 
+    Vîlcea, Rumania, c. 1946
+    Burial: early 1st cent. B.C.
+    Contents: AR. Pot hoard
+    <span rel="mint" resource="thasos">Thasos: spread-flan tetradr. incl. imit.</span> 
+    Disposition: M. Sanatescu, Rîmnicu Vîl-
+        cea 3
+    Mitrea, Dacia 1961, p. 586
+</pre>
+</div>
+</div>

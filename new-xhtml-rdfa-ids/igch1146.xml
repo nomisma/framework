@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1146">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-63" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">45.3575 36.4777777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1146 Myrmecium (mod. Cape Karantin), 
+    just N of Kerch', Crimea oblast, Ukraine,
+    1949
+    Burial: c. 63 B.C. (Golenko)
+    Contents: 16 AE
+    <span rel="mint" resource="panticapaeum">Panticapaeum: 1 AE (as BMC 34)</span>
+    Unc. <span rel="mint" resource="bosporus">Bosporus: 12 AE (as Minns, pl. 9, 21)</span> 
+    <span rel="mint" resource="amisus">Amisus: 1 AE (as RGA I.1, pl. 7, 22-24)</span> 
+    <span rel="mint" resource="sinope">Sinope: 2 AE (as RGA I.1, pl. 26, 6-7)</span>
+    Disposition: Leningrad
+† Belova, MIA 85 (1958), pp. 332, 343-4, nos. 
+        219-34
+    Krushkol, VDI 1952, no. 3, pp. 137-47
+</pre>
+</div>
+</div>

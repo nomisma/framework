@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2011">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-220" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.2386111111 13.9302777778</span></span></div>
+<div class="nm:editedSource">
+<pre>2011 Sessa (anc. Suessa Aurunca), Cam-
+    pania, 1930?
+    Burial: c. 220 B.C. (Crawford)
+    Contents: 35 AR, 3 AE. Pot hoard
+    <span rel="mint" resource="cales">Cales: 1 AE</span>
+    <span rel="mint" resource="neapolis_campania">Neapolis: 1 st.; 1 AE</span>
+    <span rel="mint" resource="campano-tarentine">Campano-Tarentine: 2 st.</span>
+    <span rel="mint" resource="velia">Velia: 1 st.</span>
+    <span rel="mint" resource="rome">Roman Rep.: 5 st. (ROMANO; ROMA) 
+            26 quadrig. (21 halved)
+            1 AE</span>
+    Disposition: Naples
+† Breglia, Numismatica (1946), pp. 1-5 
+    Crawford, RRCH 48
+</pre>
+</div>
+</div>

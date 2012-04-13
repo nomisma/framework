@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0607">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.96 26.1661111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+607 Valea Calugareasca, 10 km. E of 
+    Ploiesti, Rumania, 1963
+    Burial: 2nd-1st cent. B.C. (T) 
+    Contents: c. 300 AR. Pot hoard
+    <span rel="mint" resource="apollonia_illyria">Apollonia, Illyria</span>, and <span rel="mint" resource="dyrrhachii">Dyrrhachium: dr.</span>
+    Disposition: Ploiesti 282; Bucharest (Inst. 
+        Arch.) 1
+    Mitrea, Dacia 1965, p. 492; 1967, p. 382
+</pre>
+</div>
+</div>

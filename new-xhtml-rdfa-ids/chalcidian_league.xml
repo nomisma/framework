@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="chalcidian_league">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Chalcidian League</div>
+ <div property="skos:definition" xml:lang="en">The mint of the Chalcidian League at the ancient site of Olynthus in Macedon.</div>
+ <div property="gml:pos">40.292595 23.342665</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Chalkidian_League"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/491678"/>
+</div>

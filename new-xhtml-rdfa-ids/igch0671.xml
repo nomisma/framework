@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0671">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-40" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-30" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">45.6077777778 22.9469444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+671 Hateg environs, 28 km. S of Deva, 
+    Rumania, before 1914
+    Burial: c. 40-30 B.C. (T)
+    Contents: AV. Large pot hoard 
+    Lysimachus: st.
+    Coson: st.
+    Disposition: formerly Dessewffy coll., Buda-
+        pest 2 (1 of each)
+    Gobi, NK 1914, p. 18
+</pre>
+</div>
+</div>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2340">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-195" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.4702777778 2.20694444444</span></span></div>
+<div class="nm:editedSource">
+<pre>2340 Puig Castellar, Barcelona prov., 
+    c. 1940
+    Burial: c. 195 B.C. (Jenkins) 
+    Contents: 200 AR
+    <span rel="mint" resource="emporiae">Emporiae: 14 dr.
+            27 ob.
+            12 hemiob.</span>
+    Iberian: 3 dr. (<span rel="mint" resource="emporiae">Emporitan type</span>)
+    Disposition: Barcelona (Inst. de Arqu.) part
+    Pericot, Ampurias 1943, p. 202; 1944, p. 323, 
+        illus.
+† Beltran y Villagrasa, Ampurias 1945-6, pp. 311-5 
+† Maluquer-Oliva, Pyrenae 1965, pp. 115-22 
+    de Guadan, MPER, pp. 144-50
+</pre>
+</div>
+</div>

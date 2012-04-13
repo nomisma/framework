@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0596">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">45.9333333333 22.55</span></span></div>
+<div class="nm:editedSource">
+<pre>
+596 Cîmpuri Surduc, c. 57 km. NW of 
+    Deva, Rumania, 1886
+    Burial: 2nd-1st cent. B.C. (T)
+    Contents: AR
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: dr.</span>
+    Disposition: Bucharest (Inst. Arch.) 2
+    Mitrea, ED 10 (1945), p. 88, no. 11
+</pre>
+</div>
+</div>

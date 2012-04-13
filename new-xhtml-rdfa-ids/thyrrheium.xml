@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="thyrrheium">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Thyrrheium</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Thyrrheium in Acarnania.</div>
+ <div property="gml:pos">38.854918 20.980902</div>
+<div property="skos:related" resource="http://en.wikipedia.org/wiki/Thyrreion"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/531123"/>
+</div>

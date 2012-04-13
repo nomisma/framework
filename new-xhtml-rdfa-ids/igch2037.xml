@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2037">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-230" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.26857 17.051353</span></span></div>
+<div class="nm:editedSource">
+<pre>2037 Strongoli (anc. Petelia), 25 km. N of 
+(1011)     Croton, Bruttium, 1880
+    Burial: late 3rd cent. B.C. (K) 
+    Contents: 24 AE. In a jug within a tomb
+    <span rel="mint" resource="metapontum">Metapontum: 1 (Hera/barley ear)</span>
+    <span rel="mint" resource="bruttii">Brettii: 8 (2 Mars/Pallas; 3 Zeus/eagle; 2
+        Nike/Zeus in biga; 1 Zeus/crab)</span>
+    <span rel="mint" resource="hipponium">Hipponium: 1 (Zeus/amphora and cadu-
+        ceus)</span>
+    <span rel="mint" resource="nuceria">Nuceria: 1 (Apollo/horse)</span>
+    <span rel="mint" resource="petelia">Petelia: 8 (2 Apollo/tripod; 1 Helios/tripod; 
+        3 Demeter/Zeus; 1 Nike/club) </span>
+    <span rel="mint" resource="mamertini">Mamertines: 1 (Ares/eagle)</span>
+    <span rel="mint" resource="rome">Roman Rep.: 4 (1 as; 3 sem., rev. prow)</span>
+    Disposition: dispersed
+    Fiorelli, NSc 1881, p. 67
+    Two Rep. AR (Syd. 461; 1052/3) and of 
+        Antoninus Pius (rev. Victory), which 
+        are also listed, are presumably intru-
+        sive
+</pre>
+</div>
+</div>

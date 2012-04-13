@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2073">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-475" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-460" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>2073 Sicily, 1927-1928
+    Burial: c. 475-60 B.C.? (K)
+    Contents: 4+ AR
+    <span rel="mint" resource="agrigentum">Acragas: 1 didr. (Jenkins, Gela, Grp. IV)
+    <a rel="nm:item" href="http://numismatics.org/collection/1944.100.8198">ANS 1944.100.8198</a></span> 
+    <span rel="mint" resource="himera">Himera: 1 didr. (rev. crab)
+    <a rel="nm:item" href="http://numismatics.org/collection/1967.152.132">ANS 1967.152.132</a></span> 
+    <span rel="mint" resource="syracuse">Syracuse: 2 tetradr. (as Boehringer 123, 
+        154)
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.55122">ANS 1944.100.55122</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.55131">ANS 1944.100.55131</a></span>      
+    Disposition: New York 4 as above
+</pre>
+</div>
+</div>

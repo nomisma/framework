@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2235">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-211" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-208" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.002 15.317674</span></span></div>
+<div class="nm:editedSource">
+<pre>2235 Mandanici, 15 km. N of Taormina,
+    1952
+    Burial: c. 211-08 B.C. (Crawford)
+    Contents: 1 AR, 43 AE. Pot hoard
+    <span rel="mint" resource="rhegium">Rhegium: 26 AE</span>
+    <span rel="mint" resource="mamertini">Mamertines: 2 AE</span>
+    <span rel="mint" resource="syracuse">Syracuse: 9 AE (to Hieron II, Poseidon/ 
+        trident)</span>
+    <span rel="mint" resource="rome">Roman Rep.: 1 vict.
+            6 AE (see Crawford)</span>
+    Disposition: Syracuse
+    Gentili, NSc 1954, pp. 56-8
+    Thomsen, ERC I, p. 122
+    Currò Pisanò, AIIN 1962-4, pp. 229, 238 
+    Crawford, RRCH 71
+</pre>
+</div>
+</div>

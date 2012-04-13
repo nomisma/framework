@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="numismatic_term" about="findspot">
+<div property="skos:prefLabel" xml:lang="en">Findspot.</div>
+<div property="skos:note">
+A nomisma processor must recognize the following patterns as indicating the findspot of a resource.
+<ul>
+ <li>&lt;div property="nm:findspot" content="lat long"&gt;Optional text.&lt;/div&gt;</li>
+ <li>&lt;div rel="nm:findspot" resource="resource_name"&gt;Optional text.&lt;/div&gt;</li>
+ <li>&lt;div property="nm:findspot" &gt;&lt;span property="gml:pos"&gt;lat long&lt;/span&gt;&lt;/div&gt;</li>
+ <li>&lt;div property="nm:findspot" &gt;&lt;span property="gml:pos" content="lat long"&gt;Optional text.&lt;/span&gt;&lt;/div&gt;</li>
+ <li>&lt;div property="nm:findspot" &gt;Text.&lt;/div&gt;</li>
+ <li>&lt;a rel="nm:findspot" href="URI" &gt;Text.&lt;/a&gt;</li>
+</ul>
+</div>
+<a property="skos:related" href="http://open.vocab.org/terms/findspot">Equivalent to the Open vocab term 'findspot'.</a>
+</div>

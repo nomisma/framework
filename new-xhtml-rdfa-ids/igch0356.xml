@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0356">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-479" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.2925 23.3427777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+356 Olynthus, Macedonia, 1928
+(755)
+    Burial: c. 479 B.C. (Clement)
+    Contents: 11 AR, From excavations
+    <span rel="mint" resource="sermyle">Sermyle: 1 tetradr.; 1 fr.</span>
+    <span rel="mint" resource="terone">Terone: 6 tetradr.; 3 fr.</span>
+    Disposition: Athens
+    Robinson, Olynthus III, pp. 8-12, illus. 
+    Robinson-Clement, Olynthus IX, pp. 165-6 (hd. 1) 
+    Schwabacher, AJA 1938, pp. 70-2 (authenticity
+        of Sermyle coin)
+</pre>
+</div>
+</div>

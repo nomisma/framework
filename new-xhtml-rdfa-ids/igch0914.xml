@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0914">
+<span rel="nm:findspot"><span property="gml:pos">43.73222222 27.80388889</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-125" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+914 Kepeli (mod. Svoboda), 21 km. N of 
+(546)     Pazardzik, Bulgaria, 1906
+    Burial: c. 125-100 B.C.? (T) 
+    Contents: 231 AR
+    <span rel="mint" resource="thasos">Thasos: spread-flan tetradr.?</span> 
+    <span rel="mint" resource="abydus">Abydus: spread-flan tetradr.?</span>
+    Disposition: dispersed
+    BSAB 4 (1914), p. 273
+    Le Rider, Deux trésors, p. 52, note 4
+</pre>
+</div>
+</div>

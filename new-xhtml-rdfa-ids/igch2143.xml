@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2143">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-320" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.0744444444 14.2377777778</span></span></div>
+<div class="nm:editedSource">
+<pre>2143 Gela, 1883 
+(1093)
+    Burial: c. 320 B.C.? (K)
+    Contents: 198 AV. Pot hoard with jewelry
+    Philip II: 150 (42) st.
+    Alexander III: 7 (2) st.
+    <span rel="mint" resource="carthage">Carthage: 40 (10) st. (prob. Jenkins-Lewis 
+        Grp. III)</span>
+    Flamininus: 1 st.
+    Disposition: Berlin 1 (Flamininus)
+    BullNumSfrag 2 (1884), p. 63
+    Friedländer, ZfN 1885, p. 2
+    Jenkins-Lewis, Carthage, p. 59, no. XIV
+    The higher figures given above are de-
+        scribed as a rumor; those in paren-
+        theses are noted by Friedländer
+    The bulk of the hd. suggests a date of 
+        burial c. 320 B.C.; the stater of Fla-
+        mininus minted more than a century 
+        later is an anomaly
+</pre>
+</div>
+</div>

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="eurea">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Eurea</div>
+ <div property="skos:definition" xml:lang="en">The mint at the unlocated ancient site of Eurea in Thessaly.</div>
+ <div rel="uncertain_value"><span property="gml:pos">39.80 22.26</span></div>
+</div>

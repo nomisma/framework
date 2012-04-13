@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1946">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.4977777778 16.9519444444</span></span></div>
+<div class="nm:editedSource">
+<pre>1946 Cariati, 60 km. NNW of Croton, 
+    Bruttium, 1957
+    Burial: c. 300 B.C. (K)
+    Contents: 8 EL, 66 AR. Pot hoard
+    <span rel="mint" resource="hyria_campania">Hyria: 3</span>
+    <span rel="mint" resource="neapolis_campania">Neapolis: 37</span>
+    <span rel="mint" resource="taras">Taras: 11</span>
+    <span rel="mint" resource="heraclea_lucaniae">Heracleia: 3</span>
+    <span rel="mint" resource="metapontum">Metapontum: 1</span>
+    <span rel="mint" resource="thurium">Thurium: 2</span>
+    <span rel="mint" resource="velia">Velia: 1</span>
+    <span rel="mint" resource="caulonia">Caulonia: 2</span>
+    <span rel="mint" resource="croton">Croton: 3 (incl. 2 Apollo hd./tripod, ΚΡΟ)</span> 
+    <span rel="mint" resource="syracuse">Syracuse: 6 EL (4 Apollo/tripod; 2 Apollo/ 
+        lyre)</span>
+    Pegasi: 3
+    <span rel="mint" resource="carthage">Carthage: 2 EL (Grp. V)</span> 
+    Disposition: Reggio
+    Procopio, AIIN 1958-9, p. 284
+</pre>
+</div>
+</div>

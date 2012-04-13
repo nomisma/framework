@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0870">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-250" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.1138888889 27.2386111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+870 Silistra district, Bulgaria, 1947
+    Burial: c. 250-200 B.C. (T) 
+    Contents: 9+ 4R. Pot hoard
+    Alexander III: 6 late post. tetradr. (<span rel="mint" resource="mesembria">Me-
+        sembria 5</span>)
+    <span rel="mint" resource="callatis">Callatis: 1 dr.</span>
+    <span rel="mint" resource="istrus">Istrus: 1 dr.</span>
+    Seleucus I: 1 tetradr.
+    Disposition: private coll., Sumen 9
+    Gerasimov, BIAB 17 (1950), p. 322
+</pre>
+</div>
+</div>

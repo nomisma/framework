@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="alexandreia_troas">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Alexandreia Troas</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Alexandreia in Troas.</div>
+ <div property="gml:pos">39.761280 26.152555</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Alexandria_Troas"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/550434"/>
+</div>

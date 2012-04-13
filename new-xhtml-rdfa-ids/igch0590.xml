@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0590">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">46.7069444444 24.6261111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+590 Voivodeni, Cluj district, Rumania, 
+    1964
+    Burial: 2nd-1st cent. B.C. (T)
+    Contents: 209 AR. In pot of mid 2nd cent. 
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: 198 dr.</span>
+    Imit.<span rel="mint" resource="dyrrhachii">Dyrrhachium 11 dr.</span>
+    Disposition: Cluj
+    Chirila, Apulum 7 (1968), pp. 123-44, illus.
+</pre>
+</div>
+</div>

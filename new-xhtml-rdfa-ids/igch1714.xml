@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1714">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-88" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">29.8497222222 31.2519444444</span></span></div>
+<div class="nm:editedSource">
+<pre>1714 Mit Rahineh, near Memphis, 20 km. 
+    S of Cairo, 1919
+    Burial: c. 88 B.C. (Jenkins)
+    Contents: 36 AR, 1AE. From excavations in 
+        pocket of late wall, cloth of wrapping 
+        still adhering to some coins
+    Ptolemy X Alexander I and Cleopatra: 
+        tetradr. (<span rel="mint" resource="alexandria_egypt">Alexandreia incl. Svoronos 
+        1728</span>)
+    Ptolemy X Alexander I alone: tetradr.
+        (<span rel="mint" resource="alexandria_egypt">Alexandreia incl. Sv. 1676, 1679</span>)
+    Ptolemy ?: AE
+    Disposition: Philadelphia (University Mu-
+        seum, Egyptian section)
+    Information from G. K. Jenkins
+</pre>
+</div>
+</div>

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0668">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-48" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">45.7180555556 24.1538888889</span></span></div>
+<div class="nm:editedSource">
+<pre>
+668 Cisnadie (formerly Heltau), c. 8 km. 
+484)     S of Sibiu, Rumania, 1836
+    Burial: after 48 B.C. (T)
+    Contents: c. 500 AE. Pot hoard
+    <span rel="mint" resource="corcyra">Corcyra: 498 (incl. ΖΕϒC ΚΑCΙΟC issue)</span> 
+    <span rel="mint" resource="pharos">Pharos, Illyria: 2</span>
+*   <span rel="mint" resource="panormus">Panormus (?): 2</span>
+    Disposition: dispersed
+† Ackner, AVSL 4 (1851), pp. 19-21 
+    Mitrea, ED 10 (1945), p. 89, no. 22
+* These are described as having a helmeted 
+        Athena hd./IIA and forepart of a 
+        galley. Are they poorly-preserved coins 
+        of an Illyrian mint, perhaps Dyrrha-
+        chium?
+</pre>
+</div>
+</div>

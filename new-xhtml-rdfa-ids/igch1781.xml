@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1781">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-90" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">35.8361111111 42.5036111111</span></span></div>
+<div class="nm:editedSource">
+<pre>1781 Nineveh, Assyria, 1929-1930
+    Burial: c. 100-90 B.C.
+    Contents: 597 AE. From excavations 
+    <span rel="mint" resource="niniveh">Nineveh</span>
+    Disposition: London
+    Le Rider, Iranica Ant. 1967, pp. 4-20, illus.
+    Some of the coins show Parthian portraits, 
+        but only Mithradates II can be iden-
+        tified with certainty
+</pre>
+</div>
+</div>

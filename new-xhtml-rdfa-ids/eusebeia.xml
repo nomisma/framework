@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="eusebeia">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Eusebeia</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Eusebeia in Cappadocia.</div>
+ <div property="gml:pos">38.728033 35.484989</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Kayseri"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/629035"/>
+</div>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1127">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-130" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">45.2755555556 36.9713888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1127 Phanagoria (near mod. Sennaia), Ta-
+    man' Peninsula, Krasnodar Territory, 
+    RSFSR, 1948
+    Burial: late 2nd cent. B.C. (Golenko)
+    Contents: 32 AE. Pot hoard with frags. of 
+        seal ring, buckles, casting molds, other 
+        bronze objects
+    <span rel="mint" resource="panticapaeum">Panticapaeum: 24 AE (as BMC 17-18 [1], 
+        20 [1], 28-29 and 32-33 [7; 1 of 
+        32-33 ctmk. with tripod], 39 [1], 44-46 
+        [10], 47 variant [1]; Zograph, pl. 42, 
+        11 [1], pl. 43, 19 [1] Minns, pl. 5, 19 [1]</span>
+    <span rel="mint" resource="phanagoria">Phanagoria: 4 AE (as BMC 2-3 [3]; Burach-
+        kov, pl. 23, 22 [1])</span>
+    Unc.: 4 AE
+    Disposition: Moscow (Pushkin)
+    Shelov, NE 3 (1962), pp. 57, 121-2
+† Kharko, Soobshcheniia Gosudarstvennogo Muzeia 
+        izobrazitel'nykh iskusstv imeni A.S. Push-
+        kina 4 (Leningrad, 1968), pp. 94-95
+</pre>
+</div>
+</div>

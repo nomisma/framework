@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0272">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-110" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.3997222222 25.2666666667</span></span></div>
+<div class="nm:editedSource">
+<pre>
+272 Delos, 1959
+    Burial: c. 140-135 B.C. (T); c. 110 (Lewis)
+    Contents: 36 AR. From excavations 
+    <span rel="mint" resource="athens">Athens:</span> 34 New Style tetradr. 
+            2 New Style dr.
+    Disposition: Myconos
+† Varoucha, A Delt 1961-62, Chronika, pp. 5-6, 
+        some illus.
+    Hackens, BCH 1965, pp. 515-6 (32 tetradr., 
+        2 dr. seen at Myconos)
+</pre>
+</div>
+</div>

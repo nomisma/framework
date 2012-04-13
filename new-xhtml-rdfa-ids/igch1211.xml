@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1211">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-350" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1211 <span property="nm:findspot" content="38.2033349 26.0253453">Pindakas on Chios, Ionia</span>, 1954
+    Burial: c. 350 B.C. 
+    Contents: 1 AR, 65 AE
+    <span rel="mint" resource="chios">Chios: 65 AE</span>
+    <span rel="mint" resource="halicarnassus">Caria, Mausolus: 1 didr.</span>
+    Disposition: Athens
+    Boardman, BSA 1958-9, pp. 304-9
+</pre>
+</div>
+</div>

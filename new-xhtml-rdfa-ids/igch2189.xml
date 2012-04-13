@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2189">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-270" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>2189 Sicily, date unknown 
+    Burial: early 3rd cent. B.C. (K) 
+    Contents: 23 AR
+        Pegasi
+    <span rel="mint" resource="corinth">Corinth: 16 (incl. most of Per. V) 
+            1 trihemidr. (cuirass) 
+            2 dr.</span>
+    <span rel="mint" resource="ambracia">Ambracia: 1 (as Ravel 64)</span>
+    <span rel="mint" resource="argos_amphilochicum">Argos: 1</span>
+    <span rel="mint" resource="leucas">Leucas: 1 (caduceus) </span>
+    Unc.: 1
+    Disposition: Palermo
+    Tusa Cutroni, AIIN 1956, p. 208, no. XIV
+</pre>
+</div>
+</div>

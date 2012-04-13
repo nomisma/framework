@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2162">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.4905555556 14.0530555556</span></span></div>
+<div class="nm:editedSource">
+<pre>2162 Milocca, near Caltanissetta, c. 1930? 
+(696)
+    Burial: late 4th cent. B.C. (K)
+    Contents: 137 AE. Pot hoard with aes rude 
+        and worked bronze
+    <span rel="mint" resource="agrigentum">Acragas: 117</span> 
+    <span rel="mint" resource="himera">Himera: 1</span> 
+    <span rel="mint" resource="syracuse">Syracuse: 19 (Athena/dolphins [12]; Athe-
+        na/hippocamp [7])</span> 
+    Disposition: Syracuse 125
+† Orsi, AttiMemIIN 1932, pp. 38-46, illus. 
+    Currò Pisanò, AIIN 1962-4, pp. 231, 238
+    Orsi locates at Palermo, but currently the 
+        hd. is at Syracuse (Currò, AIIN 
+        1962-4)
+</pre>
+</div>
+</div>

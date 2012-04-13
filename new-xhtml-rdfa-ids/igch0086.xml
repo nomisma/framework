@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0086">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div class="nm:editedSource">
+<pre>
+86 Crete, 1967?
+    Burial: c. <span property="nm:approximateburialdate_start" content="-325" datatype="xsd:date">325</span>-<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date">300</span> B.C. (T)
+    Contents: 11 AR 
+    <span rel="mint" resource="argos_argolis">Argos:</span> 1 triob.
+            8 tetrob. 
+    <span rel="mint" resource="aegina">Aegina:</span> 1 triob. 
+    <span rel="mint" resource="cydonia">Pseudaeginetica:</span> 1 triob.
+    Disposition: Athens
+    Oeconomides, A Delt 1968, Chronika, p. 13, illus.
+</pre>
+</div>
+</div>

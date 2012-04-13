@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="nm:type_series" about="bellinger_troy">
+ <div property="skos:prefLabel" xml:lang="en">A. Bellinger. <i>Troy, the coins</i> (Troy, Supplementary monograph 2.) Princeton: Princeton University Press for the University of Cincinnati. 1961.</div>
+ <div rel="skos:related" resource="http://www.worldcat.org/oclc/1724995" property="rdfs:label">Worldcat.</div>
+</div>

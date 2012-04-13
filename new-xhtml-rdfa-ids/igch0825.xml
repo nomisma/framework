@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0825">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.4808333333 23.105</span></span></div>
+<div class="nm:editedSource">
+<pre>
+825 Staro selo, c. 40 km. S of Plovdiv, 
+(1007)     Bulgaria, 1897
+    Burial: late 4th cent. B.C. (T)
+    Contents: 20 AR
+    Philip II
+    Disposition: dispersed
+    BSAB 4 (1914), p. 271
+</pre>
+</div>
+</div>

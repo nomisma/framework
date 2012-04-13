@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1771">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-175" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.71 41.1588889</span></span></div>
+<div class="nm:editedSource">
+<pre>1771 Zivnik near Midyat, c. 60 km. NE of 
+    Mardin (anc. district of Gordyene, Mesopo-
+    tamia), 1962
+    Burial: 175 B.C. (M)
+    Contents: 26 AR. Pot hoard
+    Lysimachus: 1 tetradr. ( <span rel="mint" resource="amphipolis">Amphipolis</span>) 
+    Antiochus I: 1 tetradr. ( <span rel="mint" resource="sardes">Sardes</span>)
+    Seleucus III: 2 tetradr. ( <span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Ti-
+        grim 1</span>, <span rel="mint" resource="antiocheia_syria">Antiocheia 1</span>)
+    Antiochus III: 8 tetradr. ( <span rel="mint" resource="ecbatana">Ecbatana 1</span>,
+         <span rel="mint" resource="nisibis">Nisibis 3</span>, <span rel="mint" resource="antiocheia_syria">Antiocheia 3</span>,  <span rel="mint" resource="laodiceia_ad_mare">Laodiceia 1</span>) 
+    Seleucus IV: 13 tetradr. ( <span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Ti-
+        grim 1</span>, <span rel="mint" resource="antiocheia_syria">Antiocheia 10</span>, <span rel="mint" resource="tarsus">Tarsus 2</span>)
+    Antiochus the Young: 1 tetradr. (<span rel="mint" resource="antiocheia_syria">An-
+        tiocheia</span>)
+    Disposition: Ankara
+    Information from S. Taller
+</pre>
+</div>
+</div>

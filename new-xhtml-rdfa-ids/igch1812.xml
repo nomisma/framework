@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1812">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-90" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-50" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">32.1888888889 48.2577777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1812 Susa, Susiana, 1947-8 
+    Burial: after 90 B.C. (Le Rider)
+    Contents: 67 AR. Pot hoard, from excava-
+        tions
+    Alexander III: 50 late post. tetradr. (<span rel="mint" resource="temnus">Tem-
+        nus</span>)
+    Antiochus III: 1 dr. (<span rel="mint" resource="ecbatana">Ecbatana</span>)
+    Antiochus IV: 2 dr. (<span rel="mint" resource="ecbatana">Ecbatana 1</span>, <span rel="mint" resource="antiocheia_syria">An-
+        tiocheia 1</span>)
+    Alexander I Bala: 12 dr. (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad 
+        Tigrim 2</span>, <span rel="mint" resource="antiocheia_syria">Antiocheia 10</span>)
+    Demetrius II: 1 dr. (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Tigrim</span>) 
+    Tiraeus I, <span rel="mint" resource="characene">Characene: 1 tetradr. (yr.
+        222 S.E. = 91/0 B.C.</span>)
+    Disposition: Paris 34; Teheran 33
+† Le Rider, Suse, pp. 248 f., illus. 
+    Fischer, SM 1968, p. 11
+</pre>
+</div>
+</div>

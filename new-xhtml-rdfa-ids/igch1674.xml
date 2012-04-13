@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1674">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-325" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">31.1336111111 30.1291666667</span></span></div>
+<div class="nm:editedSource">
+<pre>1674 Kasr el Danar (= Kafr el Dawar), 
+(538)     20 km. E of Alexandria?, before 1905 
+    Burial: 325-300 B.C.? (Jenkins)
+    Contents: 1700 AR
+    Alexander III: tetradr.
+    Disposition: unknown
+    Eddé, Boll. di Num. 1905, p. 529, 140 (no details)
+    Cf. Demanhur hd. (no. 1664); perhaps part 
+        of it ?
+</pre>
+</div>
+</div>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="botrys">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Botrys</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Botrys in Phoenicia.</div>
+ <div property="gml:pos">34.251074 35.657598</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/668214"/>
+</div>

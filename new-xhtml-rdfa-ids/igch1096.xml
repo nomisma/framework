@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1096">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-275" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-225" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">45.3586111111 36.4794444444</span></span></div>
+<div class="nm:editedSource">
+<pre>1096 Kerch' (anc. Panticapaeum), Crimea 
+    oblast, Ukraine, 1879
+    Burial: c. 275-225 B.C.
+    Contents: c. 40 AE. Pot hoard 
+    <span rel="mint" resource="panticapaeum">Panticapaeum: 2B (as BMC 32-33)</span> 
+    Disposition: dispersed
+† Liutsenko, p. 21 (also lists a few of other types 
+        which cannot belong)
+    Prushevskaia, TONGE 1945, p. 23
+</pre>
+</div>
+</div>

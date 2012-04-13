@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1090">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-275" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-225" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">45.2625 36.9138888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1090 Phanagoria environs (near mod. Sen-
+    naia), Taman' Peninsula, Krasnodar Ter-
+    ritory, RSFSR, 1879
+    Burial: c. 275-225 B.C.
+    Contents: c. 100 AE. Under amphora frags.
+    <span rel="mint" resource="panticapaeum">Panticapaeum: AE (as BMC 21-22 or, more 
+        probably, 23, 28-29)</span>
+    Disposition: dispersed
+† Liutsenko, p. 35
+    Prushevskaia, TONGE 1945, p. 23
+</pre>
+</div>
+</div>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1753">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-310" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1753 Babylonia ?, 1954
+    Burial: shortly before 310 B.C. 
+    Contents: 7+ AR
+    <span rel="mint" resource="athens">Athens, oriental mint.: 2 tetradr. (Mazaces 
+        and ΑΙΓ)</span>
+    <span rel="mint" resource="babylon">Babylon: 5 st. (lion)</span>
+    Disposition: Paris 2
+    Le Rider, SM 1972, pp. 3-4, illus.
+</pre>
+</div>
+</div>

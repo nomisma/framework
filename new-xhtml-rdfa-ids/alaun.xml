@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="alaun">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Alaun</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Alaun  in Hispania.</div>
+ <div rel="uncertain_value"><span property="gml:pos">41.766667 -1.116667</span></div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Alag&#xF3;n,_Zaragoza"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/252929"/>
+</div>

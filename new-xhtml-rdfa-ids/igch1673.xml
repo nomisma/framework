@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1673">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-325" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">27.1869444444 31.1547222222</span></span></div>
+<div class="nm:editedSource">
+<pre>1673 Asyut (anc. Lycopolis), 300 km. S of 
+(89)     Cairo, 1903
+    Burial: 325-300 B.C.? (Jenkins)
+    Contents: AV
+    Philip II and Alexander III: st. 
+    Disposition: unknown
+    AA 1904, p. 110 (no details; large hd.)
+</pre>
+</div>
+</div>

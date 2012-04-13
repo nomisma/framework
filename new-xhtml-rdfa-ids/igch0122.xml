@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0122">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.3833333333 22.45</span></span></div>
+<div class="nm:editedSource">
+<pre>
+122 Mavriki, near Mantineia, Arcadia, c.
+    1962
+    Burial: c. <span property="nm:approximateburialdate" content="-300" datatype="xsd date">300</span> B.C. (Price)
+    Contents: 28+ AR, 2+ AE
+    Alexander III: 3 lifetime and early post. 
+        tetradr. (<span rel="mint" resource="amphipolis">Amphipolis 1,</span> <span rel="mint" resource="pella_macedon">Pella 1</span> <span rel="mint" resource="myriandrus">Myri-
+        andrus 1)</span>
+    <span rel="mint" resource="locri opuntii">Locri Opuntii:</span> 1 triob.
+    <span rel="mint" resource="phocis">Phocis:</span> 4 triob.
+    <span rel="mint" resource="thebes">Thebes:</span> 1 st.; 1 dr.
+    <span rel="mint" resource="tanagra">Tanagra:</span> 1 dr.
+    <span rel="mint" resource="boeotia">Boeotia:</span> 1 st.; 1 dr.; 1 triob.
+    <span rel="mint" resource="athens">Athens:</span> 1 tetradr.; 1 triob.; 1 ob.; 1 
+        hemiob.
+    <span rel="mint" resource="aegina">Aegina:</span> 1 st.; 1 dr.; 1 triob.
+    <span rel="mint" resource="corinth">Corinth:</span> 2 AE
+    <span rel="mint" resource="sicyon">Sicyon:</span> 2 dr.; 3 triob.
+    <span rel="mint" resource="elis">Elis:</span> 1 st.
+    <span rel="mint" resource="argos_argolis">Argos:</span> 1 triob.
+    Disposition: Athens 30 as listed (the record 
+        differs slightly from the publications)
+    Varoucha, A Delt 1963, Chronika, p. 6, illus. 
+        (4 coins)
+    Oeconomides, A Delt 1969, Chronika, p. 8, illus. 
+        (3 coins)
+</pre>
+</div>
+</div>

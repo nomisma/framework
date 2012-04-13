@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="tityassus">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Tityassus</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Tityassus in Pisidia.</div>
+ <div property="gml:pos">37.700415 31.401349</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/639146"/>
+</div>

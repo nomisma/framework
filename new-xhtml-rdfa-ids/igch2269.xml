@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2269">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">35.8438888889 14.4672222222</span></span></div>
+<div class="nm:editedSource">
+<pre>2269 Mqabba, Malta, 1923 
+(692)
+    Burial: 300 B.C. (Jenkins)
+    Contents: 268 AE. Pot hoard
+    Carthage: <span rel="mint" resource="siculo_punic">Sicilian mint (as SNGCop. 94)</span>
+    Disposition: Valletta
+    AntJ 1923, pp. 157-8, illus. 
+    AJA 1923, p. 342
+</pre>
+</div>
+</div>

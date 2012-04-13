@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0645">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-90" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-85" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.6236111111 22.9555555556</span></span></div>
+<div class="nm:editedSource">
+<pre>
+645 Thessalonica, Macedonia, before 1888 
+(895)
+    Burial: c. 90-85 B.C. (T) 
+    Contents: AR
+    Mithradates VI: tetradr. 
+    Disposition: Waddington 2-5
+    Reinach, RN 1888, p. 440
+</pre>
+</div>
+</div>

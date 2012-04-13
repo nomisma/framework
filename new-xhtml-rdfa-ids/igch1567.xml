@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1567">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-110" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">34.9516666667 36.3963888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1567 Baarin, c. 15 km. SE of Massyaf, N. 
+    Phoenicia, 1955
+    Burial: c. 110 B.C. (Seyrig)
+    Contents: 21 AR
+    <span rel="mint" resource="myrina_aeolis">Myrina: 1 tetradr.</span>
+    <span rel="mint" resource="cyme_aeolis">Cyme: 5 tetradr.</span>
+    <span rel="mint" resource="smyrna">Smyrna: 2 tetradr.</span>
+    Demetrius I: 9 tetradr. (<span rel="mint" resource="antiocheia_syria">Antiocheia</span>); 2 dr. 
+        (<span rel="mint" resource="antiocheia_syria">Antiocheia</span>)
+    Antiochus IX: 1 tetradr. (<span rel="mint" resource="sidon">Sidon, yr. 202</span>) 
+    Eucratides: 1 tetradr.
+    Disposition: dispersed
+    Seyrig, Trésors du Levant (in press). The tetradr. 
+        from Sidon may be a later addition to an 
+        already existing hd., formed about 150 B.C.
+</pre>
+</div>
+</div>

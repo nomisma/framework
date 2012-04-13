@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="icosium">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Icosium</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Icosium in Mauretania.</div>
+ <div property="gml:pos">36.771800 3.056709</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Icosium"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/295276"/>
+</div>

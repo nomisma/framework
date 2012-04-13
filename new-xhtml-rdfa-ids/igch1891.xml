@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1891">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-460" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1891 Calabria (anc. Bruttium), 1833 
+(180)
+    Burial: c. 460 B.C. (Jenkins)
+    Contents: 381 AR
+    <span rel="mint" resource="taras">Taras: 1 incuse st.
+            39 double-relief st. (rev. hippocamp 
+        13; wheel 19; female hd. 7 fdc)</span>
+    <span rel="mint" resource="laus">Laus: 5 st. (1 incuse; 4 double-relief) </span>
+    <span rel="mint" resource="metapontum">Metapontum: 86 st. (incl. dumpy incuse) </span>
+    <span rel="mint" resource="poseidonia">Poseidonia: 24 double-relief st. </span>
+    <span rel="mint" resource="siris">Sirinus</span>-<span rel="mint" resource="pyxus">Pyxus</span>: 1 st.
+    <span rel="mint" resource="sybaris">Sybaris: 13 st.</span>
+    <span rel="mint" resource="caulonia">Caulonia: 49 st. (13 incuse; 36 double-
+        relief)</span>
+    <span rel="mint" resource="croton">Croton: 99 incuse st. (94 rev. tripod incl. 5 
+        QΡΟ/ΤΕ; 2 rev. Cor. helmet; 3 rev, 
+        eagle)</span>
+    <span rel="mint" resource="rhegium">Rhegium: 3 tetradr. (mule-car/hare) </span>
+    <span rel="mint" resource="agrigentum">Acragas: 1 didr.</span>
+    <span rel="mint" resource="gela">Gela: 1 tetradr.</span>
+    <span rel="mint" resource="messana">Messana: 23 tetradr. (mule-car/hare) </span>
+    <span rel="mint" resource="syracuse">Syracuse: 36 tetradr.</span>
+    Disposition: dispersed
+    Avellino, Opuscoli diversi 2 (Naples, 1833), pp. 85, 
+        167
+    Sambon, Recherches, p. 28
+    Mommsen, Hist. de la monn. rom. 1 (Paris, 1865),
+        p. 151
+    Jenkins, Gela, p. 148
+    The presence of a substantial number of 
+        Sicilian issues suggests burial in the 
+        neighborhood of Rhegium
+</pre>
+</div>
+</div>

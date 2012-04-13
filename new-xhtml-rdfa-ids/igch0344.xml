@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0344">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-86" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.0152777778 24.4202777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+344 Carystus, Euboea, 1883 
+(212)
+    Burial: c. 86 B.C. (T; Lewis) 
+    Contents: c. 100 AR
+    <span rel="mint" resource="carystus">Carystus:</span>  20-30 dr.
+    <span rel="mint" resource="athens">Athens:</span> 70 New Style tetradr.
+            2-3 New Style dr.
+    <span rel="mint" resource="athens">Imit. Athens: 3 tetradr.</span> (<span property="legend" xml:lang="grc">Ο ΔΕΜΟΣ</span>)
+    Disposition: Meletopoulos 27
+    Meletopoulos, Parnassos 1883, pp. 774- 6 
+    AJN (1883-4), p. 82
+    Köhler, ZfN 1885, pp. 103-6
+† Thompson, Athens, pp. 444-9, 502-3 
+    Lewis, NC 1962, p. 281
+</pre>
+</div>
+</div>

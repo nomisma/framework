@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1023">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-370" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-325" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.7902777778 42.72</span></span></div>
+<div class="nm:editedSource">
+<pre>1023 Lantekhi raion, junction of the Nakra 
+    and Inguri Rivers, Georgia, 1908
+    Burial: before 325 B.C. (Kapanadze, Go-
+        lenko)
+    Contents: 120+ AR
+    <span rel="mint" resource="colchis">Colchis: hemidr.</span>
+    Disposition: museum material lost during 
+        war
+† Drevnosti XXIII.2 (Moscow, 1914), p. 210 
+    Zograph, "Nakhodky," 32 (erroneously gives 12 
+        coins in hd.)
+    Pakhomov V, 1315
+    Lantekhi is sometimes spelled Lentekhi
+</pre>
+</div>
+</div>

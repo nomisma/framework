@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0022">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.4802777778 22.4997222222</span></span></div>
+<div class="nm:editedSource">
+<pre>
+22 Delphi, Phocis, 1896
+(321)
+    Burial: c. <span property="nm:approximateburialdate" content="-450" datatype="xsd date">450</span> B.C. (T)
+    Contents: 252 AR. From excavations 
+    <span rel="mint" resource="delphi">Delphi:</span> trihemiob.
+    Disposition: Athens
+    Svoronos, JIAN 1906, pp. 280-1 (two hds.)
+</pre>
+</div>
+</div>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0666">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-48" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.3483333333 19.8144444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+666 Tiranë, 1964
+    Burial: c. 48 B.C.
+    Contents: 119 AR. Pot hoard
+    <span rel="mint" resource="apollonia_illyria">Apollonia: 31 dr.</span>
+    Imit. <span rel="mint" resource="apollonia_illyria">Apollonia: 1 dr.</span> 
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: 39 dr.</span> 
+    Imit.<span rel="mint" resource="dyrrhachii">Dyrrhachium: 2 dr.</span> 
+    <span rel="mint" resource="rome">Roman Rep.: 46 den. (to 49 B.C.)</span>
+    Disposition: Tiranë
+† Ceka, Studime Historike 1 (1966), pp. 11-5, 24-36, 
+        illus. (in Albanian; French summary); 
+        Studia Albanica 1 (1966), pp. 217-23
+</pre>
+</div>
+</div>

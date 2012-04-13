@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1099">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-250" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-225" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.9244444444 37.3144444444</span></span></div>
+<div class="nm:editedSource">
+<pre>1099 Anapa (anc. Gorgippia), Krasnodar 
+    Territory, RSFSR, 1954
+    Burial: c. 250-225 B.C.
+    Contents: 97+ AE. In black-glazed vase 
+    <span rel="mint" resource="panticapaeum">Panticapaeum: 80 AE (as BMC 17-18 [1],
+        28-29 [79], some overstrikes and
+        variants)</span>
+    Leucon II: 17 AE (as Minns, pl. 6, 16-18) 
+    Disposition: Anapa
+    Shelov, NE 1 (1960), pp. 208-14
+</pre>
+</div>
+</div>

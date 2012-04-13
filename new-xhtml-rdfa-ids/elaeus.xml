@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="elaeus">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Elaeus</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Elaeus in Thrace.</div>
+ <div property="gml:pos">40.054457 26.223326</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Elaeus"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/501411"/>
+</div>

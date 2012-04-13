@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="authority" about="magnetes">
+ <div property="skos:prefLabel" xml:lang="en">Magnetes</div>
+ <div property="skos:definition" xml:lang="en">The Magnetes, a people in Thessaly. Head (1911) assigns their coins to the mint of <a rel="mint" href="demetrias_thessaly">Demetrias in Thessaly</a>.</div>
+ <div property="gml:pos">39.35 22.983333</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Magnesia_(regional_unit)"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/540923"/>
+</div>

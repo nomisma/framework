@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0363">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-375" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+363 Chalcidice, Macedonia, c. 1936
+    Burial: c. 400-375 B.C. (T)
+    Contents: c. 70 AR
+    <span rel="mint" resource="neapolis_macedon">Neapolis, Mac.: c. 5 dr. (as BMC 8)
+            c. 15 dr. (as BMC 14)
+            c. 50 triob. (as BMC 17)</span> 
+    Disposition: Ravel
+    Information from O. Ravel
+</pre>
+</div>
+</div>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2298">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.7861111111 11.9894444444</span></span></div>
+<div class="nm:editedSource">
+<pre>2298 Pantelleria? (anc. Cossura), date un-
+    known
+    Burial: 200 B.C. (Jenkins)
+    Contents: 42 AE
+    <span rel="mint" resource="cossura">Cossura: 9 (as SNGCop. 449)</span>
+    <span rel="mint" resource="carthage">Carthage: 33 (including types of SNGCop. 
+        94, 109, 144-78, 302-29)</span>
+    Disposition: Palermo
+    Tusa Cutroni, AIIN 1956, hoard XII
+    Note by E. S. G. Robinson in BM (details of some
+        Carthage, but only 6 Cossura recorded)
+    Provenance quite unc. (cf. Tusa) but Pan-
+        telleria likely
+</pre>
+</div>
+</div>

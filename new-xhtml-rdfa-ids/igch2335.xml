@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2335">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.0469444444 0.765555555556</span></span></div>
+<div class="nm:editedSource">
+<pre>2335 Tivisa, 30 km. NE of Tortosa, 1913 
+(1113)
+    Burial: c. 200 B.C. (Jenkins)
+    Contents: 29 AR. Pot hoard, with gold 
+        jewelry, from excavations
+    <span rel="mint" resource="emporiae">Emporiae: 2 dr.</span>
+    Iberian: 18 dr. (16 <span rel="mint" resource="emporiae">Emporitan type</span>, 2 <span rel="mint" resource="saguntum">Sa-
+        guntum</span>)
+            2 ob. (<span rel="mint" resource="massalia">Massalia type</span>, one of 
+       <span rel="mint" resource="ilerda"> Ilerda</span>)
+    <span rel="mint" resource="rome">Roman Rep.: 7 den.</span>
+    Disposition: Tarragona
+    Gomez-Moreno, Misceláneas (Madrid, 1949), pp. 
+        178-9, illus.
+    de Guadan, Numisma 16 (1955), p. 17; MPER, 
+        pp. 126-31
+    Raddatz, Schatzfunde, pp. 258-9, illus. (= Tivisa 
+        hoard I)
+    Crawford, RRCH 94
+    Villaronga, MHC (forthcoming)
+</pre>
+</div>
+</div>

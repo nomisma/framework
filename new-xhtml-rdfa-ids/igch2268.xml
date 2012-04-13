@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2268">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.0655555556 11.0388888889</span></span></div>
+<div class="nm:editedSource">
+<pre>2268 Cap Bon, Tunisia, 1961
+    Burial: 300 B.C.
+    Contents: 18 AE
+    Carthage: <span rel="mint" resource="siculo_punic">Sicilian mint (as SNGCop. 94)</span>
+    Disposition: Paris
+    Le Rider, RN 1961, pp. 25-6, illus.
+</pre>
+</div>
+</div>

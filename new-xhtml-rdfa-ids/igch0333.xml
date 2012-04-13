@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0333">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-88" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-25" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.3997222222 25.2666666667</span></span></div>
+<div class="nm:editedSource">
+<pre>
+333 Delos, 1909
+    Burial: 88 B.C. or later (Hackens) 
+    Contents: 11 AR, 95 AE. Pot hoards
+    <span rel="mint" resource="athens">Athens:</span> 95 AE (some with "Delian" types) 
+    <span rel="mint" resource="rhodes">Rhodes:</span> 5 dr., 6 triob. (plinthophori) 
+    Disposition: Athens
+    Svoronos, JIAN 1913, pp. 40-1. The publication 
+        has three separate entries, each a pot hd. 
+        from the same general area (nos. 6-7, 13, 14). 
+        It is perhaps doubtful that a single hd. is 
+        involved
+</pre>
+</div>
+</div>

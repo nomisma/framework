@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="nomisma_id" about="auriol_hoard">
+ <div property="skos:prefLabel" xml:lang="en">'Auriol Hoard'</div>
+ <div property="gml:pos">43.368056 5.636111</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Auriol,_Bouches-du-Rh%C3%B4ne"/>
+</div>

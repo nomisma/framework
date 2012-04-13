@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1510">
+<span rel="nm:findspot"><span property="gml:pos">32.71222222 35.57444444</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-319" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1510 Khirbet el-Kerak (Hebrew Kinneret), 
+    c. 7 km. S of Tiberias, Galilee, 1936
+    Burial: c. 319 B.C. (Baramki) 
+    Contents: 118+ AR
+    Alexander III: 40 lifetime and post. 
+        tetradr. (<span rel="mint" resource="amphipolis">Amphipolis 7</span>, <span rel="mint" resource="sicyon">Sicyon 1</span>, <span rel="mint" resource="side">Side 
+        1</span>, <span rel="mint" resource="tarsus">Tarsus 4</span>, <span rel="mint" resource="citium">Citium 1</span>, <span rel="mint" resource="myriandrus">Myriandrus 2</span>, 
+        <span rel="mint" resource="damascus">Damascus 1</span>, <span rel="mint" resource="aradus">Aradus 2</span>, <span rel="mint" resource="sidon">Sidon 3</span>, <span rel="mint" resource="ace_ptolemais">Ace 4</span>, 
+        <span rel="mint" resource="babylon">Babylon 13</span>, unc. mint 1)
+    Philip III: 13 tetradr. (<span rel="mint" resource="babylon">Babylon</span>)
+    <span rel="mint" resource="sidon">Sidon: 64 double-shekels (Euagoras II 22, 
+        Strato II 13, Mazaeus 7, unc. 22)</span> 
+    <span rel="mint" resource="tyre">Tyre: 1 didr.</span>
+    Disposition: Jerusalem
+† Baramki, QDAP 1945, pp. 86-90, illus. 
+    Bellinger, Berytus 1950-1, p. 49
+    Naster, INCJ, p. 5
+    Kadman, INCJ, hoard 5
+</pre>
+</div>
+</div>

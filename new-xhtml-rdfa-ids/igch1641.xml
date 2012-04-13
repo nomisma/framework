@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1641">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-480" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">31.2011111111 29.9008333333</span></span></div>
+<div class="nm:editedSource">
+<pre>1641 Alexandria, Ramleh suburb, 1893? 
+(850)
+    Burial: 480 B.C. (Jenkins)
+    Contents: 4 AR
+    <span rel="mint" resource="cyrene">Cyrene: 3 fr.</span>
+    Unc. (Cyrenaic ?): 1 fr.
+    Disposition: London 4 (BMCCyrenaica, 
+        Cyrene nos. 7, 8, 31 and p. xxxii = 
+        pl. 45, 1; ex Weber 8421-2, 8424, 8574)
+† Weber, NC 1898, p. 283-7 (nos. 20-23), illus.
+    Gardner, History of Ancient Coinage (Oxford, 
+        1918), p. 60
+</pre>
+</div>
+</div>

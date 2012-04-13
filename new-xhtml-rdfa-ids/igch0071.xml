@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0071">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.9 22.4333333333</span></span></div>
+<div class="nm:editedSource">
+<pre>
+71 Lamia, Thessaly, c. 1935-1936 
+    Burial: c. <span property="nm:approximateburialdate_start" content="-350" datatype="xsd:date">350</span>-<span property="nm:approximateburialdate_end" content="-325" datatype="xsd:date">325</span> B.C. (T)
+    Contents: AR Large hoard
+    <span rel="mint" resource="larissa">Larissa:</span> st.; dr.
+    <span rel="mint" resource="locri opuntii">Locri Opuntii:</span> st.
+    <span rel="mint" resource="thebes">Thebes:</span> st. (incl. some with magistrates) 
+    <span rel="mint" resource="aegina">Aegina:</span> st. (incl. 1 tortoise)
+    Disposition: dispersed
+    Information from E. S. G. Robinson to E. J. P. 
+        Raven and from M. Kambanis to S. P. Noe. 
+        Kambanis first calls it the Naupactus hd. 
+        but later says it comes from Lamia
+</pre>
+</div>
+</div>

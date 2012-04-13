@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="biannos">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Biannos</div>
+ <div property="skos:prefLabel" xml:lang="en">The mint of the ancient site of Biannos (or Biennos) in Crete.</div>
+ <div property="dcterms:partOf" resource="crete"/>
+ <div property="gml:pos">35.04349 25.405</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Viannos"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/589730"/>
+</div>

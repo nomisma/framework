@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1551">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-150" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1551 Syria?, 1937
+    Burial: c. 150 B.C. (Westermark)
+    Contents: 19 AR
+    Demetrius I: tetradr. (18 <span rel="mint" resource="antiocheia_syria">Antiocheia to yr. 
+        162</span>, 1 unc. mint)
+    Disposition: Istanbul
+</pre>
+</div>
+</div>

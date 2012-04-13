@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2107">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-450" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-400" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>2107 Sicily, before 1905
+(976)
+    Burial: 450-400 B.C. (K)
+    Contents: 6+ AR
+    <span rel="mint" resource="catana">Catana: tetradr.</span>
+    Disposition: J. Hirsch Nov. 27, 1905, nos. 
+        160-5
+    Hirsch Cat Nov. 27, 1905, Vorwort
+    Noe supposes that Hirsch's reference to a 
+        hd. provenance applies to all the coins 
+        of Catana included in the catalogue 
+        (nos. 160-9), but more probably only 
+        nos. 160-5 are meant
+</pre>
+</div>
+</div>

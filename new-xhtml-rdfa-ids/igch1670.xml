@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1670">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-310" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-305" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">25.9966666667 32.8177777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1670 Kuft (anc. Koptos), between Keneh 
+(582)     and Luxor, 1875-1880
+    Burial: c. 310-305 B.C. (Jenkins) 
+    Contents: 330+ AR
+    Alexander III and Philip III: 216 lifetime 
+        and early post. tetradr. (<span rel="mint" resource="amphipolis">Amphipolis 
+        57</span>, <span rel="mint" resource="pella_macedon">Pella 4</span>, <span rel="mint" resource="lyttus">Lyttus ? 1</span>, <span rel="mint" resource="lampsacus">Lampsacus 3</span>, 
+        <span rel="mint" resource="sardes">Sardes 4</span>, <span rel="mint" resource="miletus">Miletus 4</span>, <span rel="mint" resource="side">Side 6</span>, <span rel="mint" resource="tarsus">Tarsus 15</span>, 
+        <span rel="mint" resource="cyprus">Cyprus 12</span>, <span rel="mint" resource="myriandrus">Myriandrus 4</span>, <span rel="mint" resource="damascus">Damascus 3</span>, 
+        <span rel="mint" resource="aradus">Aradus 12</span>, <span rel="mint" resource="byblus">Byblus 3</span>, <span rel="mint" resource="sidon">Sidon 6</span>, <span rel="mint" resource="ace_ptolemais">Ace 18</span>, 
+       <span rel="mint" resource="babylon"> Babylon 46</span>, <span rel="mint" resource="susa">Susa 3</span>, <span rel="mint" resource="alexandria_egypt">Alexandreia 15)
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.35463">ANS 1944.100.35463</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.26684">ANS 1944.100.26684</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.33758">ANS 1944.100.33758</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.35607">ANS 1944.100.35607</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1953.171.293">ANS 1953.171.293</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.28373">ANS 1944.100.28373</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.33812">ANS 1944.100.33812</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.28926">ANS 1944.100.28926</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.28882">ANS 1944.100.28882</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.28252">ANS 1944.100.28252</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.28623">ANS 1944.100.28623</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.33383">ANS 1944.100.33383</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.31197">ANS 1944.100.31197</a></span>
+    Ptolemy I: 43 tetradr. (Alexander hd./
+        Zeus 2, Alexander hd./Athena 41)
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.35704">ANS 1944.100.35704</a>
+    Disposition: Oxford 261 (ex Strachan Da-
+        vidson); London 57 (ex Chester 1875-
+        1880, possibly from this hd.); New 
+        York 12
+    Newell, Tyrus, p. 10
+    Jenkins, ANSMN 9 (1960), pp. 29-30 (summary 
+        of Oxford coins only)
+</pre>
+</div>
+</div>

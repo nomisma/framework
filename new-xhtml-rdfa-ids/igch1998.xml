@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1998">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-235" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.46795 17.24654</span></span></div>
+<div class="nm:editedSource">
+<pre>1998 Taranto, Calabria, 1912
+(1053)
+    Burial: c. 235 B.C.
+    Contents: 126 AR. Pot hoard
+    <span rel="mint" resource="taras">Taras: 124 st. (4 Per. VII; 120 Per. VIII) 
+            1 dr. (Per. VIII)</span>
+    <span rel="mint" resource="thurium">Thurium: 1 st. (reduced weight)</span>
+    Disposition: Vlasto 8 (Cat. 819, 839, 841, 
+        892, 906, 908, 913, 1088). Cat. 854 
+        (there ascribed to N. 1057 = no. 1984 
+        above) and 855-7 (there ascribed to 
+        N. 1058 = no. 1929 above) should 
+        perhaps be attributed to this hd. or to 
+        no. 2000 below
+    Vlasto, RN 191T2, p. 283
+</pre>
+</div>
+</div>

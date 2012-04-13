@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="prusias_ad-hypium">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Stub for the ancient site of Prusias ad Hypium in Bithynia.</div>
+ <div property="gml:pos">40.833333 31.15</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Prusias_ad_Hypium"/>
+</div>

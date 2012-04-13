@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="denomination" about="5-lire">
+<div property="skos:prefLabel" xml:lang="en">5 Lire</div>
+<div property="skos:definition" xml:lang="en">Italian/Papal denomination valued at 5 lire.</div>
+</div>

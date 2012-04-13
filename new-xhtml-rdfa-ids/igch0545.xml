@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0545">
+<span rel="nm:findspot"><span property="gml:pos">45.78333333 24.28333333</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-125" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+545 Casolt (formerly Kastenholz), c. 12 km. 
+(539)     SE of Sibiu, Rumania, 1777
+    Burial: c. 125-100 B.C. (T) 
+    Contents: 100+ AR
+    <span rel="mint" resource="thasos">Thasos: spread-flan tetradr.</span> 
+    Disposition: dispersed
+    Ackner, Mitt. ZentralKomm 1862, pp. 135-6, 
+        note
+    Gooss, AVSL 13 (1876), p. 229
+    Mitrea, ED 10 (1945), p. 66, no. 10
+</pre>
+</div>
+</div>

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0002">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div class="nm:editedSource">
+<pre>
+2 <span property="nm:findspot" content="37.974722 23.7225">Athens</span>, c. 1788
+(93)
+    Burial: c. <span property="nm:approximateburialdate_start" content="-525" datatype="xsd:date">525</span>-<span property="nm:approximateburialdate_end" content="-515" datatype="xsd:date">515</span> B.C. (T)
+    Contents: 26+ AR
+    <span rel="mint" resource="eretria">Eretria: 3 fr.</span> (Mionnet 16-18)
+    <span rel="mint" resource="athens">Athens:</span> 1 Wappenm. tetradr. (gorgon/
+       panther hd., Mionnet 15)
+      17 Wappenm. didr., fr. (Mionnet 
+        2-14)
+    Disposition: Paris 26
+    Mionnet II (1807), pp. 112-3
+    Cousinéry, Voyage dans la Macédoine II (Paris, 
+        1831), pp. 123, 128-9, (line drawings of some 
+        types)
+    Beulé, Les monnaies d'Athènes (Paris, 1858), 
+        pp. 15-6, 30-1
+    Mommsen, Hist. de la monnaie romaine I (Paris, 
+        1865), p. 72, note 1
+    Köhler, AM 1884, p. 358
+    Seltman, Athens, p. 146
+    Noe's record omits the Eretrian fractions 
+        and includes three owls. E. J. P. 
+        Raven (in a letter dated Oct. 3, 1951)
+        points out that the three earliest ac-
+        counts of the hd. indicate the presence 
+        of the Euboean coins but provide no 
+        evidence for the owls. The confusion 
+        in the later reports would seem, as he 
+        says, to stem from Cousinéry's line 
+        drawings (pl. 4) which include owls as 
+        examples of later Athenian issues
+</pre>
+</div>
+</div>

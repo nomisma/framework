@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0547">
+<span rel="nm:findspot"><span property="gml:pos">46.51416667 21.30972222</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-125" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+547 Graniceri, c. 34 km. N of Arad, Ru-
+    mania, 1875
+    Burial: c. 125-100 B.C. (T) 
+    Contents: 120 AR
+    <span rel="mint" resource="thasos">Thasos: spread-flan tetradr.</span> 
+    Disposition: dispersed
+    Miletz, TRÉ 2 (1876), p. 167 
+    Winkler, SCSCluj 1955, p. 100, 00, 26
+</pre>
+</div>
+</div>

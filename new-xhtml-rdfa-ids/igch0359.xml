@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0359">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-421" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.2925 23.3427777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+359 Olynthus, Macedonia, 1931
+(759)
+    Burial: c. 421 B.C. (Clement)
+    Contents: 19 AR. From excavations
+    <span rel="mint" resource="acanthus">Acanthus:</span> 12 tetrob.
+    <span rel="mint" resource="chalcidian_league">Chalcidian League:</span> 3 tetrob. 
+    Perdiccas II: 3 tetrob.
+    <span rel="mint" resource="athens">Athens:</span> 1: dr. 
+    Disposition: Athens
+    Robinson, Olynthus VI, pp. 13-4, illus. 
+    Robinson-Clement, Olynthus IX, pp. 173-6, illus. 
+        (hd. V)
+</pre>
+</div>
+</div>

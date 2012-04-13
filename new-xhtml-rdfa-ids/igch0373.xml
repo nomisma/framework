@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0373">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-348" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.2925 23.3427777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+373 Olynthus, 1931
+(763)
+    Burial: 348 B.C. (Clement)
+    Contents: c. 46 AR. Not from excavations 
+    <span rel="mint" resource="acanthus">Acanthus: 2 or 3 tetradr.</span>
+    <span rel="mint" resource="amphipolis">Amphipolis: 1 tetradr.</span>
+    <span rel="mint" resource="chalcidian_league">Chalcidian League: c. 43 tetradr. </span>
+    Disposition: dispersed
+    Robinson-Clement, Olynthus IX, pp. 183-5, illus. 
+        (hd. IX)
+    Ravel's record gives 3 Acanthus, 1 Amphipolis, 
+        40+ Chalcidian League (35 photos and list 
+        of varieties on file in ANS)
+    See no. 374 below
+</pre>
+</div>
+</div>

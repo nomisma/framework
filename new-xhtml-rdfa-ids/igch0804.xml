@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0804">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.2930555556 25.2808333333</span></span></div>
+<div class="nm:editedSource">
+<pre>
+804 Cal, c. 60 km. S of Kârdzali, Bulgaria, 
+    1966
+    Burial: 4th cent. B.C. (T)
+    Contents: 19+ AE. Pot hoard
+    <span rel="mint" resource="maroneia">Maroneia: small AE</span>
+    Disposition: Kârdzali 19
+    Gerasimov, BIAB 30 (1967), p. 190
+</pre>
+</div>
+</div>

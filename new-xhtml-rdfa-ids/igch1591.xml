@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1591">
+<span rel="nm:findspot"><span property="gml:pos">33.26833333 35.20972222</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-145" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1591 Tyre (mod. Sur) or Beirut environs, 
+    Phoenicia, 1954
+    Burial: c. 145 B.C. (Westermark) 
+    Contents: 20+ AR
+    Alexander I: 1 tetradr. (<span rel="mint" resource="berytus">Berytus? yr. 163, 
+        as BMC 5</span>)
+    Demetrius II: 2 tetradr. (<span rel="mint" resource="tyre">Tyre, yr. 167</span>; 
+        <span rel="mint" resource="sidon">Sidon, yr. illeg.</span>)
+    Ptolemy VI: 17 didr. (unc. mint, yrs. 110, 
+        112-116 and illeg.; as Svoronos 1217-
+        26)
+    Disposition: dispersed
+    Rubbings in Copenhagen
+    For the dating of the Ptol. didr. cf. Newell, 
+        Standard Ptol. Silver
+</pre>
+</div>
+</div>

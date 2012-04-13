@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0448">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-280" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.2952777778 21.5822222222</span></span></div>
+<div class="nm:editedSource">
+<pre>
+448 Prilepec, 5 km. SW of Prilep, S. Yugo-
+    slavia, 1950
+    Burial: c. 280 B.C. (T) 
+    Contents: 208+ AR
+    Alexander III: 137 lifetime and early post. 
+        tetradr. (<span rel="mint" resource="amphipolis">Amphipolis 54</span>, <span rel="mint" resource="pella_macedon">Pella 6</span>, <span rel="mint" resource="sicyon">Sicyon 
+        10</span>, <span rel="mint" resource="sardes">Sardes 3</span>, <span rel="mint" resource="miletus">Miletus 2</span>, <span rel="mint" resource="side">Side 3</span>, <span rel="mint" resource="tarsus">Tarsus
+        1</span>, <span rel="mint" resource="citium">Citium 3</span>, <span rel="mint" resource="salamis_cyprus">Salamis 1</span>, <span rel="mint" resource="myriandrus">Myriandrus 2</span>, 
+        <span rel="mint" resource="damascus">Damascus 1</span>, <span rel="mint" resource="marathus">Marathus 3</span>, <span rel="mint" resource="berytus">Berytus 1</span>, 
+        <span rel="mint" resource="byblus">Byblus 1</span>, <span rel="mint" resource="tyre">Tyre 3</span>, <span rel="mint" resource="ace_ptolemais">Ace 4</span>, <span rel="mint" resource="babylon">Babylon 21</span>, 
+        <span rel="mint" resource="alexandria_egypt">Alexandreia 1</span>, unc. 17)
+    Philip III: 10 tetradr. (<span rel="mint" resource="aradus">Aradus 3</span>, <span rel="mint" resource="marathus">Marathus
+        2</span>, <span rel="mint" resource="babylon">Babylon 3</span>, <span rel="mint" resource="susa">Susa 1</span>, unc. 1)
+    Demetrius Poliorcetes: 15 tetradr. (<span rel="mint" resource="pella_macedon">Pella 6</span>, 
+        <span rel="mint" resource="amphipolis">Amphipolis 5</span>, <span rel="mint" resource="chalcis">Chalcis 1</span>, <span rel="mint" resource="thebes">Thebes 1</span>, 
+        <span rel="mint" resource="salamis_cyprus">Salamis 1</span>, unc. 1)
+    Audoleon: 1 tetradr.
+    Lysimachus: 19 lifetime tetradr. (<span rel="mint" resource="lysimachia">Lysi-
+        macheia 1</span>, <span rel="mint" resource="lampsacus">Lampsacus 3</span>, <span rel="mint" resource="sestus">Sestus 2</span>, 
+        <span rel="mint" resource="pergamum">Pergamum 2</span>, <span rel="mint" resource="colophon">Colophon 1</span>, <span rel="mint" resource="ephesus">Ephesus 1</span>, 
+        <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia 3</span>, <span rel="mint" resource="sardes">Sardes 3</span>, <span rel="mint" resource="amphipolis">Amphipolis 2</span>, 
+        unc. 1)
+    <span rel="mint" resource="athens">Athens:</span> 20 tetradr.
+    Seleucus I: 6 Alexander tetradr. (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia 
+        ad Tigrim 4</span>, unc. 2)
+    Disposition: Skopje 208; Belgrade some
+    Vucković-Todorović, Glasnik Muz-KonzDrustMa-
+        kedonja I. 12 (1958), pp. 213-54, illus.
+</pre>
+</div>
+</div>

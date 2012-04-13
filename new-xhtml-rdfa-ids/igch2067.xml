@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2067">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-480" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.5883333333 12.8261111111</span></span></div>
+<div class="nm:editedSource">
+<pre>2067 Selinunte ?, 1898 
+(975)
+    Burial: c. 480 B.C. (K) 
+    Contents: 33 AR
+    <span rel="mint" resource="selinus_sicily">Selinus: didr. (25 rev. incuse square; 7 rev. 
+        leaf; 1 rev. leaf and ΣΕΛΙ)</span>
+    Disposition: Palermo
+    Gabrici, Monetazione, p. 208
+    Tusa Cutroni, AIIN 1956, p. 206-7, IV
+</pre>
+</div>
+</div>

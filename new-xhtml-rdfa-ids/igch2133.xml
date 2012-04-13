@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2133">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-340" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-330" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.6383333333 14.3975</span></span></div>
+<div class="nm:editedSource">
+<pre>2133 Leonforte, near Nissoria, 15 km. NE 
+    of Enna, 1952
+    Burial: c. 340-330 B.C. (Jenkins) 
+    Contents: 327 AR. Pot hoard
+    <span rel="mint" resource="agrigentum">Acragas: 1 tetradr.</span>
+    <span rel="mint" resource="gela">Gela: 1 tetradr.</span>
+    <span rel="mint" resource="messana">Messana: tetradr.</span>
+    <span rel="mint" resource="syracuse">Syracuse: 4 decadr. (1 Cimon, 3 Euaine-
+        tos)
+            19 tetradr.</span>
+    Rash Melcarth: 2 tetradr.
+    <span rel="mint" resource="siculo_punic">Siculo-Punic: 1 tetradr. (Arethusa/horse 
+        and palm-tree)</span>
+    <span rel="mint" resource="athens">Athens: 1 tetradr. (4th cent.)</span>
+        Pegasi
+    <span rel="mint" resource="corinth">Corinth: 159 (to Per. V with Ν-all sym-
+        bols)</span>
+    <span rel="mint" resource="ambracia">Ambracia: 16</span>
+    <span rel="mint" resource="anactorium">Anactorium: 10</span>
+    <span rel="mint" resource="apollonia_illyria">Apollonia: 1</span>
+    <span rel="mint" resource="argos_amphilochicum">Argos: 3</span>
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: 15</span>
+    <span rel="mint" resource="leucas">Leucas: 78 (over half with caduceus) </span>
+    <span rel="mint" resource="syracuse">Syracuse: 15</span>
+    Disposition: Syracuse
+† Gentili, NSc 1954, pp. 58-70, illus.
+    Jenkins, ANSCent., p. 374; Gela, p. 155
+    Currò Pisanò, AIIN 1962-4, pp. 230, 239 (s.v. 
+        Nissoria)
+    Gentili records 2 pegasi of Thyrrheium; 
+        these are, however, issues of Leucas 
+        with Θ on obv. The numbers for Am-
+        bracia raise a difficulty. Gentili did not
+        use Ravel and does not clearly identify 
+        the issues; 16 seems to be the maxi-
+        mum identifiable in his list. In 1969, 
+        however, K noted the following va-
+        rieties in this hd,: Ravel 14, 42, A24/ 
+        P20, 63, 79/80, 91, 109, 137, 138, 141, 
+        146, 147, 166, 169, 171, 172, 174/5, 
+        A77/cf. P118, 180, 187 (3), 195, and
+        2 unc.
+</pre>
+</div>
+</div>

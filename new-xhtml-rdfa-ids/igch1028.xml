@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1028">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-370" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-325" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.5072222222 41.8655555556</span></span></div>
+<div class="nm:editedSource">
+<pre>1028 Chitatskhali, Zugdidi raion, Georgia, 
+    before 1936
+    Burial: before 325 B.C. (Golenko, Kapa-
+        nadze)
+    Contents: 65+ AR. 
+    <span rel="mint" resource="colchis">Colchis: hemidr.</span>
+    Disposition: Zugdidi
+† Pakhomov III, 643 
+    Zograph, "Nakhodky," 55
+</pre>
+</div>
+</div>

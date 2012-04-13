@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1896">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-440" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-430" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.3833333333 16.8263888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1896 Metaponto ?, Lucania, 1955
+    Burial: c. 440-430 B.C. (Cahn) 
+    Contents: c. 750 AR
+    <span rel="mint" resource="metapontum">Metapontum: c. 3 trihemiob. (barley-ear/ 
+        3 crescents)</span>
+            c. 713 ob. (c. 270 rev. barley-
+        ear, incuse; c. 255 rev. barley-ear, 
+        relief; c. 154 rev. bucranium, relief; 
+        c. 1 rev. wheel; c. 8 rev. Ο; c. 25 young 
+        Heracles hd./barley-ear)
+    <span rel="mint" resource="poseidonia">Poseidonia: c. 7 ob. (Poseidon/bull)</span> 
+    <span rel="mint" resource="sybaris">Sybaris: c. 18 ob. (rev. acorn, incuse)</span> 
+    <span rel="mint" resource="rhegium">Rhegium: c. 3 ob. (lion hd./Apollo)</span>
+    Disposition: Welz 29; Oxford 14
+    Welz, SM 1956, pp. 45-49, illus. with Suppl. by 
+        Cahn; SM 1958, p. 77-81, illus.
+    Kraay, SM 1957, pp. 73-7, illus.; SNR 1970, p. 51
+</pre>
+</div>
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0831">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.5002777778 24.9613888889</span></span></div>
+<div class="nm:editedSource">
+<pre>
+831 Mračenik, Karlovo district, N of 
+    Plovdiv, Bulgaria, 1934
+    Burial: late 4th cent. B.C. (T)
+    Contents: 1 AV, 2 AR
+    Philip II: 1 st.
+    Alexander III: 1 tetradr.; 1 dr. 
+    Disposition: dispersed
+    Gerasimov, BIAB 11 (1937), p. 316
+</pre>
+</div>
+</div>

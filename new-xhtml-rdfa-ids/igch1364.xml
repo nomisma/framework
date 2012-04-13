@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1364">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-325" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1364 Asia Minor, northern?, c. 1960 
+    Burial: c. 325-300 B.C.
+    Contents: "many" AR
+    <span rel="mint" resource="byzantium">Byzantium: "many" hemidr.</span> 
+    <span rel="mint" resource="calchedon">Calchedon: "many" hemidr.</span>
+    Disposition: dispersed
+    Le Rider, Deux trim's, p. 44
+    Apparently no part of this hd. has entered 
+        the Archaeological Museum in Istan-
+        bul. It is not mentioned by Schönert-
+        Geiss, Münzprägung Byzantion
+</pre>
+</div>
+</div>

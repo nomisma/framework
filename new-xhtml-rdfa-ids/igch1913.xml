@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1913">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-370" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.1563 14.5296</span></span></div>
+<div class="nm:editedSource">
+<pre>1913 Gizzeria, 10 km. W of Nicastro, 
+(444)     Bruttium, 1914
+    Burial: early 4th cent. B.C. (K)
+    Contents: 2 AR, 58 AE. Pot hoard
+     <span rel="mint" resource="metapontum">Metapontum: 1 diob. (barley ear/grain)</span> 
+     <span rel="mint" resource="velia">Velia: 3 (Heracles/owl)</span>
+     <span rel="mint" resource="croton">Croton: 18 (tripod/eagle hd.)
+            4 (tripod/sepia)</span>
+     <span rel="mint" resource="rhegium">Rhegium: 6 (Apollo/lion hd. facing) 
+            1 hemilit. (Herzfelder, pl. 11, K) </span>
+     <span rel="mint" resource="messana">Messana: 20 (female hd./trident)</span>
+    Blank: 1
+    Unc.: 2
+    Disposition: Reggio
+    Putorti, NSc 1914, p. 211
+    The above totals, which do not altogether 
+        correspond with those in NSc, are 
+        based on material seen by K at Reggio 
+        in 1969
+</pre>
+</div>
+</div>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="hierapolis_phrygia">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Hierapolis</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Hierapolis in Phrygia.</div>
+ <div property="gml:pos">37.907400 29.146000</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/638860"/>
+</div>

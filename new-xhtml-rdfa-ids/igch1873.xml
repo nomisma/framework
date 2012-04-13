@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1873">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-510" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1873 Calabria (anc. Bruttium), 1864 
+(184)
+    Burial: c. 510 B.C. 
+    Contents: 87 incuse AR
+    <span rel="mint" resource="metapontum">Metapontum: 35 st. </span>
+    <span rel="mint" resource="poseidonia">Poseidonia: 1 st.</span>
+    <span rel="mint" resource="sybaris">Sybaris: 22 st.; 1 dr. </span>
+    <span rel="mint" resource="caulonia">Caulonia: 8 st.</span>
+    <span rel="mint" resource="croton">Croton: 20 st.</span>
+    Disposition: dispersed
+    Sambon, Recherches, pp. 35-6
+</pre>
+</div>
+</div>

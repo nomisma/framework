@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0694">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-490" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-480" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.6375 25.3733333333</span></span></div>
+<div class="nm:editedSource">
+<pre>
+694 Kârdzali, Bulgaria, 1938 
+    Burial: c. 490-480 B.C. (T) 
+    Contents: 5 AR, Pot hoard
+    <span rel="mint" resource="abdera_thrace">Abdera: a few octadr. (2 as AMNG II.1
+        pl. 1, 2-3</span>)
+    Disposition: dispersed
+    Gerasimov, BIAB 12 (1938), p. 456
+</pre>
+</div>
+</div>

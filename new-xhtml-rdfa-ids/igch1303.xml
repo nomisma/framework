@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1303">
+<span rel="nm:findspot"><span property="gml:pos">39.11861111 27.165</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-201" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1303 Pergamum, Mysia, 1960 
+    Burial: c. 201 B.C.
+    Contents: 22 AR. In oinochoe, from excava-
+        tions
+    Alexander III: 1 lifetime or early post. 
+        tetradr. (<span rel="mint" resource="babylon">Babylon</span>)
+            8 late post. tetradr. (<span rel="mint" resource="assus">Assus
+        2</span>, <span rel="mint" resource="pergamum">Pergamum 1</span>, <span rel="mint" resource="cyme_aeolis">Cyme 1</span>, <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia 1</span>, 
+        <span rel="mint" resource="perge">Perge 1</span>, unc. mints 2)
+    Antigonus Doson: 1 tetradr.
+    Lysimachus: 1 lifetime tetradr. (<span rel="mint" resource="lampsacus">Lamp-
+        sacus</span>)
+            1 post. tetradr. (<span rel="mint" resource="byzantium">Byzantium</span>) 
+    Prusias I: 1 tetradr.
+    Attalus I: 2 tetradr.
+    <span rel="mint" resource="side">Side: 2 tetradr.</span>
+    Antiochus II: 1 tetradr. (<span rel="mint" resource="sardes">Sardes?</span>) 
+    Antiochus Hierax: 1 tetradr. (unc. mint) 
+    Seleucus II: 1 tetradr. (<span rel="mint" resource="susa">Susa</span>)
+    Seleucus III: 1 tetradr. (<span rel="mint" resource="antiocheia_syria">Antiocheia</span>) 
+    Antiochus III: 1 tetradr. (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad 
+        Tigrim</span>)
+    Disposition: Bergama
+    Boehringer in Altertümer aus Pergamon XI.1 
+        (Berlin, 1968), pp. 16, 132-4, illus.; Zur 
+        Chronologie, pp. 162-71, illus.
+</pre>
+</div>
+</div>

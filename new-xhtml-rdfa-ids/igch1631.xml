@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1631">
+<span rel="nm:findspot"><span property="gml:pos">31.02555556 35.0975</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-70" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1631 Kurnub, near Beersheba, Idumaea, 
+    1966
+    Burial: early 1st cent. B.C. (Meshorer) 
+    Contents: 70-80 AR
+    <span rel="mint" resource="tyre">Tyre: tetradr.</span>
+    Disposition: private coll., Jerusalem 
+    Information from Y. Meshorer
+</pre>
+</div>
+</div>

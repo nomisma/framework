@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1231">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1231 Asia Minor, western, before 1947 
+    Burial: 4th cent. B.C. (M)
+    Contents: AR
+    <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia, Ionia: "some" tetradr. and 
+        octob.</span>
+    Disposition: dispersed
+</pre>
+</div>
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1210">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-360" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1210 <span property="nm:findspot" content="38.33 26.76">Vourla (now Urla; anc. Clazomenae), 
+    Ionia</span>, 1964
+    Burial: c. 360 B.C. 
+    Contents: 47+ AR
+    <span rel="mint" resource="athens">Athens: 5+ tetradr.</span> 
+    <span rel="mint" resource="clazomenae">Clazomenae: 42 tetradr.</span>
+    Disposition: dispersed
+    Hurter, SNR 1966, pp. 26-35, illus.
+    The appearance of Athenian coins is not 
+        mentioned by Hurter, but rests on 
+        reliable information
+</pre>
+</div>
+</div>

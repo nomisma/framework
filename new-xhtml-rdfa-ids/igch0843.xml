@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0843">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.6580555556 27.7347222222</span></span></div>
+<div class="nm:editedSource">
+<pre>
+843 Nesebâr (anc. Mesembria), c. 40 km. 
+    NE of Burgas, Bulgaria, 1959
+    Burial: c. 300 B.C. (T) 
+    Contents: 17 AR. Pot hoard
+    Alexander III: 1 dr. 
+    Lysimachus: 2 dr. 
+    <span rel="mint" resource="mesembria">Mesembria: 14 diob. </span>
+    Disposition: Burgas
+    Gerasimov, BIAB 25 (1962), p. 231
+</pre>
+</div>
+</div>

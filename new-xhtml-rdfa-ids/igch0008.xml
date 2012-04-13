@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0008">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.6919444444 24.3938888889</span></span></div>
+<div class="nm:editedSource">
+<pre>
+8 Melos, 1825?
+(671)
+    Burial: c. <span property="nm:approximateburialdate_start" content="-500" datatype="xsd:date">500</span>-<span property="nm:approximateburialdate_end" content="-490" datatype="xsd:date">490</span> B.C. (T)
+    Contents: AR
+    Coins of same type as Santorin 1821 (no. 7 
+        above) but "evidently of more modern 
+        date," including <span rel="mint" resource="cyzicus">Cyzicus st.</span> (as Traité 
+        pl. 16,25) and <span rel="mint" resource="miletus">Miletus? st.</span> with ΟΥΛ 
+        (as Traité pl. 19,13)
+    Disposition: London some
+    Borrell, NC 1843-4, p. 134 
+    Wroth, NC 1884, pp. 272-4
+</pre>
+</div>
+</div>

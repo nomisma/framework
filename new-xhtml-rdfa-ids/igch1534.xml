@@ -1,0 +1,253 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1534">
+<span rel="nm:findspot"><span property="gml:pos">36.97888889 38.43361111</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-250" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1534 Bab (anc. Batnae) environs, between 
+    Beroea and Hierapolis, Cyrrhestica, 1944
+    Burial: 250-200 B.C. (Thompson-Bellinger) 
+    Contents: 1080 AR dr.
+    Alexander 111 lifetime and post.: <span rel="mint" resource="lampsacus">Lamp-
+        sacus 31 (12)</span>, <span rel="mint" resource="abydus">Abydus 33 (15)</span>,<span rel="mint" resource="colophon"> Colo-
+        phon 32 (11)</span>, <span rel="mint" resource="teos">Teos 8 (2)</span>, <span rel="mint" resource="miletus">Miletus 10 
+        (14)</span>, <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia 16 (6)</span>,<span rel="mint" resource="sardes"> Sardes 3 (3)</span>, 
+        <span rel="mint" resource="tenedos">Tenedos? 1 (1)</span>, <span rel="mint" resource="chios">Chios 1 (14)</span>, <span rel="mint" resource="aradus">Aradus
+        1</span>, <span rel="mint" resource="euboea">Euboea ? 6 (5)</span>, <span rel="mint" resource="pamphylia">Pamphylia ? 5 (1)</span>, 
+        <span rel="mint" resource="ephesus">Ephesus 1 (1)</span>, unc. mints 4 (9)
+    Philip III: <span rel="mint" resource="lampsacus">Lampsacus 8 (4</span>), <span rel="mint" resource="abydus">Abydus (1)</span>,
+        <span rel="mint" resource="teos">Teos 1</span>, <span rel="mint" resource="colophon">Colophon 16 (3)</span>, <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia 5
+        (3)</span>, <span rel="mint" resource="miletus">Miletus 1</span>, <span rel="mint" resource="sardes">Sardes 3 (2)</span>, <span rel="mint" resource="pamphylia">Pam-
+        phylia ? 1</span>
+    Demetrius Poliorcetes: <span rel="mint" resource="miletus">Miletus 6 (2)</span>
+    Lysimachus: <span rel="mint" resource="lampsacus">Lampsacus 5 (5)</span>, <span rel="mint" resource="abydus">Abydus 3</span>, 
+        <span rel="mint" resource="teos">Teos 1</span>, <span rel="mint" resource="colophon">Colophon 6 (5)</span>, <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia 1 (3)</span>, 
+        <span rel="mint" resource="mytilene">Mytilene (1)</span>, <span rel="mint" resource="ephesus">Ephesus (9)</span>, <span rel="mint" resource="lysimachia">Lysimacheia 
+        1</span>, <span rel="mint" resource="thrace">Thrace ? (1)</span>, unc. mint (1)
+    Seleucus I: Unc. mint of the Aradian 
+        Paralia ? (1)
+    Antiochus I: <span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Tigrim (1)</span> 
+    Disposition: <span rel="nm:collection" resource="yale">Yale 209
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139856">Yale id 139856</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139857">Yale id 139857</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139858">Yale id 139858</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139859">Yale id 139859</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139860">Yale id 139860</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139861">Yale id 139861</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139862">Yale id 139862</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139863">Yale id 139863</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139864">Yale id 139864</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139865">Yale id 139865</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139866">Yale id 139866</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139867">Yale id 139867</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139868">Yale id 139868</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139869">Yale id 139869</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139870">Yale id 139870</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139871">Yale id 139871</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139872">Yale id 139872</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139873">Yale id 139873</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139874">Yale id 139874</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139875">Yale id 139875</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139876">Yale id 139876</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139877">Yale id 139877</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139878">Yale id 139878</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139879">Yale id 139879</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139880">Yale id 139880</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139881">Yale id 139881</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139882">Yale id 139882</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139883">Yale id 139883</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139884">Yale id 139884</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139885">Yale id 139885</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139886">Yale id 139886</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139887">Yale id 139887</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139888">Yale id 139888</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139889">Yale id 139889</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139890">Yale id 139890</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139891">Yale id 139891</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139892">Yale id 139892</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139893">Yale id 139893</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139894">Yale id 139894</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139895">Yale id 139895</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139896">Yale id 139896</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139897">Yale id 139897</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139898">Yale id 139898</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139899">Yale id 139899</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139900">Yale id 139900</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139901">Yale id 139901</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139902">Yale id 139902</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139903">Yale id 139903</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139904">Yale id 139904</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139905">Yale id 139905</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139906">Yale id 139906</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139907">Yale id 139907</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139909">Yale id 139909</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139910">Yale id 139910</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139911">Yale id 139911</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139912">Yale id 139912</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139913">Yale id 139913</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139914">Yale id 139914</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139915">Yale id 139915</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139916">Yale id 139916</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139917">Yale id 139917</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139918">Yale id 139918</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139919">Yale id 139919</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139920">Yale id 139920</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139921">Yale id 139921</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139922">Yale id 139922</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139923">Yale id 139923</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139924">Yale id 139924</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139925">Yale id 139925</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139926">Yale id 139926</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139927">Yale id 139927</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139928">Yale id 139928</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139929">Yale id 139929</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139930">Yale id 139930</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139931">Yale id 139931</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139932">Yale id 139932</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139933">Yale id 139933</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139934">Yale id 139934</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139935">Yale id 139935</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139936">Yale id 139936</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139937">Yale id 139937</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139938">Yale id 139938</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139939">Yale id 139939</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139940">Yale id 139940</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139941">Yale id 139941</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139942">Yale id 139942</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139943">Yale id 139943</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139944">Yale id 139944</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139945">Yale id 139945</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139946">Yale id 139946</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139947">Yale id 139947</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139949">Yale id 139949</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139950">Yale id 139950</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139951">Yale id 139951</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139952">Yale id 139952</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139953">Yale id 139953</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139954">Yale id 139954</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139955">Yale id 139955</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139956">Yale id 139956</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139957">Yale id 139957</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139958">Yale id 139958</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139959">Yale id 139959</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139960">Yale id 139960</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139961">Yale id 139961</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139962">Yale id 139962</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139963">Yale id 139963</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139964">Yale id 139964</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139965">Yale id 139965</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139966">Yale id 139966</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139967">Yale id 139967</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139968">Yale id 139968</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139969">Yale id 139969</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139970">Yale id 139970</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139971">Yale id 139971</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139972">Yale id 139972</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139973">Yale id 139973</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139974">Yale id 139974</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139975">Yale id 139975</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139976">Yale id 139976</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139977">Yale id 139977</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139978">Yale id 139978</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139979">Yale id 139979</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139980">Yale id 139980</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139981">Yale id 139981</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139982">Yale id 139982</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139983">Yale id 139983</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139984">Yale id 139984</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139985">Yale id 139985</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139986">Yale id 139986</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139987">Yale id 139987</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139988">Yale id 139988</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139989">Yale id 139989</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139990">Yale id 139990</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139991">Yale id 139991</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139992">Yale id 139992</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139993">Yale id 139993</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139994">Yale id 139994</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139995">Yale id 139995</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139996">Yale id 139996</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139997">Yale id 139997</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139998">Yale id 139998</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139999">Yale id 139999</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140000">Yale id 140000</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140001">Yale id 140001</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140002">Yale id 140002</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140003">Yale id 140003</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140004">Yale id 140004</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140005">Yale id 140005</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140006">Yale id 140006</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140007">Yale id 140007</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140008">Yale id 140008</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140009">Yale id 140009</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140010">Yale id 140010</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140011">Yale id 140011</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140012">Yale id 140012</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140013">Yale id 140013</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140014">Yale id 140014</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140015">Yale id 140015</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140016">Yale id 140016</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140017">Yale id 140017</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140018">Yale id 140018</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140019">Yale id 140019</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140020">Yale id 140020</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140021">Yale id 140021</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140022">Yale id 140022</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140023">Yale id 140023</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140024">Yale id 140024</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140025">Yale id 140025</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140026">Yale id 140026</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140027">Yale id 140027</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140028">Yale id 140028</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140029">Yale id 140029</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140030">Yale id 140030</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140031">Yale id 140031</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140032">Yale id 140032</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140033">Yale id 140033</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140034">Yale id 140034</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140035">Yale id 140035</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140036">Yale id 140036</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140037">Yale id 140037</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140038">Yale id 140038</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140039">Yale id 140039</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140040">Yale id 140040</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140041">Yale id 140041</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140042">Yale id 140042</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140043">Yale id 140043</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140044">Yale id 140044</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140045">Yale id 140045</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140046">Yale id 140046</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140047">Yale id 140047</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140048">Yale id 140048</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140049">Yale id 140049</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140050">Yale id 140050</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140051">Yale id 140051</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140052">Yale id 140052</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140053">Yale id 140053</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140055">Yale id 140055</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140056">Yale id 140056</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140057">Yale id 140057</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140058">Yale id 140058</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140059">Yale id 140059</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140060">Yale id 140060</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140061">Yale id 140061</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140062">Yale id 140062</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140063">Yale id 140063</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140064">Yale id 140064</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140065">Yale id 140065</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140066">Yale id 140066</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140067">Yale id 140067</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140069">Yale id 140069</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140070">Yale id 140070</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140072">Yale id 140072</a>
+    <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140071">Yale id 140071</a>
+</span>; H. Seyrig 14
+† Thompson-Bellinger, Yale Class. Stud. 14 (1955),
+        pp. 3-45
+    Le Rider, Suse, p. 437
+    The numbers in parentheses refer to coins 
+        seen by H. Seyrig
+</pre>
+</div>
+</div>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="emerita">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Emerita</div>
+ <div property="skos:definition" xml:lang="en">Stub for the ancient site of Emerita in Hispania Ulterior.</div>
+ <div property="gml:pos">38.916159 -6.345670</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/M%C3%A9rida,_Spain"/>
+<div property="skos:related" resource="http://pleiades.stoa.org/places/256155"/>
+</div>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="arsinoe_crete">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:definition" xml:lang="en">Arsinoe</div>
+ <div property="skos:prefLabel" xml:lang="en">The mint at the ancient site of Arsinoe in Crete.</div>
+ <div property="dcterms:partOf" resource="crete"/>
+ <div property="gml:pos">35.355456 24.47</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Arsinoe_(Crete)"/>
+<div property="skos:related" resource="http://pleiades.stoa.org/places/590028"/>
+</div>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0807">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-350" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.315 26.3822222222</span></span></div>
+<div class="nm:editedSource">
+<pre>
+807 Thracian Chersonese, c. 1906 
+(236)
+    Burial: c. 350-300 B.C. (T)
+    Contents: 50+ AR
+    <span rel="mint" resource="cyzicus">Cyzicus: dr. (as BMC pl. 9, 12)</span> 
+    Disposition: unknown
+    Hasluck, NC 1906, p. 26
+</pre>
+</div>
+</div>

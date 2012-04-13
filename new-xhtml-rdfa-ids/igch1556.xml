@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1556">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-145" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-140" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1556 Syria, northern, 1906
+(475)
+    Burial: c. 145-140 B.C. (Regling)
+    Contents: 38 AR
+    Alexander III: 6 late post. tetradr. (<span rel="mint" resource="temnus">Tem-
+        nus</span>)
+    <span rel="mint" resource="myrina_aeolis">Myrina: 12 tetradr.</span>
+    <span rel="mint" resource="cyme_aeolis">Cyme: 14 tetradr.</span>
+    <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia: 3 tetradr.</span>
+    Demetrius I: 1 tetradr. (<span rel="mint" resource="antiocheia_syria">Antiocheia</span>) 
+    Alexander I Bala: 1 tetradr. (<span rel="mint" resource="antiocheia_syria">Antiocheia</span>) 
+    Demetrius II: 1 tetradr. (<span rel="mint" resource="antiocheia_syria">Antiocheia, yr.
+        167</span>)
+    Disposition: Dupriez Dec. 12, 1906, 1-38
+    Tourneur, Gazette Num. de Bruxelles 1906-7, p.18 
+    Blanchet, RN 1907, p. 111
+    Regling, ZfN 1928, p. 94-5
+    Thompson, NC 1962, p. 321
+    Seyrig, Trésors du Levant (in press)
+    Published as the Haiffa hd. but actually 
+        from an uncertain location in North 
+        Syria
+</pre>
+</div>
+</div>

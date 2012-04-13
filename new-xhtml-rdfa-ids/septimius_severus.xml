@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="roman_emperor" about="septimius_severus">
+ <div property="skos:prefLabel" xml:lang="en">Septimius Severus</div>
+ <div property="skos:definition" xml:lang="en">Roman emperor from 14 April 193 – 4 February 211.</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Septimius_Severus"/>
+ <div><img alt=" " rel="foaf:depiction" src="http://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Septimius_Severus_busto-Musei_Capitolini.jpg/220px-Septimius_Severus_busto-Musei_Capitolini.jpg"/><br/>Credit: Wikipedia.</div>
+</div>

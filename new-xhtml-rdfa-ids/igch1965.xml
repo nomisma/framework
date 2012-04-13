@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1965">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-280" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.3275 17.4969444444</span></span></div>
+<div class="nm:editedSource">
+<pre>1965 Monacizzo, 25 km. SE of Taranto, 
+(701)     Calabria, 1908
+    Burial: 300-280 B.C. (Stazio) 
+    Contents: 2 AV, 66 AR
+    <span rel="mint" resource="taras">Taras: 1 AV st. (as Vlasto Cat. 4)
+            1 AV dr. (as VI. 5)
+            56 st. (1 Per. II; 10 Per. III; 6
+        Per. IV; 20 Per. V, 19 Per. VI A, C-E) </span>
+    <span rel="mint" resource="heraclea_lucaniae">Heracleia: 1 st. (cf. Work 31) </span>
+    <span rel="mint" resource="metapontum">Metapontum: 5 st.</span>
+    <span rel="mint" resource="poseidonia">Poseidonia: 1 st.</span>
+    <span rel="mint" resource="thurium">Thurium: 1 st.</span>
+    <span rel="mint" resource="velia">Velia: 1 st.</span>
+    <span rel="mint" resource="terina">Terina: 1 st.</span>
+    Disposition: Taranto
+† Quagliati, AttiMemIIN 6 (1930), pp. 46-72, illus. 
+    Stazio, AIIN 1965-7, pp. 40-1
+</pre>
+</div>
+</div>

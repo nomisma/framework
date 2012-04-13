@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2267">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-300" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>2267 Tunisia, before 1935
+    Burial: 300 B.C. (Jenkins)
+    Contents: 50+ AE
+    Carthage: <span rel="mint" resource="siculo_punic">Sicilian mint (50 as SNGCop. 94, 
+        a few as SNGCop. 102)</span>
+    Disposition: Carthage
+    Note by E. S. G. Robinson in BM
+</pre>
+</div>
+</div>

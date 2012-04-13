@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="adramyteum">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Adramyteum</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Adramyteum in Mysia.</div>
+ <div property="gml:pos">39.583333 27.016667</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Edremit_(District),_Bal%C4%B1kesir"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/550403"/>
+</div>

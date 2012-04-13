@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1822">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-180" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-170" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.2658333333 68.1383333333</span></span></div>
+<div class="nm:editedSource">
+<pre>1822 Oxus River (Takhti-Kubad, at junc-
+(45, 778)     tion of modern Vaksh and Piandzh 
+    Rivers), Shaartuz raion, Tadzhikistan (anc. 
+    Sogdiana), 1887
+    Burial: c. 180-170 B.C. (Cunningham,
+        Schlumberger; see Bellinger, p. 66)
+    Contents: c. 1500 AV, AR, AE
+    Acanthus: 3 tetradr.
+    Philip II: 1 tetradr.
+    Alexander III: c. 100 tetradr. (<span rel="mint" resource="ecbatana">Ecbatana 1
+        as ESM 454); c. 100 dr.</span>
+    Lysimachus: 1 tetradr.
+    <span rel="mint" resource="athens">Athens: 3+ tetradr.</span>
+    <span rel="mint" resource="athens">Imit. Athens: 5 tetradr.; 1 didr.; 1 dr. </span>
+    <span rel="mint" resource="byzantium">Byzantium: 2 dr.</span>
+    Pixodarus, <span rel="mint" resource="caria">Caria: 1 AV-sixth</span>
+    <span rel="mint" resource="aspendus">Aspendus: 6+ st.</span>
+    <span rel="mint" resource="celenderis">Celenderis: 1 st.</span>
+    <span rel="mint" resource="tarsus">Tarsus: 8 st. (Titibazus 1, Pharnabazus 1, 
+        Datames 2, Mazaeus 4)</span>
+    Persian Satrap in <span rel="mint" resource="asia_minor">Asia Minor: 2 tetradr. (as 
+        Traité II.2, nos. 74 ff.)</span>
+    Seleucus I: 2 AV double-darics (<span rel="mint" resource="ecbatana">Ecbatana</span>); 
+        3 st. (<span rel="mint" resource="babylon">Babylon 2</span>, <span rel="mint" resource="ecbatana">Ecbatana 1</span>)
+            14 tetradr. (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Ti-
+        grim 1</span>, <span rel="mint" resource="bactra">Bactra 6</span>, unc. 7)
+            8 dr. (<span rel="mint" resource="susa">Susa 2</span>, <span rel="mint" resource="bactra">Bactra 5</span>, unc. 1) 
+            2 hemidr. (<span rel="mint" resource="ecbatana">Ecbatana 1</span>, <span rel="mint" resource="bactra">Bac-
+        tra 1</span>)
+            2 ob. (<span rel="mint" resource="bactra">Bactra</span>)
+    Antiochus I: 8+ AV st. (<span rel="mint" resource="bactra">Bactra 7</span>, unc. 1+)
+            13 tetradr. (<span rel="mint" resource="bactra">Bactra 10</span>, unc. 3)
+            13 dr. (<span rel="mint" resource="cardia">Cardiac 1</span>, <span rel="mint" resource="bactra">Bactra 8</span>,
+        unc. 4)
+            2 hemidr. (<span rel="mint" resource="bactra">Bactra</span>)
+            3 AE (unc.)
+    Antiochus II: 5 AV st. (<span rel="mint" resource="bactra">Bactra, 2 with por-
+        trait of Diodotus</span>)
+            2 tetradr. (<span rel="mint" resource="bactra">Bactra, portrait 
+        of Diodotus</span>)
+            2 dr. (<span rel="mint" resource="bactra">Bactra, portrait of 
+        Diodotus</span>)
+    <span rel="mint" resource="sidon">Sidon: 2 double-shekels (Bodashtart ? 1, 
+        Strato I 1)</span>
+    <span rel="mint" resource="babylon">Babylon: 6 double-darics</span>
+    <span rel="mint" resource="persia">Persia: 8 darics; 6 sigloi</span>
+    Andragoras: 3 AV st.; 2 tetradr.
+    Vahsuvar: 1 AV dist.; 2 AV st.
+    Diodotus: 4 AV st.; 4 tetradr.; 5 dr.; 6 AE
+    Euthydemus: 2 AV st.; 4 tetradr.; 1 ob.; 
+        5+ AE
+    Pantaleon: 1 AE
+    Agathocles: 1 dr.; 3 AE; 3 nickel
+    Antimachus I: 4 tetradr.
+    <span rel="mint" resource="bactria">Unc. Bactrian: 4 AE</span>
+    Disposition: London (part)
+    Gardner, NC 1879, pp. 1-12; 1881, p. 12 
+    Cunningham, JASB 1881, pp. 151-86; 1883, 
+        pp. 64, 258
+    Dalton, The Treasure of the Oxus (London, 1905; 
+        2nd ed. 1926)
+    Hill, AttiMemIIN III.2 (1919), pp. 23-33 
+    BMC Arabia, pp. CXLVIII-CLV
+    Regling, ZfN 1928, p. 96
+    Whitehead, NC 1943, pp. 66-8
+    Robinson, Iraq 1950, p. 51
+    Schlumberger, L'argent grec, pp. 46-9 
+    Zeimal'-Zeimal' IzvOtdelObshchestNaukANTSSR 
+    (Dushanbe, 1962), pp. 40-5
+    Bellinger, ANSMN 10 (1962), pp. 51-67
+    Found with rich treasure of gold and silver 
+        jewelry (see Dalton, Oxus). The numbers 
+        above are taken from Bellinger's list, 
+        but six obvious or probable forgeries 
+        are not included. It has been discussed 
+        whether the find was heavily contami-
+        nated by addition of extraneous materi-
+        al (Dalton and Regling) or actually 
+        constitutes one hoard (Schlumberger)
+</pre>
+</div>
+</div>

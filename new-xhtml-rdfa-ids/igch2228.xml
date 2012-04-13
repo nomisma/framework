@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2228">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-250" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.43 14.4791666667</span></span></div>
+<div class="nm:editedSource">
+<pre>2228 Serra Orlando (anc. Morgantina), 
+    4 km. NE of Piazza Armerina, 1963 
+    Burial: 250-200 B.C.
+    Contents: 7 AE. From excavations
+    Hieron II (Poseidon/trident)
+    Disposition: Syracuse
+    Sjöqvist, AJA 1964, p. 141
+</pre>
+</div>
+</div>

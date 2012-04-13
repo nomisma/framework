@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0790">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-325" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-310" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.2905555556 27.6027777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+790 Černevo, c. 20 km. W of Varna, Bul-
+    garia, 1949
+    Burial: c. 325-310 B.C. (T)
+    Contents: c. 500 AE. Pot hoard 
+    Philip II
+    Alexander III
+    Disposition: Varna 10
+    Gerasimov, BIAB 18 (1952), p. 401
+</pre>
+</div>
+</div>

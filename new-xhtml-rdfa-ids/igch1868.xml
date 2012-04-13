@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1868">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">32.7847222222 74.2886111111</span></span></div>
+<div class="nm:editedSource">
+<pre>1868 Bhutri, Hazara district, Pakistan, 
+(149)     1933
+    Burial: 1st cent. B.C. (Le Rider)
+    Contents: 495 AR, 11 AE
+    Zoilus II: 1 dr.
+    Strato I and Strato II: 8 dr. 
+    Azes II: 486 dr.; 8 AE
+    <span rel="mint" resource="taxila">Taxila: 3 AE</span>
+    Disposition: unknown
+    Information from R. B. Whitehead
+</pre>
+</div>
+</div>

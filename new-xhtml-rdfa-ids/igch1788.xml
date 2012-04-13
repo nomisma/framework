@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1788">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-31" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.0813888889 41.22</span></span></div>
+<div class="nm:editedSource">
+<pre>1788 Nisibis, Mesopotamia, 1955 
+    Burial: after 31 B.C.
+    Contents: 1 AR, 623 AE
+    <span rel="mint" resource="thessaly">Thessaly: 1 AE</span>
+    <span rel="mint" resource="gaziura">Gaziura: 1 AE</span>
+    <span rel="mint" resource="amorium">Amorium: 1 AE</span>
+    <span rel="mint" resource="mopsuestia">Mopsuestia: 5 AE</span>
+    <span rel="mint" resource="soli-pompeiopolis">Soli, Cilicia: 2 AE</span>
+    Tigranes I, Armenia: 11 AE
+    Seleucus IV: 2 AE (<span rel="mint" resource="antiocheia_syria">Antiocheia</span>)
+    Antiochus IV: 3 AE (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Tigrim 2</span>, 
+        <span rel="mint" resource="antiocheia_syria">Antiocheia 1</span>)
+    Antiochus V: 1 AE (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Tigrim</span>) 
+    Demetrius I: 4 AE (<span rel="mint" resource="antiocheia_syria">Antiocheia</span>)
+    Alexander I Bala: 11 AE (<span rel="mint" resource="antiocheia_syria">Antiocheia 10</span>, 
+        <span rel="mint" resource="ace_ptolemais">Ace 1</span>)
+    Demetrius II, 1st reign: 1 AE (<span rel="mint" resource="antiocheia_syria">Antiocheia</span>) 
+    Antiochus VI: 3 AE (<span rel="mint" resource="antiocheia_syria">Antiocheia</span>)
+    Tryphon: 1 AE (<span rel="mint" resource="antiocheia_syria">Antiocheia</span>)
+    Antiochus VII: 16 AE (<span rel="mint" resource="antiocheia_syria">Antiocheia 13</span>, unc. 3) 
+    Demetrius II, 2nd reign: 1 AE (<span rel="mint" resource="antiocheia_syria">Antiocheia</span>) 
+    Alexander Zabinas: 4 AE (<span rel="mint" resource="antiocheia_syria">Antiocheia</span>)
+    Antiochus VIII and Cleopatra: 3 AE (<span rel="mint" resource="antiocheia_syria">An-
+        tiocheia</span>)
+    Antiochus VIII: 65 AE (<span rel="mint" resource="antiocheia_syria">Antiocheia</span>) 
+    Antiochus IX: 40 AE (<span rel="mint" resource="antiocheia_syria">Antiocheia 34</span>, <span rel="mint" resource="damascus">Da-
+        mascus? 6</span>)
+    Demetrius III: 10 AE (unc. mint)
+    Antiochus XII: 7 AE (<span rel="mint" resource="damascus">Damascus</span>) 
+    Mithradates I, Commagene: 4 AE
+    Antiocheia: 214 AE
+    <span rel="mint" resource="apameia_syria">Apameia: 1 AE</span>
+    <span rel="mint" resource="laodiceia_ad_mare">Laodiceia: 1 AE</span>
+    <span rel="mint" resource="seleuceia_pieria">Seleuceia Pieria: 1 AE</span>
+    <span rel="mint" resource="demetrias_syria">Damascus as Demetrias: 1 AE</span>
+    <span rel="mint" resource="aradus">Aradus: 18 AE</span>
+    <span rel="mint" resource="sidon">Sidon: 1 AE</span>
+    John Hyrcanus or Judas Aristobulos: 2 AE 
+    Aretas III, Nabataea: 1 AE (<span rel="mint" resource="damascus">Damascus</span>) 
+    <span rel="mint" resource="natunia">Natunia, Assyria: 2 AE</span>
+    <span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Tigrim: 72 AE</span>
+    Mithradates II, Parthia: 1 AE
+    Unc. oriental mints: 19 AE
+    Unc. Mint: 1 AE
+    Illeg.: 91 AE
+    <span rel="mint" resource="rome">Roman Rep.: 1 den. (plated)</span>
+    Disposition: unknown
+    Seyrig, RN 1955, pp. 85-128, illus.; 1959-60, 
+        p. 291
+</pre>
+</div>
+</div>

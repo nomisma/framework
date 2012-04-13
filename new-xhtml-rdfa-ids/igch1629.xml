@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1629">
+<span rel="nm:findspot"><span property="gml:pos">32.22472222 35.26083333</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1629 Nablus (anc. Neapolis), Samaria, 
+    1935-1936
+    Burial: 2nd-1st cent. B.C. (Westermark) 
+    Contents: AR
+    Demetrius II: tetradr. (<span rel="mint" resource="tyre">Tyre</span>) 
+    <span rel="mint" resource="tyre">Tyre: tetradr.</span>
+    Disposition: unknown
+    Hill, QDAP 1938, pp. 78 f. 
+    Kadman, INCJ, hoard 12
+    Probably the same hd. as no. 1630 below
+</pre>
+</div>
+</div>

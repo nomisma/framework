@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="hatra">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Hatra</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Hatra in Mespotamia.</div>
+ <div property="gml:pos">35.586199 42.720863</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/894004"/>
+</div>

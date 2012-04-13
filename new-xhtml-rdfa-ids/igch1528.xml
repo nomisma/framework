@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1528">
+<span rel="nm:findspot"><span property="gml:pos">35.30611111 35.92222222</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-240" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1528 Tell Suikas, c. 6 km. S of Djeble (anc. 
+    Gabala), Seleucis, 1958
+    Burial: c. 240 B.C. (Westermark)
+    Contents: 10 AR. From excavations
+    Alexander III: 3 post. tetradr. (<span rel="mint" resource="aradus">Aradus</span>) 
+            2 post. dr. (<span rel="mint" resource="aradus">Aradus</span>)
+    Antigonus Gonatas: 1 tetradr.
+    Lysimachus: 2 tetradr.
+    Antiochus I: 1 tetradr. (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Ti-
+        grim as ESM 177</span>)
+    Antiochus II: 1 tetradr. (<span rel="mint" resource="antiocheia_syria">Antiocheia as 
+        WSM 971</span>)
+    Disposition: unknown
+    AnnArch de Syria 1958-9, p. 125
+</pre>
+</div>
+</div>

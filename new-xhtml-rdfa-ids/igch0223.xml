@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0223">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.4788888889 23.4477777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+223 Anthedon, on the coast c. 15 km. NW 
+(53)     of Chalcis, Boeotia, 1935
+    Burial: c. 191 B.C. (T); c. 161 (Lewis)
+    Contents: 25+ AR
+    <span rel="mint" resource="chalcis">Chalcis: 4+ tetradr.
+            1 octob.
+            <a rel="nm:item" href="http://numismatics.org/collection/1967.152.261">ANS 1967.152.261</a></span>
+    <span rel="mint" resource="eretria">Eretria: 6+ tetradr.
+            4+ octob.
+            <a rel="nm:item" href="http://numismatics.org/collection/1967.152.263">ANS 1967.152.263</a>
+            <a rel="nm:item" href="http://numismatics.org/collection/1944.100.22185">ANS 1944.100.22185</a>
+            <a rel="nm:item" href="http://numismatics.org/collection/1967.152.264">ANS 1967.152.264</a>
+            <a rel="nm:item" href="http://numismatics.org/collection/1944.100.22186">ANS 1944.100.22186</a></span>
+    <span rel="mint" resource="athens">Athens: 10 New Style tetradr.
+    <a rel="nm:item" href="http://numismatics.org/collection/1967.152.275">ANS 1967.152.275</a>
+    <a rel="nm:item" href="http://numismatics.org/collection/1944.100.24568">ANS 1944.100.24568</a>
+    <a rel="nm:item" href="http://numismatics.org/collection/1944.100.24569">ANS 1944.100.24569</a>
+    <a rel="nm:item" href="http://numismatics.org/collection/1944.100.24570">ANS 1944.100.24570</a></span>
+    Disposition: New York 8 (4 Athens, 1 
+        Chalcis, 3 Eretria)
+† Thompson, ANSMN 5 (1952), pp. 25-33, illus.; 
+        Athens, pp. 473-4; NC 1962, pp. 325-9 
+    Lewis, NC 1962, pp. 294-6
+</pre>
+</div>
+</div>

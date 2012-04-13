@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2102">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-400" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.92 14.7188888889</span></span></div>
+<div class="nm:editedSource">
+<pre>2102 Monteraci (mod. Ragusa), 25 km. E 
+    of Camarina, 1953
+    Burial: c. 400 B.C. (Jenkins) 
+    Contents: 33 AR
+    <span rel="mint" resource="agrigentum">Acragas: 1 tetradr.; 9 didr.</span>
+    <span rel="mint" resource="gela">Gela: 3 didr.</span>
+    <span rel="mint" resource="himera">Himera: 2 didr.</span>
+    <span rel="mint" resource="leontini">Leontini: 1 tetradr.</span> 
+    <span rel="mint" resource="messana">Messana: 2 tetradr. </span>
+    <span rel="mint" resource="segesta">Segesta: 6 didr.</span>
+    <span rel="mint" resource="selinus_sicily">Selinus: 1 tetradr.</span>
+    <span rel="mint" resource="syracuse">Syracuse: 7 tetradr. (to Tudeer 82)
+            1 didr.</span>
+    Disposition: Syracuse
+† Gentili, AIIN 1955, pp. 71-9, illus. 
+    Currò Pisanò, AIIN 1962-4, pp. 230, 239 
+    Jenkins, Gela, p. 155
+</pre>
+</div>
+</div>

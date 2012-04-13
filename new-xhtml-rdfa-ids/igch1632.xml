@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1632">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-600" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-500" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1632 Egypt, 1900 
+(365)
+    Burial: 6th cent. B.C. (Jenkins)
+    Contents: 5+ AV
+    <span rel="mint" resource="lydia">Lydia, Croesus: 5 st.</span> 
+    Disposition: Berlin
+    ZfN 1904, " Jahresberichte 1901-2," p. 25
+</pre>
+</div>
+</div>

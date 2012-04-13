@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1187">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-450" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.1458333333 26.1877777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1187 Lesbos, before 1892
+(613)
+    Burial: c. 450 B.C. (M)
+    Contents: 56+ AR
+    <span rel="mint" resource="methymna">Methymna: 4+ didr.; 44+ tetrob.; 8+ diob.
+          <a rel="contains" href="http://www.cngcoins.com/Coin.aspx?CoinID=16141">Triton V (2002), lot 1416</a></span> 
+    Disposition: Istanbul 43; London 2; Berlin 
+        1; Boston 6
+    Montagu, NC 1892, pp. 33-5, illus.
+    Greenwell, NC 1893, pp. 89-91, illus. 
+    BMCTroas, p. 177
+    Dressel, ZfN 1898, p. 220
+</pre>
+</div>
+</div>

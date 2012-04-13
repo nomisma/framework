@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0859">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-275" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-265" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.2066666667 27.9088888889</span></span></div>
+<div class="nm:editedSource">
+<pre>
+859 Varna (anc. Odessus), Bulgaria, 1955
+    Burial: c. 275-265 B.C. (T) 
+    Contents: c. 200 AR. Pot hoard
+    Alexander III: 71 tetradr. 
+    Philip III: 1 tetradr.
+    Demetrius Poliorcetes: 1 tetradr. 
+    Lysimachus: 4 tetradr. 
+    Seleucus I: 7 tetradr. 
+    Antiochus I: 1 tetradr.
+    Disposition: Sumen coll. 85 as listed
+    Gerasimov, BIAB 21 (1957), p. 325
+</pre>
+</div>
+</div>

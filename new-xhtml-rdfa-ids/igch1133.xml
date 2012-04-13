@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1133">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-130" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.5769444444 33.5180555556</span></span></div>
+<div class="nm:editedSource">
+<pre>1133 Cherronesus (near mod. Sevastopol'), 
+    (963?) 1853
+    Burial: late 2nd cent. B.C.
+    Contents: 200-300 AR. Pot hoard 
+    <span rel="mint" resource="cherronesus">Cherronesus: dr. (as BMC 3, most with
+        ΜΟΙΡΙΟΣ, a few with ΑΠΟΛ)</span> 
+    Disposition: dispersed
+    Liutsenko, p. 46 (letter from P. Burachkov
+        reports up to 500 coins, all with ΜΟΙΡΙΟΣ) 
+† Bertier de la Garde, ZOOID 26 (1906), pp. 253-4 
+    Imhoof-Blumer, ZfN 1878, pp. 145-6 (this
+        hoard ?)
+</pre>
+</div>
+</div>

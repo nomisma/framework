@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="nisyros">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Nisyros</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Nisyros on Nisyros off Caria.</div>
+ <div property="gml:pos">36.587875 27.172056</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Nisyros"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/599829"/>
+</div>

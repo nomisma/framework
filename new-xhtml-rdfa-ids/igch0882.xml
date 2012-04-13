@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0882">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.7038888889 27.2552777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+882 Ajtos environs, c. 25 km. NW of Bur-
+(113)     gas, Bulgaria, 1931
+    Burial: 3rd-2nd cent. B.C. (T)
+    Contents: 80 AE
+    <span rel="mint" resource="mesembria">Mesembria</span>
+    Disposition: unknown
+    Mouchmov, BIAB 7 (1932-3), p. 424
+</pre>
+</div>
+</div>

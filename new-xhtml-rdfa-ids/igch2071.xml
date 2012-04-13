@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2071">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-475" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-470" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.3025 14.2111111111</span></span></div>
+<div class="nm:editedSource">
+<pre>2071 Monte Bubbonia, 25 km. N of Gela, 
+(188 = 667)     1910
+    Burial: 475-70 B.C. (Jenkins), but see note 
+        below
+    Contents: 338 AR
+    <span rel="mint" resource="rhegium">Rhegium: 4 tetradr. (mule-car)</span>
+    <span rel="mint" resource="agrigentum">Acragas: 78 didr.</span>
+    <span rel="mint" resource="camarina">Camarina: 1 didr.</span>
+    <span rel="mint" resource="gela">Gela: 7 tetradr. (to Jenkins 178)
+            61 didr.</span>
+    <span rel="mint" resource="himera">Himera: 5 didr. (rev. crab)
+            1 dr. (rev. hen)</span>
+    <span rel="mint" resource="leontini">Leontini: 2 tetradr. (obv. galloping qua-
+        driga)</span>
+    <span rel="mint" resource="zancle">Zancle: 2 dr.</span>
+    <span rel="mint" resource="messana">Messana: 5 tetradr. (mule-car)</span>
+    <span rel="mint" resource="selinus_sicily">Selinus: 30 didr. (obv. leaf)</span>
+    <span rel="mint" resource="syracuse">Syracuse: 61 tetradr. (to Boehringer 333) 
+            3 didr.
+            6 dr.</span>
+    <span rel="mint" resource="acanthus">Acanthus: 1 tetradr.</span>
+    <span rel="mint" resource="athens">Athens: 6 tetradr. (archaic)</span>
+    Disposition: Syracuse 273 as listed
+    Orsi, NSc 1912, pp. 454-5
+    Currò Pisanò, AIIN 1962-4, pp. 223, 237 (listed 
+        as 1910 = Caltagirone)
+    Jenkins, Gela, pp. 22-4, 154
+    This hd. has previously been named either 
+        Caltagirone or Mazzarino; for Monte 
+        Bubbonia as the find-spot, see Jenkins, 
+        p. 154
+    The date of burial should perhaps be 
+        lowered to c. 465 B.C. or after; the 
+        Syracusan series terminates at about 
+        the same point as that of no. 2076 
+        below, for which a date of burial at 
+        least some years after 470 B.C. is 
+        required by the latest issues of Himera 
+        included therein
+</pre>
+</div>
+</div>

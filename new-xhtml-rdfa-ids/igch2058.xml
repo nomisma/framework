@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2058">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.267507 17.050667</span></span></div>
+<div class="nm:editedSource">
+<pre>2058 Strongoli (anc. Petelia), 25 km. N of 
+(1012)     Croton, Bruttium, 1880
+    Burial: 1st cent. B.C.? (K)
+    Contents: 1 EL, 6 AR, 4 AE. From a plundered 
+        tomb
+    Social War: 1 den. (as BMC, p. 330, 31) 
+    <span rel="mint" resource="petelia">Petelia: 3 AE (Apollo/Artemis; Demeter/ 
+        Zeus; Mars/Victory)</span>
+    <span rel="mint" resource="suessa_aurunca">Suessa: 1 AE (Pallas/cock)</span>
+    <span rel="mint" resource="syracuse">Syracuse: 1 EL (Apollo/lyre)</span>
+    <span rel="mint" resource="rome">Roman Rep.: 5 den. (families Calpurnia,
+        Cassia, Cipia, Minucia, Servilia)</span>
+    Disposition: dispersed
+    NSc 1881, p. 97
+    The association of these coins is doubtfully 
+        ancient. The Syracusan electrum is 
+        late 4th cent.; the AE coins are 3rd 
+        cent.; and the identifiable Roman AR 
+        are Cipia, late 2nd cent. and Social 
+        War den. early 1st cent. The gold coin 
+        of Justinian reported as associated 
+        with the above must in any case be 
+        intrusive
+</pre>
+</div>
+</div>

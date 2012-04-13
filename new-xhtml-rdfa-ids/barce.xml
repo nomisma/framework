@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="barce">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Barce</div>
+ <div property="skos:definition" xml:lang="en">The mint of the ancient site of Barce in <a rel="dcterms:isPartOf" href="cyrene">Cyrenaica</a>.</div>
+ <div property="gml:pos">32.4945 20.87450</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/373750"/>
+</div>

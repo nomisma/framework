@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2257">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.4672222222 14.9502777778</span></span></div>
+<div class="nm:editedSource">
+<pre>2257 Lipari, 1920
+    Burial: ?
+    Contents: 6 AE
+    <span rel="mint" resource="lipara">Lipari</span>
+    Disposition: Syracuse
+    Currò Pisanò, AIIN 1962-4, p. 232
+</pre>
+</div>
+</div>

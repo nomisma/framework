@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="kissa">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Stub for the ancient site of Kissa in Hispania Citerior.</div>
+ <div property="gml:pos">41.115697 1.249594</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Tarragona"/>
+</div>

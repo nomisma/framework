@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1461">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-88" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1461 Asia Minor, 1966 
+    Burial: c. 88 B.C. (Kleiner) 
+    Contents: 26+ AR
+    Cistophori: <span rel="mint" resource="pergamum">Pergamum 21</span>, <span rel="mint" resource="ephesus">Ephesus 3 (to 
+        yr. 46)</span>, <span rel="mint" resource="tralles">Tralles 2</span>
+    Disposition: dispersed, casts in ANS
+    Information from P. R. Franke 
+    To be published by F. Kleiner
+</pre>
+</div>
+</div>

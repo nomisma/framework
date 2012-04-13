@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0455">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-250" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-230" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.9547222222 23.3997222222</span></span></div>
+<div class="nm:editedSource">
+<pre>
+455 Pergi, near Serres, Macedonia, 1955
+    Burial: c. 250-230 B.C. (T)
+    Contents: 386 AR.
+    Alexander III: 60 lifetime and early post. 
+        tetradr. (<span rel="mint" resource="amphipolis">Amphipolis 9</span>, <span rel="mint" resource="pella_macedon">Pella 40</span>, <span rel="mint" resource="sardes">Sar-
+        des 2</span>, <span rel="mint" resource="miletus">Miletus 1</span>, <span rel="mint" resource="aradus">Aradus 2</span>, <span rel="mint" resource="babylon">Babylon 4</span>, 
+        unc. 2)
+            186 lifetime and early post. 
+        dr. (<span rel="mint" resource="asia_minor">Asia Minor mints</span>)
+    Philip III: 1 post. tetradr. (<span rel="mint" resource="aradus">Aradus</span>)
+            2 lifetime dr. (<span rel="mint" resource="colophon">Colophon</span>, <span rel="mint" resource="sardes">Sardes</span>) 
+    Demetrius Poliorcetes: 1 tetradr. (<span rel="mint" resource="euboea">Euboea?</span>) 
+    Antigonus Gonatas: 1 tetradr. 
+    Lysimachus: 12 lifetime and early post.
+        tetradr. (<span rel="mint" resource="lysimachia">Lysimacheia 1</span>, <span rel="mint" resource="lampsacus">Lampsacus 3</span>,
+        <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia 2</span>, <span rel="mint" resource="smyrna">Smyrna 1</span>, <span rel="mint" resource="cardia">Cardia ? 1</span>,
+        unc. 4)
+            4 lifetime dr.
+    <span rel="mint" resource="athens">Athens:</span> 114 tetradr. (4th-3rd cent.) 
+    Seleucus I: 4 tetradr. (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Tigrim</span>) 
+    Antiochus I: 1 tetradr. (unc. mint)
+    Disposition: Athens
+    Varoucha, BCH 1957, p. 497, illus. 
+    Seyrig's list of varieties on file in ANS
+</pre>
+</div>
+</div>

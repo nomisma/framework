@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1968">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-270" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.1219444444 16.9594444444</span></span></div>
+<div class="nm:editedSource">
+<pre>1968 Scandale, 15 km. WNW of Croton, 
+    Bruttium, 1959
+    Burial: early 3rd cent. B.C. (K)
+    Contents: 1 EL, 10 AR
+    <span rel="mint" resource="caulonia">Caulonia: 1 st.</span>
+    <span rel="mint" resource="syracuse">Syracuse: 1 EL (Apollo/tripod)</span>
+    <span rel="mint" resource="anactorium">Anactorium: 3 Pegasi (1 ΝΑϒ fillet; 2 ΔΩ 
+        altar)</span>
+    <span rel="mint" resource="argos_amphilochicum">Argos: 4 Pegasi (2 spear; 2 ΔΙ shield) </span>
+    <span rel="mint" resource="thyrrheium">Thyrrheium: 1 Pegasus (earring symbol) </span>
+    Unc.: 1 Pegasus
+    Disposition: Reggio
+    Listed by K in 1969; all coins very worn
+</pre>
+</div>
+</div>

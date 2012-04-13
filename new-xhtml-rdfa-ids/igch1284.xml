@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1284">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.44 28.2116666667</span></span></div>
+<div class="nm:editedSource">
+<pre>1284 Rhodes, 1922 
+    Burial: c. 300 B.C. (M) 
+    Contents: 18+ AR
+    <span rel="mint" resource="rhodes">Rhodes: didr. (latest issues BMC 43-47)
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.48611">ANS 1944.100.48611</a>     
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.48587">ANS 1944.100.48587</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.48598">ANS 1944.100.48598</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.48608">ANS 1944.100.48608</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.48620">ANS 1944.100.48620</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.48604">ANS 1944.100.48604</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.48616">ANS 1944.100.48616</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.48617">ANS 1944.100.48617</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.48614">ANS 1944.100.48614</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.48603">ANS 1944.100.48603</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.48615">ANS 1944.100.48615</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.48581">ANS 1944.100.48581</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.48612">ANS 1944.100.48612</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.48606">ANS 1944.100.48606</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.48605">ANS 1944.100.48605</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.48582">ANS 1944.100.48582</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.48588">ANS 1944.100.48588</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.48621">ANS 1944.100.48621</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.48589">ANS 1944.100.48589</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.48597">ANS 1944.100.48597</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.48607">ANS 1944.100.48607</a></span>
+    Disposition: New York 18
+</pre>
+</div>
+</div>

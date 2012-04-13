@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0004">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div class="nm:editedSource">
+<pre>
+4 <span property="nm:findspot" content="36.166667 23">Cythera, Laconia</span>, before 1925
+    Burial: <span property="nm:approximateburialdate_start" content="-525" datatype="xsd:date">525</span>-<span property="nm:approximateburialdate_end" content="-500" datatype="xsd:date">500</span> B.C. (T)
+    Contents: AR
+    <span rel="mint" resource="seriphos">Seriphos: st.</span>
+    Disposition: New York 1 (as de Nanteuil 
+        999), possibly from the hd.
+    de Nanteuil coll., no. 999
+</pre>
+</div>
+</div>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2182">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-270" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.631268 13.63246</span></span></div>
+<div class="nm:editedSource">
+<pre>2182 Cammarata, halfway between Hi-
+(193)     mera and Acragas, 1859
+    Burial: early 3rd cent. B.C. (K) 
+    Contents: c. 200 AR
+    <span rel="mint" resource="selinus_sicily">Selinus: 1 tetradr.</span>
+    <span rel="mint" resource="syracuse">Syracuse: 10+ tetradr. (Agathocles, quadr. 
+        [3]; Nike type, coarse style but fdc [7])</span>
+    <span rel="mint" resource="siculo_punic">Siculo-Punic: c. 30 tetradr. (Arethusa/ 
+        horse [1+]; Arethusa/horse hd. [7]; 
+        Heracles/horse hd. [c. 20]; female hd./ 
+        lion and palm-tree [2])</span>
+    Rash Melcarth: 2 tetradr.
+    Pegasi: c. 150 most melted down (incl. 
+        <span rel="mint" resource="anactorium">Anactorium</span>,<span rel="mint" resource="argos_amphilochicum">Argos</span>)
+    Disposition: parts to G. Romano and 
+        de Luynes (?)
+    Romano, Sopra alcune monete scoverte in Sicilia 
+        (Paris, 1862), illus.
+</pre>
+</div>
+</div>

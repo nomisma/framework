@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="numismatic_term" about="ruler">
+ <div property="skos:prefLabel" xml:lang="en">Ruler</div>
+ <div property="skos:definition" xml:lang="en">Generally, a personal ruler whose name appeares on a coin.</div>
+ <div>Narrower than: <a rel="skos:broader" href="authority">Authority</a>.</div>
+</div>

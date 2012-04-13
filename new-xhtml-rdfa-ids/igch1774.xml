@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1774">
+<span rel="nm:findspot"><span property="gml:pos">32.48555556 44.43444444</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-155" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-150" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1774 Babylon, Babylonia, 1900 
+(116)
+    Burial: c. 155-150 B.C.
+    Contents: 100 AR tetradr. From excavations
+    Alexander III: 43 late post. tetradr. ( <span rel="mint" resource="callatis">Cal-
+        latis ? 1</span>,  <span rel="mint" resource="mesembria">Mesembria 1</span>,  <span rel="mint" resource="assus">Assus 1</span>,  <span rel="mint" resource="cyme_aeolis">Cyme
+        2</span>, <span rel="mint" resource="myrina_aeolis">Myrina 3</span>,  <span rel="mint" resource="temnus">Temnus 7</span>,  <span rel="mint" resource="mytilene">Mytilene 3</span>, 
+         <span rel="mint" resource="colophon">Colophon 1</span>,  <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia 1</span>,  <span rel="mint" resource="miletus">Miletus 1</span>, 
+         <span rel="mint" resource="smyrna">Smyrna 1</span>,  <span rel="mint" resource="chios">Chios 5</span>,  <span rel="mint" resource="cos">Cos 1</span>,  <span rel="mint" resource="rhodes">Rhodes 2</span>, 
+         <span rel="mint" resource="phaselis">Phaselis 2</span>,  <span rel="mint" resource="aspendus">Aspendus 9</span>,  <span rel="mint" resource="perge">Perge 1</span>, 
+        unc. 1)
+    Lysimachus: 4 lifetime tetradr. ( <span rel="mint" resource="lampsacus">Lamp-
+        sacus 2</span>,  <span rel="mint" resource="alexandreia_troas">Alexandreia Troas 1</span>, unc. 1)
+            7 post. tetradr. ( <span rel="mint" resource="byzantium">Byzantium
+        3</span>,  <span rel="mint" resource="calchedon">Calchedon 2</span>,  <span rel="mint" resource="tenedos">Tenedos 1</span>, unc. 1) 
+    <span rel="mint" resource="samothrace">Samothrace: 1 tetradr.</span>
+    <span rel="mint" resource="eretria">Eretria: 3 tetradr.</span>
+    <span rel="mint" resource="athens">Athens: 1 New Style tetradr.</span>
+    Mithradates III, Pontus: 1 tetradr. 
+    <span rel="mint" resource="cyzicus">Cyzicus: 1 tetradr.</span>
+    Eumenes II: 8 tetradr.
+    <span rel="mint" resource="alexandreia_troas">Alexandreia Troas: 1 tetradr.</span>
+    <span rel="mint" resource="ilium">Ilium: 5 tetradr.</span>
+    <span rel="mint" resource="mytilene">Mytilene: 1 tetradr.</span>
+    <span rel="mint" resource="cos">Cos: 2 tetradr.</span>
+    <span rel="mint" resource="side">Side: 6 tetradr.</span>
+    Seleucus II: 1 tetradr. (<span rel="mint" resource="antiocheia_syria">Antiocheia</span>)
+    Antiochus IV: 3 tetradr. (<span rel="mint" resource="antiocheia_syria">Antiocheia 1</span>,
+       <span rel="mint" resource="ace_ptolemais">Ace 2</span>)
+    Demetrius I: 12 tetradr. (<span rel="mint" resource="antiocheia_syria">Antiocheia 11</span>, 
+         <span rel="mint" resource="ace_ptolemais">Ace 1</span>)
+    Disposition: Berlin
+    Regling, ZfN 1928, pp. 92-132, illus.
+</pre>
+</div>
+</div>

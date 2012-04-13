@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="nomisma_region" about="india">
+ <div property="skos:prefLabel" xml:lang="en">India</div>
+ <div property="skos:definition" xml:lang="en">The region of India.</div>
+ <div rel="uncertain_value"><span property="gml:pos">28.6905877 71.2792969</span></div>
+</div>

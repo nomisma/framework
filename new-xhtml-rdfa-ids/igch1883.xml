@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1883">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-480" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1883 Calabria, 1842 
+(181)
+    Burial: c. 480 B.C.? (K) 
+    Contents: 1000+ AR
+    Mainly incuse st. of:
+    <span rel="mint" resource="taras">Taras: incl. incuse Apollo type </span>
+    <span rel="mint" resource="laues">Laus: 2</span>
+    <span rel="mint" resource="siris">Sirinus</span>-<span rel="mint" resource="pyxus">Pyxus</span>: 2
+    <span rel="mint" resource="sybaris">Sybaris</span>
+    <span rel="mint" resource="caulonia">Caulonia</span>
+    <span rel="mint" resource="croton">Croton</span>
+    Disposition: Naples (Santangelo), a selec-
+        tion
+    Schulz, BullInst 1842, p. 75
+</pre>
+</div>
+</div>

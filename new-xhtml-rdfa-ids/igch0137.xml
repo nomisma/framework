@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0137">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.9947222222 23.3444444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+137 Megara, 1904
+(668)
+    Burial: c. <span property="nm:approximateburialdate" content="-295" datatype="xsd date">295</span> B.C. (Price)
+    Contents: 163 AR
+    Alexander III: 52 lifetime and early post. 
+        dr. (<span rel="mint" resource="asia_minor">Asia Minor mints)</span>
+    Philip III: 7 dr. (<span rel="mint" resource="asia_minor">Asia Minor mints)</span> 
+    Lysimachus: 4 dr. (Alexander types, <span rel="mint" resource="colophon">Colo-
+        phon)</span>
+    <span rel="mint" resource="tegea">Tegea:</span> 1 dr.
+    Disposition: Athens 64 as listed
+    Svoronos, VAN 1905, p. 255 (brief mention
+        only). Detailed list of varieties in ANS
+</pre>
+</div>
+</div>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0349">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-85" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-80" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.3997222222 25.2666666667</span></span></div>
+<div class="nm:editedSource">
+<pre>
+349 Delos, 1909
+(313)
+    Burial: c. 85-80 B.C. (T)
+    Contents: 11 AR. From excavations 
+    <span rel="mint" resource="athens">Athens:</span> 4 New Style tetradr.
+            5 New Style dr. (incl. 1 Sullan) 
+            2 New Style triob.
+    Disposition: Athens
+    Svoronos, JIAN 1913, pp. 40-1
+† Thompson, Athens (Delos ΙΓ), p. 521 
+    Hackens, BCH 1965, p. 516
+</pre>
+</div>
+</div>

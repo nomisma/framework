@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1089">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-270" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-230" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.6008333333 33.5236111111</span></span></div>
+<div class="nm:editedSource">
+<pre>1089 Cherronesus (near mod. Sevastopol'), 
+    Crimea oblast, Ukraine, 1904
+    Burial: c. mid 3rd cent. B.C.
+    Contents: 11 AE
+    <span rel="mint" resource="cherronesus">Cherronesus: AE (as BMC 6 [7], 7-8 [4], 
+        several magistrates)</span>
+    Disposition: Sevastopol'
+    Kostsiushko-Valiuzhinich, IAK 20 (1906), p. 93
+</pre>
+</div>
+</div>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2012">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-220" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.8491666667 14.27</span></span></div>
+<div class="nm:editedSource">
+<pre>2012 Naples (anc. Neapolis) environs, 
+(726) Campania, 1931
+    Burial: c. 220 B.C. (Crawford) 
+    Contents: 150+ AR
+    <span rel="mint" resource="cales">Cales: 5 st.</span>
+    <span rel="mint" resource="neapolis_campania">Neapolis: c. 40 st.</span>
+    <span rel="mint" resource="campano-tarentine">Campano-Tarentine: st.</span>
+    <span rel="mint" resource="rome">Roman Rep.: 26 (ROMANO; ROMA)
+            79 quadrig.</span>
+    Disposition: London 50 quadrig.; Paris 1
+    Le Gentilhomme, RN 1934, pp. 4-5 
+    Breglia, Numismatica (1946), p. 5, note 8 
+    Crawford, RRCH 34
+</pre>
+</div>
+</div>

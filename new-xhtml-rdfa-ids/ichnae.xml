@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="ichnae">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Ichnae</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Ichnae in Macedonia.</div>
+ <div property="gml:pos">40.764014 22.591256</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Koufalia"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/491619"/>
+</div>

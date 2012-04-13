@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0719">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-350" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+719 Thrace, before 1965 
+    Burial: c. 350 B.C. (Franke) 
+    Contents: 16 AR, 44 AE
+    <span rel="mint" resource="maroneia">Maroneia: 16 tetradr.
+            44 AE</span>
+    Disposition: private coll.
+    Information from P. Franke who has list and 
+        casts
+</pre>
+</div>
+</div>

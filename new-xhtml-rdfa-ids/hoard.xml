@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="numismatic_term" about="hoard">
+ <div property="skos:prefLabel" xml:lang="de">Schatzfund</div>
+ <div property="skos:prefLabel" xml:lang="en">Hoard</div>
+ <div property="skos:prefLabel" xml:lang="el">Θησαυρός</div>
+ <div property="skos:prefLabel" xml:lang="fr">Trésor</div>
+ <div property="skos:prefLabel" xml:lang="nl">Muntschat</div>
+ <div property="skos:definition" xml:lang="en">A group of coins concealed as a group.</div>
+</div>

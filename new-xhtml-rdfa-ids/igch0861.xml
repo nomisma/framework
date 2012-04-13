@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0861">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-275" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-250" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.4530555556 25.2333333333</span></span></div>
+<div class="nm:editedSource">
+<pre>
+861 Novo selo, c. 12 km. N of Stara 
+    Zagora, Bulgaria, 1955
+    Burial: c. 275-250 B.C. (T)
+    Contents: c. 322 AE. Pot hoard
+    Philip II and Alexander III: 320 
+    <span rel="mint" resource="larissa">Larissa: 1</span>
+    Antiochus I: I
+    Disposition: Stara Zagora 148 Philip, 51
+        Alexander, Larissa and Antiochus
+    Gerasimov, BIAB 21 (1957), p. 324; 26 (1963), 
+        p. 260
+</pre>
+</div>
+</div>

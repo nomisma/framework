@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1550">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-150" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">34.8866666667 36.0127777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1550 El Aweiniye, E of Tartus (anc. Ant-
+    aradus), N. Phoenicia, 1941
+    Burial: c. 150 B.C. (Westermark) 
+    Contents: 79 AR
+    <span rel="mint" resource="aegae_aeolis">Aegae: 19 tetradr.</span> 
+    <span rel="mint" resource="cyme_aeolis">Cyme: 43 tetradr.</span> 
+    <span rel="mint" resource="myrina_aeolis">Myrina: 15 tetradr.</span> 
+    <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia: 2 tetradr.</span>
+    Disposition: SNGvonA., 1594-5, 1636,
+        1638-9, 1663, 2042
+    Seyrig, Trésors du Levant (in press)
+</pre>
+</div>
+</div>

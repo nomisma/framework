@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2230">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-215" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-212" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.0738888889 15.2786111111</span></span></div>
+<div class="nm:editedSource">
+<pre>2230 Syracuse, Achradina, 1899 
+(1030)
+    Burial: 215-12 B.C. (K) 
+    Contents: 300-400 AR
+    Philistis: 113+ 16-litra; 27+ 5-litra 
+    Hieronymus: 14+ 10-litra
+    Alexander III: 3+ tetradr.
+    Antigonus Gonatas: 11+ tetradr.
+    Disposition: Syracuse 9 (Philistis 6, Hiero-
+        nymus 3)
+    Orsi, RIN 1900, pp. 85-90
+    Currò Pisanò, AIIN 1962-4, pp. 221, 239
+</pre>
+</div>
+</div>

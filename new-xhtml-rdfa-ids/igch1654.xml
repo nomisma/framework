@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1654">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-330" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">31.0325 30.4711111111</span></span></div>
+<div class="nm:editedSource">
+<pre>1654 Demanhur (mod. Damanhûr, anc. 
+(322)     Dime-n-Hor = Hermopolis parva), 
+    1896
+    Burial: c. 330 B.C. (Jenkins) 
+    Contents: 11+ AV
+    Philip II: st. (bulk of hoard) 
+    <span rel="mint" resource="lampsacus">Lampsacus: st. (several)</span>
+    <span rel="mint" resource="cyprus">Cyprus: 3 st.</span>
+    <span rel="mint" resource="persia">Persia: 1 daric</span>
+    Nakthorehbe: 1 st. (hieroglyphic)
+    Disposition: unknown
+    Maspero, RecTravEgyptAssyr 1900, pp. 225-6 
+    Chassinat, Bulletin de l'Institut français d'Archéo-
+        logic orientale 1901, pp. 78-86
+    Svoronos, JIAN 1901, p. 160 (quoting Dattari) 
+    Regling, ZfN 1931, pp. 28, 41
+    Jenkins, NC 1955, p. 150 (poss. part of Garbieh 
+        hoard, no. 1656 below)
+</pre>
+</div>
+</div>

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1888">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-473" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-425" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.4630555556 17.2502777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1888 Taranto environs, Calabria, 1929 
+(507)
+    Burial: 473 B.C. (Noe); "somewhat later" 
+        than 470 (Jenkins)
+    Contents: 38 AR
+    <span rel="mint" resource="taras">Taras: 2 st. (1 hippocamp; 1 oecist) </span>
+    <span rel="mint" resource="metapontum">Metapontum: 12 st. (to medium incuse, cf. 
+        Noe 187)</span>
+    <span rel="mint" resource="poseidonia">Poseidonia: 1 st. (early double-relief) </span>
+    <span rel="mint" resource="sybaris">Sybaris: 5 st.</span>
+    <span rel="mint" resource="caulonia">Caulonia: 7 st. (6 incuse; 1 double-relief as 
+        N. 64)</span>
+    <span rel="mint" resource="croton">Croton: 10 st. (incuse: 9 rev. tripod; 1 
+        eagle)</span>
+    <span rel="mint" resource="gela">Gela: 1 tetradr. (Jenkins 156)</span>
+    Disposition: New York 1 Caulonia; Lloyd 1 
+        Taras (SNG 131)
+† Noe, Caulonia, pp. 59-62, illus. (the pedigree for 
+        no. 36 should read "Helbing LXX, 1932, 
+        477")
+    Kraay, NC 1960, pp. 57-65
+    Jenkins, Gala, p. 152
+</pre>
+</div>
+</div>

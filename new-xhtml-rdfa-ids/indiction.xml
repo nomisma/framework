@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="numismatic_term" about="indiction">
+ <div property="skos:prefLabel" xml:lang="en">Indiction</div>
+ <div property="skos:definition" xml:lang="en">A dating system of 15 year periods used in the Late Roman and Byzantine periods.</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Indiction">.</div>
+</div>

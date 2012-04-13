@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="heraclea_ad_latmum">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Herakleia ad Latmum</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Herakleia ad Latmum in Caria.</div>
+ <div property="gml:pos">37.501944 27.524722</div>
+ <div property="skos:related" resource="http://de.wikipedia.org/wiki/Herakleia_am_Latmos"/>
+<div property="skos:related" resource="http://pleiades.stoa.org/places/599640"/>
+</div>

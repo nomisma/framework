@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="antigoneia_syria">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Antigoneia</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Antigonieia in Syria.</div>
+ <div property="gml:pos">36.263350 36.230077</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/658380"/>
+</div>

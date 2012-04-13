@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0858">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-275" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-225" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.4327777778 25.6941666667</span></span></div>
+<div class="nm:editedSource">
+<pre>
+858 Samothrace, before 1968
+    Burial: c. 275 B.C. or later (T) 
+    Contents: 3+ AE
+    <span rel="mint" resource="samothrace">Samothrace</span>
+    Disposition: SNGEvelp. 1083-4
+</pre>
+</div>
+</div>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0101">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.5094444444 22.3727777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+101 Tripolis ?, Arcadia, 1914
+    Burial: 4th cent. B.C. (Oeconomides) 
+    Contents: 35 AR
+    <span rel="mint" resource="aegina">Aegina:</span> 5 st.; 27 dr.; 3 triob.
+    Disposition: Athens
+    Information from H. Oeconomides
+</pre>
+</div>
+</div>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2380">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.322686 5.928773</span></span></div>
+<div class="nm:editedSource">
+<pre>2380 Brusq, near Toulon (anc. Tauroen-
+(168)     tium), before 1902
+    Burial: 2nd-1st cent. B.C. (Jenkins)
+    Contents: AR, AE
+    <span rel="mint" resource="massalia">Massalia: AR
+            AE (medium size) 
+            1500 AE (small)</span>
+    <span rel="mint" resource="rome">Roman Rep.: AE</span>
+    Disposition: unknown
+    BCTH 1902, p. LI (no details)
+</pre>
+</div>
+</div>

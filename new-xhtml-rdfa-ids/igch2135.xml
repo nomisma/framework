@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2135">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-350" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-325" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.2038888889 15.1819444444</span></span></div>
+<div class="nm:editedSource">
+<pre>2135 Megara Hyblaea, 1949 
+    Burial: 350-25 B.C. (Vallet, Villard)
+    Contents: 47 AR. Pot hoard from excavations 
+    <span rel="mint" resource="camarina">Camarina: 1 tetradr.</span>
+    <span rel="mint" resource="syracuse">Syracuse: 1 tetradr.</span>
+    <span rel="mint" resource="siculo_punic">Siculo-Punic: 10 tetradr. (Arethusa/horse 
+        and palm-tree) </span>
+    <span rel="mint" resource="siculo_punic">Ziz: 2 tetradr.</span>
+        Pegasi
+    <span rel="mint" resource="corinth">Corinth: 19 (incl. Per. V with E, N, ΑΛ, Δ) </span>
+    <span rel="mint" resource="ambracia">Ambracia: 2 (as Ravel, A ?/P31; 90/91) </span>
+    <span rel="mint" resource="anactorium">Anactorium: 1 (as BMC pl. 31, 20-same
+        dies) </span>
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: 3 </span>
+    <span rel="mint" resource="leucas">Leucas: 3 (as BMC pl. 34, 18; 35, 21; 36, 
+        18-9) </span>
+    <span rel="mint" resource="locri_epizephyrii">Locri: 1</span>
+    <span rel="mint" resource="syracuse">Syracuse: 2 (pre-Agathoclean) </span>
+    Unc.: 2
+    Disposition: Syracuse
+    Villard, Mél. d'arch. et d'hist. 1951, pp. 45-46 
+    Vallet-Villard, Kokalos 1958, pp. 104-5, illus. 
+    Currò Pisanò AIIN 1962-4, pp. 228, 238
+</pre>
+</div>
+</div>

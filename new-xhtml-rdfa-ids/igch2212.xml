@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2212">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-250" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-240" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.5883333333 12.8261111111</span></span></div>
+<div class="nm:editedSource">
+<pre>2212 Selinunte, acropolis, 1966
+    Burial: c. 250-40 B.C. (K)
+    Contents: 95 AE
+    <span rel="mint" resource="carthage">Carthage: Persephone/horse hd. (11-15 gm.)</span> 
+    Disposition: Palermo
+    Tusa Cutroni, Kokalos 1967, p. 82
+</pre>
+</div>
+</div>

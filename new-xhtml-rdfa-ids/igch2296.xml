@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2296">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.7427777778 5.06555555556</span></span></div>
+<div class="nm:editedSource">
+<pre>2296 Bougie (anc. Saldae), 200 km. E of 
+    Algiers, Algeria, 1929
+    Burial: c. 200 B.C. (Jenkins)
+    Contents: 2500+ AE. (18.45 kg.)
+    Carthage: <span rel="mint" resource="carthage">Carthage mint (as SNGCop. 
+        302 [11]; 307 [78]; 316 [6]; 317 [10];
+        320 [7]; 321 [1]; 326 [12]; 353 [1];
+        397 [1]-some overstruck on Hieron 
+        II of Syracuse)</span>
+            <span rel="mint" resource="siculo_punic">Sicilian mint (as SNGCop. 381)</span>
+    Disposition: Algiers
+    Jenkins-Lewis, Carthage, p. 49
+    Note by E. S. G. Robinson (about 130 specimens 
+        examined)
+</pre>
+</div>
+</div>

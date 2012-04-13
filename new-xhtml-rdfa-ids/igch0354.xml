@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0354">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-600" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-590" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+354 Macedonia, c. 1840? 
+(549, 893)
+    Burial: c. 600-590 B.C. (T) 
+    Contents: 12+ EL
+    Unc. <span rel="mint" resource="asia_minor">Asia Minor:</span> fr. (raised square 6, 
+        swastika 2, "mask" horse hd. 1, 
+        fish hd. 2)
+    Disposition: Sotheby, July 12, 1852, 34-42
+    Noe 540 (based on Borrell, NC 1841, p. 139) 
+        would seem to be part of the same hd. 
+        as Noe 893
+</pre>
+</div>
+</div>

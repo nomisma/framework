@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="cyrene">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Cyrene</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Cyrene in Cyrenaica.</div>
+ <div property="dcterms:partOf" resourece="cyrenaica"/>
+ <div property="gml:pos">32.823041 21.857270</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Cyrene,_Libya"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/373778"/>
+</div>

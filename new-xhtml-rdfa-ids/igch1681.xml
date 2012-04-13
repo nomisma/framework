@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1681">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-260" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">29.8697222222 31.2163888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1681 Saqqara, near Memphis, 20 km. S of 
+    Cairo, 1968
+    Burial: c. 260 B.C. (Jenkins)
+    Contents: 28 AR. Coins, wrapped in cloth, 
+        found during excavations; from vi-
+        cinity of Mastaba 3512, North Saqqâra
+    Ptolemy I: 2 tetradr. (as Svoronos 205, 
+        254)
+    Ptolemy II: 11 tetradr. (as Sv. 548 [5],
+        559 [2], 574 [2], 59 [1], ? [1])
+    Disposition: London 13; Cairo 15
+    Information from G. K. Jenkins
+</pre>
+</div>
+</div>

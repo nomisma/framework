@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0276">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-140" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-80" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.9702777778 23.7238888889</span></span></div>
+<div class="nm:editedSource">
+<pre>
+276 Athens, 1955
+    Burial: c. 140-130 B.C. (T); c. 87 (Price) 
+    Contents: 38+ AE
+    <span rel="mint" resource="athens">Athens:</span> 1 3rd cent. (as Svoronos pl. 22,
+        35 ff.)
+            29 New Style (as Sv. pl. 22, 53-8 
+        [5]; pl. 81 [18]; pl. 24, 62 ff. [6])
+            8 "Delian" types (as Sv. pl. 107, 
+        50 ff. and 75 ff.)
+    Disposition: Athens
+    Varoucha, BCH 1956, pp. 227-8, some illus. 
+    Thompson, Athens, pp. 526 ff.
+    Price, NC 1964, pp. 27-36
+</pre>
+</div>
+</div>

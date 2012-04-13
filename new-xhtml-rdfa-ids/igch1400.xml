@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1400">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-281" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.3672222222 34.0033333333</span></span></div>
+<div class="nm:editedSource">
+<pre>1400 Aksaray (anc. Gaziura), Cappadocia, 
+    1968
+    Burial: 281 B.C.
+    Contents: 19 AR. Pot hoard
+    Alexander III: 15 lifetime and early post. 
+        tetradr. (<span rel="mint" resource="amphipolis">Amphipolis 3</span>, <span rel="mint" resource="lampsacus">Lampsacus 1</span>, 
+        <span rel="mint" resource="sardes">Sardes 1</span>, <span rel="mint" resource="byblus">Byblus 1</span>, <span rel="mint" resource="tyre">Tyre 1</span>, <span rel="mint" resource="babylon">Babylon 7</span>, 
+        unc. mint 1)
+    Philip III: 3 tetradr. (<span rel="mint" resource="babylon">Babylon</span>)
+    Seleucus I: 1 tetradr. (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Tigrim</span>) 
+    Disposition: private coll.
+    Pfeiler, SM 1969, pp. 49-54, illus.; 1971, p. 65
+</pre>
+</div>
+</div>

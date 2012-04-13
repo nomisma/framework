@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="denomination" about="aureus">
+ <div property="skos:prefLabel" xml:lang="en">Aureus</div>
+ <div property="skos:definition" xml:lang="en">Roman-period gold coin.</div>
+ <div>Material: <a rel="nm:material" href="av">av</a></div>
+ <div property="skos:note">In the early imperial system established by Augustus, an aureus was worth 25 denarii, 100 sestertii, and 400 asses.</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Aureus"/>
+</div>

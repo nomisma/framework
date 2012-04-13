@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1334">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-125" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.6597222222 27.2977777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1334 Priene, 1902-8
+(839) 
+    Burial: c. 125 B.C.
+    Contents: 121 AE. From excavations 
+    <span rel="mint" resource="priene">Priene</span>
+    Disposition: Berlin 
+    Regling, Priene, pp. 175 f.
+</pre>
+</div>
+</div>

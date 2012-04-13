@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0748">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-320" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.0211111111 24.8358333333</span></span></div>
+<div class="nm:editedSource">
+<pre>
+748 Gorni Voden, c. 25 km. S of Plovdiv, 
+    Bulgaria, 1960
+    Burial: c. 330-320 B.C. (T)
+    Contents: AR. Pot hoard
+    <span rel="mint" resource="the_thracian_chersonese">Thracian Chersonese: hemidr.</span> 
+    <span rel="mint" resource="parium">Parium: hemidr.</span>
+    Disposition: Asenovgrad 4 Chers., 2 Parium
+    Gerasimov, BIAB 26 (1963), p. 258
+</pre>
+</div>
+</div>

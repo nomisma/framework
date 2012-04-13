@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2078">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-450" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.3088888889 13.5819444444</span></span></div>
+<div class="nm:editedSource">
+<pre>2078 Agrigento (anc. Acragas), 1918
+    Burial: c. 450 B.C. (K) 
+    Contents: 10 AR
+    <span rel="mint" resource="rhegium">Rhegium: 1 ob. </span>
+    <span rel="mint" resource="agrigentum">Acragas: 3 ob.</span> 
+    <span rel="mint" resource="himera">Himera: 1 ob. </span>
+    <span rel="mint" resource="leontini">Leontini: 1 ob. </span>
+    <span rel="mint" resource="syracuse">Syracuse: 4 ob.</span>
+    Disposition: Syracuse
+    Currò Pisanò, AIIN 1962-4, p. 225
+</pre>
+</div>
+</div>

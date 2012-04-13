@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2277">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-250" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.2055555556 9.35527777778</span></span></div>
+<div class="nm:editedSource">
+<pre>2277 Orgosolo, 15 km. S of Nuoro, Sar-
+    dinia, 1932
+    Burial: c. 250 B.C. (Jenkins)
+    Contents: 17 AE. From excavations; hoard? 
+    Carthage: 3 <span rel="mint" resource="siculo_punic">Sicilian mint (as SNGCop. 94, 
+        102, 109)</span>
+            14 <span rel="mint" resource="sardinia">Sardinian mint (as SNGCop. 
+        144)</span>
+    Disposition: unknown
+    Taramelli, NSc 1932, p. 528
+</pre>
+</div>
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0467">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-150" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">45.7 23.1333333333</span></span></div>
+<div class="nm:editedSource">
+<pre>
+467 Ocolisu Mic, c. 21 km. SSE of Deva, 
+    Rumania, c. 1803
+    Burial: 3rd cent. B.C. or later (T) 
+    Contents: 280 AV. Pot board
+    Lysimachus: st.
+    Disposition: dispersed
+    Winkler, SCSCluj 1955, p. 72
+    Possibly the same find as no. 466 above
+</pre>
+</div>
+</div>

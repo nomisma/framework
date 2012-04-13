@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1390">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-65" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.8752777778 35.455</span></span></div>
+<div class="nm:editedSource">
+<pre>1390 Amastris, Paphlagonia, before 1925
+(41)
+    Burial: c. 65 B.C. (Pfeiler)
+    Contents: 88+ AE
+    <span rel="mint" resource="amisus">Amisus: 83+</span> 
+    <span rel="mint" resource="sinope">Sinope: 3+</span> 
+    <span rel="mint" resource="dia">Dia: 2</span>
+    Disposition: Istanbul
+    Noe (from Regling) records 116 (Amisus 
+        106, Sinope 8, Dia 2)
+</pre>
+</div>
+</div>

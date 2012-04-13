@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1884">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-480" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-470" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.2 16.3166694444</span></span></div>
+<div class="nm:editedSource">
+<pre>1884 S. Stefano di Rogliano, 10 km. SSE 
+(915)     of Cosenza, Bruttium, c. 1910 
+    Burial: c. 480-470 B.C. (K)
+    Contents: c. 300 ? incuse AR. Found during 
+        farming
+    <span rel="mint" resource="metapontum">Metapontum: 6 st. (2 spread; 3 medium; 
+        1 dumpy)</span>
+    <span rel="mint" resource="poseidonia">Poseidonia: 1 st.</span>
+    <span rel="mint" resource="sybaris">Sybaris: 2 st.</span>
+    <span rel="mint" resource="caulonia">Caulonia: 3 st. (1 spread; 2 medium)</span> 
+    <span rel="mint" resource="croton">Croton: 6 st. (4 spread; 2 dumpy with heron 
+        symbol)</span>
+    Disposition: Reggio 18
+    Catanuto, NSc 1932, pp. 383-4
+</pre>
+</div>
+</div>

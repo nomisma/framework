@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2227">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-250" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.715 15.0908333333</span></span></div>
+<div class="nm:editedSource">
+<pre>2227 Pachino, extreme SE of Sicily, 1923 
+(780)
+    Burial: 250-200 B.C. (K)
+    Contents: 2000+ AE. Pot hoard
+    Hieron II (Poseidon/trident)
+    Disposition: Syracuse 48 AE of Hieron from 
+        Cittadella (Noto), 1926 (Annuli 9-11, 
+        p. 226) may be part of this bd.
+    Orsi's notes
+    Magnaguti, Numismatica 1939, p. 39
+</pre>
+</div>
+</div>

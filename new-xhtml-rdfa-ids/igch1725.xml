@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1725">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-30" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">31.2025 29.9119444444</span></span></div>
+<div class="nm:editedSource">
+<pre>1725 Alexandria ("Rivaye d'Alexan-
+(33)     dria"), 1904?
+    Burial: 30 B.C.? (Jenkins)
+    Contents: 900 AR
+    Ptolemy XII Auletes and/or Cleopatra VII: 
+        tetradr.
+    Disposition: unknown
+    Eddé, Boll. di Num. 1905, pp. 129, 140 (no details 
+        but presumably the series Svoronos 1815-40 
+        is meant)
+</pre>
+</div>
+</div>

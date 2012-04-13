@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2028">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-230" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>2028 Bruttium, 1929
+    Burial: late 3rd cent. B.C. (Robinson, Jen-
+        kins-Lewis)
+    Contents: 25 AR
+    <span rel="mint" resource="carthage">Carthage: quarter-shekels </span>
+    Disposition: London
+    BMQ 1930, p. 15, illus.
+    Jenkins-Lewis, Carthage, p. 48 
+    Robinson, NC 1964, p. 44, illus.
+</pre>
+</div>
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0654">
+<span rel="nm:findspot"><span property="gml:pos">44.38083333 22.81166667</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-73" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+654 Hotarani, 30 km. SSE of Turnu Se-
+    verin, Rumania, 1914
+    Burial: after 73 B.C. 
+    Contents: 28+ AR. Pot hoard
+    <span rel="mint" resource="thasos">Thasos: 3 spread-flan tetradr.</span>
+    <span rel="mint" resource="rome">Roman Rep.: 25 den.</span> 
+    Disposition: dispersed
+    Mitrea, Dacia 1941-4, p. 384
+</pre>
+</div>
+</div>

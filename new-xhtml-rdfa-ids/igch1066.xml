@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1066">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-275" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">45.0466666667 35.3652777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1066 Myrmecium (mod. Cape Karantin), 
+    just N of Kerch', Crimea oblast, Ukraine, 
+    1960
+    Burial: c. 300-275 B.C.
+    Contents: 32 AE. Pot hoard
+    <span rel="mint" resource="panticapaeum">Panticapaeum: AE (as BMC 17-18 [16], 23 
+        [12]; unc. [4])</span>
+    Disposition: Leningrad
+    Brabich, SA 1964, no. 4, pp. 193-5
+</pre>
+</div>
+</div>

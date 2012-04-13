@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1004">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-430" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-370" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">45.3575 36.4777777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1004 Kerch' (anc. Panticapaeum), Crimea 
+(557)     oblast, Ukraine, 1907?
+    Burial: late 5th-early 4th cent. B.C. 
+    Contents: 200-300 AR
+    <span rel="mint" resource="panticapaeum">Panticapaeum: AR (type unknown)</span>
+    <span rel="mint" resource="samos">Samos: AR (type unknown)</span>
+    Disposition: Leningrad (part, merged with 
+        main coll.)
+    Bertier de la Garde, NS(Russian) 1911, p. 37, 
+        note
+</pre>
+</div>
+</div>

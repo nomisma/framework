@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0254">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-150" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">35.5172222222 24.0197222222</span></span></div>
+<div class="nm:editedSource">
+<pre>
+254 Canea (anc. Cydonia) environs, Crete, 
+(197)     1922
+    Burial: c. 150 B.C. (Seager) 
+    Contents: 1154+ AR. Pot hoard
+     <span rel="mint" resource="macedonia">Macedonia:</span> 9 tetrob.
+     <span rel="mint" resource="boeotia">Boeotia:</span> 1 dr. 
+     <span rel="mint" resource="chalcis">Chalcis:</span> 1 dr. 
+     <span rel="mint" resource="histiaea">Histiaea:</span> 160 tetrob.
+     <span rel="mint" resource="corinth">Corinth:</span> 2 dr. 
+     <span rel="mint" resource="argos_argolis">Argos:</span> 8 triob. 
+     <span rel="mint" resource="cydonia">Pseudaeginetica:</span> 4 triob.
+     <span rel="mint" resource="cydonia">Cydonia: 910 fr. 
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40467">ANS 1944.100.40467</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40470">ANS 1944.100.40470</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40469">ANS 1944.100.40469</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40481">ANS 1944.100.40481</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40492">ANS 1944.100.40492</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40502">ANS 1944.100.40502</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40456">ANS 1944.100.40456</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40482">ANS 1944.100.40482</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40490">ANS 1944.100.40490</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40489">ANS 1944.100.40489</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40500">ANS 1944.100.40500</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40468">ANS 1944.100.40468</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40493">ANS 1944.100.40493</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40503">ANS 1944.100.40503</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40455">ANS 1944.100.40455</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40494">ANS 1944.100.40494</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40483">ANS 1944.100.40483</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40454">ANS 1944.100.40454</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40499">ANS 1944.100.40499</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40487">ANS 1944.100.40487</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40488">ANS 1944.100.40488</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40463">ANS 1944.100.40463</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40498">ANS 1944.100.40498</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40472">ANS 1944.100.40472</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40461">ANS 1944.100.40461</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40495">ANS 1944.100.40495</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40485">ANS 1944.100.40485</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40496">ANS 1944.100.40496</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40450">ANS 1944.100.40450</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40463">ANS 1944.100.40463</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40449">ANS 1944.100.40449</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40462">ANS 1944.100.40462</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40477">ANS 1944.100.40477</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40465">ANS 1944.100.40465</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40464">ANS 1944.100.40464</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40471">ANS 1944.100.40471</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40452">ANS 1944.100.40452</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40478">ANS 1944.100.40478</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40451">ANS 1944.100.40451</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40457">ANS 1944.100.40457</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40484">ANS 1944.100.40484</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40497">ANS 1944.100.40497</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40479">ANS 1944.100.40479</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40480">ANS 1944.100.40480</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40458">ANS 1944.100.40458</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40491">ANS 1944.100.40491</a>       
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40501">ANS 1944.100.40501</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40466">ANS 1944.100.40466</a>     
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40453">ANS 1944.100.40453</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40459">ANS 1944.100.40459</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40460">ANS 1944.100.40460</a></span>
+     <span rel="mint" resource="itanus">Itanus: 1 dr., 1 fr.
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40651">ANS 1944.100.40651</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40650">ANS 1944.100.40650</a></span>
+     <span rel="mint" resource="tanus">Tanus: 12 fr.       
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.40860">ANS 1944.100.40860</a></span>
+     "Orion": 1 fr.
+     Unc. of <span rel="mint" resource="crete">Crete:</span> 42 fr.
+     <span rel="mint" resource="rhodes">Rhodes:</span> 1 didr. 
+     <span rel="mint" resource="cyrene">Cyrene:</span> 1 didr.
+    Disposition: Athens 150; New York 51; 
+        Oxford 23; London ?
+† Seager, NNM 23 (1924)
+    Robinson, NC 1928, pp. 172 ff.
+    Milne, NC 1943, p. 84 (Oxford lot ex Evans) 
+    Robert, Études, pp. 197-8
+</pre>
+</div>
+</div>

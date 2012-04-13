@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2386">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-70" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-30" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.7277777778 4.71305555556</span></span></div>
+<div class="nm:editedSource">
+<pre>2386 Castelet de Fontvielle, 5 km. NE of 
+    Arles, 1969-1970
+    Burial: mid 1st cent. B.C.
+    Contents: 58 AR, 1 AE
+    <span rel="mint" resource="massalia">Massalia: 48 ob. and smaller fr. (some 
+        halved)
+            1 AE</span>
+    Imitations (Gallic, Gallo-Roman etc.): 10 AR
+    Disposition: private coll., Arles
+    Rolland, RN 1970, pp. 111-5, illus.
+</pre>
+</div>
+</div>

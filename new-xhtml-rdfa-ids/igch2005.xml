@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2005">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-230" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>2005 Italy, 1862 
+(503)
+    Burial: c. 230 B.C. (Crawford) 
+    Contents: AE
+    <span rel="mint" resource="cosa">Cosa: 2</span>
+    <span rel="mint" resource="aquinum">Aquinum: a few</span>
+    <span rel="mint" resource="aesernia">Aesernia: 2</span>
+    <span rel="mint" resource="cales">Cales: many</span>
+    <span rel="mint" resource="neapolis_campania">Neapolis: many</span>
+    <span rel="mint" resource="suessa__aurunca">Suessa: 2</span>
+    <span rel="mint" resource="arpi">Arpi: a few</span>
+    <span rel="mint" resource="rome">Roman Rep.: many ROMANO, ROMA 
+        issues</span>
+    Disposition: dispersed
+    Sambon, Recherches, p. 33 
+    Thomsen, ERC I, p. 120 
+    Crawford, RRCH 28
+</pre>
+</div>
+</div>

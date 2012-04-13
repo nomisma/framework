@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0522">
+<span rel="nm:findspot"><span property="gml:pos">43.14777778 25.61388889</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-125" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+522 Samovodene, just N of Veliko Târ-
+(905)     novo, Bulgaria, 1933
+    Burial: c. 125 B.C.? (T) 
+    Contents: 25 AR, 50 AE
+    Alexander III: 4 late post. tetradr. (<span rel="mint" resource="mesembria">Me-
+        sembria)</span>
+    Imit. Philip III: 5 tetradr.
+    <span rel="mint" resource="macedonia_1st_region">Macedonia, 1st Region: 1 tetradr.</span>
+    <span rel="mint" resource="thasos">Thasos: 15 spread-flan tetradr.</span>
+    <span rel="mint" resource="odessus">Odessus: 50 AE</span>
+    Disposition: Sofia 1 Alexander; Veliko 
+        Târnovo remainder
+    Gerasimov, BIAB 8 (1934), p. 469; BullSocArch 
+        Varna 10 (1956), p. 74
+    The earlier publication mentions tetradr. 
+        of Maroneia as part of a total of 23 AR
+</pre>
+</div>
+</div>

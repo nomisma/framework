@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2128">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-350" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>2128 Sicily, 1962
+    Burial: 400-350 B.C. (K) 
+    Contents: 95 AR
+    <span rel="mint" resource="syracuse">Syracuse:</span> decadr. (Euainetos 80, Kimon 
+        15)
+    Disposition: dispersed
+    Information from P. R. Franke
+</pre>
+</div>
+</div>

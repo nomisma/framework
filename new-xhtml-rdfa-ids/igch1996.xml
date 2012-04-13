@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1996">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-235" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.39 16.5588888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1996 Pisticci, 24 km. W of Metaponto, 
+    Lucania, 1934
+    Burial: c. 235 B.C.
+    Contents: 31 AR, 1 AE. In metal container
+    <span rel="mint" resource="taras">Taras: 28 st. (27 Per. VIII; 1 Per. IX) 
+            1 dr.</span>
+    <span rel="mint" resource="heraclea_lucaniae">Heracleia: 1 dr.</span>
+    <span rel="mint" resource="metapontum">Metapontum: 1 dr. (obv. owl)
+            1 AE</span>
+    Disposition: Reggio
+    Procopio, AIIN 1954, pp. 49-52
+    Crawford 93 containing in addition 1 half-
+        quad., 1 vict., and 3 quin. may be part 
+        of this hd.; if so, the date of burial 
+        will have to be brought down to the 
+        end of the cent.
+</pre>
+</div>
+</div>

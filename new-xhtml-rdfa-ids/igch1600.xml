@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1600">
+<span rel="nm:findspot"><span property="gml:pos">32.99194444 35.68972222</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-125" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1600 Golan (anc. Gaulanitis or Trachoni-
+    tis), 1932
+    Burial: c. 125 B.C. (Westermark)
+    Contents: 7 AR (all pl.)
+    Antiochus VII: 4 tetradr. (<span rel="mint" resource="tyre">Tyre</span>) 
+    Demetrius II, 2nd reign: 3 tetradr. (<span rel="mint" resource="tyre">Tyre</span>) 
+    Disposition: dispersed
+    Seyrig, Trésors du Levant (in press). Latest date 
+        185 S.E.
+</pre>
+</div>
+</div>

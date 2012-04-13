@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0644">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-89" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.4525 15.9669444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+644 Mazin, Croatia, Yugoslavia, 1896 
+(666)
+    Burial: c. 89 B.C. (Bahrfeldt)
+    Contents: c. 865 AE. Pot hoard with jewelry 
+        frag.
+    Magna Graecia: 5 (<span rel="mint" resource="salapia">Salapia 1</span>, <span rel="mint" resource="teate">Teate 2</span>, 
+        unc. 2)
+    <span rel="mint" resource="syracuse">Syracuse (Hieron II): 4</span>
+    <span rel="mint" resource="caphya">Caphyae Arcadiae: 1</span>
+    Ptolemy VIII: 15
+    Ptolemy X: 12
+    <span rel="mint" resource="carthage">Carthage: 505</span>
+    <span rel="mint" resource="numidia">Numidia: 328</span>
+    Aes rude
+    Aes signatum
+    Aes grave
+    Roman and Romano-Campanian
+    Disposition: Zagreb almost all
+        Brunsmid, Vjesnik Hrvatskoga Archeol. Drustva 2 
+        (1896-7), pp. 1-42; 4 (1899-1900), p. 81; 
+        6 (1902), p. 167; 8 (1905), p. 176
+    Bahrfeldt, BMzB 1900, pp. 2863-8, 2885-90, 
+        2898-900, 2914-6; 1901, pp. 2929-322 -  
+        Mazin, pp. 1-29
+    Patsch, Schriften der Balkaner Komm. 1 (Vienna, 
+        1900), p. 52
+    Blanchet, RN 1901, pp. 290-3 (review of Bahr-
+        feldt, BMzB 1900)
+    Willers, NZ 1904, p. 5, note 5; 1919, p. 127 
+    Haeberlin, Aes Grave (Frankfurt, 1910), p. 16 
+    Cf. Jenkins-Lewis, Carthage, p. 61, Hoard XXI
+</pre>
+</div>
+</div>

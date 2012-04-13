@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2131">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-340" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.625462 14.740162</span></span></div>
+<div class="nm:editedSource">
+<pre>2131 Centuripe, 1952
+    Burial: c. 340 B.C. (Jenkins)
+    Contents: 88 AR. Found during road work 
+    <span rel="mint" resource="rhegium">Rhegium: 2 tetradr.</span>
+    <span rel="mint" resource="agrigentum">Acragas: 1 tetradr.</span>
+    <span rel="mint" resource="camarina">Camarina: 1 tetradr.</span>
+    <span rel="mint" resource="leontini">Leontini: 2 tetradr.</span>
+    <span rel="mint" resource="messana">Messana: 2 tetradr.</span>
+    <span rel="mint" resource="syracuse">Syracuse: 1 decadr. (Euainetos type, griffin 
+        hd. symbol)
+            4 tetradr.</span>
+    <span rel="mint" resource="athens">Athens: 2 tetradr. (5th cent.)</span>
+        Pegasi
+    <span rel="mint" resource="corinth">Corinth: 41 (incl. 2 Per. V signed Ε) </span>
+    <span rel="mint" resource="ambracia">Ambracia: 7 (see below)</span>
+    <span rel="mint" resource="anactorium">Anactorium: (BMC pl. 31, 16)</span>
+    <span rel="mint" resource="leucas">Leucas: 18 (incl. 7 with caduceus) </span>
+    <span rel="mint" resource="syracuse">Syracuse: 6</span>
+    Disposition: Syracuse
+† Gentili, NSc 1954, pp. 70-7, illus. 
+    Jenkins, ANSCent., pp. 372-3
+    Currò Pisanò, AIIN 1962-4, pp. 229-30
+    Totals for mints given above are those of 
+        Gentili, but Ravel, Ambracia was not 
+        available to him. In 1969 K noted the 
+        following 10 varieties: 1 early issue, 
+        Ravel 98, 105, 127, 137, 146, 161, 166, 
+        187 (2). The totals for Corinth or 
+        Leucas should probably be reduced 
+        accordingly
+</pre>
+</div>
+</div>

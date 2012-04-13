@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0538">
+<span rel="nm:findspot"><span property="gml:pos">41.08527778 21.76305556</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-125" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+538 Gradesnica, c. 30 km. N of Vraca, 
+    Bulgaria, 1952
+    Burial: c. 125-100 B.C. (T)
+    Contents: 60 AR. Pot hoard 
+    <span rel="mint" resource="thasos">Thasos: spread-flan tetradr.</span> 
+    Disposition: dispersed
+    Gerasimov, BIAB 20 (1955), p. 603
+</pre>
+</div>
+</div>

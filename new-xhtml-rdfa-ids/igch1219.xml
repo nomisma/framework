@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1219">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-330" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1219 Caria, 1965-6
+    Burial: c. 330 B.C. (M)
+    Contents: c. 120 AR
+    <span rel="mint" resource="halicarnassus">Caria, Pixodarus: c. 100 didr.</span>
+    <span rel="mint" resource="sardes">Persian satraps: c. 20 tetradr. (as Traité 
+        pl. 89, 6-12; 91, 9-17)</span>
+    Disposition: dispersed
+</pre>
+</div>
+</div>

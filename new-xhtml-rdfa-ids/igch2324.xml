@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2324">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-237" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-218" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.155779 -6.214256</span></span></div>
+<div class="nm:editedSource">
+<pre>2324 Montemolin, near Marchena, 50 km. 
+    E of Seville, before 1871
+    Burial: 237-218 B.C. (Villaronga)
+    Contents: 2+ AR
+    <span rel="mint" resource="hispano-punic">Hispano-Punic: 1 tridr. (as Robinson 6)
+            1 didr. (as R. 7) </span>
+    Disposition: Gago Coll., now Seville (Ayun-
+        tamiento)
+† Delgado, MAE I, p. 119 and fig. 
+    Villaronga, MHC (forthcoming)
+</pre>
+</div>
+</div>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1350">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.4186111111 27.1386111111</span></span></div>
+<div class="nm:editedSource">
+<pre>1350 Izmir region, Ionia, 1969 
+    Burial: c. 100 B.C. (M)
+    Contents: 288 AE
+    <span rel="mint" resource="smyrna">Smyrna (as BMC 79 ff.)</span>
+    Disposition: Ankara (inv. no. 1865) 
+    Information from Saadet Taner
+</pre>
+</div>
+</div>

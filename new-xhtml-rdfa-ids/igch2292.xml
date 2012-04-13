@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2292">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-212" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.0661111111 8.45333333333</span></span></div>
+<div class="nm:editedSource">
+<pre>2292 Sulcis (mod. S. Antioco), 60 km. 
+    WSW of Cagliari, Sardinia, 1874
+    Burial: 212 B.C. (Jenkins)
+    Contents: AE
+    Carthage: <span rel="mint" resource="sardinia">Sardinian mint (as SNGCop. 387 
+        and other types)</span>
+    <span rel="mint" resource="rome">Roman Rep.: 1 libral as</span>
+    Disposition: unknown
+    Spano, BAS 1858, p. 67, note 5 
+    Crawford, RRCH 46
+</pre>
+</div>
+</div>

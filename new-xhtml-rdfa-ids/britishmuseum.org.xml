@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="collection" about="britishmuseum.org">
+ <div property="skos:prefLabel" xml:lang="en">The British Museum.</div>
+ <a rel="foaf:homepage" href="http://britishmuseum.org">web site</a>
+</div>

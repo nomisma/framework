@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1427">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1427 Asia Minor, southern, before 1938 
+    Burial: late 4th-3rd cent. B.C. (M) 
+    Contents: "some" AR
+    <span rel="mint" resource="aspendus">Aspendus: double-sigloi (as SNGvonA.
+        4573-8)
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.50795">ANS 1944.100.50795</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1967.152.481">ANS 1967.152.481</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1967.152.478">ANS 1967.152.478</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1967.152.480">ANS 1967.152.480</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1967.152.479">ANS 1967.152.479</a></span>
+    Disposition: New York 6
+    Raymond, Coin Topics 9 (1938), p. 6
+</pre>
+</div>
+</div>

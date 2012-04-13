@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2318">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.2575 3.18166666667</span></span></div>
+<div class="nm:editedSource">
+<pre>2318 Rosas (anc. Rhoda), E of Figueras, 
+(868)     1850
+    Burial: 4th cent. B.C. (Jenkins)
+    Contents: 36+ AR
+    <span rel="mint" resource="emporiae">Emporiae: 31 fr.</span>
+    Unc. Spanish: 5 fr.
+    Disposition: J. Gaillard; Barcelona; Paris 
+        (cf. CMG 478-84); Madrid; London 2
+    Gaillard, Catalogue des monnaies receuillies en 
+        Espagne (Madrid, 1844), nos. 367, 377-85 
+    Delgado, MAE III, pp. 175, 179, 194
+† Zobel y Zangroniz, MNE, 1877-9, pp. 109-13, 
+        illus.
+    Kolb, RN 1923, pp. 1-7, illus.
+    Amoros, MEAD, p. 50
+    Beltran y Villagrasa, Ampurias 1945-6, p. 294 
+    de Guadan, MPER, pp. 73-5
+</pre>
+</div>
+</div>

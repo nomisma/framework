@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0660">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-55" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-50" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.9366666667 24.4077777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+660 Cavalla (anc. Neapolis), Macedonia, 
+    1963
+    Burial: 55-50 B.C. (T)
+    Contents: c. 114 AR
+    Aesillas: c. 14 tetradr.
+    <span rel="mint" resource="rome">Roman Rep.: c. 100 den. (to 55 B.C., fdc)</span> 
+    Disposition: dispersed
+    Hackens, BCH 1965, p. 54, note 7 and supple-
+        mentary information by correspondence
+</pre>
+</div>
+</div>

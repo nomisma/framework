@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="argos_orestikon">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Argos Orestikon</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Argos Orestikon in Epirus.</div>
+ <div rel="uncertain_value"><span property="gml:pos">40.45 21.25</span></div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Orestida"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/229530"/>
+</div>

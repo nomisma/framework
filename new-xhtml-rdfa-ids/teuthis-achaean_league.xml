@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="teuthis-achaean_league">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Teuthis</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Teuthis in Arcadia.</div>
+ <div property="gml:pos">37.597441 22.041285</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Teuthis"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/570713"/>
+</div>

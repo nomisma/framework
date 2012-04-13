@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="malienses_lamia">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Malienses</div>
+ <div property="skos:definition" xml:lang="en">The mint of the Malienses at the ancient site of Lamia in Thessaly.</div>
+ <div property="gml:pos">38.902996 22.442593</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Malians_(Greek_tribe)"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/540902"/>
+</div>

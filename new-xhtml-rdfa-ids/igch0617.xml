@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0617">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.2102777778 23.5483333333</span></span></div>
+<div class="nm:editedSource">
+<pre>
+617 Vraca environs, Bulgaria, 1939 
+    Burial: 2nd-1st cent. B.C. (T)
+    Contents: 90 AR
+    <span rel="mint" resource="apollonia_illyria">Apollonia, Illyria: dr.</span> 
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: dr.</span>
+    Disposition: dispersed
+    Gerasimov, BIAB 13 (1939), p. 342
+</pre>
+</div>
+</div>

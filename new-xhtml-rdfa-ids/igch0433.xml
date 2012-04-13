@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0433">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.7319444444 22.6936111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+433 Gephyra, near Thessalonica, Mace-
+    donia, 1965
+    Burial: late 4th cent. B.C. (T) 
+    Contents: 14 AR
+    Philip II: 10 tetradr.
+    Philip III: 1 dr.
+    <span rel="mint" resource="boeotia">Boeotia: 1 dr. (2nd cent.)</span> 
+    <span rel="mint" resource="athens">Athens:</span> 2 tetradr. (4th cent.)
+    Disposition: Thessalonica
+    Petsas, A Delt 1966, Chronika, p. 341
+    The Boeotian drachm is probably an in-
+        trusion
+</pre>
+</div>
+</div>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2346">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.9922222222 1.41361111111</span></span></div>
+<div class="nm:editedSource">
+<pre>2346 C'an Juan d'en Cauna, Ibiza, 1967 
+    Burial: 2nd-1st cent. B.C. (Almagro) 
+    Contents: 121 AE
+    <span rel="mint" resource="ebusus">Ebusus: 120 (as Vives MH, pl. 53)</span> 
+    <span rel="mint" resource="iol">Iol: 1</span>
+    Disposition: Ibiza
+† Almagro Gorbea, Excavaciones arqueologicas en 
+        Ibiza (Excavaciones arqueologicas en España 
+        56, Madrid, 1967), pp. 12-23, illus.
+    Villaronga, GacNum 14 (1969), p. 41
+</pre>
+</div>
+</div>

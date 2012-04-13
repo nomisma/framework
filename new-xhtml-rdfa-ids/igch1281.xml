@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1281">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-320" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1281 Asia Minor, western, 1890-5 
+(73)
+    Burial: c. 320-300 B.C. (M)
+    Contents: c. 17 AR
+    <span rel="mint" resource="cyzicus">Cyzicus: tetradr.</span>
+    Disposition: dispersed
+    Imhoof-Blumer, SNR 1913, pp. 24-6, illus. 
+</pre>
+</div>
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0491">
+<span rel="nm:findspot"><span property="gml:pos">43.42694444 24.5225</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-150" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-125" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+491 Jasen, c. 10 km. W of Pleven, Bulgaria, 
+    1966
+    Burial: c. 150-125 B.C. (T)
+    Contents: 20 AR. Pot hoard
+    <span rel="mint" resource="macedonia_1st_region">Macedonia, 1st Region: tetradr.</span>
+    <a rel="mint" href="thasos">Thasos</a>: spread-flan tetradr.
+    Disposition: Pleven 4 Macedonia, 2 Thasos
+    Gerasimov, BIAB 30 (1967), p. 190
+</pre>
+</div>
+</div>

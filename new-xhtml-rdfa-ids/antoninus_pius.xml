@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="roman_emperor" about="antoninus_pius">
+ <div property="skos:prefLabel" xml:lang="en">Antoninus Pius</div>
+ <div>Roman emperor from 11 July 138 to 7 March 161</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Antoninus_Pius"/>
+</div>

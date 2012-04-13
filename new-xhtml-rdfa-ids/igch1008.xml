@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1008">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-350" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">46.6522222222 31.6172222222</span></span></div>
+<div class="nm:editedSource">
+<pre>1008 Kupurub, suburb of Ochakov, Niko-
+(576)     laev oblast, Ukraine, 1890-1900? 
+    Burial: 400-350 B.C. ?
+    Contents: 16+ AE
+    <span rel="mint" resource="olbia">Olbia: aes grave (12 as AMNG I.1, pl. 8, 
+        4-not 3, as in Noe)</span>
+    Disposition: Leningrad 4 (merged with main 
+        collection)
+    Book 44, Record of Acquisitions (manuscript, 
+        Numismatic Division, Hermitage)
+    Hess Nov. 28, 1912, 57-68
+    Possibly more than one hoard
+</pre>
+</div>
+</div>

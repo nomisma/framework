@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0741">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-320" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.0213888889 24.97</span></span></div>
+<div class="nm:editedSource">
+<pre>
+741 Kasamovo, 15 km. SW of Plovdiv, 
+(536)     Bulgaria, 1894
+    Burial: c. 330-320 B.C. (T) 
+    Contents: c. 250 AR
+    <span rel="mint" resource="abdera_thrace">Abdera: 20 dr.</span>
+    <span rel="mint" resource="the_thracian_chersonese">Thracian Chersonese: 200 hemidr.</span> 
+    <span rel="mint" resource="parium">Parium: 30 hemidr.</span>
+    Disposition: Sofia 13 Abdera, 13 Parium, 
+        47 Chers.
+    RN 1895, pp. 103-6 (detailed record of part of 
+        Sofia lot)
+    BSAB 4 (1914), p. 271
+    RN 1923, p. 29
+</pre>
+</div>
+</div>

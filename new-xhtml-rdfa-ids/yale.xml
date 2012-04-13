@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="collection" about="yale">
+ <div property="skos:prefLabel" xml:lang="en">Yale</div>
+ <div property="skos:altLabel">Numismatic Collection of Yale University</div>
+ <div property="skos:definition" xml:lang="en">The numismatic collection of Yale University. It is currently part of the Yale Art Galleries, though previously it was housed in the library.<br/>
+Yale University Art Gallery<br/>
+P.O. Box 208271<br/>
+New Haven, CT 06520-8271</div>
+ <div property="gml:pos">41.31115 -72.92655</div>
+ <div><a rel="foaf:homepage" href="http://artgallery.yale.edu/">Website</a>.</div>
+</div>

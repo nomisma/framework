@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1655">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-330" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">31.1944444444 29.9038888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1655 Alexandria environs, 1908 
+(34)
+    Burial: c. 330 B.C.? (Jenkins)
+    Contents: 4 AV
+    <span rel="mint" resource="lampsacus">Lampsacus: st.</span>
+    Disposition: Jameson 1435, 1437-8, 2217
+    Eddé, RassNum. 1909, p. 55 
+    Regling, ZfN 1931, p. 28
+    Regling regards the other entries of Noe 34
+        as another hd. (no. 1683 below)
+</pre>
+</div>
+</div>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2209">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-250" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.8 12.433333</span></span></div>
+<div class="nm:editedSource">
+<pre>2209 Lilybaeum, 1922
+(620)
+    Burial: c. 250 B.C.
+    Contents: 150 EL
+    <span rel="mint" resource="carthage">Carthage: st.; dist. (Jenkins-Lewis Grp. 
+        VI, VII, X)
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.79625">ANS 1944.100.79625</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.79626">ANS 1944.100.79626</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.79620">ANS 1944.100.79620</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.79622">ANS 1944.100.79622</a></span>
+    Disposition: New York 4; London 2
+    Jenkins-Lewis, Carthage, p. 60
+    Cf. Trapani, 1921, no. 2211 below
+</pre>
+</div>
+</div>

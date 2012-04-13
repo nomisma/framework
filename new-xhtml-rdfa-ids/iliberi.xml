@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="iliberi">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Iliberi</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Iliberi in Hispania Ulterior.</div>
+ <div property="gml:pos">37.176484 -3.597934</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Granada"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/265921"/>
+</div>

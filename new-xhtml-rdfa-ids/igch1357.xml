@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1357">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-84" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.2141666667 28.3622222222</span></span></div>
+<div class="nm:editedSource">
+<pre>1357 Mugla (anc. Pisye) environs, Caria, 
+    1965
+    Burial: 84 B.C. (Price)
+    Contents: 350+ AR
+    <span rel="mint" resource="stratoniceia">Stratonicea: 290+ dr. and hemidr.</span>
+    <span rel="mint" resource="rhodes">Rhodes: 60+ dr. and hemidr.</span>
+    Disposition: London 12
+    von Aulock, JNG 1967, pp. 7-15, illus.
+</pre>
+</div>
+</div>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1392">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-65" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.2997222222 36.3116666667</span></span></div>
+<div class="nm:editedSource">
+<pre>1392 Samsun, 1969
+    Burial: c. 65 B.C. (Pfeiler) 
+    Contents: 276 AE
+    <span rel="mint" resource="amisus">Amisus: 250+</span>
+    <span rel="mint" resource="amastris">Amastris: some</span>
+    Disposition: dispersed
+    185 coins of the type Aegis/Nike from 
+        Amisus and Amastris were registered 
+        en bloc
+</pre>
+</div>
+</div>

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="tyrrheni">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Tyrrheni</div>
+ <div property="skos:definition" xml:lang="en">The unlocated mint of the Tyrrheni in Sicily.</div>
+ <div rel="uncertain_value"><span property="gml:pos">37.987 13.696</span></div>
+</div>

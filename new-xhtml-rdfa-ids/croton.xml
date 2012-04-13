@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="croton">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Croton</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Croton in Bruttium.</div>
+ <div property="gml:pos">39.080763 17.127080</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Crotone"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/452317"/>
+</div>

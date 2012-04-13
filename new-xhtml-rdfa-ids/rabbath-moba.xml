@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="rabbath-moba">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Rabbath-Moba</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Rabbath-Moba in Arabia.</div>
+ <div property="gml:pos">31.272021 35.736000</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/697632"/>
+</div>

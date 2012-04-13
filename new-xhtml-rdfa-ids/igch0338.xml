@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0338">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-87" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-85" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">35.0638888889 24.9347222222</span></span></div>
+<div class="nm:editedSource">
+<pre>
+338 Gortyna (mod. Aghioi Dheka), Crete, 
+    c. 1966
+    Burial: c. 87-85 B.C.?
+    Contents: 329 AR. Pot hoard
+    <span rel="mint" resource="gortyna">Gortyna:</span> 2 dr. (Zeus hd./Europa on bull)
+            102 dr. (Zeus hd./hero stdg.)
+            181 dr. (Zeus hd./Apollo stdg.) 
+    Imit. Rhodes (struck on Crete ?): 44 dr.
+        (43 ctmk.)
+    Disposition: unknown
+    Price, RN 1966, pp. 128-43, illus. 
+    Photographs and some casts now in BM
+</pre>
+</div>
+</div>

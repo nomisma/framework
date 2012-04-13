@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0478">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-130" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.6247222222 22.9725</span></span></div>
+<div class="nm:editedSource">
+<pre>
+478 Thessalonica, Macedonia, c. 1929
+(899)
+    Burial: 165-160 B.C. (T); c. 130 (Lewis)
+    Contents: c. 300 AR
+    <span rel="mint" resource="athens">Athens: New Style tetradr.
+    <a rel="nm:item" href="http://numismatics.org/collection/1944.100.24614">ANS 1944.100.24614</a>
+    <a rel="nm:item" href="http://numismatics.org/collection/1953.54.6">ANS 1953.54.6</a>
+    <a rel="nm:item" href="http://numismatics.org/collection/1968.34.83">ANS 1968.34.83</a></span>
+    Disposition: London 60; New York 3 (1 ex 
+        Berry); private colls.
+† Thompson, Athens, pp. 129, 308, 475; NC 1962,
+        p. 312
+    Lewis, NC 1962, p. 279
+</pre>
+</div>
+</div>

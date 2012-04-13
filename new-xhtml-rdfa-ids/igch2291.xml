@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2291">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-216" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>2291 Sardinia, 1933
+    Burial: c. 216 B.C. ( Jenkins)
+    Contents: 74+ AE
+    Carthage: 1 <span rel="mint" resource="siculo_punic">Sicilian mint (as SNGCop. 94)</span>
+            66<span rel="mint" resource="sardinia"> Sardinian mint (as SNGCop.
+        144 [13]; 202 [6]; 246 [38]; 387 [9]) </span>
+    Disposition: London 29
+    Note by E. S. G. Robinson in BM
+</pre>
+</div>
+</div>

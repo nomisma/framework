@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0939">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-125" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.8102777778 20.7030555556</span></span></div>
+<div class="nm:editedSource">
+<pre>
+939 Starcevo, Kârdzali district, Bulgaria, 
+    1961
+    Burial: c. 125-100 B.C. (T) 
+    Contents: c. 25 AE. Pot hoard
+    <span rel="mint" resource="maroneia">Maroneia: (as Grose 3981-3)</span> 
+    Disposition: dispersed
+    Gerasimov, BIAB 26 (1963), p. 265
+</pre>
+</div>
+</div>

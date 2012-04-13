@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1445">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-300" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1445 Asia Minor, before 1951 
+    Burial: c. 300 B.C. (M)
+    Contents: 40+ AR
+    Alexander III: lifetime and early post. dr. 
+        (<span rel="mint" resource="abydus">Abydus 1</span>, <span rel="mint" resource="lampsacus">Lampsacus 4</span>, <span rel="mint" resource="colophon">Colophon 4</span>, 
+        <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia 1</span>, <span rel="mint" resource="miletus">Miletus 1</span>, <span rel="mint" resource="teos">Teos 1</span>, unc. 
+        mints 28)
+    Disposition: Ankara 40 (inv. nos. 640-1, 
+        643-5, 648-77, 720-4)
+    Information from Saadet Taner
+</pre>
+</div>
+</div>

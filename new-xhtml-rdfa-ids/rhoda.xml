@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="rhoda">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">The mint at the ancient site of Rhoda in Hispania Citerior.</div>
+ <div property="gml:pos">42.266667 3.166667</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Roses,_Girona"/>
+</div>

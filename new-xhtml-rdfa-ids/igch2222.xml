@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2222">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-250" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.3088888889 13.5819444444</span></span></div>
+<div class="nm:editedSource">
+<pre>2222 Agrigento (anc. Acragas), c. 1900 
+(440)
+    Burial: 250-200 B.C. (K)
+    Contents: 60,000 AE. In amphora
+    Hieron II (Poseidon/trident)
+    Disposition: Syracuse 60
+    Orsi, NSc 1903, p. 429
+    Currò Pisanò, AIIN 1962-4, pp. 222, 236
+    See also nos. 2224-5 below 
+</pre>
+</div>
+</div>

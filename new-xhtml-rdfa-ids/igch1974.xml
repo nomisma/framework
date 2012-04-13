@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1974">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-275" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.2707 16.2208</span></span></div>
+<div class="nm:editedSource">
+<pre>1974 Gerace (anc. Locri), 1955 or later
+    Burial: c. 275 B.C. (K) 
+    Contents: 2 AR, c. 34 AE
+    Pyrrhus: 2 tetradr.
+    <span rel="mint" resource="locri_epizephyrii">Locri: 34 AE (2 as SNGCop. 1877; 20 as 
+        SNGCop. 1888 and McClean pl. 58, 12; 
+        12 unc.)</span>
+    Disposition: dispersed
+    Information from P. Franke
+</pre>
+</div>
+</div>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0180">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.41 22.1269444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+180 Megalopolis, Arcadia, 1947
+    Burial: c. <span property="nm:approximateburialdate" content="-225" datatype="xsd date">225</span> B.C. (Robinson, Hackens) 
+    Contents: 40 AR
+    Alexander III: 21 tetradr., all periods
+        (<span rel="mint" resource="amphipolis">Amphipolis 3,</span> <span rel="mint" resource="pella_macedon">Pella 3,</span> <span rel="mint" resource="megalopolis">Megalopolis 3,</span> 
+       <span rel="mint" resource="sicyon">Sicyon 3,</span>unc. <span rel="mint" resource="peloponnesus">Pelop. 1,</span> <span rel="mint" resource="aradus">Aradus 3,</span> 
+        <span rel="mint" resource="babylon">Babylon 1,</span> unc. 4*
+    Philip III: 1 tetradr. (<span rel="mint" resource="babylon">Babylon)</span> 
+    Lysimachus: 2 lifetime tetradr. (<span rel="mint" resource="sardes">Sardes,</span> 
+        <span rel="mint" resource="amphipolis">Amphipolis)</span>
+    Ptolemy II: 14 tetradr.
+    Arsinoë II: 2 octadr.
+    Disposition: D. M. Robinson
+    Robinson, ANSMN 4 (1950), pp. 13-28, illus. 
+    Noe, ANSMN 10 (1962), pp. 39-41 
+    Hackens, Antidorum W. Peremans, pp. 74-5
+* Robinson's attributions for his 18-22 are 
+        highly uncertain. The coins are in poor 
+        condition and most of their markings 
+        are not clear on the plates. No. 20 is 
+        Aradus and no. 19 is possibly the same 
+        mint
+</pre>
+</div>
+</div>

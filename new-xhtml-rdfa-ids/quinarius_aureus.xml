@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="denomination" about="quinarius_aureus">
+ <div property="skos:prefLabel" xml:lang="en">Quinarius aureus</div>
+ <div property="skos:definition" xml:lang="en">Roman-period gold coin.</div>
+ <div>Material: <a rel="nm:material" href="av">av</a></div>
+ <div property="skos:note">The term 'quinarius aureus' is not anciently attested.</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Aureus"/>
+</div>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1480">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-500" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-480" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.1241666667 35.9216666667</span></span></div>
+<div class="nm:editedSource">
+<pre>1480 Seleucis region, between Antakya 
+(55)     and Latakia (anc. Antiocheia and 
+    Laodiceia ad Mare), before 1898
+    Burial: c. 500-480 B.C. (Schlumberger) 
+    Contents: AR
+    <span rel="mint" resource="acanthus">Acanthus: some tetradr.?</span>
+    <span rel="mint" resource="mende">Mende: some tetradr.?</span>
+    <span rel="mint" resource="edoni">Getas, king of the Edoni: 2 octadr.</span>
+    Disposition: Paris 2
+    Babelon, Traité II.1, nos. 1458-9
+    Svoronos, J IAN 1918-19, p. 43 (Bab. 1459 
+        wrongly attributed to Ichnae)
+    Schwabacher, OpuscArch. 6 (1950), pp. 141 f. 
+    Schlumberger, L'argent grec, p. 9, no. 15
+</pre>
+</div>
+</div>

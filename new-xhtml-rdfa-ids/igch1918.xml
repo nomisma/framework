@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1918">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-350" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1918 S. Demetrio Corone, 25 km. SW of 
+    Sybaris, Lucania, 1955?
+    Burial: c. 350 B.C. (K)
+    Contents: 15 AR
+    <span rel="mint" resource="taras">Taras: 3 st. (to Per. III)</span>
+    <span rel="mint" resource="metapontum">Metapontum: 5 st. (to Noe 467)</span>
+    <span rel="mint" resource="poseidonia">Poseidonia: 2 st. (early double-relief)</span>
+    <span rel="mint" resource="thurium">Thurium: 3 st. (including HP and Molossus)</span>
+    <span rel="mint" resource="croton">Croton: 2 st. (Apollo/Heracles and snakes)</span>
+    Disposition: Reggio
+    Procopio, AIIN 1956, p. 221 
+    Details noted by K at Reggio
+</pre>
+</div>
+</div>

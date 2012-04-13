@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1957">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-282" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.4630555556 17.2502777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1957 Taranto, 1926
+(1059)
+    Burial: c. 282 B.C.
+    Contents: 36+ AV
+    <span rel="mint" resource="taras">Taras: c. 15 st.; c. 14 half-st.; c. 5 quarter-
+        st.; c. 2 eighth-st.</span>
+    Disposition: Vlasto 7 (Cat. 6, 31, 36-8, 40-1; 
+        Jameson 2 (Cat. 2392-93); New York 2 
+        (SNG 1038, 1040)
+    Vlasto, NC 1930, pp. 144-51, illus.
+    A 1934 letter from Vlasto in the ANS adds 
+        to the totals given in NC 1930 3 st. 
+        (NC, pp. 145-7, nos. 1, 3, 6) and 1 
+        eighth-st., and states that more half-st. 
+        and quarter-st. from the hd. had also 
+        come on the market
+</pre>
+</div>
+</div>

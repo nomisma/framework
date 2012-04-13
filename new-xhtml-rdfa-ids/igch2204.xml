@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2204">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-270" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.43 14.4791666667</span></span></div>
+<div class="nm:editedSource">
+<pre>2204 Serra Orlando (anc. Morgantina), 
+    4 km. NE of Piazza Armerina, 1966
+    Burial: c. 270 B.C. (K) 
+    Contents: 44 AV
+    Philip II: 3 st.
+    Alexander III: 10 st.
+    Philip III: 2 st.
+    Agathocles: 5 st. (Athena/thunderbolt) 
+    Hicetas: 21 st. (Persephone/biga) 
+    Pyrrhus: 2 st. (Athena/Nike)
+            1 hemist. (Artemis/Nike)
+    Disposition: Syracuse
+    Stillwell, AJA 1967, pp. 248, 250, illus.
+</pre>
+</div>
+</div>

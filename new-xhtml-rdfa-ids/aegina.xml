@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="head_1911_region mint" about="aegina">
+ <div property="skos:prefLabel">Aegina</div>
+ <div property="skos:definition">The region of Aegina as defined in <a rel="dcterms:source" href="head_1911">Head (1911)</a>.</div>
+ <div property="dcterms:partOf" resource="europe"/>
+ <div property="gml:pos">37.750000 23.433333</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Aegina"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/579853"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/579844"/>
+</div>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0928">
+<span rel="nm:findspot"><span property="gml:pos">43.3475 26.22222222</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-125" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+928 Osikovo, c. 40 km. E of Veliko Târ-
+    novo, Bulgaria, 1966
+    Burial: c. 125-100 B.C. (T) 
+    Contents: 27 AR. Pot hoard
+    Alexander III: 3 late post. tetradr. (<span rel="mint" resource="odessus">Odes-
+        sus</span>)
+    <span rel="mint" resource="maroneia">Maroneia: 1 spread-flan tetradr.</span>
+    <span rel="mint" resource="macedonia_1st_region">Macedonia, 1st Region: 1 tetradr.</span> 
+    <span rel="mint" resource="thasos">Thasos: 22 spread-flan tetradr.</span> 
+    Disposition: Targoviste
+    Gerasimov, BIAB 30 (1967), p. 188
+</pre>
+</div>
+</div>

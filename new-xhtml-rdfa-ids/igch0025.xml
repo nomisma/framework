@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0025">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.9427777778 22.9519444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+25 Corinth environs, 1952-1953 
+    Burial: <span property="nm:approximateburialdate_start" content="-430" datatype="xsd:date">430</span>-<span property="nm:approximateburialdate_end" content="-415" datatype="xsd:date">415</span> B.C. (Jenkins) 
+    Contents: 250+ AR
+    Pegasi: Corinth and colonies
+    Disposition: London 21 (Corinth 17, Leucas 
+        2, Ambracia 2)
+    Jenkins, BMQ 1954, p. 13, illus. (5) 
+    Additional information from Charles Hersh
+</pre>
+</div>
+</div>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2063">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-490" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.967018 13.456478</span></span></div>
+<div class="nm:editedSource">
+<pre>2063 Bolognetta, 20 km. SE of Palermo, 
+    1945
+    Burial: c. 490 B.C. (K)
+    Contents: c. 100 AR. Pot hoard
+    <span rel="mint" resource="himera">Himera: 22 dr. (14 rev. incuse square; 8 rev. 
+        hen)</span>
+    Disposition: Palermo 22
+    Tusa Cutroni, AIIN 1962-4, pp. 272-4
+</pre>
+</div>
+</div>

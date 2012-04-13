@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1733">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-350" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-325" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.4308333333 43.8211111111</span></span></div>
+<div class="nm:editedSource">
+<pre>1733 Sokhta, Dzhava raion, IUgo-Osetin-
+    skaia Anton. Oblast (in anc. Iberia), Geor-
+    gia, 1930-1940
+    Burial: before 325 B.C. (Golenko, Kapa-
+        nadze)
+    Contents: AR
+    <span rel="mint" resource="colchis">Colchis: hemidr.</span>
+    Disposition: dispersed
+    Pakhomov IV, 1002
+</pre>
+</div>
+</div>

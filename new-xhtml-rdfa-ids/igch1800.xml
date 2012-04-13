@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1800">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.5461111111 45.0527777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1800 Urmia, Media Atropatene, 1914 
+(1148)
+    Burial: 3rd cent. B.C.? (Le Rider) 
+    Contents: AR
+    Alexander III: tetradr.
+    Disposition: dispersed
+    Vasmer, p. 282
+</pre>
+</div>
+</div>

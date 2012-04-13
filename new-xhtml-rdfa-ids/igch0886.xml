@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0886">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-190" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+886 Rumania?, c. 1936 
+(122)
+    Burial: c. 200-190 B.C. (T)
+    Contents: 22+ AR
+    Alexander III: late post. tetradr. (<span rel="mint" resource="heracleia_pontica">Hera-
+        cleia Pont. 1</span>, <span rel="mint" resource="pergamum">Pergamum 2</span>, unc. <span rel="mint" resource="caria">Caria
+        1</span>, <span rel="mint" resource="callatis">Callatis 4</span>, <span rel="mint" resource="mesembria">Mesembria 2</span>, <span rel="mint" resource="dionysopolis_thrace">Dionyso-
+        polis 1</span>, <span rel="mint" resource="odessus">Odessus 7</span>, <span rel="mint" resource="cabyle">Cabyle 2</span>, unc. 
+        <span rel="mint" resource="euxine">Euxine 2</span>)
+    Disposition: New York 21
+    Listed in Noe under Balkans but Newell's 
+        record says Rumania
+</pre>
+</div>
+</div>

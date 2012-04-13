@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="material" about="cu">
+ <div property="skos:prefLabel" xml:lang="en">Copper</div>
+<div>Alternate label: "<span property="skos:altLabel" xml:lang="la">Cuprum</span>"</div> 
+<div property="skos:definition" xml:lang="en">'CU' is the numismatic abbreviation for unalloyed (or nearly so) copper.</div>
+</div>

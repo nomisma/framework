@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2350">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.9780555556 2.81166666667</span></span></div>
+<div class="nm:editedSource">
+<pre>2350 Gerona, 1931
+    Burial: 1st cent. B.C. (Jenkins)
+    Contents: 1087 AR
+    <span rel="mint" resource="emporiae">Emporiae: 10 dr. (Amoros, Dracmes, Grp. 
+        VI-VII)</span>
+    Iberian: 19 den. (<span rel="mint" resource="kese">Cese</span>)
+    <span rel="mint" resource="rome">Roman Rep.: 1058 den. (to Sydenham 
+        798, c. 68 B.C.)</span>
+    Disposition: unknown
+    Information from L. Villaronga
+</pre>
+</div>
+</div>

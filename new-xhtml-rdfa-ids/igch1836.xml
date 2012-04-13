@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1836">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">25.9530555556 80.1430555556</span></span></div>
+<div class="nm:editedSource">
+<pre>1836 Pachkura Buzurg, Hamirpur district, 
+    c. 70 km. S of Cawnpur, Uttar Pradesh, 
+    India, 1877
+    Burial: 2nd cent. B.C. (Le Rider) 
+    Contents: 98+ AR
+    Eucratides I: 3 dr.
+    Menander: 9 tetradr.; 31 dr. 
+    Apollodotus I: 34 dr.
+    Antimachus II: 21 dr.
+    Disposition: Paris 2
+    Smith, Indian Ant. 1904, pp. 217-8
+</pre>
+</div>
+</div>

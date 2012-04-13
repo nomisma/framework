@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1683">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-250" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">31.2025 29.9119444444</span></span></div>
+<div class="nm:editedSource">
+<pre>1683 Alexandria environs, 1908 
+(34)
+    Burial: c. 250 B.C. (Jenkins) 
+    Contents: 4 AR, ? AE
+    Ptolemy II: 4 tetradr. (<span rel="mint" resource="tyre">Tyre, yr. 30 = 
+        256 B.C.</span>; <span rel="mint" resource="sidon">Sidon, yr. 31 = 255 B.C.</span>) 
+    Unspecified AE
+    Disposition: Eddé; Avierino
+    Eddé, RassNum. 1909, p. 55 
+    Regling, ZfN 1931, p. 28
+    Regling regards the Lampsacus gold of 
+        Noe 34 as a separate hd. (see no. 1655 
+        above)
+</pre>
+</div>
+</div>

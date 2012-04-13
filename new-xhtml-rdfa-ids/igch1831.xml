@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1831">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-290" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">33.7538888889 72.8188888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1831 Bhir Mound, Taxila, Punjab, Paki-
+(1071)     stan, 1924
+    Burial: c. 300-290 B.C. (Le Rider) 
+    Contents: 1167 AR. Pot hoard with jewelry
+    Alexander III: 1 tetradr. (<span rel="mint" resource="myriandrus">Myriandrus</span>); 
+        1 dr. (<span rel="mint" resource="babylon">Babylon</span>)
+    Philip III: 1 tetradr. (<span rel="mint" resource="babylon">Babylon</span>)
+    <span rel="mint" resource="persia">Persia: 1 siglos ("king with dagger")</span> 
+    <span rel="mint" resource="india">Indian punch-marked bars and coins: 1163</span>
+    Disposition: Taxila; New Delhi
+    Marshall, Taxila 1-2 (Cambridge, 1951), pp. 
+        105-6, 110-11, 751, 795, 834-5, 843-50, 
+        853-5
+</pre>
+</div>
+</div>

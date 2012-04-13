@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0121">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div class="nm:editedSource">
+<pre>
+121 Ougri, Achaea, before 1892 
+(777)
+    Burial: c. <span property="nm:approximateburialdate" content="-300" datatype="xsd date">300</span> B.C. (T)
+    Contents: 2 AV, 6 AR
+    Philip II: 1 st. (<span rel="mint" resource="pella_macedon">Pella)</span>
+    Alexander III: 1 st. (<span rel="mint" resource="miletus">Miletus)</span>
+            4 tetradr. (<span rel="mint" resource="amphipolis">Amphipolis 1- 
+        time of Cassander,</span> <span rel="mint" resource="aradus">Aradus 1,</span> <span rel="mint" resource="ace_ptolemais">Ace 1 of 
+        yr. 25, unc. 1)</span>
+    <span rel="mint" resource="athens">Athens:</span> 2 tetradr. (Svoronos pl. 27, 35-6) 
+    Disposition: Athens
+    Information from M. Oeconomides
+</pre>
+</div>
+</div>

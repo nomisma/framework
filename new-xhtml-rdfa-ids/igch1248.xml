@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1248">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.4141666667 29.9905555556</span></span></div>
+<div class="nm:editedSource">
+<pre>1248 Kütahya (anc. Cotiaeum), Phrygia, 
+    1967
+    Burial: 4th cent. B.C. (M) 
+    Contents: 20+ AR
+    <span rel="mint" resource="cyzicus">Cyzicus: 3+ st.</span> 
+    <span rel="mint" resource="ephesus">Ephesus: 5+ tetradr.</span>
+    Disposition: dispersed
+</pre>
+</div>
+</div>

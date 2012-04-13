@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0414">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-310" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-305" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.1536111111 24.1636111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+414 Drama ?, Macedonia, 1935
+(339)
+    Burial: 310-305 B.C. (Newell)
+    Contents: 3 AV, 17 AR
+    Philip II: 1 st.; 1 tetrob.
+    Alexander III: 1 st.; 1 quarter-st.
+            13 early post. tetradr. (<span rel="mint" resource="amphipolis">Am-
+        phipolis 9,</span> <span rel="mint" resource="marium">Marium 1,</span> <span rel="mint" resource="side">Side 2,</span> unc. 1)
+            3 dr. (<span rel="mint" resource="sardes">Sardes 1,</span> <span rel="mint" resource="miletus">Miletus 1,</span> 
+        unc. 1)
+    Disposition: unknown
+    Information from W. Schwabacher
+</pre>
+</div>
+</div>

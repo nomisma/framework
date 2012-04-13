@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="cimolos">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Cimolos</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Cimolos on Cimolos, Cyclades.</div>
+ <div property="gml:pos">36.793183 24.573460</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Kimolos"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/589867"/>
+</div>

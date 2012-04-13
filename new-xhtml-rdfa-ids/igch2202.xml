@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2202">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-275" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.0738888889 15.2786111111</span></span></div>
+<div class="nm:editedSource">
+<pre>2202 Syracuse, 1926
+    Burial: c. 275 B.C. (K)
+    Contents: 5 AE
+    <span rel="mint" resource="syracuse">Syracuse:</span> 5 (as Head, Syracuse, pl. 10, 7
+        [3]; 12 [2])
+    Disposition: Syracuse
+    Currò Pisanò AIIN 1962-4, p. 226
+</pre>
+</div>
+</div>

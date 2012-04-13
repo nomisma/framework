@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1702">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-180" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">27.1869444444 31.1547222222</span></span></div>
+<div class="nm:editedSource">
+<pre>1702 Asyut (anc. Lycopolis), 300 km. S of 
+    Cairo, 1936
+    Burial: c. 180 B.C. (Jenkins) 
+    Contents: 4+ AR
+    Ptolemy II: 2 tetradr. (<span rel="mint" resource="joppa">Joppa,
+    <a rel="nm:item" href="http://numismatics.org/collection/1944.100.76239">ANS 1944.100.76239</a></span>
+    <span rel="mint" resource="ephesus">Ephesus
+    <a rel="nm:item" href="http://numismatics.org/collection/1944.100.76252">ANS 1944.100.76252</a></span>) 
+    Ptolemy V: 2 tetradr. (<span rel="mint" resource="salamis_cyprus">Salamis) 
+    <a rel="nm:item" href="http://numismatics.org/collection/1944.100.78688">ANS 1944.100.78688</a>
+    <a rel="nm:item" href="http://numismatics.org/collection/1944.100.78687">ANS 1944.100.78687</a></span>) 
+    Disposition: New York
+    Unpublished; ANS file reference "Mallawi
+        hoard," purchased from Khawan Bros.
+</pre>
+</div>
+</div>

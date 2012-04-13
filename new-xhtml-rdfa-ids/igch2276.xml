@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2276">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-270" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-230" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>2276 Algeria, before 1949
+    Burial: mid 3rd cent. B.C. (Jenkins) 
+    Contents: 46 AR
+    Alexander III: 1 (<span rel="mint" resource="abydus">Abydus?</span>)
+    Ptolemaic: 1
+   <span rel="mint" resource="cyrene">Cyrene: 44 didr. (as BMC pls. 21-2) </span>
+    Disposition: unknown
+    Note in ANS
+</pre>
+</div>
+</div>

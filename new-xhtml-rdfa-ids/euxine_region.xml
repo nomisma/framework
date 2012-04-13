@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="euxine_region">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Euxine</div>
+ <div property="skos:definition" xml:lang="en">Stub for the general location of unspecified mints of coins in the name of Alexander and Lysimachus in the Black Sea Region.</div>
+ <div rel="uncertain_value"><span property="gml:pos">44.55 28.47</span></div>
+</div>

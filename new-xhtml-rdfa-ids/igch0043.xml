@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0043">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.8933333333 21.3755555556</span></span></div>
+<div class="nm:editedSource">
+<pre>
+43 Elis, 1918
+(383)
+    Burial: c. <span property="nm:approximateburialdate" content="-400" datatype="xsd date">400</span> B.C. (T)
+    Contents: 4 EL, 12 AV
+    <span rel="mint" resource="cyzicus">Cyzicus:</span> 4 EL 
+    <span rel="mint" resource="persia">Persia: 12 darics
+    <a rel="nm:item" href="http://numismatics.org/collection/1944.100.73488">ANS 1944.100.73488</a></span>
+    Disposition: Athens 12 (11 darics, 1 Cyzicus 
+        as v. Fritze 208); New York 1 (daric) 
+    Regling, ZfN 1931, p. 25
+    The bronze listed by Noe does not belong 
+        to the hd.
+</pre>
+</div>
+</div>

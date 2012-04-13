@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2234">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-212" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.0738888889 15.2786111111</span></span></div>
+<div class="nm:editedSource">
+<pre>2234 Syracuse, 1954 
+    Burial: 212 B.C. (Gentili) 
+    Contents: 8 AR
+    <span rel="mint" resource="syracuse">Syracuse:</span> 4 didr. (Hieronymus)
+            2 12-litra (democracy)
+    Ptolemy I: 1 tetradr. 
+    Ptolemy II: 1 tetradr. 
+    Disposition: Syracuse
+† Gentili, AIIN 1956, pp. 109-11; 5-6, p. 285 
+    Currò Pisanò, AIIN 1962-4, pp. 230-1, 239
+</pre>
+</div>
+</div>

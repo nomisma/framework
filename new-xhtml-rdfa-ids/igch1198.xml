@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1198">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-400" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.6722222222 26.8861111111</span></span></div>
+<div class="nm:editedSource">
+<pre>1198 Samos, Ionia, c. 1953 
+    Burial: c. 400 B.C.
+    Contents: c. 10 AR
+    <span rel="mint" resource="samos">Samos: tetradr.</span>
+    Disposition: dispersed
+    Barron, Samos, p. 100
+</pre>
+</div>
+</div>

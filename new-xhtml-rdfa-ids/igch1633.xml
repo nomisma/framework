@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1633">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-600" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-500" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1633 Cyrenaica, before 1850
+(294)
+    Burial: 6th cent. B.C. (Jenkins)
+    Contents: 13 AR. Hoard?
+    <span rel="mint" resource="cyrene">Cyrene: 5 tetradr. 
+            5 dr.
+            3 fr.</span>
+    Disposition: Paris
+† Duchalais, RN 1850, pp. 381-9, illus.
+    Müller, Afrique 1, pp. 9-10
+    Babelon, Traité II.1, pl. 63 
+    Robinson, BMCCyr, pl. 1
+</pre>
+</div>
+</div>

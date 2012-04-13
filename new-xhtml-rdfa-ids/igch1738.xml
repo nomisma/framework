@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1738">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.7286111111 44.7858333333</span></span></div>
+<div class="nm:editedSource">
+<pre>1738 Tiflis, in anc. Iberia, 1870-1875 
+(1108)
+    Burial: 2nd cent. B.C. (M)
+    Contents: 6 AR
+    <span rel="mint" resource="bactria">Bactria: unc. kings</span>
+    Disposition: unknown
+† Talyzin, Zapiski Obshchestva liubitelei Kavkazskoi 
+        arkheologii 1 (Tiflis, 1875), p. 184
+    Vasmer, ZfN 1926, p. 278
+    Pakhomov II, no. 319
+    Zograph, "Nakhodky," no. 79
+</pre>
+</div>
+</div>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2079">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-450" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.195183 15.555153</span></span></div>
+<div class="nm:editedSource">
+<pre>2079 Messina, c. 1940
+    Burial: c. 450 B.C.? (K) 
+    Contents: AR
+        Fractions
+    <span rel="mint" resource="rhegium">Rhegium</span> 
+    <span rel="mint" resource="agrigentum">Acragas </span>
+    <span rel="mint" resource="eryx">Eryx</span>
+    <span rel="mint" resource="himera">Himera</span>
+    <span rel="mint" resource="hipana">Hipana </span>
+    <span rel="mint" resource="zancle">Zancle</span>
+    <span rel="mint" resource="zancle">Samians at Zancle</span>
+    <span rel="mint" resource="messana">Messana </span>
+    <span rel="mint" resource="segesta">Segesta</span>
+    Disposition: dispersed
+    Gabrici, BollCircNumNap 1941, pp. 5 ff.
+    Two hoards reported (cf. SNGLloyd 1082) 
+</pre>
+</div>
+</div>

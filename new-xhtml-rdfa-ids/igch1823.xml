@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1823">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-170" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.1655555556 69.41</span></span></div>
+<div class="nm:editedSource">
+<pre>1823 Ai-Khanum, in anc. Bactria, Afgha-
+    nistan, 1970
+    Burial: c. 170 B.C.?
+    Contents: 682 AR. From excavations 
+    Agathocles: 6 dr. (bilingual)
+    <span rel="mint" resource="india">Indian punch-marked: 676</span>
+    Disposition: Kabul
+    Audoin-Bernard, Comptes rendus de l'Académie
+        des Inscriptions 1971, pp. 435-46, illus.
+</pre>
+</div>
+</div>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0733">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-340" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-330" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.1811111111 26.3769444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+733 Kitno, c. 60 km. W of Sumen, Bulgaria, 
+    1939
+    Burial: c. 340-330 B.C. (T)
+    Contents: 30 AE. Pot hoard 
+    Philip II
+    Disposition: dispersed
+    Gerasimov, BIAB 13 (1939), p. 343
+</pre>
+</div>
+</div>

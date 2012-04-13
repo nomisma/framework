@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0913">
+<span rel="nm:findspot"><span property="gml:pos">42.13861111 24.76638889</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-125" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+913 Mârzjan, Plovdiv district, Bulgaria, 
+(709)     1933-1934
+    Burial: c. 125-100 B.C.? (T) 
+    Contents: 106 AR
+    <span rel="mint" resource="thasos">Thasos: spread-flan tetradr.</span> 
+    <span rel="mint" resource="athens">Athens:</span> New Style tetradr. 
+    Disposition: dispersed
+    Gerasimov, BIAB 8 (1934), p. 471
+</pre>
+</div>
+</div>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1024">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-370" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-325" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.3997222222 41.5688888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1024 Ėrgeta, Zugdidi raion, Georgia, 1926
+    Burial: before 325 B.C. (Golenko, Kapa-
+        nadze)
+    Contents: AR. Pot hoard 
+    <span rel="mint" resource="colchis">Colchis: hemidr.</span>
+    Disposition: Zugdidi (part)
+† Pakhomov III, 639 
+    Zograph, "Nakhodky," 41
+</pre>
+</div>
+</div>

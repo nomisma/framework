@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1810">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">34.2025 48.3713888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1810 Nehavend, c. 70 km. S of Hamadan
+(736)    (anc. Ecbatana, Media), 1935
+    Burial: c. 100 B.C. ? (Le Rider)
+    Contents: 15 AE
+    Mithradates I, Parthia: 1
+    Mithradates II: 14
+    Disposition: R. H. McDowell
+    Information from R. H. McDowell, who states 
+        that two hds. were found-this and no. 1811 
+        below
+</pre>
+</div>
+</div>

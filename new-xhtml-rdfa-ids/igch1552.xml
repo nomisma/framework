@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1552">
+<span rel="nm:findspot"><span property="gml:pos">35.265 35.92555556</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-150" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1552 Arab el Mulk (anc. Paltus), Seleucis, 
+    1940
+    Burial: c. 150 B.C.
+    Contents: 28+ AR
+    <span rel="mint" resource="ephesus">Ephesus: 13 dr. (as BMC 121 ff.)</span> 
+    Antiochus III: 1 dr. (<span rel="mint" resource="ecbatana">Ecbatana as ESM 
+        631</span>)
+    <span rel="mint" resource="aradus">Aradus: 14 dr. (yrs. 90-107)</span>
+    Disposition: dispersed
+    Seyrig, RN 1964, pp. 47-50; Trésors du Levant 
+        (in press)
+</pre>
+</div>
+</div>

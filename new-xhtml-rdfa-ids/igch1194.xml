@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1194">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-410" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-400" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.373889 26.785278</span></span></div>
+<div class="nm:editedSource">
+<pre>1194 Vourla? (now Urla; anc. Clazome-
+(255)     nae), Ionia, 1875
+    Burial: c. 410-400 B.C. (Regling)
+    Contents: 90 EL, AV
+    <span rel="mint" resource="cyzicus">Cyzicus: 70 EL st.</span>
+    <span rel="mint" resource="lampsacus">Lampsacus: 20 EL st.</span> 
+    <span rel="mint" resource="sardes">Persia: "several" darics</span>
+    Disposition: dispersed. Sotheby, Feb. 13, 
+        1878, nos. 212-23
+† Head, NC 1876, pp. 277-98, illus.; 1877, pp. 
+        169-76, illus.
+    Greenwell, NC 1887, pp. 41-2
+    Regling, ZfN 1931, p. 25
+</pre>
+</div>
+</div>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0144">
+<span rel="nm:findspot"><span property="gml:pos">39.36666667 22.13333333</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<pre class="group editedsource">
+144 Kiouleler (= Kililer, mod. Kipseli), 
+(563-4)     c. 23 km. SE of Larissa, Thessaly,
+    c. 1910
+    Burial: c. <span property="nm:approximateburialdate_start" content="-285" datatype="xsd:date">285</span>-<span property="nm:approximateburialdate_end" content="-275" datatype="xsd:date">275</span> B.C. (Newell) 
+    Contents: 115 AR
+    Alexander III: 55 lifetime and early post. 
+        tetradr. (<span rel="mint" resource="amphipolis">Amphipolis 23,</span> <span rel="mint" resource="pella_macedon">Pella 1,</span> 
+        <span rel="mint" resource="sicyon">Sicyon 1,</span> <span rel="mint" resource="miletus">Miletus</span> 4, <span rel="mint" resource="sardes">Sardes</span> 4, <span rel="mint" resource="citium">Citium</span> 1, 
+        <span rel="mint" resource="side">Side 2,</span> <span rel="mint" resource="myriandrus">Myriandrus 1,</span> <span rel="mint" resource="aradus">Aradus 1,</span> <span rel="mint" resource="sidon">Sidon 
+        1,</span> <span rel="mint" resource="tyre">Tyre 1,</span> <span rel="mint" resource="ace_ptolemais">Ace 1,</span> unc. <span rel="mint" resource="phoenicia">Phoenicia I,</span> 
+        <span rel="mint" resource="carrhae">Carrhae 2,</span> <span rel="mint" resource="babylon">Babylon 6,</span> unc. 5)
+    Philip III: 8 tetradr. (<span rel="mint" resource="salamis_cyprus">Salamis 1,</span> <span rel="mint" resource="aradus">Aradus 2,</span>
+        <span rel="mint" resource="marathus">Marathus 1,</span> <span rel="mint" resource="sidon">Sidon 1,</span> <span rel="mint" resource="babylon">Babylon 2,</span> 
+        <span rel="mint" resource="susa">Susa 1)</span>
+    Demetrius Poliorcetes: 2 tetradr. (<span rel="mint" resource="pella_macedon">Pella)</span> 
+    Lysimachus: 5 lifetime tetradr. (1 ea. of
+        <span rel="mint" resource="lampsacus">Lampsacus,</span> <span rel="mint" resource="alexandreia_troas">Alexandreia Troas,</span> <span rel="mint" resource="pergamum">Per-
+        gamum,</span> <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia,</span> <span rel="mint" resource="amphipolis">Amphipolis)</span>
+    <span rel="mint" resource="athens">Athens:</span> 43 tetradr.
+    Seleucus I: 2 tetradr. (1 <span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad 
+        Tigrim,</span> as ESM 9)
+    Disposition: Athens
+    Svoronos, Athènes, pl. 31 (Athenian issues) 
+    Newell, Demetrius, p. 164, WSM nos. 9 and 13
+        (Carrhae coins) and p. 42, note 20 (burial
+        date)
+    Newell's record of issues in ANS
+</pre>
+</div>

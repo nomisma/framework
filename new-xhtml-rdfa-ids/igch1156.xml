@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1156">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-600" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-575" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1156 Asia Minor, western?, c. 1949
+    Burial: c. 600-575 B.C. (M)
+    Contents: 56+ EL, 4+ AR
+    <span rel="mint" resource="lydia">Lydia: 56 EL: 1 third; 1 sixth; 28 twelfths 
+        (lion hd.); 24 twenty-fourths; 2 forty-
+        eighths (lion paw</span>)
+    Unc. mint: 4 AR: 3 hemiob.; 1 tetart. (as 
+        SNGBerry 1040 ff.)
+    Disposition: New York 6 (Lydia)
+    Photos in ANS
+</pre>
+</div>
+</div>

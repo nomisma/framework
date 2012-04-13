@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1044">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-370" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-325" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.8447222222 41.7802777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1044 Kobuleti, Adzhar ASSR, Georgia, 
+    1949
+    Burial: before 325 B.C. (Golenko, Kapa-
+        nadze)
+    Contents: 25+ AR
+    <span rel="mint" resource="colchis">Colchis: hemidr. (5 with ΜΟ)</span>
+    Disposition: Tiflis 25; Batumi (Adzhar 
+        State Mus.) part
+    Pakhomov VI, 1520
+</pre>
+</div>
+</div>

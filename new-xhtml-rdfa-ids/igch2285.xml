@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2285">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-216" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.9555555556 9.19305555556</span></span></div>
+<div class="nm:editedSource">
+<pre>2285 Aritzo, 50 km. NE of Oristano, Sar-
+(66)     dinia, 1858
+    Burial: c. 216 B.C. (Jenkins)
+    Contents: AE
+    Carthage: <span rel="mint" resource="sardinia">Sardinian mint (as SNGCop. 387)</span> 
+    Disposition: unknown
+    Spano, BAS 1858, pp. 31, 67, note 5 
+    Müller, Afrique 2, p. 108, note 1 
+    Bornemann, BlM 1900, p. 119
+</pre>
+</div>
+</div>

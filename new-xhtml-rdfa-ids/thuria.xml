@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="thuria">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Thuria</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Thuria in Messenia.</div>
+ <div property="gml:pos">37.108636 22.044664</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Thuria,_Messenia"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/570733"/>
+</div>

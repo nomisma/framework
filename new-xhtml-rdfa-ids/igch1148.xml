@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1148">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-47" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-44" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1148 Crimea, Ukraine?, 1945-1965
+    Burial: 47-44 B.C. 
+    Contents: 36 AE
+    <span rel="mint" resource="panticapaeum">Panticapaeum: 20 AE (as Minns, pl. 6, 11)</span> 
+    Unc. <span rel="mint" resource="bosporus">Bosporus: 7 AE (as Minns, pl. 9, 21)</span> 
+    Asander: 2 AE (as Minns, pl. 6, 25)
+    Unc.: 7 AE
+    Disposition: Kerch' (Hist.-Arch. Mus.)
+    Golenko, NSf 1965, p. 45
+</pre>
+</div>
+</div>

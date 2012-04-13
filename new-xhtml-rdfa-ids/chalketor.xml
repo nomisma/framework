@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="chalketor">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Chalketor</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Chalketor in Caria.</div>
+ <div property="gml:pos">37.349058 27.685712</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/599569"/>
+</div>

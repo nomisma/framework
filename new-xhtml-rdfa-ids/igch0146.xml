@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0146">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div class="nm:editedSource">
+<pre>
+146 Thessaly, 1968 
+    Burial: c. <span property="nm:approximateburialdate" content="-280" datatype="xsd date">280</span> B.C. (Franke)
+    Contents: 4 AV, 26 AR
+    Philip II: 1 AV st.
+    Alexander III: 11 tetradr.; 7 dr. 
+    Demetrius Poliorcetes: 1 AV st. 
+    Lysimachus: 2 AV st.
+    <span rel="mint" resource="larissa">Larissa:</span> 1 dr.
+    <span rel="mint" resource="locri opuntii">Locri Opuntii:</span> 1 st.
+    <span rel="mint" resource="thebes">Thebes:</span> 1 st.
+    <span rel="mint" resource="athens">Athens:</span> 4 tetradr.
+    <span rel="mint" resource="tegea">Tegea:</span> 1 hemidr.
+    Disposition: dispersed
+    Information from P. Franke who has list and 
+        casts
+</pre>
+</div>
+</div>

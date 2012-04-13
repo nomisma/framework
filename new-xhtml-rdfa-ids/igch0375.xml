@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0375">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-348" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.2925 23.3427777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+375 Olynthus, 1934 
+(762)
+    Burial: 348 B.C. (Clement)
+    Contents: 75 AR. Pot hoard from excavations
+    <span rel="mint" resource="acanthus">Acanthus: 4 tetrob.</span>
+    <span rel="mint" resource="chalcidian_league">Chalcidian League: 53 tetrob.</span> 
+    <span rel="mint" resource="olynthus">Olynthus: 2 tetrob.</span>
+    <span rel="mint" resource="scione">Scione: 2 tetrob.</span>
+    <span rel="mint" resource="terone">Terone: 3 tetrob.</span>
+    Perdiccas II: 11 tetrob.
+    Disposition: Athens
+    Robinson-Clement, Olynthus IX, pp. 179-83, 
+        illus. (hd. VIII)
+</pre>
+</div>
+</div>

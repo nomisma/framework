@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="denomination" about="denarius_16_asses">
+ <div property="skos:prefLabel" xml:lang="en">Denarius tariffed at 16 asses.</div>
+ <div property="skos:definition" xml:lang="en">The post-141 denarius.</div>
+</div>

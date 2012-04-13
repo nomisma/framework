@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="fenseris">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Fenseris</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Fenseris in Campania. Perhaps the same as <a property="skos:related" href="hyria_campania">Hyria</a>.</div>
+  <div rel="uncertain_value"><span property="gml:pos">40.973 14.518</span></div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/438737"/>
+</div>

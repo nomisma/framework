@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0237">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-168" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-167" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.2936111111 22.3844444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+237 Sitichoro, near Pharsalus, Thessaly, 
+    1968
+    Burial: 168-167 B.C. (Price) 
+    Contents: 2500-3000 AR. Pot hoard
+    Alexander III: 11 lifetime and post. 
+        tetradr. ( <span rel="mint" resource="amphipolis">Amphipolis,</span>  <span rel="mint" resource="amisus">Amisus?,</span><span rel="mint" resource="alexandreia_troas"> Alex-
+        andreia Troas,</span> <span rel="mint" resource="mytilene">Mytilene,</span>  <span rel="mint" resource="sardes">Sardes,</span> 
+         <span rel="mint" resource="smyrna">Smyrna)</span>
+    Antigonus Gonatas: 3 tetradr.
+    Antigonus Doson: 6 tetradr.
+    Philip V: 8 tetradr., 5 didr.
+    Perseus: c. 600 tetradr. (almost all light 
+        weight)
+    <span rel="mint" resource="macedonia_1st_region">Macedonia,</span> 1st Region: 6 tetradr. (Zeus/ 
+        Artemis Tauropolos)
+    Lysimachus: 2 post. tetradr. ( <span rel="mint" resource="parium">Parium,</span> 
+         <span rel="mint" resource="byzantium">Byzantium)</span>
+    <span rel="mint" resource="aetolian_league">Aetolian League:</span> 1+ tetradr.
+    <span rel="mint" resource="athens">Athens:</span> 11 tetradr. (most with symbols and 
+        monograms)
+      Pharnaces: 1 tetradr.
+     <span rel="mint" resource="pergamum">Pergamum:</span> 1 tetradr. (Medusa/Athena) 
+     <span rel="mint" resource="rhodes">Rhodes: c. 1500-2000 dr. (almost all imit. 
+        with ΕΡΜΙΑΣ)
+          <a rel="contains" href="http://www.cngcoins.com/Coin.aspx?CoinID=90373">CNG coin shop 776368</a></span>
+    Seleucus II: 1 tetradr. ( <span rel="mint" resource="apameia_syria">Apameia?)</span> 
+    Antiochus II: 1 tetradr. ( <span rel="mint" resource="antiocheia_syria">Antiocheia)</span> 
+    Antiochus III: 4 tetradr. ( <span rel="mint" resource="antiocheia_syria">Antiocheia,</span>
+         <span rel="mint" resource="nisibis">Nisibis,</span>  <span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Tigrim)</span>
+    Ptolemy II: 4 tetradr. ( <span rel="mint" resource="tyre">Tyre 2)</span>
+    Ptolemy III: 1 tetradr.
+    Disposition: Volos 600; Thessalonica 103; 
+        London 18; New York 9; Leu-Hess
+        May 12, 1970, 189
+    Oeconomides, ArchEph 1970, pp. 13-26, illus. 
+        (the Volos and Thessalonica lots)
+    The hd. as a whole to be published by M. Price
+</pre>
+</div>
+</div>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0663">
+<span rel="nm:findspot"><span property="gml:pos">41.18333333 24.41666667</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-51" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+663 Platania, near Drama, Macedonia, 1959 
+    Burial: after 51 B.C. (Varoucha)
+    Contents: 4 AR, 39 AE. Pot hoard
+    Aesillas: 2 tetradr.
+    <span rel="mint" resource="amphipolis">Amphipolis: 18 AE</span>
+    <span rel="mint" resource="philippi">Philippi: 1 AE</span> 
+    <span rel="mint" resource="pella_macedon">Pella: 1 AE</span>
+    <span rel="mint" resource="thessalonica">Thessalonica: 13 AE</span>
+    <span rel="mint" resource="abdera_thrace">Abdera: 1 AE</span> 
+    <span rel="mint" resource="maroneia">Maroneia: 2 AE</span> 
+    <span rel="mint" resource="pergamum">Pergamum: 1 AE</span> 
+    Unc.: 1 AE
+    <span rel="mint" resource="rome">Roman Rep.: 2 den., 1 quadrans</span>
+    Disposition: Athens
+    Varoucha, BCH 1960, pp. 486-7 
+    Crawford, RRCH, no. 358
+</pre>
+</div>
+</div>

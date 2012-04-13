@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2089">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-420" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.591002 14.033546</span></span></div>
+<div class="nm:editedSource">
+<pre>2089 S. Caterina Villarmosa, 10 km. N of 
+    Caltanissetta, 1955
+    Burial: c. 420 B.C. (Jenkins) 
+    Contents: c. 100 AR. Pot hoard
+    <span rel="mint" resource="rhegium">Rhegium: 2 tetradr. (1 mule-car; 1 oecist) </span>
+    <span rel="mint" resource="agrigentum">Acragas: 7 didr.</span>
+    <span rel="mint" resource="catana">Catana</span>
+    <span rel="mint" resource="gela">Gela: 2 (3?) tetradr. (to Jenkins 399 and 
+        483?)
+            5 didr.</span>
+    <span rel="mint" resource="himera">Himera: 1 didr.</span>
+    <span rel="mint" resource="leontini">Leontini: 2 tetradr. (to c. 424 B.C.)
+            2 didr.</span>
+    <span rel="mint" resource="messana">Messana: 3</span>
+    <span rel="mint" resource="naxus">Naxus: 1 didr. (Cahn Grp. V)</span>
+    <span rel="mint" resource="segesta">Segesta: 4 didr.</span>
+    <span rel="mint" resource="selinus_sicily">Selinus</span>
+    <span rel="mint" resource="syracuse">Syracuse: 13 (to Boehringer Grp. XXII or 
+        XXIII)</span>
+    <span rel="mint" resource="athens">Athens: 7 (5th cent.)</span>
+    Disposition: Agrigento 55 as above plus a 
+        number of probable intrusions
+    Griffo, AIIN 1955, pp. 199-200 
+    Jenkins, Gela, p. 157
+    Jenkins interprets this as a hd. of c. 420 B.C., 
+        with intrusions (incl. Gela, no. 483, 
+        two 4th cent. Athens, and some 
+        modern forgeries)
+</pre>
+</div>
+</div>

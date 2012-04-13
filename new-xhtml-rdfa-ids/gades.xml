@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="gades">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Gades</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Gades in Hispania Ulterior.</div>
+ <div property="gml:pos">36.533333 -6.29</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Gades"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/256177"/>
+</div>

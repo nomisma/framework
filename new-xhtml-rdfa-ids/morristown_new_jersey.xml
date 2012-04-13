@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="morristown_new_jersey">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Morristown</div>
+ <div property="skos:definition" xml:lang="en">The mint in the city of Morristown, New Jersey.</div>
+<div property="gml:pos">40.798889 -74.478611</div>
+</div>

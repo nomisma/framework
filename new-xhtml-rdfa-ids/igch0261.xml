@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0261">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-146" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.2072222222 22.325</span></span></div>
+<div class="nm:editedSource">
+<pre>
+261 Zougra (anc. Pellene), Achaea, 1859
+(1186)
+    Burial: c. 146 B.C.
+    Contents: 985+ AR. In a bronze vase 
+    <span rel="mint" resource="aenianes">Aenianes:</span> 1 triob.
+    <span rel="mint" resource="lamia">Lamia:</span> 1 triob.
+    <span rel="mint" resource="aetolia">Aetolia:</span> 104 triob.
+    <span rel="mint" resource="locri opuntii">Locri Opuntii:</span> 11 triob. 
+    <span rel="mint" resource="boeotia">Boeotia:</span> 32 triob.; 22 dr. 
+    <span rel="mint" resource="aegina">Aegina:</span> 3 dr.
+    <span rel="mint" resource="corinth">Corinth:</span> 1 triob.
+    <span rel="mint" resource="sicyon">Sicyon:</span> 11 triob.
+    <span rel="mint" resource="achaean_league">Achaean League:</span> 654 triob. 
+    <span rel="mint" resource="messene">Messene:</span> 2 triob.
+    <span rel="mint" resource="argos_argolis">Argos:</span> 96 triob.
+    <span rel="mint" resource="megalopolis">Megalopolis:</span> 47 triob.
+    Disposition: Athens 771
+    Oeconomides, RBN 1968, pp. 132-7 (with quota-
+        tion of early publications where the total is 
+        given as 9170 or 9171 pieces and a few other 
+        mints are listed)
+</pre>
+</div>
+</div>

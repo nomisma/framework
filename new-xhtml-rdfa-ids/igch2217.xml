@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2217">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-250" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.8905555556 15.07</span></span></div>
+<div class="nm:editedSource">
+<pre>2217 Noto environs, 24 km. SW of Syra-
+(744 = 1029)     cuse, 1853
+    Burial: 250-200 B.C. (K)
+    Contents: c. 700 AR
+    Philistis: c. 600 
+    Gelon II: c. 100 
+    Ptolemaic ?
+    Disposition: dispersed
+    Riccio, BullInst 1854, p. xlii
+    Romano, Sopra alcune monete scoverte in Sicilia 
+        (Paris, 1862), p. 52
+    Salinas, PerNumSfrag 1868, pp. 206-7
+    The location is reported by Romano, the 
+        numbers by Riccio. Noe 1029 (Syra-
+        cuse 1853) is presumably the same hd.; 
+        Salinas, the only authority cited for 
+        it, in fact gives the location as "nella 
+        provincia di Siracusa."
+</pre>
+</div>
+</div>

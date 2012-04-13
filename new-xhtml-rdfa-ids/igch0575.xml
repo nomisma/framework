@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0575">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-130" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.3294444444 24.8677777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+575 Vâlĉi trân, Pleven district, Bulgaria, 
+(1153)     1933
+    Burial: late 2nd cent. B.C. (T) 
+    Contents: 131+ AR
+    <span rel="mint" resource="thasos">Thasos: 64 spread-flan tetradr.</span> 
+    <span rel="mint" resource="apollonia_illyria">Apollonia, Illyria: 17 dr.</span>
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: 50 dr.</span>
+    Disposition: Sofia 131
+    Gerasimov, BIAB 8 (1934), p. 468
+</pre>
+</div>
+</div>

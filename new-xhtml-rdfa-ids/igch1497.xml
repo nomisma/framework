@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1497">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-333" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1497 Phoenicia, 1947
+    Burial: c. 333 B.C. (Westermark, following 
+        Naster's classification)
+    Contents: AR
+    <span rel="mint" resource="byblus">Byblus</span>, Adramelek and Ainel : st. 
+    Disposition: dispersed
+    Information from E. S. G. Robinson
+</pre>
+</div>
+</div>

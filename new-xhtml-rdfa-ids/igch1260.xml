@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1260">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-380" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1260 Cilicia, 1967
+    Burial: c. 380 B.C. (M)
+    Contents: c. 100 AR
+    <span rel="mint" resource="mallus">Mallus: 2+ double-sigloi</span>
+    <span rel="mint" resource="soli-pompeiopolis">Soli: 20+ double-sigloi</span>
+    <span rel="mint" resource="salamis_cyprus">Salamis, Euagoras I: 50+ tetrob.</span> 
+    Disposition: dispersed
+</pre>
+</div>
+</div>

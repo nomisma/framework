@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="numismatic_term" about="collection">
+ <div property="skos:prefLabel" xml:lang="en">Collection</div>
+ <div property="skos:definition" xml:lang="en">General term meaning the objects held by an institution or individual. Or the holding entity itself.</div>
+  <div><a property="skos:related" href="http://dbpedia.org/resource/Collection">Dbpedia resource</a>.</div>
+</div>

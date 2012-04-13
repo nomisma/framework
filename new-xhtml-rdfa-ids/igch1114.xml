@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1114">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-230" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-170" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">46.7055555556 31.8977777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1114 Olbia (mod. Parutino), 1902
+    Burial: late 3rd-early 2nd cent. B.C. 
+    Contents: 9 AE. In burial
+    <span rel="mint" resource="olbia">Olbia: AE (as AMNG I.1, pl. 10, 13 [7]; unc. 
+        [2])</span>
+    Disposition: Leningrad
+    Farmakovskii, IAK 13 (1906), pp. 145, 231, 234, 
+        no. 118
+</pre>
+</div>
+</div>

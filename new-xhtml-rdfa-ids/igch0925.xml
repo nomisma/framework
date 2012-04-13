@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0925">
+<span rel="nm:findspot"><span property="gml:pos">42.69055556 26.3325</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-125" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+925 Sâdievo, c. 26 km. N of Burgas, Bul-
+    garia, 1963
+    Burial: c. 125-100 B.C. (T)
+    Contents: 52 AR. Pot hoard
+    <span rel="mint" resource="thasos">Thasos: 4 spread-flan tetradr.</span>
+    Lysimachus: 48 post. tetradr. (<span rel="mint" resource="byzantium">Byzantium</span>) 
+    Disposition: Burgas
+    Gerasimov, BIAB 27 (1964), p. 244
+</pre>
+</div>
+</div>

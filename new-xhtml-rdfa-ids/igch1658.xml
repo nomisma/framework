@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1658">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-330" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">29.8441666667 31.2511111111</span></span></div>
+<div class="nm:editedSource">
+<pre>1658 Mit Rahineh, near Memphis, 20 km. 
+(723)     S of Cairo, 1912-1920
+    Burial: c. 330 B.C. (Jenkins)
+    Contents: 38 AV
+    Nakhthorehbe: st. (hieroglyphic) 
+    Disposition: J. Khaouam, Cairo; Jameson 
+        2618
+    Chassinat, RecTravEgyptAssyr 1923, pp. 131-57, 
+        illus.
+    Hill, NC 1926, pp. 132-3
+</pre>
+</div>
+</div>

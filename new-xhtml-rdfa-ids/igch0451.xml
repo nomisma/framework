@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0451">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-275" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.9758333333 23.9625</span></span></div>
+<div class="nm:editedSource">
+<pre>
+451 Angista, near Serres, Macedonia, 1928 
+(50)
+    Burial: c. 275 B.C. (T) 
+    Contents: c. 30 AE
+    Alexander III: 2 (as AMNG III.2, pl. 31, 
+        23 and 31)
+    <span rel="mint" resource="macedonia">Macedonia: 1 (as SNGCop. 1119-21)</span> 
+    <span rel="mint" resource="philippi">Philippi: 1 (as SNGCop. 295)</span>
+    <span rel="mint" resource="gomphi">Gomphi: 1 (as Rogers p. 77)</span>
+    Disposition: Athens 5
+    Noe's date of discovery (1936) is too late
+        according to the record in Athens
+</pre>
+</div>
+</div>

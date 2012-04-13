@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2004">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-230" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.355 18.1730555556</span></span></div>
+<div class="nm:editedSource">
+<pre>2004 Lecce?, Calabria, 1961-1962
+    Burial: c. 230 B.C. (K)
+    Contents: 200+ AR
+    <span rel="mint" resource="taras">Taras: st. (1 Per. III, M1; 1 Per. V, E1.; 
+        4 Per. VI, A1, A3 [2], C1; 10 Per. VII,
+        A1, A2 [2], B1 [2], C3, D1 [2], F1 [2]; 
+        8 Per. VIII, A5, A9, D1 [2], K1 [2], 
+        L1, L3; 4 Per. IX, A1 [2], G1, H2)</span>
+    Disposition: G. Hirsch May 28-30, 1962,
+        20-5; Oct. 22-24, 1962, 2260, 2262-70,
+        2272-83 as above
+    Information from a correspondent
+</pre>
+</div>
+</div>

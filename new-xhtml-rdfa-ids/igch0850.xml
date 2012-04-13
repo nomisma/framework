@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0850">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-290" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-280" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.245 22.7766666667</span></span></div>
+<div class="nm:editedSource">
+<pre>
+850 Byrsine, Thrace, 1938 
+    Burial: c. 290-280 B.C. (Price) 
+    Contents: 43 AR
+    Alexander III: 1 early post. tetradrachm 
+        (<span rel="mint" resource="babylon">Babylon</span>)
+            34 dr. (<span rel="mint" resource="asia_minor">Asia Minor mints</span>) 
+    Philip III: 6 dr. (<span rel="mint" resource="asia_minor">Asia Minor mints</span>) 
+    Lysimachus: 1 lifetime tetradr.
+            1 dr. (Alexander type)
+    Disposition: Athens
+    Varoucha, BCH 1938, p. 446
+</pre>
+</div>
+</div>

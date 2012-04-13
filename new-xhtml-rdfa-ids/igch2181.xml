@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2181">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-270" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.0580555556 14.8925</span></span></div>
+<div class="nm:editedSource">
+<pre>2181 Palazzolo Acreide (anc. Acrae), 1896
+(784)
+    Burial: early 3rd cent. B.C. (K)
+    Contents: 460 AR
+    <span rel="mint" resource="syracuse">Syracuse: 5 tetradr. (Agathocles, incl. 
+        quadr., Nike and trophy) </span>
+    <span rel="mint" resource="siculo_punic">Siculo-Punic: 1 tetradr. (Arethusa/horse hd) </span>
+        Pegasi
+    <span rel="mint" resource="corinth">Corinth (Per. V)</span>
+    <span rel="mint" resource="alyzia">Alyzia</span>
+    <span rel="mint" resource="ambracia">Ambracia</span>
+    <span rel="mint" resource="anactorium">Anactorium </span>
+    <span rel="mint" resource="argos_amphilochicum">Argos</span>
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium (1 with griffin bd. ctmk.)</span> 
+    <span rel="mint" resource="leucas">Leucas</span>
+    <span rel="mint" resource="locri_epizephyrii">Locri</span>
+    <span rel="mint" resource="syracuse">Syracuse (incl. Agathocles, reduced wt.) </span>
+    <span rel="mint" resource="thyrrheium">Thyrrheium</span>
+    Disposition: dispersed
+    Salinas, NSc 1897, pp. 436-7, illus.
+</pre>
+</div>
+</div>

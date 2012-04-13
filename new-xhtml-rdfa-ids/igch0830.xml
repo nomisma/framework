@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0830">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.6594444444 24.7730555556</span></span></div>
+<div class="nm:editedSource">
+<pre>
+830 Momčilovici, Smoljan district, Bul-
+    garia, 1958
+    Burial: late 4th cent. B.C. (T)
+    Contents: 6 AR
+    Philip II and Alexander III: tetradr. 
+    Disposition: Mus. of the village Rajkovo, 
+        near Smoljan
+    Gerasimov, BIAB 25 (1962), p. 227
+</pre>
+</div>
+</div>

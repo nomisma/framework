@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2271">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-260" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.7988888889 10.1811111111</span></span></div>
+<div class="nm:editedSource">
+<pre>2271 Tunis, 1948
+    Burial: c. 260 B.C. (Jenkins) 
+    Contents: 60+ AV
+    <span rel="mint" resource="carthage">Carthage: one-and-a-half shekels </span>
+    Disposition: Pflieger, Lewis
+    Robinson, NC 1953, p. 31
+    Jenkins-Lewis, Carthage, p. 60, hoard XVII
+</pre>
+</div>
+</div>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1213">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-340" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.6722222222 26.8861111111</span></span></div>
+<div class="nm:editedSource">
+<pre>1213 Samos, Ionia, c. 1946 
+    Burial: c. 340 B.C. (M)
+    Contents: 56+ AR
+    <span rel="mint" resource="ephesus">Ephesus: 17 hemidr. (as BMC 21 ff.)
+    <a rel="nm:item" href="http://numismatics.org/collection/1957.40.7">ANS 1957.40.7</a>
+    <a rel="nm:item" href="http://numismatics.org/collection/1957.40.8">ANS 1957.40.8</a>
+    <a rel="nm:item" href="http://numismatics.org/collection/1957.40.6">ANS 1957.40.6</a></span> 
+    <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia: 2 tetrob. (as SNGCop. 806)
+            7 hemidr. (as BMC 8 ff.)</span>
+    <span rel="mint" resource="miletus">Miletus: 4 dr. (as BMC 53 ff.)
+            9 hemidr. (as BMC 68 ff.)</span> 
+    <span rel="mint" resource="priene">Priene: 4 dr. (as BMC 5)
+            1 hemidr. (as BMC 7)</span>
+    <span rel="mint" resource="samos">Samos: 5 hemidr. (as BMC 137 ff.)</span> 
+    <span rel="mint" resource="halicarnassus">Mausolus and Hidrieus: 7 dr.</span>
+    Disposition: Athens 17; New York 3 
+        (Ephesus)
+    BCH 1953, p. 193; 1955, p. 210
+    List of varieties and some casts and rubbings in 
+        ANS
+</pre>
+</div>
+</div>

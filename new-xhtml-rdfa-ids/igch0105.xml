@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0105">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.3630555556 20.7216666667</span></span></div>
+<div class="nm:editedSource">
+<pre>
+105 Ithaca, before 1938
+    Burial: 4th cent. B.C. (T)
+    Contents: AR, AE?
+    <span rel="mint" resource="phocis">Phocis:</span> triob. (as BMC no. 23) 
+    <span rel="mint" resource="thebes">Thebes:</span> st. (as BMC no. 154) 
+    <span rel="mint" resource="aegina">Aegina:</span> st. (as BMC no. 3) 
+    <span rel="mint" resource="sicyon">Sicyon:</span> st. (as BMC no. 19) 
+    Disposition: unknown
+    Benton, BSA 1938-9, p. 50
+</pre>
+</div>
+</div>

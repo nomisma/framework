@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1289">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.3175 27.7719444444</span></span></div>
+<div class="nm:editedSource">
+<pre>1289 Mylasa, Caria, 1968-9 
+    Burial: c. 300 B.C. (M)
+    Contents: 143 AE
+    Alexander III: 4
+    Philip III: 4
+   <span rel="mint" resource="miletus">Miletus: 1 (as BMC 76 ff.)</span>
+   <span rel="mint" resource="caunus">Caunus: 4 (as BMC 1 f. [1]; 3 ff. [3])</span> 
+   <span rel="mint" resource="halicarnassus">Halicarnassus: 2 (as BMC 18 f.)</span>
+   <span rel="mint" resource="iasus">Iasus: 2 (female hd. r./crayfish r.)</span>
+   <span rel="mint" resource="idyma">Idyma: 3 (as Monn. gr. p. 311, no. 66 [1]; 
+        SNGCop. 420 [2])</span>
+   <span rel="mint" resource="mylasa">Mylasa: 62 (as Akarça no. 33 [15] no. 35
+        [47])</span>
+   <span rel="mint" resource="myndus">Myndus: 7 (as Akarça no. 20)</span>
+   <span rel="mint" resource="rhodes">Rhodes: 54 (as BMC 70 ff. [4]; 74 ff. [20]; 
+        324 ff. [11]; 327 ff. [14])</span>
+    Disposition: London 25
+    Information on file in BM
+    See no. 1290 below
+</pre>
+</div>
+</div>

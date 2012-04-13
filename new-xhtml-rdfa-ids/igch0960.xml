@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0960">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-70" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.3494444444 26.4980555556</span></span></div>
+<div class="nm:editedSource">
+<pre>
+960 Didymotichon, Thrace, c. 1870-1875
+(327)
+    Burial: early 1st cent. B.C. (T)
+    Contents: c. 20 AR
+    <span rel="mint" resource="maroneia">Maroneia: 3-4 spread-flan ? tetradr.</span> 
+    <span rel="mint" resource="thasos">Thasos: 16-17 spread-flan ? tetradr., chiefly 
+        imit.</span>
+    Disposition: unknown
+    Tacchella, RN 1898, pp. 214-5
+    Tacchella includes as part of the same lid. 
+        the thousand 4th cent. fractions of 
+        no. 738 above but it seems almost 
+        certain that two separate finds are 
+        involved
+</pre>
+</div>
+</div>

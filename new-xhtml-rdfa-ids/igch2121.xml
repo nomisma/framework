@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2121">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-390" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-380" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.102368 14.126523</span></span></div>
+<div class="nm:editedSource">
+<pre>2121 Manfria, 10 km. NW of Gela, 1948 
+    Burial: 390-80 B.C. (Jenkins)
+    Contents: 48+ AR
+    <span rel="mint" resource="rhegium">Rhegium: 1 tetradr. (Apollo hd.)</span>
+    <span rel="mint" resource="gela">Gela: 3 tetradr. (to Jenkins 457)
+            1 didr.</span>
+    <span rel="mint" resource="leontini">Leontini: 3 tetradr.</span>
+    <span rel="mint" resource="messana">Messana: 3 tetradr.; 1 didr.</span>
+    <span rel="mint" resource="syracuse">Syracuse: 14 decadr. (Euainetos type, 
+        earlier issues)
+            3 tetradr.</span>
+    <span rel="mint" resource="athens">Athens: 18 tetradr. (incl. 8 4th cent. types) </span>
+    Unc.: 1 didr.
+    Disposition: Gela
+    Griffo, Numismatica 1948, p. 136; AIIN 1955, 
+        pp. 200-1; 1958-9, p. 245
+    Jenkins, Gela, p. 153
+    Some reports speak of as many as 90
+        decadr., including those of Cimon
+</pre>
+</div>
+</div>

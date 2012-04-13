@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0933">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-125" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.6519444444 26.9847222222</span></span></div>
+<div class="nm:editedSource">
+<pre>
+933 Istilii, c. 50 km. E of Sliven, Bulgaria, 
+(496)     1909
+    Burial: c. 125-100    (T)
+    Contents: 8 AR
+    <span rel="mint" resource="maroneia">Maroneia: spread-flan tetradr.</span>
+    Disposition: Sofia
+    Filow, BSAB 1 (1910), p. 226
+</pre>
+</div>
+</div>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="manufacture">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="de">Herstellungsmethode</div>
+ <div property="skos:prefLabel" xml:lang="el">Τεχνική κατασκευής</div>
+ <div property="skos:prefLabel" xml:lang="en">Manufacture</div>
+ <div property="skos:prefLabel" xml:lang="fr">Méthode de fabrication</div>
+ <div property="skos:prefLabel" xml:lang="nl">Fabricagemethode</div>
+ <div property="skos:definition" xml:lang="en">The technique of manufacture. For example, struck or cast.</div>
+</div>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0612">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+612 Bulgaria, northwest, 1953 
+    Burial: 2nd-1st cent. B.C. (T) 
+    Contents: 495 AR. Pot hoard 
+    <span rel="mint" resource="apollonia_illyria">Apollonia, Illyria: 73 dr.</span>
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: 422 dr.</span>
+    Disposition: Sofia
+    Gerasimov, BIAB 20 (1955), p. 607
+</pre>
+</div>
+</div>

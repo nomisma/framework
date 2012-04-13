@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1246">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-340" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.7388888889 35.4783333333</span></span></div>
+<div class="nm:editedSource">
+<pre>1246 Kayseri (anc. Caesareia-Mazaca), Cap-
+(178)     padocia, 1850
+    Burial: c. 340 B.C. (M) 
+    Contents: AR
+    <span rel="mint" resource="aspendus">Aspendus: double-sigloi</span> 
+    <span rel="mint" resource="selge">Selge: double-sigloi</span>
+    Datames, <span rel="mint" resource="cilicia">Cilicia: double-sigloi</span> 
+    Mazaeus, <span rel="mint" resource="cilicia">Cilicia: double-sigloi</span>
+    Disposition: dispersed
+    Blau, De numis Achaemenidarum (Leipzig, 1855), 
+        p. 16
+    Six, NC 1884, p. 119
+    Schlumberger, L'argent grec, p. 8, no. 1
+</pre>
+</div>
+</div>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="hierocaesareia">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Hierocaesareia</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Hierocaesareia in Lydia.</div>
+ <div property="gml:pos">38.756891 27.787742</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/550578"/>
+</div>

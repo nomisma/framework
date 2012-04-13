@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1660">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">29.8441666667 31.2511111111</span></span></div>
+<div class="nm:editedSource">
+<pre>1660 Memphis, 20 km. S of Cairo, 1916 
+(673)
+    Burial: 4th cent. B.C. (Jenkins)
+    Contents: 39 AR. From temenos of Ptah 
+    <span rel="mint" resource="athens">Athens:</span> tetradr. (5th cent. 5, 4th cent. 34,
+        many punchmarked and chisel-cut) 
+    Disposition: London
+    Hill, NC 1917, p. 9, illus. 
+    Regling, ZfN 1927, p. 3, note 2
+</pre>
+</div>
+</div>

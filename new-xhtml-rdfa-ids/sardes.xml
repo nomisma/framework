@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="sardes">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Sardes</div>
+ <div property="skos:altLabel" xml:lang="en">Sardis</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Sardes in ancient Asia Minor.</div>
+ <div property="gml:pos">38.488314 28.040286</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Sardis"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/550867"/>
+</div>

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0258">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-175" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-145" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.5963888889 23.0855555556</span></span></div>
+<div class="nm:editedSource">
+<pre>
+258 Epidaurus, Argolis, 1934
+(394)
+    Burial: c. 175-145 B.C. (T)
+    Contents: 33 AR. From excavations
+     <span rel="mint" resource="aetolian_league">Aetolian League:</span> 1 triob.
+     <span rel="mint" resource="boeotia">Boeotia:</span> 1 dr. (as SNGCop. 387) 
+     <span rel="mint" resource="sicyon">Sicyon:</span> 1 triob.
+     <span rel="mint" resource="achaean_league">Achaean League:</span> 21 triob.
+     <span rel="mint" resource="lacedaemon">Lacedaemon:</span> 1 triob.
+     <span rel="mint" resource="argos_argolis">Argos:</span> 1 triob.
+     <span rel="mint" resource="hermione">Hermione:</span>1 triob.
+     <span rel="mint" resource="arcadian_league">Arcadian League:</span> 6 triob.
+    Disposition: Athens
+    AA 1935, p. 177 
+    BCH 1935, p. 243
+</pre>
+</div>
+</div>

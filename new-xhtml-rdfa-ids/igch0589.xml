@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0589">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">46.8166666667 23.4166666667</span></span></div>
+<div class="nm:editedSource">
+<pre>
+589 Nadaselu (formerly Magyarnádás) c. 
+(724)     17 km. NW of Cluj, Rumania, 1846 
+    Burial: 2nd-1st cent. B.C. (T)
+    Contents: 11 AR. Pot hoard
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: dr. (some frag.)</span> 
+    Disposition: Vienna
+    Seidl, Oester. Blätter, f. Lit. u. Kunst. 1846, 
+        p. 1058; AfÖG 9 (1853), p. 165
+</pre>
+</div>
+</div>

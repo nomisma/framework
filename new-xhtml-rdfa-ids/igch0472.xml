@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0472">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-185" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-165" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.0972222222 23.4361111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+472 Aphytis, Macedonia, 1935 ?
+(57)
+    Burial: c. 185-165 B.C. (T)
+    Contents: c. 16 AE
+    <span rel="mint" resource="aphytis">Aphytis: AE (as AMNG III.2, pl. 11, 13-15,
+        17, 20, 23)</span>
+    Disposition: unknown
+    Information from an Athenian correspondent
+</pre>
+</div>
+</div>

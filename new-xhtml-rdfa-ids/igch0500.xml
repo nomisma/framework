@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0500">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-150" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-125" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.2005555556 23.1625</span></span></div>
+<div class="nm:editedSource">
+<pre>
+500 Banja, c. 30 km. W of Vraca, Bulgaria,
+(123, 125)     1909
+    Burial: c. 150-125 B.C. (T)
+    Contents: 44 AR
+    <span rel="mint" resource="macedonia_1st_region">Macedonia, 1st Region: tetradr. (as A MNG
+        III.1 nos. 159, 176, 178)</span>
+    Disposition: Sofia some
+    Filow, BSAB 1 (1910), p. 224 
+    JDAI 191, p. 403
+</pre>
+</div>
+</div>

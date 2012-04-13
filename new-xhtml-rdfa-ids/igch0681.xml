@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0681">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">46.2666666667 24.8666666667</span></span></div>
+<div class="nm:editedSource">
+<pre>
+681 Boiu, c. 50 km. SE of Tîrgu Mures, 
+    Rumania, before 1876
+    Burial: 1st cent. B.C.? (Mitrea)
+    Contents: AR.
+    <span rel="mint" resource="macedonia_1st_region">Macedonia, 1st Region: tetradr.</span>
+    <span rel="mint" resource="rome">Roman Rep.: den.</span>
+    Disposition: dispersed
+    Gooss, A VSL 13 (1876), p. 216 
+    Winkler, JNG 1967, p.143
+</pre>
+</div>
+</div>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1159">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-575" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-560" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1159 Asia Minor, western?, before 1933
+    Burial: c. 575-560 B.C. (M) 
+    Contents: 24 EL
+    <span rel="mint" resource="ephesus">Ephesus?: 24 thirds</span>
+    Disposition: London 1
+    Robinson, NC 1936, p. 185, illus.
+</pre>
+</div>
+</div>

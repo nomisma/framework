@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2360">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.3086111111 3.47694444444</span></span></div>
+<div class="nm:editedSource">
+<pre>2360 Agde, 20 km. E of Beziers (anc. 
+    Agathe), Hérault dept., 1938
+    Burial: 3rd-2nd cent. B.C. ? (Jenkins) 
+    Contents: 135 AR
+    <span rel="mint" resource="massalia">Massalia: dr.</span>
+    Disposition: unknown
+    Richard, JNG 1970, pp. 50-1, note 12
+</pre>
+</div>
+</div>

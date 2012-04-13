@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0441">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-250" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.2919444444 23.3805555556</span></span></div>
+<div class="nm:editedSource">
+<pre>
+441 Glavaci, NW of Vraca, Bulgaria, 1946 
+    Burial: c. 300 B.C. or later (T)
+    Contents: 18 AR
+    Philip III: tetradr. of late style, incl. imit. 
+    Disposition: Vraca 2
+    Gerasimov, BIAB 17 (1950), p. 316
+</pre>
+</div>
+</div>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1647">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-450" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-425" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">30.9022222222 30.5855555556</span></span></div>
+<div class="nm:editedSource">
+<pre>1647 Naucratis (mod. El Nibeira or El 
+(729)     Niqrâsh), 20 km. SE of Damanhûr, 
+    1885
+    Burial: 450-425 B.C. (Barron)
+    Contents: 15 AR. "Silversmith's hoard," with 
+        cast and cut silver lumps, from ex-
+        cavations (42 oz.)
+    <span rel="mint" resource="syracuse">Syracuse: 1 tetradr.</span> 
+    <span rel="mint" resource="athens">Athens: 6 tetradr.</span> 
+    <span rel="mint" resource="aegina">Aegina: 1 st.</span>
+    <span rel="mint" resource="chios">Chios: 1 st.</span>
+    <span rel="mint" resource="samos">Samos: 3 tetradr. </span>
+    <span rel="mint" resource="lycia">Lycia: 1 st.</span>
+    <span rel="mint" resource="mallus">Mallus: 1 st.</span>
+    <span rel="mint" resource="cyrene">Cyrene: 1 frag.</span>
+    Disposition: London 4 (BMCLycaonia, p. 
+        95, no. 1; BMCLycia, p. 15, no. 71; 
+        BMCCyrenaica, pp. 3-4, no. 11-2); 
+        Boston 4 (Brett 1113, 1946, 1953, 1958)
+† Head, NC 1886, pp. 1-18, illus. (cf. Petrie, 
+        Naukratis [London, 1886], p. 63)
+    Dressel, ZfN 1900, p. 258
+    Barron, Samos, p. 76
+</pre>
+</div>
+</div>

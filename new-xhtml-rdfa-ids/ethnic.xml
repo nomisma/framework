@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="numismatic_term" about="ethnic">
+ <div property="skos:prefLabel" xml:lang="en">Ethnic</div>
+ <div property="skos:definition" xml:lang="en">Generally, a tribal or ethnic name appearing on a coin. Distinct from personal authority as indicated by the presence of ruler's name.</div>
+ <div>Narrower than: <a rel="skos:broader" href="authority">Authority</a>.</div>
+</div>

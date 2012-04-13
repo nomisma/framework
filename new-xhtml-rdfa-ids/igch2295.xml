@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2295">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-204" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-201" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.7988888889 10.1811111111</span></span></div>
+<div class="nm:editedSource">
+<pre>2295 Tunis, 1965
+    Burial: c. 204-201 B.C.
+    Contents: 300+ AE
+    <span rel="mint" resource="carthage">Carthage: Carthage mint (as SNGCop.
+        302-29)</span>
+    Disposition: unknown
+    Kienast, SM 1965, pp. 25-9, illus. (details of 32 
+        specimens)
+</pre>
+</div>
+</div>

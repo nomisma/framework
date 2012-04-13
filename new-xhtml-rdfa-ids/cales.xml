@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="cales">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Cales</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Cales in Campania.</div>
+ <div property="gml:pos">41.199929 14.132176</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Cales"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/432739"/>
+</div>

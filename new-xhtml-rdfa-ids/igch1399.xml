@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1399">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-290" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-285" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.9266666667 32.8363888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1399 Ankara (anc. Ancyra), Galatia, c. 1913 
+(51)
+    Burial: c. 290-285 B.C. (Waggoner) 
+    Contents: 179+ AR
+    Alexander III: 105 lifetime and early post. 
+        tetradr. (<span rel="mint" resource="amphipolis">Amphipolis 12
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.29191">ANS 1944.100.29191</a></span>, 
+        <span rel="mint" resource="thebes">Thebes? 1</span>,
+        <span rel="mint" resource="sardes">Sardes 2
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.31356">ANS 1944.100.31356</a></span>, 
+        <span rel="mint" resource="side">Side? 1</span>, <span rel="mint" resource="tarsus">Tarsus 7</span>, 
+        <span rel="mint" resource="myriandrus">Myriandrus 1</span>, <span rel="mint" resource="citium">Citium 2</span>, 
+        <span rel="mint" resource="salamis_cyprus">Salamis 2
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.34151">ANS 1944.100.34151</a></span>, 
+        <span rel="mint" resource="aradus">Aradus 5</span>, <span rel="mint" resource="marathus">Marathus 3</span>, 
+        <span rel="mint" resource="byblus">Byblus 9
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.35079">ANS 1944.100.35079</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.35092">ANS 1944.100.35092</a></span>, 
+        <span rel="mint" resource="sidon">Sidon 3</span>, <span rel="mint" resource="tyre">Tyre 2</span>, 
+        <span rel="mint" resource="ace_ptolemais">Ace 7</span>, <span rel="mint" resource="damascus">Damascus 2</span>, 
+        <span rel="mint" resource="carrhae">Carrhae 2</span>, <span rel="mint" resource="babylon">Babylon 29</span>, 
+        <span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Tigrim 1</span>, <span rel="mint" resource="susa">Susa 1</span>,      
+        <span rel="mint" resource="ecbatana">Ecbatana 3</span>, 
+        unc. mints 10
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.26429">ANS 1944.100.26429</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.33751">ANS 1944.100.33751</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.29412">ANS 1944.100.29412</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.33766">ANS 1944.100.33766</a>)
+    Imit. Alexander III: 18 tetradr.
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.26651">ANS 1944.100.26651</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.26650">ANS 1944.100.26650</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.26628">ANS 1944.100.26628</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.26653">ANS 1944.100.26653</a>
+    Philip III: 27 tetradr. (<span rel="mint" resource="salamis_cyprus">Salamis 1
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.34119">ANS 1944.100.34119</a></span>, 
+        <span rel="mint" resource="aradus">Aradus 8
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.34865">ANS 1944.100.34865</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.34881">ANS 1944.100.34881</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.34869">ANS 1944.100.34869</a></span>, 
+        <span rel="mint" resource="marathus">Marathus 9
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.34928">ANS 1944.100.34928</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.34929">ANS 1944.100.34929</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.34951">ANS 1944.100.34951</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.34932">ANS 1944.100.34932</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.34944">ANS 1944.100.34944</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.34948">ANS 1944.100.34948</a></span>, 
+        <span rel="mint" resource="babylon">Babylon 7</span>, 
+        <span rel="mint" resource="susa">Susa 1
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.35531">ANS 1944.100.35531</a></span>, unc. 
+        mint 1)
+    Seleucus I: 29 tetradr. (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Tigrim  6</span>, 
+        <span rel="mint" resource="marathus">Marathus 15
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.77093">ANS 1944.100.77093</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.77078">ANS 1944.100.77078</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.77092">ANS 1944.100.77092</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.77079">ANS 1944.100.77079</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.77080">ANS 1944.100.77080</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.77086">ANS 1944.100.77086</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.77097">ANS 1944.100.77097</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.77096">ANS 1944.100.77096</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.77083">ANS 1944.100.77083</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.77095">ANS 1944.100.77095</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.77094">ANS 1944.100.77094</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.77081">ANS 1944.100.77081</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.77088">ANS 1944.100.77088</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.77082">ANS 1944.100.77082</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.77089">ANS 1944.100.77089</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.77090">ANS 1944.100.77090</a></span>, 
+        unc. mint A as WSM 1332 f. 7, unc. mint C as WSM 1344 1
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.73425">ANS 1944.100.73425</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.78134">ANS 1944.100.78134</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.78135">ANS 1944.100.78135</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.78143">ANS 1944.100.78143</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.73442">ANS 1944.100.73442</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.78131">ANS 1944.100.78131</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.78132">ANS 1944.100.78132</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1967.152.669">ANS 1967.152.669</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1967.152.670">ANS 1967.152.670</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.73468">ANS 1944.100.73468</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.78119">ANS 1944.100.78119</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.78133">ANS 1944.100.78133</a>)
+    Disposition: New York: Alexander III and 
+        Philip III (a portion), Seleucus I 
+        (almost all), Imit. Alexander III 7
+    Newell, Tyrus, p. 11; ESM and WSM, indices 
+        of hoards, s.v. Angora
+    Waggoner, ANSMN 15 (1969), pp. 28-30
+</pre>
+</div>
+</div>

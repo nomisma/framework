@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1215">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-340" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1215 <span property="nm:findspot" content="37.22 28.36">Mugla (anc. Pisye), Caria</span>, 1950 
+    Burial: c. 340 B.C. (M)
+    Contents: c. 200 AR
+    <span rel="mint" resource="ephesus">Ephesus: tetradr.</span>
+    <span rel="mint" resource="miletus">Miletus: tetradr. (as SNGvonA. 2089)</span> 
+    <span rel="mint" resource="cnidus">Cnidus: didr.; hemidr.</span> 
+    <span rel="mint" resource="halicarnassus">Mausolus: tetradr.; dr. 
+    Hidrieus: dr.</span>
+    <span rel="mint" resource="cos">Cos: tetradr.; dr.</span>
+    <span rel="mint" resource="rhodes">Rhodes: tetradr.</span>
+    <span rel="mint" resource="euthenai">Euthenai (Rhodian dependency): dr.  (cf. NC 1942, pp. 92-4)</span> 
+    Disposition: dispersed
+</pre>
+</div>
+</div>

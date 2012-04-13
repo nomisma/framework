@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1617">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-61" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1617 Palestine, before 1942
+    Burial: after 61 B.C. (Spaer)
+        Contents: 30+ AR
+    Antiochus VII: 1+ tetradr. (<span rel="mint" resource="tyre">Tyre, yr. 181</span>) 
+    Demetrius II: 4 tetradr. (<span rel="mint" resource="tyre">Tyre, yrs. 184, 
+        186</span>)
+    <span rel="mint" resource="tyre">Tyre: 10 tetradr. (yrs. 45-64)</span>
+    Disposition: A. Spaer, Jerusalem, 14
+    Kadman, INCJ, hoard 14
+    Information from A. Spaer. The hd. contained at 
+        least 15 more tetradr. of Antiochus VII and 
+        Demetrius II from Tyre
+</pre>
+</div>
+</div>

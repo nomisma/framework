@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0529">
+<span rel="nm:findspot"><span property="gml:pos">43.08583333 25.63611111</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-125" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+529 Vlasica, near Veliko Târnovo, Bul-
+(1165)     garia, 1934
+    Burial: c. 125-100 B.C.
+    Contents: 59 Ar
+    <span rel="mint" resource="maroneia">Maroneia 48 spread-flan tetradr.</span> 
+    <span rel="mint" resource="thasos">Thasos: 11 spread-flan tetradr.</span>
+    Disposition: dispersed
+    Gerasimov, BIAB 11 (1937), p. 315
+</pre>
+</div>
+</div>

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1980">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-270" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.3833333333 16.8263888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1980 Metaponto, Lucania, c. 1910
+(128 = 897)
+    Burial: c. 270 B.C. (K) 
+    Contents: 85+ AR
+    <span rel="mint" resource="taras">Taras: 3 st. (to Per. VIII) </span>
+    <span rel="mint" resource="heraclea_lucaniae">Heracleia: 13 st.</span>
+    <span rel="mint" resource="metapontum">Metapontum: 67 st.</span>
+    <span rel="mint" resource="thurium">Thurium: a few st.</span>
+    <span rel="mint" resource="velia">Velia: 2 st.</span>
+    <span rel="mint" resource="croton">Croton: a few st.</span>
+    Disposition: J. G. Ford 15 (now London cf. 
+        NC 1919, p. 2); remainder (except 
+        Velia) A. J. Evans (now SNGLloyd 
+        395, SNGOxford 729, 734, 737, 754-6, 
+        764, 768, 772, 774-8, 780-92); New
+        York 7 (SNG2, 507-12, 517)
+† Evans, NC 1918, pp. 133-54, illus.
+    Sambon, Miscellanea Num. 1921, p. 33 with 
+        drawing of one coin
+    Vlasto, NC 1930, p. 110, for provenance 
+    Stazio, AIIN 1965-7, pp. 48, 52-3
+    Sambon provides an indifferent drawing of 
+        a previously unknown type of Meta-
+        pontum, the same coin illustrated by 
+        Evans on pl. 5, 4. This link, as well as 
+        the similarity of contents and dates of 
+        discovery, makes it clear that the hd. 
+        described briefly by Sambon (Noe 128) 
+        is the same as that later and more fully 
+        published by Evans (N. 897)
+</pre>
+</div>
+</div>

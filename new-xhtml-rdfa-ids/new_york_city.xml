@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="new_york_city">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">New York City</div>
+ <div property="skos:definition" xml:lang="en">The mint in the city of New York, New York.</div>
+<div property="gml:pos">40.716667 -74</div>
+</div>

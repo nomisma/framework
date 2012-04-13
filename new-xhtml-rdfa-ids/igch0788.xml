@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0788">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-325" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-310" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.7502777778 27.6952777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+788 Kosarica, c. 30 km. N of Burgas, Bul-
+    garia, 1959
+    Burial: c. 325-310 B.C. (T)
+    Contents: 95 AE. Pot hoard
+    Philip II: 87
+    Alexander III: 5
+    <span rel="mint" resource="mesembria">Mesembria: 3 (helmet obv.)</span> 
+    Disposition: Burgas
+    Gerasimov, BIAB 25 (1962), p. 230
+</pre>
+</div>
+</div>

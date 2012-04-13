@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="ilercavonia_with_dertosa">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Ilercavonia (Dertosa)</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Ilercavonia (Dertosa) in Hispania Citerior.</div>
+ <div property="gml:pos">40.811004 0.520955</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Ilercavonia"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/246369"/>
+</div>

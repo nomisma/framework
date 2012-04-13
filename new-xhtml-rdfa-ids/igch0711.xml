@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0711">
+<span rel="nm:findspot"><span property="gml:pos">42.19083333 23.98666667</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-400" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+711 Goljamo Belovo, 15 km. W of Pa-
+    zardzik, Bulgaria, 1959
+    Burial: c. 400 B.C. (T) 
+    Contents: AR
+    <span rel="mint" resource="thasos">Thasos: st. (some with Θ)</span> 
+    Disposition: Pazardzik
+    Gerasimov, BIAB 25 (1962), p. 229
+</pre>
+</div>
+</div>

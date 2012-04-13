@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1881">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-480" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.8286111111 16.3138888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1881 Curinga, 30 km. WSW of Catanzaro, 
+(285)     Bruttium, 1916
+    Burial: c. 480 B.C. (K)
+    Contents: c. 300 incuse AR. Pot hoard dis-
+        persed and partly recovered
+    <span rel="mint" resource="taras">Taras: 1 st. (as Vlasto Cat. 68)</span> 
+    <span rel="mint" resource="metapontum">Metapontum: 71 st. (70 spread to Noe 215; 
+        1 dumpy as N. 253)</span>
+    <span rel="mint" resource="sybaris">Sybaris: 4 st.</span>
+    <span rel="mint" resource="caulonia">Caulonia: 45 st. (28 spread as N. 1-41; 
+        17 medium as N. 42-58)</span>
+    <span rel="mint" resource="croton">Croton: 72 st. (21 spread; 48 medium [1 
+        with rev. QΡΟ/ΤΕ]; 3 medium [rev. 
+        eagle])</span>
+    Disposition: Reggio 192 as above except 
+        M. P. Vlasto 1 Taras
+† Orsi, AttiMemIIN 1919, pp. 35-45, illus. 
+    Noe, NNM 32 (1927) pp. 52, 134, note 38
+    The cicada recorded above bull by Orsi on 
+        one Sybaris is in fact a die flaw, which 
+        has engulfed ϒΜ
+</pre>
+</div>
+</div>

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0262">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-146" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre class="group">
+262 <span property="nm:findspot" content="38.183333 22.183333">Diakofto, on the coast c. 20 km. E of Aegium, Achaea</span>, 1965
+    Burial: c. 146 B.C. (T) 
+    Contents: 3000+ AR
+    <span rel="mint" resource="lamia">Lamia: 1 triob.</span>
+    Aetolian League: 63 triob.
+    <span rel="mint" resource="locri_opuntii">Locri Opuntii: 12 triob.</span>
+    <span rel="mint" resource="phocis">Phocis: 4 triob.</span>
+    <span rel="mint" resource="boeotia">Boeotia: 28 triob.</span>
+    <span rel="mint" resource="thebes">Thebes: 7 triob.</span>
+    <span rel="mint" resource="chalcis">Chalcis: 92 dr.</span>
+    <span rel="mint" resource="histiaea">Histiaea: 6 tetrob.</span>
+    <span rel="mint" resource="sicyon">Sicyon: 459 triob. (29 early, 430 late)
+           <a rel="nm:item" href="http://cngcoins.com/Coin.aspx?CoinID=89134">CNG Coin Shop 775210</a>
+           <a rel="nm:item" href="http://cngcoins.com/Coin.aspx?CoinID=148616">CNG Coin Shop 832025</a>
+           <a rel="nm:item" href="http://www.cngcoins.com/Coin.aspx?CoinID=148615">CNG Coin Shop 831994</a></span>
+    <span rel="mint" resource="aegae_achaea">Aegae: 1 triob.</span>
+    <span>Achaean League: 1601 triob.
+           <a rel="nm:item" href="http://cngcoins.com/Coin.aspx?CoinID=89154">CNG Coin Shop 775269 </a></span>
+    <span>Messene: 6 triob. 
+           <a rel="nm:item" href="http://cngcoins.com/Coin.aspx?CoinID=105434">CNG Coin Shop 790011</a>
+           <a rel="nm:item" href="http://www.cngcoins.com/Coin.aspx?CoinID=168066">CNG Coin Shop 877551</a></span>
+    <span rel="mint" resource="corone">Corone: 2 triob.</span>
+    <span rel="mint" resource="argos_argolis">Argos: 391 triob. (22 early, 369 late)</span>
+    <span rel="mint" resource="megalopolis">Megalopolis: 226 triob.</span>
+    <span rel="mint" resource="rome">Roman Rep.: 1 quinarius (Syd. 609a = 83/2 B.C.; intrusion?)</span>
+    Disposition: in commerce
+    Information from M. Price; details of above on 
+        file in BM
+</pre>
+</div>
+</div>

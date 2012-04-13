@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1663">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">30.4627777778 31.1797222222</span></span></div>
+<div class="nm:editedSource">
+<pre>1663 Tel el Athrib, near Benha (anc. 
+(1082)     Athribis), 50 km. N of Cairo, 1905 
+    Burial: 4th cent. B.C. (Jenkins)
+    Contents: 700 AR, 1 die
+    Alexander III: 1 tetradr. (from hoard?) 
+    <span rel="mint" resource="athens">Athens: 109 tetradr.</span>
+    <span rel="mint" resource="athens">Imit. Athens: 130 tetradr.</span>
+    Disposition: Athens, the die and 84 speci-
+        mens (ex Dattari); 460 melted down
+    Dattari, JIAN 1905, pp. 103-14, illus. (many 
+        with ctmks. similar to those on early 
+        Ptolemaic)
+    Svoronos, CorNum, pp. 285-95; Athènes, pl. 26 
+    Hill, NC 1922, p. 14, note 34
+</pre>
+</div>
+</div>

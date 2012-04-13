@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0528">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-125" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">45.8291666667 23.3761111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+528 Cugir, c. 20 km. ENE of Deva, Ru-
+    mania, 1955
+    Burial: c. 125-100 B.C.
+    Contents: 9+ AR. Pot hoard
+    Imit. Philip II: 1 tetradr.
+    <span rel="mint" resource="macedonia_1st_region">Macedonia, 1st Region: 8 tetradr.</span> 
+    Disposition: Deva 9
+    Floca, SCN 2 (1958), pp. 95-110, illus.
+</pre>
+</div>
+</div>

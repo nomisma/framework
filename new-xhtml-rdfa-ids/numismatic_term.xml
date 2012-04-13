@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="nomisma_id" about="numismatic_term">
+ <div property="skos:prefLabel" xml:lang="en">Numismatic term</div>
+ <div property="skos:definition" xml:lang="en">Any term used to describe numismatic items.</div>
+</div>

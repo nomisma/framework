@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0707">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-430" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-400" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">46.1752777778 30.4577777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+707 Roksolany, 1962 
+    Burial: late 5th cent. B.C.
+    Contents: 4 AR, 2 AE. In amphora neck 
+        fragment
+    <span rel="mint" resource="istrus">Istrus: 2 didr. (as NZ 1917, pl. 28, 405a) 
+            1 dr.
+            1 fr. (as AMNG I.1, pl. 2, 23)
+            2 AE (as AMNG I.1, pl. 8, 7)</span> 
+    Disposition: Odessa
+    Zaginaîlo, in † Sbornik rabot aspirantov Odesskogo 
+        Gosudarstvennogo Universiteta, Gumanitarnye 
+        nauki (Odessa, 1964), pp. 168-9; MASP 5 
+        (1966), pp. 110, 129, nos. 247-52
+</pre>
+</div>
+</div>

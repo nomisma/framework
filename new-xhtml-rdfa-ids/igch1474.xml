@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1474">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-170" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">35.4225 34.0741666667</span></span></div>
+<div class="nm:editedSource">
+<pre>1474 Galatia, district of Famagusta, 1939 
+    Burial: c. 170 B.C. (M)
+    Contents: 123 AR. Pot hoard
+    Ptolemy I: 12 tetradr. (<span rel="mint" resource="alexandria_egypt">Alexandreia</span>) 
+    Ptolemy II: 57 tetradr. (<span rel="mint" resource="alexandria_egypt">Alexandreia 7</span>,
+        <span rel="mint" resource="joppa">Joppa 2</span>, <span rel="mint" resource="ace_ptolemais">Ace 11</span>, <span rel="mint" resource="tyre">Tyre 17</span>, <span rel="mint" resource="sidon">Sidon 7</span>,
+        <span rel="mint" resource="cyprus">Cyprus? 12</span>, unc. mint 1, pl.)
+    Ptolemy III: 7 tetradr. (<span rel="mint" resource="alexandria_egypt">Alexandreia 1</span>, 
+        <span rel="mint" resource="ace_ptolemais">Ace 2</span>, <span rel="mint" resource="tyre">Tyre 1</span>, <span rel="mint" resource="tarsus">Tarsus 1</span>, <span rel="mint" resource="lebedus">Ptolemais-
+        Lebedus 1</span>, <span rel="mint" resource="aenus">Aenus 1</span>)
+    Ptolemy IV: 7 tetradr. (<span rel="mint" resource="cyrene">Cyrene? 1</span>, <span rel="mint" resource="tyre">Tyre 1</span>, 
+        <span rel="mint" resource="sidon">Sidon 1</span>, unc. mints 4)
+    Ptolemy V:15 tetradr. (<span rel="mint" resource="sidon">Sidon 1</span>, <span rel="mint" resource="berytus">Berytus 1</span>, 
+        <span rel="mint" resource="damascus">Damascus? 1</span>, unc. mints 12)
+    Ptolemy VI: 16 tetradr. (<span rel="mint" resource="alexandria_egypt">Alexandreia 8</span>, 
+       <span rel="mint" resource="cyprus">Cyprus 8</span>)
+    Unc. kings and mints: 9
+    Disposition: Nicosia
+    Wilson, Report of the Department of Antiquities, 
+        Cyprus, 1937-1939, p. 204
+    The bronze coin mentioned may be the 
+        core of a pl. tetradr.
+</pre>
+</div>
+</div>

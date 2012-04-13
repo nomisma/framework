@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="leucas">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Leucas</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Leucas on Leucas, off Acarnania.</div>
+ <div property="gml:pos">38.807342 20.713116</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Leukas"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/530974"/>
+</div>

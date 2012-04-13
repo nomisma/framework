@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0770">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-320" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.7091666667 27.2461111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+770 Kladenzi, Sumen district, Bulgaria, 
+    1949
+    Burial: c. 330-320 B.C. (T)
+    Contents: 3+ AR. Pot hoard 
+    <span rel="mint" resource="apollonia_pontica">Apollonia Pontica: 1 tetrob.</span> 
+    <span rel="mint" resource="mesembria">Mesembria: 2 diob.</span>
+    Disposition: Dâlgopol
+    Reported by T. Gerasimov
+</pre>
+</div>
+</div>

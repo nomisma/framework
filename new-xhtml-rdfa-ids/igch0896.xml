@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0896">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-125" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.7333333333 25.8577777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+896 Pirgovo, c. 15 km. S of Ruse, Bulgaria, 
+    1961
+    Burial: c. 125 B.C. (Price)
+    Contents: 17+ AR. Pot hoard
+    Alexander III: 9 late post. tetradr. (<span rel="mint" resource="mesembria">Me-
+        sembria)</span>
+    <span rel="mint" resource="macedonia">Macedonia, 1st Region: 8 tetradr.</span> 
+    Disposition: Ruse
+    Gerasimov, BIAB 26 (1963), p. 263
+</pre>
+</div>
+</div>

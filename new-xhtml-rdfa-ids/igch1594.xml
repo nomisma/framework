@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1594">
+<span rel="nm:findspot"><span property="gml:pos">33.5625 35.36861111</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-140" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1594 Saida (anc. Sidon), Phoenicia, 1862-
+(883)     1863
+    Burial: c. 140 B.C. (Fischer) 
+    Contents: 70 AR
+    Alexander I: tetradr. (<span rel="mint" resource="sidon">Sidon</span>, <span rel="mint" resource="tyre">Tyre</span>, 
+        <span rel="mint" resource="berytus">Berytus</span>)
+    Demetrius II: tetradr. (<span rel="mint" resource="sidon">Sidon</span>, <span rel="mint" resource="tyre">Tyre</span>)
+    Disposition: dispersed
+    Weckbecker, WNM 1865, p. 97
+</pre>
+</div>
+</div>

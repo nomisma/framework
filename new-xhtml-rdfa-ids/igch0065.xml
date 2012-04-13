@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0065">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div class="nm:editedSource">
+<pre>
+65 Boeotia, 1952 or earlier
+    Burial: c. <span property="nm:approximateburialdate_start" content="-340" datatype="xsd:date">340</span>-<span property="nm:approximateburialdate_end" content="-330" datatype="xsd:date">330</span> B.C. (T)
+    Contents: 29 AR
+    Philip II: 1 didr. 
+    <span rel="mint" resource="athens">Athens:</span> 2 tetradr.; 2 dr.
+    <span rel="mint" resource="boeotia">Boeotia:</span> 24 st. (magistrates)
+    Disposition: unknown
+    Information from correspondent in Athens
+</pre>
+</div>
+</div>

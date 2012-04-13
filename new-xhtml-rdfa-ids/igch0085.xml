@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0085">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.8119444444 22.8705555556</span></span></div>
+<div class="nm:editedSource">
+<pre>
+85 Chiliomodi, 18 km. S of Corinth, 1932
+(239)
+    Burial: <span property="nm:approximateburialdate" content="-306" datatype="xsd date">306</span> B.C. (Ravel)
+    Contents. 196 AR. Pot hoard
+    <span rel="mint" resource="leucas">Leucas:</span> 9 st.
+    <span rel="mint" resource="corinth">Corinth:</span> 70 st.; 84 dr.
+    Ptolemy I: 21 tetradr.; 12 dr.
+    Disposition: Athens 17 (Leucas 2, Corinth 
+        9, Ptolemy 6); New York 2 (Ptolemy 
+        dr.); Oxford 1 (Ptolemy dr.)
+    BCH 1933, p. 238
+† Ravel, TINC, pp. 98-108, illus.
+    Jenkins, ANSMN 9 (1960), pp. 32-4 (Ptolemaic 
+        issues)
+</pre>
+</div>
+</div>

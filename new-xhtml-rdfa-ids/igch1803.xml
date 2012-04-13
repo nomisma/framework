@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1803">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-140" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">28.9608333333 61.5738888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1803 Kuh-i-Tuftan (anc. district of Ge-
+(583)     drosia), 1902
+    Burial: c. 140 B.C. (M) 
+    Contents: c. 90 AR
+    Antiochus II: 2 hemidr. (Bactra as ESM 
+        711, 722)
+    Demetrius I: 1 dr. (<span rel="mint" resource="ecbatana">Ecbatana</span>)
+    Imit. of Seleucid coins: 16 dr. and fr. 
+    Demetrius I, Bactria: 1 ob.
+    Euthydemus II: 1 ob.
+    Antimachus Theos: 1 ob.
+    Pantaleon: 1 ob.
+    Eucratides: 2 ob.
+    Imit. of Eucratides: 1 ob.
+    Disposition: London 26 (as listed)
+    Rapson, NC 1904, pp. 311-25, illus.
+    Some of the barbarian copies of Seleucid 
+        coins show the name of Alexander I 
+        Bala
+</pre>
+</div>
+</div>

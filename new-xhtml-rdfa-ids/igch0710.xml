@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0710">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-400" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.7775 24.7075</span></span></div>
+<div class="nm:editedSource">
+<pre>
+710 Thasos: ?, before 1912
+    Burial: c. 400 B.C. (T) 
+    Contents: 27+ AR. Hoard? 
+    <span rel="mint" resource="thasos">Thasos: dr.</span>
+    Disposition: Egger Jan. 15, 1912, nos. 169-
+        194, 207
+    This lot of 27 dr. in the Egger Sale gives 
+        every appearance of being part of a 
+        hd. Possibly the later dr. (nos. 195-
+        202) also have a hd. context
+</pre>
+</div>
+</div>

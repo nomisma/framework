@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1212">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-350" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1212 <span property="nm:findspot" content="40.16 26.41">Çanakkale (anc. Abydus), Troas</span>, 1969 
+    Burial: c. 350 B.C. (Pfeiler) 
+    Contents: 42+ AR
+    <span rel="mint" resource="cyzicus">Cyzicus: c. 10 tetradr.</span> 
+    <span rel="mint" resource="lampsacus">Lampsacus: 12+ diob.</span> 
+    <span rel="mint" resource="ephesus">Ephesus: 20+ tetradr.</span> 
+    Disposition: dispersed
+</pre>
+</div>
+</div>

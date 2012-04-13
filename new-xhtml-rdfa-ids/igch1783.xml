@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1783">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-75" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">31.3227777778 45.6388888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1783 Warka (anc. Orchi or Uruk), Baby-
+(1171)     lonia, 1912
+    Burial: c. 100-75 B.C. (Le Rider)
+    Contents: 1 AR, 190 AE
+    Antiochus IV?: 1 AE
+    Alexander I Bala?: 2 AE 
+    Antiochus VII?: 1 tetradr. 
+    Mithradates II?: 1 AE
+    Unc. Arsacids: 3 AE
+    King Eudi: 1 AE
+    Unc.: 182 AE
+    Disposition: Paris
+    de la Fuÿe, MMAP 1934, p. 10 
+† Le Rider, Suse, pp. 458 f., illus.
+</pre>
+</div>
+</div>

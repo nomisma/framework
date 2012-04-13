@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="roman_emperor" about="claudius">
+ <div property="skos:prefLabel" xml:lang="en">Claudius</div>
+ <div>Roman emperor, d. 13 October AD 54.</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Claudius"/>
+</div>

@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2098">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-400" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.156852 15.380673</span></span></div>
+<div class="nm:editedSource">
+<pre>2098 Monforte S. Giorgio, 24 km. W of 
+    Messina, 1947
+    Burial: c. 400 B.C. (K) 
+    Contents: 26 AR, 8 AE
+    <span rel="mint" resource="rhegium">Rhegium: 7 dr. (oecist) </span>
+    <span rel="mint" resource="agrigentum">Acragas: 3 didr.</span>
+    <span rel="mint" resource="catana">Catana: 1 tetradr.; 1 dr.; 1 AE</span>
+    <span rel="mint" resource="gela">Gela: 3 didr.</span>
+    <span rel="mint" resource="messana">Messana: 2 tetradr.</span>
+    <span rel="mint" resource="naxus">Naxus: 1 tetradr.</span>
+    <span rel="mint" resource="syracuse">Syracuse: 1 tetradr. (as Boehringer 595-6) 
+            1 dr. (facing Athena/Leucaspis)
+            2 AE</span>
+    Pegasi: 6 (<span rel="mint" resource="corinth">Corinth</span>, <span rel="mint" resource="ambracia">Ambracia</span>, <span rel="mint" resource="leucas">Leucas</span>, 
+        <span rel="mint" resource="thyrrheium">Thyrrheium</span>)
+    Unc.: 5 AE
+    Disposition: Syracuse
+    Currò Pisanò, AIIN 1962-4, p. 228
+    A number of obviously intrusive coins, as 
+        AE of Carthage and Claudius Gothicus, 
+        are assembled under this heading. Of 
+        the Pegasi, two (Thyrrheium and 
+        Corinth, Per. V) are obviously in-
+        trusive, but the remaining four form a 
+        group which might terminate soon 
+        after 400 B.C. (Ambracia, Ravel P. 27, 
+        and Leucas, BMCCorinth, pl. 34, 7). 
+        They are also united by a brownish 
+        oxidized surface which is shared by 
+        some of the other coins listed (5 dr. of 
+        Rhegium, 1 didr. each of Acragas and 
+        Gela, both AR coins of Syracuse)
+    Under the heading "Milazzo 1947" the BM 
+        has a record of a find (presumably the 
+        same time as that above) of 70+ AR 
+        including:
+    Acragas: 2 tetradr. (as Rizzo, MGS, pl. 2, 
+        1 and 10)
+    <span rel="mint" resource="camarina">Camarina:</span> tetradr.
+            2 didr. (as R., pl. 7, 8 and one 
+        with facing hd.)
+    Catana: 1 tetradr. (as R., pl. 14, 10) 
+            1 dr. signed by Euainetos
+    Gela: 2 tetradr. (as R., pl. 18, 7 and 14 = 
+        Jenkins Grps. VII and IX)
+    Messana: tetradr. fdc, with symbols: Pan 
+        hd., dolphin, barley-ear, bird and 
+        barley-ear
+    Naxus: tetradr. with young Dionysus hd. 
+    Syracuse: tetradr. (incl. Tudeer nos. 42, 
+        58, 78-81)
+            dr. (as Rizzo, pl. 47, 9 and facing 
+        Athena/Leucaspis)
+    This group cannot have been buried much 
+        before 400 B.C.
+</pre>
+</div>
+</div>

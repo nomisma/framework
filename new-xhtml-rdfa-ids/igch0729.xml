@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0729">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-340" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-330" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.2619444444 23.1127777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+729 Dupnica, c. 50 km. E of Kjustendil, 
+    Bulgaria, 1942
+    Burial: c. 340-330 B.C. (T)
+    Contents: AR
+    Philip II: tetradr. (Pella)
+    Disposition: dispersed
+    Gerasimov, BIAB 15 (1946), p. 239
+</pre>
+</div>
+</div>

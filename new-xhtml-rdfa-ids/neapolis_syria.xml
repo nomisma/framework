@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="neapolis_syria">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Neapolis</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Neapolis in Syria.</div>
+ <div property="gml:pos">32.220859 35.262892</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/678301"/>
+</div>

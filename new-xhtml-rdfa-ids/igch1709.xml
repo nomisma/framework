@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1709">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-130" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">30.9761111111 31.8786111111</span></span></div>
+<div class="nm:editedSource">
+<pre>1709 Tell Nebesheh (anc. Am), 50 km. 
+(1088)     E of El Mansûra, 1886
+    Burial: c. 130 B.C. (Jenkins) 
+    Contents: 11 AR. From excavations
+    Ptolemy VI: 2 tetradr. (<span rel="mint" resource="citium">Citium as Svoronos 
+        1478</span>; <span rel="mint" resource="salamis_cyprus">Salamis as Sv. 1462</span>)
+    Ptolemy VIII: 9 tetradr. (<span rel="mint" resource="alexandria_egypt">2 Alexandreia as 
+        Sv. 1437, 1445</span>; 4 <span rel="mint" resource="citium">Citium as Sv. 1582, 
+        1598, 1600</span>; 3 <span rel="mint" resource="salamis_cyprus">Salamis as Sv. 1540, 
+        1543, 1547</span>)
+    Disposition: London 2
+    Petrie, Tanis, pp. 25-6 (BMC references)
+</pre>
+</div>
+</div>

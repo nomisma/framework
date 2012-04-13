@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="chersonesus_cariae">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Chersonesus</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Chersonesus in Caria.</div>
+<div rel="uncertain_value"><span property="gml:pos">36.7757425 27.7397919</span></div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/599571"/>
+</div>

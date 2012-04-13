@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0079">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.8208333333 22.6625</span></span></div>
+<div class="nm:editedSource">
+<pre>
+79 Nemea, Argolis, 1938
+    Burial: c. <span property="nm:approximateburialdate_start" content="-325" datatype="xsd:date">325</span>-<span property="nm:approximateburialdate_end" content="-320" datatype="xsd:date">320</span> B.C. (T) 
+    Contents: 3+ AR
+    Philip II: 1 tetradr.
+    Alexander III: 1 lifetime tetradr. (<span rel="mint" resource="amphipolis">Amphi-
+        polis)</span>
+    <span rel="mint" resource="boeotia">Boeotia:</span> 1 st.
+    Disposition: Athens 3
+    Information from M. Oeconomides
+</pre>
+</div>
+</div>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0345">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-86" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-84" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.4625 23.5905555556</span></span></div>
+<div class="nm:editedSource">
+<pre>
+345 Chalcis, Euboea, c. 1955 
+    Burial: c. 86-84 B.C. (T)
+    Contents: AR. Hoard?
+    <span rel="mint" resource="athens">Athens:</span> tetradr. (Sullan issues) 
+    Disposition: Athens 2
+    Varoucha, BCH 1956, p. 227
+</pre>
+</div>
+</div>

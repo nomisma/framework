@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="euromus">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Euromus</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Euromus in Caria.</div>
+ <div property="gml:pos">37.378355 27.673196</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/599616"/>
+</div>

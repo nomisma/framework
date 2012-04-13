@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="pandosia_bruttium">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Pandosia</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Pandosia in Bruttium.</div>
+ <div property="gml:pos">40.244355 16.557488</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Pandosia_(Bruttium)"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/442709"/>
+</div>

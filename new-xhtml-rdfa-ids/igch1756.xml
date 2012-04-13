@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1756">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-305" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-270" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.3441666667 43.1444444444</span></span></div>
+<div class="nm:editedSource">
+<pre>1756 Mosul, in anc. Mesopotamia, 
+(710)     1862-3?
+    Burial: after 305 B.C. (Newell)
+    Contents: 88+ AR
+    Alexander III: lifetime and early post.
+        tetradr. (<span rel="mint" resource="amphipolis">Amphipolis 2</span>, <span rel="mint" resource="abydus">Abydus? 1</span>, 
+        <span rel="mint" resource="miletus">Miletus 1</span>, <span rel="mint" resource="sardes">Sardes 2</span>, <span rel="mint" resource="side">Side 1</span>, <span rel="mint" resource="tarsus">Tarsus 4</span>, 
+        <span rel="mint" resource="salamis_cyprus">Salamis 1</span>,<span rel="mint" resource="aradus"> Aradus 2</span>, <span rel="mint" resource="byblus">Byblus 1</span>,<span rel="mint" resource="berytus"> Berytus 
+        1</span>, <span rel="mint" resource="sidon">Sidon 2</span>, <span rel="mint" resource="tyre">anc. forgery of Tyre 1</span>, <span rel="mint" resource="ace_ptolemais">Ace 
+        5 to yr. 32</span>, <span rel="mint" resource="babylon">Babylon 8</span>, <span rel="mint" resource="susa">Susa 1</span>, unc. 55)
+    Disposition: Berlin 1
+    Weckbecker, WNM 1865, pp. 98-9
+</pre>
+</div>
+</div>

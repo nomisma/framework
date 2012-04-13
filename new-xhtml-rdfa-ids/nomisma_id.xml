@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="rdf:resource" about="nomisma_id">
+ <div property="skos:prefLabel">Nomisma ID</div>
+ <div property="skos:definition">The identifier of a definition in Nomisma. This is the root class of all Nomisma resources.</div>
+</div>

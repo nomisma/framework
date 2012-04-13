@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2371">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-170" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.555472 5.443368</span></span></div>
+<div class="nm:editedSource">
+<pre>2371 Entremont (anc. oppidum of the Sal-
+    luvii), near Aix, 1953
+    Burial: early 2nd cent. B.C. (Rolland) 
+    Contents: 105+ AR. From excavations
+    <span rel="mint" resource="massalia">Massalia: 2 dr.
+            100 ob.</span>
+    <span rel="mint" resource="rome">Roman Rep.: 2 vict. 
+            1 quin.</span>
+    Disposition: Aix
+    Benoît, Gallia 1954, pp. 285-6
+    Rolland, RN 1956-7, p. 99, note 9 (mentions 3 dr. 
+        and 3 vict.)
+    Crawford, RRCH 110
+</pre>
+</div>
+</div>

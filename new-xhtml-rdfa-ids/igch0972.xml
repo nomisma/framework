@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0972">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-75" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.3961111111 27.2677777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+972 Develt (anc. Deultum), 27 km. S of 
+    Burgas, Bulgaria, 1951
+    Burial: 100-75 B.C. (T)
+    Contents: 47+ AR. Pot hoard
+    Lysimachus: late post. tetradr. (<span rel="mint" resource="byzantium">Byzan-
+        tium, most of barbaric style</span>) 
+    Disposition: Burgas 41; Sofia 6
+    Gerasimov, BIAB 20 (1955), p. 603
+</pre>
+</div>
+</div>

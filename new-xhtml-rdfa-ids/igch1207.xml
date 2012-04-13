@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1207">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-370" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1207 Asia Minor, western, before 1856 
+    Burial: c. 370 B.C. (M)
+    Contents: 4+ AR 
+    <span rel="mint" resource="samos">Samos: 1+ tetradr.</span>
+    <span rel="mint" resource="miletus">Hecatomnus at Miletus: 2+ dr.</span>
+    <span rel="mint" resource="cos">Cos: 1 tetradr.</span> 
+    Disposition: Paris 4
+    Gardner, NC 1882, p. 256 
+    Barron, Samos, p. 117
+</pre>
+</div>
+</div>

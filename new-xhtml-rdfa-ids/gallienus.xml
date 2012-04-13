@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="roman_emperor" about="gallienus">
+ <div property="skos:prefLabel" xml:lang="en">Gallienus</div>
+ <div property="skos:definition" xml:lang="en">The Roman Emperor Gallienus (c. 218 - 268).</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Gallienus"/>
+</div>

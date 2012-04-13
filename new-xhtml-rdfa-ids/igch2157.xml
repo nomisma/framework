@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2157">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.9908333333 13.6555555556</span></span></div>
+<div class="nm:editedSource">
+<pre>2157 Vetrana, 20 km. W of Himera, 1956 
+    Burial: c. 300 B.C. (K)
+    Contents: 43 AE
+    <span rel="mint" resource="carthage">Carthage (as Jenkins-Lewis, pl. 26, 11-12)</span> 
+    Disposition: Palermo
+    Tusa Cutroni, AIIN 1957, p. 112
+</pre>
+</div>
+</div>

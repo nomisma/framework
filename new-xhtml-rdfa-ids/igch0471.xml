@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0471">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-150" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.7319444444 22.6936111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+471 Gephyra, near Thessalonica, Mace-
+    donia, 1967
+    Burial: 200-150 B.C. (Oeconomides) 
+    Contents: 38 AR
+    <span rel="mint" resource="phocis">Phocis: 1 triob.</span> 
+    <span rel="mint" resource="boeotia">Boeotia: 2 triob.</span> 
+    <span rel="mint" resource="chalcis">Chalcis: 2 dr.</span>
+    <span rel="mint" resource="histiaea">Histiaea: 31 tetrob.</span> 
+    <span rel="mint" resource="sicyon">Sicyon: 1 triob.</span> 
+    <span rel="mint" resource="arcadia">Arcadia: 1 triob.</span>
+    Disposition: Thessalonica
+    The alleged findspot is peculiar in view of 
+        the composition of the hd.
+</pre>
+</div>
+</div>

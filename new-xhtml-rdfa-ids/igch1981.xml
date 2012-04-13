@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1981">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-270" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.1172222222 16.4836111111</span></span></div>
+<div class="nm:editedSource">
+<pre>1981 Ruvo (anc. Rubi), 35 km. W of Bari, 
+    Apulia, date unknown
+    Burial: c. 270 B.C.
+    Contents: 54 AR
+    <span rel="mint" resource="taras">Taras: 26 st. (24 Per. II-VII; 2 Per. VIII)</span>
+    <span rel="mint" resource="heraclea_lucaniae">Heracleia: 1 st. (as Work 62 ff.)
+            1 diob.</span>
+    <span rel="mint" resource="metapontum">Metapontum: 25</span>
+    <span rel="mint" resource="thurium">Thurium: 1</span>
+    Disposition: Taranto
+    Stazio, AIIN 1965-7, pp. 46-7
+    Has this connection with Ruvo 1877, no. 
+        1952 above? Various associated AE and 
+        a Rep. den. are probably intrusive
+</pre>
+</div>
+</div>

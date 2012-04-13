@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0302">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.4863888889 21.6494444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+302 Zacharo, near Olympia, Elis, c. 1957 
+    Burial: 2nd cent. B.C.
+    Contents: 5 AR, 93 AE
+    <span rel="mint" resource="aegina">Aegina:</span> 2 st.; 2 dr.
+    <span rel="mint" resource="elis">Elis:</span> 1 triob.
+            93 AE 
+    Disposition: Athens
+    Varoucha, BCH 1958, p. 653, illus.
+</pre>
+</div>
+</div>

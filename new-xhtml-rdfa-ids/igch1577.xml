@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1577">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-69" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1577 Syria, 1968
+    Burial: after 69 B.C. (Westermark) 
+    Contents: 25+ AR
+    Tigranes I: tetradr. (<span rel="mint" resource="antiocheia_syria">Antiocheia</span>) 
+    Disposition: dispersed
+    Information from Münzen and Medaillen, Basel
+</pre>
+</div>
+</div>

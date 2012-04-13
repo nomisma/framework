@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0300">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">35.0841666667 25.1044444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+300 Kastelli, c. 3 km. S of Gortyna, Crete, 
+    1963
+    Burial: 2nd cent. B.C. (Varoucha) 
+    Contents: 61 AE (2 hoards)
+    Hoard A
+    <span rel="mint" resource="gortyna">Gortyna:</span> 15 (as Svoronos pl. 15, 20)
+    Hoard B 
+    <span rel="mint" resource="aenai">Aenai:</span> 6
+    <span rel="mint" resource="gortyna">Gortyna:</span> 37 (as Sv. pl. 15, 20 [2]; pl. 16, 6
+        [35]) 
+    Unc.: 3
+    Disposition: Athens
+    Varoucha, A Delt 1964, Chronika, p. illus.; 
+        Pepragmena tou B' Diethnous Kretologikou
+        Synedriou, 2 (Athens, 1968), pp. 209-24, 
+        illus.
+    Le Rider, Monn. crét., p. 234, note 1
+    Since the coins of Hoard A are in better 
+        condition than similar pieces in Hoard 
+        B, Varoucha would give them an 
+        earlier burial date
+</pre>
+</div>
+</div>

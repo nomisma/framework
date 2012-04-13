@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="athamanes">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Athamanes</div>
+ <div property="skos:definition" xml:lang="en">The mint of the Athamanes at an uncertain location in Athamania.</div>
+ <div rel="uncertain_value"><span property="gml:pos">38.935912 21.1802673</span></div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Athamanians"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/540676"/>
+</div>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0010">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.6325 24.1036111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+10 Pascha, SW of Cyme, Euboea, 1883
+(793)
+    Burial: c. <span property="nm:approximateburialdate_start" content="-500" datatype="xsd:date">500</span>-<span property="nm:approximateburialdate_end" content="-480" datatype="xsd:date">480</span> B.C. (T)
+    Contents: c. 100? AR
+    <span rel="mint" resource="eretria">Eretria: tetradr. ("a few")
+        7-8 didr.; "a great many" dr. </span>
+    <span rel="mint" resource="athens">Athens: 7 Wappenm. didr.
+        c. 70 tetradr. (early owls)</span>
+    Disposition: Berlin 1? (tetradr. Eretria, cf. 
+        Köhler, p. 354, note)
+    Köhler, AM 1884, pp. 354 ff. (saw 22+)
+    Seltman, Athens, p. 146
+    Starr, Athenian Coinage, p. 5, note 13; p. 89
+</pre>
+</div>
+</div>

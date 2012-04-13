@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0044">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.6380555556 21.63</span></span></div>
+<div class="nm:editedSource">
+<pre>
+44 Olympia environs, Elis, c. 1859 
+(753)
+    Burial: c. <span property="nm:approximateburialdate" content="-400" datatype="xsd date">400</span> B.C.?
+    Contents: 40-50 AR. Pot hoard
+    <span rel="mint" resource="aegina">Aegina: </span>12 st.
+    <span rel="mint" resource="elis">Elis:</span>9+ st. (Seltman Grp. C-E) 
+    Disposition: Lambros (later Merlin 9 Elis-
+        Sotheby Nov. 11, 1861, 80-8) ; Berlin 1
+        (Elis-from sale?)
+    Warren, NC 1962, pp. 413-5
+</pre>
+</div>
+</div>

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1780">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-110" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-105" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.6552777778 38.0702777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1780 Tell Ahmar (anc. Til-Barsib), Meso-
+    potamia, on the road between Hierapolis in 
+    Cyrrhestica and Edessa in Mesopotamia at 
+    the crossing of the Euphrates, 1929
+    Burial: 110-105 B.C. (M)
+    Contents: 70 AR. Pot hoard from excavations
+    <span rel="mint" resource="athens">Athens:</span> 10 New Style tetradr. (5*, latest 
+        173/2 B.C., Thompson)
+    Antiochus VII: 28 tetradr. (<span rel="mint" resource="antiocheia_syria">Antiocheia 19*</span>) 
+    Demetrius II: 4 tetradr. (<span rel="mint" resource="antiocheia_syria">Antiocheia 2*</span>, 
+        <span rel="mint" resource="damascus">Damascus 1*</span>)
+    Antiochus VIII: 18 tetradr. (<span rel="mint" resource="antiocheia_syria">Antiocheia 7*</span>, 
+        <span rel="mint" resource="damascus">Damascus 2*</span>, <span rel="mint" resource="ace_ptolemais">Ace 1*</span>)
+    Antiochus IX: 8 tetradr. (<span rel="mint" resource="antiocheia_syria">Antiocheia 4*</span>, 
+        <span rel="mint" resource="ace_ptolemais">Ace 2*</span>)
+    Unc.: 2 tetradr.
+    Disposition: Damascus 43 (as starred)
+    Thureau-Dangin and Dunand, Til-Barsib (Paris, 
+        1936), pp. 81 f.
+    Bellinger, AJA 1938, p. 318
+    Rostovtzeff, Anatolian Stud. Buckler, p. 298 
+    Thompson, Athens, p. 474; NC 1962, pp. 310 f. 
+    Lewis, NC 1962, p. 279
+    Seyrig, Trésors du Levant (in press)
+    Only the coins at Damascus were accessible 
+        for inspection. The totals are those of 
+        Thureau-Dangin and Dunand
+</pre>
+</div>
+</div>

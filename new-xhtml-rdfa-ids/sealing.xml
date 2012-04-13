@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="numismatic_term" about="sealing">
+ <div property="skos:prefLabel" xml:lang="en">Sealing.</div>
+ <div property="skos:definition" xml:lang="en">A sealing. The use of this nomisma URI indicates that the object being described is the imprint made from a matrix. It is a narrower term than the generic 'seal', which does not distinguish between original and imprint.</div>
+</div>

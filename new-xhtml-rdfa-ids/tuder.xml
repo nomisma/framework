@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="tuder">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Tuder</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Tuder in Umbria.</div>
+ <div property="gml:pos">42.780253 12.408494</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Todi"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/413354"/>
+</div>

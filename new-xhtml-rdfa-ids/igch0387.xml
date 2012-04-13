@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0387">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-340" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-330" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.9472222222 24.1386111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+387 Nikisiani environs, Macedonia, 1959
+    Burial: c. 340-330 B.C. (T)
+    Contents: 1 AV, 125 AE. From excavations, in 
+        grave with AR and AE objects
+    Philip II
+    Disposition: Cavalla?
+    Daux, BCH 1960, p. 800
+    Hood, Archaeological Reports, 1960-1, p. 20 
+        (identifies the coins as those of Alexander III)
+</pre>
+</div>
+</div>

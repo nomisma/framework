@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2353">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-470" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-460" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.1386111111 5.85111111111</span></span></div>
+<div class="nm:editedSource">
+<pre>2353 Ollioules, 5 km. W of Toulon, 1958
+    Burial: c. 470-460 B.C. (Jenkins)
+    Contents: 24 AR
+    <span rel="mint" resource="ionia">Unc. Ionian</span> (inc. <span rel="mint" resource="massalia">Massalia ?</span>): 24 AR (types 
+        similar to those of Auriol) 
+    Disposition: unknown
+    Holland, BSFN 1959, pp. 262-4
+    Layet-Huguenin, Annales de la Société des sciences 
+        naturelles et d'Archéologie de Toulon et du 
+        Var 14 (1962), pp. 39-68
+</pre>
+</div>
+</div>

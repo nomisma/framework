@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0292">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-87" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.3997222222 25.2666666667</span></span></div>
+<div class="nm:editedSource">
+<pre>
+292 Delos, 1881
+(303)
+    Burial: c. 120 B.C. (T); c. 87 (Lewis)
+    Contents: 43 AR. From excavations 
+    <span rel="mint" resource="athens">Athens:</span> New Style tetradr.
+    Disposition: Athens
+    BCH 1882, p. 311, note 2 
+    Roussel, Delos, p. 48, note 4 
+† Thompson, Athens, p. 519 
+    Lewis, NC 1962, p. 283
+</pre>
+</div>
+</div>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2297">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.7861111111 11.9894444444</span></span></div>
+<div class="nm:editedSource">
+<pre>2297 Pantelleria (anc. Cossura), 1895 
+    Burial: 200 B.C. (Jenkins)
+    Contents: 48 AE
+    <span rel="mint" resource="carthage">Carthage as SNGCop. 302-29</span>
+    Disposition: Syracuse
+    Cesano, StudNum 1940, p. 61
+    Currò Pisanò AIIN 1962-4, p. 232 
+    Note by G. K. Jenkins in BM
+</pre>
+</div>
+</div>

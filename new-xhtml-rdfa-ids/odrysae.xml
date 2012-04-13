@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="odrysae">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Odrysae</div>
+ <div property="skos:definition" xml:lang="en">The mint in Thrace of the tribe of the 'Odrysae'.</div>
+ <div rel="uncertain_value"><span property="gml:pos">42.50 26.50</span></div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Odrysian kingdom"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/216906"/>
+</div>

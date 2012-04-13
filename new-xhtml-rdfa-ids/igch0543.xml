@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0543">
+<span rel="nm:findspot"><span property="gml:pos">45.82194444 25.35361111</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-125" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+543 Brasov environs, Rumania, before 1928 
+(164)
+    Burial: c. 125-100 B.C. (T)
+    Contents: 10+ AR.
+    <span rel="mint" resource="thasos">Thasos: spread-flan tetradr.</span>
+    Disposition: Bucharest (Acad.) 10
+    Moisil, Cabinetul numismatic 1938-42, pp. 9-10,
+        nos. 75-84; † Balcania 1944, pp. 16-7
+</pre>
+</div>
+</div>

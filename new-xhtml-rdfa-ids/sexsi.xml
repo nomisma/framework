@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="sexsi">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Sexsi</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Sexsi in Hispania Ulterior.</div>
+ <div property="gml:pos">36.734589 -3.690755</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Almu%C3%B1%C3%A9car"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/266038"/>
+</div>

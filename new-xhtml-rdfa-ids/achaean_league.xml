@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="authority" about="achaean_league">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Stub for 'Achaean League'.</div>
+ <div property="skos:related" href="http://en.wikipedia.org/wiki/Achaean_League"/>
+</div>

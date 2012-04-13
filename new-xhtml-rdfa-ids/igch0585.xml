@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0585">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">47.0647222222 22.1986111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+585 Tileagd, 19 km. E of Oradea, Ru-
+    mania, c. 1907
+    Burial: 2nd-1st cent. B.C. (T)
+    Contents: 53 AR. Pot hoard
+    <span rel="mint" resource="apollonia_illyria">Apollonia, Illyria: 45 dr.</span>
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: 6 dr.</span>
+    Unc.: 2 dr.
+    Disposition: Cluj 1 (Apollonia)
+    Mitrea, SCN 3 (1960), pp. 465-6
+</pre>
+</div>
+</div>

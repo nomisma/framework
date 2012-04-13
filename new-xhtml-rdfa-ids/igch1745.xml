@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1745">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-50" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-25" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.6352777778 48.6375</span></span></div>
+<div class="nm:editedSource">
+<pre>1745 Khinisly environs, Shemakha raion, 
+    Azerbaidzhan, in anc. Albania, 1958
+    Burial: 50-25 B.C. (Pakhomov)
+    Contents: 330+ AR. Found with AR objects 
+        and ingots
+    Imit. Alexander III: 72 dr.
+    Lysimachus: 3 post. tetradr. (<span rel="mint" resource="byzantium">Byzantium</span> ) 
+    <span rel="mint" resource="athens">Athens: 5-6 New Style tetradr.</span>  
+    Mithradates VI, Pontus: 1 tetradr. 
+    Nicomedes II: 2 tetradr. 
+    Nicomedes III: 5 tetradr. 
+    Antiochus IV: 2 tetradr. 
+    Demetrius I: 9 tetradr. 
+    Alexander I Bala: 1 tetradr. 
+    Antiochus VII: 53 tetradr. 
+    Alexander II: 1 tetradr.
+    Antiochus VIII: 1 tetradr.
+    Seleucus VI: 1 tetradr.
+    Antiochus X: 1 tetradr.
+    Philip I: 15 tetradr.
+    Mithradates I, <span rel="mint" resource="parthia">Parthia: 1 dr. (as Sellwood 
+        8-10</span>)
+    Mithradates II: 104 dr. (as Sellwood 27) 
+    "Gotarzes I": 5 dr. (as Sellwood 30) 
+    Sinatruces: 18 dr. (as Sellwood 31) 
+    Phraates III: 7 dr.
+    Phraates III?: 27 dr.
+    <span rel="mint" resource="rome">Roman Rep.: 1 den. (C. Licinius L. F. 
+        Macer</span>)
+    Disposition: Baku 217; Tiflis to; Regional
+        Mus., Shemakha 7; private coll. 48
+    Pakhomov, Trudy Gosudarstvennogo muzeia istorii
+        Azerbaidzhana 5 (Baku, 1962), pp. 74-6;
+        Voprosy istorii Kavkazskoi Albanii (Baku,
+        1962), pp. 107-10
+    Kropotkin, no. 1540
+† Pakhomov, IX, no. 2080
+    Crawford, RRCH, no. 246
+    The description of the coins is that of 
+        Pakhomov
+</pre>
+</div>
+</div>

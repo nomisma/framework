@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2108">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-430" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-400" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.9711111111 13.8230555556</span></span></div>
+<div class="nm:editedSource">
+<pre>2108 Himera?, date unknown
+(967)
+    Burial: late 5th cent. B.C. (K)
+    Contents: 33 AE
+    <span rel="mint" resource="agrigentum">Acragas: 1 hemilit.</span>
+    <span rel="mint" resource="himera">Himera: 32 hemilit. (cf. SNGLloyd 1035-7)</span>
+    Disposition: Palermo
+    Gabrici, Monetazione, p. 208
+    Tusa Cutroni, AIIN 1956, p. 208, no. XIII
+</pre>
+</div>
+</div>

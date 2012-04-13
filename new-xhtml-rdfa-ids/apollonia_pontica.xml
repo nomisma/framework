@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="apollonia_pontica">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Apollonia Pontica</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Apollonia Pontica in Thrace.</div>
+ <div property="gml:pos">42.417162 27.696460</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Sozopol"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/216706"/>
+</div>

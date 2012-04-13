@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1545">
+<span rel="nm:findspot"><span property="gml:pos">34.83861111 35.90694444</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-168" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1545 Amrit (anc. Marathus), N. Phoenicia, 
+(650)     1893-1894
+    Burial: c. 168 B.C. (Noe)
+    Contents: AE
+    <span rel="mint" resource="aradus">Aradus: (yrs. 70-89)</span>
+    <span rel="mint" resource="marathus">Marathus: (yrs. 85-91)</span>
+    Disposition: formerly Rouvier coll. (some)
+    Rouvier, Jour. Asiatique 12 (1898), p. 368 
+    Seyrig, RN 1964, p. 47
+</pre>
+</div>
+</div>

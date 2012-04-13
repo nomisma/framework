@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0305">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.6402777778 22.415</span></span></div>
+<div class="nm:editedSource">
+<pre>
+305 Larissa, 1958
+    Burial: 2nd cent. B.C. (T) 
+    Contents: c. 600 AR. Pot hoard 
+    <span rel="mint" resource="histiaea">Histiaea:</span> tetrob.
+    Franke, SM 1958, p. 95
+    The one tetrobol of Histiaea acquired by 
+        Athens (BCH 1958, p. 651) is most 
+        probably from this hd.
+</pre>
+</div>
+</div>

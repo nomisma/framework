@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0971">
+<span rel="nm:findspot"><span property="gml:pos">41.29444444 26.52444444</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-85" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+971 Adrianople (now Edirne), Thrace, 
+(17)     before 1925
+    Burial: c. 85 B.C. (Newell)
+    Contents: 75 AR
+    <span rel="mint" resource="maroneia">Maroneia: 1 spread-flan tetradr.</span>
+    <span rel="mint" resource="thasos">Thasos: 45 spread-flan tetradr.</span> 
+    Lysimachus: 11 late post. tetradr. (<span rel="mint" resource="byzantium">By-
+        zantium</span>)
+    Prusias II: 1 tetradr.
+    Nicomedes II-IV: 13 tetradr. (to 88 B.C.) 
+    <span rel="mint" resource="abydus">Abydus: 1 tetradr.</span>
+    <span rel="mint" resource="alexandreia_troas">Alexandreia Troas: 3 tetradr.</span>
+    Disposition: Istanbul
+    Robert, Études, p. 5, note 3
+    Newell's list of varieties, from notes by Regling, 
+        on file in ANS
+</pre>
+</div>
+</div>

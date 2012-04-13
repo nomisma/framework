@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="abonuteichus-ionopolis">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Abonuteichus</div>
+ <div property="skos:definition" xml:lang="en">The ancient mint of Abonuteichus (later Ionopolis) in Paphlagonia.</div>
+ <div property="gml:pos">41.974722 33.760833</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/844847"/>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/%C4%B0nebolu"/>
+</div>

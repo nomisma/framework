@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0621">
+<span rel="nm:findspot"><span property="gml:pos">43.63111111 23.555</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-70" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+621 Dobralevo, c. 50 km. N of Vraca, Bul-
+    garia, 1960
+    Burial: early 1st cent. B.C. (T)
+    Contents: "many" AR. Pot hoard
+    <span rel="mint" resource="thasos">Thasos: spread-flan tetradr. incl. some 
+        imit.</span>
+    Disposition: Vraca 6, of which 4 imit.
+    Gerasimov, BIAB 26 (1963), p. 258
+</pre>
+</div>
+</div>

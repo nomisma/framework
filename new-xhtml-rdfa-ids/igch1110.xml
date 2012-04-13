@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1110">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-150" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.0661111111 42.21</span></span></div>
+<div class="nm:editedSource">
+<pre>1110 Zemo-Markhi, Mestia raion, Geor-
+(1146)     gia, 1913
+    Burial: 3rd cent. B.C. or later
+    Contents: 61 (+2?) AV
+    Alexander III: 60 (+1?) st.
+    Lysimachus: 1 (+1?) st.
+    Disposition: dispersed
+    IAK 52 (1914) Suppl., p. 93
+† Malakatiia, Vestnik Gosudarstvennogo Muzeia 
+        Gruzii 4 (Tiflis, 1928), p. 165 (in Georgian; 
+        French summary)
+    Zograph, "Zolotye monety," 28
+    Pakhomov III, 653
+    Possibly from the same hd. as nos. 1108 
+        and/or 1109 above
+</pre>
+</div>
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2074">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-465" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.1477777778 13.34</span></span></div>
+<div class="nm:editedSource">
+<pre>2074 Palermo (anc. Panormus) environs, 
+(785)     1893
+    Burial: c. 465 B.C. (K)
+    Contents: 9 AR
+    <span rel="mint" resource="himera">Himera: tetradr. (to Gutmann-Schwa-
+        bacher 6)</span>
+    Disposition: Virzi 4; Evans 2; Salinas 1
+    Gabrici, RIN 1894, pp. 399, 414-5; † 1895, p. 29
+    Gutmann-Schwabacher, MitBayNumGes 1929,
+        pp. 101 ff., nos. 1c, 2c-d, 4e, 5b-c, 6a
+</pre>
+</div>
+</div>

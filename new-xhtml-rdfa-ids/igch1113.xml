@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1113">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-230" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-170" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">46.7055555556 31.8977777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1113 Olbia (mod. Parutino), 1935
+    Burial: late 3rd-early 2nd cent. B.C. 
+    Contents: 14 AE
+    <span rel="mint" resource="olbia">Olbia: AE (as AMNG I.1, pl. 10, 13)</span> 
+    Disposition: museum material lost during 
+        war
+    Zograph, Ol'viia 1940, pp. 213, 225-6, nos. 110-23
+</pre>
+</div>
+</div>

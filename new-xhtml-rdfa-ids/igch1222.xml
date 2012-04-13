@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1222">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-500" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1222 <span property="nm:findspot" content="37.863611 28.432778">Pirli bey, c. 55 km. E of Aydin, S of
+(819)     the Büyük Menderes in anc. Caria</span>, 
+    before 1870
+    Burial: 5th-4th cent. B.C. (M)
+    Contents: 1000+ AV
+    <span rel="mint" resource="sardes">Persia: darics</span>
+    Disposition: dispersed 
+    Sibilian, NZ 1870, p. 333
+</pre>
+</div>
+</div>

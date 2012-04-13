@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2250">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-160" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.646479 14.868507</span></span></div>
+<div class="nm:editedSource">
+<pre>2250 Biancavilla, near Adranum, 1953 
+    Burial: c. 160 B.C. (Crawford)
+    Contents: 3 AR, 109 AE
+    <span rel="mint" resource="rhegium">Rhegium: 4</span>
+    <span rel="mint" resource="centuripae">Centuripae: 1</span>
+    <span rel="mint" resource="mamertini">Mamertines: 36</span>
+    <span rel="mint" resource="syracuse">Syracuse: 6 (Hieron II)</span>
+    <span rel="mint" resource="tauromenium">Tauromenium: 2</span>
+    <span rel="mint" resource="rome">Roman Rep.: 2 den. (crescent, fly sym-
+        bols)
+            1 vict. (anon.)
+            60 asses (to C. MAIANI) </span>
+    Disposition: Syracuse
+    Gentili, AIIN 1955, p. 197 
+    Thomsen, ERC I, p. 122 
+    Crawford, RRCH 127
+</pre>
+</div>
+</div>

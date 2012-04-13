@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1287">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-300" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1287 Caria?, c. 1965
+    Burial: c. 300 B.C. (M)
+    Contents: c. 120 AE
+    <span rel="mint" resource="rhodes">Rhodes: c. 120 (as BMC 70 ff., 74 ff., 228)</span> 
+    <span rel="mint" resource="telos">Telos: 1 (Athena hd./crab)</span>
+    Disposition: unknown
+    Information from R. Ashton
+</pre>
+</div>
+</div>

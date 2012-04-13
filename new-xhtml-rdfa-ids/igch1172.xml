@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1172">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-480" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1172 <span property="nm:findspot" content="38.5 26.0">Chios</span>, 1919
+(247)
+    Burial: c. 480 B.C. (M)
+    Contents: 9+ AR
+    <span rel="mint" resource="athens">Athens:</span> 2+ tetradr. 
+    <span rel="mint" resource="chios">Chios: 7+ didr.</span>
+    Disposition: Athens 8 (1 Athens, 7 Chios) 
+    Seltman, Athens, p. 148
+</pre>
+</div>
+</div>

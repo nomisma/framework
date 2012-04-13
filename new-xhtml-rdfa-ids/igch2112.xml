@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2112">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-500" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-400" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.184295 13.693228</span></span></div>
+<div class="nm:editedSource">
+<pre>2112 Castellazzo, Palma di Montechiaro, 
+    20 km. SE of Agrigento, c. 1900
+    Burial: 5th cent. B.C.? (K)
+    Contents: c. 70 AR. In lead box
+    <span rel="mint" resource="catana">Catana: tetradr.</span>
+    <span rel="mint" resource="gela">Gela: tetradr.</span>
+    <span rel="mint" resource="leontini">Leontini: tetradr.</span>
+    <span rel="mint" resource="syracuse">Syracuse </span>and other Sicilian mints: tetradr. 
+    Disposition: Salinas some
+    Orsi, Preistoria 1928, p. 56 
+    Miro, AIIN 1955, p. 95-8
+</pre>
+</div>
+</div>

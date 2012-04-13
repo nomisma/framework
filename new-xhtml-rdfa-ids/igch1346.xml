@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1346">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.6 27.066667</span></span></div>
+<div class="nm:editedSource">
+<pre>1346 Temnus environs, Aeolis, c. 1912
+(991)
+    Burial: 2nd cent. B.C. (M)
+    Contents: 6 AR, c. 300 AE
+    Alexander III: 6 late post. tetradr. (<span rel="mint" resource="temnus">Tem-
+        nus</span>)
+    <span rel="mint" resource="temnus">Temnus: c. 300 AE</span>
+    Disposition: Oxford 52
+    MonatsblNumGesWien, 1913, pp. 164 f.
+    Milne, NC 1914, pp. 260 f.
+    Robert, BCH 1933, p. 495, note 1 (for the find 
+        place)
+</pre>
+</div>
+</div>

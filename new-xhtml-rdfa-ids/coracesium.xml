@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="coracesium">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Coracesium</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Coracesium in Cilicia.</div>
+ <div property="gml:pos">36.546394 31.988335</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/638933"/>
+</div>

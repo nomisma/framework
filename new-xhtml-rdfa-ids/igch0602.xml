@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0602">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">45.6994444444 25.8561111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+602 Cincu, c. 17 km. NW of Fagaras, Ru-
+    mania, 1958
+    Burial: 2nd-1st cent. B.C. (T) 
+    Contents: AR
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: dr.</span>
+    Disposition: Agnita 4
+    Mitrea, Dacia 1959, p. 603
+</pre>
+</div>
+</div>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="aluntium">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">(H)aluntium</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of (H)aluntium in Sicily.</div>
+ <div property="gml:pos">38.071898 14.700314</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/San_Marco_d'Alunzio"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/462228"/>
+</div>

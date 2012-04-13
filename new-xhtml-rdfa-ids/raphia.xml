@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="raphia">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Raphia</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Raphia in Judea.</div>
+ <div property="gml:pos">31.297428 34.225777</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/688015"/>
+</div>

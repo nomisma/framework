@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1915">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-380" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.3127777778 17.5519444444</span></span></div>
+<div class="nm:editedSource">
+<pre>1915 Torchiarolo, 16 km. S of Brindisi, 
+(1118)     Calabria, 1927
+    Burial: c. 380 B.C.
+    Contents: 21+ AR. Dispersed and partly 
+        recovered
+     <span rel="mint" resource="taras">Taras: 3 st. (to Per. III)</span> 
+     <span rel="mint" resource="metapontum">Metapontum: 6 st.</span>
+     <span rel="mint" resource="poseidonia">Poseidonia: 1 st.</span>
+     <span rel="mint" resource="sybaris">Sybaris: 2 st.</span>
+     <span rel="mint" resource="thurium">Thurium: 5 st.</span>
+     <span rel="mint" resource="croton">Croton: 4 st.</span>
+    Disposition: Taranto
+    Quagliati, AttiMemIIN 1932, pp. 3-13, illus.
+</pre>
+</div>
+</div>

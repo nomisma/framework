@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="larissa_troas">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Larissa</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Larissa in Troas.</div>
+ <div property="gml:pos">39.615744 26.147559</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Larissa_(M%C3%ADsia)"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/550685"/>
+</div>

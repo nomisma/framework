@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="hyporum">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Hyporum</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Hyporum in Bruttium.</div>
+ <div property="gml:pos">37.947209 16.062018</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/452338"/>
+</div>

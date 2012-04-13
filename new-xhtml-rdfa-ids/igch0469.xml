@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0469">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-180" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+469 Macedonia?, 1927-1928
+(463, 632)
+    Burial: c. 200-180 B.C. (T)
+    Contents: 23+ AR
+    Alexander III: 6 late post. tetradr. (<span rel="mint" resource="pella_macedon">Pella 1</span>,
+        <span rel="mint" resource="heracleia_pontica">Heracleia Bith. 1
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.36044">ANS 1944.100.36044</a></span>, 
+        <span rel="mint" resource="assus">Assus 2
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.31396">ANS 1944.100.31396</a> 
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.31399">ANS 1944.100.31399</a></span>, 
+        <span rel="mint" resource="mytilene">Mytilene 1
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.31448">ANS 1944.100.31448</a></span>,
+        <span rel="mint" resource="erythrae">Erythrae 1
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.32130">ANS 1944.100.32130</a></span>)
+    Lysimachus: 1 late post. tetradr. <span rel="mint" resource="byzantium">(By-
+        zantium
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.81480">ANS 1944.100.81480</a> </span>)
+    Antigonus Gonatas: 16 tetradr.
+        <a rel="nm:item" href="http://numismatics.org/collection/1967.152.209">ANS 1967.152.209</a> 
+        <a rel="nm:item" href="http://numismatics.org/collection/1967.152.210">ANS 1967.152.210</a> 
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.13849">ANS 1944.100.13849</a> 
+ * Philip V: c. 5 tetradr.
+        <a rel="nm:item" href="http://numismatics.org/collection/1967.152.211">ANS 1967.152.211</a> 
+    Disposition: New York 9 or 10 (5 Alex-
+        ander, Lysimachus, 3 Antigonus, 1
+        Philip V portrait type); Boston 1 ? 
+        (Brett 716     Naville July 2, 1929, 
+        205)
+* Newell's record includes the Philip V coins 
+        as possibly part of the bd.
+</pre>
+</div>
+</div>

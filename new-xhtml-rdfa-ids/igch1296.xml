@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1296">
+<span rel="nm:findspot"><span property="gml:pos">39.11861111 27.165</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-250" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1296 Pergamum, Mysia, 1961 
+    Burial: c. 250 B.C.
+    Contents: 16 AE. From excavations at Ascle-
+        pieum
+    Demetrius Poliorcetes: 1
+    <span rel="mint" resource="pergamum">Pergamum: 13</span>
+    <span rel="mint" resource="colophon">Colophon: 1</span>
+    Unc.: 1
+    Disposition: Bergama
+    Boehringer in Altertümer von Pergamon XI.1
+        (Berlin, 1968), pp. 110-11, illus.
+</pre>
+</div>
+</div>

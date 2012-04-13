@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1403">
+<span rel="nm:findspot"><span property="gml:pos">39.65361111 31.99611111</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-250" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1403 Gordium, Phrygia, 1959
+    Burial: c. 250 B.C.
+    Contents: 42 AR. Pot hoard from excavations
+    Alexander III: 32 lifetime and early post. 
+        tetradr. (<span rel="mint" resource="amphipolis">Amphipolis 16</span>, <span rel="mint" resource="sardes">Sardes 1</span>, 
+        <span rel="mint" resource="aradus">Aradus 1</span>, <span rel="mint" resource="damascus">Damascus 2</span>, <span rel="mint" resource="carrhae">Carrhae 1</span>, 
+        <span rel="mint" resource="babylon">Babylon 8</span>, <span rel="mint" resource="ecbatana">Ecbatana 1</span>, unc. mints 2)
+            3 late post. tetradr. (unc. 
+        mints)
+    Philip III: 4 tetradr. (<span rel="mint" resource="aradus">Aradus 1</span>, <span rel="mint" resource="babylon">Babylon 3</span>) 
+    Lysimachus: 1 tetradr. (<span rel="mint" resource="pergamum">Pergamum</span>) 
+    Seleucus I: 2 tetradr. (<span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Tigrim
+        1</span>, unc. mint 1)
+    Disposition: Ankara
+    Cox, ANSMN 12 (1966), pp. 21-7, illus.
+</pre>
+</div>
+</div>

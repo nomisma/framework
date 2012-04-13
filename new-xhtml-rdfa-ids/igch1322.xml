@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1322">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-160" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1322 Asia Minor, western, 1964-5 
+    Burial: c. 160 B.C. (M)
+    Contents: 30+ AR
+    <span rel="mint" resource="abydus">Abydus: 20+ tetradr.</span> 
+    <span rel="mint" resource="lampsacus">Lampsacus: 10+ tetradr.</span>
+    Disposition: dispersed
+</pre>
+</div>
+</div>

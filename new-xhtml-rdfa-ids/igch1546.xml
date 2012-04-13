@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1546">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<pre class="group editedsource">1546 <span property="nm:findspot" content="36.20666667 37.14333333">Aleppo (anc. Beroea), Cyrrhestica</span>, 
+(31)     1931
+    Burial: <span property="nm:approximateburialdate" content="-164" datatype="xsd:date">c. 164 B.C. (Westermark)</span>
+    Contents: 35+ AR
+    <span rel="nm:authority" resource="alexanderiii">Alexander III: 17 late post. tetradr. 
+        (<span rel="mint" resource="myrina_aeolis">Myrina 1</span>,
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.31409">ANS 1944.100.31409</a>
+        <span rel="mint" resource="phaselis">Phaselis 2 to yr. 33
+        <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139575">Yale 2001.87.10030</a></span>,
+        <span rel="mint" resource="aspendus">Aspendus 9 to yr. 28
+        <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139574">Yale 2001.87.10029</a>
+        <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=139601">Yale 2001.87.10047</a>,</span>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.32323">ANS 1944.100.32323</a>
+        <span rel="mint" resource="perge">Perge 5 to yr. 27
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.33186">ANS 1944.100.33186</a>)</span></span>
+    
+    <span rel="nm:mint nm:authority" resource="side">Side: 12 tetradr
+     <a rel="nm:item" href="http://ecatalogue.art.yale.edu/detail.htm?objectId=140253">Yale 2001.87.10608</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.50917">ANS 1944.100.50917</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.50910">ANS 1944.100.50910</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.50924">ANS 1944.100.50924</a>
+     <a rel="nm:item" href="http://numismatics.org/collection/1944.100.50920">ANS 1944.100.50920</a></span>.
+   <span rel="nm:authority" resource="antiochusiv">Antiochus IV: 6 tetradr.
+       (<span rel="mint" resource="antiocheia_syria">Antiocheia 5</span>,
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.75286">ANS 1944.100.75286</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.75291">ANS 1944.100.75291</a>
+        <a rel="nm:item" href="http://numismatics.org/collection/1944.100.75288">ANS 1944.100.75288</a>
+        <span rel="mint" resource="ace_ptolemais">Ace 1
+        <a rel="nm:item" href="http://numismatics.org/collection/1967.152.663">ANS 1967.152.663</a></span>)</span>
+    Disposition: New York 11 (3 Alexanders,
+        4 Antiochus IV, 4 Side); <span rel="nm:collection" resource="yale">Yale 4</span>
+    Bellinger, <a rel="dc:references" href="http://www.jstor.org/stable/499686">AJA 1938, p. 318</a>
+    Rostovtzeff, <a rel="dc:references" href="http://www.worldcat.org/title/anatolian-studies-presented-to-william-hepburn-buckler/oclc/4051643">Anatolian Stud. Buckler, p. 290 g</a> 
+    Seyrig, <a rel="dc:references" href="http://www.persee.fr/web/revues/home/prescript/article/numi_0484-8942_1963_num_6_5_904">RN 1963, p. 62</a>; <a rel="dc:references" href="http://donum.numismatics.org/cgi-bin/koha/opac-detail.pl?biblionumber=72861">Antiq. syr. 6 (Paris, 1966), 
+        p. 9, note 4</a>; Trésors du Levant (in press)
+    Many of the Pamphylian Alexanders and 
+        all the coins of Side have ctmks.: 
+        anchor or radiate facing bust
+</pre>
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1202">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-390" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-380" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1202 <span property="nm:findspot" content="36.86 28.26">Marmaris? (anc. Physcus), Caria</span>, c. 
+    1965
+    Burial: 390-380 B.C. (Cahn) 
+    Contents: c. 100 AR
+    <span rel="mint" resource="chersonesus_cariae">Chersonesus, Caria: 13+ dr.; 6+ fr.</span>
+    <span rel="mint" resource="cnidus">Cnidus: dr.; fr.</span>
+    <span rel="mint" resource="rhodes">Rhodes: hemidr.</span>
+    Unc. mint: "many" fr. (as Traité pl. 155, 19 
+        [Clazomenae])
+    Disposition: dispersed
+</pre>
+</div>
+</div>

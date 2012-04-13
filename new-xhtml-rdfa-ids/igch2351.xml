@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2351">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.9822222222 1.30166666667</span></span></div>
+<div class="nm:editedSource">
+<pre>2351 Purmany, Ibiza, before 1906
+    Burial: 1st cent. B.C. (Jenkins)
+    Contents: 11+ AE. From necropolis
+    <span rel="mint" resource="ebusus">Ebusus: 1 (as Vives, MH, pl. 11, 12)
+            1 (as pl. 12) 
+            3 (as pl. 53)
+            3 (as pl. 124, 1)</span>
+    Disposition: unknown
+    Roman y Calvet, IPyth, p. 28, illus.
+</pre>
+</div>
+</div>

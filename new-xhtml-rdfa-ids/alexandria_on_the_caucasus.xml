@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="alexandria_on_the_caucasus">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Alexandria on the Caucasus</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Alexandria on the Caucasus in Bactria.</div>
+ <div property="gml:pos">34.947146 69.259400</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Begram"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/59668"/>
+</div>

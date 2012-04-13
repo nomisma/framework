@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1686">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-270" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-230" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">32.8355555556 13.2588888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1686 Tripoli, Cyrenaica, before 1899 
+(1129)
+    Burial: mid 3rd cent. B.C. (Jenkins) 
+    Contents: 1000+ AE (5.9 kg.). Coins adhering 
+        in a mass
+    <span rel="mint" resource="cyrene">Cyrene: AE (as BMC p. 64, no. 319-bulk of
+            3 AE (as BMC p. 61, no. 292) </span>
+    Disposition: G. Armes
+    Hill, NC 1899, pp. 175-6, illus. 
+    Note by G. F. Hill in BM file
+</pre>
+</div>
+</div>

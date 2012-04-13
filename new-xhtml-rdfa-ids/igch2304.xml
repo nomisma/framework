@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2304">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.3491666667 6.62944444444</span></span></div>
+<div class="nm:editedSource">
+<pre>2304 Constantine (anc. Cirta), 300 km. E 
+    of Algiers, Algeria, c. 1914
+    Burial: 2nd-1st cent. B.C. (Jenkins)
+    Contents: 611 AE, 1400 PL
+    <span rel="mint" resource="numidia">Numidia (Massinissa and successors): 611
+        AE (of which nearly half ctmk.)
+            1400
+        PL (of which 3 ctmk.) </span>
+    Disposition: G. Thomas
+    Thomas, RN 1949, pp. 114-9, illus. 
+    Mazard, CNNM, p. 27
+</pre>
+</div>
+</div>

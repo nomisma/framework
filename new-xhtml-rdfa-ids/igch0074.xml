@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0074">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.6691666667 21.6388888889</span></span></div>
+<div class="nm:editedSource">
+<pre>
+74 Mageira, Elis, 1950
+    Burial: c. <span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date">330</span>-<span property="nm:approximateburialdate_end" content="-325" datatype="xsd:date">325</span> B.C. 
+    Contents: 48 AR
+    Philip II: 4 lifetime tetradr. (<span rel="mint" resource="pella_macedon">Pella</span> 1, 
+        <span rel="mint" resource="amphipolis">Amphipolis</span> 3)
+    Alexander III: 1 lifetime tetradr. (<span rel="mint" resource="tarsus">Tarsus)</span>
+    <span rel="mint" resource="larissa">Larissa, Thessaly:</span> 1 dr.
+    <span rel="mint" resource="phocis">Phocis:</span> 1 triob.
+    <span rel="mint" resource="boeotia">Boeotia:</span> 3 triob.
+    <span rel="mint" resource="tanagra">Tanagra:</span> 1 st.
+    <span rel="mint" resource="thebes">Thebes:</span> 6 st.; 2 dr.
+    <span rel="mint" resource="aegina">Aegina:</span> 24 st.; 2 dr.
+    <span rel="mint" resource="elis">Elis:</span> 3 st.
+    Disposition: Athens
+    Varoucha, BCH 1951, p. 104. (where slightly 
+        different totals are given)
+</pre>
+</div>
+</div>

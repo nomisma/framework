@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2208">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-260" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.1477777778 13.34</span></span></div>
+<div class="nm:editedSource">
+<pre>2208 Palermo (anc. Panormus) environs, 
+    1958
+    Burial: c. 260 B.C. (Jenkins-Lewis) 
+    Contents: c. 80 AR
+    <span rel="mint" resource="carthage">Carthage: decadr. (rev. Pegasus) </span>
+    Disposition: dispersed
+    Tusa Cutroni, Kokalos 1967, pp. 78-9 
+    Jenkins-Lewis, Carthage, pp. 35, 130
+    Possibly from Termini Imerese 
+</pre>
+</div>
+</div>

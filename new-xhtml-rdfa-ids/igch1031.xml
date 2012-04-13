@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1031">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-370" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-325" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.3241666667 42.43</span></span></div>
+<div class="nm:editedSource">
+<pre>1031 TSulukidze, Georgia, 1928
+    Burial: before 325 B.C. (Golenko, Kapa-
+        nadze)
+    Contents: 200 AR. Pot hoard
+   <span rel="mint" resource="colchis">Colchis: hemidr.</span>
+    Disposition: Tiflis
+† Pakhomov II, 303 
+    Zograph, "Nakhodky," 42
+</pre>
+</div>
+</div>

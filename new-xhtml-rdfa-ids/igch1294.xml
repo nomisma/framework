@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1294">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-250" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1294 Maeander Valley, Caria or Ionia, 
+(637)     1895
+    Burial: c. 300-250 B.C. 
+    Contents: 13 AV
+    Philip II: post. st. (<span rel="mint" resource="amphipolis">Amphipolis 1</span>, <span rel="mint" resource="abydus">Abydus 
+        2</span>, <span rel="mint" resource="clazomenae">Clazomenae 1</span>, <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia 1</span>, <span rel="mint" resource="teos">Teos 1</span>, 
+        <span rel="mint" resource="mylasa">Mylasa 1</span>, unc. mints 6)
+    Disposition: London 
+    Price, NC 1969, pp. 9-10
+</pre>
+</div>
+</div>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="gaba">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Gaba</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Gaba in Syria.</div>
+ <div property="gml:pos">32.613670 35.144592</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/678138"/>
+</div>

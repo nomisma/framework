@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0984">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-530" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-400" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">46.6197222222 31.5494444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+984 Olbia (mod. Parutino), Ochakov raion, 
+    Nikolaev oblast, Ukraine, 1907
+    Burial: late 6th-5th cent. B.C.
+    Contents: AE
+    <span rel="mint" resource="olbia">Olbia: fish-shaped AE</span> 
+    Disposition: dispersed
+    OAK 1907 (publ. 1910), p. 66
+    Drevnii mir na iuge Rossii, Izbornik istochnikov
+        (Moscow, 1918), p. 45, fig. 41
+</pre>
+</div>
+</div>

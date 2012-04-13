@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0162">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.3641666667 21.9191666667</span></span></div>
+<div class="nm:editedSource">
+<pre>
+162 Karditsa (Palaiokastro), Thessaly, c. 
+(783)     1930
+    Burial: c. <span property="nm:approximateburialdate" content="-250" datatype="xsd date">250</span> B.C. (T) 
+    Contents: 30 AR, 9 AE
+    Philip II: 1 tetradr., 1 AE
+    Alexander III: 3 tetradr.
+    Antigonus Gonatas: 5 tetradr.; 1 AE 
+    Lysimachus: 3 lifetime tetradr. (<span rel="mint" resource="alexandreia_troas">Alex-
+        andreia Troas 1,</span> <span rel="mint" resource="lysimachia">Lysimacheia? 1,</span>
+        <span rel="mint" resource="cius">Cius? 1)</span>
+    <span rel="mint" resource="larissa">Larissa:</span> 4 st.; 1 dr.
+    <span rel="mint" resource="thebes">Thebes, Thessaly:</span> 1 AE
+    <span rel="mint" resource="thessalian_league">Thessalian League:</span> 1 AE (Hadrian, an intrusion)
+    <span rel="mint" resource="thebes">Thebes, Boeotia:</span> 2 st.
+    <span rel="mint" resource="athens">Athens:</span> 7 tetradr.
+    <span rel="mint" resource="sicyon">Sicyon:</span> 1 st.
+    <span rel="mint" resource="ephesus">Ephesus:</span> 1 tetradr.
+    Antiochus II: 2 tetradr. (<span rel="mint" resource="alexandreia_troas">Alexandreia Troas 
+        as WSM 1563, 1)</span>
+    Greek, illeg.: 5 AE
+    Disposition: Athens 39 as listed; New 
+        York 1?
+    Constantopoulos, A Delt 1930-1, p. 35, illus.; 
+        BCH 1931, p. 455
+    A stater of Larissa secured by Newell from 
+        the "1929 hoard" is probably from 
+        this Karditsa find
+</pre>
+</div>
+</div>

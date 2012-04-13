@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="citium">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Citium</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Citium on Cyprus.</div>
+ <div property="gml:pos">34.929597 33.629471</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Larnaca"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/707534"/>
+</div>

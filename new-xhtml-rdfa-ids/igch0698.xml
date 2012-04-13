@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0698">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-460" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-450" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.95 24.9833333333</span></span></div>
+<div class="nm:editedSource">
+<pre>
+698 Abdera, Thrace, c. 1850
+(3)
+    Burial: c. 460-450 B.C. (T)
+    Contents: 13+ AR 
+    <span rel="mint" resource="abdera_thrace">Abdera: tetradr.</span>
+    Disposition: London 6; Berlin 1; Boston 1 
+        (all ex Borrell, Sotheby July 12, 1852, 
+        nos. 2-14); Prokesch-Osten 5? (NZ 
+        1872, pp. 186-8)
+    May, Abdera, p. 296 (Hoards)
+</pre>
+</div>
+</div>

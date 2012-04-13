@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0435">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.9069444444 23.5216666667</span></span></div>
+<div class="nm:editedSource">
+<pre>
+435 Ogoja, c. 60 km. NE of Sofia, Bulgaria, 
+    1956
+    Burial: late 4th cent. B.C. (T)
+    Contents: 31+ AR. Pot hoard
+    Alexander III: 30 tetradr.
+    Philip III: 1 tetradr.
+    Disposition: Sofia 31
+    Gerasimov, BIAB 22 (1959), p. 358
+</pre>
+</div>
+</div>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1300">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-214" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.4766666667 28.1138888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1300 Sardes, Lydia, 1911
+(925)
+    Burial: c. 214 B.C. (M)
+    Contents: 72 AE. In basis of cult statue of 
+        Artemis, from excavations
+    Alexander III: 5
+    <span rel="mint" resource="macedonia">Anon. Maced.: 5</span> 
+    Cassander: 2 
+    Lysimachus: 11
+    Attalus I: 7 
+    <span rel="mint" resource="cius">Cius: 1</span>
+    <span rel="mint" resource="cyme_aeolis">Cyme: 1</span>
+    <span rel="mint" resource="ephesus">Ephesus: 4</span> 
+    <span rel="mint" resource="colophon">Colophon: 4 </span>
+    <span rel="mint" resource="oenoe">Oenoe: 3</span>
+    Antiochus I: 7 
+    Antiochus II: 11
+    Seleucus II: 4 
+    Antiochus Hierax: 3
+    Achaeus: 1
+    Unc. Antiochus: 3
+    Disposition: Istanbul
+    Bell, Sardis XI (Leiden, 1916), pp. vf., 7 ff. 
+    Franke, AM 1961, pp. 203 ff.
+</pre>
+</div>
+</div>

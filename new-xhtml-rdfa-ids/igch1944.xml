@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1944">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.0944444444 15.7541666667</span></span></div>
+<div class="nm:editedSource">
+<pre>1944 Reggio, Piazza Italia, Bruttium, 1952
+    Burial: c. 300 B.C. (K)
+    Contents: 8 EL
+    <span rel="mint" resource="syracuse">Syracuse:</span> 8 50-litra (Apollo/lyre) 
+    Disposition: Reggio 6; Banco Credito Ita-
+        liano 2
+    Procopio, AIIN 1954, pp. 165-6
+</pre>
+</div>
+</div>

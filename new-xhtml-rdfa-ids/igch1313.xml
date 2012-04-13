@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1313">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.4186111111 27.1386111111</span></span></div>
+<div class="nm:editedSource">
+<pre>1313 Izmir (anc. Smyrna) environs, Ionia, 
+(989)     c. 1884
+    Burial: c. 200 B.C.
+    Contents: 16 AE. With 8 blanks, lead weight, 
+        bronze and iron scraps
+    <span rel="mint" resource="gambrium">Gambrium: 8 (as BMC 9 ff. [2]; 14 ff. [5]; 
+        18 ff. [1])</span>
+    <span rel="mint" resource="pergamum">Pergamum: 2 (as BMC 24-5 [1]; 54 ff. [1])</span> 
+    <span rel="mint" resource="aegae_aeolis">Aegae: 1 (as BMC 2 ff.)</span> 
+    <span rel="mint" resource="cyme_aeolis">Cyme: 1 (as BMC 27 f.)</span>
+    <span rel="mint" resource="elaea">Elaea: 1 (as BMC 6 ff.)</span>
+    <span rel="mint" resource="myrina_aeolis">Myrina: 1 (as BMC 20 ff.)</span> 
+    <span rel="mint" resource="erythrae">Erythrae: 1 (as BMC 66 f.)</span>
+    Unc. mint: 1
+    Disposition: dispersed
+    Hill, Essays and Studies Presented to William
+        Ridgeway (Cambridge, 1913), pp. 110-5
+</pre>
+</div>
+</div>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1666">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-315" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">30.6263888889 31.3183333333</span></span></div>
+<div class="nm:editedSource">
+<pre>1666 Mit Ya-ish, 10 km. S of Mit Ghamr-
+    Zifta, near anc. Leontopolis, 1954
+    Burial: c. 315 B.C. (Jenkins)
+    Contents: 200 AR
+    Alexander III: lifetime and early post. 
+        tetradr. (<span rel="mint" resource="alexandria_egypt">Alexandreia, as Svoronos pl.
+        1, 7</span>)
+    Disposition: unknown
+    Information from R. Hazzard, Toronto
+</pre>
+</div>
+</div>

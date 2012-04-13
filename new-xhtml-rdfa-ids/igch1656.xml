@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1656">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-330" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">30.7905555556 30.9977777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1656 Garbieh, Garbîya province, Delta, 
+(420)     1896
+    Burial: c. 330 B.C. (Jenkins) 
+    Contents: 9 AV, ? AR
+    Philip II: 4 AV st.
+    <span rel="mint" resource="athens">Athens: tetradr. (a large number, mostly 
+        ctmk.)</span>
+    <span rel="mint" resource="citium">Citium: 1 AV hemist.</span>
+    <span rel="mint" resource="persia">Persia: 4 darics</span>
+    Disposition: Alexandreia
+    Dutilh, JIAN 1898, p. 148; RBN 1905, p. 162 
+    Jenkins, NC 1955, p. 150 (poss. part of Demanhur 
+        hd., no. 1654 above)
+</pre>
+</div>
+</div>

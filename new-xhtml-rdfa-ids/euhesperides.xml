@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="euhesperides">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Euhesperides</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Euhesperides in Cyrenaica.</div>
+ <div property="gml:pos">32.109789 20.091198</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Euesperides#Ancient_Greek_Colony"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/373786"/>
+</div>

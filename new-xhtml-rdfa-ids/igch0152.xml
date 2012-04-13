@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0152">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">35.0511111111 24.8136111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+152 Phaestus region, Crete, 1953
+    Burial: <span property="nm:approximateburialdate_start" content="-280" datatype="xsd:date">280</span>-<span property="nm:approximateburialdate_end" content="-270" datatype="xsd:date">270</span> B.C. (Le Rider) 
+    Contents: 410+ AR
+    <span rel="mint" resource="boeotia">Boeotia:</span> 3 hemidr.
+    Pegasi: 13+ st. (<span rel="mint" resource="corinth">Corinth 1,</span> <span rel="mint" resource="thyrrheium">Thyrrheium 3,</span>
+        <span rel="mint" resource="anactorium">Anactorium 2)</span> 
+    <span rel="mint" resource="argos_argolis">Argos:</span> 18 tetrob. 
+    <span rel="mint" resource="aptera">Aptera:</span> 8 didr. 
+    <span rel="mint" resource="arcadia">Arcadia:</span> 1 didr. 
+    <span rel="mint" resource="axus">Axus: 6 didr.
+    <a rel="nm:item" href="http://numismatics.org/collection/1957.158.1">ANS 1957.158.1</a></span> 
+    <span rel="mint" resource="chersonesus_crete">Chersonesus:</span> 8 didr. 
+    <span rel="mint" resource="cnossus">Cnossus:</span> 33 didr. 
+    <span rel="mint" resource="cydonia">Cydonia:</span> 27 didr.
+            8 triob. (Pseudaeg.)
+    <span rel="mint" resource="eleutherna">Eleutherna: 18 didr.
+    <a rel="contains" href="http://www.cngcoins.com/Coin.aspx?CoinID=120435">CNG Coin shop 811088</a></span> 
+    <span rel="mint" resource="gortyna">Gortyna:</span> 119 didr. 
+    <span rel="mint" resource="itanus">Itanus:</span> 2 didr. 
+    <span rel="mint" resource="lyttus">Lyttus:</span> 19 didr. 
+    <span rel="mint" resource="phaestus">Phaestus: 55 didr.</span> 
+    <span rel="mint" resource="phalasarna">Phalasarna:</span> 6 didr. 
+    <span rel="mint" resource="polyrhenium">Polyrhenium:</span> 1 didr. 
+    <span rel="mint" resource="praesus">Praesus:</span> 11 didr. 
+    <span rel="mint" resource="priansus">Priansus:</span> 2 didr. 
+    <span rel="mint" resource="rhaucus">Rhaucus:</span> 14 didr.
+            1 dr.
+    <span rel="mint" resource="sybrita">Sybrita:</span> 8 didr. 
+    <span rel="mint" resource="tylisus">Tylisus:</span> 3 didr. 
+    <span rel="mint" resource="rhodes">Rhodes:</span> 1 didr.
+    Euagoras of <span rel="mint" resource="salamis_cyprus">Salamis:</span> 1 didr.
+    <span rel="mint" resource="cyrene">Cyrene:</span> 65 didr.
+    Disposition: Paris 58 (19 ex Delepierre);
+        Athens 7; New York 3; London 2;
+        Oxford 3; Boston 1+; and others
+    Varoucha, BCH 1960, p. 490, illus.
+† Le Rider, Monn. crét., pp. 19-49, illus.
+        See also no. 153 below
+</pre>
+</div>
+</div>

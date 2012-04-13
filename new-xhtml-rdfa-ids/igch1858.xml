@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1858">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">34.515 69.3219444444</span></span></div>
+<div class="nm:editedSource">
+<pre>1858 Butkhak, c. 20 km. S of Cabul (anc. 
+    Cabura, Paropamisadae), before 1943 
+    Burial: 1st cent. B.C. (Le Rider)
+    Contents: c. 200 AR. In a stone jar 
+    Hermaeus: tetradr. (and dr.?)
+    Disposition: Sotheby, April 30, 1958 
+        (Haughton), no. 489
+    Haughton, NC 1943, pp. 54, 59
+</pre>
+</div>
+</div>

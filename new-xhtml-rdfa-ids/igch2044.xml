@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2044">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.510968 14.740162</span></span></div>
+<div class="nm:editedSource">
+<pre>2044 Gildone, 10 km. SE of Campobasso, 
+    Samnium, 1946
+    Burial: 3rd cent. B.C. (Crawford)
+    Contents: AE
+    <span rel="mint" resource="neapolis_campania">Neapolis</span>
+    <span rel="mint" resource="arpi">Arpi</span>
+    <span rel="mint" resource="rome">Roman Rep.: 2 aes grave</span> 
+    Disposition: Campobasso
+    D'Amico, Atti del Primo Congresso Internazionale 
+        di Preistoria e Protvistoria Mediterranea,
+        pp. 537-38
+    Crawford, RRCH 26
+    Crawford presumably had reason to treat 
+        this as a hd., though D'Amico says 
+        only that the coins were acquired from 
+        a countryman; they might, therefore, 
+        be site finds.
+</pre>
+</div>
+</div>

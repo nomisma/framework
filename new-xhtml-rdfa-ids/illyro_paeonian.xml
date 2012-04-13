@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="illyro_paeonian">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Illyro-Paeonian</div>
+ <div property="skos:definition" xml:lang="en">Stub for the ancient region of Illyria-Paeonia in the Balkans.</div>
+ <div rel="uncertain_value"><span property="gml:pos">42.00 21.46</span></div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Paeonia_%28kingdom%29"/>
+</div>

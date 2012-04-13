@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2169">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-270" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.9080555556 15.1366666667</span></span></div>
+<div class="nm:editedSource">
+<pre>2169 Avola, 20 km. SW of Syracuse, 1888 
+(108 part)
+    Burial: late 4th-early 3rd cent. B.C. (Jen-
+        kins)
+    Contents: c. 150 AR
+    <span rel="mint" resource="corinth">Corinth: 21 Pegasi (Per. V); 1 trihemidr.; 
+        18 dr.</span>
+    <span rel="mint" resource="anactorium">Anactorium: 3 Pegasi</span>
+    <span rel="mint" resource="argos_amphilochicum">Argos: 4 Pegasi</span>
+    <span rel="mint" resource="leucas">Leucas: 2 Pegasi</span>
+    <span rel="mint" resource="syracuse">Syracuse: 1 Pegasus; 2 dr.</span>
+    <span rel="mint" resource="terina">Terina: 1 dr.</span>
+    Coins not seen: 97
+    Disposition: A. Löbbecke part
+† Löbbecke, ZfN 1890, pp. 167-79, illus. 
+    Jenkins, ANSCent., p. 375
+</pre>
+</div>
+</div>

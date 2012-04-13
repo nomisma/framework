@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0764">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-320" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.1116666667 27.1013888889</span></span></div>
+<div class="nm:editedSource">
+<pre>
+764 Gorno Jabâlkovo, c. 40 km. S of Bur-
+    gas, Bulgaria, 1959
+    Burial: c. 330-320 B.C. (T)
+    Contents: AR. Pot hoard
+    <span rel="mint" resource="apollonia_pontica">Apollonia Pontica: tetrob.</span>
+    <span rel="mint" resource="parium">Parium: hemidr.</span>
+    Disposition: Burgas 2 Apollonia, 1 Parium
+    Gerasimov, BIAB 25 (1962), p. 229
+</pre>
+</div>
+</div>

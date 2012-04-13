@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0445">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-280" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.9955555556 22.8744444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+445 Pontoleibade-Kilkis, Macedonia, 1961 
+    Burial: c. 280 B.C. (T)
+    Contents: 114+ AR. Pot hoard
+    Alexander III: 67 lifetime and early post. 
+        tetradr. (<span rel="mint" resource="amphipolis">Amphipolis 23</span>, <span rel="mint" resource="pella_macedon">Pella 3</span>, unc. 
+        <span rel="mint" resource="macedonia">Maced. 3</span>, <span rel="mint" resource="sicyon">Sicyon 1</span>, <span rel="mint" resource="lampsacus">Lampsacus 1</span>, 
+        <span rel="mint" resource="sardes">Sardes 3</span>, <span rel="mint" resource="chios">Chios 1</span>, <span rel="mint" resource="amathus">Amathus 1</span>, <span rel="mint" resource="citium">Citium 1</span>, 
+        <span rel="mint" resource="side">Side 2</span>, <span rel="mint" resource="tarsus">Tarsus 1</span>, <span rel="mint" resource="aradus">Aradus 3</span>, <span rel="mint" resource="byblus">Byblus 1</span>,
+        <span rel="mint" resource="tyre">Tyre 4</span>, <span rel="mint" resource="babylon">Babylon 10</span>, <span rel="mint" resource="susa">Susa 1</span>, <span rel="mint" resource="alexandria_egypt">Alex-
+        andreia 1</span>, unc. 7)
+            33 dr. (chiefly <span rel="mint" resource="asia_minor">Asia Minor 
+        mints</span>)
+    Philip III: 2 tetradr. (<span rel="mint" resource="aradus">Aradus</span>, <span rel="mint" resource="susa">Susa</span>) 
+            2 dr.
+    Demetrius Poliorcetes: 5 tetradr. (<span rel="mint" resource="amphipolis">Amphi-
+        polis 2</span>, <span rel="mint" resource="pella_macedon">Pella 2</span>,  <span rel="mint" resource="peloponnesus">Pelop.? 1</span>)
+    <span rel="mint" resource="athens">Athens: 5 tetradr.</span>
+    Disposition: Thessalonica 52; Athens 8
+    Varoucha, BCH 1962. pp. 418-21 (three hds.)
+    Although published as separate deposits 
+        (hds. 2, 3, and 4) in the BCH, the 
+        composition of the three lots, their 
+        provenances and dates of discovery 
+        are so similar that there seems to be 
+        no doubt of a common origin. The 
+        52 coins of hd. 2, said to be in the 
+        Athens cabinet, were seen in the 
+        Thessalonica museum by M. Oecono-
+        mides
+</pre>
+</div>
+</div>

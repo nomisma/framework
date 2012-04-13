@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1729">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">30.7394444444 31.5702777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1729 Toukh el Garmous, 20 km. NE of 
+(1123)     Zagazig, 1905
+    Burial: 3rd-1st cent. B.C. (Jenkins)
+    Contents: AR. Found in chamber 2 of temple
+        treasury (cf. nos. 1679, 1680 above)
+    Ptolemaic (?): small number of tetradr.; 
+        poorly preserved
+    Disposition: unknown
+    Edgar, ASA 1906, p. 208 (no details)
+</pre>
+</div>
+</div>

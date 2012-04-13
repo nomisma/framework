@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0885">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.5052777778 27.3055555556</span></span></div>
+<div class="nm:editedSource">
+<pre>
+885 Bratovo, c. 4 km. W of Burgas, Bul-
+    garia, 1955
+    Burial: 3rd-2nd cent. B.C. (T) 
+    Contents: c. 1500 AE. Pot hoard
+    <span rel="mint" resource="mesembria">Mesembria: (chiefly Athena rev. but at 
+        least 1 with wheel rev.)</span>
+    <span rel="mint" resource="odessus">Odessus</span>
+    Disposition: Burgas 550 (Mesembria of 
+        Athena type)
+    Gerasimov, BIAB 21 (1957), p. 323; 22 (1959), 
+        p. 361
+    SM 1958, p. 22
+</pre>
+</div>
+</div>

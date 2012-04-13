@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="boeone">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Boeone</div>
+ <div property="skos:definition" xml:lang="en">The mint at the unlocated ancient site of Boeone in Aeolis.</div>
+ <div rel="uncertain_value"><span property="gml:pos">38.68 27.03</span></div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/554206"/>
+</div>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2068">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-480" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-478" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.5883333333 12.8261111111</span></span></div>
+<div class="nm:editedSource">
+<pre>2068 Passo di Piazza (anc. Gela), 1934 
+    Burial: c. 480-78 B.C. (Jenkins)
+    Contents: 45 AR
+    <span rel="mint" resource="agrigentum">Acragas: 6 didr.</span>
+    <span rel="mint" resource="gela">Gela: 19 didr. (to Jenkins 82)</span>
+    <span rel="mint" resource="messana">Messana: 1 didr. (mule-car/hare)</span>
+    <span rel="mint" resource="syracuse">Syracuse: 18 tetradr. (to Boehringer 85 ?) 
+            1 didr.</span>
+    Disposition: Syracuse
+    Currò Pisanò, AIIN 1962-4, p. 227 (listed as 
+        1934 = Gela)
+    Jenkins, Gela, pp. 21-2, 156
+</pre>
+</div>
+</div>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0331">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-90" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-80" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+331 Crete, before 1908 
+(282)
+    Burial: c. 90-80 B.C.
+    Contents: c. 13 AR
+    <span rel="mint" resource="athens">Athens:</span> New Style tetradr. 
+    Disposition: Herakleion
+    Thompson, Athens (Cretan Hoard I), pp. 515-6, 
+        illus.
+    The 7 other coins of Noe 282 are not part 
+        of this find. They were published in 
+        Athens (p. 522) as possibly a separate 
+        hd., but Le Rider (Monn. crét., p. 296) 
+        does not think that they belong 
+        together
+</pre>
+</div>
+</div>

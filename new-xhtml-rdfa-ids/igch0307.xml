@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0307">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.4963888889 20.4472222222</span></span></div>
+<div class="nm:editedSource">
+<pre>
+307 Thespretia, Epirus, 1951 
+    Burial: 2nd cent. B.C. (T) 
+    Contents: 15+ AE
+    <span rel="mint" resource="epirus">Epirote Rep.:</span> 1 
+    <span rel="mint" resource="ambracia">Ambracia:</span> 14
+    Disposition: Athens 
+    Varoucha, BCH 1952, p. 205
+    The Thessalian AR mentioned in the BCH 
+        were apparently not part of the hd.
+</pre>
+</div>
+</div>

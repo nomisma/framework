@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="sacramento_california">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Sacramento</div>
+ <div property="skos:definition" xml:lang="en">The mint in the city of Sacramento, California.</div>
+<div property="gml:pos">38.555605 -121.468926</div>
+</div>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2176">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-270" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.92 14.7188888889</span></span></div>
+<div class="nm:editedSource">
+<pre>2176 Ragusa, SE Sicily, 1905
+(847)
+    Burial: early 3rd cent. B.C. (Jenkins)
+    Contents: 180+ AV, EL
+    <span rel="mint" resource="syracuse">Syracuse: EL (Apollo/lyre)
+            AV (Agathocles; Athena/thunder-
+        bolt)</span>
+    <span rel="mint" resource="carthage">Carthage: EL (Jenkins-Lewis, Grp. V)</span>
+    Disposition: dispersed
+    Orsi's notes
+    Jenkins-Lewis, Carthage, p. 59
+</pre>
+</div>
+</div>

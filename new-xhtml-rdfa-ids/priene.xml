@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="priene">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Priene</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Priene in Ionia.</div>
+ <div property="gml:pos">37.659722 27.297778</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Priene"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/599905"/>
+</div>

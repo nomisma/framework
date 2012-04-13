@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1960">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-280" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.4841666667 18.0525</span></span></div>
+<div class="nm:editedSource">
+<pre>1960 Valesio, near Torchiarolo, 15 km. S 
+    of Brindisi, Calabria, 1935
+    Burial: c. 300 B.C. (Mitchell, Stazio); c. 280 
+        (Crawford)
+    Contents: 19 AR. Pot hoard
+    <span rel="mint" resource="taras">Taras: 7 st. (Per. V)</span>
+    <span rel="mint" resource="heraclea_lucaniae">Heracleia: 2 st. (as Work 62 ff.)</span>
+    <span rel="mint" resource="metapontum">Metapontum: 6 st. (plow symbol)</span> 
+    <span rel="mint" resource="thurium">Thurium: 1 st.</span>
+    <span rel="mint" resource="terina">Terina: 1 st.</span>
+    <span rel="mint" resource="rome">Roman Rep.: 2 st. (Mars/horse hd., 
+        ROMANO)</span>
+    Disposition: Brindisi 17 (as above less 1 
+        each of Heracleia, Metapontum)
+† Marzano, Ricerche e Studie (Museo Fr. Ribezzo, 
+        Brindisi) 3 (1967), pp. 95-102, illus. 
+    Mitchell, NC 1966, p. 68 and note 5
+    Stazio, AIIN 1965-7, p. 58
+    Crawford, RRCH 12
+</pre>
+</div>
+</div>

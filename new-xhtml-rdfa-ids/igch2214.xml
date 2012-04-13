@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2214">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-240" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-235" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.5883333333 12.8261111111</span></span></div>
+<div class="nm:editedSource">
+<pre>2214 Selinunte, 1874
+    Burial: c. 240-235 B.C. (Robinson)
+    Contents: c. 30 AE. From excavations 
+    <span rel="mint" resource="sardinia">Sardinia (Isis/3 corn ears) </span>
+    Disposition: Palermo
+    Cavallari, BullCommAntSic 7 (1874), pp. 18 ff.; 
+    Archivio storico Siciliano III (1876), pp. 
+        529 ff.
+    Robinson, NC 1943, pp. 6-8
+</pre>
+</div>
+</div>

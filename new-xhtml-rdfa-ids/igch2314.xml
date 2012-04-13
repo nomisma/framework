@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2314">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.1225 1.275</span></span></div>
+<div class="nm:editedSource">
+<pre>2314 Tarragona prov., 1870
+(1062)
+    Burial: end 4th cent. B.C. (Guadan) 
+    Contents: 39 AR
+    <span rel="mint" resource="emporiae">Emporiae: 19 fr.</span>
+    Unc. Spanish: 3 fr.
+    <span rel="mint" resource="massalia">Massalia: 16 ob.</span>
+    <span rel="mint" resource="selinus_sicily">Selinus: 1 lit.</span>
+    Disposition: Barcelona 2
+    Delgado, MAE III, pp. 179, 194
+† Zobel y Zangroniz, MNE 1877-9, pp. 119-21 
+    Vives, MH I, p. 24, nos. 7, 9
+    Amoros, MEAD, pp. 40-50
+    de Guadan, Numisma 16 (1955), p. 15; MPER, 
+        pp. 96-8
+</pre>
+</div>
+</div>

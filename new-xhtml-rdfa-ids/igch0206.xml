@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0206">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.5463888889 20.7875</span></span></div>
+<div class="nm:editedSource">
+<pre>
+206 Dodona, Epirus, 1885 
+(333)
+    Burial: late 3rd cent. B.C. 
+    Contents: 11 AE
+    <span rel="mint" resource="epirus">Epirus:</span> 9
+    <span rel="mint" resource="molossi">Molossi:</span> 2
+    Disposition: Oxford
+    Franke, Epirus, p. 146
+</pre>
+</div>
+</div>

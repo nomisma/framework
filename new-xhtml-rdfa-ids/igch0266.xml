@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0266">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-150" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-140" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.6588888889 21.7511111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+266 Koniska, NE of Thermon, Aetolia,
+    c. 1962
+    Burial: c. 150-140 B.C. (T)
+    Contents: 16+ AR
+    <span rel="mint" resource="aenianes">Aenianes:</span> 1 triob.
+    <span rel="mint" resource="phocis">Phocis:</span> 1 triob.
+    <span rel="mint" resource="locri opuntii">Locri Opuntii:</span> 1 triob.
+    <span rel="mint" resource="chalcis">Chalcis:</span> 2 dr. 
+    <span rel="mint" resource="aegina">Aegina:</span> 1 dr.
+    <span rel="mint" resource="sicyon">Sicyon:</span> 1 dr.; 3 triob.
+    <span rel="mint" resource="achaean_league">Achaean League:</span> 2 triob. (Dyme, Aegium 
+        with ΑΡΙCΤΟ)
+    <span rel="mint" resource="aegae_achaea">Aegae:</span> 1 triob. 
+    <span rel="mint" resource="elis">Elis:</span> 1 triob. 
+    Ptolemy I: 2 tetradr.
+    Disposition: Athens (coins and casts)
+    Varoucha, A Delt 1964, Chronika, pp. 9-10, illus.
+</pre>
+</div>
+</div>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1586">
+<span rel="nm:findspot"><span property="gml:pos">33.5625 35.36861111</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-246" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1586 Saida (anc. Sidon), Phoenicia, 1949 
+    Burial: after 246 B.C. (M)
+    Contents: 38 AR
+    Ptolemy I: 4 tetradr. (<span rel="mint" resource="alexandria_egypt">Alexandreia as Svo-
+        ronos 205, 252, 256, 265</span>)
+    Ptolemy II: 18 tetradr. (<span rel="mint" resource="alexandria_egypt">Alexandreia 6 as 
+        Sv. 365, 529-31, 544, 548</span>; <span rel="mint" resource="tyre">Tyre 5 as 
+        Sv. 637, 644, 658-9, 670</span>; <span rel="mint" resource="sidon">Sidon 3 as 
+        Sv. 713, 733, 736</span>; <span rel="mint" resource="ace_ptolemais">Ace 2 as Sv. 770, 
+        780</span>; <span rel="mint" resource="ephesus">Ephesus 2 as Sv. 904-5</span>)
+    Ptolemy III: 2 tetradr. (<span rel="mint" resource="alexandria_egypt">Alexandreia 1 as 
+        Sv. 1001</span>; <span rel="mint" resource="joppa">Joppa 1 as Sv. 1041</span>)
+    Unc. kings: 5 tetradr. (<span rel="mint" resource="alexandria_egypt">Alexandreia 2</span>; <span rel="mint" resource="tyre">Tyre 
+        2</span>; <span rel="mint" resource="joppa">Joppa? 1</span>)
+    Disposition: dispersed
+    Seyrig, Trésors du Levant (in press) (2 tetradr. of 
+        Ptolemy I with ctmks.)
+</pre>
+</div>
+</div>

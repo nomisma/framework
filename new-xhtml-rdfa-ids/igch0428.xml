@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0428">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.8611111111 21.9938888889</span></span></div>
+<div class="nm:editedSource">
+<pre>
+428 Sopotu Vechi (formerly Osopot), c. 
+    57 km. NNW of Turnu Severin, Rumania, 
+    1878
+    Burial: late 4th cent. B.C. ? (T)
+    Contents: 3-5 AR
+    Alexander III: tetradr.
+    Disposition: dispersed
+† Milleker, Délm 1 (1896), p. 101
+    Mitrea, ED 10 (1945), p. 48
+</pre>
+</div>
+</div>

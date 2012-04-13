@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="material" about="av">
+ <div property="skos:prefLabel" xml:lang="en">Gold</div>
+<div>Alternate label: "<span property="skos:altLabel" xml:lang="la">Aureum</span>"</div>
+ <div property="skos:definition" xml:lang="en">'AV' is the numismatic abbreviation for gold.</div>
+</div>

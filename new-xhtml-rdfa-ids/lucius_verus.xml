@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="roman_emperor" about="lucius_verus">
+ <div property="skos:prefLabel" xml:lang="en">Lucius Verus</div>
+ <div property="skos:definition" xml:lang="en">Roman emperor from 8 March 161 – 169.</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Lucius_Verus"/>
+</div>

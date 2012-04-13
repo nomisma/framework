@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2199">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-282" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.0744444444 14.2377777778</span></span></div>
+<div class="nm:editedSource">
+<pre>2199 Gela, 1901-1903
+    Burial: 282 B.C. (K)
+    Contents: 47 AE. Found beneath floor of a 
+        room
+    <span rel="mint" resource="gela">Gela: 2 (Jenkins, Grp. XII-XIII) </span>
+    <span rel="mint" resource="syracuse">Syracuse: 43 (Agathocles [32]; Hicetas [11]) </span>
+    Unc.: 2
+    Disposition: unknown
+    Orsi, MonAnt 1906, p. 420 
+    Jenkins, Gela, p. 152
+</pre>
+</div>
+</div>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="amorgos">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Amorgos</div>
+ <div property="skos:definition" xml:lang="en">The mint on the ancient island of Amorgos in the Cyclades.</div>
+ <div property="gml:pos">36.833333 25.9</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Amorgos"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/599484"/>
+</div>

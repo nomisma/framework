@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0997">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-475" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-425" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">45.2658333333 36.3691666667</span></span></div>
+<div class="nm:editedSource">
+<pre>
+997 Nymphaeum (mod. Geroevka, for-
+    merly Ėl'tigen), S of Kerch', Crimea oblast, 
+    Ukraine, 1949
+    Burial: after 475 B.C. (Shelov)
+    Contents: 17 AR. Pot hoard
+    <span rel="mint" resource="panticapaeum">Panticapaeum: 1 diobol. (as Minns, pl. 5,
+        3-5)
+            16 fr. (same types, 0.18-
+        0.45 gm.)</span> 
+    Disposition: Leningrad
+† Skudnova, VDI 1950, no. 4, pp. 78-9 
+    Shelov, VDI 1951, no.1, pp. 263-4
+</pre>
+</div>
+</div>

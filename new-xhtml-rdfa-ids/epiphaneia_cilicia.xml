@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="epiphaneia_cilicia">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Epiphaneia</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Epiphaneia in Cilicia.</div>
+ <div property="gml:pos">36.955056 36.199705</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/658556"/>
+</div>

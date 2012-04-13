@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0917">
+<span rel="nm:findspot"><span property="gml:pos">42.38944444 25.99583333</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-125" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+917 Benkovski, 1933-1934 
+(145)
+    Burial: c. 125-100 B.C. (T) 
+    Contents: c. 270 AR
+    <span rel="mint" resource="maroneia">Maroneia: spread-flan tetradr.</span> 
+    <span rel="mint" resource="thasos">Thasos: spread-flan tetradr.</span>
+    <span rel="mint" resource="athens">Athens:</span> New Style tetradr.
+    Disposition: unknown
+    Gerasimov, BIAB 8 (1934), p. 471
+    Thompson, Athens, p. 523
+</pre>
+</div>
+</div>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="eleusis">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Eleusis</div>
+ <div property="skos:definition" xml:lang="en">The mint the ancient site of Eleusis in Attica.</div>
+ <div property="dcterms:partOf" resource="attica"/>
+ <div property="gml:pos">38.033333 23.533333</div>
+<div property="skos:related" resource="http://en.wikipedia.org/wiki/Eleusis"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/579920"/>
+</div>

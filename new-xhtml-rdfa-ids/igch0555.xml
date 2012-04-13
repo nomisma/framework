@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0555">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.1838888889 22.7197222222</span></span></div>
+<div class="nm:editedSource">
+<pre>
+555 Dojran, Serbia, Yugoslavia, 1932 
+    Burial: 2nd cent. B.C. (T)
+    Contents: c. 100 AE
+    Philip V: 1
+    Amphaxitis: 1
+    <span rel="mint" resource="amphipolis">Amphipolis: 8</span> 
+    <span rel="mint" resource="pella_macedon">Pella: 1</span>3
+    <span rel="mint" resource="thessalonica">Thessalonica: 10</span>
+    Disposition: Zagreb 33 as listed
+    Klemenc, Numismatika Zagreb 2-4 (1934-6), 
+        pp. 131,133
+</pre>
+</div>
+</div>

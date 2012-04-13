@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1706">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-150" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">29.8697222222 31.2163888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1706 Saqqara, near Memphis, 20 km. S of 
+    Cairo, 1967
+    Burial: c. 150 B.C. (Jenkins)
+    Contents: 67 AE. From excavations near 
+        entrance to Ibis galleries (cf. JEA 
+        1967, p. 142)
+    Ptolemy VI (incl. types of Svoronos 1375, 
+        1423-4, 1491-5)
+    Disposition: London
+    Information from G. K. Jenkins
+</pre>
+</div>
+</div>

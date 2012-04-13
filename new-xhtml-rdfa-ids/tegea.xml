@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="tegea">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Tegea</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Tegea in Arcadia.</div>
+ <div property="gml:pos">37.455333 22.4205</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Tegea"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/570707"/>
+</div>

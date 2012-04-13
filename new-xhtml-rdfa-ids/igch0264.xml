@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0264">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-146" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.9427777778 22.9519444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+264 Corinth, 1948 
+    Burial: c. 146 B.C.
+    Contents: 34 AE. From excavations 
+    Cleopatra I: 1 (as Svoronos 1380) 
+    Ptolemy V or VI: 31 (as Sv. 1384) 
+    Ptolemy VI-VIII: 2 (as Sv. 1424-5) 
+    Disposition: Old Corinth
+    Thompson, Hesperia 1951, pp. 355-67, illus.
+</pre>
+</div>
+</div>

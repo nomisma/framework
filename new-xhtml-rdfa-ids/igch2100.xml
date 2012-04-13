@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2100">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-400" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.9786111111 15.2005555556</span></span></div>
+<div class="nm:editedSource">
+<pre>2100 Cassibile, 15 km. SW of Syracuse, 
+    1952
+    Burial: c. 400 B.C. (Jenkins) 
+    Contents: 14 AR. Pot hoard
+    <span rel="mint" resource="rhegium">Rhegium: 1 tetradr.</span>
+    <span rel="mint" resource="catana">Catana: 2 tetradr. (1 signed ΕϒΑΙΝ as 
+        Rizzo, MGS, pl. 14, 6)</span>
+    <span rel="mint" resource="gela">Gela: 1 tetradr.</span>
+    <span rel="mint" resource="leontini">Leontini: 2 tetradr.</span>
+    <span rel="mint" resource="syracuse">Syracuse: 8 tetradr. (to Tudeer 37, 44)</span>
+    Disposition: Syracuse
+† Gentili, NSc 1954, pp. 77-80, illus.; AIIN 1954, 
+        p. 166
+    Currò Pisanò, AIIN 1962-4, pp. 229, 237 
+    Jenkins, Gela, p. 148
+</pre>
+</div>
+</div>

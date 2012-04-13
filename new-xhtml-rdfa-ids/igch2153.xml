@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2153">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.194141 13.766012</span></span></div>
+<div class="nm:editedSource">
+<pre>2153 Palma di Montechiaro (found betw. 
+(789)     Palma and Agrigento), 1929
+    Burial: c. 300 B.C. (Jenkins-Lewis) 
+    Contents: 1 EL, 77 AR
+    <span rel="mint" resource="siculo_punic">Siculo-Punic: 8 tetradr. (Arethusa/horse 
+        [1]; Arethusa/horse hd. [2]; Heracles/ 
+        horse hd. [5])</span>
+    <span rel="mint" resource="carthage">Carthage: 1 EL (Jenkins-Lewis, Grps. IV-
+        VII)</span>
+     Pegasi: (69) incl.
+    <span rel="mint" resource="corinth">Corinth: 17 (incl. most of Per. V) </span>
+    <span rel="mint" resource="ambracia">Ambracia: 2 (as Ravel 138, 176) </span>
+    <span rel="mint" resource="anactorium">Anactorium: 17</span>
+    <span rel="mint" resource="argos_amphilochicum">Argos: 1 (as Ravel, Ambracia pl. 18, 12-3) </span>
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: 2</span>
+    <span rel="mint" resource="leucas">Leucas: 7 (latest BMC pl. 36, 25-2 ex.) </span>
+    <span rel="mint" resource="locri_epizephyrii">Locri: 4</span>
+    Unc.: 4
+    Disposition: Palermo 70 (Sic.-Punic 4, Pe-
+        gasi 66)
+    Marconi, NSc 1931, p. 404
+    Tusa Cutroni, AIIN 1956, p. 209 
+    Jenkins-Lewis, Carthage, p. 56
+    One Mamertine AE (Marconi no. 79) as-
+        sociated with this find is now reported 
+        to be of Syracuse 344-36 B.C. (AIIN 
+        1960-1, p. 88)
+</pre>
+</div>
+</div>

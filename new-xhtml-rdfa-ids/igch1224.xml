@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1224">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1224 Ionia, c. 1915
+(493)
+    Burial: 4th cent. B.C. (M) 
+    Contents: c. 55 AR
+    <span rel="mint" resource="sardes">Persia: 14+ sigloi (king carrying spear) 
+            38+ sigloi (king with dagger)</span>
+    Disposition: Oxford 32; London 20 
+† Milne, NC 1916, pp. 1-12, illus.
+    Schlumberger, L'argent grec, p. 6
+</pre>
+</div>
+</div>

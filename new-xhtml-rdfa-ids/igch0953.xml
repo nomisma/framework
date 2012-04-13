@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0953">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-130" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-100" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.3013888889 27.9163888889</span></span></div>
+<div class="nm:editedSource">
+<pre>
+953 Oresak, c. 16 km. N of Varna, Bul-
+    garia, 1944
+    Burial: late 2nd cent. B.C. (T)
+    Contents: 15 AE. Pot hoard
+    <span rel="mint" resource="odessus">Odessus: (as AMNG I.2, 219 ff.)</span> 
+    Disposition: Varna
+    Gerasimov, BIAB 15 (1946), p. 242
+</pre>
+</div>
+</div>

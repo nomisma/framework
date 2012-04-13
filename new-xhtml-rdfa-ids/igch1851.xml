@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1851">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">34.1680555556 71.7541666667</span></span></div>
+<div class="nm:editedSource">
+<pre>1851 Charsadda (anc. Peucolaotis), en-
+    virons, Gandhara, Pakistan, c. 1936
+    Burial: 1st cent. B.C. (Le Rider)
+    Contents: 1 AV, 3 AR
+    Menander?: 1 AV st. 
+    Strato I: 1 tetradr. 
+    Nicias: 1 tetradr. 
+    Hermaeus: 1 tetradr.
+    Disposition: London 1; Cambridge 1
+    Whitehead, NC 1950, p. 217 
+    Shortt, NC 1963, p. 14
+    The ltd. is doubtful according to Shortt
+</pre>
+</div>
+</div>

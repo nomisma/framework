@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0091">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.9680555556 24.7019444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+91 Siphnos, 1930
+(984)
+    Burial: <span property="nm:approximateburialdate_start" content="-320" datatype="xsd:date">320</span>-<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date">300</span> B.C.
+    Contents: 30 AR
+    Alexander III: 1 dr. (<span rel="mint" resource="miletus">Miletus)</span>
+    <span rel="mint" resource="athens">Athens (4th cent.):</span> 1 tetradr.; 5 dr.; 11
+        triob.
+    <span rel="mint" resource="siphnos">Siphnos:</span> 1 st.; 3 tetrob.
+    <span rel="mint" resource="rhodes">Rhodes:</span> 1 didr.; 7 triob.
+    Disposition: New York 26
+    Newell, NNM 64 (1934), 17 pp., illus.
+</pre>
+</div>
+</div>

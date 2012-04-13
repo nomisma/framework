@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2194">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-270" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>2194 Sicily, 1921
+    Burial: early 3rd cent. B.C. (Jenkins) 
+    Contents: 106 AE
+    <span rel="mint" resource="siculo_punic">Siculo-Punic (Tanit/horse and palm-tree)</span>
+    Disposition: R. E. Hart, now London
+    Jenkins-Lewis, Carthage, p. 133
+</pre>
+</div>
+</div>

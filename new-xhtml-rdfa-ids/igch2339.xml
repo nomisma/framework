@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2339">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-195" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.0002777778 3.0675</span></span></div>
+<div class="nm:editedSource">
+<pre>2339 Ullastret, 20 km. E of Gerona, 1964 
+    Burial: c. 195 B.C. (Jenkins)
+    Contents: 54 AR. Pot hoard from excavations
+    <span rel="mint" resource="emporiae">Emporiae: 8 dr.
+            27 fr. (Pegasus type)
+            18 fr. (two dolphins type)
+            1 fr. (dolphin type)</span>
+    Disposition: Gerona
+    Maluquer-Oliva, Pyrenae 1965, pp. 85-123, illus.
+</pre>
+</div>
+</div>

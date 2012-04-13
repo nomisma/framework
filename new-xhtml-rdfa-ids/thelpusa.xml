@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="thelpusa">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Thelpusa</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Thelpusa in Arcadia.</div>
+ <div property="gml:pos">37.710489 21.878840</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Thelpusa"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/570722"/>
+</div>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1901">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-430" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-420" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.4630555556 17.2502777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1901 Taranto environs, 1914 
+(1054)
+    Burial: 430-420 B.C.
+    Contents: 15 AR
+    <span rel="mint" resource="taras">Taras: st. (3 rev. wheel; 2 rev. hippocamp; 
+        1 rev. hd.; 9 oecist)
+        <a rel="nm:item" href="http://numismatics.org/collection/1967.152.20">ANS 1967.152.20</a></span>
+    Disposition: Vlasto 6 (Cat. 95, 107, 165, 
+        199, 218, 227); New York 1 (SNG 854)
+    Vlasto, NNM 15 (1922), p. 208
+</pre>
+</div>
+</div>

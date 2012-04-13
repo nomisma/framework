@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2091">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-415" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.0791666667 15.2722222222</span></span></div>
+<div class="nm:editedSource">
+<pre>2091 Syracuse, Scala Greca, 1951 
+    Burial: c. 415 B.C. (K)
+    Contents: 11 AR, 65 AE. Pot hoard 
+    <span rel="mint" resource="syracuse">Syracuse:</span> 11 litrae; 64 triantes; 1 uncia 
+    Disposition: Syracuse
+† Gentili, NSc 1951, pp. 160-3, illus.; AIIN 1954, 
+        p. 166-7
+    Currò Pisanò, AIIN 1962-4, pp. 229, 239
+</pre>
+</div>
+</div>

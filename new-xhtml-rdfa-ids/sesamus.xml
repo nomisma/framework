@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="sesamus">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Sesamus</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Sesamus in Paphlagonia.</div>
+ <div property="gml:pos">41.746969 32.385648</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Amasra"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/844856"/>
+</div>

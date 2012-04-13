@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="abdera_thrace">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Abdera</div>
+ <div property="skos:definition" xml:lang="en">The mint of the ancient site of Abdera in Thrace.</div>
+ <div property="gml:pos">40.95 24.983333</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Abdera,_Thrace"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/501323"/>
+</div>

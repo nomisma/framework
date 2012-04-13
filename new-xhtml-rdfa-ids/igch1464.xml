@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1464">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-50" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-40" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1464 Asia Minor, 1971 
+    Burial: 50-40 B.C. (Kleiner)
+    Contents: 29+ AR
+        Cistophori
+    <span rel="mint" resource="pergamum">Pergamum: 21</span>
+    <span rel="mint" resource="ephesus">Ephesus: 6 (to yr. 80)</span> 
+    <span rel="mint" resource="apamea_phrygiae">Apameia: 1</span>
+    <span rel="mint" resource="laodiceia_ad_lycum">Laodiceia: 1</span>
+    Disposition: 29 casts in ANS 
+    To be published by F. Kleiner
+</pre>
+</div>
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0398">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-325" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-320" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.46 25.7383333333</span></span></div>
+<div class="nm:editedSource">
+<pre>
+398 Bjala, c. 54 km. N of Veliko Târnovo, 
+    Bulgaria, 1939
+    Burial: c. 325-320 B.C.? (T) 
+    Contents: 21+ AR. Pot hoard
+    Philip II: 20 tetradr. 
+    Alexander III: 1 tetradr.
+    Disposition: Sofia 21
+    Gerasimov, BIAB 13 (1939), p. 342
+</pre>
+</div>
+</div>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1643">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-480" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">29.8494444444 31.255</span></span></div>
+<div class="nm:editedSource">
+<pre>1643 Memphis, 1920 
+    Burial: c. 480 B.C. (Jenkins)
+    Contents: 4 AR
+    <span rel="mint" resource="mantineia">Mantineia: 1 triob. (as BMC 1)</span>
+    <span rel="mint" resource="teos">Teos: 1 triob. (as Balcer, SNR 1968, no. 53)</span>
+    <span rel="mint" resource="paphus">Paphus: 1 tetrob. (type of BMC 4)</span>
+    <span rel="mint" resource="cyprus">Cyprus: 1 tetrob. (type of Traité, pl. 27, 14) </span>
+    Disposition: London
+    Information from G. K. Jenkins
+    Coins pierced, originally attached to neck-
+        lace found during excavations by 
+        Petrie
+</pre>
+</div>
+</div>

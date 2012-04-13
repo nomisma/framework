@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="bithynium">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Bithynium</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Bithynium in Bithynia.</div>
+ <div property="gml:pos">40.733333 31.6</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Bolu"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/844879"/>
+</div>

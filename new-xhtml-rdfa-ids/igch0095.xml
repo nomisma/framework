@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0095">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.1775 21.9186111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+95 Messene, 1922 or earlier 
+(683)
+    Burial: c. <span property="nm:approximateburialdate_start" content="-305" datatype="xsd:date">305</span>-<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date">300</span> B.C. (T)
+    Contents: 31 AR
+    Alexander III: 29 lifetime and early post. 
+        tetradr. (<span rel="mint" resource="amphipolis">Amphipolis 1,</span> <span rel="mint" resource="side">Side 1,</span> <span rel="mint" resource="tarsus">Tarsus
+        1,</span> <span rel="mint" resource="salamis_cyprus">Salamis 1,</span> <span rel="mint" resource="myriandrus">Myriandrus 1,</span> <span rel="mint" resource="aradus">Aradus 1,</span> 
+        <span rel="mint" resource="byblus">Byblus 1,</span> <span rel="mint" resource="sidon">Sidon 2,</span> <span rel="mint" resource="ace_ptolemais">Ace 1 of yr. 38,</span>
+        <span rel="mint" resource="babylon">Babylon 17,</span> <span rel="mint" resource="alexandreia_troas">Alexandreia 1,</span> unc. 1)
+    Philip III: 2 tetradr. (<span rel="mint" resource="babylon">Babylon 1,</span> <span rel="mint" resource="susa">Susa 1</span>)
+    Disposition: New York 27 casts
+    Information on file in ANS
+</pre>
+</div>
+</div>

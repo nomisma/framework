@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0009">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.3936111111 23.7927777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+9 Eretria, Euboea, c. 1870 
+(399)
+    Burial: <span property="nm:approximateburialdate_start" content="-500" datatype="xsd:date">500</span>-<span property="nm:approximateburialdate_end" content="-480" datatype="xsd:date">480</span> B.C. (T) 
+    Contents: AR
+    <span rel="mint" resource="eretria">Eretria: tetradr., didr. (cow/octopus)</span>  
+    <span rel="mint" resource="athens">Athens: Wappenm. (incl. gorgon tetradr.) 
+        tetradr. (early owls)</span>
+    Disposition: Berlin 1? (Athenian owl; cf. 
+        Köhler)
+    Köhler, AM 1884, pp. 355-7
+</pre>
+</div>
+</div>

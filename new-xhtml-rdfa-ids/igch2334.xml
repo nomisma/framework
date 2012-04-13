@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2334">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.8072222222 -2.14972222222</span></span></div>
+<div class="nm:editedSource">
+<pre>2334 Valeria (= Valera de Arriba), 30 km. 
+    S of Cuenca, 1948
+    Burial: c. 200 B.C. (Jenkins)
+    Contents: 39 AR. With fragments of silver 
+        jewelry and plate
+    <span rel="mint" resource="hispano-punic">Hispano-Punic: 4 didr., 1 dr., 1 fr.</span> 
+    <span rel="mint" resource="emporiae">Emporiae: 1 dr.</span>
+    <span rel="mint" resource="ebusus">Ebusus: 1 triob.</span>
+   Iberian: 12 dr. (9 <span rel="mint" resource="emporiae">Emporitan type</span>, 2 <span rel="mint" resource="saguntum">Sa-
+        guntum, 1</span> <span rel="mint" resource="saetabis">Saetabi</span>)
+    Celtic: 6 dr. (<span rel="mint" resource="rhoda">Rhoda type, monnaies à la 
+        croix</span>)
+    <span rel="mint" resource="rhodes">Rhodes: 1 tetradr.</span>
+    <span rel="mint" resource="rome">Roman Rep.: 12 den.</span>
+    Disposition: Cuenca (except Rhodes, Sae-
+        tabi and 1 Carthage)
+    Mateu y Llopis, Ampurias 1951, pp. 238-9, illus. 
+    Almagro Basch, NH 1958, pp. 5-14, illus.; 1960, 
+        pp. 213-4, illus.
+    Almagro Basch-Almagro Gorbea, Numisma 71 
+        (1964), pp. 25-47, illus.
+    De Guadan, MPER, pp. 155-9
+    Crawford, RRCH 109
+    Allen, NC 1969, pp. 40, 62-3
+    Raddatz, Schatzfunde, pp. 266-7, illus. 
+    Villaronga, MHC (forthcoming)
+</pre>
+</div>
+</div>

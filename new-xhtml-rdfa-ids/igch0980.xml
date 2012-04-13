@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0980">
+<span rel="nm:findspot"><span property="gml:pos">43.67083333 24.14027778</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+980 Ostrov, Constanta district, Rumania, 
+(776)     1903
+    Burial: 1st cent. B.C. (Mitrea)
+    Contents: 178 AR. Pot hoard
+    <span rel="mint" resource="thasos">Thasos: 89 spread-flan tetradr.</span>
+    <span rel="mint" resource="rome">Roman Rep.: 89 den.</span>
+    Disposition: Bucharest (Inst. Arch.)
+    Moisil, BSNR 17 (1922), p. 58; Balcania 7 (1944),
+        p. 11
+    Noe erroneously places Ostrov in Macedonia
+</pre>
+</div>
+</div>

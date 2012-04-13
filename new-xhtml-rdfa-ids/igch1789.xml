@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1789">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-530" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-511" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">29.934444 52.891389</span></span></div>
+<div class="nm:editedSource">
+<pre>1789 Persepolis, Persist 1933
+(806)
+    Burial: before 511 B.C. (Schmidt)
+    Contents: 8 AV, 4 AR
+    A. <span rel="mint" resource="abdera_thrace">Abdera: 1 tetradr.</span> 
+        <span rel="mint" resource="aegina">Aegina: 1 st.</span>
+        <span rel="mint" resource="lydia">Lydia: 4 AV Croeseids (light)</span>
+    B. <span rel="mint" resource="paphus">"Paphus": 1 st.</span>
+        Unc. Cypriote: 1 st. (lion's hd. r./bull
+        charging l.)
+        <span rel="mint" resource="lydia">Lydia: 4 AV Croeseids (light)</span>
+    Disposition: Teheran
+    Herzfeld, TINC, pp. 413-4, illus.
+    Schlumberger, L'argent grec, p. 11, no. 43 
+    Schmidt, Persepolis 2 (Chicago, 1957), pp. 110,
+        113-4, illus.
+    The two lots represent a foundation deposit 
+        found at the northeast (A) and south-
+        east (B) corners of the main hall of the 
+        Apadana beneath the stone boxes 
+        containing the tablets of Darius I.
+    Herzfeld's rather ambiguous text has gen-
+        erally been understood to say that the 
+        hd. contained four Croeseids in all. 
+        Schmidt, however, lists and illustrates 
+        four from each lot. To lot (B) Schmidt 
+        adds another uncertain Cypriote stater 
+        (as NC 1935, pl. 15, nos. 6-7), but this 
+        issue can hardly be dated before
+        511 B.C.
+</pre>
+</div>
+</div>

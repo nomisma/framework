@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1864">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">32.87 74.7338888889</span></span></div>
+<div class="nm:editedSource">
+<pre>1864 Akhnoor, c. 30 km. N of Jammu, 
+    Kashmir, before 1946
+    Burial: 1st cent. B.C. (Le Rider) 
+    Contents: 8 AR, 2 AE
+    Apollodotus II: 4 dr.
+    Zoilus II: 3 dr. 
+    Dionysius: 2 AE 
+    Apollophanes: 1 dr.
+    Disposition: Sotheby, April 30, 1958 
+        (Haughton), nos. 378, 433-4, 442, 446
+    Haughton, NC 1946, p. 144
+</pre>
+</div>
+</div>

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2232">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-212" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.568147 14.280739</span></span></div>
+<div class="nm:editedSource">
+<pre>2232 Enna environs, 1966
+    Burial: c. 212 B.C. (K) 
+    Contents: c. 100? AR
+    <span rel="mint" resource="agrigentum">Acragas: dr. (as BMC 84-5)</span>
+    <span rel="mint" resource="syracuse">Syracuse: 1 Pegasus (Agathocles, full 
+        weight)</span>
+    Philistis: many, 16-litra; a few 4-litra 
+    Gelon II: a few 8-litra and 4-litra 
+    Hieronymus: a few 10-litra and 5-litra
+    Democracy: 1 16-litra
+            many 12-litra and 8-litra 
+            6-litra and 4-litra
+            a few 1 1/4-litra
+    <span rel="mint" resource="siceliotae">Siceliotae: 3 8-litra; 4 4-litra</span>
+    <span rel="mint" resource="punic">Punic: shekels and half-shekels (male hd./ 
+        elephant)
+            half and quarter-shekels (male hd./ 
+        galloping horse)</span>
+    Antigonus Gonatas: 1 tetradr. (ef) 
+    Pyrrhus: 1 tetradr. (worn)
+    Lysimachus: 1 post. tetradr. (<span rel="mint" resource="cyzicus">Cyzicus?</span>, 
+        worn)
+    <span rel="mint" resource="aetolian_league">Aetolian League: 1 tetradr. (vf)</span>
+    Attalus I: 1 tetradr. (cf. Westermark, pl. 7, 
+        worn)
+    Ptolemy II: 1 tetradr. (worn)
+    <span rel="mint" resource="rome">Roman Rep.: many quadrig.</span>
+    Disposition: dispersed
+    Seen in commerce, 1966
+</pre>
+</div>
+</div>

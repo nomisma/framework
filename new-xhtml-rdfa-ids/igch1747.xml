@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1747">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-390" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-385" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1747 Mesopotamia or Babylonia, before 
+    1900
+    Burial: 390-385 B.C. (Robinson)
+    Contents: 23 AR. Found with AR and AE 
+        objects
+    <span rel="mint" resource="athens">Athens: 6 tetradr. frag.</span>
+    <span rel="mint" resource="aegina">Aegina: 1 st. frag. </span>
+    <span rel="mint" resource="samos">Samos: 1 tetradr.</span>
+    <span rel="mint" resource="lycia">Lycia: 1 st. (Kuprilli); 1 st. (Thibo) </span>
+    <span rel="mint" resource="aspendus">Aspendus: 1 st. frag.</span>
+    <span rel="mint" resource="salamis_cyprus">Salamis: 1 st.</span> (Euelthon over "Idalium");
+        st. frag.
+    <span rel="mint" resource="aradus">Aradus: 1 tetrob. </span>
+    <span rel="mint" resource="sidon">Sidon: 1 half-shekel </span>
+    <span rel="mint" resource="tyre">Tyre: 1 shekel</span>
+    <span rel="mint" resource="persia">Persia: 7 sigloi</span>
+    Disposition: London 23
+† Robinson, Iraq 1950, pp. 44-51 illus.
+    Schlumberger, L'argent grec, p. 7, no. 6
+</pre>
+</div>
+</div>

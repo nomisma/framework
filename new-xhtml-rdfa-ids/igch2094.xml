@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2094">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-405" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>2094 Sicily, before 1956
+    Burial: c. 405 B.C. 
+    Contents: 3 AV
+    <span rel="mint" resource="agrigentum">Acragas</span>
+    <span rel="mint" resource="gela">Gela (Jenkins 490, 4) </span>
+    <span rel="mint" resource="syracuse">Syracuse</span>
+    Disposition: London, Acragas (NC 1959, 
+        p. 25, 4); Hess-Leu, Mar. 27, 1956, 
+        nos. 66, 100, 210
+    Jenkins, Gela, p. 99, note 30
+</pre>
+</div>
+</div>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1770">
+<span rel="nm:findspot"><span property="gml:pos">34.7475 40.72972222</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-187" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1770 Dura-Europus, Mesopotamia, 1933- 
+(354)     1934
+    Burial: c. 187 B.C. (Le Rider)
+    Contents: 207 AE. Pot hoard
+    Antiochus III:  <span rel="mint" resource="seleuceia_ad_tigrim">Seleuceia ad Tigrim 1</span>, 
+         <span rel="mint" resource="susa">Susa? 1</span>, <span rel="mint" resource="antiocheia_syria">Antiocheia 204</span>,  <span rel="mint" resource="tyre">Tyre 1 </span>
+    Disposition: Yale?
+† Bellinger, Excav. Dura-Europos 6 (New Haven,
+        1949), pp. 178-9 
+    Seyrig, RN 1958, p. 172 
+    Le Rider, Suse, p. 58
+    The coin ascribed by Bellinger to Mithra-
+        dates I of Parthia has been attributed 
+        to Antiochus III by Seyrig and Le 
+        Rider and may have been struck at Susa
+</pre>
+</div>
+</div>

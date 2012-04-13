@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1123">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-170" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-130" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.0425 39.1519444444</span></span></div>
+<div class="nm:editedSource">
+<pre>1123 Cepi (mod. Sennaia), 1961
+    Burial: c. mid 2nd cent. B.C.
+    Contents: 5 AE. In burial
+    <span rel="mint" resource="panticapaeum">Panticapaeum: 3 AE (as BMC 44-46 [2]; 
+        Zograph, pl. 41, 9 [1])</span>
+    <span rel="mint" resource="phanagoria">Phanagoria: 2 AE (as BMC 2-3)</span> 
+    Disposition: Moscow
+    Frolova-Shelov, NSf 1965, p. 192, nos. 349-53
+</pre>
+</div>
+</div>

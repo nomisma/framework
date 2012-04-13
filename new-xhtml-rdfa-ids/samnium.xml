@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="head_1911_region" about="samnium">
+ <div property="skos:prefLabel">Samnium</div>
+ <div property="skos:definition">The region of Samnium as defined in <a rel="dcterms:source" href="head_1911">Head (1911)</a>.</div>
+ <div property="dcterms:partOf" resource="italy"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/433078"/>
+</div>

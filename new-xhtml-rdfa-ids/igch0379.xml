@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0379">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-348" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">40.2925 23.3427777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+379 Olynthus, 1938
+    Burial: c. 348 B.C.? (T)
+    Contents: 35 AE. From excavations
+    <span rel="mint" resource="olynthus">Olynthus: 34 (Chalcidic and Bottiaean 
+        mints)</span>
+    <span rel="mint" resource="lamia">Lamia: 1</span>
+    Disposition: Athens
+    Robinson-Mylonas, AJA 1939, p. 62
+</pre>
+</div>
+</div>

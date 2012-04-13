@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0841">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.1883333333 26.6997222222</span></span></div>
+<div class="nm:editedSource">
+<pre>
+841 Kralevo, c. 25 km. SW of Sumen, Bul-
+    garia, 1946
+    Burial: c. 300 B.C.? (T)
+    Contents: 300 AR, AE. Pot hoard
+    Alexander III: 300 tetradr.
+    Cassander: AE
+    Disposition: V. Haralanov, Sumen 12 Alex-
+        ander, 1 Cassander
+    Gerasimov, BIAB 17 (1950), p. 317
+</pre>
+</div>
+</div>

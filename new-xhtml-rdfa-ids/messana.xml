@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="messana">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Messana</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Messana in Sicily.</div>
+ <div property="gml:pos">38.192251 15.556634</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Messana"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/462538"/>
+</div>

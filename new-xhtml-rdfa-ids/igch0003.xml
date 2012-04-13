@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0003">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div class="nm:editedSource">
+<pre>
+3 <span property="nm:findspot" content="38.45 23.87">Euboea</span>, 1935?
+(402) 
+    Burial: <span property="nm:approximateburialdate_start" content="-530" datatype="xsd:date">530</span>-<span property="nm:approximateburialdate_end" content="-510" datatype="xsd:date">510</span> B.C. (T)
+    Contents: c. 6 AR
+    <span rel="mint" resource="chalcis">Chalcis:</span> 4 tetradr. (Traité II.1, 1047)
+    <span rel="mint" resource="athens">Athens:</span> 2 Wappenm. didr. (1 with small 
+        hd. in incuse)
+    Disposition: dispersed
+    Communications from W. Schwabacher and 
+        A. Brett
+</pre>
+</div>
+</div>

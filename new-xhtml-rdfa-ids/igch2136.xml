@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2136">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-350" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-325" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.6383333333 14.3975</span></span></div>
+<div class="nm:editedSource">
+<pre>2136 Leonforte, 15 km. NE of Enna, 1895 
+(612)
+    Burial: 350-25 B.C. (Jenkins)
+    Contents: 68 AR
+    <span rel="mint" resource="rhegium">Rhegium: 1 tetradr.</span>
+    <span rel="mint" resource="camarina">Camarina: 1 didr.</span>
+    <span rel="mint" resource="messana">Messana: 2 tetradr. </span>
+    <span rel="mint" resource="selinus_sicily">Selinus: 1 tetradr. </span>
+    <span rel="mint" resource="syracuse">Syracuse: 6 tetradr. </span>
+    <span rel="mint" resource="athens">Athens: 3 tetradr.</span>
+    Pegasi: 54 
+    Disposition: dispersed
+    Orsi's notes
+    Jenkins, ANSCent., p. 375
+    No. 2139 below, Piazza Armerina, may be 
+        another reference to this hd.
+</pre>
+</div>
+</div>

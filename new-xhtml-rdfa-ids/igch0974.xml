@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0974">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-90" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-60" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.3636111111 27.6302777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+974 Graničar, c. 30 km. N of Varna, Bul-
+    garia, 1954
+    Burial: 90-60 B.C. (T)
+    Contents: 5+ AV. Pot hoard
+    Lysimachus: 3 late post. st. (<span rel="mint" resource="byzantium">Byzantium 2</span>, 
+        <span rel="mint" resource="tomis">Tomis 1</span>)
+    Mithradates VI: 2 st.
+    Disposition: dispersed
+    Gerasimov, BIAB 20 (1955), p. 609
+</pre>
+</div>
+</div>

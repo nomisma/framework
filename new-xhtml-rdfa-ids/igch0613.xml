@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0613">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.2394444444 23.1286111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+613 Berkovica (formerly Berkovsko),
+    22 km. S of Mihajlovgrad, Bulgaria, 1958 
+    Burial: 2nd-1st cent. B.C. (T)
+    Contents: 550 AR. Pot hoard
+    <span rel="mint" resource="apollonia_illyria">Apollonia, Illyria.: dr.</span>
+    <span rel="mint" resource="dyrrhachii">Dyrrhachium: dr.</span>
+    Disposition: dispersed
+    Gerasimov, BIAB 25 (1962), p. 225
+</pre>
+</div>
+</div>

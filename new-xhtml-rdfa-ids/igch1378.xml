@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1378">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-85" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.4008333333 33.7894444444</span></span></div>
+<div class="nm:editedSource">
+<pre>1378 Kastamonu (anc. Castamon), Paphla-
+    gonia, c. 1962
+    Burial: c. 85 B.C. (M)
+    Contents: c. 200 AR
+    Nicomedes II-IV: tetradr. (latest 88/7 B.C.) 
+    Disposition: dispersed
+</pre>
+</div>
+</div>

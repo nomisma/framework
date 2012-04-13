@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1560">
+<span rel="nm:findspot"><span property="gml:pos">35.18888889 35.96305556</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-150" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1560 Ghonsle, c. 15 km. E of Baniyas (anc. 
+    Balanaea), Seleucis, 1955?
+    Burial: c. 150 B.C. (Seyrig) 
+    Contents: 32 AR
+    <span rel="mint" resource="cyme_aeolis">Cyme: 4 tetradr.</span>
+    <span rel="mint" resource="myrina_aeolis">Myrina: 7 tetradr.</span>
+    <span rel="mint" resource="aegae_aeolis">Aegae</span>, <span rel="mint" resource="heraclea_ad_latmum">Heracleia Ioniae</span>, <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia Ioniae</span>: 
+       13 tetradr.
+    <span rel="mint" resource="smyrna">Smyrna: 3 tetradr.</span>
+    Demetrius I: 1 tetradr. (<span rel="mint" resource="syria">Antiocheia); 2 dr. </span>
+        (<span rel="mint" resource="syria">Antiocheia</span>)
+    Alexander I Bala: 1 tetradr. (<span rel="mint" resource="syria">Antiocheia</span>); 
+        1 dr. (<span rel="mint" resource="syria">Antiocheia</span>)
+    Disposition: dispersed
+    Seyrig, Trésors du Levant (in press). It may be 
+        that this lot was part of the Akkar hd., no. 
+        1559 above
+</pre>
+</div>
+</div>

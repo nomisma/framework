@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="gallic">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Gaul</div>
+ <div property="skos:definition" xml:lang="en">Stub for the ancient region of Gaul.</div>
+ <div rel="uncertain_value"><span property="gml:pos">44.23 4.35</span></div>
+</div>

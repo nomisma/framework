@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="celenderis">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Celenderis</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Celenderis in Cilicia.</div>
+ <div property="gml:pos">36.142487 33.318106</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Ayd&#x131;nc&#x131;k,_Mersin"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/648596"/>
+</div>

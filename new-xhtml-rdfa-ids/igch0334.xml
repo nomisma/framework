@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0334">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-88" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-50" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.3997222222 25.2666666667</span></span></div>
+<div class="nm:editedSource">
+<pre>
+334 Delos, 1967
+    Burial: 88 or 69 B.C. (Hackens)
+    Contents: 13 AR. From excavations 
+    <span rel="mint" resource="athens">Athens:</span> New Style (to Thompson 502) 
+    Disposition: Myconos
+    To be published by T. Hackens
+</pre>
+</div>
+</div>

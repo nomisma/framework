@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1060">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-330" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">44.6 33.53</span></span></div>
+<div class="nm:editedSource">
+<pre>1060 Olbia (mod. Parutino), 1959 
+    Burial: late 4th cent. B.C.
+    Contents: 97 AE. In one room
+    <span rel="mint" resource="olbia">Olbia: 1 aes grave (as Burachkov, pl. 1, 6 
+        or 8)
+            83 AE (as AMNG I.1, pl. 9, 4 [2], 
+        5 [3], 7 [1], 8 [7], 10 [6], 11 [5], 12 [2], 
+        13 [3], 16 [5], 17 [4], 20 [5], 22 [12],
+        23 [23], 26-27 [1]; pl. 10, 1 [4])</span>
+    Unc.: 13 AE
+    Disposition: Leningrad (Institute)
+    Information from P. O. Karyszkowski
+</pre>
+</div>
+</div>

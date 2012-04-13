@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1880">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-490" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.2666694444 16.2166694444</span></span></div>
+<div class="nm:editedSource">
+<pre>1880 Gerace (anc. Locri), Bruttium, before 
+(425)     1845
+    Burial: c. 490 B.C.? (K)
+    Contents: incuse AR
+    <span rel="mint" resource="taras">Taras</span>
+    <span rel="mint" resource="laues">Laus</span>
+    <span rel="mint" resource="siris">Siri-: 1 dr.</span>
+    <span rel="mint" resource="croton">Croton</span> and <span rel="mint" resource="temesa">Temesa</span>
+    Disposition: Naples (Museo Borbonico)
+    Fiorelli, Monete inedite dell' Italia antica (Naples, 
+        1845), p. 22, illus. (Siri-)
+    Noe records Gerace but no find spot is 
+        given by Fiorelli
+</pre>
+</div>
+</div>

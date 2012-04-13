@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0084">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.51 22.3727777778</span></span></div>
+<div class="nm:editedSource">
+<pre>
+84 "Tripolitsa" (Tripolis), Arcadia, 1921 
+(1131)
+    Burial: c. <span property="nm:approximateburialdate_start" content="-315" datatype="xsd:date">315</span>-<span property="nm:approximateburialdate_end" content="-310" datatype="xsd:date">310</span> B.C.
+    Contents: 23 AR
+    Philip II: 6 tetradr. (<span rel="mint" resource="amphipolis">Amphipolis)</span>
+    Alexander III: 14 lifetime or early post. 
+        tetradr. (<span rel="mint" resource="amphipolis">Amphipolis 4,</span> <span rel="mint" resource="macedon">unc. Macedon 
+        1,</span> <span rel="mint" resource="miletus">Miletus 1,</span> <span rel="mint" resource="side">Side 3,</span> <span rel="mint" resource="myriandrus">Myriandrus 1,</span> 
+       <span rel="mint" resource="damascus">Damascus 1,</span> <span rel="mint" resource="babylon">Babylon 3</span>)
+    <span rel="mint" resource="aegina">Aegina:</span> 3 st. (tortoise)
+    Disposition: New York 5 (coins illus. by 
+        Newell plus a second Philip)
+    Newell, NNM 21 (1923), pp. 32-6, illus.
+    Possibly part of Andritsaena hd., no. 83 
+        above
+</pre>
+</div>
+</div>

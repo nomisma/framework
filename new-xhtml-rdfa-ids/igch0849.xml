@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0849">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-290" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">41.3777777778 25.7405555556</span></span></div>
+<div class="nm:editedSource">
+<pre>
+849 Blagun, c. 50 km. S of Haskovo, Bul-
+    garia, 1955
+    Burial: c. 290 B.C. (T)
+    Contents: 38 AR. Pot hoard
+    Alexander III: 2 tetradr. (<span rel="mint" resource="amphipolis">Amphipolis</span>, 
+        <span rel="mint" resource="asia_minor">Asia Minor</span>)
+            29 dr. (<span rel="mint" resource="asia_minor">Asia Minor</span>)
+    Philip III: 4 dr. (<span rel="mint" resource="babylon">Babylon 1</span>)
+    Lysimachus: 3 dr. (<span rel="mint" resource="lampsacus">Lampsacus 2</span>) 
+    Disposition: Sofia
+    Gerasimov, BIAB 21 (1957), p. 323
+</pre>
+</div>
+</div>

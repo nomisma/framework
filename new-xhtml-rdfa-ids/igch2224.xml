@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2224">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-250" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.3088888889 13.5819444444</span></span></div>
+<div class="nm:editedSource">
+<pre>2224 Agrigento, 1911 
+    Burial: 250-200 B.C. (K) 
+    Contents: 36 AE
+    Hieron II
+    Disposition: Syracuse
+    Currò Pisanò, AIIN 1962-4, p. 224
+    Possibly part of Agrigento c. 1900, no. 2222 
+        above
+</pre>
+</div>
+</div>

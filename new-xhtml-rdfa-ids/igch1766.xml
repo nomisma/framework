@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1766">
+<span rel="nm:findspot"><span property="gml:pos">36.09916667 43.3275</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-230" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1766 Nimrud on the Tigris, c. 40 km. 
+    below Ninive, Adiabene, 1957
+    Burial: late 3rd cent. B.C. 
+    Contents: 6 AR
+    Lysimachus: 2 lifetime tetradr. ( <span rel="mint" resource="magnesia_ad_maeandrum">Magnesia 
+        1</span>, unc. 1)
+            2 post. tetradr. ( <span rel="mint" resource="byzantium">Byzantium 1</span>, 
+         <span rel="mint" resource="tenedos">Tenedos 1</span>)
+    Attalus I: 1 tetradr.
+    Seleucus III: 1 tetradr. (<span rel="mint" resource="antiocheia_syria">Antiocheia</span>) 
+    Disposition: unknown
+    Jenkins, Iraq 1958, pp. 158-62, illus.
+</pre>
+</div>
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0631">
+<span rel="nm:findspot"><span property="gml:pos">43.85333333 25.07916667</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-70" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+631 Furculesti, c. 21 km. SW of Alex-
+    andria, Rumania, 1958
+    Burial: early 1st cent. B.C.
+    Contents: 21 AR
+    <span rel="mint" resource="maroneia">Maroneia: 1 spread-flan tetradr.</span>
+    <span rel="mint" resource="thasos">Thasos: 20 spread-flan tetradr. incl. imit.</span> 
+    Disposition: Bucharest (Acad.)
+    Iliescu, Caiet selectiv 2 (1961), pp. 658-62
+</pre>
+</div>
+</div>

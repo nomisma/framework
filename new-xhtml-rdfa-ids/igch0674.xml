@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0674">
+<span rel="nm:findspot"><span property="gml:pos">45.13777778 26.03111111</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-100" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>
+674 Coada Malului, c. 23 km. N of 
+    Ploiesti, Rumania, 1936 or 1941
+    Burial: 1st cent. B.C. (Mitrea)
+    Contents: AR. With AR jewelry
+    <span rel="mint" resource="thasos">Thasos: many spread-flan tetradr.</span>
+    Cotys of Thrace: 1 tetradr. (as Head, HN2,
+        p. 285)
+    Disposition: Bucharest (Acad.) 1 (Cotys)
+† Moisil, Balcania 1944, p. 15, no. 18
+    Popescu, Studi si referate privind istoria României, 
+        pp. 91-104
+</pre>
+</div>
+</div>

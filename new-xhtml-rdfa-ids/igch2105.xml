@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2105">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-400" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>2105 Sicily, 1961
+    Burial: c. 400 B.C. (K) 
+    Contents: 37+ AR
+    <span rel="mint" resource="rhegium">Rhegium: 3 hemidr. (cf. Herzfelder, Rhe-
+        gion, pl. 11, 1)
+            1 lit. (cf. Herzfelder, pl. 11, Jβ) </span>
+    <span rel="mint" resource="catana">Catana: 3 dr. (Amenanos type, unsigned 
+        [2]; dies of de Luynes 904 [1])
+            1 hemidr. (as Rizzo, MGS, pl. 14,
+        22)
+            4 lit. (Silenos/thunderbolt) </span>
+    <span rel="mint" resource="messana">Messana: 5 lit. (cf. . SNGLloyd 115)</span>
+    <span rel="mint" resource="motya">Motya: 1 didr. (cf. SNGOxford 1860) </span>
+    <span rel="mint" resource="naxus">Naxus: 2 didr. (as Cahn, Naxos, 107)
+            2 hemidr. (cf. Cahn 122; as Cahn
+        124)
+            5 lit. (as Cahn 129 [1]; 136 [3]; 
+        V82/R- [1])</span>
+    <span rel="mint" resource="segesta">Segesta: 1 didr. (dies of Jameson 704)</span> 
+    <span rel="mint" resource="selinus_sicily">Selinus: 1 tetradr. (as Schwabacher, Seli-
+        nunt, 5)</span>
+    <span rel="mint" resource="syracuse">Syracuse: 1 tetradr. (as Tudeer 27)
+            4 dr. (facing Athena/Leucaspis)
+            2 hemidr. (cf. SNGLloyd 1398)
+            1 hemilit. (SNGOxford 2020 = 
+        this coin)</span>
+    Disposition: Oxford 1 as noted
+    Seen in commerce, 1961 (casts in BM)
+</pre>
+</div>
+</div>

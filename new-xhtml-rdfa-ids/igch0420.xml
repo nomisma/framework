@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0420">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-400" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">43.1925 16.5941666667</span></span></div>
+<div class="nm:editedSource">
+<pre>
+420 Skudljivac, Lesina, Dalmatia, Yugo-
+(985)     slavia, 1867
+    Burial: 4th cent. B.C. ? (T)
+    Contents: c. 92 AE
+    <span rel="mint" resource="heracleia_illyricum">Heracleia, Illyria: 29</span> 
+    <span rel="mint" resource="pharos">Pharos: 60</span>
+    Unc.: 3 (ΔΙ above goat)
+    Disposition: formerly Nuber coll., Esseg
+    Kubirschek, BollArchStoriaDalmatia (1897), pp. 
+        159-71
+</pre>
+</div>
+</div>

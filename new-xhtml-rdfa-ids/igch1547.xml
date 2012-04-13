@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1547">
+<span rel="nm:findspot"><span property="gml:pos">35.43722222 36.65305556</span></span>
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-170" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-160" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1547 Khan Cheikhoun, c. 25 km. E of anc. 
+    Apameia, Seleucis, 1940
+    Burial: c. 170-160 B.C.
+    Contents: 103 AR
+    Alexander III: 81 late post. tetradr. (<span rel="mint" resource="heracleia_pontica">Hera-
+        cleia Pontica 1</span>, <span rel="mint" resource="cyme_aeolis">Cyme 1</span>, <span rel="mint" resource="myrina_aeolis">Myrina 1</span>, 
+        <span rel="mint" resource="temnus">Temnus 2</span>, <span rel="mint" resource="mytilene">Mytilene 1</span>, <span rel="mint" resource="alabanda">Alabanda 3</span>, 
+        <span rel="mint" resource="phaselis">Phaselis 18 to yr. 30</span>, <span rel="mint" resource="aspendus">Aspendus 25 to 
+        yr. 28</span>, <span rel="mint" resource="perge">Perge 28 to yr. 33</span>, <span rel="mint" resource="pamphylia">Pamphylia 
+        unc. 1 as ANSMN 13, pl. 13, 13</span>)
+    <span rel="mint" resource="side">Side: 22 tetradr.</span>
+    Disposition: dispersed
+    Seyrig, RN 1963, p. 62; Trésors du Levant (in press)
+    Most of the coins from Phaselis, Aspendus, 
+        Perge, and Side have ctmks.: anchor 
+        or radiate facing bust
+</pre>
+</div>
+</div>

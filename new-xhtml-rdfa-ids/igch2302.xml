@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2302">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-146" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">36.8094444444 10.3013888889</span></span></div>
+<div class="nm:editedSource">
+<pre>2302 La Goulette, 5 km. S of anc. Car-
+    thage, Tunisia, 1920
+    Burial: c. 146 B.C. (Jenkins)
+    Contents: 12 AR
+    <span rel="mint" resource="carthage">Carthage: tetradr. of Carthage mint (as 
+        SNGCop. 403-6)</span>
+    Disposition: unknown
+    Note by E. S. G. Robinson in BM, from informa-
+        tion provided by M. Paul Bédé of Sfax
+</pre>
+</div>
+</div>

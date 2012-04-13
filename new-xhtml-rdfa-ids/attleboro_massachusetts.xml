@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="attleboro_massachusetts">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Attleboro</div>
+ <div property="skos:definition" xml:lang="en">The mint in the city of Attleboro, Massachusetts.</div>
+<div property="gml:pos">41.944444 -71.286111</div>
+</div>

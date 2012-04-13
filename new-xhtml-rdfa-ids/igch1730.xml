@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1730">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-1" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">25.7175 32.6580555556</span></span></div>
+<div class="nm:editedSource">
+<pre>1730 Karnak, near Luxor, 1924-1925 
+(535)
+    Burial: 3rd-1st cent. B.C.? (Jenkins) 
+    Contents: AE. In two vases from excavations
+        at S. facade of VIIIth pylon 
+    Ptolemaic (large number)
+    Disposition: unknown
+    ASA 1925, p. 13 (no details)
+</pre>
+</div>
+</div>

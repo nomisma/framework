@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1167">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-500" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-490" datatype="xsd:date"/>
+<div class="nm:editedSource">
+<pre>1167 <span property="nm:findspot" content="38.373889 26.785278">Vourla (now Urla; anc. Clazomenae)</span>, 
+(1167)     Ionia, 1911
+    Burial: c. 500-490 B.C. (Noe) 
+    Contents: 26 EL, 12 AR. Pot hoard
+    <span rel="mint" resource="dardanus">Dardanus: 1 st.</span> 
+    <span rel="mint" resource="lesbos">Lesbos: 1 st.</span> 
+    <span rel="mint" resource="cyme_aeolis">Cyme: 1 st.</span> 
+    <span rel="mint" resource="clazomenae">Clazomenae: 12 dr.</span>
+    <span rel="mint" resource="priene">Priene: 1 st.</span> 
+    <span rel="mint" resource="chios">Chios: 1 st.</span>
+    <span rel="mint" resource="samos">Samos: 21 sixths</span>
+    Disposition: Jameson nos. 1491, 1519, 
+        1639-43; New York 1 Samos
+    Jameson, RN 1911, pp. 60-8, illus. 
+    Gardner, JHS 1913, p. 12
+    Regling, Priene, p. 48
+</pre>
+</div>
+</div>

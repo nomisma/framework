@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="chalcis_sub_libano">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Chalcis sub Libano</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Chalcis sub Libano in Coele Syria.</div>
+ <div property="gml:pos">33.957730 36.241643</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/678086"/>
+</div>

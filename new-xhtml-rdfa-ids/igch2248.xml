@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2248">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-170" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.43 14.4791666667</span></span></div>
+<div class="nm:editedSource">
+<pre>2248 Serra Orlando (anc. Morgantina), 
+    4 km. NE of Piazza Armerina, 1958 
+    Burial: early 2nd cent. B.C.
+    Contents: 152 AE. From excavations
+    "From 3rd cent. Catana to early 2nd cent. 
+        Roman asses"
+    Disposition: Syracuse
+    Stillwell, AJA 1959, p. 168
+</pre>
+</div>
+</div>

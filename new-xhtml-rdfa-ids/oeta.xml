@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="oeta">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Oeta</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Oeta in Thessaly.</div>
+  <div rel="uncertain_value"><span property="gml:pos">38.828611 22.288611</span></div>
+</div>

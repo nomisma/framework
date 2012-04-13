@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="ios">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Stub for the ancient site of Ios in the Cyclades archipelago.</div>
+ <div property="gml:pos">36.716667 25.333333</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Ios_Island"/>
+</div>

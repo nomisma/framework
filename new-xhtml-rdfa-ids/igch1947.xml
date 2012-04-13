@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1947">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-300" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">39.1424 16.2381</span></span></div>
+<div class="nm:editedSource">
+<pre>1947 Grimaldi, 15 km. S of Cosenza, Brut-
+    tium, 1933
+    Burial: c. 300 B.C. (K)
+    Contents: 30 AR. Pot hoard, prob. complete
+    <span rel="mint" resource="taras">Taras: 1 st. (Per. VI), 14 diob.</span>
+    <span rel="mint" resource="heraclea_lucaniae">Heracleia: 1 st. (as Work 17)
+            1 diob.</span>
+    <span rel="mint" resource="metapontum">Metapontum: 1 st. (as SNGOxford 773) </span>
+    <span rel="mint" resource="thurium">Thurium: 1 st. (as SNGOxford 997)
+            5 diob.</span>
+    <span rel="mint" resource="velia">Velia: 3 st. (latest as SNGOxford 1319-24) </span>
+    <span rel="mint" resource="croton">Croton: 1 st. (as SNGOxford 1514)</span>
+    <span rel="mint" resource="terina">Terina: 2 triob.</span>
+    Disposition: Reggio
+    Procopio, AIIN 1960-1, pp. 66-71, illus.
+</pre>
+</div>
+</div>

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="head_1911_region" about="the_tauric_chersonesus">
+ <div property="skos:prefLabel">The Tauric Chersonesus</div>
+ <div property="skos:definition">The region of "The Tauric Chersonesus" as defined in <a rel="dcterms:source" href="head_1911">Head (1911)</a>.</div>
+ <div property="dcterms:partOf" resource="thrace"/>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Chersonesus_Taurica"/>
+</div>

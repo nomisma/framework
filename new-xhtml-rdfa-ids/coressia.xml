@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="coressia">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Coressia</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Coressia on Ceos, Cyclades.</div>
+ <div property="gml:pos">37.665886 24.307938</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/570370"/>
+</div>

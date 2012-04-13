@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="mytistratus">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Mytistratus</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Mytistratus in Sicily.</div>
+ <div property="gml:pos">37.598609 13.916729</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Marianopoli"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/462381"/>
+</div>

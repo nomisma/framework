@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch2041">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-200" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.6569444444 11.6444444444</span></span></div>
+<div class="nm:editedSource">
+<pre>2041 Sovana, 40 km. SW of Orvieto, Etru-
+(1000)     ria, 1885
+    Burial: 3rd cent. B.C. (K)
+    Contents: 116 AR
+    <span rel="mint" resource="populonia">Populonia: didr. (as Sambon 41, 48, 50, 
+        54-5, 58, 60-4, 67)
+            dr. (as S. 68, 73)</span>
+    Disposition: Garrucci 102; Strozzi 3 (prob. 
+        Sangiorgi, April 15, 1907, 568, 581, 
+        593); Lloyd 2 (SNG 6, 8, both ex 
+        Garrucci)
+    Garrucci, Le monete dell' Italia antica 2 (Rome, 
+        1885), p. 184
+    Sambon, Monnaies antiques de l'Italie (Paris,
+        903) (under varieties listed above)
+    Bianchi Bandinelli, StudEtr 1932, p. 552, note 1
+</pre>
+</div>
+</div>

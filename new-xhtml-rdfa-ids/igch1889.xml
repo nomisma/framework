@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1889">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-470" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-460" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.3558333333 16.0783333333</span></span></div>
+<div class="nm:editedSource">
+<pre>1889 Cittanuova, 45 km. NE of Reggio, 
+(253)     Bruttium, 1879
+    Burial: c. 470-460 B.C. (K) 
+    Contents: c. 600? AR
+    <span rel="mint" resource="taras">Taras: 1 st. (incuse)</span>
+      Ami-: 1 st. (incuse)
+    <span rel="mint" resource="laues">Laus: 4 st. (1 incuse; 3 double-relief) </span>
+    <span rel="mint" resource="metapontum">Metapontum: very numerous st. (all incuse, 
+        to Noe 220 ff.)</span>
+    <span rel="mint" resource="poseidonia">Poseidonia: 2 st. (incuse)</span>
+    <span rel="mint" resource="sybaris">Sybaris: numerous st.; 1 dr.</span>
+    <span rel="mint" resource="caulonia">Caulonia: very numerous st. (incuse)
+            1 st. (double-relief as Noe 80) </span>
+    <span rel="mint" resource="croton">Croton: numerous st. (incuse)
+            1 st. (double-relief, rev. tripod) </span>
+    <span rel="mint" resource="croton">Croton</span>/<span rel="mint" resource="sybaris">Sybaris: 1 st.</span>
+    Disposition: Naples 10 (see NSc 1879); 
+        Berlin some
+    NSc 1879, pp. 26-7
+    von Duhn, ZfN 1880, pp. 308-11
+    The double-relief stater of Croton might be 
+        thought to indicate a date of burial 
+        later than that suggested above. The 
+        coin in question, however, was prob-
+        ably a specimen of the rather crude 
+        experimental issue in double-relief (cf. 
+        SNGLockett 611), which is to be dated 
+        sometime before the final abandonment 
+        of the incuse fabric c. 450 B.C. or after
+</pre>
+</div>
+</div>

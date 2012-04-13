@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0880">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-300" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-150" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">42.6066666667 25.9894444444</span></span></div>
+<div class="nm:editedSource">
+<pre>
+880 Banja, c. 40 km. W of Sliven, Bulgaria, 
+    1947
+    Burial: 3rd cent. B.C. or later (T)
+    Contents: AE
+    <span rel="mint" resource="apollonia_pontica">Apollonia Pontica (one with ΜϒΣ)</span> 
+    Disposition: Nova Zagora 1
+    Gerasimov, BIAB 17 (1950), p. 319
+</pre>
+</div>
+</div>

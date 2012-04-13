@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1121">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-200" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-150" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">46.7055555556 31.8977777778</span></span></div>
+<div class="nm:editedSource">
+<pre>1121 Olbia (mod. Parutino), Ochakov
+    raion, Nikolaev oblast, Ukraine, 1959
+    Burial: c. 200-150 B.C.
+    Contents: 1 AR, 128 AE. In one room
+    <span rel="mint" resource="olbia">Olbia: 1 dr. (as AMNG I.1, pl. 10, 23)
+            125 AE (as AMNG I.1, pl. 9, 4 [2], 
+        5 [2], 7 [5], 8 [3], 10-11 [2], 12 [1], 
+        13 [1], 16 [2], 20 [1], 22 [2], 23 [6], 
+        26-29 [61], 30-31 [6]; pl. 10, 1 [4], 
+        2 [6], 3 [2], 5 [3], 6 [1], 8 [2], 13 [8], 
+        15-17 [2], 28 [1]; unc.  [2])</span>
+    <span rel="mint" resource="panticapaeum">Panticapaeum: 3 AE (as BMC 20 [1], 21 [2])</span>
+    Disposition: Leningrad (Institute)
+    Information from P. O. Karyszkowski
+</pre>
+</div>
+</div>

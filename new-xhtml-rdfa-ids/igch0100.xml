@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0100">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.75 23.4230555556</span></span></div>
+<div class="nm:editedSource">
+<pre>
+100 Aegina, 1952 
+    Burial: 4th cent. B.C. 
+    Contents: c. 8 AR
+    <span rel="mint" resource="aegina">Aegina:</span> 8 dr.
+    Disposition: Athens
+    Varoucha, BCH 1953, p. 194
+</pre>
+</div>
+</div>

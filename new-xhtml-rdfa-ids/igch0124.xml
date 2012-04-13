@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0124">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.0522222222 25.4983333333</span></span></div>
+<div class="nm:editedSource">
+<pre>
+124 Philoti, Naxos, 1963 
+    Burial: c. <span property="nm:approximateburialdate" content="-300" datatype="xsd date">300</span> B.C.
+    Contents: 2+ AR, 3+ AE
+    <span rel="mint" resource="athens">Athens:</span> 2 triob. 
+    <span rel="mint" resource="naxos">Naxos: 3 AE</span>
+    Disposition: Athens
+    Varoucha, A Delt 1964, Chronika, pp. 10–1, illus.
+</pre>
+</div>
+</div>

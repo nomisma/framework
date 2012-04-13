@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1158">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate_start" content="-575" datatype="xsd:date"/>
+<span property="nm:approximateburialdate_end" content="-560" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">37.689444 26.943056</span></span></div>
+<div class="nm:editedSource">
+<pre>1158 Samos, Ionia, 1894
+(902)
+    Burial: c. 575-560 B.C. (Barron) 
+    Contents: 60+ EL
+    <span rel="mint" resource="samos">Samos: 3 st.; 4 halves; 24 sixths; 15 
+        twelfths; 12 twenty-fourths; 1 forty-
+        eighth; 1 sixty-fourth</span>
+    Disposition: Paris 18; London 25
+† Babelon, RN 1894, pp. 149-63, illus. 
+    Barron, Samos, pp. 15-7
+</pre>
+</div>
+</div>

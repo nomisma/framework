@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0078">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">38.4930555556 22.9811111111</span></span></div>
+<div class="nm:editedSource">
+<pre>
+78 Orchomenus, Boeotia, 1920 
+(769)
+    Burial: c. <span property="nm:approximateburialdate" content="-323" datatype="xsd date">323</span> B.C. 
+    Contents: 133 AR
+    <span rel="mint" resource="phocis">Phocis:</span> fr.
+    <span rel="mint" resource="orchomenus_boeotia">Orchomenus:</span> triob.; fr.
+    <span rel="mint" resource="coroneia">Coroneia?:</span> fr. 
+    <span rel="mint" resource="plataea">Plataea:</span> triob. 
+    <span rel="mint" resource="thebes">Thebes:</span> triob.; fr.
+    <span rel="mint" resource="tanagra">Tanagra:</span> fr. 
+    <span rel="mint" resource="sicyon">Sicyon:</span> 15 fr.
+    <span rel="mint" resource="elis">Elis: 8 st.; triob.;</span> 1 fr.
+    Disposition: Formerly A. Petsalis; Athens 
+        17 (ob. or smaller of Phocis, Orcho-
+        menus, Tanagra, Thebes, Sicyon)
+    Seltman, The Temple Coins of Olympia (Cam-
+        bridge, 1921), pp. 111-3
+</pre>
+</div>
+</div>

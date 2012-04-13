@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch1001">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<span property="nm:approximateburialdate" content="-410" datatype="xsd:date"/>
+<div>Findspot as latitude longitude: <span rel="nm:findspot"><span property="gml:pos">46.6891666667 31.9016666667</span></span></div>
+<div class="nm:editedSource">
+<pre>1001 Olbia (mod. Parutino), Ochakov 
+(752)     raion, Nikolaev oblast, Ukraine, be-
+    fore 1902
+    Burial: c. 410 B.C. 
+    Contents: 16 AR
+    <span rel="mint" resource="olbia">Olbia: st. with inscription ΕΜΙΝΑΚΟ (as 
+        Minns, p. 487)</span>
+    Disposition: (formerly Grand Duke Alex-
+        ander Mikhailovich coll.) Leningrad 1; 
+    Odessa 1; London 1; Boston 1
+† Shtern, ZOOID 25 (1904), "Protokoly," p. 54 
+    Bertier de la Garde, NS (Russian) 1911, p. 58; 
+        1913, p. 127
+    Minns, p. 487
+† Karyszkowski, SA 1960, no. 1, pp. 179-95 (com-
+        prehensive treatment with detailed bibli-
+        ography)
+    Publications of individual hd. coins: 1) CAH, 
+        Plates, III, p. 18, f = Mushmov, Sbornik 
+        Boris Diakovich (Plovdiv, 1927), p. 205, 
+        no. 27 = NC 1926, p. 117, no. 2; 2) Ratto 
+        Apr. 4, 1927, 941; 3) Baranowsky Feb. 25, 
+        1931, 490; 4) Boston MFA II, 79; 5) Naville 
+        July 3, 1933, 1086; 6) Zograph, pl. 32, 1; 
+        7) Sal'nikov, Pratsi Odes'kogo Derzhavnogo 
+        Universiteta, vol. 149, issue 7 (Odessa, 1959), 
+        p. 143, no. 3; 8) Karyszkowski, SA 1960 
+        (citing coins in publications mentioned in 1,
+        4, 6, 7)
+</pre>
+</div>
+</div>

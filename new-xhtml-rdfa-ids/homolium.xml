@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="homolium">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Homolium</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Homolium in Thessaly.</div>
+ <div property="gml:pos">39.904110 22.634618</div>
+ <div property="skos:related" resource="http://en.wikipedia.org/wiki/Homolium"/>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/540819"/>
+</div>

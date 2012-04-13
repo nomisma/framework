@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="pitane">
+ <div property="dcterms:partOf" resource="greek_numismatics"/>
+ <div property="skos:prefLabel" xml:lang="en">Pitane</div>
+ <div property="skos:definition" xml:lang="en">The mint at the ancient site of Pitane in Mysia.</div>
+ <div property="gml:pos">38.928297 26.937453</div>
+ <div property="skos:related" resource="http://pleiades.stoa.org/places/550833"/>
+</div>

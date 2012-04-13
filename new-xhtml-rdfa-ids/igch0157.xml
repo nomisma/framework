@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml" typeof="hoard" about="igch0157">
+<span rel="nm:sourcepublication" resource="igch">Adapted from <i>Inventory of Greek Coin Hoards</i></span>
+<div class="nm:editedSource">
+<pre>
+157 <span property="nm:findspot" content="37.966667 23.716667">Athens (Agora)</span>, 1940
+    Burial: <span property="nm:approximateburialdate_start" content="-275" datatype="xsd:date">275</span>-<span property="nm:approximateburialdate_end" content="-250" datatype="xsd:date">250</span> B.C.
+    Contents: 2 AR, 92 AE. Hoard? From two 
+        sections of a manhole during excava-
+        tions
+    Demetrius Poliorcetes: 1 dr.; 1 AE 
+    Lysimachus: 1 dr.
+    <span rel="mint" resource="larissa">Larissa: 1 AE
+    <a rel="nm:item" href="http://agathe.gr/id/agora/object/n%2045110">Agora N 45110</a></span>
+    <span rel="mint" resource="locri_opuntii">Locris: 1 AE</span>
+    <span rel="mint" resource="phocis">Phocis: 4 AE
+    <a rel="nm:item" href="http://agathe.gr/id/agora/object/n%2045103">Agora N 45103</a></span>
+    <span rel="mint" resource="chalcis">Chalcis: 1 AE
+    <a rel="nm:item" href="http://agathe.gr/id/agora/object/n%2045139">Agora N 45139</a></span>
+    <span rel="mint" resource="athens">Athens: 68 AE (of which 21 "Eleusinian"
+        types)
+       <a rel="nm:item" href="http://agathe.gr/id/agora/object/n%2045138">Agora N 45138</a></span>
+    <span rel="mint" resource="megara">Megara: 15 AE
+    <a rel="nm:item" href="http://agathe.gr/id/agora/object/n%2045112">Agora N 45112</a></span>
+    <span rel="mint" resource="aegina">Aegina: 1 AE
+    <a rel="nm:item" href="http://agathe.gr/id/agora/object/n%2045166">Agora N 45166</a></span>
+    Disposition: Athens (Agora)
+    Thompson, Hesperia 1942, pp. 223-4
+</pre>
+</div>
+</div>
