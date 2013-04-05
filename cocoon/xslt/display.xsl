@@ -30,7 +30,7 @@
 			skos: http://www.w3.org/2004/02/skos/core#"
 			vocab="http://nomisma.org/id/">
 			<head>
-				<title>					
+				<title>
 					<xsl:value-of select="$uri"/>
 				</title>
 				<link type="text/css" href="{$display_path}css/style.css" rel="stylesheet"/>
@@ -47,10 +47,10 @@
 					<a href="http://nomisma.org/nomisma.org.xml">Download all nomisma.org ids.</a>
 				</div>
 				<div class="center">
-					<a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/88x31.png"
-						/></a><br/>Unless specified otherwise, content in <span xmlns:dc="http://purl.org/dc/elements/1.1/" property="dc:title">Nomisma.org</span>
-					<a xmlns:cc="http://creativecommons.org/ns#" href="http://nomisma.org" property="cc:attributionName" rel="cc:attributionURL">http://nomisma.org</a> is licensed under a <a
-						rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>. </div>
+					<a href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/88x31.png"
+					/></a><br/>Unless specified otherwise, content in <span xmlns:dc="http://purl.org/dc/elements/1.1/">Nomisma.org</span>
+					<a xmlns:cc="http://creativecommons.org/ns#" href="http://nomisma.org">http://nomisma.org</a> is licensed under a <a href="http://creativecommons.org/licenses/by/3.0/">Creative
+						Commons Attribution 3.0 License</a>. </div>
 				<div class="center" style="border:none;background-color:white;margin-top:0px;margin-bottom:0px">
 					<span style="color:gray">All data in nomisma.org is preliminary and in the process of being updated.</span>
 				</div>
