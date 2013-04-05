@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<map:sitemap xmlns:map="http://apache.org/cocoon/sitemap/1.0">
+	<map:components>
+		<!-- *********************************** -->
+		<!-- Cocoon generators - file is default -->
+		<!-- *********************************** -->
+		<map:generators default="file">
+			<map:generator label="content" logger="sitemap.generator.request" name="request" pool-max="16" src="org.apache.cocoon.generation.RequestGenerator"/>
+			<map:generator name="request" src="org.apache.cocoon.generation.RequestGenerator">
+				<map:parameter name="generate-attributes" value="true"/>
+			</map:generator>
+			<map:generator name="search" src="org.apache.cocoon.components.search.LuceneCocoonSearcher" index="index"> </map:generator>
+		</map:generators>
+		<!-- ************************************* -->
+		<!-- Cocoon transformers - xslt is default -->
+		<!-- ************************************* -->
+		<map:transformers default="xslt">
+			<!-- NOTE: This is the default XSLT processor. -->
+			<map:transformer logger="sitemap.transformer.xslt" name="xslt" pool-max="32" src="org.apache.cocoon.transformation.TraxTransformer">
+				<use-request-parameters>true</use-request-parameters>
+				<use-session-parameters>true</use-session-parameters>
+				<use-cookie-parameters>false</use-cookie-parameters>
+				<xslt-processor-role>xalan</xslt-processor-role>
+				<check-includes>true</check-includes>
+			</map:transformer>
+			<map:transformer name="index" logger="sitemap.transformer.luceneindextransformer" src="org.apache.cocoon.transformation.LuceneIndexTransformer"/>
+			<map:transformer name="xinclude" src="org.apache.cocoon.transformation.XIncludeTransformer"/>
+		</map:transformers>
+
+		<map:serializers>
+			<map:serializer name="kml" mime-type="application/vnd.google-earth.kml+xml" src="org.apache.cocoon.serialization.XMLSerializer">
+				<encoding>UTF-8</encoding>
+			</map:serializer>
+			<map:serializer name="atom" mime-type="application/xml" src="org.apache.cocoon.serialization.XMLSerializer">
+				<encoding>UTF-8</encoding>
+				<indent>yes</indent>
+			</map:serializer>
+			<map:serializer name="rss" mime-type="application/xml" src="org.apache.cocoon.serialization.XMLSerializer">
+				<encoding>UTF-8</encoding>
+				<indent>yes</indent>
+			</map:serializer>
+			<map:serializer name="csv" mime-type="text/csv" src="org.apache.cocoon.serialization.TextSerializer">
+				<encoding>UTF-8</encoding>
+			</map:serializer>
+			<map:serializer name="rdf" mime-type="application/rdf+xml" src="org.apache.cocoon.serialization.XMLSerializer">
+				<encoding>UTF-8</encoding>
+				<indent>yes</indent>
+			</map:serializer>
+			<map:serializer name="xhtml+rdfa" mime-type="text/xml" src="org.apache.cocoon.serialization.XMLSerializer">
+				<encoding>UTF-8</encoding>
+				<doctype-public>-//W3C//DTD XHTML+RDFa 1.1//EN</doctype-public>
+				<doctype-system>http://www.w3.org/MarkUp/DTD/xhtml-rdfa-2.dtd</doctype-system>
+			</map:serializer>
+		</map:serializers>
+	</map:components>
+
+	<!-- =========================== Views =================================== -->
+
+	<map:views>
+		<map:view name="content" from-label="content">
+			<map:serialize type="xml"/>
+		</map:view>
+
+		<map:view from-label="content" name="pretty-content">
+			<map:transform src="context://stylesheets/system/xml2html.xslt"/>
+			<map:serialize type="html"/>
+		</map:view>
+
+		<map:view name="links" from-position="last">
+			<map:serialize type="links"/>
+		</map:view>
+
+		<map:view from-label="record" name="record">
+			<map:serialize type="xml"/>
+		</map:view>
+		<map:view name="content" from-label="content">
+			<map:serialize type="xml"/>
+		</map:view>
+		<map:view from-label="basiccontent" name="basiccontent">
+			<map:serialize type="xml"/>
+		</map:view>
+	</map:views>
+
+	<!-- =========================== Pipelines ================================= -->
+
+	<map:pipelines>
+
+		<map:component-configurations>
+			<global-variables>
+				<!-- static variables, referred to as generate calls in pipelines.  
+					These only need to be changed if Solr and Orbeon are run on a different server or Tomcat application than Cocoon -->
+				<!--<solr-url>http://localhost:8080/solr/numishare-published/</solr-url>-->
+				<id-path>/usr/local/projects/nomisma-ids/id</id-path>
+				<!--<collection-name>ocre</collection-name>-->
+			</global-variables>
+		</map:component-configurations>
+		
+		<map:pipeline>
+			<map:match pattern="**.css">
+				<map:read src="{1}.css" mime-type="text/css"/>
+			</map:match>
+
+			<map:match pattern="**.ico">
+				<map:read src="{1}.ico" mime-type="image/png"/>
+			</map:match>
+
+			<map:match pattern="**.jpg">
+				<map:read src="{1}.jpg" mime-type="image/jpeg"/>
+			</map:match>
+
+			<map:match pattern="**.jpeg">
+				<map:read src="{1}.jpeg" mime-type="image/jpeg"/>
+			</map:match>
+
+			<map:match pattern="**.jp2">
+				<map:read src="{1}.jp2" mime-type="image/jp2"/>
+			</map:match>
+
+			<map:match pattern="**.gif">
+				<map:read src="{1}.gif" mime-type="image/gif"/>
+			</map:match>
+
+			<map:match pattern="**.png">
+				<map:read src="{1}.png" mime-type="image/png"/>
+			</map:match>
+
+			<!-- allow javascript to pass through for script tags //-->
+			<map:match pattern="**.js">
+				<map:read src="{1}.js" mime-type="text/javascript"/>
+			</map:match>
+
+			<map:match pattern="">
+				<map:generate src="{global:exist-url}{global:collection-name}/config.xml" label="record"/>
+				<map:transform src="xslt/index.xsl" label="basiccontent" type="xslt-saxon">
+					<map:parameter name="use-request-parameters" value="true"/>
+					<map:parameter name="pipeline" value="index"/>
+				</map:transform>
+				<map:serialize type="html"/>
+			</map:match>
+
+			<map:match pattern="id/*">
+				<map:generate src="{global:id-path}/{1}.txt"/>
+				<map:transform src="xslt/display.xsl" label="basiccontent" type="xslt-saxon">
+					<map:parameter name="use-request-parameters" value="true"/>
+					<map:parameter name="id" value="{1}"/>
+					<map:parameter name="serverName" value="{request:serverName}"/>
+					<map:parameter name="serverPort" value="{request:serverPort}"/>
+					<map:parameter name="requestURI" value="{request:requestURI }"/>
+				</map:transform>
+				<map:serialize type="xhtml+rdfa"/>
+			</map:match>		
+		</map:pipeline>
+	</map:pipelines>
+</map:sitemap>

@@ -1,0 +1,86 @@
+body {
+	background-color: rgb(255,255,255);
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	line-height: 14px;
+}
+div.center {
+	margin:0 auto;
+	width:930px;
+	background-color: rgb(240, 240, 240);
+	border:1px solid #c2b9a9;
+	margin-top:10px;
+	padding:3px;
+}
+p {
+	margin-left:40px;
+	margin-right:40px;
+}
+li {
+	margin-left:40px;
+}
+h3 {
+	margin-left:40px;
+}
+h4 {
+	margin-left:40px;
+}
+div#markup {
+	display:none;
+}
+a[rel="nm:sourcePublication"]:before {
+	content: 'Information adapted from ';
+}
+a[rel="nm:sourcePublication"]:after {
+	content: attr(href);
+	font-style:italic;
+}
+span[property="nm:findspot"] {
+	text-decoration:underline;
+}
+span[rel="nm:findspot"] {
+	display:block;
+}
+*[about]:before {
+	content: attr(about) " (" attr(typeof) ")";
+	font-weight:bold;
+}
+*[property]:before {
+	content: attr(property) ": ";
+	color:gray;
+}
+a[rel="nofollow"]:before {
+	content: "";
+}
+*[rel]:before {
+	content: attr(rel) ": ";
+	color:gray;
+}
+*[resource]:after {
+	content: " (" attr(resource) ") ";
+	color:gray;
+	font-style:italic;
+}
+*[content]:after {
+	content: " \"" attr(content) "\" ";
+	color:gray;
+}
+div[typeof]>div {
+	margin-left:2em;
+}
+div[rel]>div {
+	margin-left:2em;
+}
+*[typeof] {
+	margin-top:1em;
+}
+.button {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	background-color: #ffffff;
+	margin-left: 3px;
+	margin-top: 3px;
+	border:0px;
+	text-decoration:underline;
+	display:inline;
+}
