@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="hippo_regius">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Hippo Regius</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Hippo Regius in Numidia.</div>
- <div property="gml:pos">36.883651 7.755129</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Hippo_Regius"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/305090"/>
-</div>

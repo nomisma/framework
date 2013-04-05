@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="dioscurias">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Dioscurias</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Dioscurias in Colchis.</div>
- <div property="gml:pos">42.993299 41.003076</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Dioscurias"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/857107"/>
-</div>

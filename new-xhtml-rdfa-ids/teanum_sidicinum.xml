@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="teanum_sidicinum">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Teanum Sidicinum</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Teanum Sidicinum in Campania.</div>
- <div property="gml:pos">41.252351 14.067524</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Teano"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/433146"/>
-</div>

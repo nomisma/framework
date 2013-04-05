@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="herbessus">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Herbessus</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Herbessus in Sicily.</div>
- <div property="gml:pos">37.428706 14.300237</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Piazza_Armerina"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/462239"/>
-</div>

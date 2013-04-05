@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="samsosata">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Samosata</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Samosata in Commagene.</div>
- <div property="gml:pos">37.564519 38.471342</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/658587"/>
-</div>

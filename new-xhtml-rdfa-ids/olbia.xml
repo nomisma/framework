@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="olbia">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Olbia</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Olbia in Thrace.</div>
- <div property="gml:pos">46.691895 31.901597</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Olbia,_Ukraine"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/226546"/>
-</div>

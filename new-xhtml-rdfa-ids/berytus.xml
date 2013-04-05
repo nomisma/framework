@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="berytus">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Berytus</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Berytus in Phoenicia.</div>
- <div property="gml:pos">33.899285 35.521306</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Beirut"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/678060"/>
-</div>

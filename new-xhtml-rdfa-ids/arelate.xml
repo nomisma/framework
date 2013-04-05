@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="arelate">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Arelate</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Arelate in Gaul.</div>
- <div property="gml:pos">43.677616 4.630799</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/148217"/>
-</div>

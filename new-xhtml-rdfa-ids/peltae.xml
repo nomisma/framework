@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="peltae">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Peltae</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Peltae in Phrygia.</div>
-  <div rel="uncertain_value"><span property="gml:pos">38.1588566 29.63974</span></div>
-</div>

@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="nicopolis_ad_istrum">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Nicopolis ad Istrum</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Nicopolis ad Istrum in Thrace.</div>
- <div property="gml:pos">43.217925 25.612232</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Nicopolis_ad_Istrum"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/216895"/>
-</div>

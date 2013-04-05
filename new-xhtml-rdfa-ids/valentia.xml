@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="valentia">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Valentia</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Valentia in Hispania Citerior.</div>
- <div property="gml:pos">39.483333 -0.366667</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Valencia,_Spain"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/266090"/>
-</div>

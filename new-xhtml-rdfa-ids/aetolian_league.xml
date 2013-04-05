@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="aetolian_league">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Aetolian League</div>
- <div property="skos:definition" xml:lang="en">The mint of the Aetolian League at the ancient site of Thermum in Aetolia.</div>
- <div property="gml:pos">38.541455 21.677046</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/541139"/>
-</div>

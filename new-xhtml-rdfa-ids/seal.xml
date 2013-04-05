@@ -1,5 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="numismatic_term" about="seal">
- <div property="skos:prefLabel" xml:lang="en">Seal or sealing.</div>
- <div property="skos:definition" xml:lang="en">A seal or sealing. The use of this nomisma URI indicates that the object being described is a seal or sealing.</div>
-</div>

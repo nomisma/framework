@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="carteia">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Carteia</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Carteia in Hispania Ulterior.</div>
- <div property="gml:pos">36.183163 -5.410359</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/San_Roque,_C&#xE1;diz"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/256063"/>
-</div>

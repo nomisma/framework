@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="abydus">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Abydus</div> 
- <div property="skos:definition" xml:lang="en">Ancient site of Abydus in Troas.</div>
- <div property="gml:pos">40.196017 26.406964</div>
- <div property="skos:related" resource="Abydos,_Hellespont"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/501325"/>
-</div>

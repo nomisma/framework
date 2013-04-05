@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="corydalla">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Corydalla</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Corydalla in Lycia.</div>
- <div property="gml:pos">36.376674 30.273281</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/638937"/>
-</div>

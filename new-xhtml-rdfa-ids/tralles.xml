@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="tralles">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Tralles</div>
- <div property="skos:definition" xml:lang="en">The mint of the ancient site of Tralles in Lydia.</div>
- <div property="gml:pos">37.8444 27.8458</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Ayd%C4%B1n"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/599987"/>
-</div>

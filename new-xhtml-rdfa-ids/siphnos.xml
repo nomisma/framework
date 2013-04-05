@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="siphnos">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Siphnos</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Siphnos on Siphnos in the Aegean.</div>
- <div property="gml:pos">36.983333 24.666667</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Siphnos"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/590048"/>
-</div>

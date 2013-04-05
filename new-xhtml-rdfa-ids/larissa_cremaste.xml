@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="larissa_cremaste">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Larissa Cremaste</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Larissa Cremaste in Thessaly.</div>
- <div property="gml:pos">38.946126 22.851018</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Pelasgia"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/540904"/>
-</div>

@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="buthrotum">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Buthrotum</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Buthrotum in Epirus.</div>
- <div property="gml:pos">39.757066 20.016628</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Buthrotum"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/530824"/>
-</div>

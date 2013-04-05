@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="atella">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Atella</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Atella in Campania.</div>
- <div property="gml:pos">40.967386 14.268885</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/432705"/>
-</div>

@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="authority" about="clodius_albinus">
- <div property="skos:prefLabel" xml:lang="en">Clodius Albinus</div>
- <div property="skos:definition" xml:lang="en">Roman usurper from 193 to February 19, 197.</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Clodius_Albinus"/>
- <div><img alt=" " rel="foaf:depiction" src="http://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Clodius01_pushkin.jpg/220px-Clodius01_pushkin.jpg"/><br/>Credit: Wikipedia.</div>
-</div>

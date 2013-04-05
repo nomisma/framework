@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="aeneia">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Aeneia</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Aeneia in Macedonia.</div>
- <div property="gml:pos">40.439481 22.879124</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Aeneia"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/491513"/>
-</div>

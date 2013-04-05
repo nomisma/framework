@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="mesembria">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Mesembria</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Mesembria in Thrace.</div>
- <div property="gml:pos">42.660417 27.718100</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Nesebar"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/216882"/>
-</div>

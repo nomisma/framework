@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="medeon">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Medeon</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Medeon in Acarnania.</div>
- <div property="gml:pos">38.782497 21.125024</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Medeon"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/530998"/>
-</div>

@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="nicopolis_judea">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Nicopolis</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Nicopolis (Emmaus) in Judea.</div>
- <div property="gml:pos">31.839260 34.989193</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/687891"/>
-</div>

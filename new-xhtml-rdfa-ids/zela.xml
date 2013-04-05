@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="zela">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Zela</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Zela in Pontus.</div>
- <div property="gml:pos">40.309234 35.899707</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Zela"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/857382"/>
-</div>

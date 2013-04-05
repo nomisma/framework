@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="hadrianopolis_thrace">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Hadrianopolis</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Hadrianopolis in Thrace.</div>
- <div property="gml:pos">41.666667 26.566667</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Edirne"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/501428"/>
-</div>

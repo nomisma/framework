@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="neon">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Neon</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Neon in Phocis.</div>
- <div property="gml:pos">38.584865 22.665433</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Tithorea"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/541152"/>
-</div>

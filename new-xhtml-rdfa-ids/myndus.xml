@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="myndus">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Myndus</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Myndus in Caria.</div>
- <div property="gml:pos">37.0563587 27.2296357</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Myndos"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/599811"/>
-</div>

@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="iulis">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Iulis</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Iulis on Ceos.</div>
- <div property="gml:pos">37.640469 24.340442</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/570314"/>
-</div>

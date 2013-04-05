@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="seriphos">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Seriphos</div>
- <div property="skos:definition" xml:lang="en">The mint on the island of Seriphos in the Aegean.</div>
- <div property="gml:pos">37.933333 22.933333</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Serifos"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/590043"/>
-</div>

@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="sebasteia_pontus">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Sebasteia</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Sebasteia in Pontus.</div>
- <div property="gml:pos">39.750377 37.015335</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Sebasteia"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/629075"/>
-</div>

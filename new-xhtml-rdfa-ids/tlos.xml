@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="tlos">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Tlos</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Tlos in Lycia.</div>
- <div property="gml:pos">36.553889 29.420789</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Tlos"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/639147"/>
-</div>

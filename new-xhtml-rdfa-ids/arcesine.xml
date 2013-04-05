@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="arcesine">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Arcesine</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Arcesine on Amorgos, Cyclades.</div>
- <div property="gml:pos">36.800488 25.800018</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Arkesini"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/599517"/>
-</div>

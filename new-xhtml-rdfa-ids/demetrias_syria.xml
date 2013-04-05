@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="demetrias_syria">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Demetrias</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Demetrias in Coile Syria.</div>
- <div property="gml:pos">33.511612 36.309102</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Damascus"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/682541"/>
-</div>

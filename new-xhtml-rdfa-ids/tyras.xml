@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="tyras">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Tyras</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Tyras in Thrace.</div>
- <div property="gml:pos">46.200948 30.350539</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Tyras"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/226800"/>
-</div>

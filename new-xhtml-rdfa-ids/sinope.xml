@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="sinope">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Sinope</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Sinope in Paphlagonia.</div>
- <div property="gml:pos">42.025776 35.143037</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Sinop,_Turkey"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/857321"/>
-</div>

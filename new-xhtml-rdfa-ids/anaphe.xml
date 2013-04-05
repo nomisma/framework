@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="anaphe">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Anaphe</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Anaphe on the island of Anaphe in the Cyclades.</div>
- <div property="gml:pos">36.350459 25.768460</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Anafi"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/599491"/>
-</div>

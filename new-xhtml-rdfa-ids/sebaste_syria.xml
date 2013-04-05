@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="sebaste_syria">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Sebaste</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Sebaste in Syria.</div>
- <div property="gml:pos">32.276172 35.195158</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Sebastia_(town)"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/678370"/>
-</div>

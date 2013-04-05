@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="lilaea">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Lilaea</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Lilaea in Phocis.</div>
- <div property="gml:pos">38.628847 22.517809</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Lilaea"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/540915"/>
-</div>

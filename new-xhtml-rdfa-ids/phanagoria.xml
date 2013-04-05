@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="phanagoria">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Phangoria</div>
- <div property="skos:prefLabel" xml:lang="en">The mint at the ancient site of Phanagoria in Bosporus.</div>
- <div property="gml:post">45.189 36.825</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/854725"/>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Phanagoria"/>
-</div>

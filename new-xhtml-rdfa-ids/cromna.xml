@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="cromna">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Cromna</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Cromna in Paphlagonia.</div>
- <div property="gml:pos">41.8439896 32.7220917</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/844994"/>
-</div>

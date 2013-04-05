@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="sybrita">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Sybrita</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Sybrita in Crete.</div>
- <div property="gml:pos">35.258740 24.639291</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Syvritos"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/590063"/>
-</div>

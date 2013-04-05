@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="west_point">
- <div property="skos:prefLabel" xml:lang="en">West Point</div>
- <div property="skos:definition" xml:lang="en">The US federal mint at West Point.</div>
-<div property="gml:pos">41.366667 -74.05</div>
-</div>

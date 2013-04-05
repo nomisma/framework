@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="thurium">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Thurium</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Thurium in Lucania.</div>
- <div property="gml:pos">39.7506872 16.4502239</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Thurii"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/452457"/>
-</div>

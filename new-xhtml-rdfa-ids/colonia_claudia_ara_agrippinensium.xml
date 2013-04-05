@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="colonia_claudia_ara_agrippinensium">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Colonia Claudia Ara Agrippinensium</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Colonia Claudia Ara Agrippinensium in Germania.</div>
- <div property="gml:pos">50.95 6.966667</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Cologne"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/108751"/>
-</div>

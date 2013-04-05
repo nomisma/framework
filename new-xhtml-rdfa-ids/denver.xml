@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="denver">
- <div property="skos:prefLabel" xml:lang="en">Denver</div>
- <div property="skos:definition" xml:lang="en">The United States mint in the city of Denver, Colorado.</div>
- <div property="gml:pos">39.739167 -104.984722</div>
- <div property="skos:related" href="http://en.wikipedia.org/wiki/Denver"/>
-</div>

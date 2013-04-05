@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="igch">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Stub for An Inventory of Greek Coin Hoards.</div>
- <div><a property="skos:related" href="http://worldcat.org/oclc/738363">worldcat 738363</a></div>
- <div><a property="skos:related" href="http://books.google.com/books?id=wzaSPijxQogC">Google Books version.</a></div>
-</div>

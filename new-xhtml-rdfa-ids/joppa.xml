@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="joppa">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Joppa</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Joppa in Samaria.</div>
- <div property="gml:pos">32.052436 34.747740</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Jaffa"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/687931"/>
-</div>

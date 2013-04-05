@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="oregon_city_oregon">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Oregon City</div>
- <div property="skos:definition" xml:lang="en">The mint in the city of Oregon City, Oregon.</div>
-<div property="gml:pos">45.357222 -122.607222</div>
-</div>

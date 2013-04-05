@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="type_series_item" about="svoronos-1904-1159">
- <div property="skos:prefLabel" xml:lang="en">Svoronos (1904-1908) no. 1159</div>
- <div>Alternate label: "<span property="skos:altLabel">Sv. 1159</span>"</div>
- <div property="skos:definition" xml:lang="en">Coin type "Svoronos 1159" as defined in the publication Svoronos, Joannes N. <i>Ta nomismata tou kratous ton Ptolemaion</i>. Athens, 1904-1908.</div>
- <div property="skos:note">Derived label is "Ptolemy IV Philopator, 221/0-204/3 B.C.", though this may not reflect latest opinion on this type.</div>
- <div>Part of <a href="http://nomisma.org/id/svoronos-1904" rel="skos:inScheme">Svoronos 1904</a>.</div>
-</div>

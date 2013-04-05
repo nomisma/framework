@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="nysa">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Nysa</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Nysa in Lydia.</div>
- <div property="gml:pos">37.887783 28.151194</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Nysa_(Caria)"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/599832"/>
-</div>

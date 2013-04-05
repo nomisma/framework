@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="campani">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">'Campani'</div>
- <div property="skos:definition" xml:lang="en">The mint at an uncertain location used by the Campanian mercenaries of Dionysius I in Sicily.</div>
- <div rel="uncertain_value"><span property="gml:pos">37.8 14.7</span></div>
-</div>

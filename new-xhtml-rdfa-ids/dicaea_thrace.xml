@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="dicaea_thrace">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Dicaea</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Dicaea in Thrace.</div>
- <div property="gml:pos">40.992870 25.165653</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Dikaia_(Thrace)"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/501399"/>
-</div>

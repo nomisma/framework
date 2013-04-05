@@ -1,5 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="numismatic_term" about="obverse">
- <div property="skos:prefLabel" xml:lang="en">Obverse</div>
- <div property="skos:definition" xml:lang="en">The reverse of a coin. Opposite of 'reverse'.</div>
-</div>

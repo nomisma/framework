@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="attaea">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Attaea</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Attaea in Mysia.</div>
- <div property="gml:pos">39.515977 28.115927</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/550474"/>
-</div>

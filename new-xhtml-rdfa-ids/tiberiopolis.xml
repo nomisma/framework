@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="tiberiopolis">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Tiberiopolis</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Tiberiopolis in Phrygia.</div>
- <div property="gml:pos">39.374622 29.324140</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/609557"/>
-</div>

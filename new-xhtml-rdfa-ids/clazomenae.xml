@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="clazomenae">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Clazomenae</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Clazomenae in Ionia.</div>
- <div property="gml:pos">38.373889 26.785278</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Klazomenai"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/550651"/>
-</div>

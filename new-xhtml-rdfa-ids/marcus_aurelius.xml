@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="roman_emperor" about="marcus_aurelius">
- <div property="skos:prefLabel" xml:lang="en">Marcus Aurelius</div>
- <div property="skos:definition" xml:lang="en">Roman emperor from 11 July 138 to 7 March 161</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Marcus_Aurelius"/>
-</div>

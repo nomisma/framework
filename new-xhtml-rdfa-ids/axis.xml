@@ -1,5 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="numismatic_term" about="axis">
- <div property="skos:prefLabel" xml:lang="en">Axis</div>
- <div property="skos:definition" xml:lang="en">The relationship between the obverse and reverse of a coin.</div>
-</div>

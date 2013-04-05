@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="cardia">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Cardia</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Cardia in Thrace.</div>
- <div property="gml:pos">40.548232 26.750810</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Cardia_(Thrace)"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/501458"/>
-</div>

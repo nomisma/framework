@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="tricca">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Tricca</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Tricca in Thessaly.</div>
- <div property="gml:pos">39.568904 21.782998</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Trikala"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/541163"/>
-</div>

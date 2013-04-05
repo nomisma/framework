@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="boston">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Boston</div>
- <div property="skos:definition" xml:lang="en">The mint in the city of Boston, Massachusetts.</div>
- <div property="gml:pos">42.357778 -71.061667</div>
- <div rel="skos:related" resource="http://en.wikipedia.org/wiki/Boston"/>
-</div>

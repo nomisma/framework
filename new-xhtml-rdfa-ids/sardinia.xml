@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="sardinia">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Sardinia</div>
- <div property="skos:definition" xml:lang="en">The mint at an uncertain location on the island of Sardinia, off Sicily.</div>
-  <div rel="uncertain_value"><span property="gml:pos">39.214886 9.109522</span></div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Sardinia"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/991344"/>
-</div>

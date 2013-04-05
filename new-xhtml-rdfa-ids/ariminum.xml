@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="ariminum">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Ariminum</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Ariminum in Umbria.</div>
- <div property="gml:pos">44.05 12.566667</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Rimini"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/393379"/>
-</div>

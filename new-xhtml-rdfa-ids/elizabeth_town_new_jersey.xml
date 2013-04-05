@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="elizabeth_town_new_jersey">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Elizabeth Town</div>
- <div property="skos:definition" xml:lang="en">The mint in the city of Elizabeth Town, New Jersey.</div>
-<div property="gml:pos">40.662222 -74.209167</div>
-</div>

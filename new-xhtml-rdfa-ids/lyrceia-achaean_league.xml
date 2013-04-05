@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="lyrceia-achaean_league">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Corinth</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Lyrceia in Argolis.</div>
- <div property="gml:pos">37.686635 22.643094</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Lyrceia#City_of_Lyrceia"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/570446"/>
-</div>

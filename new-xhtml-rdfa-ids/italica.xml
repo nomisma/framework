@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="italica">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Italica</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Italica in Hispania Ulterior.</div>
- <div property="gml:pos">37.443901 -6.046795</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Italica"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/256231"/>
-</div>

@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="aninetus">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Aninetus</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Aninetus in Lydia.</div>
- <div property="gml:pos">37.933423 28.443642</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/599493"/>
-</div>

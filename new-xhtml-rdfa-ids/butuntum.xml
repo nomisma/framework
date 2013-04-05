@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="butuntum">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Butuntum</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Butuntum in Apulia.</div>
- <div property="gml:pos">41.108479 16.691435</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/442511"/>
-</div>

@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="damastium">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Damastium</div>
- <div property="skos:definition" xml:lang="en">The mint at the unlocated ancient site of Damastium in Illyricum.</div>
-<div rel="uncertain_value"><span property="gml:pos">41.083333 20.75</span></div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Damastion"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/483974"/>
-</div>

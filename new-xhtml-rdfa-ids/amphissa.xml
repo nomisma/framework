@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="amphissa">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Amphissa</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Amphissa in Locris.</div>
- <div property="gml:pos">38.518403 22.374172</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Amphissa"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/540630"/>
-</div>

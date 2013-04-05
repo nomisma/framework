@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="cabeira">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Cabeira</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Cabeira in Pontus.</div>
- <div property="gml:pos">40.609983 36.951027</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Cabeira"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/857177"/>
-</div>

@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="galaria">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Galaria</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Galaria in Sicily.</div>
- <div rel="uncertain_value"><span property="gml:pos">37.716667 14.533333</span></div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Gagliano_Castelferrato"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/465899"/>
-</div>

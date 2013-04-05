@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="hyrium">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Hyrium</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Hyrium in Apulia.</div>
- <div property="gml:pos">40.496983 17.642785</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Oria,_Apulia"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/442839"/>
-</div>

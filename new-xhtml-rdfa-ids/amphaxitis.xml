@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="amphaxitis">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Amphaxitis</div>
- <div property="skos:definition" xml:lang="en">The mint, probably at Thessalonike, in the ancient region of Amphaxitis in Macedonia.</div>
- <div property="gml:pos">40.626402 22.956201</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Amphaxitis"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/491520"/>
-</div>

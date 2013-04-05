@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="cythnos">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Cythnos</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Cythnos on Cythnos, Cyclades.</div>
- <div property="gml:pos">37.412293 24.429784</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Kythnos"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/570402"/>
-</div>

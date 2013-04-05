@@ -1,5 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="numismatic_term" about="engraver">
- <div property="skos:prefLabel" xml:lang="en">Engraver</div>
- <div property="skos:definition" xml:lang="en">The person responsible for creating the negative image on a die. Artist is the preferred term when the exact role of named individual is not known.</div>
-</div>

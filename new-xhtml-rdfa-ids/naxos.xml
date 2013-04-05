@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="naxos">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Naxos</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Naxos on Naxos, Cyclades.</div>
- <div property="gml:pos">37.103871 25.377595</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Naxos_Island"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/599821"/>
-</div>

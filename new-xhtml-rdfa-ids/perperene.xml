@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="perperene">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Perperene</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Perperene in Mysia.</div>
- <div property="gml:pos">39.240505 26.962332</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/550814"/>
-</div>

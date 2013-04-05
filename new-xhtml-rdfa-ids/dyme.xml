@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="dyme">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Dyme</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Dyme in Peloponnesus.</div>
- <div property="gml:pos">38.144625 21.551425</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/570205"/>
-</div>

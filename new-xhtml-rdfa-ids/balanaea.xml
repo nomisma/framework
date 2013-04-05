@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="balanaea">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Balanaea</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Balanaea in Coele Syria.</div>
- <div property="gml:pos">35.195844 35.958453</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Baniyas"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/668206"/>
-</div>

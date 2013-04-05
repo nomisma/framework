@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="terina">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Terina</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Terina in Bruttium.</div>
- <div property="gml:pos">38.944865 16.238922</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Terina_(ancient_city)"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/452470"/>
-</div>

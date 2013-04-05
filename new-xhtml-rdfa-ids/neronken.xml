@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="neronken">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Neronken</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Neronken in Gallia.</div>
- <div property="gml:pos">43.183585 3.004098</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Narbonne"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/246347"/>
-</div>

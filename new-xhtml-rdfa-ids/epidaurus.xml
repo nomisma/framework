@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="epidaurus">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Epidaurus</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Epidaurus in Argolis.</div>
- <div property="gml:pos">37.633280 23.160067</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Epidaurus"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/570228"/>
-</div>

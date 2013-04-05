@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="caena">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Caena</div>
- <div property="skos:defintion" xml:lang="en">The mint of the ancient site of Caena in Sicily. The location is uncertain.</div>
-</div>

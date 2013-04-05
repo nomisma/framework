@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="paphus">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Paphos</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Paphos on Cyprus.</div>
- <div property="gml:pos">34.7599306 32.4075651</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Paphos"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/707586"/>
-</div>

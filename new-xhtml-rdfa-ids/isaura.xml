@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="isaura">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Isaura</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Isaura in Cilicia.</div>
- <div property="gml:pos">37.1893880 32.246701</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/648651"/>
-</div>

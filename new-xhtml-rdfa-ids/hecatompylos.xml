@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="hecatompylos">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Hecatompylos</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Hecatompylos in Hyrcania.</div>
- <div property="gml:pos">35.961680 54.037505</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Hecatompylos"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/942276"/>
-</div>

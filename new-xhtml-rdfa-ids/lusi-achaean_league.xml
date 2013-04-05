@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="lusi-achaean_league">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Lusi</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Lusi in Arcadia.</div>
- <div property="gml:pos">37.969024 22.116811</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Lusi"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/570438"/>
-</div>

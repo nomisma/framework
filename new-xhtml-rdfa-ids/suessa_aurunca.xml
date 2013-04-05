@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="suessa_aurunca">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Suessa Aurunca</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Suessa Aurunca in Campania.</div>
- <div property="gml:pos">41.241907 13.933756</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Sessa_Aurunca"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/433132"/>
-</div>

@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="caelia">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Caelia</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Caelia in Apulia.</div>
- <div property="gml:pos">41.061016 16.869860</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/442515"/>
-</div>

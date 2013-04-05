@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="velia">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Velia</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Velia in Lucania.</div>
- <div property="gml:pos">40.159444 15.154444</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Velia"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/383811"/>
-</div>

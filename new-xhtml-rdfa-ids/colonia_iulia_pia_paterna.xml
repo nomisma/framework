@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="colonia_iulia_pia_paterna">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Colonia Iulia Pia Paterna</div>
- <div property="skos:definition" xml:lang="en">The mint at the unlocated ancient site of Colonia Iulia Pia Paterna in Byzacene.</div>
-  <div rel="uncertain_value"><span property="gml:pos">36.65 10.73</span></div>
-</div>

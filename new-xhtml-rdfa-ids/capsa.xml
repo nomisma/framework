@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="capsa">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Capsa</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Capsa in Macedon.</div>
-  <div rel="uncertain_value"><span property="gml:pos">40.342357 23.670043</span></div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/494578"/>
-</div>

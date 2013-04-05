@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="morgantina">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Morgantina</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Morgantina in Sicily.</div>
- <div property="gml:pos">37.431079 14.479296</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Morgantina"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/462372"/>
-</div>

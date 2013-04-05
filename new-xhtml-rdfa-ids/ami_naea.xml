@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="ami_naea">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Ami(naea)</div>
- <div property="skos:definition" xml:lang="en">Stub for the approximate location of Ami(naea) in Lucania.</div>
- <div rel="uncertain_value"><span property="gml:pos">39.823 16.390</span></div>
-</div>

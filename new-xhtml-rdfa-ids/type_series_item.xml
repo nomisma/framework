@@ -1,5 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="numismatic_term" about="type_series_item">
- <div property="skos:prefLabel" xml:lang="en">Type series item.</div>
- <div property="skos:definition" xml:lang="en">An item within a type series describing an individual coin type.</div>
-</div>

@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="teucheira">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Teucheira</div>
- <div property="skos:definition" xml:lang="en">Mint of the ancient site of Teucheira in <a rel="dcterms:isPartOf" href="cyrene">Cyrenaica</a>.</div>
- <div property="gml:pos">32.5354 20.5603</div>
- <div><a property="skos:related" href="http://pleiades.stoa.org/places/373736">http://pleiades.stoa.org/places/373736</a>.</div>
-</div>

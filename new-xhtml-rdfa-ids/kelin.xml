@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="kelin">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Kelin</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Kelin in Hispania Citerior.</div>
- <div property="gml:pos">39.558333 -1.278611</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Caudete_de_las_fuentes"/>
-</div>

@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="hadrianopolis_phrygia">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Hadrianopolis Phrygia</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Hadrianopolis in Phrygia.</div>
- <div property="gml:pos">38.232144 31.637066</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/609397"/>
-</div>

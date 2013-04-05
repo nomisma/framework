@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="ophrynium">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Ophrynium</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Ophrynium in Troas.</div>
- <div property="gml:pos">40.035846 26.343963</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Ophryneion"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/550787"/>
-</div>

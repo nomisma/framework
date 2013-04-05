@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="apameia_syria">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Apameia</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Apameia in Syria.</div>
- <div property="gml:pos">35.4207407 36.4002371</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Apamea_(Syria)"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/668335"/>
-</div>

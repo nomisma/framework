@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="roman_emperor" about="vitellius">
- <div property="skos:prefLabel" xml:lang="en">Vitellius</div>
- <div>Roman emperor from 6 April 69 to 22 December 69.</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Vitellius"/>
-</div>

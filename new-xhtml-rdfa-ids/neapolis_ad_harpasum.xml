@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="neapolis_ad_harpasum">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Neapolis ad Harpasum</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Neapolis ad Harpasum in Caria.</div>
- <div property="gml:pos">37.690157 28.397699</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/599823"/>
-</div>

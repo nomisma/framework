@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="authority" about="clodius_macer">
- <div property="skos:prefLabel" xml:lang="en">Clodius Macer</div>
- <div property="skos:definition" xml:lang="en">Roman legatus of Africa, d. A.D. 68.</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Lucius_Clodius_Macer"/>
-</div>

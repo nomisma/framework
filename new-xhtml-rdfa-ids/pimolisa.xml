@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="pimolisa">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Pimolisa</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Pimolisa in Paphlagonia.</div>
- <div property="gml:pos">41.013237 34.709815</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/845039"/>
-</div>

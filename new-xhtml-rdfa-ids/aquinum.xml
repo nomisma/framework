@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="aquinum">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Aquinum</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Aquinum in Latium.</div>
- <div property="gml:pos">41.492208 13.705626</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Aquino"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/432695"/>
-</div>

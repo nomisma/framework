@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="rhesaena">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Rhesaena</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Rhesaena in Mesopotamia.</div>
- <div property="gml:pos">36.848658 40.056065</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Ra%27s_al-%27Ayn"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/874662"/>
-</div>

@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="abbaetae-mysi">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Abbaetae Mysi</div>
- <div property="skos:definition" xml:lang="en">The mint at an uncertain ancient site of the Abbaetae Mysi in Phrygia.</div>
- <div rel="uncertain_value"><span property="gml:pos">39.25 28.75</span></div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/609481"/>
-</div>

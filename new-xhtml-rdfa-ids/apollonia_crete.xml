@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="apollonia_crete">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Apollonia</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Apollonia in Crete.</div>
- <div property="gml:pos">35.404896 25.018525</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Apollonia_(North_coast_of_Crete)"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/589696"/>
-</div>

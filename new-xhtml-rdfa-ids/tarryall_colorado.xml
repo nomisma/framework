@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="tarryall_colorado">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Tarryall</div>
- <div property="skos:definition" xml:lang="en">The mint in the city of Tarryall, Colorado.</div>
-<div property="gml:pos">39.121944 -105.475556</div>
-</div>

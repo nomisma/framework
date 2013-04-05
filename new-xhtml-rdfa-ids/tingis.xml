@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="tingis">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Tingis</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Tingis in Mauretania.</div>
- <div property="gml:pos">35.787924 -5.810048</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Tangier"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/275736"/>
-</div>

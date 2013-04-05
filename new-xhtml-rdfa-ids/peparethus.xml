@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="peparethus">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Peparethus</div>
- <div property="skos:definition" xml:lang="en">The mint on the island of Peparethus off Thessaly.</div>
- <div property="gml:pos">39.116667 23.716667</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Skopelos"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/541024"/>
-</div>

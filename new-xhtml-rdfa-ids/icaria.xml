@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="icaria">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Icaria</div>
- <div property="skos:definition" xml:lang="en">The ancient mint on the isalnd of Icaria, off Caria.</div>
-  <div rel="uncertain_value"><span property="gml:pos">37.583333 26.166667</span></div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Icaria"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/599667"/>
-</div>

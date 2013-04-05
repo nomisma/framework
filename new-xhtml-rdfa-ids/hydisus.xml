@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="hydisus">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Hydisus</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Hydisus in Caria.</div>
- <div property="gml:pos">37.162268 27.800872</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/599653"/>
-</div>

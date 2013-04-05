@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="caura">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Caura</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Caura in Hispania.</div>
- <div property="gml:pos">37.285041 -6.051830</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/256086"/>
-</div>

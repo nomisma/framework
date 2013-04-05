@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="thraco-macedonian">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Thraco Macedonian</div>
- <div property="skos:definition" xml:lang="en">Stub for the approximate location of various Thraco-Macedonian peoples.</div>
- <div rel="uncertain_value"><span property="gml:pos">41.2406419 23.2525635</span></div>
-</div>

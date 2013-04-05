@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="orthosia_caria">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Orthosia Cariae</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Orthosia in Caria.</div>
- <div property="gml:pos">37.827987 28.252865</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/599839"/>
-</div>

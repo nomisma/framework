@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="nicosia">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Nicosia</div>
- <div property="skos:definition" xml:lang="en">The mint at the city of Nicosia in Cyprus.</div>
- <div property="gml:pos">35.157167 33.347297</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Nicosia"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/707558"/>
-</div>

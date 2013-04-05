@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="aegium">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Aegium</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Aegium in Achaea.</div>
- <div property="gml:pos">38.252707 22.081952</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Aegium"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/570049"/>
-</div>

@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="nomisma_region" about="spain">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Spain</div>
- <div property="skos:definition" xml:lang="en">Stub for the ancient region of Spain.</div>
- <div rel="uncertain_value"><span property="gml:pos">38.822591 -4.1308594</span></div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Spain"/>
-</div>

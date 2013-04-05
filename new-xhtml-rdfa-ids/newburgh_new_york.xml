@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="newburgh_new_york">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Newburgh</div>
- <div property="skos:definition" xml:lang="en">The mint in the city of Newburgh, New York.</div>
-<div property="gml:pos">41.519722 -74.019444</div>
-</div>

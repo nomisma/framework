@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="agrigentum">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Agrigentum</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Agrigentum in Sicily.</div>
- <div property="gml:pos">37.316667 13.583333</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Agrigentum"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/462086"/>
-</div>

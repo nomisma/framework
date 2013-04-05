@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="gaulos">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Gaulos</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Gaulos on Gaulos between Sicily and Africa.</div>
- <div property="gml:pos">36.041526 14.250244</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Gozo"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/462212"/>
-</div>

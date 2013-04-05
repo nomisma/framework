@@ -1,5 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="nomisma_id" about="ingot">
- <div property="skos:prefLabel" xml:lang="en">Ingot</div>
- <div property="skos:definition">A mass of metal, usually purified, sometimes with indication of its value in a known weight standard.</div>
-</div>

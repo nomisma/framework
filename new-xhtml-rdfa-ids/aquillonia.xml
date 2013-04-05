@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="aquillonia">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Aquillonia</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Aquillonia in Samnium.</div>
- <div property="gml:pos">40.987863 15.475346</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Aquilonia"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/442471"/>
-</div>

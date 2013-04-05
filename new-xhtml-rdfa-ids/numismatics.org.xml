@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="collection" about="numismatics.org">
- <div property="skos:prefLabel" xml:lang="en">American Numismatic Society</div>
- <div property="skos:definition" xml:lang="en">The American Numismatic Society, based in New York, maintains a comprehensive collection of coins and other items.</div>
- <a rel="foaf:homepage" href="http://numismatics.org">web site</a>
-</div>

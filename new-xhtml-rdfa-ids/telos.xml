@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="telos">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Telos</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Telos on Telos, off Caria.</div>
- <div property="gml:pos">36.463938 27.338729</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Tilos"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/599960"/>
-</div>

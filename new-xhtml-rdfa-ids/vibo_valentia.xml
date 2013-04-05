@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="vibo_valentia">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Vibo Valentia</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Vibo Valentia in Bruttium.</div>
- <div property="gml:pos">38.675581 16.097648</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Vibo_Valentia"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/452337"/>
-</div>

@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="oba">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Oba</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Oba in Hispania Ulterior.</div>
- <div property="gml:pos">36.434053 -5.453482</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Jimena_de_la_Frontera"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/256340"/>
-</div>

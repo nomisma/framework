@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="numismatic_term" about="roman_emperor">
- <div property="skos:prefLabel" xml:lang="en">Roman Emperor</div>
- <div property="skos:definition" xml:lang="en">Individual holding the office of Emperor of Rome. Or the office itself.</div>
- <div rel="skos:broader" resource="ruler"/>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Roman_Emperor"/>
-</div>

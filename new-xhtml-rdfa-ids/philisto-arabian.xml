@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="philisto-arabian">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Philisto-Arabian issues</div>
- <div property="skos:definition" xml:lang="en">Stub for the approximate location of production of the so-called Philisto-Arabian issues of ancient Palestine.</div>
- <div rel="uncertain_value"><span property="gml:pos">31.5832151 34.6247864</span></div>
-</div>

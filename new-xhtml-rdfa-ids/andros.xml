@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="andros">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Andros</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Andros on the island of Andros in the Cyclades.</div>
- <div property="gml:pos">37.833333 24.933333</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Andros"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/589692"/>
-</div>

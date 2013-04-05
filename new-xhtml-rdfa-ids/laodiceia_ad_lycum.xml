@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="laodiceia_ad_lycum">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Laodiceia ad Lycum</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Laodiceia in Phrygia.</div>
- <div property="gml:pos">37.855246 29.136425</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Laodicea_on_the_Lycus"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/638955"/>
-</div>

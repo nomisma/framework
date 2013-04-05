@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="orthagoreia">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Orthagoreia</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Orthagoreia in Macedon.</div>
-  <div rel="uncertain_value"><span property="gml:pos">40.389442 23.581466</span></div>
-</div>

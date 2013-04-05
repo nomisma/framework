@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="eso">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Eso</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Eso in Hispania Citerior.</div>
- <div property="gml:pos">42.12 1.048056</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Isona"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/252928"/>
-</div>

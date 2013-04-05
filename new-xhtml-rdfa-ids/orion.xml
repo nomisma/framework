@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="orion">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Orion</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Orion on Crete.</div>
-  <div rel="uncertain_value"><span property="gml:pos">35.2007 24.914</span></div>
-</div>

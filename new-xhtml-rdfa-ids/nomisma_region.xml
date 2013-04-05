@@ -1,5 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="nomisma_id" about="nomisma_region">
- <div property="skos:prefLabel">Geographic region</div>
- <div property="skos:definition">A geographic region defined in Nomisma without explicit reference to an external authority.</div>
-</div>

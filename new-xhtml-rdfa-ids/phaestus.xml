@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="phaestus">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Phaestus</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Phaestus in Crete.</div>
- <div property="gml:pos">35.051267 24.810922</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Phaistos"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/589987"/>
-</div>

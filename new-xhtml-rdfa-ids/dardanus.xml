@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="dardanus">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Dardanus</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Dardanus in Troas.</div>
- <div property="gml:pos">40.079727 26.374420</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Dardania_(Asia_minor)"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/501393"/>
-</div>

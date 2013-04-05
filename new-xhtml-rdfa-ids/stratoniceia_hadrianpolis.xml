@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="stratoniceia_hadrianpolis">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Stratoniceia-Hadrianopolis</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Stratoniceia-Hadrianopolis in Lydia.</div>
- <div property="gml:pos">39.142114 27.801765</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/550898"/>
-</div>

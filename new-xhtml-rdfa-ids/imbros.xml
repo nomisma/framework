@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="imbros">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Imbros</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Imbros on the island of Imbros off Thrace.</div>
- <div property="gml:pos">40.233058 25.903047</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Imbros"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/501438"/>
-</div>

@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="cercinitis">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Cercinitis</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Cercinitis in Thrace.</div>
- <div property="gml:pos">45.203672 33.361389</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Kerkinitis"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/226658"/>
-</div>

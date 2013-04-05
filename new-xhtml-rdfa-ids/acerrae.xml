@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="acerrae">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Acerrae</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Acerrae in Campania.</div>
- <div property="gml:pos">40.946092 14.371233</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/432621"/>
-</div>

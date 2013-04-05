@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="siscia">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Siscia</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Siscia in Pannonia.</div>
- <div property="gml:pos">45.483168 16.371388</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/197504"/>
-</div>

@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="melos">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Melos</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Melos on the island of Melos in the Cyclades.</div>
- <div property="gml:pos">36.743864 24.423276</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Melos"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/570474"/>
-</div>

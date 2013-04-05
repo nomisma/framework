@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="naucratis">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Naucratis</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Naucratis in Egypt.</div>
- <div property="gml:pos">30.900710 30.591777</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Naucratis"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/727169"/>
-</div>

@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="cyane">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Cyaneae</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Cyaneae in Lycia.</div>
- <div property="gml:pos">36.246592 29.815759</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/638948"/>
-</div>

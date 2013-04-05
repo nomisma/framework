@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="placia">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Placia</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Placia in Mysia.</div>
- <div property="gml:pos">40.397648 28.277410</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Kur&#x15F;unlu,_Bursa"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/511366"/>
-</div>

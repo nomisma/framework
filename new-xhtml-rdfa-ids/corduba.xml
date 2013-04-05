@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="corduba">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Corduba</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Corduba in Hispania Ulterior.</div>
- <div property="gml:pos">37.884683 -4.779171</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Cordova,_Spain"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/256128"/>
-</div>

@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="orrescii">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Orrescii</div>
- <div property="skos:definition" xml:lang="en">The mint in Pangaea of the Thraco-Macedonian tribe of the 'orrescii'.</div>
- <div rel="uncertain_value"><span property="gml:pos">41.61 23.568</span></div>
-</div>

@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="torone">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Torone</div>
- <div property="skos:definition" xml:lang="en">Stub for the ancient site of Torone in Macedonia.</div>
- <div property="gml:pos">39.993956 23.906225</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Torone"/>
-</div>

@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="bargylia">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Bargylia</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Bargylia in Caria.</div>
- <div property="gml:pos">37.195722 27.586569</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/599550"/>
-</div>

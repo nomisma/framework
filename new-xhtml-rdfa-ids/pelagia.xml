@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="pelagia">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Pelagia</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Pelagia in Illyricum.</div>
-  <div rel="uncertain_value"><span property="gml:pos">38.935912 21.1802673</span></div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Tetovo"/>
-</div>

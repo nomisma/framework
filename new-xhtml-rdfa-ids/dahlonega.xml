@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="dahlonega">
- <div property="skos:prefLabel" xml:lang="en">Dahlonega</div>
- <div property="skos:definition" xml:lang="en">The United States mint in the city of Dahlonega, Georgia.</div>
- <div property="gml:pos">34.530556 -83.984722</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Dahlonega,_Georgia"/>
-</div>

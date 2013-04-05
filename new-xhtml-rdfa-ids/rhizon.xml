@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="rhizon">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Rhizon</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Rhizon in Illyricum</div>
- <div property="gml:pos">42.514722 18.695</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Risan"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/197471"/>
-</div>

@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="ethnic" about="zaeelii">
- <div property="skos:prefLabel" xml:lang="en">Zaeelii</div>
- <div property="skos:definition" xml:lang="en">The ethnic 'Zaeelli'. Attested on Macedonian coins.</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Zaeelii"/>
-</div>

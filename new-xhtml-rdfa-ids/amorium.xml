@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="amorium">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Amorium</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Amorium in Phrygia.</div>
- <div property="gml:pos">39.026452 31.2665749</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Amorium"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/609302"/>
-</div>

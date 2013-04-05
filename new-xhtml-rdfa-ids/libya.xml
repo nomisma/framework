@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="libya">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Lybia</div>
- <div property="skos:definition" xml:lang="en">Stub for the ancient region of Lybia in Africa.</div>
- <div rel="uncertain_value"><span property="gml:pos">30.1831218 17.2705078</span></div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Ancient Libya"/>
-</div>

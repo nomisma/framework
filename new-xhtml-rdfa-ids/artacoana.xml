@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="artacoana">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Artacoana</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Artacoana in Aria.</div>
- <div rel="uncertain_value"><span property="gml:pos">34.341944 62.203056</span></div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Artacoana"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/30211"/>
-</div>

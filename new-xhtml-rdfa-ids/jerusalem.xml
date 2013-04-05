@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="jerusalem">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Jerusalem</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Jerusalem in Judea.</div>
- <div property="gml:pos">31.776679 35.234156</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/687928"/>
-</div>

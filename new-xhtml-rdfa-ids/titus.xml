@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="roman_emperor" about="titus">
- <div property="skos:prefLabel" xml:lang="en">Titus</div>
- <div>Roman emperor from 24 June 79 –13 September 81.</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Titus"/>
-</div>

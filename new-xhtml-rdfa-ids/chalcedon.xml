@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="chalcedon">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Stub for the ancient site of Chalcedon in Bithynia.</div>
- <div property="gml:pos">40.983333 29.033333</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Chalcedon"/>
-</div>

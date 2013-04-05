@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="roman_emperor" about="galba">
- <div property="skos:prefLabel" xml:lang="en">Galba</div>
- <div>Emperiod from 8 June 68 – 15 January 69.</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Galba"/>
-</div>

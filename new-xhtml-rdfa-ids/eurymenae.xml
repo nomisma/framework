@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="eurymenae">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Eurymenae</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Eurymenae in Thessaly.</div>
- <div property="gml:pos">39.864767 22.734388</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Stomio,_Larissa"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/540784"/>
-</div>

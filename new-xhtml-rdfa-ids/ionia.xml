@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="head_1911_region" about="ionia">
- <div property="skos:prefLabel">Ionia</div>
- <div property="skos:definition">The region of Ionia as defined in <a rel="dcterms:source" href="head_1911">Head (1911)</a>.</div>
- <div property="dcterms:partOf" resource="asia"/>
- <div rel="uncertain_value"><span property="gml:pos">38.2122881 27.1417236</span></div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Ionia"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/550597"/>
-</div>

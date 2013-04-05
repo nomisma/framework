@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="comana">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Comana</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Comana in Pontus.</div>
- <div property="gml:pos">40.377306 36.610679</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Comana_Pontica"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/857095"/>
-</div>

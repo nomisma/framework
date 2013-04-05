@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="dipo">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Dipo</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Dipo in Hispania.</div>
- <div property="gml:pos">39.292 -7.43</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Portalegre,_Portugal"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/260543"/>
-</div>

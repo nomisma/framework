@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="philadelpheia_cilicia">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Philadelpheia</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Philadelpheia in Cilicia.</div>
-  <div rel="uncertain_value"><span property="gml:pos">36.620268 33.03945</span></div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/648736"/>
-</div>

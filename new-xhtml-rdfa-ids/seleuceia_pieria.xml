@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="seleuceia_pieria">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Seleuceia Pieria</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Seleuceia Pieria in Syria.</div>
- <div property="gml:pos">36.124449 35.921192</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Seleucia_Pieria"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/658483"/>
-</div>

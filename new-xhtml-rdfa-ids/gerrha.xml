@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="gerrha">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Gerrha</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Gerrha in ancient Arabia.</div>
- <div rel="uncertain_value"><span property="gml:pos">25.9453878 50.0770569</span></div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Gerrha"/>
-</div>

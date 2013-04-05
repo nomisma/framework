@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="agrippia-caesarea_phanagoria">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Agrippia Caesarea (Phanagoria)</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Agrippia Caesarea (Phanagoria) in Bosporus.</div>
- <div property="gml:pos">45.189 36.825</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Phanagoria"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/854724"/>
-</div>

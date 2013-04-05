@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="cadyanda">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Cadyanda</div>
- <div property="skos:definition" xml:lang="en">The mint of the ancient site of Cadyanda in Lycia.</div>
- <div><span property="gml:pos">36.7318 29.243200000000002</span></div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/638885"/>
-</div>

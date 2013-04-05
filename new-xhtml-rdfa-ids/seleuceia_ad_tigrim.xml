@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="seleuceia_ad_tigrim">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Seleuceia ad Tigrim</div>
- <div property="skos:definition" xml:lang="en">The mint at ancient site of Seleuceia on the Tigris in Mesopotamia.</div>
- <div property="gml:pos">33.137222 44.517222</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/894178"/>
- <div property="skos:related" resource="http//en.wikipedia.org/wiki/Seleucia"/>
-</div>

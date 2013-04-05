@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="caenicenses">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Caenicenses</div>
- <div property="skos:definition" xml:lang="en">Unknown location of the mint of the Caenicenses in ancient Gaul.</div>
- <div rel="uncertain_value"><span property="gml:pos">43.4569065 5.2624512</span></div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/151766"/>
-</div>

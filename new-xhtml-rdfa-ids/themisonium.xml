@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="themisonium">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Themisonium</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Themisonium in Phrygia.</div>
- <div rel="uncertain_value"><span property="gml:pos">38.350273 31.519775</span></div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Themisonium"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/642565"/>
-</div>

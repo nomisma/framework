@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="laeaei">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Laeaei</div>
- <div property="skos:definition" xml:lang="en">The mint in Paeonia of the tribe of the 'Laeaei'.</div>
- <div rel="uncertain_value"><span property="gml:pos">42.50 22.50</span></div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Laeaeans"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/481891"/>
-</div>

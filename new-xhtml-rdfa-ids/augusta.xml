@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="augusta">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Augusta</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Augusta in Cilicia.</div>
- <div property="gml:pos">37.245212 35.344087</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/648577"/>
-</div>

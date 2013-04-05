@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="pisa">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Pisa</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Pisa in Elis.</div>
- <div property="gml:pos">37.639535 21.653041</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Pisa_(Greece)"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/570612"/>
-</div>

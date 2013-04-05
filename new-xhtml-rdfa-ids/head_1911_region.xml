@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="nomisma_id" about="head_1911_region">
- <div property="skos:prefLabel" xml:lang="en">Head 1911 region.</div>
- <div property="skos:definition" xml:lang="en">A geographic region defined in Head 1911.</div>
- <div>Head 1911 in <a property="skos:related" href="http://www.worldcat.org/oclc/64789709">Worldcat</a>.</div>
-</div>

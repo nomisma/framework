@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="mytilene">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Mytilene</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Mytilene on Lesbos.</div>
- <div property="gml:pos">39.104812 26.552371</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Mytilene"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/550763"/>
-</div>

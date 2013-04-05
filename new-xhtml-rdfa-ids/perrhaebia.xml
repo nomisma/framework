@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="perrhaebia">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Perrhaebia</div>
- <div property="skos:definition" xml:lang="en">The mint at an ancient site of the Perrhaebi in Thessaly.</div>
-  <div rel="uncertain_value"><span property="gml:pos">39.75 21.75</span></div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Perrhaebi"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/541027"/>
-</div>

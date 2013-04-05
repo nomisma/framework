@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="roman_emperor" about="domitian">
- <div property="skos:prefLabel" xml:lang="en">Domitian</div>
- <div>Roman emperor from 14 September, 81 – 18 September, 96.</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Domitian"/>
-</div>

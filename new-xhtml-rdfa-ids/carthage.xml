@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="carthage">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Carthage</div>
- <div property="skos:definition" xml:lang="en">The mint at the city of Carthage in Zeugitana</div>
- <div property="gml:pos">36.847009 10.312944</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/314921"/>
-</div>

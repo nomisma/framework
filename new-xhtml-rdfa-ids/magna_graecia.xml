@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="magna_graecia">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Magna Graecia</div>
- <div property="skos:definition" xml:lang="en">Stub for the ancient region of Magna Graecia.</div>
- <div rel="uncertain_value"><span property="gml:pos">40.2250242 16.5893555</span></div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Magna_graecia"/>
-</div>

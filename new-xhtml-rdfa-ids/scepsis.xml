@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="scepsis">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Scepsis</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Scepsis in Troas.</div>
- <div property="gml:pos">39.825540 26.688003</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Scepsis"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/550890"/>
-</div>

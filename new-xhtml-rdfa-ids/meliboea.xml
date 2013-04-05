@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="meliboea">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Meliboea</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Meliboea in Thessaly.</div>
- <div property="gml:pos">39.748889 22.799444</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Melivia"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/543784"/>
-</div>

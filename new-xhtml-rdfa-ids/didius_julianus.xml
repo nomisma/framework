@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="roman_emperor" about="didius_julianus">
- <div property="skos:prefLabel" xml:lang="en">Didius Julianus</div>
- <div property="skos:definition" xml:lang="en">Roman emperor from 28 March 193 – 1 June 193.</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Didius_Julianus"/>
-</div>

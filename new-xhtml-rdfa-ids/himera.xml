@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="himera">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Himera</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Himera in Sicily.</div>
- <div property="gml:pos">37.966667 13.816667</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Himera"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/462244"/>
-</div>

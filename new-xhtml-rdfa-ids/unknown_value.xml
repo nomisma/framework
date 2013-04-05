@@ -1,5 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="nomisma_id" about="unknown_value">
- <div property="skos:prefLabel">Unkown value</div>
- <div property="skos:definition">A value that is poorly known. Such as the location of a mint that is not known with confidence.</div>
-</div>

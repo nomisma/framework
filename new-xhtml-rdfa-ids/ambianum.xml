@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="ambianum">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Ambianum</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Ambianum in Gaul.</div>
- <div property="gml:pos">49.892624 2.293832</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/109321"/>
-</div>

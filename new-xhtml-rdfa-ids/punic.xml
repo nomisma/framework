@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="punic">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Punic</div>
- <div property="skos:definition" xml:lang="en">Stub for the approximate location of Carthaginian issues struck in Italy or Sicily.</div>
- <div rel="uncertain_value"><span property="gml:pos">37.753344 14.9414063</span></div>
-</div>

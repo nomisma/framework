@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="methone_macedon">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Methone</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Methone in Macedonia.</div>
- <div property="gml:pos">40.446376 22.587828</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Methoni,_Pieria"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/491663"/>
-</div>

@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="alipheira-achaean_league">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Alipheira</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Alipheira in Arcadia.</div>
- <div property="gml:pos">37.541836 21.860109</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Alifeira"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/570065"/>
-</div>

@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="flaviopolis">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Flaviopolis</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Flaviopolis in Cilicia.</div>
- <div property="gml:pos">37.45 35.8</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Kozan,_Adana"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/658569"/>
-</div>

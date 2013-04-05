@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="amyzon">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Amyzon</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Amyzon in Caria.</div>
- <div property="gml:pos">37.608639 27.710824</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Amyzon"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/599489"/>
-</div>

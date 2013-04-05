@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="cierium">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Cierium</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Cierium in Thessaly.</div>
- <div property="gml:pos">39.361088 22.075455</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Sofades"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/540867"/>
-</div>

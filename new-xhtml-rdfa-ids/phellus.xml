@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="phellus">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Phellus</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Phellus in Lycia.</div>
- <div property="gml:pos">36.241748 29.66928</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/639052"/>
-</div>

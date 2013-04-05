@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="proerna">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Proerna</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Proerna in Thessaly.</div>
- <div property="gml:pos">39.241243 22.297255</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/541073"/>
-</div>

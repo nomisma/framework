@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="campano-tarentine">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Campano-Tarentine</div>
- <div property="skos:definition" xml:lang="en">The mint of approximate uncertain location of so-called Campano-Tarentine coinage in ancient Italy.</div>
-<div rel="uncertain_value"><span property="gml:pos">40.5472002 16.0675049</span></div></div>

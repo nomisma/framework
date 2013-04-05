@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="dicaea_macedon">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Dicaea</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Dicaea in Macedon.</div>
- <div property="gml:pos">40.460491 22.947121</div>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/491570"/>
-</div>

@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="idyma">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Idyma</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Idyma in Caria.</div>
- <div property="gml:pos">37.059443 28.367319</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Akyaka,_Mu&#x11F;la"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/599666"/>
-</div>

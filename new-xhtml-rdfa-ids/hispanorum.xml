@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="hispanorum">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:definition" xml:lang="en">The mint of the acnient site of 'Hispanorum'.</div>
- <div property="skos:note">Using co-ordinates for Morgantina.</div>
- <div property="gml:pos">37.433333 14.497222</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Morgantina"/>
-</div>

@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<div xmlns="http://www.w3.org/1999/xhtml" typeof="mint" about="arsinoe_argolis">
- <div property="dcterms:partOf" resource="greek_numismatics"/>
- <div property="skos:prefLabel" xml:lang="en">Methana-Arsinoe</div>
- <div property="skos:definition" xml:lang="en">The mint at the ancient site of Methana-Arsinoe in Argolis.</div>
- <div property="gml:pos">37.566667 23.383333</div>
- <div property="skos:related" resource="http://en.wikipedia.org/wiki/Methana"/>
- <div property="skos:related" resource="http://pleiades.stoa.org/places/570482"/>
-</div>
