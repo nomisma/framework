@@ -62,7 +62,7 @@
 				<encoding>UTF-8</encoding>
 				<indent>yes</indent>
 			</map:serializer>
-			<map:serializer name="xhtml+rdfa" mime-type="text/xml" src="org.apache.cocoon.serialization.XMLSerializer">
+			<map:serializer name="xhtml+rdfa" mime-type="application/xhtml+xml" src="org.apache.cocoon.serialization.XMLSerializer">
 				<encoding>UTF-8</encoding>
 				<doctype-public>-//W3C//DTD XHTML+RDFa 1.1//EN</doctype-public>
 				<doctype-system>http://www.w3.org/MarkUp/DTD/xhtml-rdfa-2.dtd</doctype-system>
