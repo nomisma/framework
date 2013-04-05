@@ -33,12 +33,12 @@
 				<title>
 					<xsl:value-of select="$uri"/>
 				</title>
-				<link type="text/css" href="{$display_path}css/style.css" rel="stylesheet"/>
+				<style type="text/css">
+					@import url(<xsl:value-of select="concat($display_path, 'css/style.css')"/>);
+				</style>
 			</head>
 			<body>
 				<div id="source" class="center">
-					<!--<xsl:value-of select="$uri"/>
-						<br/>-->
 					<xsl:copy-of select="*"/>
 				</div>
 				<div class="center">
