@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	exclude-result-prefixes="xs" version="2.0">
 	<xsl:include href="templates.xsl"/>
-	
+
 	<xsl:param name="id"/>
 	<xsl:param name="serverName "/>
 	<xsl:param name="serverPort "/>
@@ -32,23 +33,35 @@
 			skos: http://www.w3.org/2004/02/skos/core#"
 			vocab="http://nomisma.org/id/">
 			<head>
-				<title>
+				<title id="{$id}">
 					<xsl:value-of select="$uri"/>
 				</title>
 				<style type="text/css">
-					@import url(<xsl:value-of select="concat($display_path, 'css/style.css')"/>);
-				</style>
-				
+					@import url(<xsl:value-of select="concat($display_path, 'css/style.css')"/>
+					);</style>
+
 				<!-- javascripts -->
 				<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"/>
-				<script src="http://isawnyu.github.com/awld-js/lib/requirejs/require.min.js" type="text/javascript"/>
-				<script src="http://isawnyu.github.com/awld-js/awld.js?autoinit" type="text/javascript"/>
+				<!--<script src="http://isawnyu.github.com/awld-js/lib/requirejs/require.min.js" type="text/javascript"/>
+				<script src="http://isawnyu.github.com/awld-js/awld.js?autoinit" type="text/javascript"/>-->
+				
+				<!-- only include mapping javascript files if necessary -->
+				<xsl:if test="/xhtml:div/@typeof='mint'">
+					<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"/>
+					<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.2&amp;sensor=false"/>
+					<script type="text/javascript" src="{$display_path}javascript/display_map_functions.js"/>
+				</xsl:if>
 			</head>
 			<body>
 				<xsl:call-template name="header"/>
 				<div id="source" class="center">
 					<xsl:copy-of select="*"/>
 				</div>
+				<xsl:if test="/xhtml:div/@typeof='mint'">
+					<div class="center">
+						<div id="mapcontainer"/>
+					</div>
+				</xsl:if>
 				<div class="center">
 					<a href="http://www.w3.org/2012/pyRdfa/extract?uri={$uri}">RDF Triples (Turtle)</a>
 					<a href="http://validator.w3.org/check?uri={$uri}">W3 HTML Validator</a>

@@ -60,51 +60,54 @@
 						<div>
 							<b>Get all weights of Augustan denarii</b><br/>
 							<pre><![CDATA[
-							PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-							PREFIX dcterms:  <http://purl.org/dc/terms/>
-							PREFIX nm:       <http://nomisma.org/id/>
-							PREFIX owl:      <http://www.w3.org/2002/07/owl#>
-							SELECT ?type ?weight WHERE {
-							?type nm:authority <http://nomisma.org/id/augustus> .
-							?type nm:denomination <http://nomisma.org/id/denarius> .
-							?type dcterms:partOf <http://nomisma.org/id/ric>.
-							?coin nm:type_series_item ?type .
-							?coin nm:weight ?weight 
-							}]]></pre>
+PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:  <http://purl.org/dc/terms/>
+PREFIX nm:       <http://nomisma.org/id/>
+PREFIX owl:      <http://www.w3.org/2002/07/owl#>
+SELECT ?type ?weight WHERE {
+?type nm:authority <http://nomisma.org/id/augustus> .
+?type nm:denomination <http://nomisma.org/id/denarius> .
+?type dcterms:partOf <http://nomisma.org/id/ric>.
+?coin nm:type_series_item ?type .
+?coin nm:weight ?weight 
+}]]>
+							</pre>
 						</div>
 						<div>
 							<b>Get coins of RIC Augustus 1a and 1b</b><br/>
 							<pre><![CDATA[
-							PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-							PREFIX dcterms:  <http://purl.org/dc/terms/>
-							PREFIX nm:       <http://nomisma.org/id/>
-							PREFIX owl:      <http://www.w3.org/2002/07/owl#>
-							SELECT ?annotation ?numismatic_term ?publisher ?weight ?axis ?obvThumb ?revThumb ?obvRef ?revRef ?findspot ?type  WHERE {
-							{?annotation nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1a>. }
-							UNION { ?annotation nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1b> }
-							?annotation nm:numismatic_term ?numismatic_term .
-							OPTIONAL { ?annotation dcterms:publisher ?publisher } .
-							OPTIONAL { ?annotation nm:weight ?weight }
-							OPTIONAL { ?annotation nm:axis ?axis }
-							OPTIONAL { ?annotation nm:obverseThumbnail ?obvThumb }
-							OPTIONAL { ?annotation nm:reverseThumbnail ?revThumb }
-							OPTIONAL { ?annotation nm:obverseReference ?obvRef }
-							OPTIONAL { ?annotation nm:reverseReference ?revRef }
-							}]]></pre>
+PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:  <http://purl.org/dc/terms/>
+PREFIX nm:       <http://nomisma.org/id/>
+PREFIX owl:      <http://www.w3.org/2002/07/owl#>
+SELECT ?annotation ?numismatic_term ?publisher ?weight ?axis ?obvThumb ?revThumb ?obvRef ?revRef ?findspot ?type  WHERE {
+{?annotation nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1a>. }
+UNION { ?annotation nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1b> }
+?annotation nm:numismatic_term ?numismatic_term .
+OPTIONAL { ?annotation dcterms:publisher ?publisher } .
+OPTIONAL { ?annotation nm:weight ?weight }
+OPTIONAL { ?annotation nm:axis ?axis }
+OPTIONAL { ?annotation nm:obverseThumbnail ?obvThumb }
+OPTIONAL { ?annotation nm:reverseThumbnail ?revThumb }
+OPTIONAL { ?annotation nm:obverseReference ?obvRef }
+OPTIONAL { ?annotation nm:reverseReference ?revRef }
+}]]>
+							</pre>
 						</div>
 						<div>
 							<b>Average weight of RIC Augustus 1a</b><br/>
 							<pre><![CDATA[
-							PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-							PREFIX dcterms:  <http://purl.org/dc/terms/>
-							PREFIX nm:	<http://nomisma.org/id/>
-							PREFIX owl:      <http://www.w3.org/2002/07/owl#>
-							PREFIX xs:	<http://www.w3.org/2001/XMLSchema>
-							SELECT (AVG(xs:decimal(?weight)) AS ?average)
-							WHERE {
-							?g nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1a>.
-							?g nm:weight ?weight
-							}]]></pre>
+PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:  <http://purl.org/dc/terms/>
+PREFIX nm:	<http://nomisma.org/id/>
+PREFIX owl:      <http://www.w3.org/2002/07/owl#>
+PREFIX xs:	<http://www.w3.org/2001/XMLSchema>
+SELECT (AVG(xs:decimal(?weight)) AS ?average)
+WHERE {
+?g nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1a>.
+?g nm:weight ?weight
+}]]>
+							</pre>
 						</div>
 					</div>
 				</div>
