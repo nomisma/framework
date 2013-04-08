@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
+	<xsl:include href="templates.xsl"/>
+	
 	<xsl:param name="id"/>
 	<xsl:param name="serverName "/>
 	<xsl:param name="serverPort "/>
@@ -36,8 +38,14 @@
 				<style type="text/css">
 					@import url(<xsl:value-of select="concat($display_path, 'css/style.css')"/>);
 				</style>
+				
+				<!-- javascripts -->
+				<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"/>
+				<script src="http://isawnyu.github.com/awld-js/lib/requirejs/require.min.js" type="text/javascript"/>
+				<script src="http://isawnyu.github.com/awld-js/awld.js?autoinit" type="text/javascript"/>
 			</head>
 			<body>
+				<xsl:call-template name="header"/>
 				<div id="source" class="center">
 					<xsl:copy-of select="*"/>
 				</div>
@@ -46,14 +54,9 @@
 					<a href="http://validator.w3.org/check?uri={$uri}">W3 HTML Validator</a>
 					<a href="http://nomisma.org/nomisma.org.xml">Download all nomisma.org ids.</a>
 				</div>
-				<div class="center">
-					<a href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/88x31.png"
-					/></a><br/>Unless specified otherwise, content in <span xmlns:dc="http://purl.org/dc/elements/1.1/">Nomisma.org</span>
-					<a xmlns:cc="http://creativecommons.org/ns#" href="http://nomisma.org">http://nomisma.org</a> is licensed under a <a href="http://creativecommons.org/licenses/by/3.0/">Creative
-						Commons Attribution 3.0 License</a>. </div>
-				<div class="center" style="border:none;background-color:white;margin-top:0px;margin-bottom:0px">
-					<span style="color:gray">All data in nomisma.org is preliminary and in the process of being updated.</span>
-				</div>
+				
+				<!-- footer -->
+				<xsl:call-template name="footer"/>
 			</body>
 		</html>
 	</xsl:template>
