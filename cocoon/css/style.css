@@ -6,11 +6,12 @@ body {
 }
 div.center {
 	margin:0 auto;
-	width:930px;
+	width:960px;
 	background-color: rgb(240, 240, 240);
 	border:1px solid #c2b9a9;
 	margin-top:10px;
 	padding:3px;
+	display:table;
 }
 p {
 	margin-left:40px;
@@ -134,4 +135,37 @@ div.custominfostyle {
 	font-size: 1.5em;
 	font-style: italic;
 	width: 20em;
+}
+/*
+  ***************************************
+ Display pages
+  ***************************************
+ */
+ dt {
+	width:125px;
+	float:left;
+}
+ .g_doc {
+	width:30%;
+	float:left;
+	height:325px;
+}
+/* gallery image container */
+.gi_c {
+	margin:5px 0;
+	text-align:center;
+}
+/* gallery image */
+.gi {
+	padding:0px 5px;
+	max-width:120px;
+}
+.result_link {
+	font-size:120%;
+}
+ .thumbImage {
+	margin:5px;
+}
+.thumbImage>img {
+	max-width:120px;
 }

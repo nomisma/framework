@@ -20,7 +20,7 @@
 				<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
 				<title>Nomisma: all ids</title>
 				<style type="text/css">
-					@import url(<xsl:value-of select="concat($display_path, 'css/style.css')"/>
+					@import url(<xsl:value-of select="concat($display_path, 'style.css')"/>
 					);</style>
 				<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"/>
 			</head>

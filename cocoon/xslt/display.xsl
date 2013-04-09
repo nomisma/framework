@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	exclude-result-prefixes="xs" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:cinclude="http://apache.org/cocoon/include/1.0"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs xhtml cinclude" version="2.0">
 	<xsl:include href="templates.xsl"/>
 
 	<xsl:param name="id"/>
@@ -21,6 +21,8 @@
 	<xsl:variable name="display_path">../</xsl:variable>
 
 	<xsl:template match="/">
+		<xsl:variable name="typeof" select="/xhtml:div/@typeof"/>
+
 		<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"
 			prefix="nm: http://nomisma.org/id/
 			dcterms: http://purl.org/dc/terms/
@@ -37,16 +39,20 @@
 					<xsl:value-of select="$uri"/>
 				</title>
 				<style type="text/css">
-					@import url(<xsl:value-of select="concat($display_path, 'css/style.css')"/>
+					@import url(<xsl:value-of select="concat($display_path, 'style.css')"/>
 					);</style>
+				<style type="text/css">
+					@import url(<xsl:value-of select="concat($display_path, 'jquery.fancybox-1.3.4.css')"/>);
+				</style>
 
 				<!-- javascripts -->
 				<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"/>
+				<script type="text/javascript" src="{$display_path}javascript/jquery.fancybox-1.3.4.min.js"/>
 				<!--<script src="http://isawnyu.github.com/awld-js/lib/requirejs/require.min.js" type="text/javascript"/>
 				<script src="http://isawnyu.github.com/awld-js/awld.js?autoinit" type="text/javascript"/>-->
-				
+
 				<!-- only include mapping javascript files if necessary -->
-				<xsl:if test="/xhtml:div/@typeof='mint' or /xhtml:div/@typeof='type_series_item'">
+				<xsl:if test="$typeof='mint' or $typeof='type_series_item'">
 					<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"/>
 					<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.2&amp;sensor=false"/>
 					<script type="text/javascript" src="{$display_path}javascript/display_map_functions.js"/>
@@ -57,17 +63,20 @@
 				<div id="source" class="center">
 					<xsl:copy-of select="*"/>
 				</div>
-				<xsl:if test="/xhtml:div/@typeof='mint' or /xhtml:div/@typeof='type_series_item'">
+				<xsl:if test="$typeof='mint' or $typeof='type_series_item'">
 					<div class="center">
 						<div id="mapcontainer"/>
 					</div>
+				</xsl:if>
+				<xsl:if test="$typeof='type_series_item'">
+					<cinclude:include src="cocoon:/widget?uri={concat('http://nomisma.org/id/', $id)}&amp;curie={$typeof}&amp;template=display"/>
 				</xsl:if>
 				<div class="center">
 					<a href="http://www.w3.org/2012/pyRdfa/extract?uri={$uri}">RDF Triples (Turtle)</a>
 					<a href="http://validator.w3.org/check?uri={$uri}">W3 HTML Validator</a>
 					<a href="http://nomisma.org/nomisma.org.xml">Download all nomisma.org ids.</a>
 				</div>
-				
+
 				<!-- footer -->
 				<xsl:call-template name="footer"/>
 			</body>

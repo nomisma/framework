@@ -1,5 +1,6 @@
 $(document).ready(function () {
 	var id = $('title').attr('id');
+	$('a.thumbImage').fancybox();
 	initialize_map(id);
 });
 

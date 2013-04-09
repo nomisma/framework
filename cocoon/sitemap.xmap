@@ -121,7 +121,7 @@
 		
 		<map:pipeline>
 			<map:match pattern="**.css">
-				<map:read src="{1}.css" mime-type="text/css"/>
+				<map:read src="css/{1}.css" mime-type="text/css"/>
 			</map:match>
 
 			<map:match pattern="**.ico">
@@ -195,6 +195,7 @@
 					<map:parameter name="serverPort" value="{request:serverPort}"/>
 					<map:parameter name="requestURI" value="{request:requestURI }"/>
 				</map:transform>
+				<map:transform type="cinclude"/>
 				<map:serialize type="xhtml+rdfa"/>
 			</map:match>
 
