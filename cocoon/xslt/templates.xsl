@@ -4,7 +4,7 @@
 
 	<xsl:template name="header">
 		<div class="center">
-			Nomisma.org: [<a href="{$display_path}.">home</a>] [<a href="{$display_path}sparql">sparql</a>] "Common currency for digital numismatics." 
+			Nomisma.org: [<a href="{$display_path}.">home</a>] [<a href="{$display_path}sparql">sparql</a>] [<a href="{$display_path}id/">all ids</a>] "Common currency for digital numismatics." 
 		</div>
 	</xsl:template>
 

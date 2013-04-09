@@ -67,16 +67,21 @@ function initialize_map(id) {
 	map.addControl(objectControl);
 	objectControl.activate();
 	kmlLayer.events.on({
-		"featureselected": onObjectSelect, "featureunselected": onFeatureUnselect
+		"featureselected": onFeatureSelect, "featureunselected": onFeatureUnselect
 	});
 	
-	function onObjectSelect(event) {
+	function onFeatureSelect(event) {
 		var feature = event.feature;
 		message = '<div style="font-size:12px">' + feature.attributes.name + '</div>';
 		popup = new OpenLayers.Popup.FramedCloud("id", event.feature.geometry.bounds.getCenterLonLat(), null, message, null, true, onPopupClose);
 		event.popup = popup;
 		map.addPopup(popup);
 	}
+	
+	function onPopupClose(event) {
+		map.removePopup(map.popups[0]);
+	}
+	
 	
 	function onFeatureUnselect(event) {
 		map.removePopup(map.popups[0]);

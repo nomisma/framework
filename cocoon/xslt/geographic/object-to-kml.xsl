@@ -14,8 +14,8 @@
 	</xsl:template>
 
 	<xsl:template name="kml">
-		<xsl:variable name="coordinates" select="tokenize(descendant::xhtml:div[@property='gml:pos'], ' ')"/>
-
+		<xsl:variable name="typeof" select="/xhtml:div/@typeof"/>
+		
 		<kml xmlns="http://earth.google.com/kml/2.0">
 			<Document>
 				<Style xmlns="" id="mint">
@@ -46,22 +46,25 @@
 					</IconStyle>
 				</Style>
 				<!-- display mint -->
-				<Placemark xmlns="http://earth.google.com/kml/2.0">
-					<name>
-						<xsl:value-of select="descendant::xhtml:div[@property='skos:prefLabel'][@xml:lang='en']"/>
-					</name>
-					<styleUrl>#mint</styleUrl>
-					<!-- add placemark -->
-					<Point>
-						<coordinates>
-							<xsl:value-of select="concat($coordinates[2], ',', $coordinates[1])"/>
-						</coordinates>
-					</Point>
-				</Placemark>
+				<xsl:choose>
+					<xsl:when test="$typeof='mint'">
+						<xsl:variable name="coordinates" select="tokenize(descendant::xhtml:div[@property='gml:pos'], ' ')"/>
+						<Placemark xmlns="http://earth.google.com/kml/2.0">
+							<name>
+								<xsl:value-of select="descendant::xhtml:div[@property='skos:prefLabel'][@xml:lang='en']"/>
+							</name>
+							<styleUrl>#mint</styleUrl>
+							<!-- add placemark -->
+							<Point>
+								<coordinates>
+									<xsl:value-of select="concat($coordinates[2], ',', $coordinates[1])"/>
+								</coordinates>
+							</Point>
+						</Placemark>
+					</xsl:when>
+				</xsl:choose>
 
-
-
-				<cinclude:include src="cocoon:/widget?uri={$uri}&amp;template=mintToKml"/>
+				<cinclude:include src="cocoon:/widget?uri={$uri}&amp;curie={$typeof}&amp;template=kml"/>
 			</Document>
 		</kml>
 	</xsl:template>
