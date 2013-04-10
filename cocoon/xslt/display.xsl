@@ -52,7 +52,7 @@
 				<script src="http://isawnyu.github.com/awld-js/awld.js?autoinit" type="text/javascript"/>-->
 
 				<!-- only include mapping javascript files if necessary -->
-				<xsl:if test="$typeof='mint' or $typeof='type_series_item'">
+				<xsl:if test="$typeof='mint' or $typeof='type_series_item' or $typeof='hoard'">
 					<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"/>
 					<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.2&amp;sensor=false"/>
 					<script type="text/javascript" src="{$display_path}javascript/display_map_functions.js"/>
@@ -63,7 +63,7 @@
 				<div id="source" class="center">
 					<xsl:copy-of select="*"/>
 				</div>
-				<xsl:if test="$typeof='mint' or $typeof='type_series_item'">
+				<xsl:if test="$typeof='mint' or $typeof='type_series_item' or $typeof='hoard'">
 					<div class="center">
 						<div id="mapcontainer"/>
 					</div>

@@ -61,12 +61,47 @@
 								</coordinates>
 							</Point>
 						</Placemark>
+						<cinclude:include src="cocoon:/widget?uri={$uri}&amp;curie={$typeof}&amp;template=kml"/>
+					</xsl:when>
+					<xsl:when test="$typeof='type_series_item'">
+						<cinclude:include src="cocoon:/widget?uri={$uri}&amp;curie={$typeof}&amp;template=kml"/>
+					</xsl:when>
+					<xsl:when test="$typeof='hoard'">
+						<xsl:variable name="coordinates">
+							<xsl:value-of select="descendant::xhtml:span[@property='findspot']/@content"/>
+						</xsl:variable>
+						<!-- create point for findspot -->
+						<Placemark xmlns="http://earth.google.com/kml/2.0">
+							<name>
+								<xsl:choose>
+									<xsl:when test="descendant::xhtml:div[@property='skos:prefLabel'][@xml:lang='en']">
+										<xsl:value-of select="descendant::xhtml:div[@property='skos:prefLabel'][@xml:lang='en']"/>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:text>http://nomisma.org/id/</xsl:text>
+										<xsl:value-of select="$id"/>
+									</xsl:otherwise>
+								</xsl:choose>
+							</name>
+							<styleUrl>#hoard</styleUrl>
+							<!-- add placemark -->
+							<Point>
+								<coordinates>
+									<xsl:value-of select="concat(tokenize($coordinates, ' ')[2], ',', tokenize($coordinates, ' ')[1])"/>
+								</coordinates>
+							</Point>
+						</Placemark>
+						
+						<!-- create points for mints -->
+						<xsl:apply-templates select="descendant::xhtml:span[@rel='mint']"/>
 					</xsl:when>
 				</xsl:choose>
-
-				<cinclude:include src="cocoon:/widget?uri={$uri}&amp;curie={$typeof}&amp;template=kml"/>
 			</Document>
 		</kml>
+	</xsl:template>
+	
+	<xsl:template match="xhtml:span[@rel='mint']">
+		<cinclude:include src="cocoon:/get_mint_coords?id={@resource}"/>
 	</xsl:template>
 
 </xsl:stylesheet>

@@ -266,6 +266,15 @@
 					</map:otherwise>
 				</map:select>-->				
 			</map:match>
+			
+			<!-- AJAX -->
+			<map:match pattern="get_mint_coords">
+				<map:generate src="{global:id-path}/{request-param:id}.txt"/>
+				<map:transform type="xslt-saxon" src="xslt/ajax/get_mint_coords.xsl" label="basiccontent">
+					<map:parameter name="use-request-parameters" value="true"/>
+				</map:transform>
+				<map:serialize type="xml"/>
+			</map:match>
 		</map:pipeline>
 	</map:pipelines>
 </map:sitemap>
