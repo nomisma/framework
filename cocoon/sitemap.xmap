@@ -256,15 +256,15 @@
 					<map:parameter name="geonames_api_key" value="{global:geonames_api_key}"/>
 				</map:transform>
 				<map:serialize type="xml"/>
-				<!--<map:select type="parameter">
-					<map:parameter name="parameter-selector-test" value="{request-param:template}"/>
+				<map:select type="parameter">
+					<map:parameter name="parameter-selector-test" value="{request-param:format}"/>
 					<map:when test="json">
 						<map:serialize type="text"/>
 					</map:when>
 					<map:otherwise>
 						<map:serialize type="xml"/>
 					</map:otherwise>
-				</map:select>-->				
+				</map:select>				
 			</map:match>
 			
 			<!-- AJAX -->
@@ -275,6 +275,12 @@
 				</map:transform>
 				<map:serialize type="xml"/>
 			</map:match>
+			
+			<!-- APIs-->
+			<map:match pattern="apis/getClosingDate">
+				<map:read src="cocoon:/widget?identifiers{request-param:identifiers}&amp;template=getClosingDate"/>
+			</map:match>
+			
 		</map:pipeline>
 	</map:pipelines>
 </map:sitemap>

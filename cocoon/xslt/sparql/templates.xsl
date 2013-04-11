@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="http://www.w3.org/2005/sparql-results#"
 	exclude-result-prefixes="xs res" version="2.0">
+	<xsl:param name="identifiers"/>
 	<xsl:param name="template"/>
 	<xsl:param name="uri"/>
 	<xsl:param name="curie"/>
 	<xsl:param name="endpoint"/>
 	<xsl:param name="geonames_api_key"/>
-	
+
 	<xsl:variable name="geonames-url">
 		<xsl:text>http://api.geonames.org</xsl:text>
 	</xsl:variable>
@@ -20,9 +21,12 @@
 			<xsl:when test="$template = 'kml'">
 				<xsl:call-template name="kml"/>
 			</xsl:when>
+			<xsl:when test="$template = 'getClosingDate'">
+				<xsl:call-template name="getClosingDate"/>
+			</xsl:when>
 		</xsl:choose>
 	</xsl:template>
-	
+
 	<xsl:template name="display">
 		<xsl:variable name="query">
 			<![CDATA[ 
@@ -94,21 +98,70 @@
 
 		<xsl:apply-templates select="document($service)/res:sparql" mode="kml"/>
 	</xsl:template>
-	
+
+	<xsl:template name="getClosingDate">
+		<xsl:variable name="query">
+			<![CDATA[ 
+			PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+			PREFIX dcterms:  <http://purl.org/dc/terms/>
+			PREFIX nm:       <http://nomisma.org/id/>
+			PREFIX owl:      <http://www.w3.org/2002/07/owl#>
+			PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
+			SELECT (MAX(xsd:int(?date)) AS ?year)
+			WHERE {
+			<IDENTIFIERS>
+			}
+			]]>
+		</xsl:variable>
+
+		<xsl:variable name="identifiers">
+			<xsl:for-each select="tokenize($identifiers, '\|')">
+				<xsl:choose>
+					<xsl:when test="position() = 1">
+						<xsl:text>{&lt;</xsl:text>
+						<xsl:value-of select="."/>
+						<xsl:text>&gt; nm:end_date ?date }</xsl:text>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:text>UNION {&lt;</xsl:text>
+						<xsl:value-of select="."/>
+						<xsl:text>&gt; nm:end_date ?date }</xsl:text>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:for-each>
+		</xsl:variable>
+
+		<xsl:variable name="service"
+			select="concat($endpoint, '?query=', encode-for-uri(normalize-space(replace($query, '&lt;IDENTIFIERS&gt;', $identifiers))), '&amp;output=xml')"/>
+
+		<!-- no need to call template, create XML-RPC response here:-->
+
+		<methodResponse>
+			<params>
+				<param>
+					<value>
+						<int>
+							<xsl:value-of select="number(document($service)/descendant::res:binding[@name='year']/res:literal)"/>
+						</int>
+					</value>
+				</param>
+			</params>
+		</methodResponse>
+	</xsl:template>
+
 	<!-- **************** PROCESS SPARQL RESPONSE ****************-->
 	<xsl:template match="res:sparql" mode="display">
-		<xsl:variable name="coin-count"
-			select="count(descendant::res:result)"/>
+		<xsl:variable name="coin-count" select="count(descendant::res:result)"/>
 		<xsl:if test="$coin-count &gt; 0">
 			<div class="center">
 				<h2>Examples of this type</h2>
-				
+
 				<!-- choose between between Metis (preferred) or internal links -->
 				<xsl:apply-templates select="descendant::res:result" mode="display"/>
 			</div>
 		</xsl:if>
 	</xsl:template>
-	
+
 	<xsl:template match="res:result" mode="display">
 		<div class="g_doc">
 			<span class="result_link">
@@ -221,11 +274,14 @@
 				<xsl:otherwise>
 					<xsl:choose>
 						<xsl:when test="contains(res:binding[@name='findspot']/res:uri, 'geonames.org')">
-							<xsl:variable name="geonameId" select="substring-before(substring-after(child::res:binding[@name='findspot']/res:uri, 'geonames.org/'), '/')"/>
+							<xsl:variable name="geonameId"
+								select="substring-before(substring-after(child::res:binding[@name='findspot']/res:uri, 'geonames.org/'), '/')"/>
 							<xsl:if test="number($geonameId)">
 								<xsl:variable name="geonames_data" as="element()*">
 									<xml>
-										<xsl:copy-of select="document(concat($geonames-url, '/get?geonameId=', $geonameId, '&amp;username=', $geonames_api_key, '&amp;style=full'))"/>
+										<xsl:copy-of
+											select="document(concat($geonames-url, '/get?geonameId=', $geonameId, '&amp;username=', $geonames_api_key, '&amp;style=full'))"
+										/>
 									</xml>
 								</xsl:variable>
 								<xsl:variable name="coordinates" select="concat($geonames_data//lng, ',', $geonames_data//lat)"/>
