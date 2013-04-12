@@ -185,6 +185,26 @@
 			<xsl:value-of select="number(document($service)/descendant::res:binding[@name='average']/res:literal)"/>
 		</response>
 	</xsl:template>
+	
+	<xsl:template name="quantifyTypology">
+		<xsl:variable name="query">
+			<![CDATA[
+			PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+			PREFIX dcterms:  <http://purl.org/dc/terms/>
+			PREFIX nm:       <http://nomisma.org/id/>
+			PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
+			SELECT ?val ?label WHERE {
+			{<http://nomisma.org/id/rrc-385.4> nm:denomination ?val}
+			UNION { <http://nomisma.org/id/rrc-409.2> nm:denomination ?val }
+			OPTIONAL { ?val skos:prefLabel ?label
+			FILTER(langMatches(lang(?label), "en"))}
+			}
+			]]>
+		</xsl:variable>
+		
+		<xsl:variable name="service"
+			select="concat($endpoint, '?query=', encode-for-uri(normalize-space(replace($query, '&lt;CONSTRAINTS&gt;', $replace))), '&amp;output=xml')"/>
+	</xsl:template>
 
 	<!-- **************** PROCESS SPARQL RESPONSE ****************-->
 	<xsl:template match="res:sparql" mode="display">
