@@ -2,6 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="http://www.w3.org/2005/sparql-results#"
 	exclude-result-prefixes="xs res" version="2.0">
 	<xsl:param name="identifiers"/>
+	<xsl:param name="constraints"/>
 	<xsl:param name="template"/>
 	<xsl:param name="uri"/>
 	<xsl:param name="curie"/>
@@ -21,8 +22,11 @@
 			<xsl:when test="$template = 'kml'">
 				<xsl:call-template name="kml"/>
 			</xsl:when>
-			<xsl:when test="$template = 'getClosingDate'">
-				<xsl:call-template name="getClosingDate"/>
+			<xsl:when test="$template = 'closingDate'">
+				<xsl:call-template name="closingDate"/>
+			</xsl:when>
+			<xsl:when test="$template = 'avgWeight'">
+				<xsl:call-template name="avgWeight"/>
 			</xsl:when>
 		</xsl:choose>
 	</xsl:template>
@@ -99,7 +103,7 @@
 		<xsl:apply-templates select="document($service)/res:sparql" mode="kml"/>
 	</xsl:template>
 
-	<xsl:template name="getClosingDate">
+	<xsl:template name="closingDate">
 		<xsl:variable name="query">
 			<![CDATA[ 
 			PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -114,7 +118,7 @@
 			]]>
 		</xsl:variable>
 
-		<xsl:variable name="identifiers">
+		<xsl:variable name="replace">
 			<xsl:for-each select="tokenize($identifiers, '\|')">
 				<xsl:choose>
 					<xsl:when test="position() = 1">
@@ -132,21 +136,54 @@
 		</xsl:variable>
 
 		<xsl:variable name="service"
-			select="concat($endpoint, '?query=', encode-for-uri(normalize-space(replace($query, '&lt;IDENTIFIERS&gt;', $identifiers))), '&amp;output=xml')"/>
+			select="concat($endpoint, '?query=', encode-for-uri(normalize-space(replace($query, '&lt;IDENTIFIERS&gt;', $replace))), '&amp;output=xml')"/>
 
 		<!-- no need to call template, create XML-RPC response here:-->
 
-		<methodResponse>
-			<params>
-				<param>
-					<value>
-						<int>
-							<xsl:value-of select="number(document($service)/descendant::res:binding[@name='year']/res:literal)"/>
-						</int>
-					</value>
-				</param>
-			</params>
-		</methodResponse>
+		<response>
+			<xsl:value-of select="number(document($service)/descendant::res:binding[@name='year']/res:literal)"/>
+		</response>
+	</xsl:template>
+	
+	<xsl:template name="avgWeight">
+		<xsl:variable name="query">
+			<![CDATA[ 
+			PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+			PREFIX dcterms:  <http://purl.org/dc/terms/>
+			PREFIX nm:	<http://nomisma.org/id/>
+			PREFIX xs:	<http://www.w3.org/2001/XMLSchema#>
+			SELECT (AVG(xs:decimal(?weight)) AS ?average)
+			WHERE {
+			<CONSTRAINTS>
+			}
+			]]>
+		</xsl:variable>
+		
+		<xsl:variable name="replace">
+			<xsl:text>{</xsl:text>
+			<xsl:for-each select="tokenize($constraints, ' AND ')">
+				<xsl:text>?coin </xsl:text>
+				<xsl:value-of select="."/>
+				<xsl:text> .</xsl:text>
+			</xsl:for-each>
+			<xsl:text>?coin nm:weight ?weight</xsl:text>
+			<xsl:text>} UNION {</xsl:text>
+			<xsl:for-each select="tokenize($constraints, ' AND ')">
+				<xsl:text>?type </xsl:text>
+				<xsl:value-of select="."/>
+				<xsl:text> .</xsl:text>
+			</xsl:for-each>
+			<xsl:text>?coin nm:type_series_item ?type .</xsl:text>
+			<xsl:text>?coin nm:weight ?weight</xsl:text>			
+			<xsl:text>}</xsl:text>
+		</xsl:variable>
+		
+		<xsl:variable name="service"
+			select="concat($endpoint, '?query=', encode-for-uri(normalize-space(replace($query, '&lt;CONSTRAINTS&gt;', $replace))), '&amp;output=xml')"/>
+		
+		<response>
+			<xsl:value-of select="number(document($service)/descendant::res:binding[@name='average']/res:literal)"/>
+		</response>
 	</xsl:template>
 
 	<!-- **************** PROCESS SPARQL RESPONSE ****************-->

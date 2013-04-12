@@ -169,3 +169,22 @@ div.custominfostyle {
 .thumbImage>img {
 	max-width:120px;
 }
+/*
+  ***************************************
+API documentation
+  ***************************************
+ */
+ #api-table {
+ 	width:60%;
+ 	margin: auto;
+ }
+ #api-table th {
+ 	background-color:silver;
+ 	border:1px solid gray;
+ }
+ #api-table th:first-child {
+ 	text-align:left;	
+ }
+  #api-table td:not(:first-child) {
+ 	text-align:center;	
+ }
