@@ -101,7 +101,7 @@ PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:  <http://purl.org/dc/terms/>
 PREFIX nm:	<http://nomisma.org/id/>
 PREFIX owl:      <http://www.w3.org/2002/07/owl#>
-PREFIX xs:	<http://www.w3.org/2001/XMLSchema>
+PREFIX xs:	<http://www.w3.org/2001/XMLSchema#>
 SELECT (AVG(xs:decimal(?weight)) AS ?average)
 WHERE {
 ?g nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1a>.
