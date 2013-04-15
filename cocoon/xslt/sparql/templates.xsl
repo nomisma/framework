@@ -186,7 +186,7 @@
 		</response>
 	</xsl:template>
 	
-	<xsl:template name="quantifyTypology">
+	<!--<xsl:template name="quantifyTypology">
 		<xsl:variable name="query">
 			<![CDATA[
 			PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -204,7 +204,7 @@
 		
 		<xsl:variable name="service"
 			select="concat($endpoint, '?query=', encode-for-uri(normalize-space(replace($query, '&lt;CONSTRAINTS&gt;', $replace))), '&amp;output=xml')"/>
-	</xsl:template>
+	</xsl:template>-->
 
 	<!-- **************** PROCESS SPARQL RESPONSE ****************-->
 	<xsl:template match="res:sparql" mode="display">
