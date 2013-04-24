@@ -6,6 +6,7 @@
 	<xsl:param name="template"/>
 	<xsl:param name="uri"/>
 	<xsl:param name="curie"/>
+	<xsl:param name="lang"/>
 	<xsl:param name="endpoint"/>
 	<xsl:param name="geonames_api_key"/>
 
@@ -27,6 +28,9 @@
 			</xsl:when>
 			<xsl:when test="$template = 'avgWeight'">
 				<xsl:call-template name="avgWeight"/>
+			</xsl:when>
+			<xsl:when test="$template = 'getLabel'">
+				<xsl:call-template name="getLabel"/>
 			</xsl:when>
 		</xsl:choose>
 	</xsl:template>
@@ -183,6 +187,25 @@
 		
 		<response>
 			<xsl:value-of select="number(document($service)/descendant::res:binding[@name='average']/res:literal)"/>
+		</response>
+	</xsl:template>
+	
+	<xsl:template name="getLabel">
+		<xsl:variable name="query">
+			<![CDATA[
+			PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+			PREFIX nm:       <http://nomisma.org/id/>
+			PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>						
+			SELECT DISTINCT ?label WHERE {
+			<URI> skos:prefLabel ?label
+			FILTER(langMatches(lang(?label), "LANG"))} 
+			ORDER BY asc(?label)
+			]]>
+		</xsl:variable>		
+		<xsl:variable name="langStr" select="if (string($lang)) then $lang else 'en'"/>
+		<xsl:variable name="service" select="concat($endpoint, '?query=', encode-for-uri(normalize-space(replace(replace($query, 'LANG', $langStr), 'URI', $uri))), '&amp;output=xml')"/>
+		<response>
+			<xsl:value-of select="document($service)/descendant::res:binding[@name='label']/res:literal"/>
 		</response>
 	</xsl:template>
 	
