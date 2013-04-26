@@ -288,8 +288,14 @@
 			<map:match pattern="apis/closingDate">
 				<map:read src="cocoon:/widget?identifiers={request-param:identifiers}&amp;template=closingDate"/>
 			</map:match>
+			<map:match pattern="apis/avgAxis">
+				<map:read src="cocoon:/widget?constraints={request-param:constraints}&amp;template=avgMeasurement&amp;measurement=axis"/>
+			</map:match>
+			<map:match pattern="apis/avgDiameter">
+				<map:read src="cocoon:/widget?constraints={request-param:constraints}&amp;template=avgMeasurement&amp;measurement=diameter"/>
+			</map:match>
 			<map:match pattern="apis/avgWeight">
-				<map:read src="cocoon:/widget?constraints={request-param:constraints}&amp;template=avgWeight"/>
+				<map:read src="cocoon:/widget?constraints={request-param:constraints}&amp;template=avgMeasurement&amp;measurement=weight"/>
 			</map:match>
 			<map:match pattern="apis/getLabel">
 				<map:read src="cocoon:/widget?uri={request-param:uri}&amp;lang={request-param:lang}&amp;template=getLabel"/>

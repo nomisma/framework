@@ -7,6 +7,7 @@
 	<xsl:param name="uri"/>
 	<xsl:param name="curie"/>
 	<xsl:param name="lang"/>
+	<xsl:param name="measurement"/>
 	<xsl:param name="endpoint"/>
 	<xsl:param name="geonames_api_key"/>
 
@@ -25,9 +26,9 @@
 			</xsl:when>
 			<xsl:when test="$template = 'closingDate'">
 				<xsl:call-template name="closingDate"/>
-			</xsl:when>
-			<xsl:when test="$template = 'avgWeight'">
-				<xsl:call-template name="avgWeight"/>
+			</xsl:when>			
+			<xsl:when test="$template = 'avgMeasurement'">
+				<xsl:call-template name="avgMeasurement"/>
 			</xsl:when>
 			<xsl:when test="$template = 'getLabel'">
 				<xsl:call-template name="getLabel"/>
@@ -149,14 +150,14 @@
 		</response>
 	</xsl:template>
 	
-	<xsl:template name="avgWeight">
+	<xsl:template name="avgMeasurement">
 		<xsl:variable name="query">
 			<![CDATA[ 
 			PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 			PREFIX dcterms:  <http://purl.org/dc/terms/>
 			PREFIX nm:	<http://nomisma.org/id/>
 			PREFIX xs:	<http://www.w3.org/2001/XMLSchema#>
-			SELECT (AVG(xs:decimal(?weight)) AS ?average)
+			SELECT (AVG(xs:decimal(?MEASUREMENT)) AS ?average)
 			WHERE {
 			<CONSTRAINTS>
 			}
@@ -170,7 +171,7 @@
 				<xsl:value-of select="."/>
 				<xsl:text> .</xsl:text>
 			</xsl:for-each>
-			<xsl:text>?coin nm:weight ?weight</xsl:text>
+			<xsl:text>?coin nm:MEASUREMENT ?MEASUREMENT</xsl:text>
 			<xsl:text>} UNION {</xsl:text>
 			<xsl:for-each select="tokenize($constraints, ' AND ')">
 				<xsl:text>?type </xsl:text>
@@ -178,12 +179,12 @@
 				<xsl:text> .</xsl:text>
 			</xsl:for-each>
 			<xsl:text>?coin nm:type_series_item ?type .</xsl:text>
-			<xsl:text>?coin nm:weight ?weight</xsl:text>			
+			<xsl:text>?coin nm:MEASUREMENT ?MEASUREMENT</xsl:text>			
 			<xsl:text>}</xsl:text>
 		</xsl:variable>
 		
 		<xsl:variable name="service"
-			select="concat($endpoint, '?query=', encode-for-uri(normalize-space(replace($query, '&lt;CONSTRAINTS&gt;', replace($replace, '\\\\and', '&amp;&amp;')))), '&amp;output=xml')"/>
+			select="concat($endpoint, '?query=', encode-for-uri(normalize-space(replace(replace($query, '&lt;CONSTRAINTS&gt;', replace($replace, '\\\\and', '&amp;&amp;')), 'MEASUREMENT', $measurement))), '&amp;output=xml')"/>
 		
 		<response>
 			<xsl:value-of select="number(document($service)/descendant::res:binding[@name='average']/res:literal)"/>
