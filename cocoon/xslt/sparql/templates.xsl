@@ -183,7 +183,7 @@
 		</xsl:variable>
 		
 		<xsl:variable name="service"
-			select="concat($endpoint, '?query=', encode-for-uri(normalize-space(replace($query, '&lt;CONSTRAINTS&gt;', $replace))), '&amp;output=xml')"/>
+			select="concat($endpoint, '?query=', encode-for-uri(normalize-space(replace($query, '&lt;CONSTRAINTS&gt;', replace($replace, '\\\\and', '&amp;&amp;')))), '&amp;output=xml')"/>
 		
 		<response>
 			<xsl:value-of select="number(document($service)/descendant::res:binding[@name='average']/res:literal)"/>
