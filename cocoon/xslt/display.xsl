@@ -48,6 +48,7 @@
 				<!-- javascripts -->
 				<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"/>
 				<script type="text/javascript" src="{$display_path}javascript/jquery.fancybox-1.3.4.min.js"/>
+				<script type="text/javascript" src="{$display_path}javascript/display_functions.js"/>
 				<!--<script src="http://isawnyu.github.com/awld-js/lib/requirejs/require.min.js" type="text/javascript"/>
 				<script src="http://isawnyu.github.com/awld-js/awld.js?autoinit" type="text/javascript"/>-->
 
@@ -62,7 +63,7 @@
 				<xsl:call-template name="header"/>
 				<div id="source" class="center">
 					<xsl:apply-templates select="/xhtml:div"/>
-					<!--<xsl:copy-of select="*"/>-->
+					<xsl:copy-of select="*"/>
 				</div>
 				<!--<div id="source" class="center">
 					<pre><xsl:value-of select="saxon:serialize(*, 'xhtml:div')"/></pre>
@@ -91,7 +92,7 @@
 		<xsl:copy>
 			<xsl:apply-templates select="@*|node()"/>
 		</xsl:copy>
-	</xsl:template>-->
+	</xsl:template>
 
 	<xsl:template match="xhtml:div|xhtml:span">		
 		<xsl:element name="{local-name()}">
@@ -102,9 +103,7 @@
 			</xsl:for-each>
 			<xsl:if test="string(@property)">
 				<span class="prop"><xsl:value-of select="@property"/>: </span>				
-			</xsl:if>
-			<!--<xsl:value-of select="text()"/>-->
-			<xsl:apply-templates/>
+			</xsl:if>			<xsl:apply-templates/>
 			<xsl:if test="string(@resource)">
 				<span class="res">(<xsl:value-of select="@resource"/>)</span>
 				<a href="{@resource}" target="_new">
@@ -112,7 +111,7 @@
 				</a>
 			</xsl:if>
 		</xsl:element>
-	</xsl:template>
+	</xsl:template>-->
 
 
 </xsl:stylesheet>
