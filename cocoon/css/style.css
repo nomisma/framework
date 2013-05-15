@@ -29,7 +29,7 @@ h4 {
 div#markup {
 	display:none;
 }
-a[rel="nm:sourcePublication"]:before {
+/*a[rel="nm:sourcePublication"]:before {
 	content: 'Information adapted from ';
 }
 a[rel="nm:sourcePublication"]:after {
@@ -65,7 +65,7 @@ a[rel="nofollow"]:before {
 *[content]:after {
 	content: " \"" attr(content) "\" ";
 	color:gray;
-}
+}*/
 div[typeof]>div {
 	margin-left:2em;
 }

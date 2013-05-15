@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:cinclude="http://apache.org/cocoon/include/1.0"
-	xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs xhtml cinclude" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:cinclude="http://apache.org/cocoon/include/1.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:saxon="http://saxon.sf.net/"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs xhtml cinclude" version="2.0">
 	<xsl:include href="templates.xsl"/>
 
 	<xsl:param name="id"/>
@@ -42,8 +42,8 @@
 					@import url(<xsl:value-of select="concat($display_path, 'style.css')"/>
 					);</style>
 				<style type="text/css">
-					@import url(<xsl:value-of select="concat($display_path, 'jquery.fancybox-1.3.4.css')"/>);
-				</style>
+					@import url(<xsl:value-of select="concat($display_path, 'jquery.fancybox-1.3.4.css')"/>
+					);</style>
 
 				<!-- javascripts -->
 				<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"/>
@@ -61,8 +61,12 @@
 			<body>
 				<xsl:call-template name="header"/>
 				<div id="source" class="center">
-					<xsl:copy-of select="*"/>
+					<xsl:apply-templates select="/xhtml:div"/>
+					<!--<xsl:copy-of select="*"/>-->
 				</div>
+				<!--<div id="source" class="center">
+					<pre><xsl:value-of select="saxon:serialize(*, 'xhtml:div')"/></pre>
+				</div>-->
 				<xsl:if test="$typeof='mint' or $typeof='type_series_item' or $typeof='hoard'">
 					<div class="center">
 						<div id="mapcontainer"/>
@@ -82,5 +86,33 @@
 			</body>
 		</html>
 	</xsl:template>
+
+	<!--<xsl:template match="@*|node()">
+		<xsl:copy>
+			<xsl:apply-templates select="@*|node()"/>
+		</xsl:copy>
+	</xsl:template>-->
+
+	<xsl:template match="xhtml:div|xhtml:span">		
+		<xsl:element name="{local-name()}">
+			<xsl:for-each select="@*">
+				<xsl:attribute name="{name()}">
+					<xsl:value-of select="."/>
+				</xsl:attribute>
+			</xsl:for-each>
+			<xsl:if test="string(@property)">
+				<span class="prop"><xsl:value-of select="@property"/>: </span>				
+			</xsl:if>
+			<!--<xsl:value-of select="text()"/>-->
+			<xsl:apply-templates/>
+			<xsl:if test="string(@resource)">
+				<span class="res">(<xsl:value-of select="@resource"/>)</span>
+				<a href="{@resource}" target="_new">
+					<img src="http://upload.wikimedia.org/wikipedia/commons/6/64/Icon_External_Link.png"/>
+				</a>
+			</xsl:if>
+		</xsl:element>
+	</xsl:template>
+
 
 </xsl:stylesheet>

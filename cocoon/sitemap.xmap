@@ -254,8 +254,7 @@
 					<map:parameter name="use-request-parameters" value="true"/>
 					<map:parameter name="endpoint" value="{global:sparql-url}"/>
 					<map:parameter name="geonames_api_key" value="{global:geonames_api_key}"/>
-				</map:transform>
-				<map:serialize type="xml"/>
+				</map:transform>				
 				<map:select type="parameter">
 					<map:parameter name="parameter-selector-test" value="{request-param:format}"/>
 					<map:when test="json">

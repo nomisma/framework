@@ -73,7 +73,7 @@
 								<td/>
 							</tr>
 						</tbody>
-					</table>
+					</table>					
 					<div>
 						<a name="avgAxis"/>
 						<h2>Average Axis</h2>
