@@ -61,8 +61,7 @@
 			</head>
 			<body>
 				<xsl:call-template name="header"/>
-				<div id="source" class="center">
-					<xsl:apply-templates select="/xhtml:div"/>
+				<div id="source" class="center">					
 					<xsl:copy-of select="*"/>
 				</div>
 				<!--<div id="source" class="center">
