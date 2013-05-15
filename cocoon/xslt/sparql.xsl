@@ -80,10 +80,10 @@ PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:  <http://purl.org/dc/terms/>
 PREFIX nm:       <http://nomisma.org/id/>
 PREFIX owl:      <http://www.w3.org/2002/07/owl#>
-SELECT ?annotation ?numismatic_term ?publisher ?weight ?axis ?obvThumb ?revThumb ?obvRef ?revRef ?findspot ?type  WHERE {
+SELECT ?annotation ?objectType ?publisher ?weight ?axis ?obvThumb ?revThumb ?obvRef ?revRef ?findspot ?type  WHERE {
 {?annotation nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1a>. }
 UNION { ?annotation nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1b> }
-?annotation nm:numismatic_term ?numismatic_term .
+?annotation rdf:type ?objectType .
 OPTIONAL { ?annotation dcterms:publisher ?publisher } .
 OPTIONAL { ?annotation nm:weight ?weight }
 OPTIONAL { ?annotation nm:axis ?axis }

@@ -45,7 +45,7 @@
 			
 			SELECT ?object ?title ?publisher ?identifier ?collection ?weight ?axis ?diameter ?obvThumb ?revThumb ?obvRef ?revRef  WHERE {
 			?object nm:type_series_item <typeUri>.
-			?object nm:numismatic_term <http://nomisma.org/id/coin>.
+			?object rdf:type <http://nomisma.org/id/coin>.
 			?object dcterms:title ?title .
 			?object dcterms:publisher ?publisher .
 			OPTIONAL { ?object dcterms:identifier ?identifier } .

@@ -42,8 +42,8 @@
 			<span>
 				<b>Object Type: </b>
 				<xsl:choose>
-					<xsl:when test="contains(res:binding[@name='numismatic_term']/res:uri, 'coin')">coin</xsl:when>
-					<!--<xsl:when test="contains(res:binding[@name='numismatic_term']/res:uri, 'hoard')">hoard</xsl:when>-->
+					<xsl:when test="contains(res:binding[@name='objectType']/res:uri, 'coin')">coin</xsl:when>
+					<!--<xsl:when test="contains(res:binding[@name='objectType']/res:uri, 'hoard')">hoard</xsl:when>-->
 					<xsl:otherwise>hoard</xsl:otherwise>
 				</xsl:choose>
 			</span>
