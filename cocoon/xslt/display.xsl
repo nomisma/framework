@@ -55,7 +55,7 @@
 				<!-- only include mapping javascript files if necessary -->
 				<xsl:if test="$typeof='mint' or $typeof='type_series_item' or $typeof='hoard'">
 					<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"/>
-					<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.9&amp;sensor=false"/>
+					<!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.9&amp;sensor=false"/>-->
 					<script type="text/javascript" src="{$display_path}javascript/display_map_functions.js"/>
 				</xsl:if>
 			</head>

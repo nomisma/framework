@@ -16,10 +16,12 @@ function initialize_map(id) {
 		})]
 	});
 	
-	map.addLayer(new OpenLayers.Layer.Google(
+	map.addLayer(new OpenLayers.Layer.OSM());
+	
+	/*map.addLayer(new OpenLayers.Layer.Google(
 	"Google Physical", {
 		type: google.maps.MapTypeId.TERRAIN
-	}));
+	}));*/
 	
 	//google physical
 	var imperium = new OpenLayers.Layer.XYZ(
