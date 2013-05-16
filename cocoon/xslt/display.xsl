@@ -64,9 +64,9 @@
 				<div id="source" class="center">					
 					<xsl:copy-of select="*"/>
 				</div>
-				<!--<div id="source" class="center">
+				<div id="source" class="center">
 					<pre><xsl:value-of select="saxon:serialize(*, 'xhtml:div')"/></pre>
-				</div>-->
+				</div>
 				<xsl:if test="$typeof='mint' or $typeof='type_series_item' or $typeof='hoard'">
 					<div class="center">
 						<div id="mapcontainer"/>

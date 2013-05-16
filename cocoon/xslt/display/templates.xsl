@@ -12,7 +12,7 @@
 				</xsl:when>
 				<xsl:when test="@rel">
 					<xsl:choose>
-						<xsl:when test="contains(@rel, 'nm:')">
+						<xsl:when test="contains(@rel, ':')">
 							<xsl:value-of select="@rel"/>
 						</xsl:when>
 						<xsl:otherwise>
@@ -43,6 +43,9 @@
 			<xsl:if test="string(@resource)">
 				<xsl:attribute name="rdf:resource" select="if (contains(@resource, 'http://')) then @resource else concat($base, @resource)"/>
 			</xsl:if>
+			<xsl:if test="string(@href)">
+				<xsl:attribute name="rdf:resource" select="if (contains(@href, 'http://')) then @href else concat($base, @href)"/>
+			</xsl:if>
 			<xsl:if test="string(@datatype)">
 				<xsl:attribute name="rdf:datatype" select="replace(@datatype, 'xsd:', 'http://www.w3.org/2001/XMLSchema#')"/>
 			</xsl:if>
@@ -58,7 +61,7 @@
 							</rdf:Description>
 						</xsl:when>
 						<xsl:otherwise>
-							<xsl:if test="not(@resource)">
+							<xsl:if test="not(@resource) and not(@href)">
 								<xsl:apply-templates/>
 							</xsl:if>
 						</xsl:otherwise>
