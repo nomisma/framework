@@ -61,9 +61,9 @@
 			</head>
 			<body>
 				<xsl:call-template name="header"/>
-				<div id="source" class="center">					
+				<!--<div id="source" class="center">					
 					<xsl:copy-of select="*"/>
-				</div>
+				</div>-->
 				<div id="source" class="center">
 					<pre><xsl:value-of select="saxon:serialize(*, 'xhtml:div')"/></pre>
 				</div>

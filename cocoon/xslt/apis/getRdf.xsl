@@ -8,7 +8,9 @@
 	<xsl:variable name="content" as="element()*">
 		<content xmlns="http://www.w3.org/1999/xhtml">
 			<xsl:for-each select="tokenize($identifiers, '\|')">
-				<xsl:copy-of select="document(concat($id-path, '/', ., '.txt'))/*"/>
+				<xsl:if test="string-length(.) &gt; 0">
+					<xsl:copy-of select="document(concat($id-path, '/', ., '.txt'))/*"/>
+				</xsl:if>				
 			</xsl:for-each>
 		</content>
 	</xsl:variable>
