@@ -51,7 +51,6 @@
 	<!--***************************************** Process Nomisma Coin Type XHTML+RDFa into NUDS **************************************** -->
 	<xsl:template match="xhtml:div[@typeof='type_series_item']">
 		<nuds xmlns="http://nomisma.org/nuds" xmlns:xlink="http://www.w3.org/1999/xlink">
-			<!--<xsl:copy-of select="$rdf"/>-->
 			<nudsHeader>
 				<nudsid>
 					<xsl:value-of select="@about"/>
@@ -164,7 +163,7 @@
 	</xsl:template>
 
 	<xsl:template match="xhtml:div[@rel='obverse']|xhtml:div[@rel='reverse']">
-		<xsl:element name="{@rel}">
+		<xsl:element name="{@rel}" namespace="http://nomisma.org/nuds">
 			<xsl:if test="xhtml:div[@property='legend']">
 				<legend>
 					<xsl:value-of select="xhtml:div[@property='legend']"/>
@@ -185,7 +184,7 @@
 		<xsl:param name="role"/>
 		<xsl:param name="uri"/>
 
-		<xsl:element name="{$element}">
+		<xsl:element name="{$element}" namespace="http://nomisma.org/nuds">
 			<xsl:attribute name="xlink:type">simple</xsl:attribute>
 			<xsl:if test="string($role)">
 				<xsl:attribute name="xlink:role" select="$role"/>
@@ -223,7 +222,7 @@
 		</xsl:element>
 	</xsl:template>
 
-	<xsl:template name="date">
+	<xsl:template name="date" xmlns="http://nomisma.org/nuds">
 		<xsl:param name="fromDate"/>
 		<xsl:param name="toDate"/>
 
