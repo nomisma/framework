@@ -8,15 +8,7 @@
 	<xsl:param name="serverPort "/>
 	<xsl:param name="requestURI "/>
 
-	<xsl:variable name="uri">
-		<xsl:text>http://</xsl:text>
-		<xsl:value-of select="$serverName"/>
-		<xsl:if test="$serverPort = '8080'">
-			<xsl:text>:</xsl:text>
-			<xsl:value-of select="$serverPort"/>
-		</xsl:if>
-		<xsl:value-of select="$requestURI"/>
-	</xsl:variable>
+	<xsl:variable name="uri" select="concat('http://nomisma.org/id/', $id)"/>
 
 	<xsl:variable name="display_path">../</xsl:variable>
 
