@@ -1,207 +1,34 @@
 /*
   ****************************************
-  GLOBAL
-  ****************************************
- */
-#bd {
-	padding:5px;
-	background-color:white;
-	font-size:16px;
-	font-family:arial, helvetica, sans-serif;
-}
-h1, h2, h3 {
-	margin: .5em 0;
-}
-#form h1,#form h2, #form h3, #form h4,#form h5,#form h6 {
-	display:inline;
-}
-#form ul li {
-	list-style-type:none;
-}
-.ui-multiselect-menu ul li {
-	list-style-type:none;
-}
-.ui-widget {
-	font-size:12px;
-}
-.ui-selectmenu {
-	float:left;
-}
-a:link {
-	color:#8BADCF;
-	text-decoration:none;
-}
-a:visited {
-	color:#8BADCF;
-	text-decoration:none;
-}
-a:hover {
-	color: #627eb7;
-}
-#linked_data a {
-	margin:5px;
-}
-#map, #small {
-	width:100%;
-	height:400px;
-	margin:0;
-}
-#indexMap {
-	width:100%;
-	height:400px;
-	margin:2em 0;
-}
-.external_link {
-	margin-left: 10px;
-}
-ol li, ul li, dl li {
-	list-style-type:none;
-}
-ul {
-	margin:.5em 0 .5em 1em;
-}
-#lod {
-	text-align:right;
-	margin:1em 0;
-}
-.option {
-	margin-left:1em;
-}
-.edit-me{
-	font-size:10px;
-	letter-spacing:normal;
-	float:right;
-}
-/*
-  ***************************************
-  HEADER
-  ***************************************
- */
-#banner {
-	background-color: rgb(240, 240, 240);
-	border-top:1px solid #c2b9a9;
-	border-left:1px solid #c2b9a9;
-	border-right:1px solid #c2b9a9;
-	font-size: 24px;
-	font-weight:bold;
-	letter-spacing:4px;
-	padding:5px;
-}
-/*
-  ***************************************
-  FOOTER
-  ***************************************
- */
-#ft {
-	margin:10px 0;
-	padding:5px;
-	width:100%;
-	background-color: rgb(240, 240, 240);
-	border:1px solid #c2b9a9;
-}
-/*
-  ****************************************
-  FORM LAYOUT
-  ****************************************
- */
-.submission {
-	text-align:center;
-	margin:10px 0;
-}
-.xforms-submit {
-	margin-left:10px;
-	margin-right:10px;
-}
-.navigation {
-	width:190px;
-	float:left;
-}
-#expand_components, #refresh {
-	cursor:pointer;
-	color:#8BADCF
-}
-#expand_components:hover, #refresh:hover {
-	cursor:pointer;
-	color:#627eb7;
-}
-#nav_list ul {
-	margin-left:15px;
-	padding:0;
-}
-#nav_list ul li {
-	list-style-type:none;
-}
-.list-hidden {
-	display:none;
-}
-.pair_div {
-	width:80%;
-	border:1px solid silver;
-	margin-bottom:2px;
-	display:table;
-	padding:2px;
-}
-/*
-  .xforms-group>div{
-  display:table;
-  }
- */
-.section>div {
-	display:table;
-	width:100%;
-}
-.section {
-	margin-bottom:25px;
-	width:100%;
-}
-.subsection {
-	padding:10px 0 10px 25px;
-	width:95%;
-}
-/*
-  ****************************************
   ORBEON XFORM SPECIFIC STYLE
   ****************************************
  */
-#form .xforms-label {
-	float:left;
-	width:10em;
-	padding:2px;
-	font-size:16px;
+.orbeon .xforms-control {
+	margin-bottom: 10px;
 }
-#form .xforms-input input {
-	width: 30em;
-	margin-bottom: 5px;
-	border:1px solid silver;
-	padding:2px;
-	font-size:16px;
+.orbeon .xforms-label {
+	font-weight: bold;
+	display: inline-block;
+	min-width: 9em 
 }
-#form textarea {
-	width: 30em;
-	margin-bottom: 5px;
-	height:15em;
-	border:1px solid silver;
-	padding:2px;
-	font-size:16px;
+.orbeon .xforms-select1-appearance-full .xforms-label {
+	 vertical-align: top 
 }
-#form .xforms-select1 {
-	margin-bottom: 5px;
-	max-width:30em;
-	border:1px solid silver;
-	padding:2px;
-	font-size:16px;
+.orbeon .xforms-input input, .orbeon .xforms-textarea textarea, .orbeon .xforms-select1 select {
+	width: 20em;
+	margin-bottom: 2px;
+}
+.orbeon .xforms-repeat-selected-item-1 .form-td {
+	 background-color: #f5f5f5 
+}
+.orbeon .xforms-items {
+	 display: inline-block 
 }
 .trigger_container {
 	margin-bottom:20px;
 }
-.xforms-submit img {
-	vertical-align: middle
-}
 .xforms-trigger-appearance-minimal img {
 	vertical-align: middle
-}
-.xforms-control {
-	margin-right: 10px;
 }
 .xforms-output {
 	margin:0;
@@ -212,44 +39,8 @@ ul {
 .xforms-repeat-selected-item-1, .xforms-repeat-selected-item-2, .xforms-repeat-selected-item-3, .xforms-repeat-selected-item-4 {
 	background:inherit;
 }
-.widget-tab-panel {
-	padding-top: 1em;
-}
-.widget-tabs-panel {
-	border:0;
-	padding:20px;
-}
-.fr-autocomplete-container .yui-ac-content {
-	overflow-x: hidden;
-	overflow-y: auto;
-	*height:expression(this.scrollHeight>100?"100px":"auto");
-	width:30em;
-}
-.yui-skin-sam .yui-ac-container {
-	position:relative;
-	top:0;
-	width:30em;
-	margin-right:1em;
-}
-.xbl-fr-autocomplete {
-	width:35em;
-}
-.xbl-fr-autocomplete .yui-ac {
-	position:relative;
-	float:left;
-}
-.xbl-fr-autocomplete .xforms-input-input {
-	width:30em;
-	margin-bottom:2px;
-}
-.yui-editor-editable-container {
-	height:100px;
-}
 .xforms-repeat-selected-item-2 {
 	background:none;
-}
-.yui-dialog {
-	width:600px;
 }
 .xxforms-dialog-body>a, .xxforms-dialog-body>span {
 	width:100px;
@@ -262,96 +53,4 @@ ul {
 	margin:20px auto;
 	width:400px;
 	font-size:12px;
-}
-.success {
-	width:50%;
-	padding:10px;
-	border:1px solid #3c803c;
-	margin:0 auto;
-	background-color:#47e547;
-	color:#3c803c;
-}
-/*
-  ****************************************
-  PAGINATION
-  ****************************************
- */
-.paging_div {
-	width:100%;
-	display:table;
-	padding-top:10px;
-	padding-bottom:10px;
-}
-.pagingBtn, .pagingSep {
-	padding:2px;
-	text-decoration:none;
-}
-.pagingBtn {
-	font-weight:bold;
-}
-.pagingBtn:hover {
-	background-color:#DDDDDD;
-	text-decoration:underline;
-}
-/*
-  ****************************************
-  BROWSE
-  ****************************************
- */
-.result-doc {
-	padding:10px;
-	border-bottom:1px solid silver;
-}
-.odd {
-	background-color:#ebebeb;
-}
-.typeof {
-	font-size:80%;
-	float:right;
-}
-.quick_search, .exclude {
-	margin:10px 0;
-}
-.checkall, .uncheckall {
-	color:#8BADCF;
-	cursor:pointer;
-}
-.checkall:hover, .uncheckall:hover {
-	color:#627eb7;
-}
-/*
-  ***************************************
-  jQuery UI Menubar @VERSION
-  ***************************************
-  * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
-  * Dual licensed under the MIT or GPL Version 2 licenses.
-  * http://jquery.org/license
- */
-.ui-menubar {
-	list-style: none;
-	margin: 0;
-	padding-left: 0;
-	border-left:0px;
-	border-right:0px;
-}
-.ui-menubar-item {
-	float: left;
-	list-style-type:none;
-}
-.ui-menubar .ui-button {
-	float: left;
-	font-weight: normal;
-	border-top-width: 0 !important;
-	border-bottom-width: 0 !important;
-	margin: 0;
-	outline: none;
-}
-.ui-menubar .ui-menubar-link {
-	border-right: 1px dashed transparent;
-	border-left: 1px dashed transparent;
-}
-.ui-menubar .ui-menu {
-	width: 200px;
-	position: absolute;
-	z-index: 9999;
 }
