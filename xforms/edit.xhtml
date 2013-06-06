@@ -1,6 +1,6 @@
 <xhtml:html xmlns="http://www.w3.org/1999/xhtml" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:nm="http://nomisma.org/id/"
-	xmlns:gml="http://www.opengis.net/gml/" xmlns:res="http://www.w3.org/2005/sparql-results#">
+	xmlns:res="http://www.w3.org/2005/sparql-results#">
 	<xhtml:head>
 		<xhtml:title>nomisma.org</xhtml:title>
 		<link rel="stylesheet" href="/apps/nomisma/css/style.css"/>
@@ -22,20 +22,21 @@
 				</div>
 			</xforms:instance>
 
-			<xforms:instance id="document">
-				<document xmlns=""/>
+			<xforms:instance id="rdf">
+				<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+					xmlns:rdfa="http://www.w3.org/ns/rdfa#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"/>
 			</xforms:instance>
 
 			<xforms:instance id="control-instance">
 				<controls xmlns="">
 					<id/>
 					<original_id/>
+					<save-trigger/>
 					<status/>
-					<fons/>
-					<type_series/>
+					<endpoint>http://localhost:3030/ocre/</endpoint>
 					<lat>40</lat>
 					<long>1</long>
-					<address>127 Horn Camp Road, Rio, WV, 26755</address>
+					<test/>
 				</controls>
 			</xforms:instance>
 
@@ -44,6 +45,7 @@
 				<config xmlns="">
 					<url/>
 					<content-type>application/xml</content-type>
+					<mode>xml</mode>
 				</config>
 			</xforms:instance>
 
@@ -296,6 +298,16 @@
 				<sparql xmlns="http://www.w3.org/2005/sparql-results#"/>
 			</xforms:instance>
 
+			<!-- sparql update -->
+			<xforms:instance id="sparqlUpdate-template">
+				<query>
+					<![CDATA[DELETE { ?s ?p ?o } WHERE { <URI> ?p ?o . ?s ?p ?o }]]>
+				</query>
+			</xforms:instance>
+			<xforms:instance id="sparqlUpdate">
+				<query/>
+			</xforms:instance>
+
 			<!-- Solr instances -->
 			<xforms:instance id="addIndex">
 				<add xmlns=""/>
@@ -313,9 +325,12 @@
 				<xforms:action if="string(xxforms:get-request-parameter('id'))">
 					<xforms:setvalue ref="instance('control-instance')/id" value="xxforms:get-request-parameter('id')"/>
 					<xforms:setvalue ref="instance('control-instance')/original_id" value="xxforms:get-request-parameter('id')"/>
-					<xforms:setvalue ref="instance('config')/url" value="concat('file:///usr/local/projects/nomisma-ids/id/', xxforms:get-request-parameter('id'), '.xml')"/>
-					<!--<xforms:send submission="load-id"/>-->
-					<!--<xforms:insert nodeset="instance('document')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/load-id.xpl', 'config', instance('config'), 'data')"/>-->
+					<xforms:setvalue ref="instance('config')/url" value="concat('file:///usr/local/projects/nomisma-ids/id/', xxforms:get-request-parameter('id'), '.txt')"/>					
+					<xforms:insert nodeset="instance('doc')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/load-id.xpl', 'file', instance('config'), 'data')"/>
+				</xforms:action>
+
+				<xforms:action ev:event="xxforms-valid" ev:observer="doc">
+					<xforms:setvalue ref="instance('control-instance')/save-trigger">true</xforms:setvalue>
 				</xforms:action>
 
 				<!-- gather sparqlQueries -->
@@ -356,27 +371,31 @@
 				<xforms:bind nodeset="xhtml:div[@property='geo:long']" constraint="(number(.) &gt; -180 and number(.) &lt; 180)"/>
 			</xforms:bind>
 
-			<!-- ************* SUBMISSIONS **********************-->
+			<xforms:bind nodeset="instance('control-instance')/save-trigger" readonly="not(. = 'true')"/>
+
+			<xforms:action ev:event="xxforms-invalid" ev:observer="doc">
+				<xforms:setvalue ref="instance('control-instance')/save-trigger"/>
+			</xforms:action>
+			<xforms:action ev:event="xxforms-valid" ev:observer="doc">
+				<xforms:setvalue ref="instance('control-instance')/save-trigger">true</xforms:setvalue>
+			</xforms:action>
+
+			<!-- ************* SPARQL SUBMISSIONS **********************-->
 			<!-- SPARQL queries -->
 			<xforms:submission id="submit-sparqlQuery" action="http://admin.numismatics.org/nomisma/query?query={encode-for-uri(instance('sparqlQuery'))}&amp;output=xml"
-				ref="instance('sparqlResponse')" replace="instance" method="post">
+				ref="instance('sparqlResponse')" replace="instance" method="get">
 				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL query failed.</xforms:message>
 			</xforms:submission>
 
-			<!--<xforms:submission id="save-id" ref="instance('doc')" xxforms:username="admin" xxforms:password="" action="{instance('exist-url')}nomisma/id/{instance('control-instance')/id}.xml"
-				method="put" replace="none">
-				<xforms:message ev:event="xforms-submit-error" level="modal">Save Error. Are all required inputs filled?</xforms:message>
+			<xforms:submission id="delete-graph" action="{instance('control-instance')/endpoint}update?update" ref="instance('sparqlUpdate')" serialization="text/plain" replace="none" method="post"
+				mediatype="application/sparql-update">
+				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL update failed.</xforms:message>
+			</xforms:submission>
 
-				<xforms:action ev:event="xforms-submit-done">
-					<xforms:setvalue ref="instance('status')">id saved</xforms:setvalue>
-
-					<!-\- update the original id for the purpose of resaving -\->
-					<xforms:setvalue ref="instance('control-instance')/original_id" value="instance('control-instance')/id"/>
-					<!-\- post to solr -\->
-					<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-solr.xpl', 'data', instance('doc'), 'data')"/>
-					<xforms:send submission="post-solr-doc"/>
-				</xforms:action>
-			</xforms:submission>-->
+			<xforms:submission id="post-new" action="{instance('control-instance')/endpoint}data?default" ref="instance('rdf')" replace="none" method="post" mediatype="application/rdf+xml">
+				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Successfully posted to endpoint.</xforms:setvalue>
+				<xforms:message ev:event="xforms-submit-error" level="modal">Post to endpoint failed.</xforms:message>
+			</xforms:submission>
 
 			<!-- ************************* SOLR SUBMISSIONS ************************** -->
 			<!-- post instance to Solr -->
@@ -432,9 +451,22 @@
 					</xforms:group>
 
 					<xhtml:div class="submission">
-						<xforms:submit submission="save-id">
+						<xforms:trigger ref="instance('control-instance')/save-trigger">
 							<xforms:label><xhtml:img src="{$display_path}images/save.gif" alt="Save"/>Save</xforms:label>
-						</xforms:submit>
+							<xforms:action ev:event="DOMActivate">
+								<!-- save file back to disk -->
+								
+								<!-- first RDF to triplestore -->
+								<xforms:insert nodeset="instance('rdf')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-rdf.xpl', 'data', instance('doc'), 'data')"/>
+								<xforms:setvalue ref="instance('sparqlUpdate')" value="instance('sparqlUpdate-template')"/>
+								<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-template'), 'URI', concat('http://nomisma.org/id/', instance('doc')/@about))"/>
+								<!--<xforms:send submission="delete-graph"/>
+								<xforms:send submission="post-new"/>-->
+								
+								<!-- post to Solr -->
+								<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-solr.xpl', 'data', instance('doc'), 'data')"/>
+							</xforms:action>
+						</xforms:trigger>
 						<xforms:submit submission="load-id">
 							<xforms:label><xhtml:img src="{$display_path}images/recycle-green.png" alt="Load"/>Load</xforms:label>
 						</xforms:submit>
@@ -618,7 +650,7 @@
 									</xforms:select1>
 								</xhtml:div>
 							</xforms:repeat>
-							
+
 							<!--<fr:map id="geomap" address-ref="instance('control-instance')/address" longitude-ref="instance('control-instance')/long" latitude-ref="instance('control-instance')/lat"
 								style="width: 500px; height: 300px"/>-->
 
@@ -723,9 +755,10 @@
 					</fr:alert-dialog>
 				</xhtml:div>
 			</xhtml:div>
-			<fr:error-summary observer="form">
+			<xforms:output ref="instance('control-instance')/test"/>
+			<!--<fr:error-summary observer="form">
 				<fr:label>Your Form Contains the Following Errors</fr:label>
-			</fr:error-summary>
+			</fr:error-summary>-->
 			<fr:xforms-inspector/>
 		</xhtml:div>
 	</xhtml:body>
