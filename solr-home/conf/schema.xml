@@ -456,7 +456,7 @@
 	<fields>
 		<!-- nomisma field list -->
 		<field name="id" type="string" indexed="true" stored="true"/>
-		<field name="pleiades_uri" type="string" indexed="true" stored="true"/>
+		<field name="pleiades_uri" type="string" indexed="true" stored="true" multiValued="true"/>
 		<field name="typeof" type="string" indexed="true" stored="true" multiValued="true"/>
 		<field name="prefLabel" type="text_general" indexed="true" stored="true"/>
 		<field name="altLabel" type="text_general" indexed="true" stored="true" multiValued="true"/>

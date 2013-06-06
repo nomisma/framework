@@ -33,7 +33,9 @@
 					<original_id/>
 					<save-trigger/>
 					<status/>
+					<id_path>/usr/local/projects/nomisma-ids/id/</id_path>
 					<endpoint>http://localhost:3030/ocre/</endpoint>
+					<solr_url>http://localhost:8080/solr/nomisma/</solr_url>
 					<lat>40</lat>
 					<long>1</long>
 					<test/>
@@ -325,7 +327,7 @@
 				<xforms:action if="string(xxforms:get-request-parameter('id'))">
 					<xforms:setvalue ref="instance('control-instance')/id" value="xxforms:get-request-parameter('id')"/>
 					<xforms:setvalue ref="instance('control-instance')/original_id" value="xxforms:get-request-parameter('id')"/>
-					<xforms:setvalue ref="instance('config')/url" value="concat('file:///usr/local/projects/nomisma-ids/id/', xxforms:get-request-parameter('id'), '.txt')"/>					
+					<xforms:setvalue ref="instance('config')/url" value="concat('file://', instance('control-instance')/id_path, xxforms:get-request-parameter('id'), '.txt')"/>					
 					<xforms:insert nodeset="instance('doc')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/load-id.xpl', 'file', instance('config'), 'data')"/>
 				</xforms:action>
 
@@ -399,19 +401,20 @@
 
 			<!-- ************************* SOLR SUBMISSIONS ************************** -->
 			<!-- post instance to Solr -->
-			<xforms:submission id="post-solr-doc" action="{instance('config')/solr_url}update" ref="instance('addIndex')" instance="addIndex" replace="instance" method="post">
+			<xforms:submission id="post-solr-doc" action="{instance('control-instance')/solr_url}update" ref="instance('addIndex')" instance="addIndex" replace="instance" method="post">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
 				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"/>
 			</xforms:submission>
 
-			<xforms:submission id="delete-id-from-solr" action="{instance('config')/solr_url}update" ref="instance('deleteId')" instance="deleteId" replace="instance" method="post">
+			<xforms:submission id="delete-id-from-solr" action="{instance('control-instance')/solr_url}update" ref="instance('deleteId')" instance="deleteId" replace="instance" method="post">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
 				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"/>
 			</xforms:submission>
 
 			<!-- send commit -->
-			<xforms:submission id="submit-commit" action="{instance('config')/solr_url}update" ref="instance('sendCommit')" instance="sendCommit" replace="none" method="post">
+			<xforms:submission id="submit-commit" action="{instance('control-instance')/solr_url}update" ref="instance('sendCommit')" instance="sendCommit" replace="none" method="post">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Failed to commit to Solr index.</xforms:message>
+				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Document successfully committed to Solr.</xforms:setvalue>
 			</xforms:submission>
 		</xforms:model>
 	</xhtml:head>
@@ -427,7 +430,7 @@
 							<p>
 								<span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"/>
 								<strong>Status:</strong>
-								<xforms:output ref="instance('status')"/>
+								<xforms:output ref="instance('control-instance')/status"/>
 							</p>
 						</div>
 					</xforms:group>
@@ -465,6 +468,7 @@
 								
 								<!-- post to Solr -->
 								<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-solr.xpl', 'data', instance('doc'), 'data')"/>
+								<xforms:send submission="post-solr-doc"/>
 							</xforms:action>
 						</xforms:trigger>
 						<xforms:submit submission="load-id">

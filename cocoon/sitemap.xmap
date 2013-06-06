@@ -27,12 +27,8 @@
 			</map:generator>
 			<map:generator name="search" src="org.apache.cocoon.components.search.LuceneCocoonSearcher" index="index"> </map:generator>
 		</map:generators>
-		
-		<map:generator label="content" 
-			logger="sitemap.generator.directory" 
-			name="directory" 
-			pool-grow="2" pool-max="16" pool-min="2"
-			src="org.apache.cocoon.generation.DirectoryGenerator"/>
+
+		<map:generator label="content" logger="sitemap.generator.directory" name="directory" pool-grow="2" pool-max="16" pool-min="2" src="org.apache.cocoon.generation.DirectoryGenerator"/>
 		<!-- ************************************* -->
 		<!-- Cocoon transformers - xslt is default -->
 		<!-- ************************************* -->
@@ -73,8 +69,8 @@
 				<indent>yes</indent>
 			</map:serializer>
 			<map:serializer name="xhtml+rdfa" mime-type="application/xhtml+xml" src="org.apache.cocoon.serialization.XMLSerializer">
-				<encoding>UTF-8</encoding>				
-				<doctype-public>-//W3C//DTD XHTML+RDFa 1.1//EN</doctype-public>				
+				<encoding>UTF-8</encoding>
+				<doctype-public>-//W3C//DTD XHTML+RDFa 1.1//EN</doctype-public>
 				<doctype-system>http://www.w3.org/MarkUp/DTD/xhtml-rdfa-2.dtd</doctype-system>
 				<indent>yes</indent>
 			</map:serializer>
@@ -113,14 +109,14 @@
 			<global-variables>
 				<!-- static variables, referred to as generate calls in pipelines.  
 					These only need to be changed if Solr and Orbeon are run on a different server or Tomcat application than Cocoon -->
-				<!--<solr-url>http://localhost:8080/solr/numishare-published/</solr-url>-->
+				<solr-url>http://localhost:8080/solr/nomisma/</solr-url>
 				<id-path>/usr/local/projects/nomisma-ids/id</id-path>
 				<sparql-url>http://admin.numismatics.org:3030/ocre/query</sparql-url>
 				<geonames_api_key>anscoins</geonames_api_key>
 				<!--<collection-name>ocre</collection-name>-->
 			</global-variables>
 		</map:component-configurations>
-		
+
 		<map:pipeline>
 			<map:match pattern="**.css">
 				<map:read src="css/{1}.css" mime-type="text/css"/>
@@ -162,7 +158,7 @@
 				</map:transform>
 				<map:serialize type="html"/>
 			</map:match>
-			
+
 			<!-- list all ids -->
 			<map:match pattern="id/">
 				<map:generate type="directory" src="{global:id-path}">
@@ -173,7 +169,7 @@
 				</map:transform>
 				<map:serialize type="xhtml+rdfa"/>
 			</map:match>
-			
+
 			<!-- display pipelines -->
 			<map:match pattern="id/*.kml">
 				<map:generate src="{global:id-path}/{1}.txt"/>
@@ -187,17 +183,17 @@
 				<map:transform type="cinclude"/>
 				<map:serialize type="xml"/>
 			</map:match>
-			
+
 			<map:match pattern="id/*.nuds">
 				<map:generate src="{global:id-path}/{1}.txt"/>
 				<map:transform src="xslt/apis/getNuds.xsl" label="basiccontent" type="xslt-saxon">
 					<map:parameter name="use-request-parameters" value="true"/>
 					<map:parameter name="identifiers" value="{1}"/>
 					<map:parameter name="id-path" value="{global:id-path}"/>
-				</map:transform>				
+				</map:transform>
 				<map:serialize type="rdf"/>
 			</map:match>
-			
+
 			<map:match pattern="id/*.rdf">
 				<map:generate src="{global:id-path}/{1}.txt"/>
 				<map:transform src="xslt/display/rdf.xsl" label="basiccontent" type="xslt-saxon">
@@ -232,7 +228,7 @@
 				</map:transform>
 				<map:serialize type="html"/>
 			</map:match>
-			
+
 			<!-- create query wrapper -->
 			<map:match pattern="query">
 				<!-- generate or read -->
@@ -271,7 +267,7 @@
 					</map:otherwise>
 				</map:select>
 			</map:match>
-			
+
 			<!-- SPARQL widget templates -->
 			<map:match pattern="widget">
 				<map:generate src="xml/empty.xml"/>
@@ -279,7 +275,7 @@
 					<map:parameter name="use-request-parameters" value="true"/>
 					<map:parameter name="endpoint" value="{global:sparql-url}"/>
 					<map:parameter name="geonames_api_key" value="{global:geonames_api_key}"/>
-				</map:transform>				
+				</map:transform>
 				<map:select type="parameter">
 					<map:parameter name="parameter-selector-test" value="{request-param:format}"/>
 					<map:when test="json">
@@ -288,9 +284,9 @@
 					<map:otherwise>
 						<map:serialize type="xml"/>
 					</map:otherwise>
-				</map:select>				
+				</map:select>
 			</map:match>
-			
+
 			<!-- AJAX -->
 			<map:match pattern="get_mint_coords">
 				<map:generate src="{global:id-path}/{request-param:id}.txt"/>
@@ -299,7 +295,7 @@
 				</map:transform>
 				<map:serialize type="xml"/>
 			</map:match>
-			
+
 			<!-- APIs-->
 			<map:match pattern="apis">
 				<map:generate src="xml/empty.xml"/>
@@ -308,8 +304,8 @@
 				</map:transform>
 				<map:serialize type="html"/>
 			</map:match>
-			
-			
+
+
 			<map:match pattern="apis/avgAxis">
 				<map:read src="cocoon:/widget?constraints={request-param:constraints}&amp;template=avgMeasurement&amp;measurement=axis"/>
 			</map:match>
@@ -341,6 +337,29 @@
 			<map:match pattern="apis/getLabel">
 				<map:read src="cocoon:/widget?uri={request-param:uri}&amp;lang={request-param:lang}&amp;template=getLabel"/>
 			</map:match>
+
+
+			<!-- Atom -->
+			<map:match pattern="feed">
+				<map:redirect-to uri="feed/"/>
+			</map:match>
+
+			<map:match pattern="feed/">
+				<map:generate src="{global:solr-url}select?q={url-encode:{request-param:q}}&amp;sort={url-encode:timestamp desc}&amp;rows=100&amp;start={request-param:start}"/>
+				<map:transform src="xslt/feed.xsl" label="basiccontent" type="xslt-saxon">
+					<map:parameter name="use-request-parameters" value="true"/>
+				</map:transform>
+				<map:serialize type="atom"/>
+			</map:match>
+
+			<!-- opensearch definition -->
+			<!--<map:match pattern="opensearch.xml">
+				<map:generate src="{global:exist-url}{global:collection-name}/config.xml" label="record"/>
+				<map:transform src="xslt/linked_data/opensearch.xsl" label="basiccontent" type="xslt-saxon">
+					<map:parameter name="use-request-parameters" value="true"/>
+				</map:transform>
+				<map:serialize type="xml"/>
+			</map:match>-->
 		</map:pipeline>
 	</map:pipelines>
 </map:sitemap>

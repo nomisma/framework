@@ -28,11 +28,11 @@
 					<xsl:value-of select="."/>
 				</field>
 			</xsl:for-each>
-			<xsl:for-each select="xhtml:div[@property='skos:definition']">
+			<xsl:if test="xhtml:div[@property='skos:definition'][@xml:lang='en'][1]">
 				<field name="definition">
-					<xsl:value-of select="."/>
+					<xsl:value-of select="xhtml:div[@property='skos:definition'][@xml:lang='en'][1]"/>
 				</field>
-			</xsl:for-each>			
+			</xsl:if>			
 			<!--<xsl:if test="count(descendant::*[@property='gml:pos']) = 1 or count(descendant::*[@property='nm:findspot']) = 1">
 				<xsl:variable name="pos" select="if (string(descendant::*[@property='gml:pos'])) then tokenize(descendant::*[@property='gml:pos'], ' ') else tokenize(descendant::*[@property='nm:findspot'], ' ')"/>
 				<field name="pos">
