@@ -2,7 +2,13 @@
 	xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:nm="http://nomisma.org/id/"
 	xmlns:res="http://www.w3.org/2005/sparql-results#">
 	<xhtml:head>
-		<xhtml:title>nomisma.org</xhtml:title>
+		<title>nomisma.org</title>
+		<link rel="stylesheet" href="/fr/style/bootstrap/css/bootstrap.css" type="text/css"/>
+		<link rel="stylesheet" href="/fr/style/form-runner-bootstrap-override.css" type="text/css"/>
+		<link rel="stylesheet" href="/config/theme/examples.css" type="text/css" media="all"/>
+		<link rel="shortcut icon" href="/ops/images/orbeon-icon-16.ico"/>
+		<link rel="icon" href="/ops/images/orbeon-icon-16.png" type="image/png"/>
+		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.8.0/build/cssgrids/grids-min.css"/>
 		<link rel="stylesheet" href="/apps/nomisma/css/style.css"/>
 		<xforms:model>
 			<xforms:instance id="doc">
@@ -315,7 +321,7 @@
 			<!-- sparql update -->
 			<xforms:instance id="sparqlUpdate-template">
 				<query>
-					<![CDATA[DELETE { ?s ?p ?o } WHERE { <URI> ?p ?o . ?s ?p ?o }]]>
+					<![CDATA[DELETE {?s ?p ?o} WHERE { <URI> ?p ?o . ?s ?p ?o . FILTER (?s = <URI>) }]]>
 				</query>
 			</xforms:instance>
 			<xforms:instance id="sparqlUpdate">
@@ -396,12 +402,12 @@
 
 			<!-- ************* SPARQL SUBMISSIONS **********************-->
 			<!-- SPARQL queries -->
-			<xforms:submission id="submit-sparqlQuery" action="http://admin.numismatics.org/nomisma/query?query={encode-for-uri(instance('sparqlQuery'))}&amp;output=xml"
+			<xforms:submission id="submit-sparqlQuery" action="{instance('control-instance')/endpoint}query?query={encode-for-uri(instance('sparqlQuery'))}&amp;output=xml"
 				ref="instance('sparqlResponse')" replace="instance" method="get">
 				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL query failed.</xforms:message>
 			</xforms:submission>
 
-			<xforms:submission id="delete-graph" action="{instance('control-instance')/endpoint}update?update" ref="instance('sparqlUpdate')" serialization="text/plain" replace="none" method="post"
+			<xforms:submission id="delete-graph" action="{instance('control-instance')/endpoint}update" ref="instance('sparqlUpdate')" serialization="text/plain" replace="none" method="post"
 				mediatype="application/sparql-update">
 				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL update failed.</xforms:message>
 			</xforms:submission>
@@ -432,12 +438,11 @@
 	</xhtml:head>
 
 	<xhtml:body>
-		<xhtml:div>
-			<!-- header -->
-			<xxforms:variable name="display_path">../</xxforms:variable>
-			<xhtml:div>
-				<xhtml:div>
-					<xforms:group ref="instance('status')/text()">
+		<xxforms:variable name="display_path">../</xxforms:variable>
+		<div class="yui3-g">
+			<div class="yui3-u-1">
+				<div class="content">
+					<xforms:group ref=".[string-length(instance('control-instance')/status) &gt; 0]">
 						<div class="ui-state-highlight ui-corner-all">
 							<p>
 								<span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"/>
@@ -446,7 +451,6 @@
 							</p>
 						</div>
 					</xforms:group>
-
 					<xforms:group
 						ref=".[count(instance('doc')/xhtml:div[@property='skos:prefLabel']/@xml:lang) &gt; count(instance('doc')/xhtml:div[@property='skos:prefLabel']/@xml:lang[not(preceding::xhtml:div[@property='skos:prefLabel']/@xml:lang = .)])]">
 						<div class="ui-state-error ui-corner-all">
@@ -455,7 +459,6 @@
 								<strong>Alert:</strong> Preferred label languages must be unique. </p>
 						</div>
 					</xforms:group>
-
 					<xforms:group
 						ref=".[count(instance('doc')/xhtml:div[@property='skos:definition']/@xml:lang) &gt; count(instance('doc')/xhtml:div[@property='skos:definition']/@xml:lang[not(preceding::xhtml:div[@property='skos:definition']/@xml:lang = .)])]">
 						<div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
@@ -464,7 +467,6 @@
 								<strong>Alert:</strong> Definition languages must be unique. </p>
 						</div>
 					</xforms:group>
-
 					<xhtml:div class="submission">
 						<xforms:trigger ref="instance('control-instance')/save-trigger">
 							<xforms:label><xhtml:img src="{$display_path}images/save.gif" alt="Save"/>Save</xforms:label>
@@ -473,18 +475,14 @@
 								<xforms:setvalue ref="instance('save-config')/url" value="concat('file://', instance('control-instance')/id_path, instance('doc')/@about, '.txt')"/>
 								<xforms:insert nodeset="instance('dump')"
 									origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/save-id.xpl', ('doc', 'configuration'), (instance('doc'), instance('save-config')), 'data')"/>
-
 								<!-- first RDF to triplestore -->
-								<xforms:insert nodeset="instance('rdf')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-rdf.xpl', 'data', instance('doc'), 'data')"/>
-								<xforms:setvalue ref="instance('sparqlUpdate')" value="instance('sparqlUpdate-template')"/>
+								<xforms:insert nodeset="instance('rdf')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-rdf.xpl', 'data', instance('doc'), 'data')"/>								
 								<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-template'), 'URI', concat('http://nomisma.org/id/', instance('doc')/@about))"/>
-								<!--<xforms:send submission="delete-graph"/>
-								<xforms:send submission="post-new"/>-->
-
+								<xforms:send submission="delete-graph"/>
+								<xforms:send submission="post-new"/>
 								<!-- post to Solr -->
-								<!--<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-solr.xpl', 'data', instance('doc'), 'data')"/>
-								<xforms:send submission="post-solr-doc"/>-->
-
+								<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-solr.xpl', 'data', instance('doc'), 'data')"/>
+								<xforms:send submission="post-solr-doc"/>
 								<!-- set value of id in control-instance to prevent re-naming -->
 								<xforms:setvalue ref="instance('control-instance')/id" value="instance('doc')/@about"/>
 							</xforms:action>
@@ -497,10 +495,7 @@
 							<xforms:dispatch ev:event="DOMActivate" target="delete-dialog" name="fr-show"/>
 						</xforms:trigger>-->
 					</xhtml:div>
-
 					<xhtml:h1>Edit nomisma id</xhtml:h1>
-					<xforms:group ref="instance('doc')"> </xforms:group>
-
 					<xhtml:div class="section">
 						<xforms:group ref="instance('doc')" id="form">
 							<xhtml:div>
@@ -510,6 +505,10 @@
 									<xforms:item>
 										<xforms:label>Select...</xforms:label>
 										<xforms:value/>
+									</xforms:item>
+									<xforms:item>
+										<xforms:label>Numismatic Term</xforms:label>
+										<xforms:value>numismatic_term</xforms:value>
 									</xforms:item>
 									<xforms:itemset nodeset="instance('nt-response')/res:results/res:result">
 										<xforms:label ref="res:binding[@name='label']/res:literal"/>
@@ -522,10 +521,7 @@
 									<xforms:label>id</xforms:label>
 									<xforms:alert>Required</xforms:alert>
 								</xforms:input>
-							</xhtml:div>
-
-
-							<xhtml:div class="trigger_container">
+							</xhtml:div> <xhtml:div class="trigger_container">
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
 										<xhtml:img src="{$display_path}images/add.gif"/>Preferred Label</xforms:label>
@@ -561,9 +557,7 @@
 										</xforms:action>
 									</xforms:trigger>
 								</xforms:group>
-							</xhtml:div>
-
-							<xforms:repeat nodeset="xhtml:div[@property='skos:prefLabel']">
+							</xhtml:div> <xforms:repeat nodeset="xhtml:div[@property='skos:prefLabel']">
 								<xhtml:div>
 									<xforms:input ref=".">
 										<xforms:label>Preferred Label</xforms:label>
@@ -672,11 +666,9 @@
 									</xforms:select1>
 								</xhtml:div>
 							</xforms:repeat>
-
 							<!--<fr:map id="geomap" address-ref="instance('control-instance')/address" longitude-ref="instance('control-instance')/long" latitude-ref="instance('control-instance')/lat"
 								style="width: 500px; height: 300px"/>-->
-
-							<xforms:group ref=".[count(xhtml:div[@property='geo:lat']) = 1]">
+								<xforms:group ref=".[count(xhtml:div[@property='geo:lat']) = 1]">
 								<xhtml:h4>Coordinates</xhtml:h4>
 								<xhtml:div>
 									<xforms:input ref="xhtml:div[@property='geo:lat']">
@@ -693,7 +685,6 @@
 							</xforms:group>
 						</xforms:group>
 					</xhtml:div>
-
 					<fr:alert-dialog id="save-dialog">
 						<fr:label>Save</fr:label>
 						<fr:message>The id has been changed from its original value</fr:message>
@@ -711,7 +702,6 @@
 								<xforms:send submission="delete-id"/>
 								<xforms:setvalue ref="instance('deleteId')/id" value="instance('control-instance')/original_id"/>
 								<xforms:send submission="delete-id-from-solr"/>
-
 								<!-- create new objects -->
 								<xforms:action if="instance('control-instance')/type = 'type_series_item'">
 									<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('coin'), 'data')"/>
@@ -775,13 +765,12 @@
 							<fr:label>No</fr:label>
 						</fr:negative-choice>
 					</fr:alert-dialog>
-				</xhtml:div>
-			</xhtml:div>
-			<xforms:output ref="instance('control-instance')/test"/>
-			<!--<fr:error-summary observer="form">
-				<fr:label>Your Form Contains the Following Errors</fr:label>
-			</fr:error-summary>-->
-			<fr:xforms-inspector/>
-		</xhtml:div>
+					<!--<fr:error-summary observer="form">
+						<fr:label>Your Form Contains the Following Errors</fr:label>
+						</fr:error-summary>-->
+					<fr:xforms-inspector/>
+				</div>
+			</div>
+		</div>
 	</xhtml:body>
 </xhtml:html>
