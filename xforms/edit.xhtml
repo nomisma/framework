@@ -38,17 +38,29 @@
 					<solr_url>http://localhost:8080/solr/nomisma/</solr_url>
 					<lat>40</lat>
 					<long>1</long>
-					<test/>
+					<dump/>
 				</controls>
 			</xforms:instance>
 
-
-			<xforms:instance id="config">
+			<xforms:instance id="load-config">
 				<config xmlns="">
 					<url/>
 					<content-type>application/xml</content-type>
 					<mode>xml</mode>
 				</config>
+			</xforms:instance>
+
+			<xforms:instance id="save-config">
+				<config xmlns="">
+					<url/>
+					<content-type>text/plain</content-type>
+					<make-directories>false</make-directories>
+					<append>false</append>
+				</config>
+			</xforms:instance>
+
+			<xforms:instance id="dump">
+				<dump xmlns=""/>
 			</xforms:instance>
 
 			<xforms:instance id="languages">
@@ -240,30 +252,30 @@
 				</languages>
 			</xforms:instance>
 
-			<xforms:instance id="prefLabel-template">
+			<xforms:instance id="prefLabel-template" xxforms:exclude-result-prefixes="#all">
 				<div property="skos:prefLabel" xml:lang=""/>
 			</xforms:instance>
 
-			<xforms:instance id="altLabel-template">
+			<xforms:instance id="altLabel-template" xxforms:exclude-result-prefixes="#all">
 				<div property="skos:altLabel" xml:lang=""/>
 			</xforms:instance>
 
-			<xforms:instance id="definition-template">
+			<xforms:instance id="definition-template" xxforms:exclude-result-prefixes="#all">
 				<div property="skos:definition" xml:lang=""/>
 			</xforms:instance>
 
-			<xforms:instance id="related-template">
+			<xforms:instance id="related-template" xxforms:exclude-result-prefixes="#all">
 				<div property="skos:related" resource=""/>
 			</xforms:instance>
 
-			<xforms:instance id="partOf-template">
+			<xforms:instance id="partOf-template" xxforms:exclude-result-prefixes="#all">
 				<div property="dcterms:partOf" resource=""/>
 			</xforms:instance>
 
-			<xforms:instance id="lat-template">
+			<xforms:instance id="lat-template" xxforms:exclude-result-prefixes="#all">
 				<div property="geo:lat"/>
 			</xforms:instance>
-			<xforms:instance id="long-template">
+			<xforms:instance id="long-template" xxforms:exclude-result-prefixes="#all">
 				<div property="geo:long"/>
 			</xforms:instance>
 
@@ -327,8 +339,8 @@
 				<xforms:action if="string(xxforms:get-request-parameter('id'))">
 					<xforms:setvalue ref="instance('control-instance')/id" value="xxforms:get-request-parameter('id')"/>
 					<xforms:setvalue ref="instance('control-instance')/original_id" value="xxforms:get-request-parameter('id')"/>
-					<xforms:setvalue ref="instance('config')/url" value="concat('file://', instance('control-instance')/id_path, xxforms:get-request-parameter('id'), '.txt')"/>					
-					<xforms:insert nodeset="instance('doc')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/load-id.xpl', 'file', instance('config'), 'data')"/>
+					<xforms:setvalue ref="instance('load-config')/url" value="concat('file://', instance('control-instance')/id_path, xxforms:get-request-parameter('id'), '.txt')"/>
+					<xforms:insert nodeset="instance('doc')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/load-id.xpl', 'file', instance('load-config'), 'data')"/>
 				</xforms:action>
 
 				<xforms:action ev:event="xxforms-valid" ev:observer="doc">
@@ -351,7 +363,7 @@
 
 			<!-- **************** BINDINGS ********************** -->
 			<xforms:bind nodeset="instance('doc')">
-				<xforms:bind nodeset="@about" required="true()" type="xs:anyURI"/>
+				<xforms:bind nodeset="@about" required="true()" type="xs:anyURI" readonly="string-length(instance('control-instance')/id) &gt; 0"/>
 				<xforms:bind nodeset="@typeof" required="true()"/>
 				<xforms:bind nodeset="xhtml:div[@property='skos:prefLabel']" required="true()">
 					<xforms:bind nodeset="@xml:lang"
@@ -458,22 +470,28 @@
 							<xforms:label><xhtml:img src="{$display_path}images/save.gif" alt="Save"/>Save</xforms:label>
 							<xforms:action ev:event="DOMActivate">
 								<!-- save file back to disk -->
-								
+								<xforms:setvalue ref="instance('save-config')/url" value="concat('file://', instance('control-instance')/id_path, instance('doc')/@about, '.txt')"/>
+								<xforms:insert nodeset="instance('dump')"
+									origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/save-id.xpl', ('doc', 'configuration'), (instance('doc'), instance('save-config')), 'data')"/>
+
 								<!-- first RDF to triplestore -->
 								<xforms:insert nodeset="instance('rdf')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-rdf.xpl', 'data', instance('doc'), 'data')"/>
 								<xforms:setvalue ref="instance('sparqlUpdate')" value="instance('sparqlUpdate-template')"/>
 								<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-template'), 'URI', concat('http://nomisma.org/id/', instance('doc')/@about))"/>
 								<!--<xforms:send submission="delete-graph"/>
 								<xforms:send submission="post-new"/>-->
-								
+
 								<!-- post to Solr -->
-								<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-solr.xpl', 'data', instance('doc'), 'data')"/>
-								<xforms:send submission="post-solr-doc"/>
+								<!--<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-solr.xpl', 'data', instance('doc'), 'data')"/>
+								<xforms:send submission="post-solr-doc"/>-->
+
+								<!-- set value of id in control-instance to prevent re-naming -->
+								<xforms:setvalue ref="instance('control-instance')/id" value="instance('doc')/@about"/>
 							</xforms:action>
 						</xforms:trigger>
-						<xforms:submit submission="load-id">
+						<!--<xforms:submit submission="load-id">
 							<xforms:label><xhtml:img src="{$display_path}images/recycle-green.png" alt="Load"/>Load</xforms:label>
-						</xforms:submit>
+						</xforms:submit>-->
 						<!--<xforms:trigger appearance="minimal">
 							<xforms:label class="file_control"><xhtml:img src="{$display_path}images/remove.gif" alt="Delete"/>Delete</xforms:label>
 							<xforms:dispatch ev:event="DOMActivate" target="delete-dialog" name="fr-show"/>
@@ -599,10 +617,10 @@
 							</xforms:repeat>
 							<xforms:repeat nodeset="xhtml:div[@property='skos:definition']">
 								<xhtml:div>
-									<xforms:input ref=".">
+									<xforms:textarea ref=".">
 										<xforms:label>Definition</xforms:label>
 										<xforms:alert>Required</xforms:alert>
-									</xforms:input>
+									</xforms:textarea>
 									<xforms:select1 ref="@xml:lang">
 										<xforms:item>
 											<xforms:label>Select...</xforms:label>

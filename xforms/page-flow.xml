@@ -18,7 +18,7 @@
 	* ADMIN INTERFACE *
 	***************** -->	
 	<page path-info="/nomisma/edit/" view="edit.xhtml"/>
-	<!--<page path-info="/nomisma/test/" view="xpl/load-id.xpl"/>-->
+	<!--<page path-info="/nomisma/test/" model="xpl/save-id.xpl"/>-->
 
 	<epilogue url="oxf:/config/epilogue.xpl"/>
 </config>
