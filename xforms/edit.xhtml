@@ -387,6 +387,9 @@
 				<xforms:bind nodeset="xhtml:div[@property='skos:related']">
 					<xforms:bind nodeset="@resource" required="true()" type="xs:anyURI"/>
 				</xforms:bind>
+				<xforms:bind nodeset="xhtml:div[@property='dcterms:partOf']">
+					<xforms:bind nodeset="@resource" required="true()"/>
+				</xforms:bind>
 				<xforms:bind nodeset="xhtml:div[@property='geo:lat']" constraint="(number(.) &gt; -180 and number(.) &lt; 180)"/>
 				<xforms:bind nodeset="xhtml:div[@property='geo:long']" constraint="(number(.) &gt; -180 and number(.) &lt; 180)"/>
 			</xforms:bind>
@@ -664,6 +667,12 @@
 											<xforms:value ref="substring-after(res:binding[@name='uri']/res:uri, 'id/')"/>
 										</xforms:itemset>
 									</xforms:select1>
+									<xforms:trigger appearance="minimal">
+										<xforms:delete ev:event="DOMActivate" context="."/>
+										<xforms:label>
+											<xhtml:img src="{$display_path}images/remove.gif"/>
+										</xforms:label>
+									</xforms:trigger>
 								</xhtml:div>
 							</xforms:repeat>
 							<!--<fr:map id="geomap" address-ref="instance('control-instance')/address" longitude-ref="instance('control-instance')/long" latitude-ref="instance('control-instance')/lat"
