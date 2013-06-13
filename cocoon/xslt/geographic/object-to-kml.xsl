@@ -68,7 +68,14 @@
 					</xsl:when>
 					<xsl:when test="$typeof='hoard'">
 						<xsl:variable name="coordinates">
-							<xsl:value-of select="descendant::xhtml:span[@property='findspot']/@content"/>
+							<xsl:choose>
+								<xsl:when test="descendant::xhtml:span[@property='findspot']/@content">
+									<xsl:value-of select="descendant::xhtml:span[@property='findspot']/@content"/>
+								</xsl:when>
+								<xsl:when test="descendant::xhtml:span[@rel='nm:findspot']/xhtml:span[@property='gml:pos']">
+									<xsl:value-of select="descendant::xhtml:span[@rel='nm:findspot']/xhtml:span[@property='gml:pos']"/>
+								</xsl:when>
+							</xsl:choose>
 						</xsl:variable>
 						<!-- create point for findspot -->
 						<Placemark xmlns="http://earth.google.com/kml/2.0">

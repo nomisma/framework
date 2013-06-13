@@ -206,6 +206,11 @@
 				<map:transform type="cinclude"/>
 				<map:serialize type="rdf"/>
 			</map:match>
+			
+			<map:match pattern="id/*.xml">
+				<map:generate src="{global:id-path}/{1}.txt"/>
+				<map:serialize type="xml"/>
+			</map:match>
 
 			<map:match pattern="id/*">
 				<map:generate src="{global:id-path}/{1}.txt"/>
