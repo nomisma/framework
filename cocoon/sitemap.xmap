@@ -111,7 +111,7 @@
 					These only need to be changed if Solr and Orbeon are run on a different server or Tomcat application than Cocoon -->
 				<solr-url>http://localhost:8080/solr/nomisma/</solr-url>
 				<id-path>/usr/local/projects/nomisma-ids/id</id-path>
-				<sparql-url>http://admin.numismatics.org:3030/ocre/query</sparql-url>
+				<sparql-url>http://localhost:3030/nomisma/query</sparql-url>
 				<geonames_api_key>anscoins</geonames_api_key>
 				<!--<collection-name>ocre</collection-name>-->
 			</global-variables>
