@@ -85,6 +85,15 @@ div[rel]>div {
 	text-decoration:underline;
 	display:inline;
 }
+.media {
+	width:25%;
+	text-align:left;
+	float:left;
+	height:100px;	
+}
+.media img {
+	height:60px;	
+}
 /*
   ***************************************
   Timemap CSS
