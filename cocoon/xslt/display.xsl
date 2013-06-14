@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:cinclude="http://apache.org/cocoon/include/1.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:saxon="http://saxon.sf.net/"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs xhtml cinclude" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:cinclude="http://apache.org/cocoon/include/1.0"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:saxon="http://saxon.sf.net/" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	exclude-result-prefixes="xs xhtml cinclude" version="2.0">
 	<xsl:include href="templates.xsl"/>
 
 	<xsl:param name="id"/>
@@ -19,7 +20,7 @@
 			prefix="nm: http://nomisma.org/id/
 			dcterms: http://purl.org/dc/terms/
 			foaf: http://xmlns.com/foaf/0.1/
-			gml:  http://www.opengis.net/gml/
+			geo:  http://www.w3.org/2003/01/geo/wgs84_pos#
 			owl:  http://www.w3.org/2002/07/owl#
 			rdfs: http://www.w3.org/2000/01/rdf-schema#
 			rdfa: http://www.w3.org/ns/rdfa#
@@ -53,7 +54,7 @@
 			</head>
 			<body>
 				<xsl:call-template name="header"/>
-				<div id="source" class="center">					
+				<div id="source" class="center">
 					<xsl:copy-of select="*"/>
 				</div>
 				<!--<div id="source" class="center">
@@ -68,9 +69,19 @@
 					<cinclude:include src="cocoon:/widget?uri={concat('http://nomisma.org/id/', $id)}&amp;curie={$typeof}&amp;template=display"/>
 				</xsl:if>
 				<div class="center">
+					<a href="{$id}.xml">Source XHTML+RDFa</a>
+					<xsl:text> | </xsl:text>
+					<a href="https://github.com/AmericanNumismaticSociety/nomisma-ids/blob/master/id/{$id}.txt">GitHub File</a>
+					<xsl:text> | </xsl:text>
 					<a href="http://www.w3.org/2012/pyRdfa/extract?uri={$uri}">RDF Triples (Turtle)</a>
+					<xsl:text> | </xsl:text>
+					<a href="{$id}.rdf">RDF/XML</a>
+					<xsl:text> | </xsl:text>
+					<a href="http://www.w3.org/2012/pyRdfa/extract?uri={$uri}&amp;format=json">JSON-LD</a>
+					<xsl:text> | </xsl:text>
 					<a href="http://validator.w3.org/check?uri={$uri}">W3 HTML Validator</a>
-					<a href="http://nomisma.org/nomisma.org.xml">Download all nomisma.org ids.</a>
+					<xsl:text> | </xsl:text>
+					<a href="{$display_path}nomisma.org.xml">Download all nomisma.org ids.</a>
 				</div>
 
 				<!-- footer -->

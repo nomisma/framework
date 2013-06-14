@@ -224,6 +224,11 @@
 				<map:transform type="cinclude"/>
 				<map:serialize type="xhtml+rdfa"/>
 			</map:match>
+			
+			<!-- data dumps -->
+			<map:match pattern="nomisma.org.xml">
+				<map:read src="dump/nomisma.org.xml" mime-type="application/xml"/>
+			</map:match>
 
 			<!-- sparql interface -->
 			<map:match pattern="sparql">

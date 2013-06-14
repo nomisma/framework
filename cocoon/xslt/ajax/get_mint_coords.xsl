@@ -5,8 +5,6 @@
 	<xsl:param name="id"/>
 
 	<xsl:template match="/">
-		<xsl:variable name="coordinates" select="tokenize(descendant::xhtml:div[@property='gml:pos'], ' ')"/>
-		
 		<Placemark xmlns="http://earth.google.com/kml/2.0">
 			<name>
 				<xsl:value-of select="descendant::xhtml:div[@property='skos:prefLabel'][@xml:lang='en']"/>
@@ -15,7 +13,7 @@
 			<!-- add placemark -->
 			<Point>
 				<coordinates>
-					<xsl:value-of select="concat($coordinates[2], ',', $coordinates[1])"/>
+					<xsl:value-of select="concat(descendant::xhtml:div[@property='geo:long'], ',', descendant::xhtml:div[@property='geo:lat'])"/>
 				</coordinates>
 			</Point>
 		</Placemark>

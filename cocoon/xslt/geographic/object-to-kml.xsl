@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:cinclude="http://apache.org/cocoon/include/1.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:gml="http://www.opengis.net/gml/"
-	exclude-result-prefixes="xs cinclude gml xhtml" version="2.0">
+	xmlns:cinclude="http://apache.org/cocoon/include/1.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	exclude-result-prefixes="xs cinclude geo xhtml" version="2.0">
 	<xsl:param name="id"/>
 
 	<xsl:variable name="uri">
@@ -48,7 +48,6 @@
 				<!-- display mint -->
 				<xsl:choose>
 					<xsl:when test="$typeof='mint'">
-						<xsl:variable name="coordinates" select="tokenize(descendant::xhtml:div[@property='gml:pos'], ' ')"/>
 						<Placemark xmlns="http://earth.google.com/kml/2.0">
 							<name>
 								<xsl:value-of select="descendant::xhtml:div[@property='skos:prefLabel'][@xml:lang='en']"/>
@@ -57,7 +56,7 @@
 							<!-- add placemark -->
 							<Point>
 								<coordinates>
-									<xsl:value-of select="concat($coordinates[2], ',', $coordinates[1])"/>
+									<xsl:value-of select="concat(descendant::xhtml:div[@property='geo:long'], ',', descendant::xhtml:div[@property='geo:lat'])"/>
 								</coordinates>
 							</Point>
 						</Placemark>
@@ -67,16 +66,6 @@
 						<cinclude:include src="cocoon:/widget?uri={$uri}&amp;curie={$typeof}&amp;template=kml"/>
 					</xsl:when>
 					<xsl:when test="$typeof='hoard'">
-						<xsl:variable name="coordinates">
-							<xsl:choose>
-								<xsl:when test="descendant::xhtml:span[@property='findspot']/@content">
-									<xsl:value-of select="descendant::xhtml:span[@property='findspot']/@content"/>
-								</xsl:when>
-								<xsl:when test="descendant::xhtml:span[@rel='nm:findspot']/xhtml:span[@property='gml:pos']">
-									<xsl:value-of select="descendant::xhtml:span[@rel='nm:findspot']/xhtml:span[@property='gml:pos']"/>
-								</xsl:when>
-							</xsl:choose>
-						</xsl:variable>
 						<!-- create point for findspot -->
 						<Placemark xmlns="http://earth.google.com/kml/2.0">
 							<name>
@@ -94,7 +83,7 @@
 							<!-- add placemark -->
 							<Point>
 								<coordinates>
-									<xsl:value-of select="concat(tokenize($coordinates, ' ')[2], ',', tokenize($coordinates, ' ')[1])"/>
+									<xsl:value-of select="concat(descendant::xhtml:div[@property='geo:long'], ',', descendant::xhtml:div[@property='geo:lat'])"/>
 								</coordinates>
 							</Point>
 						</Placemark>

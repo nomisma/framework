@@ -34,7 +34,7 @@
 			</xsl:if>
 		</xsl:variable>
 
-		<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml/" xmlns:gx="http://www.google.com/kml/ext/2.2"
+		<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:gx="http://www.google.com/kml/ext/2.2"
 			xmlns="http://www.w3.org/2005/Atom">
 			<title>
 				<xsl:value-of select="/content/config/title"/>
