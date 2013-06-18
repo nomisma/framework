@@ -34,8 +34,8 @@
 		</xsl:variable>
 		
 		<xsl:element name="{$element}">
-			<xsl:if test="not(child::*) and text()">
-				<xsl:attribute name="xml:lang" select="if(string(@xml:lang)) then @xml:lang else 'en'"/>
+			<xsl:if test="@xml:lang">
+				<xsl:attribute name="xml:lang" select="@xml:lang"/>
 			</xsl:if>
 			<xsl:if test="string(@about)">
 				<xsl:attribute name="rdf:about" select="concat($base, @about)"/>
@@ -51,10 +51,11 @@
 			</xsl:if>
 			<xsl:choose>
 				<xsl:when test="@content">
-					<xsl:value-of select="if(number(@content)) then format-number(@content, '0000') else @content"/>
+					<xsl:value-of select="@content"/>
 				</xsl:when>
 				<xsl:otherwise>
 					<xsl:choose>
+						<xsl:when test="string(@rel) and string(@resource)"/>
 						<xsl:when test="string(@rel) and child::*">
 							<rdf:Description>
 								<xsl:apply-templates/>
