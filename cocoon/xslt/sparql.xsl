@@ -67,7 +67,7 @@ PREFIX owl:      <http://www.w3.org/2002/07/owl#>
 SELECT ?type ?weight WHERE {
 ?type nm:authority <http://nomisma.org/id/augustus> .
 ?type nm:denomination <http://nomisma.org/id/denarius> .
-?type dcterms:partOf <http://nomisma.org/id/ric>.
+?type dcterms:isPartOf <http://nomisma.org/id/ric>.
 ?coin nm:type_series_item ?type .
 ?coin nm:weight ?weight 
 }]]>

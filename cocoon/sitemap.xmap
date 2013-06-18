@@ -113,7 +113,6 @@
 				<id-path>/usr/local/projects/nomisma-ids/id</id-path>
 				<sparql-url>http://localhost:3030/nomisma/query</sparql-url>
 				<geonames_api_key>anscoins</geonames_api_key>
-				<!--<collection-name>ocre</collection-name>-->
 			</global-variables>
 		</map:component-configurations>
 

@@ -83,8 +83,8 @@
 							<b>Parameters</b> : constraints (following predicate - object format. multiple contraints separated by ' AND '. See examples below)<br/>
 							<b>Result</b> : returns a decimal number in a response wrapper.<br/>
 							<b>Examples</b>: <a
-								href="apis/avgAxis?constraints=dcterms:partOf &lt;http://nomisma.org/id/ric> AND nm:mint &lt;http://nomisma.org/id/rome> AND nm:denomination &lt;http://nomisma.org/id/denarius>"
-								>http://nomisma.org/apis/avgAxis?constraints=dcterms:partOf &lt;http://nomisma.org/id/ric> AND nm:mint &lt;http://nomisma.org/id/rome> AND nm:denomination
+								href="apis/avgAxis?constraints=dcterms:isPartOf &lt;http://nomisma.org/id/ric> AND nm:mint &lt;http://nomisma.org/id/rome> AND nm:denomination &lt;http://nomisma.org/id/denarius>"
+								>http://nomisma.org/apis/avgAxis?constraints=dcterms:isPartOf &lt;http://nomisma.org/id/ric> AND nm:mint &lt;http://nomisma.org/id/rome> AND nm:denomination
 								&lt;http://nomisma.org/id/denarius></a>
 							<br/>
 							<a href="apis/avgAxis?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1a&gt;"
@@ -100,8 +100,8 @@
 							<b>Parameters</b> : constraints (following predicate - object format. multiple contraints separated by ' AND '. See examples below)<br/>
 							<b>Result</b> : returns a decimal number in a response wrapper.<br/>
 							<b>Examples</b>: <a
-								href="apis/avgDiameter?constraints=dcterms:partOf &lt;http://nomisma.org/id/ric> AND nm:mint &lt;http://nomisma.org/id/rome> AND nm:denomination &lt;http://nomisma.org/id/denarius>"
-								>http://nomisma.org/apis/avgDiameter?constraints=dcterms:partOf &lt;http://nomisma.org/id/ric> AND nm:mint &lt;http://nomisma.org/id/rome> AND nm:denomination
+								href="apis/avgDiameter?constraints=dcterms:isPartOf &lt;http://nomisma.org/id/ric> AND nm:mint &lt;http://nomisma.org/id/rome> AND nm:denomination &lt;http://nomisma.org/id/denarius>"
+								>http://nomisma.org/apis/avgDiameter?constraints=dcterms:isPartOf &lt;http://nomisma.org/id/ric> AND nm:mint &lt;http://nomisma.org/id/rome> AND nm:denomination
 								&lt;http://nomisma.org/id/denarius></a>
 							<br/>
 							<a href="apis/avgDiameter?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1a&gt;"
@@ -117,8 +117,8 @@
 							<b>Parameters</b> : constraints (following predicate - object format. multiple contraints separated by ' AND '. See examples below)<br/>
 							<b>Result</b> : returns a decimal number in a response wrapper.<br/>
 							<b>Examples</b>: <a
-								href="apis/avgWeight?constraints=dcterms:partOf &lt;http://nomisma.org/id/ric> AND nm:mint &lt;http://nomisma.org/id/rome> AND nm:denomination &lt;http://nomisma.org/id/denarius>"
-								>http://nomisma.org/apis/avgWeight?constraints=dcterms:partOf &lt;http://nomisma.org/id/ric> AND nm:mint &lt;http://nomisma.org/id/rome> AND nm:denomination
+								href="apis/avgWeight?constraints=dcterms:isPartOf &lt;http://nomisma.org/id/ric> AND nm:mint &lt;http://nomisma.org/id/rome> AND nm:denomination &lt;http://nomisma.org/id/denarius>"
+								>http://nomisma.org/apis/avgWeight?constraints=dcterms:isPartOf &lt;http://nomisma.org/id/ric> AND nm:mint &lt;http://nomisma.org/id/rome> AND nm:denomination
 								&lt;http://nomisma.org/id/denarius></a>
 							<br/>
 							<a href="apis/avgWeight?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1a&gt;"
