@@ -28,7 +28,8 @@
 			<map:generator name="search" src="org.apache.cocoon.components.search.LuceneCocoonSearcher" index="index"> </map:generator>
 		</map:generators>
 
-		<map:generator label="content" logger="sitemap.generator.directory" name="directory" pool-grow="2" pool-max="16" pool-min="2" src="org.apache.cocoon.generation.DirectoryGenerator"/>
+		<map:generator label="content" logger="sitemap.generator.directory" name="directory" pool-grow="2" pool-max="16" pool-min="2"
+			src="org.apache.cocoon.generation.DirectoryGenerator"/>
 		<!-- ************************************* -->
 		<!-- Cocoon transformers - xslt is default -->
 		<!-- ************************************* -->
@@ -205,7 +206,7 @@
 				<map:transform type="cinclude"/>
 				<map:serialize type="rdf"/>
 			</map:match>
-			
+
 			<map:match pattern="id/*.xml">
 				<map:generate src="{global:id-path}/{1}.txt"/>
 				<map:serialize type="xml"/>
@@ -223,10 +224,22 @@
 				<map:transform type="cinclude"/>
 				<map:serialize type="xhtml+rdfa"/>
 			</map:match>
-			
+
 			<!-- data dumps -->
 			<map:match pattern="nomisma.org.xml">
-				<map:read src="dump/nomisma.org.xml" mime-type="application/xml"/>
+				<map:read src="dump/nomisma.org.xml" mime-type="application/xhtml+xml"/>
+			</map:match>
+			<map:match pattern="nomisma.org.rdf">
+				<map:read src="dump/nomisma.org.rdf" mime-type="application/rdf+xml"/>
+			</map:match>
+			<map:match pattern="nomisma.org.ttl">
+				<map:read src="dump/nomisma.org.ttl" mime-type="application/x-turtle"/>
+			</map:match>
+			<map:match pattern="nomisma.org.rj">
+				<map:read src="dump/nomisma.org.rj" mime-type="application/rdf+json"/>
+			</map:match>
+			<map:match pattern="nomisma.org.nt">
+				<map:read src="dump/nomisma.org.nt" mime-type="text/plain"/>
 			</map:match>
 
 			<!-- sparql interface -->
@@ -354,7 +367,8 @@
 			</map:match>
 
 			<map:match pattern="feed/">
-				<map:generate src="{global:solr-url}select?q={url-encode:{request-param:q}}&amp;sort={url-encode:timestamp desc}&amp;rows=100&amp;start={request-param:start}"/>
+				<map:generate
+					src="{global:solr-url}select?q={url-encode:{request-param:q}}&amp;sort={url-encode:timestamp desc}&amp;rows=100&amp;start={request-param:start}"/>
 				<map:transform src="xslt/feed.xsl" label="basiccontent" type="xslt-saxon">
 					<map:parameter name="use-request-parameters" value="true"/>
 				</map:transform>

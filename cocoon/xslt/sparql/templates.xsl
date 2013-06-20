@@ -65,9 +65,9 @@
 					PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 					PREFIX dcterms:  <http://purl.org/dc/terms/>
 					PREFIX nm:       <http://nomisma.org/id/>
-					PREFIX owl:      <http://www.w3.org/2002/07/owl#>
+					PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
 					PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
-					SELECT DISTINCT ?findspot ?lat ?long ?title WHERE {
+					SELECT DISTINCT ?object ?findspot ?lat ?long ?prefLabel WHERE {
 					{?type nm:mint <URI> .
 					?object nm:type_series_item ?type.
 					?object nm:findspot ?findspot .
@@ -80,6 +80,7 @@
 					?findspot geo:lat ?lat .
 					?findspot geo:long ?long
 					}
+					OPTIONAL {?object skos:prefLabel ?prefLabel}
 					OPTIONAL {?object dcterms:title ?title}
 					}]]>
 				</xsl:when>
@@ -90,11 +91,12 @@
 					PREFIX nm:       <http://nomisma.org/id/>
 					PREFIX owl:      <http://www.w3.org/2002/07/owl#>
 					PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
-					SELECT ?object ?findspot ?lat ?long ?title WHERE {
+					SELECT ?object ?findspot ?lat ?long ?title ?prefLabel WHERE {
 					?object nm:type_series_item <URI> .
 					?object nm:findspot ?findspot .
 					?findspot geo:lat ?lat .
 					?findspot geo:long ?long .
+					OPTIONAL {?object skos:prefLabel ?prefLabel}
 					OPTIONAL {?object dcterms:title ?title}
 					}
 					]]>
@@ -331,6 +333,9 @@
 				<xsl:choose>
 					<xsl:when test="res:binding[@name='title']/res:literal">
 						<xsl:value-of select="res:binding[@name='title']/res:literal"/>
+					</xsl:when>
+					<xsl:when test="res:binding[@name='prefLabel']/res:literal">
+						<xsl:value-of select="res:binding[@name='prefLabel']/res:literal"/>
 					</xsl:when>
 					<xsl:otherwise>
 						<xsl:value-of select="res:binding[@name='object']/res:uri"/>

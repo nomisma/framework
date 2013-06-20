@@ -108,6 +108,14 @@
 				<div class="center">
 					<h3>Data Download</h3>
 					<a href="nomisma.org.xml">XHTML+RDFa</a>
+					<xsl:text> | </xsl:text>
+					<a href="nomisma.org.rdf">RDF/XML</a>
+					<xsl:text> | </xsl:text>
+					<a href="nomisma.org.ttl">Turtle</a>
+					<xsl:text> | </xsl:text>
+					<a href="nomisma.org.nt">N-Triples</a>
+					<xsl:text> | </xsl:text>
+					<a href="nomisma.org.rj">RDF/JSON</a>
 				</div>
 				<!-- footer -->
 				<xsl:call-template name="footer"/>

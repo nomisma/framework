@@ -69,15 +69,7 @@
 						<!-- create point for findspot -->
 						<Placemark xmlns="http://earth.google.com/kml/2.0">
 							<name>
-								<xsl:choose>
-									<xsl:when test="descendant::xhtml:div[@property='skos:prefLabel'][@xml:lang='en']">
-										<xsl:value-of select="descendant::xhtml:div[@property='skos:prefLabel'][@xml:lang='en']"/>
-									</xsl:when>
-									<xsl:otherwise>
-										<xsl:text>http://nomisma.org/id/</xsl:text>
-										<xsl:value-of select="$id"/>
-									</xsl:otherwise>
-								</xsl:choose>
+								<xsl:value-of select="descendant::xhtml:div[@property='skos:prefLabel'][@xml:lang='en']"/>
 							</name>
 							<styleUrl>#hoard</styleUrl>
 							<!-- add placemark -->

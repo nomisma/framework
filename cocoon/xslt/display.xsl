@@ -85,7 +85,7 @@
 					<xsl:text> | </xsl:text>
 					<a href="http://isaw2.atlantides.org/lawdi/force-graph.html?s={$uri}">Visualize RDF</a>
 					<xsl:text> | </xsl:text>
-					<a href="{$display_path}nomisma.org.xml">Download all nomisma.org ids.</a>
+					<a href="{$display_path}nomisma.org.xml">Download all nomisma.org ids (XHTML+RDFa).</a>
 				</div>
 
 				<!-- footer -->
