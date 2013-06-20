@@ -56,7 +56,7 @@
 							<!-- add placemark -->
 							<Point>
 								<coordinates>
-									<xsl:value-of select="concat(descendant::xhtml:div[@property='geo:long'], ',', descendant::xhtml:div[@property='geo:lat'])"/>
+									<xsl:value-of select="concat(descendant::*[@property='geo:long'], ',', descendant::*[@property='geo:lat'])"/>
 								</coordinates>
 							</Point>
 						</Placemark>
@@ -75,7 +75,7 @@
 							<!-- add placemark -->
 							<Point>
 								<coordinates>
-									<xsl:value-of select="concat(descendant::xhtml:div[@property='geo:long'], ',', descendant::xhtml:div[@property='geo:lat'])"/>
+									<xsl:value-of select="concat(descendant::*[@property='geo:long'], ',', descendant::*[@property='geo:lat'])"/>
 								</coordinates>
 							</Point>
 						</Placemark>
