@@ -181,7 +181,7 @@
 					<map:parameter name="requestURI" value="{request:requestURI }"/>
 				</map:transform>
 				<map:transform type="cinclude"/>
-				<map:serialize type="xml"/>
+				<map:serialize type="kml"/>
 			</map:match>
 
 			<map:match pattern="id/*.nuds">
