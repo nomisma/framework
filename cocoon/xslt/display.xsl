@@ -79,7 +79,11 @@
 					<xsl:text> | </xsl:text>
 					<a href="http://www.w3.org/2012/pyRdfa/extract?uri={$uri}&amp;format=json">JSON-LD</a>
 					<xsl:text> | </xsl:text>
+					<a href="{$id}.kml">KML</a>
+					<xsl:text> | </xsl:text>
 					<a href="http://validator.w3.org/check?uri={$uri}">W3 HTML Validator</a>
+					<xsl:text> | </xsl:text>
+					<a href="http://isaw2.atlantides.org/lawdi/force-graph.html?s={$uri}">Visualize RDF</a>
 					<xsl:text> | </xsl:text>
 					<a href="{$display_path}nomisma.org.xml">Download all nomisma.org ids.</a>
 				</div>
