@@ -79,18 +79,17 @@ SELECT ?type ?weight WHERE {
 PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:  <http://purl.org/dc/terms/>
 PREFIX nm:       <http://nomisma.org/id/>
-PREFIX owl:      <http://www.w3.org/2002/07/owl#>
-SELECT ?annotation ?objectType ?publisher ?weight ?axis ?obvThumb ?revThumb ?obvRef ?revRef ?findspot ?type  WHERE {
-{?annotation nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1a>. }
-UNION { ?annotation nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1b> }
-?annotation rdf:type ?objectType .
-OPTIONAL { ?annotation dcterms:publisher ?publisher } .
-OPTIONAL { ?annotation nm:weight ?weight }
-OPTIONAL { ?annotation nm:axis ?axis }
-OPTIONAL { ?annotation nm:obverseThumbnail ?obvThumb }
-OPTIONAL { ?annotation nm:reverseThumbnail ?revThumb }
-OPTIONAL { ?annotation nm:obverseReference ?obvRef }
-OPTIONAL { ?annotation nm:reverseReference ?revRef }
+SELECT ?object ?objectType ?publisher ?weight ?axis ?obvThumb ?revThumb ?obvRef ?revRef ?findspot ?type  WHERE {
+{?object nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1a>. }
+UNION { ?object nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1b> }
+?object rdf:type ?objectType .
+OPTIONAL { ?object dcterms:publisher ?publisher } .
+OPTIONAL { ?object nm:weight ?weight }
+OPTIONAL { ?object nm:axis ?axis }
+OPTIONAL { ?object nm:obverseThumbnail ?obvThumb }
+OPTIONAL { ?object nm:reverseThumbnail ?revThumb }
+OPTIONAL { ?object nm:obverseReference ?obvRef }
+OPTIONAL { ?object nm:reverseReference ?revRef }
 }]]>
 							</pre>
 						</div>
@@ -100,12 +99,69 @@ OPTIONAL { ?annotation nm:reverseReference ?revRef }
 PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:  <http://purl.org/dc/terms/>
 PREFIX nm:	<http://nomisma.org/id/>
-PREFIX owl:      <http://www.w3.org/2002/07/owl#>
 PREFIX xs:	<http://www.w3.org/2001/XMLSchema#>
 SELECT (AVG(xs:decimal(?weight)) AS ?average)
 WHERE {
 ?g nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1a>.
 ?g nm:weight ?weight
+}]]>
+							</pre>
+						</div>
+						<div>
+							<b>Average diameter of RIC Augustus 1a</b><br/>
+							<pre><![CDATA[
+PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:  <http://purl.org/dc/terms/>
+PREFIX nm:	<http://nomisma.org/id/>
+PREFIX xs:	<http://www.w3.org/2001/XMLSchema#>
+SELECT (AVG(xs:decimal(?weight)) AS ?average)
+WHERE {
+?g nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1a>.
+?g nm:diameter ?diameter
+}]]>
+							</pre>
+						</div>
+						<div>
+							<b>Get all findspots for coins minted in Rome, where the mint is defined explicitly or implicitly through the coin type.</b><br/>
+							<pre><![CDATA[
+PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:  <http://purl.org/dc/terms/>
+PREFIX nm:       <http://nomisma.org/id/>
+PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+SELECT DISTINCT ?object ?findspot ?lat ?long ?title ?prefLabel WHERE {
+{?type nm:mint <http://nomisma.org/id/rome> .
+?object nm:type_series_item ?type.
+?object nm:findspot ?findspot .
+?findspot geo:lat ?lat .
+?findspot geo:long ?long
+}
+UNION {
+?object nm:mint <http://nomisma.org/id/rome> .
+?object nm:findspot ?findspot .
+?findspot geo:lat ?lat .
+?findspot geo:long ?long
+}
+OPTIONAL {?object skos:prefLabel ?prefLabel}
+OPTIONAL {?object dcterms:title ?title}
+}]]>
+							</pre>
+						</div>
+						<div>
+							<b>Get all findspots for RIC Augustus 1a</b><br/>
+							<pre><![CDATA[
+PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:  <http://purl.org/dc/terms/>
+PREFIX nm:       <http://nomisma.org/id/>
+PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+SELECT ?object ?findspot ?lat ?long ?title ?prefLabel WHERE {
+?object nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1a> .
+?object nm:findspot ?findspot .
+?findspot geo:lat ?lat .
+?findspot geo:long ?long .
+OPTIONAL {?object skos:prefLabel ?prefLabel}
+OPTIONAL {?object dcterms:title ?title}
 }]]>
 							</pre>
 						</div>
