@@ -404,6 +404,12 @@
 			</xforms:action>
 
 			<!-- ************* SPARQL SUBMISSIONS **********************-->
+			<xforms:submission id="getRdf" action="http://localhost:8080/cocoon/nomisma/id/{instance('control-instance')/id}.rdf"
+				ref="instance('rdf')" replace="instance" method="get">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Failed to get RDF.</xforms:message>
+			</xforms:submission>
+
+			<!-- ************* SPARQL SUBMISSIONS **********************-->
 			<!-- SPARQL queries -->
 			<xforms:submission id="submit-sparqlQuery" action="{instance('control-instance')/endpoint}query?query={encode-for-uri(instance('sparqlQuery'))}&amp;output=xml"
 				ref="instance('sparqlResponse')" replace="instance" method="get">
@@ -479,7 +485,7 @@
 								<xforms:insert nodeset="instance('dump')"
 									origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/save-id.xpl', ('doc', 'configuration'), (instance('doc'), instance('save-config')), 'data')"/>
 								<!-- first RDF to triplestore -->
-								<xforms:insert nodeset="instance('rdf')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-rdf.xpl', 'data', instance('doc'), 'data')"/>								
+								<xforms:send submission="getRdf"/>								
 								<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-template'), 'URI', concat('http://nomisma.org/id/', instance('doc')/@about))"/>
 								<xforms:send submission="delete-graph"/>
 								<xforms:send submission="post-new"/>
