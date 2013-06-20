@@ -89,7 +89,7 @@
 					PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 					PREFIX dcterms:  <http://purl.org/dc/terms/>
 					PREFIX nm:       <http://nomisma.org/id/>
-					PREFIX owl:      <http://www.w3.org/2002/07/owl#>
+					PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
 					PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 					SELECT ?object ?findspot ?lat ?long ?title ?prefLabel WHERE {
 					?object nm:type_series_item <URI> .
