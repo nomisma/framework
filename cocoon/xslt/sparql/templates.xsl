@@ -67,7 +67,7 @@
 					PREFIX nm:       <http://nomisma.org/id/>
 					PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
 					PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
-					SELECT DISTINCT ?object ?findspot ?lat ?long ?prefLabel WHERE {
+					SELECT DISTINCT ?object ?findspot ?lat ?long ?title ?prefLabel WHERE {
 					{?type nm:mint <URI> .
 					?object nm:type_series_item ?type.
 					?object nm:findspot ?findspot .
