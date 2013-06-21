@@ -259,7 +259,14 @@
 		<xsl:if test="number($year) &lt; 500 and number($year) &gt; 0">
 			<xsl:text>A.D. </xsl:text>
 		</xsl:if>
-		<xsl:value-of select="abs(number($year))"/>
+		<xsl:choose>
+			<xsl:when test="number($year) &lt;= 0">
+				<xsl:value-of select="abs(number($year)) + 1"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="abs(number($year))"/>
+			</xsl:otherwise>
+		</xsl:choose>
 		<xsl:if test="number($year) &lt; 0">
 			<xsl:text> B.C.</xsl:text>
 		</xsl:if>
