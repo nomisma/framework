@@ -511,6 +511,8 @@
 						<xforms:trigger ref="instance('control-instance')/save-trigger">
 							<xforms:label><xhtml:img src="{$display_path}images/save.gif" alt="Save"/>Save</xforms:label>
 							<xforms:action ev:event="DOMActivate">
+								<!-- set id -->
+								<xforms:setvalue ref="instance('control-instance')/id" value="instance('doc')/@about"/>
 								<!-- save file back to disk -->
 								<xforms:setvalue ref="instance('save-config')/url"
 									value="concat('file://', instance('control-instance')/id_path, instance('doc')/@about, '.txt')"/>
