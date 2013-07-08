@@ -88,6 +88,16 @@
 						<img src="http://www.jisc.ac.uk/media/3/4/5/%7B345F1B7F-4AD6-4A61-B5BE-70AFA60F002F%7Djisclogojpgweb.jpg" />
 						</a>-->
 						<div class="media">
+							<a href="http://finds.org.uk/" title="http://finds.org.uk/" rel="nofollow">
+								<img src="http://finds.org.uk/images/logos/pas.gif" alt="http://finds.org.uk/"/>
+							</a>
+						</div>
+						<div class="media">
+							<a href="http://www.britishmuseum.org/" title="http://www.britishmuseum.org/" rel="nofollow">
+								<img src="http://finds.org.uk/images/logos/bm_logo.png" alt="http://www.britishmuseum.org/"/>
+							</a>
+						</div>
+						<div class="media">
 							<a href="http://www.ahrc.ac.uk/" title="http://www.ahrc.ac.uk/" rel="nofollow">
 								<img src="http://archaeologydataservice.ac.uk/images/logos/org34.png" alt="http://www.ahrc.ac.uk/"/>
 							</a>
