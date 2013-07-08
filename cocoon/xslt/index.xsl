@@ -98,6 +98,11 @@
 							</a>
 						</div>
 						<div class="media">
+							<a href="http://www.dainst.org/" title="http://www.dainst.org/" rel="nofollow">
+								<img src="images/GreifBlau.jpg" alt="http://www.dainst.org/"/>
+							</a>
+						</div>
+						<div class="media">
 							<a href="http://www.ahrc.ac.uk/" title="http://www.ahrc.ac.uk/" rel="nofollow">
 								<img src="http://archaeologydataservice.ac.uk/images/logos/org34.png" alt="http://www.ahrc.ac.uk/"/>
 							</a>
