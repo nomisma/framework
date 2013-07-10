@@ -65,7 +65,7 @@
 				<div class="center">
 					<h3>Examples</h3>
 					<xsl:for-each select="document(concat($service, '&amp;method=flickr.photos.search&amp;per_page=12&amp;machine_tags=nomisma:'))//photo">
-						<div style="float:left;width:150px;height:150px;text-align:center">
+						<div class="flickr_thumbnail">
 							<a href="http://www.flickr.com/photos/{@owner}/{@id}" title="{@title}">
 								<img src="{document(concat($service, '&amp;method=flickr.photos.getSizes&amp;photo_id=', @id))//size[@label='Thumbnail']/@source}" alt="{@title}"/>
 							</a>

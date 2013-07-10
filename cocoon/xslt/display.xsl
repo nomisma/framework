@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:cinclude="http://apache.org/cocoon/include/1.0"
-	xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:saxon="http://saxon.sf.net/" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	exclude-result-prefixes="xs xhtml cinclude" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:cinclude="http://apache.org/cocoon/include/1.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:saxon="http://saxon.sf.net/"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs xhtml cinclude" version="2.0">
 	<xsl:include href="templates.xsl"/>
 
 	<xsl:param name="id"/>
@@ -9,6 +8,7 @@
 	<xsl:param name="serverPort "/>
 	<xsl:param name="requestURI "/>
 	<xsl:param name="flickr_api_key"/>
+	<xsl:variable name="service" select="concat('http://api.flickr.com/services/rest/?api_key=', $flickr_api_key)"/>
 
 	<xsl:variable name="uri" select="concat('http://nomisma.org/id/', $id)"/>
 
@@ -68,6 +68,24 @@
 				</xsl:if>
 				<xsl:if test="$typeof='type_series_item'">
 					<cinclude:include src="cocoon:/widget?uri={concat('http://nomisma.org/id/', $id)}&amp;curie={$typeof}&amp;template=display"/>
+				</xsl:if>
+				<xsl:if test="$typeof != 'numismatic_term'">
+					<xsl:variable name="predicate" select="if ($typeof='roman_emperor') then 'authority' else $typeof"/>
+					<xsl:variable name="photos" as="element()*">
+						<xsl:copy-of select="document(concat($service, '&amp;method=flickr.photos.search&amp;per_page=12&amp;machine_tags=nomisma:', $predicate, '=', $id))/*"/>
+					</xsl:variable>
+					<xsl:if test="count($photos//photo) &gt; 0">
+						<div class="center">
+							<h3>Flickr Images of this Typology (<a href="http://www.flickr.com/photos/tags/nomisma:{$predicate}={$id}">See all photos.</a>)</h3>
+								<xsl:for-each select="$photos//photo">
+									<div class="flickr_thumbnail">
+										<a href="http://www.flickr.com/photos/{@owner}/{@id}" title="{@title}">
+											<img src="{document(concat($service, '&amp;method=flickr.photos.getSizes&amp;photo_id=', @id))//size[@label='Thumbnail']/@source}" alt="{@title}"/>
+										</a>
+									</div>
+								</xsl:for-each>
+						</div>
+					</xsl:if>
 				</xsl:if>
 				<div class="center">
 					<a href="{$id}.xml">Source XHTML+RDFa</a>

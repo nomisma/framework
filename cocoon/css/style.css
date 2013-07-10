@@ -89,10 +89,16 @@ div[rel]>div {
 	width:25%;
 	text-align:left;
 	float:left;
-	height:100px;	
+	height:100px;
 }
 .media img {
-	height:60px;	
+	height:60px;
+}
+.flickr_thumbnail {
+	float:left;
+	width:150px;
+	height:150px;
+	text-align:center
 }
 /*
   ***************************************
@@ -147,14 +153,14 @@ div.custominfostyle {
 }
 /*
   ***************************************
- Display pages
+  Display pages
   ***************************************
  */
- dt {
+dt {
 	width:125px;
 	float:left;
 }
- .g_doc {
+.g_doc {
 	width:30%;
 	float:left;
 	height:325px;
@@ -172,7 +178,7 @@ div.custominfostyle {
 .result_link {
 	font-size:120%;
 }
- .thumbImage {
+.thumbImage {
 	margin:5px;
 }
 .thumbImage>img {
@@ -180,20 +186,20 @@ div.custominfostyle {
 }
 /*
   ***************************************
-API documentation
+  API documentation
   ***************************************
  */
- #api-table {
- 	width:60%;
- 	margin: auto;
- }
- #api-table th {
- 	background-color:silver;
- 	border:1px solid gray;
- }
- #api-table th:first-child {
- 	text-align:left;	
- }
-  #api-table td:not(:first-child) {
- 	text-align:center;	
- }
+#api-table {
+	width:60%;
+	margin: auto;
+}
+#api-table th {
+	background-color:silver;
+	border:1px solid gray;
+}
+#api-table th:first-child {
+	text-align:left;
+}
+#api-table td:not(:first-child) {
+	text-align:center;
+}
