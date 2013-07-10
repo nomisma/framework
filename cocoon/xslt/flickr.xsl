@@ -21,7 +21,7 @@
 			vocab="http://nomisma.org/id/">
 			<head>
 				<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
-				<title>Nomisma</title>
+				<title>Nomisma Flickr Machine Tags</title>
 				<style type="text/css">
 					@import url(<xsl:value-of select="concat($display_path, 'style.css')"/>
 					);</style>
