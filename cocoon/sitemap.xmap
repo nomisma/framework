@@ -114,6 +114,7 @@
 				<id-path>/usr/local/projects/nomisma-ids/id</id-path>
 				<sparql-url>http://localhost:3030/nomisma/query</sparql-url>
 				<geonames_api_key>anscoins</geonames_api_key>
+				<flickr_api_key>ffb0c1787046578c9e5490e9a133a231</flickr_api_key>
 			</global-variables>
 		</map:component-configurations>
 
@@ -220,6 +221,7 @@
 					<map:parameter name="serverName" value="{request:serverName}"/>
 					<map:parameter name="serverPort" value="{request:serverPort}"/>
 					<map:parameter name="requestURI" value="{request:requestURI }"/>
+					<map:parameter name="flickr_api_key" value="{global:flickr_api_key}"/>
 				</map:transform>
 				<map:transform type="cinclude"/>
 				<map:serialize type="xhtml+rdfa"/>
@@ -241,6 +243,16 @@
 			<map:match pattern="nomisma.org.nt">
 				<map:read src="dump/nomisma.org.nt" mime-type="text/plain"/>
 			</map:match>
+			
+			<!-- flickr page -->
+			<map:match pattern="flickr">
+				<map:generate src="xml/empty.xml" label="record"/>
+				<map:transform src="xslt/flickr.xsl" label="basiccontent" type="xslt-saxon">
+					<map:parameter name="use-request-parameters" value="true"/>
+					<map:parameter name="flickr_api_key" value="{global:flickr_api_key}"/>
+				</map:transform>
+				<map:serialize type="xhtml+rdfa"/>
+			</map:match>
 
 			<!-- sparql interface -->
 			<map:match pattern="sparql">
@@ -248,7 +260,7 @@
 				<map:transform src="xslt/sparql.xsl" label="basiccontent" type="xslt-saxon">
 					<map:parameter name="use-request-parameters" value="true"/>
 				</map:transform>
-				<map:serialize type="html"/>
+				<map:serialize type="xhtml+rdfa"/>
 			</map:match>
 
 			<!-- create query wrapper -->
