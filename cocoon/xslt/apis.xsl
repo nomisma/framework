@@ -72,6 +72,24 @@
 								</td>
 								<td/>
 							</tr>
+							<tr>
+								<td>
+									<a href="#getNuds">getNuds</a>
+								</td>
+								<td>
+									<a href="apis/getNuds?identifiers=rrc-100.2|rrc-299.1b">XML</a>
+								</td>
+								<td/>
+							</tr>
+							<tr>
+								<td>
+									<a href="#getRdf">getRdf</a>
+								</td>
+								<td>
+									<a href="apis/getRdf?identifiers=rome|augustus|av|aureus">XML</a>
+								</td>
+								<td/>
+							</tr>
 						</tbody>
 					</table>					
 					<div>
@@ -131,7 +149,7 @@
 						<p>Get the closing date of a hoard based on coin type URIs provided in the request parameter.<br/>
 							<b>Webservice Type</b> : REST<br/>
 							<b>Url</b> : nomisma.org/closingDate?<br/>
-							<b>Parameters</b> : identifiers(coin type URIs divided by a pipe '|')<br/>
+							<b>Parameters</b> : identifiers (coin type URIs divided by a pipe '|')<br/>
 							<b>Result</b> : returns an integer which represents the year. Negative numbers refer to B.C. dates.<br/>
 							<b>Examples</b>: <a href="apis/closingDate?identifiers=http://nomisma.org/id/rrc-385.4|http://nomisma.org/id/rrc-409.2|http://numismatics.org/ocre/id/ric.1(2).aug.1a"
 								>http://nomisma.org/apis/closingDate?identifiers=http://nomisma.org/id/rrc-385.4|http://nomisma.org/id/rrc-409.2|http://numismatics.org/ocre/id/ric.1(2).aug.1a</a>
@@ -146,6 +164,28 @@
 							<b>Parameters</b> : uri (of Nomisma ID), lang (two-letter ISO language code)<br/>
 							<b>Result</b> : returns the label in given language, or English as default.<br/>
 							<b>Examples</b>: <a href="apis/getLabel?uri=http://nomisma.org/id/ar&amp;lang=fr">apis/getLabel?uri=http://nomisma.org/id/ar&amp;lang=fr</a>
+						</p>
+					</div>
+					<div>
+						<a name="getNuds"/>
+						<h2>Get NUDS</h2>
+						<p>Get an aggregated NUDS/XML serialization for coin types.<br/>
+							<b>Webservice Type</b> : REST<br/>
+							<b>Url</b> : nomisma.org/getNuds?<br/>
+							<b>Parameters</b> : identifiers (coin type ids dividied by a pipe '|'.  Note that these are Nomisma-defined types serialized from the hard disk, not SPARQL queries)<br/>
+							<b>Result</b> : returns NUDS/XML records aggregated in a nudsGroup root element.  Note, NUDS is returned only for type_series_item ids.<br/>
+							<b>Examples</b>: <a href="apis/getNuds?identifiers=rrc-100.2|rrc-299.1b">apis/getNuds?identifiers=rrc-100.2|rrc-299.1b</a>
+						</p>
+					</div>
+					<div>
+						<a name="getRdf"/>
+						<h2>Get RDF</h2>
+						<p>Aggregate RDF for Nomisma ids.<br/>
+							<b>Webservice Type</b> : REST<br/>
+							<b>Url</b> : nomisma.org/getRdf?<br/>
+							<b>Parameters</b> : identifiers (Nomisma ids divided by a pipe '|')<br/>
+							<b>Result</b> : RDF/XML.  Other RDF formats will be supported eventually.<br/>
+							<b>Examples</b>: <a href="apis/getRdf?identifiers=rome|augustus|av|aureus">apis/getRdf?identifiers=rome|augustus|av|aureus</a>
 						</p>
 					</div>
 				</div>
