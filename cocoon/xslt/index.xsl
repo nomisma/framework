@@ -131,6 +131,11 @@
 					<a href="nomisma.org.nt">N-Triples</a>
 					<xsl:text> | </xsl:text>
 					<a href="nomisma.org.rj">RDF/JSON</a>
+					<xsl:text> | Stay up to date with the latest changes: </xsl:text>
+					<a href="feed/?q=*:*">Atom</a>
+					<xsl:text> (</xsl:text>
+					<a href="http://numishare.blogspot.com/2013/07/updates-to-nomisma-atom-feed.html">documentation</a>
+					<xsl:text>)</xsl:text>
 				</div>
 				<!-- footer -->
 				<xsl:call-template name="footer"/>
