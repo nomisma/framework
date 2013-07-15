@@ -301,6 +301,15 @@
 					</map:otherwise>
 				</map:select>
 			</map:match>
+			
+			<!-- NUDS page -->
+			<map:match pattern="nuds/numismatic_database_standard">
+				<map:generate src="xml/empty.xml" label="record"/>
+				<map:transform src="xslt/nuds.xsl" label="basiccontent" type="xslt-saxon">
+					<map:parameter name="use-request-parameters" value="true"/>
+				</map:transform>
+				<map:serialize type="xhtml+rdfa"/>
+			</map:match>
 
 			<!-- SPARQL widget templates -->
 			<map:match pattern="widget">
