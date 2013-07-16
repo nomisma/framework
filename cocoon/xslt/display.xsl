@@ -92,6 +92,10 @@
 					<xsl:text> | </xsl:text>
 					<a href="https://github.com/AmericanNumismaticSociety/nomisma-ids/blob/master/id/{$id}.txt">GitHub File</a>
 					<xsl:text> | </xsl:text>
+					<xsl:if test="$typeof='type_series_item'">
+						<a href="{$id}.nuds">NUDS/XML</a>
+						<xsl:text> | </xsl:text>
+					</xsl:if>
 					<a href="http://www.w3.org/2012/pyRdfa/extract?uri={$uri}">RDF Triples (Turtle)</a>
 					<xsl:text> | </xsl:text>
 					<a href="{$id}.rdf">RDF/XML</a>

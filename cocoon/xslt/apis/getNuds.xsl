@@ -165,16 +165,17 @@
 	<xsl:template match="xhtml:div[@rel='obverse']|xhtml:div[@rel='reverse']">
 		<xsl:element name="{@rel}" namespace="http://nomisma.org/nuds">
 			<xsl:if test="xhtml:div[@property='legend']">
-				<legend>
+				<xsl:element name="legend" namespace="http://nomisma.org/nuds">
 					<xsl:value-of select="xhtml:div[@property='legend']"/>
-				</legend>
+				</xsl:element>
 			</xsl:if>
 			<xsl:if test="xhtml:div[@property='description']">
-				<type>
-					<description xml:lang="en">
+				<xsl:element name="type" namespace="http://nomisma.org/nuds">
+					<xsl:element name="description" namespace="http://nomisma.org/nuds">
+						<xsl:attribute name="xml:lang">en</xsl:attribute>
 						<xsl:value-of select="xhtml:div[@property='description']"/>
-					</description>
-				</type>
+					</xsl:element>
+				</xsl:element>				
 			</xsl:if>
 		</xsl:element>
 	</xsl:template>
