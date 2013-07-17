@@ -29,4 +29,9 @@ echo "Done."
 echo "Generating RDF/JSON."
 rapper -i rdfxml -o json-triples cocoon/dump/nomisma.org.rdf > cocoon/dump/nomisma.org.rj
 echo "Done."
+
+#create Pelagios RDF dump
+echo "Generating Pelagios RDF."
+curl http://localhost:8080/cocoon/nomisma/get_pelagios > cocoon/dump/pelagios.rdf
+echo "Done."
 echo "Process complete."

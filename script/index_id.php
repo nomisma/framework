@@ -32,7 +32,7 @@
 				$id_string = '';
 				$type_array = array();
 				
-				$xml .= "<doc>";
+				$addDoc = "<doc>";
 				$doc = new DOMDocument();
 				$doc->load($id_dir . '/' . $file);
 				$xpath = new DOMXpath($doc);
@@ -55,52 +55,66 @@
 				//$positions = $xpath->query('//*[@property="gml:pos"]');
 				$related_links = $xpath->query('//*[local-name()="div"][@property="skos:related"]/@resource');
 				$nodes = $xpath->query('//*[local-name()="div"][@property="skos:altLabel" or @property="skos:prefLabel" or @property="skos:definition"]');
-
+				$geos = $xpath->query("descendant::node()[@*='mint'][@resource]|descendant::node()[@*='region'][@resource]");
+				
 				//generate XML
 				
-				$xml .= "\n\t" . '<field name="id">' . $id_string . '</field>';
+				$addDoc .= "\n\t" . '<field name="id">' . $id_string . '</field>';
 				
 				foreach ($type_array as $type_string){
-					$xml .= "\n\t" . '<field name="typeof">' . $type_string . '</field>';
+					$addDoc .= "\n\t" . '<field name="typeof">' . $type_string . '</field>';
 				}		
 				foreach ($prefLabels as $prefLabel){
 					if ($prefLabel->getAttribute('xml:lang') == 'en'){
-							$xml .= "\n\t" . '<field name="prefLabel">' . $prefLabel->nodeValue . '</field>';
+							$addDoc .= "\n\t" . '<field name="prefLabel">' . $prefLabel->nodeValue . '</field>';
 					} else {
-						$xml .= "\n\t" . '<field name="altLabel">' . $prefLabel->nodeValue . '</field>';
+						$addDoc .= "\n\t" . '<field name="altLabel">' . $prefLabel->nodeValue . '</field>';
 					}
 				}
 				foreach ($altLabels as $altLabel){
-					$xml .= "\n\t" . '<field name="altLabel">' . $altLabel->nodeValue . '</field>';
+					$addDoc .= "\n\t" . '<field name="altLabel">' . $altLabel->nodeValue . '</field>';
 				}	
 				foreach ($definitions as $definition){
-					$xml .= "\n\t" . '<field name="definition">' . $definition->nodeValue . '</field>';
+					$addDoc .= "\n\t" . '<field name="definition">' . $definition->nodeValue . '</field>';
 				}
 				/*foreach ($positions as $position){
 					$xml .= "\n\t" . '<field name="location">' . $position->nodeValue . '</field>';
 				}*/
 				foreach ($related_links as $related){
 					if (strstr($related->nodeValue, 'pleiades')){
-						$xml .= "\n\t" . '<field name="pleiades_uri">' . $related->nodeValue . '</field>';
+						$addDoc .= "\n\t" . '<field name="pleiades_uri">' . $related->nodeValue . '</field>';
 					}       
 				} 
+				//get pleiades URIs for mints or regions cited in the document (e.g., from hoards and coin types)
+				foreach ($geos as $geo){
+					$resource = $geo->getAttribute('resource');
+					//avoid blank resources (typical in RIC ids)
+					if (strlen($resource) > 0){
+						$resourceDoc = new DOMDocument();
+						$resourceDoc->load($id_dir . '/' . $resource . '.txt');
+						$resourceXpath = new DOMXpath($resourceDoc);
+						$pleiadesUris = $resourceXpath->query('//*[local-name()="div"][@property="skos:related"][contains(@resource, "pleiades")]');
+						foreach ($pleiadesUris as $uri){
+							$addDoc .= "\n\t" . '<field name="pleiades_uri">' . $uri->getAttribute('resource') . '</field>';
+						}
+					}
+				}
 				//timestamp
-				$xml .= "\n\t" . '<field name="timestamp">' . date(DATE_ATOM) . 'Z</field>';
+				$addDoc .= "\n\t" . '<field name="timestamp">' . date(DATE_ATOM) . 'Z</field>';
 				
 				//fulltext
-				$xml .= "\n\t" . '<field name="fulltext">';
-				$xml .= $id_string . ' ';
+				$addDoc .= "\n\t" . '<field name="fulltext">';
+				$addDoc .= $id_string . ' ';
 				foreach ($nodes as $node){
-					$xml .= $node->nodeValue . ' ';
+					$addDoc .= $node->nodeValue . ' ';
 				}
-				$xml .= '</field>';
-				
-				$xml .= "\n</doc>\n";
+				$addDoc .= '</field>';
+				$addDoc .= "\n</doc>\n";
+				$xml .= $addDoc;
 				echo 'Posting ' . $file . "\n";
 			}
 		}
 		$xml .= '</add>';
-		//echo $xml;
 		//post to Solr
 		$postToSolr=curl_init();
 		curl_setopt($postToSolr,CURLOPT_URL,'http://localhost:8080/solr/nomisma/update/');

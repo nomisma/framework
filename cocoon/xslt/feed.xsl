@@ -33,6 +33,13 @@
 				<xsl:value-of select="$sort"/>
 			</xsl:if>
 		</xsl:variable>
+		<xsl:variable name="qParam">
+			<xsl:if test="string($q)">
+				<xsl:text>q=</xsl:text>
+				<xsl:value-of select="$q"/>
+				<xsl:text>&amp;</xsl:text>
+			</xsl:if>
+		</xsl:variable>
 
 		<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:gx="http://www.google.com/kml/ext/2.2"
 			xmlns="http://www.w3.org/2005/Atom">
@@ -40,11 +47,11 @@
 				<xsl:value-of select="/content/config/title"/>
 			</title>
 			<id>http://nomisma.org/</id>
-			<link rel="self" type="application/atom+xml" href="http://nomisma.org/feed/?q={$q}&amp;start={$start_var}{$sortParam}"/>
+			<link rel="self" type="application/atom+xml" href="http://nomisma.org/feed/?{$qParam}start={$start_var}{$sortParam}"/>
 			<xsl:if test="$next != $last">
-				<link rel="next" type="application/atom+xml" href="http://nomisma.org/feed/?q={$q}&amp;start={$next}{$sortParam}"/>
+				<link rel="next" type="application/atom+xml" href="http://nomisma.org/feed/?{$qParam}start={$next}{$sortParam}"/>
 			</xsl:if>
-			<link rel="last" type="application/atom+xml" href="http://nomisma.org/feed/?q={$q}&amp;start={$last}{$sortParam}"/>
+			<link rel="last" type="application/atom+xml" href="http://nomisma.org/feed/?{$qParam}start={$last}{$sortParam}"/>
 			<link rel="search" type="application/opensearchdescription+xml" href="http://nomisma.org/opensearch.xml"/>
 			<author>
 				<name>
@@ -89,7 +96,8 @@
 			<content>
 				<xsl:value-of select="str[@name='definition']"/>
 			</content>
-			<link rel="alternate rdf" type="application/rdf+xml" href="http://nomisma.org/id/{str[@name='id']}.rdf"/>
+			<link rel="nomisma rdf" type="application/rdf+xml" href="http://nomisma.org/id/{str[@name='id']}.rdf"/>
+			<link rel="pelagios rdf" type="application/rdf+xml" href="http://nomisma.org/id/{str[@name='id']}.pelagios.rdf"/>
 		</entry>
 	</xsl:template>
 

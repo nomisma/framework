@@ -194,6 +194,10 @@
 				</map:transform>
 				<map:serialize type="rdf"/>
 			</map:match>
+			
+			<map:match pattern="id/*.pelagios.rdf">
+				<map:read src="cocoon:/get_pelagios?q={1}"/>
+			</map:match>
 
 			<map:match pattern="id/*.rdf">
 				<map:generate src="{global:id-path}/{1}.txt"/>
@@ -242,6 +246,31 @@
 			</map:match>
 			<map:match pattern="nomisma.org.nt">
 				<map:read src="dump/nomisma.org.nt" mime-type="text/plain"/>
+			</map:match>
+			
+			<!-- RDF for contributing to Pelagios -->
+			<map:match pattern="pelagios.void.rdf">
+				<map:read src="xml/pelagios.void.rdf" mime-type="application/rdf+xml"/>
+			</map:match>
+			
+			<map:match pattern="pelagios.rdf">
+				<map:read src="dump/pelagios.rdf" mime-type="application/rdf+xml"/>
+			</map:match>
+			
+			<map:match pattern="get_pelagios">
+				<map:select type="parameter">
+					<map:parameter name="parameter-selector-test" value="{request-param:q}"/>
+					<map:when test="">
+						<map:generate src="{global:solr-url}select?q={url-encode:pleiades_uri:*}&amp;rows=100000"/>
+					</map:when>
+					<map:otherwise>
+						<map:generate src="{global:solr-url}select?q={url-encode:{request-param:q} AND pleiades_uri:*}&amp;rows=100000"/>
+					</map:otherwise>
+				</map:select>		
+				<map:transform src="xslt/geographic/pelagios.xsl" label="basiccontent" type="xslt-saxon">
+					<map:parameter name="use-request-parameters" value="true"/>
+				</map:transform>
+				<map:serialize type="rdf"/>
 			</map:match>
 			
 			<!-- flickr page -->
@@ -388,8 +417,17 @@
 			</map:match>
 
 			<map:match pattern="feed/">
-				<map:generate
-					src="{global:solr-url}select?q={url-encode:{request-param:q}}&amp;sort={url-encode:timestamp desc}&amp;rows=100&amp;start={request-param:start}"/>
+				<map:select type="parameter">
+					<map:parameter name="parameter-selector-test" value="{request-param:q}"/>
+					<map:when test="">
+						<map:generate
+							src="{global:solr-url}select?q=*:*&amp;sort={url-encode:timestamp desc}&amp;rows=100&amp;start={request-param:start}"/>
+					</map:when>
+					<map:otherwise>
+						<map:generate
+							src="{global:solr-url}select?q={url-encode:{request-param:q}}&amp;sort={url-encode:timestamp desc}&amp;rows=100&amp;start={request-param:start}"/>
+					</map:otherwise>
+				</map:select>
 				<map:transform src="xslt/feed.xsl" label="basiccontent" type="xslt-saxon">
 					<map:parameter name="use-request-parameters" value="true"/>
 				</map:transform>

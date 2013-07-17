@@ -58,6 +58,15 @@
 					</field>
 				</xsl:if>
 			</xsl:for-each>
+			<!-- if there is a mint or region div, get the pleiades uri for the mint or region -->
+			<xsl:for-each select="descendant::node()[@*='mint'][@resource]|descendant::node()[@*='region'][@resource]">
+				<xsl:variable name="resource" select="@resource"/>
+				<xsl:for-each select="document(concat('file:///usr/local/projects/nomisma-ids/id/', $resource, '.txt'))//xhtml:div[@property='skos:related'][contains(@resource, 'pleiades')]">
+					<field name="pleiades_uri">
+						<xsl:value-of select="@resource"/>
+					</field>
+				</xsl:for-each>
+			</xsl:for-each>
 			<field name="timestamp">
 				<xsl:variable name="timestamp" select="datetime:dateTime()"/>
 				<xsl:choose>

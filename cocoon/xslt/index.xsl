@@ -122,20 +122,62 @@
 
 				<div class="center">
 					<h3>Data Download</h3>
-					<a href="nomisma.org.xml">XHTML+RDFa</a>
-					<xsl:text> | </xsl:text>
-					<a href="nomisma.org.rdf">RDF/XML</a>
-					<xsl:text> | </xsl:text>
-					<a href="nomisma.org.ttl">Turtle</a>
-					<xsl:text> | </xsl:text>
-					<a href="nomisma.org.nt">N-Triples</a>
-					<xsl:text> | </xsl:text>
-					<a href="nomisma.org.rj">RDF/JSON</a>
-					<xsl:text> | Stay up to date with the latest changes: </xsl:text>
-					<a href="feed/?q=*:*">Atom</a>
-					<xsl:text> (</xsl:text>
-					<a href="http://numishare.blogspot.com/2013/07/updates-to-nomisma-atom-feed.html">documentation</a>
-					<xsl:text>)</xsl:text>
+					<div style="float:left;width:33%;vertical-align:top">
+						<table>
+							<tr>
+								<td>
+									<img src="images/rdf-large.gif" alt="RDF"/>
+								</td>
+								<td>
+									<b>RDF: </b>
+									<a href="nomisma.org.xml">XHTML+RDFa</a>
+									<xsl:text> | </xsl:text>
+									<a href="nomisma.org.rdf">RDF/XML</a>
+									<xsl:text> | </xsl:text>
+									<a href="nomisma.org.ttl">Turtle</a>
+									<xsl:text> | </xsl:text>
+									<a href="nomisma.org.nt">N-Triples</a>
+									<xsl:text> | </xsl:text>
+									<a href="nomisma.org.rj">RDF/JSON</a>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div style="float:left;width:33%">
+						<table>
+							<tr>
+								<td>
+									<a href="feed/" title="Atom">
+										<img src="images/atom-large.png" alt="Atom"/>
+									</a>
+								</td>
+								<td>
+									<b>Atom: </b>
+									<a href="feed/" title="Atom">Feed</a>
+									<xsl:text> | </xsl:text>
+									<a href="http://numishare.blogspot.com/2013/07/updates-to-nomisma-atom-feed.html">documentation</a>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div style="float:left;width:33%">
+						<table>
+							<tr>
+								<td>
+									<a href="pelagios.void.rdf" title="Pelagios VoID">
+										<img src="images/pelagios_icon.png" alt="Pelagios"/>
+									</a>
+								</td>
+								<td>
+									<b>Pelagios: </b>
+									<a href="pelagios.void.rdf">VoID RDF/XML</a>
+									<xsl:text> | </xsl:text>
+									<a href="pelagios.rdf">RDF/XML</a>
+								</td>
+							</tr>
+						</table>
+
+					</div>
 				</div>
 				<!-- footer -->
 				<xsl:call-template name="footer"/>
