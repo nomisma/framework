@@ -1,3 +1,5 @@
+@namespace xml "http://www.w3.org/XML/1998/namespace";
+
 body {
 	background-color: rgb(255,255,255);
 	font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -61,6 +63,10 @@ a[rel="nofollow"]:before {
 	content: " (" attr(resource) ") ";
 	color:gray;
 	font-style:italic;
+}
+#source *[xml|lang]:after {
+	content: " (" attr(xml|lang) ") ";
+	color:gray;
 }
 *[content]:after {
 	content: " \"" attr(content) "\" ";

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:cinclude="http://apache.org/cocoon/include/1.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:saxon="http://saxon.sf.net/"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs xhtml cinclude" version="2.0">
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/1999/xhtml" exclude-result-prefixes="xs xhtml cinclude" version="2.0">
 	<xsl:include href="templates.xsl"/>
 
 	<xsl:param name="id"/>
@@ -56,7 +56,7 @@
 			<body>
 				<xsl:call-template name="header"/>
 				<div id="source" class="center">
-					<xsl:copy-of select="*"/>
+					<xsl:copy-of select="/xhtml:div"/>
 				</div>
 				<!--<div id="source" class="center">
 					<pre><xsl:value-of select="saxon:serialize(*, 'xhtml:div')"/></pre>
