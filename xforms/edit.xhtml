@@ -480,6 +480,9 @@
 
 	<xhtml:body>
 		<xxforms:variable name="display_path">../</xxforms:variable>
+		<xxforms:variable name="triggerGroup" as="node()?">
+			
+		</xxforms:variable>
 		<div class="yui3-g">
 			<div class="yui3-u-1">
 				<div class="content">
@@ -754,6 +757,46 @@
 								</xhtml:div>
 							</xforms:group>
 						</xforms:group>
+						
+						<!-- trigger group -->
+						<xhtml:div class="trigger_container">
+							<xforms:trigger appearance="minimal">
+								<xforms:label>
+									<xhtml:img src="{$display_path}images/add.gif"/>Preferred Label</xforms:label>
+								<xforms:insert ev:event="DOMActivate" origin="instance('prefLabel-template')" context="." nodeset="./child::node()[last()]"
+								/>
+							</xforms:trigger>
+							<xforms:trigger appearance="minimal">
+								<xforms:label>
+									<xhtml:img src="{$display_path}images/add.gif"/>Definition</xforms:label>
+								<xforms:insert ev:event="DOMActivate" origin="instance('definition-template')" context="."/>
+							</xforms:trigger>
+							<xforms:trigger appearance="minimal">
+								<xforms:label>
+									<xhtml:img src="{$display_path}images/add.gif"/>Alternate Label</xforms:label>
+								<xforms:insert ev:event="DOMActivate" origin="instance('altLabel-template')" context="." nodeset="./child::node()[last()]"/>
+							</xforms:trigger>
+							<xforms:trigger appearance="minimal">
+								<xforms:label>
+									<xhtml:img src="{$display_path}images/add.gif"/>Related Link</xforms:label>
+								<xforms:insert ev:event="DOMActivate" origin="instance('related-template')" context="." nodeset="./child::node()[last()]"/>
+							</xforms:trigger>
+							<xforms:trigger appearance="minimal">
+								<xforms:label>
+									<xhtml:img src="{$display_path}images/add.gif"/>Field of Numismatics</xforms:label>
+								<xforms:insert ev:event="DOMActivate" origin="instance('isPartOf-template')" context="." nodeset="./child::node()[last()]"/>
+							</xforms:trigger>
+							<xforms:group ref=".[count(xhtml:div[@property='geo:lat']) = 0 and @typeof='mint']">
+								<xforms:trigger appearance="minimal">
+									<xforms:label>
+										<xhtml:img src="{$display_path}images/add.gif"/>Coordinates</xforms:label>
+									<xforms:action ev:event="DOMActivate">
+										<xforms:insert context="." nodeset="./child::node()[last()]" origin="instance('lat-template')"/>
+										<xforms:insert context="." nodeset="./child::node()[last()]" origin="instance('long-template')"/>
+									</xforms:action>
+								</xforms:trigger>
+							</xforms:group>
+						</xhtml:div>
 					</xhtml:div>
 					<fr:alert-dialog id="save-dialog">
 						<fr:label>Save</fr:label>
