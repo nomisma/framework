@@ -29,7 +29,7 @@
 
 				<!-- display content -->
 				<xsl:copy-of select="/config/content/nuds/xhtml:div"/>
-				
+
 				<!-- footer -->
 				<xsl:call-template name="footer"/>
 
