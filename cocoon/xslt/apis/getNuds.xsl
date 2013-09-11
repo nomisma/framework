@@ -51,11 +51,11 @@
 	<!--***************************************** Process Nomisma Coin Type XHTML+RDFa into NUDS **************************************** -->
 	<xsl:template match="xhtml:div[@typeof='type_series_item']">
 		<nuds xmlns="http://nomisma.org/nuds" xmlns:xlink="http://www.w3.org/1999/xlink">
-			<nudsHeader>
-				<nudsid>
+			<control>
+				<recordId>
 					<xsl:value-of select="@about"/>
-				</nudsid>
-			</nudsHeader>
+				</recordId>
+			</control>
 			<descMeta>
 				<!-- title -->
 				<xsl:choose>
