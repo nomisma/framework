@@ -73,11 +73,13 @@
 							</name>
 							<styleUrl>#hoard</styleUrl>
 							<!-- add placemark -->
-							<Point>
-								<coordinates>
-									<xsl:value-of select="concat(descendant::*[@property='geo:long'], ',', descendant::*[@property='geo:lat'])"/>
-								</coordinates>
-							</Point>
+							<xsl:if test="descendant::*[@property='geo:long'] and descendant::*[@property='geo:lat']">
+								<Point>
+									<coordinates>
+										<xsl:value-of select="concat(descendant::*[@property='geo:long'], ',', descendant::*[@property='geo:lat'])"/>
+									</coordinates>
+								</Point>
+							</xsl:if>
 						</Placemark>
 						
 						<!-- create points for mints -->

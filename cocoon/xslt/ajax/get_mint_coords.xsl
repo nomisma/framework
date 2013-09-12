@@ -11,11 +11,14 @@
 			</name>
 			<styleUrl>#mapped</styleUrl>
 			<!-- add placemark -->
-			<Point>
-				<coordinates>
-					<xsl:value-of select="concat(descendant::xhtml:div[@property='geo:long'], ',', descendant::xhtml:div[@property='geo:lat'])"/>
-				</coordinates>
-			</Point>
+			<xsl:if test="descendant::*[@property='geo:long'] and descendant::*[@property='geo:lat']">
+				<Point>
+					<coordinates>
+						<xsl:value-of select="concat(descendant::*[@property='geo:long'], ',', descendant::*[@property='geo:lat'])"/>
+					</coordinates>
+				</Point>
+			</xsl:if>
+
 		</Placemark>
 	</xsl:template>
 

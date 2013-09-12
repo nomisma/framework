@@ -5,6 +5,7 @@ $(document).ready(function () {
 });
 
 function initialize_map(id) {
+	var args = OpenLayers.Util.getParameters();
 	
 	map = new OpenLayers.Map('mapcontainer', {
 		controls:[
@@ -16,7 +17,26 @@ function initialize_map(id) {
 		})]
 	});
 	
-	map.addLayer(new OpenLayers.Layer.OSM());
+	/*map.addLayer(new OpenLayers.Layer.OSM());*/
+	
+	OpenLayers.Layer.MapQuestOSM = OpenLayers.Class(OpenLayers.Layer.XYZ, {
+        name: "MapQuestOSM",
+        //attribution: "Data CC-By-SA by <a href='http://openstreetmap.org/'>OpenStreetMap</a>",
+        sphericalMercator: true,
+        url: 'http://otile1.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png',
+        clone: function(obj) {
+            if (obj == null) {
+                obj = new OpenLayers.Layer.OSM(
+                    this.name, this.url, this.getOptions());
+            }
+            obj = OpenLayers.Layer.XYZ.prototype.clone.apply(this, [obj]);
+            return obj;
+        },
+        CLASS_NAME: "OpenLayers.Layer.MapQuestOSM"
+   });
+    
+    
+    	map.addLayer( new OpenLayers.Layer.MapQuestOSM())
 	
 	/*map.addLayer(new OpenLayers.Layer.Google(
 	"Google Physical", {
@@ -55,7 +75,7 @@ function initialize_map(id) {
 	
 	function kmlLoaded() {
 		map.zoomToExtent(kmlLayer.getDataExtent());
-		map.zoomTo('4');
+		//map.zoomTo('6');
 	}
 	
 	/*************** OBJECT KML FEATURES ******************/
