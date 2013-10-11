@@ -569,6 +569,10 @@
 										<xforms:label>Numismatic Term</xforms:label>
 										<xforms:value>numismatic_term</xforms:value>
 									</xforms:item>
+									<xforms:item>
+										<xforms:label>foaf:Person</xforms:label>
+										<xforms:value>foaf:Person</xforms:value>
+									</xforms:item>
 									<xforms:itemset nodeset="instance('nt-response')/res:results/res:result">
 										<xforms:label ref="res:binding[@name='label']/res:literal"/>
 										<xforms:value ref="substring-after(res:binding[@name='uri']/res:uri, 'id/')"/>
