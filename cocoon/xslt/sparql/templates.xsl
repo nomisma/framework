@@ -36,14 +36,16 @@
 			PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 			PREFIX dcterms:  <http://purl.org/dc/terms/>
 			PREFIX nm:       <http://nomisma.org/id/>
+			PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
 			
-			SELECT ?object ?title ?publisher ?identifier ?collection ?weight ?axis ?diameter ?obvThumb ?revThumb ?obvRef ?revRef  WHERE {
+			SELECT ?object ?title ?identifier ?collection ?weight ?axis ?diameter ?obvThumb ?revThumb ?obvRef ?revRef  WHERE {
 			?object nm:type_series_item <typeUri>.
-			?object rdf:type <http://nomisma.org/id/coin>.
+			?object a nm:coin .
 			?object dcterms:title ?title .
-			?object dcterms:publisher ?publisher .
 			OPTIONAL { ?object dcterms:identifier ?identifier } .
-			OPTIONAL { ?object nm:collection ?collection } .
+			OPTIONAL { ?object nm:collection ?colUri .
+			?colUri skos:prefLabel ?collection 
+			FILTER(langMatches(lang(?collection), "EN"))}
 			OPTIONAL { ?object nm:weight ?weight }
 			OPTIONAL { ?object nm:axis ?axis }
 			OPTIONAL { ?object nm:diameter ?diameter }
@@ -51,7 +53,7 @@
 			OPTIONAL { ?object nm:reverseThumbnail ?revThumb }
 			OPTIONAL { ?object nm:obverseReference ?obvRef }
 			OPTIONAL { ?object nm:reverseReference ?revRef }}
-			ORDER BY ASC(?publisher)]]>
+			ORDER BY ASC(?collection)]]>
 		</xsl:variable>
 		<xsl:variable name="service" select="concat($endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'typeUri', $uri))), '&amp;output=xml')"/>
 		<xsl:apply-templates select="document($service)/res:sparql" mode="display"/>
