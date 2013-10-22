@@ -1,7 +1,7 @@
 <xhtml:html xmlns="http://www.w3.org/1999/xhtml" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxforms="http://orbeon.org/oxf/xml/xforms"
 	xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:nm="http://nomisma.org/id/" xmlns:res="http://www.w3.org/2005/sparql-results#"
-	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
 	<xhtml:head>
 		<title>nomisma.org</title>
 		<link rel="stylesheet" href="/fr/style/bootstrap/css/bootstrap.css" type="text/css"/>
@@ -44,6 +44,8 @@
 					<id/>
 					<original_id/>
 					<save-trigger/>
+					<delete-trigger/>
+					<delete-success/>
 					<status/>
 					<dbpedia/>
 					<id_path>/usr/local/projects/nomisma-ids/id/</id_path>
@@ -72,199 +74,23 @@
 				</config>
 			</xforms:instance>
 
+			<xforms:instance id="delete-config">
+				<config xmlns="">
+					<delete>
+						<url/>
+					</delete>
+				</config>
+			</xforms:instance>
+
 			<xforms:instance id="dump">
 				<dump xmlns=""/>
 			</xforms:instance>
 
 			<xforms:instance id="languages">
-				<languages xmlns="">
-					<language value="aa">Afar</language>
-					<language value="ab">Abkhaz</language>
-					<language value="ae">Avestan</language>
-					<language value="af">Afrikaans</language>
-					<language value="ak">Akan</language>
-					<language value="am">Amharic</language>
-					<language value="an">Aragonese</language>
-					<language value="ar">Arabic</language>
-					<language value="as">Assamese</language>
-					<language value="av">Avar</language>
-					<language value="ay">Aymara</language>
-					<language value="az">Azerbaijani</language>
-					<language value="ba">Bashkir</language>
-					<language value="be">Belarusian</language>
-					<language value="bg">Bulgarian</language>
-					<language value="bh">Bihari</language>
-					<language value="bi">Bislama</language>
-					<language value="bm">Bambara</language>
-					<language value="bn">Bengali</language>
-					<language value="bo">Tibetan</language>
-					<language value="br">Breton</language>
-					<language value="bs">Bosnian</language>
-					<language value="ca">Catalan, Valencian</language>
-					<language value="ce">Chechen</language>
-					<language value="ch">Chamorro</language>
-					<language value="co">Corsican</language>
-					<language value="cr">Cree</language>
-					<language value="cs">Czech</language>
-					<language value="cu">Church Slavic</language>
-					<language value="cv">Chuvash</language>
-					<language value="cy">Welsh</language>
-					<language value="da">Danish</language>
-					<language value="de">German</language>
-					<language value="dv">Dhivehi, Dhivehi, Maldivian</language>
-					<language value="dz">Dzongkha</language>
-					<language value="ee">Ewe</language>
-					<language value="el">Modern Greek</language>
-					<language value="en">English</language>
-					<language value="eo">Esperanto</language>
-					<language value="es">Spanish, Castilian</language>
-					<language value="et">Estonian</language>
-					<language value="eu">Basque</language>
-					<language value="fa">Persian</language>
-					<language value="ff">Fula</language>
-					<language value="fi">Finnish</language>
-					<language value="fj">Fijian</language>
-					<language value="fo">Faroese</language>
-					<language value="fr">French</language>
-					<language value="fy">West Frisian</language>
-					<language value="ga">Irish</language>
-					<language value="gd">Gaelic, Scottish Gaelic</language>
-					<language value="gl">Galician</language>
-					<language value="gn">Guaraní</language>
-					<language value="gu">Gujarati</language>
-					<language value="gv">Manx</language>
-					<language value="ha">Hausa</language>
-					<language value="he">Modern Hebrew</language>
-					<language value="hi">Hindi</language>
-					<language value="ho">Hiri Motu</language>
-					<language value="hr">Croatian</language>
-					<language value="ht">Haitian Creole, Haitian Creole</language>
-					<language value="hu">Hungarian</language>
-					<language value="hy">Armenian</language>
-					<language value="hz">Herero</language>
-					<language value="ia">Interlingua (International Auxiliary Language Association)</language>
-					<language value="id">Indonesian</language>
-					<language value="ie">Interlingue, Occidental</language>
-					<language value="ig">Igbo</language>
-					<language value="ii">Yi, Nuosu</language>
-					<language value="ik">Inupiaq</language>
-					<language value="io">Ido</language>
-					<language value="is">Icelandic</language>
-					<language value="it">Italian</language>
-					<language value="iu">Inuktitut</language>
-					<language value="ja">Japanese</language>
-					<language value="jv">Javanese</language>
-					<language value="ka">Georgian</language>
-					<language value="kg">Kongo</language>
-					<language value="ki">Gikuyu, Kikuyu</language>
-					<language value="kj">Kwanyama, Kuanyama</language>
-					<language value="kk">Kazakh</language>
-					<language value="kl">Kalaallisut, Greenlandic</language>
-					<language value="km">Central Khmer</language>
-					<language value="kn">Kannada</language>
-					<language value="ko">Korean</language>
-					<language value="kr">Kanuri</language>
-					<language value="ks">Kashmiri</language>
-					<language value="ku">Kurdish</language>
-					<language value="kv">Komi</language>
-					<language value="kw">Cornish</language>
-					<language value="ky">Kyrgyz, Kirgiz</language>
-					<language value="la">Latin</language>
-					<language value="lb">Luxembourgish, Letzeburgesch</language>
-					<language value="lg">Luganda</language>
-					<language value="li">Limburgish, Limburgan, Limburger</language>
-					<language value="ln">Lingala</language>
-					<language value="lo">Lao</language>
-					<language value="lt">Lithuanian</language>
-					<language value="lu">Luba-Katanga</language>
-					<language value="lv">Latvian</language>
-					<language value="mg">Malagasy</language>
-					<language value="mh">Marshallese</language>
-					<language value="mi">Māori</language>
-					<language value="mk">Macedonian</language>
-					<language value="ml">Malayalam</language>
-					<language value="mn">Mongolian</language>
-					<language value="mr">Marathi</language>
-					<language value="ms">Malay</language>
-					<language value="mt">Maltese</language>
-					<language value="my">Burmese</language>
-					<language value="na">Nauruan</language>
-					<language value="nb">Norwegian Bokmål</language>
-					<language value="nd">Northern Ndebele</language>
-					<language value="ne">Nepali</language>
-					<language value="ng">Ndonga</language>
-					<language value="nl">Dutch, Flemish</language>
-					<language value="nn">Norwegian Nynorsk</language>
-					<language value="no">Norwegian</language>
-					<language value="nr">Southern Ndebele</language>
-					<language value="nv">Navajo, Navaho</language>
-					<language value="ny">Chichewa, Chewa, Nyanja</language>
-					<language value="oc">Occitan (after 1500)</language>
-					<language value="oj">Anishinaabe</language>
-					<language value="om">Oromo</language>
-					<language value="or">Oriya</language>
-					<language value="os">Ossetic, Ossetian</language>
-					<language value="pa">Punjabi, Panjabi</language>
-					<language value="pi">Pali, Pāli</language>
-					<language value="pl">Polish</language>
-					<language value="ps">Pashto, Pushto</language>
-					<language value="pt">Portuguese</language>
-					<language value="qu">Quechua</language>
-					<language value="rm">Romansh</language>
-					<language value="rn">Kirundi</language>
-					<language value="ro">Romanian, Moldavian, Moldovan</language>
-					<language value="ru">Russian</language>
-					<language value="rw">Kinyarwanda</language>
-					<language value="sa">Sanskrit</language>
-					<language value="sc">Sardinian</language>
-					<language value="sd">Sindhi</language>
-					<language value="se">Northern Sami</language>
-					<language value="sg">Sango</language>
-					<language value="si">Sinhala, Sinhalese</language>
-					<language value="sk">Slovak</language>
-					<language value="sl">Slovene</language>
-					<language value="sm">Samoan</language>
-					<language value="sn">Shona</language>
-					<language value="so">Somali</language>
-					<language value="sq">Albanian</language>
-					<language value="sr">Serbian</language>
-					<language value="ss">Swati</language>
-					<language value="st">Sotho</language>
-					<language value="su">Sundanese</language>
-					<language value="sv">Swedish</language>
-					<language value="sw">Swahili</language>
-					<language value="ta">Tamil</language>
-					<language value="te">Telugu</language>
-					<language value="tg">Tajik</language>
-					<language value="th">Thai</language>
-					<language value="ti">Tigrinya</language>
-					<language value="tk">Turkmen</language>
-					<language value="tl">Tagalog</language>
-					<language value="tn">Tswana</language>
-					<language value="to">Tongan (Tonga Islands)</language>
-					<language value="tr">Turkish</language>
-					<language value="ts">Tsonga</language>
-					<language value="tt">Tatar</language>
-					<language value="tw">Twi</language>
-					<language value="ty">Tahitian</language>
-					<language value="ug">Uyghur, Uyghur</language>
-					<language value="uk">Ukrainian</language>
-					<language value="ur">Urdu</language>
-					<language value="uz">Uzbek</language>
-					<language value="ve">Venda</language>
-					<language value="vi">Vietnamese</language>
-					<language value="vo">Volapük</language>
-					<language value="wa">Walloon</language>
-					<language value="wo">Wolof</language>
-					<language value="xh">Xhosa</language>
-					<language value="yi">Yiddish</language>
-					<language value="yo">Yoruba</language>
-					<language value="za">Zhuang, Chuang</language>
-					<language value="zh">Chinese</language>
-					<language value="zu">Zulu</language>
-				</languages>
+				<xi:include href="instances/languages.xml"/>
 			</xforms:instance>
 
+			<!-- XHTML+RDFa elements -->
 			<xforms:instance id="prefLabel-template" xxforms:exclude-result-prefixes="#all">
 				<div property="skos:prefLabel" xml:lang=""/>
 			</xforms:instance>
@@ -288,8 +114,21 @@
 			<xforms:instance id="lat-template" xxforms:exclude-result-prefixes="#all">
 				<div property="geo:lat"/>
 			</xforms:instance>
+
 			<xforms:instance id="long-template" xxforms:exclude-result-prefixes="#all">
 				<div property="geo:long"/>
+			</xforms:instance>
+
+			<xforms:instance id="comment-template" xxforms:exclude-result-prefixes="#all">
+				<div property="rdfs:comment" xml:lang=""/>
+			</xforms:instance>
+
+			<xforms:instance id="numismatic_start_date-template" xxforms:exclude-result-prefixes="#all">
+				<div property="nm:numismatic_start_date" content="" datatype="xsd:gYear"/>
+			</xforms:instance>
+
+			<xforms:instance id="numismatic_end_date-template" xxforms:exclude-result-prefixes="#all">
+				<div property="nm:numismatic_end_date" content="" datatype="xsd:gYear"/>
 			</xforms:instance>
 
 			<!-- sparql queries -->
@@ -393,6 +232,9 @@
 						constraint="string-length(.) &gt; 0 and count(parent::node()/parent::node()/xhtml:div[@property='skos:definition'][@xml:lang='en']) = 1 and count(parent::node()/parent::node()/xhtml:div[@property='skos:definition']/@xml:lang) = count(distinct-values(parent::node()/parent::node()/xhtml:div[@property='skos:definition']/@xml:lang))"
 					/>
 				</xforms:bind>
+				<xforms:bind nodeset="xhtml:div[@property='rdfs:comment']" required="true()">
+					<xforms:bind nodeset="@xml:lang" constraint="string-length(.) &gt; 0"/>
+				</xforms:bind>
 				<xforms:bind nodeset="xhtml:div[@property='skos:related']">
 					<xforms:bind nodeset="@resource" required="true()" type="xs:anyURI"/>
 				</xforms:bind>
@@ -401,9 +243,22 @@
 				</xforms:bind>
 				<xforms:bind nodeset="xhtml:div[@property='geo:lat']" constraint="(number(.) &gt; -180 and number(.) &lt; 180)"/>
 				<xforms:bind nodeset="xhtml:div[@property='geo:long']" constraint="(number(.) &gt; -180 and number(.) &lt; 180)"/>
+				<xforms:bind nodeset="xhtml:div[@property='nm:numismatic_start_date']">
+					<xforms:bind nodeset="@content" type="xs:gYear"/>
+				</xforms:bind>
+				<xforms:bind nodeset="xhtml:div[@property='nm:numismatic_end_date']" type="xs:gYear">
+					<xforms:bind nodeset="@content" type="xs:gYear"/>
+				</xforms:bind>
 			</xforms:bind>
 
-			<xforms:bind nodeset="instance('control-instance')/save-trigger" readonly="not(. = 'true')"/>
+			<xforms:bind nodeset="instance('control-instance')">
+				<xforms:bind nodeset="delete-success" type="xs:boolean"/>
+			</xforms:bind>
+
+			<!--<xforms:bind nodeset="instance('control-instance')/save-trigger" readonly="not(. = 'true')"/>-->
+
+			<!-- bind the delete trigger only to those ids which exist on disk (either loaded or recently saved) -->
+			<xforms:bind id="delete-trigger" nodeset="instance('control-instance')/delete-trigger" relevant="string(instance('control-instance')/id)"/>
 
 			<xforms:action ev:event="xxforms-invalid" ev:observer="doc">
 				<xforms:setvalue ref="instance('control-instance')/save-trigger"/>
@@ -443,7 +298,13 @@
 
 			<xforms:submission id="delete-graph" action="{instance('control-instance')/endpoint}update" ref="instance('sparqlUpdate')"
 				serialization="text/plain" replace="none" method="post" mediatype="application/sparql-update">
-				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL update failed.</xforms:message>
+				<xforms:action ev:event="xforms-submit-error">
+					<xforms:message level="modal">SPARQL update failed.</xforms:message>
+					<xforms:setvalue ref="instance('control-instance')/delete-success" value="false()"/>
+				</xforms:action>
+				<xforms:action ev:event="xforms-submit-done">
+					<xforms:setvalue ref="instance('control-instance')/delete-success" value="true()"/>
+				</xforms:action>
 			</xforms:submission>
 
 			<xforms:submission id="post-new" action="{instance('control-instance')/endpoint}data?default" ref="instance('rdf')" replace="none" method="post"
@@ -463,26 +324,35 @@
 
 			<xforms:submission id="delete-id-from-solr" action="{instance('control-instance')/solr_url}update" ref="instance('deleteId')" instance="deleteId"
 				replace="instance" method="post">
-				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is
-					incorrect.</xforms:message>
-				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"/>
+				<xforms:action ev:event="xforms-submit-error">
+					<xforms:message level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
+					<xforms:setvalue ref="instance('control-instance')/delete-success" value="false()"/>
+				</xforms:action>
+				<xforms:action ev:event="xforms-submit-done">
+					<xforms:send submission="submit-commit"/>
+					<xforms:setvalue ref="instance('control-instance')/delete-success" value="true()"/>
+				</xforms:action>
 			</xforms:submission>
 
 			<!-- send commit -->
 			<xforms:submission id="submit-commit" action="{instance('control-instance')/solr_url}update" ref="instance('sendCommit')" instance="sendCommit"
 				replace="none" method="post">
-				<xforms:message ev:event="xforms-submit-error" level="modal">Failed to commit to Solr index.</xforms:message>
-				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Document successfully committed to
-					Solr.</xforms:setvalue>
+				<xforms:action ev:event="xforms-submit-error">
+					<xforms:message level="modal">Failed to commit to Solr index.</xforms:message>
+					<xforms:setvalue ref="instance('control-instance')/delete-success" value="false()"/>
+				</xforms:action>
+				<xforms:action ev:event="xforms-submit-done">
+					<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Document successfully committed to
+						Solr.</xforms:setvalue>
+					<xforms:setvalue ref="instance('control-instance')/delete-success" value="true()"/>
+				</xforms:action>
 			</xforms:submission>
 		</xforms:model>
 	</xhtml:head>
 
 	<xhtml:body>
 		<xxforms:variable name="display_path">../</xxforms:variable>
-		<xxforms:variable name="triggerGroup" as="node()?">
-			
-		</xxforms:variable>
+		<xxforms:variable name="triggerGroup" as="node()?"> </xxforms:variable>
 		<div class="yui3-g">
 			<div class="yui3-u-1">
 				<div class="content">
@@ -536,6 +406,10 @@
 								<xforms:setvalue ref="instance('control-instance')/id" value="instance('doc')/@about"/>
 							</xforms:action>
 						</xforms:trigger>
+						<xforms:trigger bind="delete-trigger">
+							<xforms:label class="file_control"><xhtml:img src="{$display_path}images/remove.gif" alt="Delete"/>Delete</xforms:label>
+							<xforms:dispatch ev:event="DOMActivate" target="delete-dialog" name="fr-show"/>
+						</xforms:trigger>
 						<xforms:group ref="instance('doc')//xhtml:div[contains(@resource, 'wikipedia')]">
 							<xforms:trigger>
 								<xforms:label>Import Dbpedia Labels</xforms:label>
@@ -546,13 +420,6 @@
 								</xforms:action>
 							</xforms:trigger>
 						</xforms:group>
-						<!--<xforms:submit submission="load-id">
-							<xforms:label><xhtml:img src="{$display_path}images/recycle-green.png" alt="Load"/>Load</xforms:label>
-						</xforms:submit>-->
-						<!--<xforms:trigger appearance="minimal">
-							<xforms:label class="file_control"><xhtml:img src="{$display_path}images/remove.gif" alt="Delete"/>Delete</xforms:label>
-							<xforms:dispatch ev:event="DOMActivate" target="delete-dialog" name="fr-show"/>
-						</xforms:trigger>-->
 					</xhtml:div>
 					<xhtml:h1>Edit nomisma id</xhtml:h1>
 					<xhtml:div class="section">
@@ -585,9 +452,8 @@
 									<xforms:alert>Required</xforms:alert>
 								</xforms:input>
 								<xforms:group ref=".[string-length(instance('control-instance')/id) &gt; 0]">
-									<xhtml:a href="http://nomisma.org/id/{instance('control-instance')/id}">
-										(<xforms:output ref="concat('http://nomisma.org/id/', instance('control-instance')/id)"
-										/>)</xhtml:a>
+									<xhtml:a href="http://nomisma.org/id/{instance('control-instance')/id}"> (<xforms:output
+											ref="concat('http://nomisma.org/id/', instance('control-instance')/id)"/>)</xhtml:a>
 								</xforms:group>
 							</xhtml:div>
 							<xhtml:div class="trigger_container">
@@ -597,11 +463,7 @@
 									<xforms:insert ev:event="DOMActivate" origin="instance('prefLabel-template')" context="." nodeset="./child::node()[last()]"
 									/>
 								</xforms:trigger>
-								<xforms:trigger appearance="minimal">
-									<xforms:label>
-										<xhtml:img src="{$display_path}images/add.gif"/>Definition</xforms:label>
-									<xforms:insert ev:event="DOMActivate" origin="instance('definition-template')" context="."/>
-								</xforms:trigger>
+								<xhtml:span> | </xhtml:span>
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
 										<xhtml:img src="{$display_path}images/add.gif"/>Alternate Label</xforms:label>
@@ -609,13 +471,8 @@
 								</xforms:trigger>
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
-										<xhtml:img src="{$display_path}images/add.gif"/>Related Link</xforms:label>
-									<xforms:insert ev:event="DOMActivate" origin="instance('related-template')" context="." nodeset="./child::node()[last()]"/>
-								</xforms:trigger>
-								<xforms:trigger appearance="minimal">
-									<xforms:label>
-										<xhtml:img src="{$display_path}images/add.gif"/>Field of Numismatics</xforms:label>
-									<xforms:insert ev:event="DOMActivate" origin="instance('isPartOf-template')" context="." nodeset="./child::node()[last()]"/>
+										<xhtml:img src="{$display_path}images/add.gif"/>Comment</xforms:label>
+									<xforms:insert ev:event="DOMActivate" origin="instance('comment-template')" context="." nodeset="./child::node()[last()]"/>
 								</xforms:trigger>
 								<xforms:group ref=".[count(xhtml:div[@property='geo:lat']) = 0 and @typeof='mint']">
 									<xforms:trigger appearance="minimal">
@@ -627,154 +484,271 @@
 										</xforms:action>
 									</xforms:trigger>
 								</xforms:group>
+								<xforms:trigger appearance="minimal">
+									<xforms:label>
+										<xhtml:img src="{$display_path}images/add.gif"/>Definition</xforms:label>
+									<xforms:insert ev:event="DOMActivate" origin="instance('definition-template')" context="."/>
+								</xforms:trigger>
+								<xforms:trigger appearance="minimal">
+									<xforms:label>
+										<xhtml:img src="{$display_path}images/add.gif"/>Field of Numismatics</xforms:label>
+									<xforms:insert ev:event="DOMActivate" origin="instance('isPartOf-template')" context="." nodeset="./child::node()[last()]"/>
+								</xforms:trigger>
+								<xforms:group ref=".[count(xhtml:div[@property='nm:numismatic_start_date']) = 0]">
+									<xforms:trigger appearance="minimal">
+										<xforms:label>
+											<xhtml:img src="{$display_path}images/add.gif"/>Numismatic Start Date</xforms:label>
+										<xforms:insert ev:event="DOMActivate" origin="instance('numismatic_start_date-template')" context="."
+											nodeset="./child::node()[last()]"/>
+									</xforms:trigger>
+								</xforms:group>
+								<xforms:group ref=".[count(xhtml:div[@property='nm:numismatic_end_date']) = 0]">
+									<xforms:trigger appearance="minimal">
+										<xforms:label>
+											<xhtml:img src="{$display_path}images/add.gif"/>Numismatic End Date</xforms:label>
+										<xforms:insert ev:event="DOMActivate" origin="instance('numismatic_end_date-template')" context="."
+											nodeset="./child::node()[last()]"/>
+									</xforms:trigger>
+								</xforms:group>
+								<xforms:trigger appearance="minimal">
+									<xforms:label>
+										<xhtml:img src="{$display_path}images/add.gif"/>Related Link</xforms:label>
+									<xforms:insert ev:event="DOMActivate" origin="instance('related-template')" context="." nodeset="./child::node()[last()]"/>
+								</xforms:trigger>
 							</xhtml:div>
-							<xforms:repeat nodeset="xhtml:div[@property='skos:prefLabel']">
-								<xhtml:div>
-									<xforms:input ref=".">
-										<xforms:label>Preferred Label</xforms:label>
-										<xforms:alert>Required</xforms:alert>
-									</xforms:input>
-									<xforms:select1 ref="@xml:lang">
-										<xforms:item>
-											<xforms:label>Select...</xforms:label>
-											<xforms:value/>
-										</xforms:item>
-										<xforms:itemset nodeset="instance('languages')/language">
-											<xforms:label ref="."/>
-											<xforms:value ref="@value"/>
-										</xforms:itemset>
-										<xforms:alert>Required; English label most occur once.</xforms:alert>
-									</xforms:select1>
-									<xforms:group ref=".[count(instance('doc')/xhtml:div[@property='skos:prefLabel']) &gt; 1]">
+							<xhtml:div class="section">
+								<xhtml:h4>Labels and Definitions</xhtml:h4>
+								<xforms:repeat nodeset="xhtml:div[@property='skos:prefLabel']">
+									<xhtml:div>
+										<xforms:input ref=".">
+											<xforms:label>Preferred Label</xforms:label>
+											<xforms:alert>Required</xforms:alert>
+										</xforms:input>
+										<xforms:select1 ref="@xml:lang">
+											<xforms:item>
+												<xforms:label>Select...</xforms:label>
+												<xforms:value/>
+											</xforms:item>
+											<xforms:itemset nodeset="instance('languages')/language">
+												<xforms:label ref="."/>
+												<xforms:value ref="@value"/>
+											</xforms:itemset>
+											<xforms:alert>Required; English label most occur once.</xforms:alert>
+										</xforms:select1>
+										<xforms:group ref=".[count(instance('doc')/xhtml:div[@property='skos:prefLabel']) &gt; 1]">
+											<xforms:trigger appearance="minimal">
+												<xforms:delete ev:event="DOMActivate" context="."/>
+												<xforms:label>
+													<xhtml:img src="{$display_path}images/remove.gif"/>
+												</xforms:label>
+											</xforms:trigger>
+										</xforms:group>
+									</xhtml:div>
+								</xforms:repeat>
+								<xforms:repeat nodeset="xhtml:div[@property='skos:altLabel']">
+									<xhtml:div>
+										<xforms:input ref=".">
+											<xforms:label>Alternate Label</xforms:label>
+											<xforms:alert>Required</xforms:alert>
+										</xforms:input>
+										<xforms:select1 ref="@xml:lang">
+											<xforms:item>
+												<xforms:label>Select...</xforms:label>
+												<xforms:value/>
+											</xforms:item>
+											<xforms:itemset nodeset="instance('languages')/language">
+												<xforms:label ref="."/>
+												<xforms:value ref="@value"/>
+											</xforms:itemset>
+											<xforms:alert>Required</xforms:alert>
+										</xforms:select1>
 										<xforms:trigger appearance="minimal">
 											<xforms:delete ev:event="DOMActivate" context="."/>
 											<xforms:label>
 												<xhtml:img src="{$display_path}images/remove.gif"/>
 											</xforms:label>
 										</xforms:trigger>
-									</xforms:group>
-								</xhtml:div>
-							</xforms:repeat>
-							<xforms:repeat nodeset="xhtml:div[@property='skos:altLabel']">
-								<xhtml:div>
-									<xforms:input ref=".">
-										<xforms:label>Alternate Label</xforms:label>
-										<xforms:alert>Required</xforms:alert>
-									</xforms:input>
-									<xforms:select1 ref="@xml:lang">
-										<xforms:item>
-											<xforms:label>Select...</xforms:label>
-											<xforms:value/>
-										</xforms:item>
-										<xforms:itemset nodeset="instance('languages')/language">
-											<xforms:label ref="."/>
-											<xforms:value ref="@value"/>
-										</xforms:itemset>
-										<xforms:alert>Required</xforms:alert>
-									</xforms:select1>
-									<xforms:trigger appearance="minimal">
-										<xforms:delete ev:event="DOMActivate" context="."/>
-										<xforms:label>
-											<xhtml:img src="{$display_path}images/remove.gif"/>
-										</xforms:label>
-									</xforms:trigger>
-								</xhtml:div>
-							</xforms:repeat>
-							<xforms:repeat nodeset="xhtml:div[@property='skos:definition']">
-								<xhtml:div>
-									<xforms:textarea ref=".">
-										<xforms:label>Definition</xforms:label>
-										<xforms:alert>Required</xforms:alert>
-									</xforms:textarea>
-									<xforms:select1 ref="@xml:lang">
-										<xforms:item>
-											<xforms:label>Select...</xforms:label>
-											<xforms:value/>
-										</xforms:item>
-										<xforms:itemset nodeset="instance('languages')/language">
-											<xforms:label ref="."/>
-											<xforms:value ref="@value"/>
-										</xforms:itemset>
-										<xforms:alert>Required; English label most occur once.</xforms:alert>
-									</xforms:select1>
-									<xforms:group ref=".[count(instance('doc')/xhtml:div[@property='skos:definition']) &gt; 1]">
+									</xhtml:div>
+								</xforms:repeat>
+								<xforms:repeat nodeset="xhtml:div[@property='skos:definition']">
+									<xhtml:div>
+										<xforms:textarea ref=".">
+											<xforms:label>Definition</xforms:label>
+											<xforms:alert>Required</xforms:alert>
+										</xforms:textarea>
+										<xforms:select1 ref="@xml:lang">
+											<xforms:item>
+												<xforms:label>Select...</xforms:label>
+												<xforms:value/>
+											</xforms:item>
+											<xforms:itemset nodeset="instance('languages')/language">
+												<xforms:label ref="."/>
+												<xforms:value ref="@value"/>
+											</xforms:itemset>
+											<xforms:alert>Required; English label most occur once.</xforms:alert>
+										</xforms:select1>
+										<xforms:group ref=".[count(instance('doc')/xhtml:div[@property='skos:definition']) &gt; 1]">
+											<xforms:trigger appearance="minimal">
+												<xforms:delete ev:event="DOMActivate" context="."/>
+												<xforms:label>
+													<xhtml:img src="{$display_path}images/remove.gif"/>
+												</xforms:label>
+											</xforms:trigger>
+										</xforms:group>
+									</xhtml:div>
+								</xforms:repeat>
+							</xhtml:div>
+							<xhtml:div>
+								<xhtml:h4>Miscellaneous Fields</xhtml:h4>
+								<xforms:repeat nodeset="xhtml:div[@property='rdfs:comment']">
+									<xhtml:div>
+										<xforms:input ref=".">
+											<xforms:label>Comment</xforms:label>
+											<xforms:alert>Required</xforms:alert>
+										</xforms:input>
+										<xforms:select1 ref="@xml:lang">
+											<xforms:item>
+												<xforms:label>Select...</xforms:label>
+												<xforms:value/>
+											</xforms:item>
+											<xforms:itemset nodeset="instance('languages')/language">
+												<xforms:label ref="."/>
+												<xforms:value ref="@value"/>
+											</xforms:itemset>
+											<xforms:alert>Required</xforms:alert>
+										</xforms:select1>
 										<xforms:trigger appearance="minimal">
 											<xforms:delete ev:event="DOMActivate" context="."/>
 											<xforms:label>
 												<xhtml:img src="{$display_path}images/remove.gif"/>
 											</xforms:label>
 										</xforms:trigger>
-									</xforms:group>
-								</xhtml:div>
-							</xforms:repeat>
-							<xforms:repeat nodeset="xhtml:div[@property='skos:related']">
+									</xhtml:div>
+								</xforms:repeat>
+								<xforms:repeat nodeset="xhtml:div[@property='skos:related']">
+									<xhtml:div>
+										<xforms:input ref="@resource">
+											<xforms:label>Related Link</xforms:label>
+											<xforms:alert>Required, must be URI</xforms:alert>
+										</xforms:input>
+										<xforms:trigger appearance="minimal">
+											<xforms:delete ev:event="DOMActivate" context="."/>
+											<xforms:label>
+												<xhtml:img src="{$display_path}images/remove.gif"/>
+											</xforms:label>
+										</xforms:trigger>
+									</xhtml:div>
+								</xforms:repeat>
+								<xforms:repeat nodeset="xhtml:div[@property='dcterms:isPartOf']">
+									<xhtml:div>
+										<xforms:select1 ref="@resource">
+											<xforms:label>Field</xforms:label>
+											<xforms:alert>Required</xforms:alert>
+											<xforms:item>
+												<xforms:label>Select...</xforms:label>
+												<xforms:value/>
+											</xforms:item>
+											<xforms:itemset nodeset="instance('fon-response')/res:results/res:result">
+												<xforms:label ref="res:binding[@name='label']/res:literal"/>
+												<xforms:value ref="substring-after(res:binding[@name='uri']/res:uri, 'id/')"/>
+											</xforms:itemset>
+										</xforms:select1>
+										<xforms:trigger appearance="minimal">
+											<xforms:delete ev:event="DOMActivate" context="."/>
+											<xforms:label>
+												<xhtml:img src="{$display_path}images/remove.gif"/>
+											</xforms:label>
+										</xforms:trigger>
+									</xhtml:div>
+								</xforms:repeat>
+							</xhtml:div>
+							<xforms:group ref="xhtml:div[@property='nm:numismatic_start_date']">
+								<xhtml:h5>Numismatic Start Date</xhtml:h5>
+								<xforms:trigger appearance="minimal">
+									<xforms:delete ev:event="DOMActivate" context="."/>
+									<xforms:label>
+										<xhtml:img src="{$display_path}images/remove.gif"/>
+									</xforms:label>
+								</xforms:trigger>
 								<xhtml:div>
-									<xforms:input ref="@resource">
-										<xforms:label>Related Link</xforms:label>
-										<xforms:alert>Required, must be URI</xforms:alert>
+									<xforms:input ref="@content">
+										<xforms:label>Content</xforms:label>
+										<xforms:alert>Must conform to xsd:gYear</xforms:alert>
+										<xforms:action ev:event="xforms-value-changed">
+											<xforms:var name="year" select="if (number(.) &lt; 0) then abs(number(.)) + 1 else number(.)"/>
+											<xforms:setvalue ref="parent::node()"
+												value="if (number(@content) &lt; 0) then concat($year, ' B.C.') else concat('A.D. ', $year)"/>
+										</xforms:action>
 									</xforms:input>
-									<xforms:trigger appearance="minimal">
-										<xforms:delete ev:event="DOMActivate" context="."/>
-										<xforms:label>
-											<xhtml:img src="{$display_path}images/remove.gif"/>
-										</xforms:label>
-									</xforms:trigger>
 								</xhtml:div>
-							</xforms:repeat>
-							<xforms:repeat nodeset="xhtml:div[@property='dcterms:isPartOf']">
 								<xhtml:div>
-									<xforms:select1 ref="@resource">
-										<xforms:label>Field</xforms:label>
-										<xforms:alert>Required</xforms:alert>
-										<xforms:item>
-											<xforms:label>Select...</xforms:label>
-											<xforms:value/>
-										</xforms:item>
-										<xforms:itemset nodeset="instance('fon-response')/res:results/res:result">
-											<xforms:label ref="res:binding[@name='label']/res:literal"/>
-											<xforms:value ref="substring-after(res:binding[@name='uri']/res:uri, 'id/')"/>
-										</xforms:itemset>
-									</xforms:select1>
-									<xforms:trigger appearance="minimal">
-										<xforms:delete ev:event="DOMActivate" context="."/>
-										<xforms:label>
-											<xhtml:img src="{$display_path}images/remove.gif"/>
-										</xforms:label>
-									</xforms:trigger>
+									<xforms:output ref=".">
+										<xforms:label>Label</xforms:label>
+									</xforms:output>
 								</xhtml:div>
-							</xforms:repeat>
+							</xforms:group>
+							<xforms:group ref="xhtml:div[@property='nm:numismatic_end_date']">
+								<xhtml:h5>Numismatic End Date</xhtml:h5>
+								<xforms:trigger appearance="minimal">
+									<xforms:delete ev:event="DOMActivate" context="."/>
+									<xforms:label>
+										<xhtml:img src="{$display_path}images/remove.gif"/>
+									</xforms:label>
+								</xforms:trigger>
+								<xhtml:div>
+									<xforms:input ref="@content">
+										<xforms:label>Content</xforms:label>
+										<xforms:alert>Must conform to xsd:gYear</xforms:alert>
+										<xforms:action ev:event="xforms-value-changed">
+											<xforms:var name="year" select="if (number(.) &lt; 0) then abs(number(.)) + 1 else number(.)"/>
+											<xforms:setvalue ref="parent::node()"
+												value="if (number(@content) &lt; 0) then concat($year, ' B.C.') else concat('A.D. ', $year)"/>
+										</xforms:action>
+									</xforms:input>
+								</xhtml:div>
+								<xhtml:div>
+									<xforms:output ref=".">
+										<xforms:label>Label</xforms:label>
+									</xforms:output>
+								</xhtml:div>
+							</xforms:group>
 							<!--<fr:map id="geomap" address-ref="instance('control-instance')/address" longitude-ref="instance('control-instance')/long" latitude-ref="instance('control-instance')/lat"
 								style="width: 500px; height: 300px"/>-->
 							<xforms:group ref=".[count(xhtml:div[@property='geo:lat']) = 1]">
-								<xhtml:h4>Coordinates</xhtml:h4>
 								<xhtml:div>
-									<xforms:input ref="xhtml:div[@property='geo:lat']">
-										<xforms:label>Latitude</xforms:label>
-										<xforms:alert>Must be decimal integer between -180 and 180</xforms:alert>
-									</xforms:input>
-								</xhtml:div>
-								<xhtml:div>
-									<xforms:input ref="xhtml:div[@property='geo:long']">
-										<xforms:label>Longitude</xforms:label>
-										<xforms:alert>Must be decimal integer between -180 and 180</xforms:alert>
-									</xforms:input>
+									<xhtml:h4>Coordinates</xhtml:h4>
+									<xforms:trigger appearance="minimal">
+										<xforms:action ev:event="DOMActivate">
+											<xforms:delete nodeset="xhtml:div[@property='geo:lat']"/>
+											<xforms:delete nodeset="xhtml:div[@property='geo:long']"/>
+										</xforms:action>
+										<xforms:label>
+											<xhtml:img src="{$display_path}images/remove.gif"/>
+										</xforms:label>
+									</xforms:trigger>
+									<xhtml:div>
+										<xforms:input ref="xhtml:div[@property='geo:lat']">
+											<xforms:label>Latitude</xforms:label>
+											<xforms:alert>Must be decimal integer between -180 and 180</xforms:alert>
+										</xforms:input>
+									</xhtml:div>
+									<xhtml:div>
+										<xforms:input ref="xhtml:div[@property='geo:long']">
+											<xforms:label>Longitude</xforms:label>
+											<xforms:alert>Must be decimal integer between -180 and 180</xforms:alert>
+										</xforms:input>
+									</xhtml:div>
 								</xhtml:div>
 							</xforms:group>
 						</xforms:group>
-						
 						<!-- trigger group -->
 						<xhtml:div class="trigger_container">
 							<xforms:trigger appearance="minimal">
 								<xforms:label>
 									<xhtml:img src="{$display_path}images/add.gif"/>Preferred Label</xforms:label>
-								<xforms:insert ev:event="DOMActivate" origin="instance('prefLabel-template')" context="." nodeset="./child::node()[last()]"
-								/>
+								<xforms:insert ev:event="DOMActivate" origin="instance('prefLabel-template')" context="." nodeset="./child::node()[last()]"/>
 							</xforms:trigger>
-							<xforms:trigger appearance="minimal">
-								<xforms:label>
-									<xhtml:img src="{$display_path}images/add.gif"/>Definition</xforms:label>
-								<xforms:insert ev:event="DOMActivate" origin="instance('definition-template')" context="."/>
-							</xforms:trigger>
+							<xhtml:span> | </xhtml:span>
 							<xforms:trigger appearance="minimal">
 								<xforms:label>
 									<xhtml:img src="{$display_path}images/add.gif"/>Alternate Label</xforms:label>
@@ -782,13 +756,8 @@
 							</xforms:trigger>
 							<xforms:trigger appearance="minimal">
 								<xforms:label>
-									<xhtml:img src="{$display_path}images/add.gif"/>Related Link</xforms:label>
-								<xforms:insert ev:event="DOMActivate" origin="instance('related-template')" context="." nodeset="./child::node()[last()]"/>
-							</xforms:trigger>
-							<xforms:trigger appearance="minimal">
-								<xforms:label>
-									<xhtml:img src="{$display_path}images/add.gif"/>Field of Numismatics</xforms:label>
-								<xforms:insert ev:event="DOMActivate" origin="instance('isPartOf-template')" context="." nodeset="./child::node()[last()]"/>
+									<xhtml:img src="{$display_path}images/add.gif"/>Comment</xforms:label>
+								<xforms:insert ev:event="DOMActivate" origin="instance('comment-template')" context="." nodeset="./child::node()[last()]"/>
 							</xforms:trigger>
 							<xforms:group ref=".[count(xhtml:div[@property='geo:lat']) = 0 and @typeof='mint']">
 								<xforms:trigger appearance="minimal">
@@ -800,97 +769,66 @@
 									</xforms:action>
 								</xforms:trigger>
 							</xforms:group>
+							<xforms:trigger appearance="minimal">
+								<xforms:label>
+									<xhtml:img src="{$display_path}images/add.gif"/>Definition</xforms:label>
+								<xforms:insert ev:event="DOMActivate" origin="instance('definition-template')" context="."/>
+							</xforms:trigger>
+							<xforms:trigger appearance="minimal">
+								<xforms:label>
+									<xhtml:img src="{$display_path}images/add.gif"/>Field of Numismatics</xforms:label>
+								<xforms:insert ev:event="DOMActivate" origin="instance('isPartOf-template')" context="." nodeset="./child::node()[last()]"/>
+							</xforms:trigger>
+							<xforms:group ref=".[count(xhtml:div[@property='nm:numismatic_start_date']) = 0]">
+								<xforms:trigger appearance="minimal">
+									<xforms:label>
+										<xhtml:img src="{$display_path}images/add.gif"/>Numismatic Start Date</xforms:label>
+									<xforms:insert ev:event="DOMActivate" origin="instance('numismatic_start_date-template')" context="."
+										nodeset="./child::node()[last()]"/>
+								</xforms:trigger>
+							</xforms:group>
+							<xforms:group ref=".[count(xhtml:div[@property='nm:numismatic_end_date']) = 0]">
+								<xforms:trigger appearance="minimal">
+									<xforms:label>
+										<xhtml:img src="{$display_path}images/add.gif"/>Numismatic End Date</xforms:label>
+									<xforms:insert ev:event="DOMActivate" origin="instance('numismatic_end_date-template')" context="."
+										nodeset="./child::node()[last()]"/>
+								</xforms:trigger>
+							</xforms:group>
+							<xforms:trigger appearance="minimal">
+								<xforms:label>
+									<xhtml:img src="{$display_path}images/add.gif"/>Related Link</xforms:label>
+								<xforms:insert ev:event="DOMActivate" origin="instance('related-template')" context="." nodeset="./child::node()[last()]"/>
+							</xforms:trigger>
 						</xhtml:div>
 					</xhtml:div>
-					<fr:alert-dialog id="save-dialog">
-						<fr:label>Save</fr:label>
-						<fr:message>The id has been changed from its original value</fr:message>
-						<fr:positive-choice>
-							<fr:label>Save: Replace</fr:label>
-							<xforms:action ev:event="DOMActivate">
-								<!-- delete old id first -->
-								<xforms:action if="instance('control-instance')/type = 'type_series_item' or instance('control-instance')/type = 'hoard'">
-									<xforms:send submission="delete-object"/>
-									<xforms:send submission="delete-kml"/>
-								</xforms:action>
-								<xforms:action if="contains(instance('control-instance')/type, 'mint')">
-									<xforms:send submission="delete-kml"/>
-								</xforms:action>
-								<xforms:send submission="delete-id"/>
-								<xforms:setvalue ref="instance('deleteId')/id" value="instance('control-instance')/original_id"/>
-								<xforms:send submission="delete-id-from-solr"/>
-								<!-- create new objects -->
-								<xforms:action if="instance('control-instance')/type = 'type_series_item'">
-									<xforms:insert nodeset="instance('kml')"
-										origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('coin'), 'data')"/>
-									<xforms:send submission="save-kml"/>
-									<xforms:send submission="save-coin"/>
-								</xforms:action>
-								<xforms:action if="instance('control-instance')/type = 'hoard'">
-									<!--<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('hoard'), 'data')"/>
-										<xforms:send submission="save-kml"/>
-										<xforms:send submission="save-hoard"/>-->
-								</xforms:action>
-								<xforms:action
-									if="not(instance('control-instance')/type = 'type_series_item') and not(instance('control-instance')/type = 'hoard')">
-									<xforms:action if="contains(instance('control-instance')/type, 'mint')">
-										<xforms:insert nodeset="instance('kml')"
-											origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml.xpl', 'data', instance('doc'), 'data')"/>
-										<xforms:send submission="save-kml"/>
-									</xforms:action>
-									<xforms:send submission="save-id"/>
-								</xforms:action>
-							</xforms:action>
-						</fr:positive-choice>
-						<fr:negative-choice>
-							<fr:label>Save: Don't Replace</fr:label>
-							<xforms:action ev:event="DOMActivate">
-								<xforms:action if="instance('control-instance')/type = 'type_series_item'">
-									<xforms:insert nodeset="instance('kml')"
-										origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('coin'), 'data')"/>
-									<xforms:send submission="save-kml"/>
-									<xforms:send submission="save-coin"/>
-								</xforms:action>
-								<xforms:action if="instance('control-instance')/type = 'hoard'">
-									<!--<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/object-to-kml.xpl', 'data', instance('hoard'), 'data')"/>
-										<xforms:send submission="save-kml"/>
-										<xforms:send submission="save-hoard"/>-->
-								</xforms:action>
-								<xforms:action
-									if="not(instance('control-instance')/type = 'type_series_item') and not(instance('control-instance')/type = 'hoard')">
-									<xforms:action if="contains(instance('control-instance')/type, 'mint')">
-										<xforms:insert nodeset="instance('kml')"
-											origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml.xpl', 'data', instance('doc'), 'data')"/>
-										<xforms:send submission="save-kml"/>
-									</xforms:action>
-									<xforms:send submission="save-id"/>
-								</xforms:action>
-							</xforms:action>
-						</fr:negative-choice>
-						<fr:neutral-choice>
-							<fr:label>Cancel</fr:label>
-						</fr:neutral-choice>
-					</fr:alert-dialog>
 					<fr:alert-dialog id="delete-dialog">
 						<fr:label>Delete</fr:label>
-						<fr:message>Do you wish to delete this id from nomisma?</fr:message>
+						<fr:message>Do you wish to delete this id from nomisma? It can only be restored from GitHub.</fr:message>
 						<fr:positive-choice>
 							<fr:label>Yes</fr:label>
 							<xforms:action ev:event="DOMActivate">
-								<xforms:setvalue ref="instance('deleteId')/id" value="instance('control-instance')/original_id"/>
-								<xforms:send submission="delete-id"/>
+								<!-- delete from solr -->
+								<xforms:setvalue ref="instance('deleteId')/id" value="instance('control-instance')/id"/>
 								<xforms:send submission="delete-id-from-solr"/>
-								<xforms:send submission="delete-kml"/>
-								<xforms:send submission="delete-kml-all"/>
+								<!-- delete from SPARQL -->
+								<xforms:setvalue ref="instance('sparqlUpdate')"
+									value="replace(instance('sparqlUpdate-template'), 'URI', concat('http://nomisma.org/id/', instance('doc')/@about))"/>
+								<xforms:send submission="delete-graph"/>
+								
+								<!-- delete id from disk -->
+								<xforms:setvalue ref="instance('delete-config')/delete/url"
+									value="concat('file://', instance('control-instance')/id_path, instance('control-instance')/id, '.txt')"/>
+								<xforms:insert nodeset="instance('dump')"
+									origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/delete-id.xpl', 'file', instance('delete-config'), 'data')"/>
+								<!-- redirect to admin, only if all other processes completed successfully -->
+								<xforms:load resource="{$display_path}" if="instance('control-instance')/delete-success = true()"/>
 							</xforms:action>
 						</fr:positive-choice>
 						<fr:negative-choice>
 							<fr:label>No</fr:label>
 						</fr:negative-choice>
 					</fr:alert-dialog>
-					<!--<fr:error-summary observer="form">
-						<fr:label>Your Form Contains the Following Errors</fr:label>
-						</fr:error-summary>-->
 					<fr:xforms-inspector/>
 				</div>
 			</div>

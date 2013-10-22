@@ -61,10 +61,19 @@
   ****************************************
  */
  
+h1, h2, h3, h4, h5{
+	display:inline;	
+}
  .yui3-g {
 	margin:20px auto;
 	width:960px;
 }
 .content {
 	padding:5px;
+}
+.submission {
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+	width:50%;	
 }

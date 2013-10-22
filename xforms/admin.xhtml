@@ -4,497 +4,203 @@
 	xmlns:exist="http://exist.sourceforge.net/NS/exist" xmlns:nm="http://nomisma.org/id/" xmlns:ov="http://open.vocab.org/terms/" xmlns:owl="http://www.w3.org/2002/07/owl#"
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2008/05/skos#" xmlns:batlas="http://atlantides.org/batlas/" xmlns:cc="http://creativecommons.org/ns#"
 	xmlns:nuds="http://nomisma.org/id/nuds" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:gml="http://www.opengis.net/gml/" xmlns:kml="http://www.opengis.net/kml/2.2">
-	<xhtml:head>
+	<head>
 		<title>nomisma.org: Administrative Interface</title>
-		<link rel="stylesheet" type="text/css" href="/apps/nomisma/css/grids-min.css"/>
-		<link rel="stylesheet" type="text/css" href="/apps/nomisma/css/reset-fonts-grids.css"/>
-		<link rel="stylesheet" type="text/css" href="/apps/nomisma/css/base-min.css"/>
-		<link rel="stylesheet" type="text/css" href="/apps/nomisma/css/fonts-min.css"/>
-
-		<!-- nomisma styling -->
-		<xhtml:link rel="stylesheet" href="/apps/nomisma/css/style.css"/>
-		<xhtml:link rel="stylesheet" href="/apps/nomisma/css/jquery-ui-1.8.12.custom.css"/>
-
-		<xhtml:script type="text/javascript" src="/apps/nomisma/javascript/jquery-1.6.1.min.js"/>
-		<xhtml:script type="text/javascript" src="/apps/nomisma/javascript/menu.js"/>
-
-
+		<link rel="stylesheet" href="/fr/style/bootstrap/css/bootstrap.css" type="text/css"/>
+		<link rel="stylesheet" href="/fr/style/form-runner-bootstrap-override.css" type="text/css"/>
+		<link rel="stylesheet" href="/config/theme/examples.css" type="text/css" media="all"/>
+		<link rel="shortcut icon" href="/ops/images/orbeon-icon-16.ico"/>
+		<link rel="icon" href="/ops/images/orbeon-icon-16.png" type="image/png"/>
+		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.8.0/build/cssgrids/grids-min.css"/>
+		<link rel="stylesheet" href="/apps/nomisma/css/style.css"/>
 		<xforms:model>
-			<xforms:instance id="exist-url">
-				<xi:include href="exist-url.xml"/>
-			</xforms:instance>
-
-			<xforms:instance id="config">
-				<config xmlns=""/>
-			</xforms:instance>
-
-			<xforms:instance id="status">
-				<status/>
-			</xforms:instance>
-
-			<xforms:instance id="identifier">
-				<id xmlns=""/>
-			</xforms:instance>
-
-			<xforms:instance id="id">
-				<div xmlns=""/>
-			</xforms:instance>
-
-			<xforms:instance id="kml">
-				<kml xmlns="http://www.opengis.net/kml/2.2"/>
-			</xforms:instance>
-
-			<xforms:instance id="kml-all">
-				<kml xmlns="http://www.opengis.net/kml/2.2"/>
-			</xforms:instance>
-
-			<xforms:instance id="term-template">
+			<xforms:instance id="doc">
 				<div xmlns="http://www.w3.org/1999/xhtml"
-					prefix="=nm: http://nomisma.org/id/     dcterms: http://purl.org/dc/terms/     rdfs: http://www.w3.org/2000/01/rdf-schema#      foaf: http://xmlns.com/foaf/0.1/     rdf:  http://www.w3.org/1999/02/22-rdf-syntax-ns#     owl:  http://www.w3.org/2002/07/owl#     rdfs: http://www.w3.org/2000/01/rdf-schema#     rdfa: http://www.w3.org/ns/rdfa#     "
-					about="" typeof="nm:numismatic_term">
+					prefix="nm: http://nomisma.org/id/
+					dcterms: http://purl.org/dc/terms/
+					foaf: http://xmlns.com/foaf/0.1/
+					geo: http://www.w3.org/2003/01/geo/wgs84_pos#
+					owl:  http://www.w3.org/2002/07/owl#
+					rdfs: http://www.w3.org/2000/01/rdf-schema#
+					rdfa: http://www.w3.org/ns/rdfa#
+					rdf:  http://www.w3.org/1999/02/22-rdf-syntax-ns#
+					skos: http://www.w3.org/2004/02/skos/core#"
+					vocab="http://nomisma.org/id/" about="" typeof="">
 					<div property="skos:prefLabel" xml:lang="en"/>
 					<div property="skos:definition" xml:lang="en"/>
 				</div>
 			</xforms:instance>
 
+			<xforms:instance id="rdf">
+				<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:nm="http://nomisma.org/id/"
+					xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfa="http://www.w3.org/ns/rdfa#"
+					xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"/>
+			</xforms:instance>
+
 			<xforms:instance id="control-instance">
-				<control xmlns="">
+				<controls xmlns="">
 					<id/>
-				</control>
+					<original_id/>
+					<save-trigger/>
+					<status/>
+					<dbpedia/>
+					<id_path>/usr/local/projects/nomisma-ids/id/</id_path>
+					<endpoint>http://localhost:3030/nomisma/</endpoint>
+					<solr_url>http://localhost:8080/solr/nomisma/</solr_url>
+					<lat>40</lat>
+					<long>1</long>
+					<dump/>
+				</controls>
 			</xforms:instance>
 
-			<!-- eXist query for types -->
-			<xforms:instance id="types">
-				<types/>
+			<xforms:instance id="load-config">
+				<config xmlns="">
+					<url/>
+					<content-type>application/xml</content-type>
+					<mode>xml</mode>
+				</config>
 			</xforms:instance>
 
-			<xforms:instance id="type-template">
-				<type xmlns=""/>
+			<xforms:instance id="save-config">
+				<config xmlns="">
+					<url/>
+					<content-type>text/plain</content-type>
+					<make-directories>false</make-directories>
+					<append>false</append>
+				</config>
 			</xforms:instance>
 
-			<!-- eXist instances -->
-			<xforms:instance id="delete-kml-xquery">
-				<exist:query>
-					<exist:text>xmldb:remove('/db/nomisma/kml')</exist:text>
-				</exist:query>
+			<xforms:instance id="dump">
+				<dump xmlns=""/>
 			</xforms:instance>
 
-			<xforms:instance id="eXist-xquery">
-				<exist:query>
-					<exist:text>&lt;report&gt; { for $i in distinct-values(collection()//xhtml:div/@typeof) where contains($i, 'nm:') order by substring-after(normalize-space($i), 'nm:') return
-						&lt;type> { substring-after(normalize-space($i), 'nm:') } &lt;/type> } &lt;/report&gt;</exist:text>
-				</exist:query>
+			<!-- sparql queries -->
+			<xforms:instance id="sparqlQueryTemplate">
+				<query><![CDATA[
+					PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+					PREFIX dcterms:  <http://purl.org/dc/terms/>
+					PREFIX nm:       <http://nomisma.org/id/>
+					PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+					SELECT ?uri ?label WHERE {
+					?uri  rdf:type <http://nomisma.org/id/TERM>.
+					?uri skos:prefLabel ?label .
+					FILTER (lang(?label) = "en")}
+					ORDER BY ASC(?label)
+					]]>
+				</query>
 			</xforms:instance>
 
-			<xforms:instance id="eXist-result">
-				<exist:result/>
+			<xforms:instance id="sparqlQuery">
+				<query/>
 			</xforms:instance>
 
-			<!-- instances associated with gathering findspots associated with a particular mint -->
-			<xforms:instance id="findspots-xquery">
-				<exist:query xmlns:exist="http://exist.sourceforge.net/NS/exist">
-					<exist:text>&lt;report&gt; { for $i in collection()//xhtml:div[@typeof='nm:hoard'][descendant::*[@rel='nm:mint'][@resource="athens"]] return &lt;point&gt; &lt;id&gt; {
-						substring-after(translate($i/@about, '[]', ''), 'nm:') } &lt;/id&gt; &lt;pos&gt; { if(string($i/descendant::*[@property='nm:findspot']/@content)) then
-						$i/descendant::*[@property='nm:findspot']/@content/text() else $i/descendant::*[@property='gml:pos']/text() } &lt;/pos&gt; &lt;/point&gt; } &lt;/report&gt;</exist:text>
-				</exist:query>
+			<!-- preloaded instances -->
+			<xforms:instance id="sparqlResponse">
+				<sparql xmlns="http://www.w3.org/2005/sparql-results#"/>
 			</xforms:instance>
 
-			<xforms:instance id="findspots">
-				<exist:result/>
+			<xforms:instance id="nt-response">
+				<sparql xmlns="http://www.w3.org/2005/sparql-results#"/>
 			</xforms:instance>
 
-			<!-- instances for generating hoard KML -->
-			<xforms:instance id="mints">
-				<points xmlns=""/>
+			<xforms:instance id="fon-response">
+				<sparql xmlns="http://www.w3.org/2005/sparql-results#"/>
 			</xforms:instance>
 
-			<xforms:instance id="point-template">
-				<point xmlns="">
-					<id/>
-					<pos/>
-				</point>
+			<!-- sparql update -->
+			<xforms:instance id="sparqlUpdate-template">
+				<query>
+					<![CDATA[DELETE {?s ?p ?o} WHERE { <URI> ?p ?o . ?s ?p ?o . FILTER (?s = <URI>) }]]>
+				</query>
 			</xforms:instance>
-
-			<xforms:instance id="temp-identifier">
-				<id xmlns=""/>
-			</xforms:instance>
-
-			<xforms:instance id="temp-id">
-				<div xmlns=""/>
+			<xforms:instance id="sparqlUpdate">
+				<query/>
 			</xforms:instance>
 
 			<!-- Solr instances -->
-			<xforms:instance id="solr-doc">
-				<add xmlns=""/>
-			</xforms:instance>
-
 			<xforms:instance id="addIndex">
 				<add xmlns=""/>
 			</xforms:instance>
-
-			<xforms:instance id="deleteAll">
-				<delete xmlns="">
-					<query>id:*</query>
-				</delete>
-			</xforms:instance>
-
 			<xforms:instance id="sendCommit">
 				<commit/>
 			</xforms:instance>
-			<!-- **************** BINDINGS ********************** -->
-			<xforms:bind nodeset="instance('term-template')">
-				<xforms:bind nodeset="@about" type="xs:anyURI"/>
-				<xforms:bind nodeset="xhtml:div[@property='skos:prefLabel']" required="true()"/>
-				<xforms:bind nodeset="xhtml:div[@property='skos:definition']" required="true()"/>
-			</xforms:bind>
+			<xforms:instance id="deleteId">
+				<delete xmlns="">
+					<id/>
+				</delete>
+			</xforms:instance>
 
-			<xforms:bind nodeset="instance('control-instance')">
-				<xforms:bind nodeset="id" required="true()" type="xs:ID"/>
-			</xforms:bind>
 
-			<xforms:bind nodeset="instance('config')">
-				<xforms:bind nodeset="url" required="true()" type="xs:anyURI"/>
-				<xforms:bind nodeset="solr_url" required="true()" type="xs:anyURI"/>
-			</xforms:bind>
-
-			<!-- **************** xforms-model-construct-done ********************** -->
-			<xforms:action ev:event="xforms-model-construct-done">
-				<xforms:send submission="load-config"/>
-				<xforms:send submission="xquery-terms"/>
-			</xforms:action>
-
-			<!-- ************* SUBMISSIONS **********************-->
-			<xforms:submission id="load-config" serialization="none" method="get" action="{instance('exist-url')}nomisma/config.xml" replace="instance" instance="config" xxforms:username="admin"
-				xxforms:password="">
-				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to load config</xforms:message>
+			<!-- ************* SPARQL SUBMISSIONS **********************-->
+			<xforms:submission id="getRdf" action="http://localhost:8080/cocoon/nomisma/id/{instance('control-instance')/id}.rdf" ref="instance('rdf')"
+				replace="instance" method="get">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Failed to get RDF.</xforms:message>
 			</xforms:submission>
 
-			<xforms:submission id="load-id-for-solr" serialization="none" method="get" action="{instance('exist-url')}/nomisma/id/{instance('identifier')}.xml" replace="instance" instance="id"
-				xxforms:username="admin" xxforms:password="">
-				<xforms:message ev:event="xforms-submit-error" level="modal">Cannot load object: <xforms:output ref="instance('identifier')"/></xforms:message>
-				<xforms:action ev:event="xforms-submit-done">
-					<!-- extract Solr document, put into addIndex -->
-					<xforms:insert nodeset="instance('solr-doc')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-solr.xpl', 'data', instance('id'), 'data')"/>
-					<xforms:insert context="instance('addIndex')" nodeset="./child::node()[last()]" origin="instance('solr-doc')/doc"/>
-				</xforms:action>
+			<!-- ************* SPARQL SUBMISSIONS **********************-->
+			<!-- SPARQL queries -->
+			<xforms:submission id="submit-sparqlQuery"
+				action="{instance('control-instance')/endpoint}query?query={encode-for-uri(instance('sparqlQuery'))}&amp;output=xml"
+				ref="instance('sparqlResponse')" replace="instance" method="get">
+				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL query failed.</xforms:message>
 			</xforms:submission>
 
-			<xforms:submission id="load-id-for-kml" serialization="none" method="get" action="{instance('exist-url')}/nomisma/id/{instance('identifier')}.xml" replace="instance" instance="id"
-				xxforms:username="admin" xxforms:password="">
-				<xforms:message ev:event="xforms-submit-error" level="modal">Cannot load object: <xforms:output ref="instance('identifier')"/></xforms:message>
-				<xforms:action ev:event="xforms-submit-done">
-					<!-- generate KML, post to eXist -->
-					<xforms:action if="instance('id')/@typeof = 'nm:mint'">
-						<!-- only create kml if there is a gml:pos -->
-						<xforms:action if="string(instance('id')/xhtml:div[@property='gml:pos'])">
-							<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml.xpl', 'data', instance('id'), 'data')"/>
-							<xforms:send submission="save-kml"/>
-						</xforms:action>
-
-						<!-- generate 'all' KML -->
-						<!-- first set query to current id of mint -->
-						<xforms:setvalue ref="instance('findspots-xquery')/exist:text"
-							value="replace(instance('findspots-xquery')/exist:text, 'resource=&#x0022;[^&#x0022;]+&#x0022;', concat('resource=&#x0022;', instance('identifier'), '&#x0022;'))"/>
-						<xforms:send submission="xquery-findspots"/>
-
-						<!-- if the xquery results in findspots -->
-						<xforms:action if="count(instance('findspots')//point) &gt; 0">
-							<xforms:send submission="save-kml-all"/>
-						</xforms:action>
-						<!-- if not (also only create 'all' kml if there are mint coordinates) -->
-						<xforms:action if="count(instance('findspots')//point) = 0 and string(instance('id')/xhtml:div[@property='gml:pos'])">
-							<xforms:send submission="save-kml-as-all"/>
-						</xforms:action>
-					</xforms:action>
-					<xforms:action if="instance('id')/@typeof = 'nm:hoard'">
-						<xforms:insert nodeset="instance('kml')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml.xpl', 'data', instance('id'), 'data')"/>
-						<xforms:send submission="save-kml"/>
-
-						<!-- save kml for findspot + associated mints -->
-						<xforms:action xxforms:iterate="instance('id')//xhtml:span[@rel='nm:mint']">
-							<xxforms:variable name="resource" select="@resource"/>
-							<xforms:setvalue ref="instance('temp-identifier')" value="$resource"/>
-							<xforms:send submission="load-temp-id"/>
-						</xforms:action>
-						<xforms:insert nodeset="instance('kml-all')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml-all.xpl', 'data', instance('mints'), 'data')"/>
-						<xforms:insert context="instance('kml-all')/kml:Document" nodeset="./child::node()[last()]" origin="instance('kml')/kml:Document/kml:Placemark"/>
-						<xforms:send submission="save-kml-all"/>
-
-						<!-- delete all of the points from the mints instance for each id -->
-						<xforms:delete nodeset="instance('mints')/*"/>
-					</xforms:action>
-				</xforms:action>
+			<xforms:submission id="delete-graph" action="{instance('control-instance')/endpoint}update" ref="instance('sparqlUpdate')"
+				serialization="text/plain" replace="none" method="post" mediatype="application/sparql-update">
+				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL update failed.</xforms:message>
 			</xforms:submission>
 
-			<xforms:submission id="load-temp-id" serialization="none" method="get" action="{instance('exist-url')}nomisma/id/{instance('temp-identifier')}.xml" replace="instance" instance="temp-id"
-				xxforms:username="admin" xxforms:password="">
-				<xforms:action ev:event="xforms-submit-done">
-					<xforms:setvalue ref="instance('point-template')/id" value="instance('temp-id')/xhtml:div[@property='skos:prefLabel'][@xml:lang='en']"/>
-					<xforms:setvalue ref="instance('point-template')/pos" value="instance('temp-id')/xhtml:div[@property='gml:pos']"/>
-					<xforms:insert origin="instance('point-template')" context="instance('mints')"/>
-				</xforms:action>
-				<xforms:action ev:event="xforms-submit-error">
-					<xforms:message level="modal">Error loading temporary id</xforms:message>
-				</xforms:action>
+			<xforms:submission id="post-new" action="{instance('control-instance')/endpoint}data?default" ref="instance('rdf')" replace="none" method="post"
+				mediatype="application/rdf+xml">
+				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Successfully posted to endpoint.</xforms:setvalue>
+				<xforms:message ev:event="xforms-submit-error" level="modal">Post to endpoint failed.</xforms:message>
 			</xforms:submission>
 
-			<xforms:submission id="save-id" ref="instance('term-template')" xxforms:username="admin" xxforms:password=""
-				action="{instance('exist-url')}nomisma/id/{substring-after(translate(instance('term-template')/@about, '[]', ''), 'nm:')}.xml" method="put" replace="none">
-				<xforms:message ev:event="xforms-submit-error" level="modal">Save Error. Are all required inputs filled?</xforms:message>
-				<xforms:action ev:event="xforms-submit-done">
-					<xxforms:hide dialog="add-term"/>
-					<xforms:setvalue ref="instance('status')">Numismatic term saved.</xforms:setvalue>
-					<!-- post to solr -->
-					<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-solr.xpl', 'data', instance('term-template'), 'data')"/>
-					<xforms:send submission="post-solr-doc"/>
-
-					<!-- remove inputs after save -->
-					<xforms:setvalue ref="instance('term-template')/@about"/>
-					<xforms:setvalue ref="instance('term-template')/xhtml:div[@property='skos:prefLabel']"/>
-					<xforms:setvalue ref="instance('term-template')/xhtml:div[@property='skos:definition']"/>
-				</xforms:action>
-			</xforms:submission>
-
-			<!-- **** Config **** -->
-			<xforms:submission id="save-config" ref="instance('config')" xxforms:username="admin" xxforms:password="" action="{instance('exist-url')}nomisma/config.xml" method="put" replace="none">
-				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to save config</xforms:message>
-				<xforms:action ev:event="xforms-submit-done">
-					<xforms:setvalue ref="instance('status')">Config saved.</xforms:setvalue>
-				</xforms:action>
-			</xforms:submission>
-
-			<!-- ************************* XQUERY FOR TYPES ************************** -->
-			<xforms:submission id="xquery-collection" ref="instance('eXist-xquery')" action="{instance('exist-url')}nomisma/id" method="post" replace="instance" instance="eXist-result"
-				xxforms:username="admin" xxforms:password="">
-				<xforms:message level="modal" ev:event="xforms-submit-error">Error querying eXist database.</xforms:message>
-			</xforms:submission>
-
-			<xforms:submission id="xquery-terms" ref="instance('eXist-xquery')" action="{instance('exist-url')}nomisma/id" method="post" replace="instance" instance="eXist-result"
-				xxforms:username="admin" xxforms:password="">
-				<xforms:message level="modal" ev:event="xforms-submit-error">Error querying eXist database.</xforms:message>
-				<xforms:action ev:event="xforms-submit-done" xxforms:iterate="instance('eXist-result')/report/type">
-					<xxforms:variable name="type" select="."/>
-					<xforms:setvalue ref="instance('type-template')" value="$type"/>
-					<xforms:insert origin="instance('type-template')" context="instance('types')" nodeset="./child::node()[last()]"/>
-				</xforms:action>
-			</xforms:submission>
-
-			<xforms:submission id="delete-kml" ref="instance('delete-kml-xquery')" action="{instance('exist-url')}nomisma/id" method="post" replace="instance" instance="eXist-result"
-				xxforms:username="admin" xxforms:password="">
-				<xforms:message level="modal" ev:event="xforms-submit-error">Error querying eXist database.</xforms:message>
-			</xforms:submission>
-
-			<xforms:submission id="xquery-findspots" ref="instance('findspots-xquery')" action="{instance('exist-url')}nomisma/id" method="post" replace="instance" instance="findspots"
-				xxforms:username="admin" xxforms:password="">
-				<!-- if the xquery is complete, generate the 'all' kml file -->
-				<xforms:action ev:event="xforms-submit-done" if="count(instance('findspots')//point) &gt; 0">
-					<xforms:insert nodeset="instance('kml-all')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-kml-all.xpl', 'data', instance('findspots'), 'data')"/>
-					<!-- only insert mint placemark if there are coordinates -->
-					<xforms:action if="string(instance('id')/xhtml:div[@property='gml:pos'])">
-						<xforms:insert context="instance('kml-all')/kml:Document" nodeset="./child::node()[last()]" origin="instance('kml')/kml:Document/kml:Placemark"/>
-					</xforms:action>
-				</xforms:action>
-				<xforms:message level="modal" ev:event="xforms-submit-error">Error querying eXist database.</xforms:message>
-			</xforms:submission>
-
-			<!-- **** KML **** -->
-			<xforms:submission id="save-kml" ref="instance('kml')" xxforms:username="admin" xxforms:password="" action="{instance('exist-url')}nomisma/kml/{instance('identifier')}.kml" method="put"
-				replace="none">
-				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to save KML</xforms:message>
-			</xforms:submission>
-
-			<xforms:submission id="save-kml-all" ref="instance('kml-all')" xxforms:username="admin" xxforms:password="" action="{instance('exist-url')}nomisma/kml/{instance('identifier')}-all.kml"
-				method="put" replace="none">
-				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to save KML-all</xforms:message>
-			</xforms:submission>
-
-			<!-- saves the KML file as 'all', so as to avoid extra processing of findspots -->
-			<xforms:submission id="save-kml-as-all" ref="instance('kml')" xxforms:username="admin" xxforms:password="" action="{instance('exist-url')}nomisma/kml/{instance('identifier')}-all.kml"
-				method="put" replace="none">
-				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to save KML-all</xforms:message>
-			</xforms:submission>
-
-			<!--  **** SOLR SUBMISSIONS  **** -->
-			<xforms:submission id="post-solr-doc" action="{instance('config')/solr_url}update" ref="instance('addIndex')" instance="addIndex" replace="instance" method="post">
-				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
+			<!-- ************************* SOLR SUBMISSIONS ************************** -->
+			<!-- post instance to Solr -->
+			<xforms:submission id="post-solr-doc" action="{instance('control-instance')/solr_url}update" ref="instance('addIndex')" instance="addIndex"
+				replace="instance" method="post">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is
+					incorrect.</xforms:message>
 				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"/>
 			</xforms:submission>
 
-			<xforms:submission id="delete-all-from-solr" action="{instance('config')/solr_url}update" ref="instance('deleteAll')" instance="deleteAll" replace="none" method="post">
-				<xforms:send ev:event="xforms-submit-done" submission="commit"/>
+			<xforms:submission id="delete-id-from-solr" action="{instance('control-instance')/solr_url}update" ref="instance('deleteId')" instance="deleteId"
+				replace="instance" method="post">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is
+					incorrect.</xforms:message>
+				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"/>
 			</xforms:submission>
 
-			<xforms:submission id="submit-commit" action="{instance('config')/solr_url}update" ref="instance('sendCommit')" instance="sendCommit" replace="none" method="post">
+			<!-- send commit -->
+			<xforms:submission id="submit-commit" action="{instance('control-instance')/solr_url}update" ref="instance('sendCommit')" instance="sendCommit"
+				replace="none" method="post">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Failed to commit to Solr index.</xforms:message>
+				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Document successfully committed to
+					Solr.</xforms:setvalue>
 			</xforms:submission>
 		</xforms:model>
-	</xhtml:head>
+	</head>
 
-	<xhtml:body class="yui-skin-sam">
-		<xhtml:div id="doc4">
-			<!-- header -->
-			<xxforms:variable name="display_path">../</xxforms:variable>
-			<xxforms:variable name="admin_path">./</xxforms:variable>
-			<xi:include href="header-admin.xml"/>
-			<xhtml:div id="bd">
-				<xhtml:div id="form">
-					<xforms:group ref="instance('status')/text()">
-						<xhtml:div class="success">
-							<xforms:output ref="instance('status')"/>
-						</xhtml:div>
+	<body>
+		<xxforms:variable name="display_path">../</xxforms:variable>
+		<div class="yui3-g">
+			<div class="yui3-u-1">
+				<div class="content">
+					<xforms:group ref=".[string-length(instance('control-instance')/status) &gt; 0]">
+						<div class="ui-state-highlight ui-corner-all">
+							<p>
+								<span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"/>
+								<strong>Status:</strong>
+								<xforms:output ref="instance('control-instance')/status"/>
+							</p>
+						</div>
 					</xforms:group>
-					<xhtml:h1>Nomisma Admin</xhtml:h1>
-					<xhtml:ul>
-						<xhtml:li>
-							<xforms:trigger appearance="minimal">
-								<xforms:label>Reindex all to Solr</xforms:label>
-								<xforms:action ev:event="DOMActivate">
-									<xforms:send submission="delete-all-from-solr"/>
-									<xforms:setvalue ref="instance('eXist-xquery')/exist:text">&lt;report> { for $i in collection() return &lt;item> { substring-after(translate($i/xhtml:div/@about,
-										'[]', ''), 'nm:') } &lt;/item> } &lt;/report></xforms:setvalue>
-									<xforms:send submission="xquery-collection"/>
-									<xforms:action ev:event="xforms-submit-done">
-										<xforms:action xxforms:iterate="instance('eXist-result')/report/item">
-											<xxforms:variable name="id" select="."/>
-											<xforms:setvalue ref="instance('identifier')" value="$id"/>
-											<xforms:send submission="load-id-for-solr"/>
-										</xforms:action>
-										<xforms:send submission="post-solr-doc"/>
-										<xforms:setvalue ev:event="xforms-submit-done" ref="instance('status')">nomisma ids re-indexed into Solr.</xforms:setvalue>
-									</xforms:action>
-								</xforms:action>
-							</xforms:trigger>
-						</xhtml:li>
-						<xhtml:li>
-							<xforms:trigger appearance="minimal">
-								<xforms:label>Regenerate KML for mints</xforms:label>
-								<xforms:action ev:event="DOMActivate">
-									<xforms:setvalue ref="instance('eXist-xquery')/exist:text">&lt;report> { for $i in collection()//xhtml:div[@typeof='nm:mint'] return &lt;item> {
-										substring-after(translate($i/@about, '[]', ''), 'nm:') } &lt;/item> } &lt;/report></xforms:setvalue>
-									<xforms:send submission="xquery-collection"/>
-									<xforms:action ev:event="xforms-submit-done">
-										<xforms:action xxforms:iterate="instance('eXist-result')/report/item">
-											<xxforms:variable name="id" select="."/>
-											<xforms:setvalue ref="instance('identifier')" value="$id"/>
-											<xforms:send submission="load-id-for-kml"/>
-										</xforms:action>
-										<xforms:setvalue ev:event="xforms-submit-done" ref="instance('status')">KML regenerated for ids.</xforms:setvalue>
-									</xforms:action>
-								</xforms:action>
-							</xforms:trigger>
-						</xhtml:li>
-						<xhtml:li>
-							<xforms:trigger appearance="minimal">
-								<xforms:label>Regenerate KML for hoards</xforms:label>
-								<xforms:action ev:event="DOMActivate">
-									<xforms:setvalue ref="instance('eXist-xquery')/exist:text">&lt;report> { for $i in collection()//xhtml:div[@typeof='nm:hoard'] return &lt;item> {
-										substring-after(translate($i/@about, '[]', ''), 'nm:') } &lt;/item> } &lt;/report></xforms:setvalue>
-									<xforms:send submission="xquery-collection"/>
-									<xforms:action ev:event="xforms-submit-done">
-										<xforms:action xxforms:iterate="instance('eXist-result')/report/item">
-											<xxforms:variable name="id" select="."/>
-											<xforms:setvalue ref="instance('identifier')" value="$id"/>
-											<xforms:send submission="load-id-for-kml"/>
-										</xforms:action>
-										<xforms:setvalue ev:event="xforms-submit-done" ref="instance('status')">KML regenerated for ids.</xforms:setvalue>
-									</xforms:action>
-								</xforms:action>
-							</xforms:trigger>
-						</xhtml:li>
-					</xhtml:ul>
-
-					<xhtml:div class="section">
-						<xhtml:h3>IDs</xhtml:h3>
-						<xhtml:p>
-							<xhtml:img src="{$display_path}images/add.gif"/>
-							<xhtml:a href="edit/">Create New ID</xhtml:a>
-						</xhtml:p>
-					</xhtml:div>
-
-					<xforms:group ref="instance('types')">
-						<xhtml:div class="section">
-							<xhtml:h3>Numismatic Terms</xhtml:h3>
-							<xforms:trigger appearance="minimal">
-								<xforms:label>
-									<xhtml:img src="{$display_path}images/add.gif"/>Add Term</xforms:label>
-								<xxforms:show dialog="add-term" ev:event="DOMActivate"/>
-							</xforms:trigger>
-							<xhtml:ul>
-								<xforms:repeat nodeset="type">
-									<xhtml:li>
-										<xhtml:a href="edit/?id={.}">
-											<xforms:output ref="."/>
-										</xhtml:a>
-									</xhtml:li>
-								</xforms:repeat>
-							</xhtml:ul>
-						</xhtml:div>
-					</xforms:group>
-
-					<xforms:group ref="instance('config')">
-						<xhtml:div class="section">
-							<xhtml:h3>Configuration</xhtml:h3>
-							<xhtml:div>
-								<xforms:input ref="url">
-									<xforms:label>Public URL</xforms:label>
-									<xforms:alert>Required</xforms:alert>
-								</xforms:input>
-							</xhtml:div>
-							<xhtml:div>
-								<xforms:input ref="solr_url">
-									<xforms:label>Solr URL</xforms:label>
-									<xforms:alert>Required</xforms:alert>
-								</xforms:input>
-							</xhtml:div>
-							<xforms:trigger>
-								<xforms:label>Save Config</xforms:label>
-								<!-- save collections and XML files to config -->
-								<xforms:action ev:event="DOMActivate">
-									<xforms:send submission="save-config"/>
-								</xforms:action>
-							</xforms:trigger>
-						</xhtml:div>
-					</xforms:group>
-
-					<xxforms:dialog id="add-term" appearance="full" level="modal" close="false" draggable="true" visible="false">
-						<xforms:label>Add Numismatic Term</xforms:label>
-						<xhtml:div>
-							<xforms:input ref="instance('control-instance')/id">
-								<xforms:label>ID</xforms:label>
-								<xforms:alert>Required, must be xs:ID</xforms:alert>
-								<xforms:action ev:event="xforms-value-changed">
-									<xxforms:variable name="id" select="."/>
-									<xforms:setvalue ref="instance('term-template')/@about" value="concat('[nm:', $id, ']')"/>
-								</xforms:action>
-							</xforms:input>
-						</xhtml:div>
-						<xforms:group ref="instance('term-template')">
-							<xhtml:div>
-								<xforms:input ref="xhtml:div[@property='skos:prefLabel']">
-									<xforms:label>Label</xforms:label>
-									<xforms:alert>Required</xforms:alert>
-								</xforms:input>
-							</xhtml:div>
-							<xhtml:div>
-								<xforms:input ref="xhtml:div[@property='skos:definition']">
-									<xforms:label>Definition</xforms:label>
-									<xforms:alert>Required</xforms:alert>
-								</xforms:input>
-							</xhtml:div>
-						</xforms:group>
-						<xforms:trigger>
-							<xforms:label>Save</xforms:label>
-							<!-- save collections and XML files to config -->
-							<xforms:action ev:event="DOMActivate">
-								<xforms:send submission="save-id"/>
-							</xforms:action>
-						</xforms:trigger>
-					</xxforms:dialog>
-
-				</xhtml:div>
-				<!--<fr:xforms-inspector/>-->
-			</xhtml:div>
-			<xi:include href="footer-admin.xml"/>
-		</xhtml:div>
-	</xhtml:body>
+					<h1>nomisma Admin</h1>
+					<p>This is a placeholder for the nomisma.org administrative page.</p>
+<!--					<fr:xforms-inspector/>-->
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
