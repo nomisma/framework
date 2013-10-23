@@ -43,7 +43,7 @@
 				<controls xmlns="">
 					<id/>
 					<original_id/>
-					<save-trigger/>
+					<save-trigger>false</save-trigger>
 					<delete-trigger/>
 					<delete-success/>
 					<status/>
@@ -188,6 +188,7 @@
 			</xforms:instance>
 
 			<xforms:action ev:event="xforms-model-construct-done">
+				<!-- load id if parameter is passed -->
 				<xforms:action if="string(xxforms:get-request-parameter('id'))">
 					<xforms:setvalue ref="instance('control-instance')/id" value="xxforms:get-request-parameter('id')"/>
 					<xforms:setvalue ref="instance('control-instance')/original_id" value="xxforms:get-request-parameter('id')"/>
@@ -196,9 +197,10 @@
 					<xforms:insert nodeset="instance('doc')"
 						origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/load-id.xpl', 'file', instance('load-config'), 'data')"/>
 				</xforms:action>
-
-				<xforms:action ev:event="xxforms-valid" ev:observer="doc">
-					<xforms:setvalue ref="instance('control-instance')/save-trigger">true</xforms:setvalue>
+				
+				<!-- if create parameter is passed, populate @about with the param, ignore when id param is also passed -->
+				<xforms:action if="string(xxforms:get-request-parameter('create')) and not(string(xxforms:get-request-parameter('id')))">
+					<xforms:setvalue ref="instance('doc')/@about" value="xxforms:get-request-parameter('create')"/>
 				</xforms:action>
 
 				<!-- gather sparqlQueries -->
@@ -253,18 +255,20 @@
 
 			<xforms:bind nodeset="instance('control-instance')">
 				<xforms:bind nodeset="delete-success" type="xs:boolean"/>
+				<xforms:bind nodeset="save-trigger" type="xs:boolean"/>
 			</xforms:bind>
 
-			<!--<xforms:bind nodeset="instance('control-instance')/save-trigger" readonly="not(. = 'true')"/>-->
+			<!-- only enable save button if doc is valid and save-trigger is true -->
+			<xforms:bind id="save-trigger" nodeset="instance('control-instance')/save-trigger" relevant=".= true()"/>
 
 			<!-- bind the delete trigger only to those ids which exist on disk (either loaded or recently saved) -->
 			<xforms:bind id="delete-trigger" nodeset="instance('control-instance')/delete-trigger" relevant="string(instance('control-instance')/id)"/>
 
 			<xforms:action ev:event="xxforms-invalid" ev:observer="doc">
-				<xforms:setvalue ref="instance('control-instance')/save-trigger"/>
+				<xforms:setvalue ref="instance('control-instance')/save-trigger" value="false()"/>
 			</xforms:action>
 			<xforms:action ev:event="xxforms-valid" ev:observer="doc">
-				<xforms:setvalue ref="instance('control-instance')/save-trigger">true</xforms:setvalue>
+				<xforms:setvalue ref="instance('control-instance')/save-trigger" value="true()"/>
 			</xforms:action>
 
 			<!-- ************* GET DBPEDIA RDF **********************-->
@@ -382,7 +386,7 @@
 						</div>
 					</xforms:group>
 					<div class="submission">
-						<xforms:trigger ref="instance('control-instance')/save-trigger">
+						<xforms:trigger bind="save-trigger">
 							<xforms:label><img src="{$display_path}images/save.gif" alt="Save"/>Save</xforms:label>
 							<xforms:action ev:event="DOMActivate">
 								<!-- set id -->

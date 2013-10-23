@@ -433,6 +433,39 @@
 				</map:transform>
 				<map:serialize type="atom"/>
 			</map:match>
+			
+			<!-- error handling -->
+			<map:handle-errors>
+				<map:select type="exception">
+					
+					<map:when test="not-found">
+						<map:generate type="exception"/>
+						<map:transform src="xslt/error.xsl">
+							<map:parameter name="requestURI" value="{request:requestURI}"/>
+							<map:parameter name="pageTitle" value="Resource not found"/>
+						</map:transform>
+						<map:serialize type="xhtml+rdfa" status-code="404"/>
+					</map:when>
+					
+					<map:when test="invalid-continuation">
+						<map:generate type="exception"/>
+						<map:transform src="xslt/error.xsl">
+							<map:parameter name="requestURI" value="{request:requestURI}"/>
+							<map:parameter name="pageTitle" value="Invalid Continuation"/>
+						</map:transform>
+						<map:serialize type="xhtml+rdfa" status-code="404"/>
+					</map:when>
+					
+					<map:otherwise>
+						<map:generate type="exception"/>
+						<map:transform src="xslt/error.xsl">
+							<map:parameter name="requestURI" value="{request:requestURI}"/>
+							<map:parameter name="realPath" value="{realpath:}"/>
+						</map:transform>
+						<map:serialize type="xhtml+rdfa" status-code="500"/>
+					</map:otherwise>
+				</map:select>
+			</map:handle-errors>
 
 			<!-- opensearch definition -->
 			<!--<map:match pattern="opensearch.xml">
