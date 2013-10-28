@@ -177,11 +177,21 @@
 			<xsl:text>?coin nm:MEASUREMENT ?MEASUREMENT</xsl:text>
 			<xsl:text>} UNION {</xsl:text>
 			<xsl:for-each select="tokenize($constraints, ' AND ')">
-				<xsl:text>?type </xsl:text>
-				<xsl:value-of select="."/>
-				<xsl:text> .</xsl:text>
+				<!-- ignore collection -->
+				<xsl:if test="not(contains(., 'nm:collection'))">
+					<xsl:text>?type </xsl:text>
+					<xsl:value-of select="."/>
+					<xsl:text> .</xsl:text>
+				</xsl:if>				
 			</xsl:for-each>
 			<xsl:text>?coin nm:type_series_item ?type .</xsl:text>
+			<xsl:if test="contains($constraints, 'nm:collection')">
+				<xsl:analyze-string select="$constraints" regex="(nm:collection\s&lt;[^&gt;]+&gt;)">
+					<xsl:matching-substring>
+						<xsl:value-of select="concat('?coin ', regex-group(1), '.')"/>
+					</xsl:matching-substring>
+				</xsl:analyze-string>
+			</xsl:if>
 			<xsl:text>?coin nm:MEASUREMENT ?MEASUREMENT</xsl:text>			
 			<xsl:text>}</xsl:text>
 		</xsl:variable>
@@ -189,7 +199,7 @@
 		<xsl:variable name="service"
 			select="concat($endpoint, '?query=', encode-for-uri(normalize-space(replace(replace($query, '&lt;CONSTRAINTS&gt;', replace($replace, '\\\\and', '&amp;&amp;')), 'MEASUREMENT', $measurement))), '&amp;output=xml')"/>
 		
-		<response>
+		<response>			
 			<xsl:value-of select="number(document($service)/descendant::res:binding[@name='average']/res:literal)"/>
 		</response>
 	</xsl:template>
