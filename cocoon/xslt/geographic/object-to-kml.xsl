@@ -91,7 +91,9 @@
 	</xsl:template>
 	
 	<xsl:template match="xhtml:span[@rel='mint']">
-		<cinclude:include src="cocoon:/get_mint_coords?id={@resource}"/>
+		<xsl:if test="boolean(document(concat('http://localhost:8080/cocoon/nomisma/id/', @resource))) = true()">
+			<cinclude:include src="cocoon:/get_mint_coords?id={@resource}"/>
+		</xsl:if>
 	</xsl:template>
 
 </xsl:stylesheet>
