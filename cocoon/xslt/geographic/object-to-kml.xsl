@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:cinclude="http://apache.org/cocoon/include/1.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
-	exclude-result-prefixes="xs cinclude geo xhtml" version="2.0">
-	<xsl:param name="id"/>
-	<xsl:param name="id-path"/>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cinclude="http://apache.org/cocoon/include/1.0"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:java="http://www.java.com/" exclude-result-prefixes="xs cinclude geo xhtml java" version="2.0">
+	<xsl:param name="id"/>	
 
 	<xsl:variable name="uri">
 		<xsl:text>http://nomisma.org/id/</xsl:text>
@@ -16,7 +14,7 @@
 
 	<xsl:template name="kml">
 		<xsl:variable name="typeof" select="/xhtml:div/@typeof"/>
-		
+
 		<kml xmlns="http://earth.google.com/kml/2.0">
 			<Document>
 				<Style xmlns="" id="mint">
@@ -82,19 +80,27 @@
 								</Point>
 							</xsl:if>
 						</Placemark>
-						
+
 						<!-- create points for mints -->
-						<xsl:apply-templates select="descendant::xhtml:span[@rel='mint']"/>
+						<xsl:apply-templates select="descendant::xhtml:span[@rel='mint'][string(@resource)]"/>
 					</xsl:when>
 				</xsl:choose>
 			</Document>
 		</kml>
 	</xsl:template>
-	
+
 	<xsl:template match="xhtml:span[@rel='mint']">
-		
+		<xsl:if test="java:file-exists(concat(@resource, '.txt'), base-uri())">
 			<cinclude:include src="cocoon:/get_mint_coords?id={@resource}"/>
-		
+		</xsl:if>
 	</xsl:template>
+
+	<xsl:function name="java:file-exists" xmlns:file="java.io.File" as="xs:boolean">
+		<xsl:param name="file" as="xs:string"/>
+		<xsl:param name="base-uri" as="xs:string"/>
+
+		<xsl:variable name="absolute-uri" select="resolve-uri($file, $base-uri)" as="xs:anyURI"/>
+		<xsl:sequence select="file:exists(file:new($absolute-uri))"/>
+	</xsl:function>
 
 </xsl:stylesheet>
