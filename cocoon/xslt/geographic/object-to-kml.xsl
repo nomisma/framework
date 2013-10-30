@@ -92,9 +92,9 @@
 	</xsl:template>
 	
 	<xsl:template match="xhtml:span[@rel='mint']">
-		<xsl:if test="document(concat($id-path, @resource, '.txt'))">
+		
 			<cinclude:include src="cocoon:/get_mint_coords?id={@resource}"/>
-		</xsl:if>
+		
 	</xsl:template>
 
 </xsl:stylesheet>
