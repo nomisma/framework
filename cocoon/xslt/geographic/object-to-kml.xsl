@@ -3,6 +3,7 @@
 	xmlns:cinclude="http://apache.org/cocoon/include/1.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
 	exclude-result-prefixes="xs cinclude geo xhtml" version="2.0">
 	<xsl:param name="id"/>
+	<xsl:param name="id-path"/>
 
 	<xsl:variable name="uri">
 		<xsl:text>http://nomisma.org/id/</xsl:text>
@@ -91,7 +92,7 @@
 	</xsl:template>
 	
 	<xsl:template match="xhtml:span[@rel='mint']">
-		<xsl:if test="boolean(document(concat('http://localhost:8080/cocoon/nomisma/id/', @resource))) = true()">
+		<xsl:if test="document(concat($id-path, @resource, '.txt'))">
 			<cinclude:include src="cocoon:/get_mint_coords?id={@resource}"/>
 		</xsl:if>
 	</xsl:template>

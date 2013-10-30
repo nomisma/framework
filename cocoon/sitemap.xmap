@@ -180,6 +180,7 @@
 					<map:parameter name="serverName" value="{request:serverName}"/>
 					<map:parameter name="serverPort" value="{request:serverPort}"/>
 					<map:parameter name="requestURI" value="{request:requestURI }"/>
+					<map:parameter name="id-path" value="{global:id-path}"/>
 				</map:transform>
 				<map:transform type="cinclude"/>
 				<map:serialize type="kml"/>
