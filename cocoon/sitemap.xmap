@@ -441,7 +441,7 @@
 					
 					<map:when test="not-found">
 						<map:generate type="exception"/>
-						<map:transform src="xslt/error.xsl">
+						<map:transform src="xslt/error.xsl" type="xslt-saxon">
 							<map:parameter name="requestURI" value="{request:requestURI}"/>
 							<map:parameter name="pageTitle" value="Resource not found"/>
 						</map:transform>
@@ -450,7 +450,7 @@
 					
 					<map:when test="invalid-continuation">
 						<map:generate type="exception"/>
-						<map:transform src="xslt/error.xsl">
+						<map:transform src="xslt/error.xsl" type="xslt-saxon">
 							<map:parameter name="requestURI" value="{request:requestURI}"/>
 							<map:parameter name="pageTitle" value="Invalid Continuation"/>
 						</map:transform>
@@ -459,7 +459,7 @@
 					
 					<map:otherwise>
 						<map:generate type="exception"/>
-						<map:transform src="xslt/error.xsl">
+						<map:transform src="xslt/error.xsl" type="xslt-saxon">
 							<map:parameter name="requestURI" value="{request:requestURI}"/>
 							<map:parameter name="realPath" value="{realpath:}"/>
 						</map:transform>

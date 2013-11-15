@@ -4,8 +4,7 @@
 	<xsl:include href="templates.xsl"/>
 
 	<xsl:param name="requestURI"/>
-	<xsl:param name="pageTitle"/>
-	<xsl:variable name="display_path"/>
+	<xsl:param name="pageTitle"/>	
 
 	<xsl:template match="/">
 		<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"
@@ -29,7 +28,9 @@
 				<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"/>
 			</head>
 			<body>
-				<xsl:call-template name="header"/>
+				<div class="center"> Nomisma.org: [<a href="http://nomisma.org/">home</a>] [<a href="http://nomisma.org/sparql">sparql</a>] [<a href="http://nomisma.org/apis"
+					>apis</a>] [<a href="http://nomisma.org/flickr">flickr machine tags</a>] [<a href="http://nomisma.org/id/">all ids</a>] "Common currency for digital
+					numismatics." </div>
 
 				<!-- get content -->
 				<div id="source" class="center">
@@ -39,7 +40,7 @@
 
 					<p>The following resource was not found on nomisma.org: <xsl:value-of select="substring-after($requestURI, 'nomisma/')"/></p>
 					<xsl:if test="contains($requestURI, 'id/')">
-						<xsl:variable name="id" select="substring-after($requestURI, 'id/')"/>
+						<xsl:variable name="id" select="tokenize($requestURI, '/')[last()]"/>
 						<p><a href="http://nomisma.org:8080/orbeon/nomisma/edit/?create={$id}">Create id <xsl:value-of select="$id"/></a></p>
 					</xsl:if>
 				</div>
