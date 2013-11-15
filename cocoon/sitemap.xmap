@@ -161,6 +161,7 @@
 			</map:match>
 
 			<!-- list all ids -->
+			<!-- todo: replace with Solr search -->
 			<map:match pattern="id/">
 				<map:generate type="directory" src="{global:id-path}">
 					<map:parameter name="depth" value="2"/>
