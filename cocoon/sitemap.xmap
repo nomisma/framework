@@ -178,10 +178,10 @@
 						<map:select type="parameter">
 							<map:parameter name="parameter-selector-test" value="{request-param:sort}"/>
 							<map:when test="">
-								<map:generate src="{global:solr-url}select?q=*:*&amp;start={request-param:start}&amp;rows=100&amp;sort=id+asc&amp;facet=true&amp;facet.field=typeof"/>
+								<map:generate src="{global:solr-url}select?q=*:*&amp;start={request-param:start}&amp;rows=100&amp;sort=id+asc&amp;facet=true&amp;facet.field=typeof&amp;facet.sort=index"/>
 							</map:when>
 							<map:otherwise>
-								<map:generate src="{global:solr-url}select?q=*:*&amp;start={request-param:start}&amp;rows=100&amp;sort={request-param:sort}&amp;facet=true&amp;facet.field=typeof"/>
+								<map:generate src="{global:solr-url}select?q=*:*&amp;start={request-param:start}&amp;rows=100&amp;sort={request-param:sort}&amp;facet=true&amp;facet.field=typeof&amp;facet.sort=index"/>
 							</map:otherwise>
 						</map:select>
 					</map:when>
@@ -189,10 +189,10 @@
 						<map:select type="parameter">
 							<map:parameter name="parameter-selector-test" value="{request-param:sort}"/>
 							<map:when test="">
-								<map:generate src="{global:solr-url}select?q={url-encode:{request-param:q}}&amp;start={request-param:start}&amp;rows=100&amp;sort=id+asc&amp;facet=true&amp;facet.field=typeof"/>
+								<map:generate src="{global:solr-url}select?q={url-encode:{request-param:q}}&amp;start={request-param:start}&amp;rows=100&amp;sort=id+asc&amp;facet=true&amp;facet.field=typeof&amp;facet.sort=index"/>
 							</map:when>
 							<map:otherwise>
-								<map:generate src="{global:solr-url}select?q={url-encode:{request-param:q}}&amp;start={request-param:start}&amp;rows=100&amp;sort={request-param:sort}&amp;facet=true&amp;facet.field=typeof"/>
+								<map:generate src="{global:solr-url}select?q={url-encode:{request-param:q}}&amp;start={request-param:start}&amp;rows=100&amp;sort={request-param:sort}&amp;facet=true&amp;facet.field=typeof&amp;facet.sort=index"/>
 							</map:otherwise>
 						</map:select>
 					</map:otherwise>

@@ -102,32 +102,17 @@
 	</xsl:template>
 
 	<xsl:template name="filter">
-		<xsl:variable name="query">
-			<![CDATA[ 
-			PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-			PREFIX dcterms:  <http://purl.org/dc/terms/>
-			PREFIX nm:       <http://nomisma.org/id/>
-			PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-			SELECT ?uri ?label WHERE {
-			?uri  rdf:type <http://nomisma.org/id/numismatic_term>.
-			?uri skos:prefLabel ?label .
-			FILTER (lang(?label) = "en")}
-			ORDER BY ASC(?label)
-			]]>
-		</xsl:variable>
-		<xsl:variable name="service" select="concat('http://nomisma.org/query?query=', encode-for-uri(normalize-space($query)), '&amp;output=xml')"/>
-
 		<form action="." class="filter-form">
 			<span><b>Filter: </b></span>
 			<select name="q">
 				<option value="">Select...</option>
-				<xsl:for-each select="document($service)//res:result">
-					<xsl:variable name="value" select="concat('typeof:', substring-after(res:binding[@name='uri']/res:uri, 'id/'))"/>
+				<xsl:for-each select="descendant::lst[@name='typeof']/int">
+					<xsl:variable name="value" select="concat('typeof:&#x022;', @name, '&#x022;')"/>
 					<option value="{$value}">
 						<xsl:if test="$q = $value">
 							<xsl:attribute name="selected">selected</xsl:attribute>
 						</xsl:if>
-						<xsl:value-of select="res:binding[@name='label']/res:literal"/>
+						<xsl:value-of select="@name"/>
 					</option>
 				</xsl:for-each>
 			</select>
