@@ -28,8 +28,7 @@
 			<map:generator name="search" src="org.apache.cocoon.components.search.LuceneCocoonSearcher" index="index"> </map:generator>
 		</map:generators>
 
-		<map:generator label="content" logger="sitemap.generator.directory" name="directory" pool-grow="2" pool-max="16" pool-min="2"
-			src="org.apache.cocoon.generation.DirectoryGenerator"/>
+		<map:generator label="content" logger="sitemap.generator.directory" name="directory" pool-grow="2" pool-max="16" pool-min="2" src="org.apache.cocoon.generation.DirectoryGenerator"/>
 		<!-- ************************************* -->
 		<!-- Cocoon transformers - xslt is default -->
 		<!-- ************************************* -->
@@ -162,10 +161,42 @@
 
 			<!-- list all ids -->
 			<!-- todo: replace with Solr search -->
-			<map:match pattern="id/">
+			<!--<map:match pattern="id/">
 				<map:generate type="directory" src="{global:id-path}">
 					<map:parameter name="depth" value="2"/>
 				</map:generate>
+				<map:transform src="xslt/id.xsl" label="basiccontent" type="xslt-saxon">
+					<map:parameter name="use-request-parameters" value="true"/>
+				</map:transform>
+				<map:serialize type="xhtml+rdfa"/>
+				</map:match>-->
+			
+			<map:match pattern="id/">
+				<map:select type="parameter">
+					<map:parameter name="parameter-selector-test" value="{request-param:q}"/>
+					<map:when test="">
+						<map:select type="parameter">
+							<map:parameter name="parameter-selector-test" value="{request-param:sort}"/>
+							<map:when test="">
+								<map:generate src="{global:solr-url}select?q=*:*&amp;start={request-param:start}&amp;rows=100&amp;sort=id+asc&amp;facet=true&amp;facet.field=typeof"/>
+							</map:when>
+							<map:otherwise>
+								<map:generate src="{global:solr-url}select?q=*:*&amp;start={request-param:start}&amp;rows=100&amp;sort={request-param:sort}&amp;facet=true&amp;facet.field=typeof"/>
+							</map:otherwise>
+						</map:select>
+					</map:when>
+					<map:otherwise>
+						<map:select type="parameter">
+							<map:parameter name="parameter-selector-test" value="{request-param:sort}"/>
+							<map:when test="">
+								<map:generate src="{global:solr-url}select?q={url-encode:{request-param:q}}&amp;start={request-param:start}&amp;rows=100&amp;sort=id+asc&amp;facet=true&amp;facet.field=typeof"/>
+							</map:when>
+							<map:otherwise>
+								<map:generate src="{global:solr-url}select?q={url-encode:{request-param:q}}&amp;start={request-param:start}&amp;rows=100&amp;sort={request-param:sort}&amp;facet=true&amp;facet.field=typeof"/>
+							</map:otherwise>
+						</map:select>
+					</map:otherwise>
+				</map:select>				
 				<map:transform src="xslt/id.xsl" label="basiccontent" type="xslt-saxon">
 					<map:parameter name="use-request-parameters" value="true"/>
 				</map:transform>
@@ -180,7 +211,7 @@
 					<map:parameter name="id" value="{1}"/>
 					<map:parameter name="serverName" value="{request:serverName}"/>
 					<map:parameter name="serverPort" value="{request:serverPort}"/>
-					<map:parameter name="requestURI" value="{request:requestURI }"/>					
+					<map:parameter name="requestURI" value="{request:requestURI }"/>
 				</map:transform>
 				<map:transform type="cinclude"/>
 				<map:serialize type="kml"/>
@@ -195,7 +226,7 @@
 				</map:transform>
 				<map:serialize type="rdf"/>
 			</map:match>
-			
+
 			<map:match pattern="id/*.pelagios.rdf">
 				<map:read src="cocoon:/get_pelagios?q={1}"/>
 			</map:match>
@@ -248,16 +279,16 @@
 			<map:match pattern="nomisma.org.nt">
 				<map:read src="dump/nomisma.org.nt" mime-type="text/plain"/>
 			</map:match>
-			
+
 			<!-- RDF for contributing to Pelagios -->
 			<map:match pattern="pelagios.void.rdf">
 				<map:read src="xml/pelagios.void.rdf" mime-type="application/rdf+xml"/>
 			</map:match>
-			
+
 			<map:match pattern="pelagios.rdf">
 				<map:read src="dump/pelagios.rdf" mime-type="application/rdf+xml"/>
 			</map:match>
-			
+
 			<map:match pattern="get_pelagios">
 				<map:select type="parameter">
 					<map:parameter name="parameter-selector-test" value="{request-param:q}"/>
@@ -267,13 +298,13 @@
 					<map:otherwise>
 						<map:generate src="{global:solr-url}select?q={url-encode:{request-param:q} AND pleiades_uri:*}&amp;rows=100000"/>
 					</map:otherwise>
-				</map:select>		
+				</map:select>
 				<map:transform src="xslt/geographic/pelagios.xsl" label="basiccontent" type="xslt-saxon">
 					<map:parameter name="use-request-parameters" value="true"/>
 				</map:transform>
 				<map:serialize type="rdf"/>
 			</map:match>
-			
+
 			<!-- flickr page -->
 			<map:match pattern="flickr">
 				<map:generate src="xml/empty.xml" label="record"/>
@@ -331,7 +362,7 @@
 					</map:otherwise>
 				</map:select>
 			</map:match>
-			
+
 			<!-- NUDS page -->
 			<map:match pattern="nuds/numismatic_database_standard">
 				<map:generate src="xml/config.xml" label="record"/>
@@ -421,12 +452,10 @@
 				<map:select type="parameter">
 					<map:parameter name="parameter-selector-test" value="{request-param:q}"/>
 					<map:when test="">
-						<map:generate
-							src="{global:solr-url}select?q=*:*&amp;sort={url-encode:timestamp desc}&amp;rows=100&amp;start={request-param:start}"/>
+						<map:generate src="{global:solr-url}select?q=*:*&amp;sort={url-encode:timestamp desc}&amp;rows=100&amp;start={request-param:start}"/>
 					</map:when>
 					<map:otherwise>
-						<map:generate
-							src="{global:solr-url}select?q={url-encode:{request-param:q}}&amp;sort={url-encode:timestamp desc}&amp;rows=100&amp;start={request-param:start}"/>
+						<map:generate src="{global:solr-url}select?q={url-encode:{request-param:q}}&amp;sort={url-encode:timestamp desc}&amp;rows=100&amp;start={request-param:start}"/>
 					</map:otherwise>
 				</map:select>
 				<map:transform src="xslt/feed.xsl" label="basiccontent" type="xslt-saxon">
@@ -434,11 +463,11 @@
 				</map:transform>
 				<map:serialize type="atom"/>
 			</map:match>
-			
+
 			<!-- error handling -->
 			<map:handle-errors>
 				<map:select type="exception">
-					
+
 					<map:when test="not-found">
 						<map:generate type="exception"/>
 						<map:transform src="xslt/error.xsl" type="xslt-saxon">
@@ -447,7 +476,7 @@
 						</map:transform>
 						<map:serialize type="xhtml+rdfa" status-code="404"/>
 					</map:when>
-					
+
 					<map:when test="invalid-continuation">
 						<map:generate type="exception"/>
 						<map:transform src="xslt/error.xsl" type="xslt-saxon">
@@ -456,7 +485,7 @@
 						</map:transform>
 						<map:serialize type="xhtml+rdfa" status-code="404"/>
 					</map:when>
-					
+
 					<map:otherwise>
 						<map:generate type="exception"/>
 						<map:transform src="xslt/error.xsl" type="xslt-saxon">
