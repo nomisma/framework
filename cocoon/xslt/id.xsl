@@ -21,8 +21,6 @@
 	<xsl:variable name="numFound" select="//result[@name='response']/@numFound" as="xs:integer"/>
 	<xsl:variable name="display_path">../</xsl:variable>
 
-
-
 	<xsl:template match="/">
 		<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"
 			prefix="nm: http://nomisma.org/id/
@@ -48,6 +46,7 @@
 					@import url(<xsl:value-of select="concat($display_path, 'style.css')"/>
 					);</style>
 				<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"/>
+				<script type="text/javascript" src="{$display_path}javascript/result_functions.js"/>
 			</head>
 			<body>
 				<!-- header -->
@@ -56,8 +55,15 @@
 				<div class="center">
 					<xsl:call-template name="filter"/>
 					<h2>Results</h2>
-					<xsl:call-template name="paging"/>
-					<xsl:apply-templates select="descendant::doc[string(str[@name='id'])]"/>
+					<xsl:choose>
+						<xsl:when test="$numFound &gt; 0">
+							<xsl:call-template name="paging"/>
+							<xsl:apply-templates select="descendant::doc[string(str[@name='id'])]"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<p>No results found for this query. <a href="../id/">Clear search</a>.</p>
+						</xsl:otherwise>
+					</xsl:choose>
 				</div>
 
 				<!-- footer -->
@@ -104,21 +110,28 @@
 	<xsl:template name="filter">
 		<form action="." class="filter-form">
 			<span><b>Filter: </b></span>
-			<select name="q">
-				<option value="">Select...</option>
+			<select id="search_filter">
+				<option value="">Select Type...</option>
 				<xsl:for-each select="descendant::lst[@name='typeof']/int">
 					<xsl:variable name="value" select="concat('typeof:&#x022;', @name, '&#x022;')"/>
 					<option value="{$value}">
-						<xsl:if test="$q = $value">
+						<xsl:if test="contains($q, $value)">
 							<xsl:attribute name="selected">selected</xsl:attribute>
 						</xsl:if>
 						<xsl:value-of select="@name"/>
 					</option>
 				</xsl:for-each>
 			</select>
-			<button>Submit</button>			
+			<span><b>Keyword: </b></span>
+			<input type="text" id="search_text">
+				<xsl:if test="$tokenized_q[not(contains(., 'typeof'))]">
+					<xsl:attribute name="value" select="$tokenized_q[not(contains(., 'typeof'))]"/>
+				</xsl:if>
+			</input>
+			<input name="q" type="hidden"/>
+			<button id="search_button">Submit</button>			
 		</form>
-		<xsl:if test="contains($q, 'typeof')">
+		<xsl:if test="string($q)">
 			<form action="../id/" class="filter-form">
 				<button>Clear</button>
 			</form>
