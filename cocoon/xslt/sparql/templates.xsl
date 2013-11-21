@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="http://www.w3.org/2005/sparql-results#"
-	exclude-result-prefixes="xs res" version="2.0">
+	xmlns:nm="http://nomisma.org/id/" exclude-result-prefixes="xs res nm" version="2.0">
 	<xsl:param name="identifiers"/>
 	<xsl:param name="constraints"/>
 	<xsl:param name="template"/>
@@ -20,7 +20,7 @@
 			</xsl:when>
 			<xsl:when test="$template = 'closingDate'">
 				<xsl:call-template name="closingDate"/>
-			</xsl:when>			
+			</xsl:when>
 			<xsl:when test="$template = 'avgMeasurement'">
 				<xsl:call-template name="avgMeasurement"/>
 			</xsl:when>
@@ -69,7 +69,7 @@
 					PREFIX nm:       <http://nomisma.org/id/>
 					PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
 					PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
-					SELECT DISTINCT ?object ?findspot ?lat ?long ?title ?prefLabel WHERE {
+					SELECT DISTINCT ?object ?findspot ?lat ?long ?title ?prefLabel ?closing_date WHERE {
 					{?type nm:mint <URI> .
 					?object nm:type_series_item ?type.
 					?object nm:findspot ?findspot .
@@ -81,9 +81,10 @@
 					?object nm:findspot ?findspot .
 					?findspot geo:lat ?lat .
 					?findspot geo:long ?long
-					}
+					}					
 					OPTIONAL {?object skos:prefLabel ?prefLabel}
 					OPTIONAL {?object dcterms:title ?title}
+					OPTIONAL {?object nm:closing_date ?closing_date}
 					}]]>
 				</xsl:when>
 				<xsl:when test="$curie='type_series_item'">
@@ -152,7 +153,7 @@
 			<xsl:value-of select="number(document($service)/descendant::res:binding[@name='year']/res:literal)"/>
 		</response>
 	</xsl:template>
-	
+
 	<xsl:template name="avgMeasurement">
 		<xsl:variable name="query">
 			<![CDATA[ 
@@ -166,7 +167,7 @@
 			}
 			]]>
 		</xsl:variable>
-		
+
 		<xsl:variable name="replace">
 			<xsl:text>{</xsl:text>
 			<xsl:for-each select="tokenize($constraints, ' AND ')">
@@ -182,7 +183,7 @@
 					<xsl:text>?type </xsl:text>
 					<xsl:value-of select="."/>
 					<xsl:text> .</xsl:text>
-				</xsl:if>				
+				</xsl:if>
 			</xsl:for-each>
 			<xsl:text>?coin nm:type_series_item ?type .</xsl:text>
 			<xsl:if test="contains($constraints, 'nm:collection')">
@@ -192,18 +193,18 @@
 					</xsl:matching-substring>
 				</xsl:analyze-string>
 			</xsl:if>
-			<xsl:text>?coin nm:MEASUREMENT ?MEASUREMENT</xsl:text>			
+			<xsl:text>?coin nm:MEASUREMENT ?MEASUREMENT</xsl:text>
 			<xsl:text>}</xsl:text>
 		</xsl:variable>
-		
+
 		<xsl:variable name="service"
 			select="concat($endpoint, '?query=', encode-for-uri(normalize-space(replace(replace($query, '&lt;CONSTRAINTS&gt;', replace($replace, '\\\\and', '&amp;&amp;')), 'MEASUREMENT', $measurement))), '&amp;output=xml')"/>
-		
-		<response>			
+
+		<response>
 			<xsl:value-of select="number(document($service)/descendant::res:binding[@name='average']/res:literal)"/>
 		</response>
 	</xsl:template>
-	
+
 	<xsl:template name="getLabel">
 		<xsl:variable name="query">
 			<![CDATA[
@@ -215,14 +216,15 @@
 			FILTER(langMatches(lang(?label), "LANG"))} 
 			ORDER BY asc(?label)
 			]]>
-		</xsl:variable>		
+		</xsl:variable>
 		<xsl:variable name="langStr" select="if (string($lang)) then $lang else 'en'"/>
-		<xsl:variable name="service" select="concat($endpoint, '?query=', encode-for-uri(normalize-space(replace(replace($query, 'LANG', $langStr), 'URI', $uri))), '&amp;output=xml')"/>
+		<xsl:variable name="service"
+			select="concat($endpoint, '?query=', encode-for-uri(normalize-space(replace(replace($query, 'LANG', $langStr), 'URI', $uri))), '&amp;output=xml')"/>
 		<response>
 			<xsl:value-of select="document($service)/descendant::res:binding[@name='label']/res:literal"/>
 		</response>
 	</xsl:template>
-	
+
 	<!--<xsl:template name="quantifyTypology">
 		<xsl:variable name="query">
 			<![CDATA[
@@ -340,22 +342,33 @@
 	</xsl:template>
 
 	<xsl:template match="res:result" mode="kml">
+		<xsl:variable name="label">
+			<xsl:choose>
+				<xsl:when test="res:binding[@name='title']/res:literal">
+					<xsl:value-of select="res:binding[@name='title']/res:literal"/>
+				</xsl:when>
+				<xsl:when test="res:binding[@name='prefLabel']/res:literal">
+					<xsl:value-of select="res:binding[@name='prefLabel']/res:literal"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="res:binding[@name='object']/res:uri"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+
 		<Placemark xmlns="http://earth.google.com/kml/2.0">
 			<name>
-				<xsl:choose>
-					<xsl:when test="res:binding[@name='title']/res:literal">
-						<xsl:value-of select="res:binding[@name='title']/res:literal"/>
-					</xsl:when>
-					<xsl:when test="res:binding[@name='prefLabel']/res:literal">
-						<xsl:value-of select="res:binding[@name='prefLabel']/res:literal"/>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:value-of select="res:binding[@name='object']/res:uri"/>
-					</xsl:otherwise>
-				</xsl:choose>
+				<xsl:value-of select="$label"/>
 			</name>
 			<description>
-				<xsl:value-of select="res:binding[@name='object']/res:uri"/>
+				<![CDATA[
+				<dl><dt>URI</dt><dd><a href="]]><xsl:value-of select="res:binding[@name='object']/res:uri"/><![CDATA[">]]><xsl:value-of
+					select="res:binding[@name='object']/res:uri"/><![CDATA[</a></dd>]]>
+				<xsl:if test="string(res:binding[@name='closing_date']/res:literal)">
+					<![CDATA[<dt>Closing Date</dt><dd>]]><xsl:value-of select="nm:normalizeYear(res:binding[@name='closing_date']/res:literal)"
+					/><![CDATA[</dd>]]>
+				</xsl:if>
+				<![CDATA[</dl>]]>
 			</description>
 			<styleUrl>#mapped</styleUrl>
 			<Point>
@@ -365,4 +378,21 @@
 			</Point>
 		</Placemark>
 	</xsl:template>
+
+	<xsl:function name="nm:normalizeYear">
+		<xsl:param name="gYear"/>
+		
+		<xsl:choose>
+			<xsl:when test="number($gYear) &gt; 0">
+				<xsl:if test="number($gYear) &lt; 400">
+					<xsl:text>A.D. </xsl:text>
+				</xsl:if>
+				<xsl:value-of select="number($gYear)"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="abs(number($gYear)) + 1"/>
+				<xsl:text> B.C.</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:function>
 </xsl:stylesheet>

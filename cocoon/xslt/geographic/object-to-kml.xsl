@@ -51,6 +51,12 @@
 							<name>
 								<xsl:value-of select="descendant::xhtml:div[@property='skos:prefLabel'][@xml:lang='en']"/>
 							</name>
+							<description>
+								<![CDATA[
+								<dl><dt>Latitude</dt><dd>]]><xsl:value-of select="descendant::*[@property='geo:lat']"/><![CDATA[</dd>
+								<dt>Longitude</dt><dd>]]><xsl:value-of select="descendant::*[@property='geo:long']"/><![CDATA[</dd>
+								<![CDATA[</dl>]]>
+							</description>
 							<styleUrl>#mint</styleUrl>
 							<!-- add placemark -->
 							<Point>
@@ -62,6 +68,10 @@
 						<cinclude:include src="cocoon:/widget?uri={$uri}&amp;curie={$typeof}&amp;template=kml"/>
 					</xsl:when>
 					<xsl:when test="$typeof='type_series_item'">
+						<!-- create point for mints -->
+						<xsl:apply-templates select="descendant::*[@property='mint'][string(@resource)]">
+							<xsl:with-param name="style">hoard</xsl:with-param>
+						</xsl:apply-templates>
 						<cinclude:include src="cocoon:/widget?uri={$uri}&amp;curie={$typeof}&amp;template=kml"/>
 					</xsl:when>
 					<xsl:when test="$typeof='hoard'">
@@ -70,6 +80,14 @@
 							<name>
 								<xsl:value-of select="descendant::xhtml:div[@property='skos:prefLabel'][@xml:lang='en']"/>
 							</name>
+							<description>
+								<xsl:if test="descendant::*[@property='geo:long'] and descendant::*[@property='geo:lat']">
+									<![CDATA[
+								<dl><dt>Latitude</dt><dd>]]><xsl:value-of select="descendant::*[@property='geo:lat']"/><![CDATA[</dd>
+								<dt>Longitude</dt><dd>]]><xsl:value-of select="descendant::*[@property='geo:long']"/><![CDATA[</dd>
+								<![CDATA[</dl>]]>
+								</xsl:if>
+							</description>
 							<styleUrl>#hoard</styleUrl>
 							<!-- add placemark -->
 							<xsl:if test="descendant::*[@property='geo:long'] and descendant::*[@property='geo:lat']">
@@ -82,16 +100,19 @@
 						</Placemark>
 
 						<!-- create points for mints -->
-						<xsl:apply-templates select="descendant::xhtml:span[@rel='mint'][string(@resource)]"/>
+						<xsl:apply-templates select="descendant::xhtml:span[@rel='mint'][string(@resource)]">
+							<xsl:with-param name="style">mapped</xsl:with-param>
+						</xsl:apply-templates>
 					</xsl:when>
 				</xsl:choose>
 			</Document>
 		</kml>
 	</xsl:template>
 
-	<xsl:template match="xhtml:span[@rel='mint']">
+	<xsl:template match="*[@rel='mint']|*[@property='mint']">
+		<xsl:param name="style"/>
 		<xsl:if test="java:file-exists(concat(@resource, '.txt'), base-uri())">
-			<cinclude:include src="cocoon:/get_mint_coords?id={@resource}"/>
+			<cinclude:include src="cocoon:/get_mint_coords?id={@resource}&amp;style={$style}"/>
 		</xsl:if>
 	</xsl:template>
 

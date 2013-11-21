@@ -96,7 +96,7 @@ function initialize_map(id) {
 	
 	function onFeatureSelect(event) {
 		var feature = event.feature;
-		message = '<div style="font-size:12px">' + feature.attributes.name + '</div>';
+		message = '<div><h2>' + feature.attributes.name + '</h2>' + feature.attributes.description + '</div>';
 		popup = new OpenLayers.Popup.FramedCloud("id", event.feature.geometry.bounds.getCenterLonLat(), null, message, null, true, onPopupClose);
 		event.popup = popup;
 		map.addPopup(popup);
