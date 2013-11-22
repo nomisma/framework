@@ -54,7 +54,7 @@
 				$definitions = $xpath->query('//*[local-name()="div"][@property="skos:definition"][@xml:lang="en"]');
 				//$positions = $xpath->query('//*[@property="gml:pos"]');
 				$related_links = $xpath->query('//*[local-name()="div"][@property="skos:related"]/@resource');
-				$nodes = $xpath->query('descendant-or-self::node()');
+				$nodes = $xpath->query("//*[local-name()='pre']|//*[local-name()='div'][@property='skos:prefLabel']|*[local-name()='div'][@property='skos:altLabel']|//*[@resource]");
 				$geos = $xpath->query("descendant::node()[@*='mint'][@resource]|descendant::node()[@*='region'][@resource]");
 				
 				//generate XML
@@ -106,7 +106,7 @@
 				$addDoc .= "\n\t" . '<field name="fulltext">';
 				$addDoc .= $id_string . ' ';
 				foreach ($nodes as $node){
-					$addDoc .= $node->nodeValue . ' ';
+					$addDoc .= str_replace('&', '&amp;', $node->textContent) . ' ';
 					if (strlen($node->getAttribute('resource')) > 0){
 						$addDoc .= $node->getAttribute('resource') . ' ';
 					}
@@ -118,6 +118,7 @@
 			}
 		}
 		$xml .= '</add>';
+		//file_put_contents('test.xml', $xml);
 		//post to Solr
 		$postToSolr=curl_init();
 		curl_setopt($postToSolr,CURLOPT_URL,'http://localhost:8080/solr/nomisma/update/');
