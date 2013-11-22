@@ -107,6 +107,9 @@
 				$addDoc .= $id_string . ' ';
 				foreach ($nodes as $node){
 					$addDoc .= $node->nodeValue . ' ';
+					if (strlen($node->getAttribute('resource')) > 0){
+						$addDoc .= $node->getAttribute('resource') . ' ';
+					}
 				}
 				$addDoc .= '</field>';
 				$addDoc .= "\n</doc>\n";
