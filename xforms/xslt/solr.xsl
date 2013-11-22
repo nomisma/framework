@@ -84,14 +84,10 @@
 				<xsl:for-each select="descendant-or-self::node()">
 					<xsl:value-of select="text()"/>
 					<xsl:text> </xsl:text>
-					<xsl:if test="string(@rel)">
-						<xsl:value-of select="@rel"/>
+					<xsl:if test="string(@resource)">
+						<xsl:value-of select="@resource"/>
 						<xsl:text> </xsl:text>
-					</xsl:if>
-					<xsl:if test="string(@property)">
-						<xsl:value-of select="@property"/>
-						<xsl:text> </xsl:text>
-					</xsl:if>
+					</xsl:if>					
 				</xsl:for-each>
 			</field>
 		</doc>
