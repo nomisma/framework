@@ -54,7 +54,7 @@
 				$definitions = $xpath->query('//*[local-name()="div"][@property="skos:definition"][@xml:lang="en"]');
 				//$positions = $xpath->query('//*[@property="gml:pos"]');
 				$related_links = $xpath->query('//*[local-name()="div"][@property="skos:related"]/@resource');
-				$nodes = $xpath->query('//*[local-name()="div"][@property="skos:altLabel" or @property="skos:prefLabel" or @property="skos:definition"]');
+				$nodes = $xpath->query('descendant-or-self::node()');
 				$geos = $xpath->query("descendant::node()[@*='mint'][@resource]|descendant::node()[@*='region'][@resource]");
 				
 				//generate XML
