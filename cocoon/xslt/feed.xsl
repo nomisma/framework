@@ -97,10 +97,7 @@
 				<xsl:value-of select="str[@name='definition']"/>
 			</content>
 			<link rel="nomisma rdf" type="application/rdf+xml" href="http://nomisma.org/id/{str[@name='id']}.rdf"/>
-			<link rel="pelagios rdf" type="application/rdf+xml" href="http://nomisma.org/id/{str[@name='id']}.pelagios.rdf"/>
-			<xsl:if test="arr[@name='typeof']/str = 'type_series_item'">
-				<link rel="nomisma rdf" type="application/rdf+xml" href="http://nomisma.org/id/{str[@name='id']}.rdf"/>
-			</xsl:if>
+			<link rel="pelagios rdf" type="application/rdf+xml" href="http://nomisma.org/id/{str[@name='id']}.pelagios.rdf"/>			
 		</entry>
 	</xsl:template>
 
