@@ -9,6 +9,7 @@
 	<xsl:param name="lang"/>
 	<xsl:param name="measurement"/>
 	<xsl:param name="endpoint"/>
+	<xsl:param name="format"/>
 
 	<xsl:template match="/">
 		<xsl:choose>
@@ -220,9 +221,18 @@
 		<xsl:variable name="langStr" select="if (string($lang)) then $lang else 'en'"/>
 		<xsl:variable name="service"
 			select="concat($endpoint, '?query=', encode-for-uri(normalize-space(replace(replace($query, 'LANG', $langStr), 'URI', $uri))), '&amp;output=xml')"/>
-		<response>
-			<xsl:value-of select="document($service)/descendant::res:binding[@name='label']/res:literal"/>
-		</response>
+		<xsl:choose>
+			<xsl:when test="$format='json'">
+				<xsl:text>{"label":"</xsl:text>
+				<xsl:value-of select="document($service)/descendant::res:binding[@name='label']/res:literal"/>
+				<xsl:text>"}</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<response>
+					<xsl:value-of select="document($service)/descendant::res:binding[@name='label']/res:literal"/>
+				</response>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 
 	<!--<xsl:template name="quantifyTypology">
