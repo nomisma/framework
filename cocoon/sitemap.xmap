@@ -441,8 +441,8 @@
 				</map:transform>
 				<map:serialize type="rdf"/>
 			</map:match>
-			<map:match pattern="apis/getLabel">
-				<map:generate src="cocoon:/widget?uri={request-param:uri}&amp;lang={request-param:lang}&amp;template=getLabel"/>
+			<map:match pattern="apis/getLabel">				
+				<map:read src="cocoon:/widget?uri={request-param:uri}&amp;lang={request-param:lang}&amp;format={request-param:format}&amp;template=getLabel"/>
 			</map:match>
 
 
