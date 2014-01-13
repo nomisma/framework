@@ -461,10 +461,7 @@
 						<map:serialize type="xml"/>
 					</map:otherwise>
 				</map:select>-->
-				<map:select type="parameter">
-					<map:parameter name="parameter-selector-test" value="{request-param:format}"/>
-					<map:read src="cocoon:/widget?uri={request-param:uri}&amp;lang={request-param:lang}&amp;format={request-param:format}&amp;template=getLabel" mime-type="application/json"/>
-				</map:select>
+				<map:read src="cocoon:/widget?uri={request-param:uri}&amp;lang={request-param:lang}&amp;format={request-param:format}&amp;template=getLabel" mime-type="application/json"/>
 			</map:match>
 
 
