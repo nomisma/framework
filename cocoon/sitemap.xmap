@@ -68,6 +68,9 @@
 				<encoding>UTF-8</encoding>
 				<indent>yes</indent>
 			</map:serializer>
+			<map:serializer name="json" mime-type="application/json" src="org.apache.cocoon.serialization.TextSerializer">
+				<encoding>UTF-8</encoding>				
+			</map:serializer>
 			<map:serializer name="xhtml+rdfa" mime-type="application/xhtml+xml" src="org.apache.cocoon.serialization.XMLSerializer">
 				<encoding>UTF-8</encoding>
 				<doctype-public>-//W3C//DTD XHTML+RDFa 1.1//EN</doctype-public>
@@ -383,7 +386,7 @@
 				<map:select type="parameter">
 					<map:parameter name="parameter-selector-test" value="{request-param:format}"/>
 					<map:when test="json">
-						<map:serialize type="text"/>
+						<map:serialize type="json"/>
 					</map:when>
 					<map:otherwise>
 						<map:serialize type="xml"/>
