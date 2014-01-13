@@ -454,7 +454,7 @@
 						<map:read src="cocoon:/widget?uri={request-param:uri}&amp;lang={request-param:lang}&amp;format={request-param:format}&amp;template=getLabel" mime-type="text/plain"/>
 					</map:when>
 					<map:otherwise>
-						<map:read src="cocoon:/widget?uri={request-param:uri}&amp;lang={request-param:lang}&amp;format=xml&amp;template=getLabel" mime-type="application/xml"/>
+						<map:read src="cocoon:/widget?uri={request-param:uri}&amp;lang={request-param:lang}&amp;template=getLabel"/>
 					</map:otherwise>
 				</map:select>
 			</map:match>
