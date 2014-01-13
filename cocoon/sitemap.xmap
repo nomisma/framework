@@ -386,7 +386,7 @@
 				<map:select type="parameter">
 					<map:parameter name="parameter-selector-test" value="{request-param:format}"/>
 					<map:when test="json">
-						<map:serialize type="json"/>
+						<map:serialize type="xml"/>
 					</map:when>
 					<map:otherwise>
 						<map:serialize type="xml"/>
