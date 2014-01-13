@@ -445,7 +445,7 @@
 				<map:select type="parameter">
 					<map:parameter name="parameter-selector-test" value="{request-param:format}"/>
 					<map:when test="json">
-						<map:read src="cocoon:/widget?uri={request-param:uri}&amp;lang={request-param:lang}&amp;format={request-param:format}&amp;template=getLabel" mime-type="application/ld+json"/>
+						<map:read src="cocoon:/widget?uri={request-param:uri}&amp;lang={request-param:lang}&amp;format={request-param:format}&amp;template=getLabel" mime-type="application/json"/>
 					</map:when>
 					<map:otherwise>
 						<map:read src="cocoon:/widget?uri={request-param:uri}&amp;lang={request-param:lang}&amp;format={request-param:format}&amp;template=getLabel" mime-type="application/xml"/>
