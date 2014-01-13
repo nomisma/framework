@@ -227,6 +227,11 @@
 				<xsl:value-of select="document($service)/descendant::res:binding[@name='label']/res:literal"/>
 				<xsl:text>"}</xsl:text>
 			</xsl:when>
+			<xsl:when test="$format='jsonp'">
+				<xsl:text>jsonCallback ({"label":"</xsl:text>
+				<xsl:value-of select="document($service)/descendant::res:binding[@name='label']/res:literal"/>
+				<xsl:text>"})</xsl:text>
+			</xsl:when>
 			<xsl:otherwise>
 				<response>
 					<xsl:value-of select="document($service)/descendant::res:binding[@name='label']/res:literal"/>
