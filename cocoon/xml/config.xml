@@ -46,7 +46,7 @@
 					<ol>
 						<li><a href="http://nomisma.org/id/axis">http://nomisma.org/id/axis</a>. The 'axis' is the angular relationship between the obverse and reverse of a coin.</li>
 						<li><a href="http://nomisma.org/id/ephesus">http://nomisma.org/id/ephesus</a>. The 'mint' at Ephesus. Nomisma relates this numismatic concept to other URIs such as <a href="http://en.wikipedia.org/wiki/Ephesus">wikipedia</a>, <a href="http://pleiades.stoa.org/places/599612">Pleiades</a>, <a href="http://vocab.getty.edu/tgn/7002499">Getty thesauri</a>, and the <a href="http://collection.britishmuseum.org/id/place/x107267">British Museum</a>.</li>
-						<li><a href="http://nomisma.org/id/quinarius">http://nomisma.org/id/quinarius</a>. Nomisma.org maintains lists of Roman and other denominations. To indicate that “quinarius” is a concept within Roman numismatics, the Dublic Core property "dcterms:isPartOf" relates this URI to <a href="http://nomisma.org/id/roman_numismatics">http://nomisma.org/id/roman_numismatics</a>.</li>
+						<li><a href="http://nomisma.org/id/quinarius">http://nomisma.org/id/quinarius</a>. Nomisma.org maintains lists of Roman and other denominations. To indicate that “quinarius” is a concept within Roman numismatics, the Dublin Core property "dcterms:isPartOf" relates this URI to <a href="http://nomisma.org/id/roman_numismatics">http://nomisma.org/id/roman_numismatics</a>.</li>
 					</ol>
 				</div>
 				
