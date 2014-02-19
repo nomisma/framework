@@ -3,6 +3,21 @@
 	<xsl:include href="templates.xsl"/>
 
 	<xsl:variable name="display_path"/>
+	<xsl:variable name="default-query">
+		<![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:	<http://purl.org/dc/terms/>
+PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
+PREFIX owl:	<http://www.w3.org/2002/07/owl#>
+PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
+PREFIX ecrm:	<http://erlangen-crm.org/current/>
+PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX nm:	<http://nomisma.org/id/>
+PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
+
+SELECT * WHERE {
+?s ?p ?o
+}]]>
+	</xsl:variable>
 
 	<xsl:template match="/">
 		<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"
@@ -40,7 +55,9 @@
 				<div class="center">
 					<h1>SPARQL Query</h1>
 					<form action="query" method="GET" accept-charset="UTF-8">
-						<textarea name="query" rows="20" style="width:95%"/>
+						<textarea name="query" rows="20" style="width:95%">
+							<xsl:value-of select="$default-query"/>
+						</textarea>
 						<br/> Output: <select name="output">
 							<option value="json">JSON</option>
 							<option value="xml">XML</option>
@@ -63,7 +80,6 @@
 PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:  <http://purl.org/dc/terms/>
 PREFIX nm:       <http://nomisma.org/id/>
-PREFIX owl:      <http://www.w3.org/2002/07/owl#>
 SELECT ?type ?weight WHERE {
 ?type nm:authority <http://nomisma.org/id/augustus> .
 ?type nm:denomination <http://nomisma.org/id/denarius> .
@@ -74,14 +90,14 @@ SELECT ?type ?weight WHERE {
 							</pre>
 						</div>
 						<div>
-							<b>Get coins of RIC Augustus 1a and 1b</b><br/>
+							<b>Get coins of RIC Augustus 1A and 1B</b><br/>
 							<pre><![CDATA[
 PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:  <http://purl.org/dc/terms/>
 PREFIX nm:       <http://nomisma.org/id/>
 SELECT ?object ?objectType ?publisher ?weight ?axis ?obvThumb ?revThumb ?obvRef ?revRef ?findspot ?type  WHERE {
-{?object nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1a>. }
-UNION { ?object nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1b> }
+{?object nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1A>. }
+UNION { ?object nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1B> }
 ?object rdf:type ?objectType .
 OPTIONAL { ?object dcterms:publisher ?publisher } .
 OPTIONAL { ?object nm:weight ?weight }
@@ -94,29 +110,29 @@ OPTIONAL { ?object nm:reverseReference ?revRef }
 							</pre>
 						</div>
 						<div>
-							<b>Average weight of RIC Augustus 1a</b><br/>
+							<b>Average weight of RIC Augustus 1A</b><br/>
 							<pre><![CDATA[
 PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:  <http://purl.org/dc/terms/>
 PREFIX nm:	<http://nomisma.org/id/>
-PREFIX xs:	<http://www.w3.org/2001/XMLSchema#>
-SELECT (AVG(xs:decimal(?weight)) AS ?average)
+PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
+SELECT (AVG(xsd:decimal(?weight)) AS ?average)
 WHERE {
-?g nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1a>.
+?g nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1A>.
 ?g nm:weight ?weight
 }]]>
 							</pre>
 						</div>
 						<div>
-							<b>Average diameter of RIC Augustus 1a</b><br/>
+							<b>Average diameter of RIC Augustus 1A</b><br/>
 							<pre><![CDATA[
 PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:  <http://purl.org/dc/terms/>
 PREFIX nm:	<http://nomisma.org/id/>
-PREFIX xs:	<http://www.w3.org/2001/XMLSchema#>
-SELECT (AVG(xs:decimal(?weight)) AS ?average)
+PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
+SELECT (AVG(xsd:decimal(?weight)) AS ?average)
 WHERE {
-?g nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1a>.
+?g nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1A>.
 ?g nm:diameter ?diameter
 }]]>
 							</pre>
@@ -148,7 +164,7 @@ OPTIONAL {?object dcterms:title ?title}
 							</pre>
 						</div>
 						<div>
-							<b>Get all findspots for RIC Augustus 1a</b><br/>
+							<b>Get all findspots for RIC Augustus 1A</b><br/>
 							<pre><![CDATA[
 PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:  <http://purl.org/dc/terms/>
@@ -156,7 +172,7 @@ PREFIX nm:       <http://nomisma.org/id/>
 PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
 PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 SELECT ?object ?findspot ?lat ?long ?title ?prefLabel WHERE {
-?object nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1a> .
+?object nm:type_series_item <http://numismatics.org/ocre/id/ric.1(2).aug.1A> .
 ?object nm:findspot ?findspot .
 ?findspot geo:lat ?lat .
 ?findspot geo:long ?long .

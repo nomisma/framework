@@ -51,8 +51,6 @@
 					<id_path>/usr/local/projects/nomisma-ids/id/</id_path>
 					<endpoint>http://localhost:3030/nomisma/</endpoint>
 					<solr_url>http://localhost:8080/solr/nomisma/</solr_url>
-					<lat>40</lat>
-					<long>1</long>
 					<dump/>
 				</controls>
 			</xforms:instance>
@@ -716,8 +714,6 @@
 									</xforms:output>
 								</div>
 							</xforms:group>
-							<!--<fr:map id="geomap" address-ref="instance('control-instance')/address" longitude-ref="instance('control-instance')/long" latitude-ref="instance('control-instance')/lat"
-								style="width: 500px; height: 300px"/>-->
 							<xforms:group ref=".[count(xhtml:div[@property='geo:lat']) = 1]">
 								<div>
 									<h4>Coordinates</h4>
