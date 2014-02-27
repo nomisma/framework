@@ -458,6 +458,9 @@
 					</map:otherwise>
 				</map:select>
 			</map:match>
+			<map:match pattern="apis/numishareResults">
+				<map:read src="cocoon:/widget?identifiers={request-param:identifiers}&amp;template=numishareResults"/>
+			</map:match>
 
 
 			<!-- Atom -->
