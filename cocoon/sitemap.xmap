@@ -374,6 +374,10 @@
 				</map:transform>
 				<map:serialize type="xhtml+rdfa"/>
 			</map:match>
+			
+			<map:match pattern="nuds/*.xsd">
+				<map:read src="xml/schema/nuds-{1}.xsd"/>
+			</map:match>
 
 			<!-- SPARQL widget templates -->
 			<map:match pattern="widget">
