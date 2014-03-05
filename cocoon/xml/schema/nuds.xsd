@@ -1,0 +1,1384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	NUMISMATIC DESCRIPTION STANDARD (NUDS) DRAFT
+	
+	SCHEMA TYPE: W3C Schema
+	
+	VERSION: 2014a
+	
+	DATE: 20140305
+	
+	EDITORS: Ethan Gruber, American Numismatic Society
+	
+	PUBLISHER: American Numismatic Society
+	
+	PURPOSE: The NUDS schema is an attempt to develop an all-encompassing data model for the 
+	transmission of numismatic data (both physical items and coin types).  This is a working draft.
+	
+	CHANGELOG: 
+	20130911: synchronizing aspects of EAD3 and EAC-CPF control into control, such as maintenanceHistory
+	20140305: formally added semanticDeclaration, removed categorySet (use localType on subjects), tweaked maintenanceStatus values, added noteSet/note, removed publicationStmt
+	
+	For more information about the elements, see http://wiki.numismatics.org/nuds:nuds
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://nomisma.org/nuds" xmlns="http://nomisma.org/nuds"
+	xmlns:xlink="http://www.w3.org/1999/xlink">
+	<xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.loc.gov/standards/xlink/xlink.xsd" id="xlink"/>
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2007/08/xml.xsd" id="xml"/>
+
+	<xs:element name="nuds">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="control"/>
+				<xs:element ref="descMeta"/>
+				<xs:element minOccurs="0" ref="digRep"/>
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attribute name="recordType" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="conceptual"/>
+						<xs:enumeration value="physical"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- ********** control ************ -->
+	<xs:element name="control">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="recordId"/>
+				<xs:element maxOccurs="unbounded" minOccurs="0" ref="otherRecordId"/>
+				<xs:element ref="maintenanceStatus"/>
+				<xs:element ref="maintenanceAgency"/>
+				<xs:element ref="maintenanceHistory"/>
+				<xs:element ref="publicationStatus"/>				
+				<xs:element ref="rightsStmt"/>
+				<xs:element maxOccurs="unbounded" minOccurs="0" ref="semanticDeclaration"/>
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="recordId">
+		<xs:complexType mixed="true">
+			<xs:simpleContent>
+				<xs:extension base="xs:anyURI">
+					<xs:attribute ref="xml:id"/>
+					<xs:attributeGroup ref="m.default"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="otherRecordId">
+		<xs:complexType mixed="true">
+			<xs:simpleContent>
+				<xs:extension base="xs:anyURI">
+					<xs:attribute ref="xml:id"/>
+					<xs:attributeGroup ref="m.default"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="maintenanceStatus">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:restriction base="xs:anyType">
+					<xs:simpleType>
+						<xs:restriction base="xs:token">
+							<xs:enumeration value="new"/>
+							<xs:enumeration value="derived"/>
+							<xs:enumeration value="revised"/>
+							<xs:enumeration value="cancelled"/>
+							<xs:enumeration value="cancelledSplit"/>
+							<xs:enumeration value="cancelledReplaced"/>							
+						</xs:restriction>
+					</xs:simpleType>
+					<xs:attribute ref="xml:id"/>
+				</xs:restriction>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="publicationStatus">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:restriction base="xs:anyType">
+					<xs:simpleType>
+						<xs:restriction base="xs:token">
+							<xs:enumeration value="inProcess"/>
+							<xs:enumeration value="approved"/>
+						</xs:restriction>
+					</xs:simpleType>
+					<xs:attribute ref="xml:id"/>
+				</xs:restriction>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- maintenanceAgency elements -->
+	<xs:element name="maintenanceAgency">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" ref="agencyCode"/>
+				<xs:element maxOccurs="unbounded" minOccurs="0" ref="otherAgencyCode"/>
+				<xs:element ref="agencyName"/>
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="agencyCode">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="m.data.standardRepository">
+					<xs:attribute ref="xml:id"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="otherAgencyCode">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:NMTOKEN">
+					<xs:attribute ref="xml:id"/>
+					<xs:attributeGroup ref="a.localType"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="agencyName">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- maintenanceHistory elements -->
+	<xs:element name="maintenanceHistory">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" ref="maintenanceEvent"/>
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="maintenanceEvent">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="eventType"/>
+				<xs:element ref="eventDateTime"/>
+				<xs:element ref="agentType"/>
+				<xs:element ref="agent"/>
+				<xs:element minOccurs="0" ref="eventDescription"/>
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="eventType">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:restriction base="xs:anyType">
+					<xs:simpleType>
+						<xs:restriction base="xs:token">
+							<xs:enumeration value="created"/>
+							<xs:enumeration value="revised"/>
+							<xs:enumeration value="deleted"/>
+							<xs:enumeration value="cancelled"/>
+							<xs:enumeration value="derived"/>
+							<xs:enumeration value="updated"/>
+						</xs:restriction>
+					</xs:simpleType>
+					<xs:attribute ref="xml:id"/>
+				</xs:restriction>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="eventDateTime">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attribute name="standardDateTime" type="m.data.standardDateTime"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="agentType">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:restriction base="xs:anyType">
+					<xs:simpleType>
+						<xs:restriction base="xs:token">
+							<xs:enumeration value="human"/>
+							<xs:enumeration value="machine"/>
+						</xs:restriction>
+					</xs:simpleType>
+					<xs:attribute ref="xml:id"/>
+				</xs:restriction>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="agent">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="eventDescription">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- rightsStmt elements -->
+	<xs:element name="rightsStmt">
+		<xs:complexType>
+			<xs:all>
+				<xs:element minOccurs="0" ref="copyrightHolder"/>
+				<xs:element minOccurs="0" ref="license"/>
+				<xs:element minOccurs="0" ref="preferCite"/>
+				<xs:element minOccurs="0" ref="date"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="copyrightHolder">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+			<xs:attributeGroup ref="xlink:simpleLink"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="license">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+			<xs:attributeGroup ref="xlink:simpleLink"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="preferCite">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- semanticDeclaration elements -->
+	<xs:element name="semanticDeclaration">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="prefix"/>
+				<xs:element ref="namespace"/>				
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="prefix">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:QName">
+					<xs:attribute ref="xml:id"/>
+				</xs:extension>				
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="namespace">
+		<xs:complexType mixed="true">
+			<xs:simpleContent>
+				<xs:extension base="xs:anyURI">
+					<xs:attribute ref="xml:id"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- *********** END control ********** -->
+
+	<!-- *********** DESCMETA ********** -->
+	<xs:element name="descMeta">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" ref="title"/>				
+				<xs:element minOccurs="0" ref="descriptionSet"/>
+				<xs:element minOccurs="0" ref="noteSet"/>
+				<xs:element minOccurs="0" ref="subjectSet"/>
+				<xs:element ref="typeDesc"/>
+				<xs:element minOccurs="0" ref="physDesc"/>
+				<xs:element minOccurs="0" ref="undertypeDesc"/>
+				<xs:element minOccurs="0" ref="findspotDesc"/>
+				<xs:element minOccurs="0" ref="refDesc"/>
+				<xs:element minOccurs="0" ref="adminDesc"/>
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="department">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="descriptionSet">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" ref="description"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="subjectSet">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" ref="subject"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="noteSet">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" ref="note"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="note">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="subject">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- *********** PHYSDESC ********** -->
+	<xs:element name="physDesc">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="1" ref="axis"/>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="chemicalAnalysis"/>
+				<xs:element minOccurs="0" maxOccurs="1" ref="conservationState"/>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="countermark"/>
+				<xs:element minOccurs="0" maxOccurs="1" ref="dateOnObject"/>
+				<xs:element minOccurs="0" maxOccurs="1" ref="measurementsSet"/>
+				<xs:element minOccurs="0" maxOccurs="1" ref="shape"/>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="testmark"/>
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+			<xs:attributeGroup ref="xlink:simpleLink"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="axis">
+		<xs:complexType mixed="true">
+			<xs:attribute name="clock"/>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chemicalAnalysis">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="analysisType"/>
+				<xs:element minOccurs="0" ref="description"/>
+				<xs:element ref="date"/>
+				<xs:element ref="components"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="analysisType">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="components">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="component" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="component">
+		<xs:complexType mixed="true">
+			<xs:attribute name="percentage" use="required" type="xs:decimal"/>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="countermark">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" ref="obverse"/>
+				<xs:element minOccurs="0" ref="reverse"/>
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="testmark">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" ref="obverse"/>
+				<xs:element minOccurs="0" ref="reverse"/>
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- conservationState elements -->
+	<xs:element name="conservationState">
+		<xs:complexType>
+			<xs:sequence>
+				<!-- allow either conservationStates group or obverse/reverse encoding -->
+				<xs:choice>
+					<xs:choice>
+						<xs:group ref="m.conservationStates"/>
+					</xs:choice>
+					<xs:sequence>
+						<xs:element ref="obverse"/>
+						<xs:element ref="reverse"/>
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:group name="m.conservationStates">
+		<xs:sequence>
+			<xs:element minOccurs="0" ref="condition"/>
+			<xs:element minOccurs="0" ref="wear"/>
+			<xs:element minOccurs="0" ref="completeness"/>
+			<xs:element minOccurs="0" ref="grade"/>
+			<xs:element minOccurs="0" ref="secondaryTreatment"/>
+		</xs:sequence>
+	</xs:group>
+
+	<xs:element name="condition">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attribute name="shape"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="wear">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="completeness">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="grade">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="secondaryTreatment">
+		<xs:complexType/>
+	</xs:element>
+	<!-- end conservationState elements -->
+
+	<xs:element name="dateOnObject">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element ref="date"/>
+					<xs:element ref="dateRange"/>
+				</xs:choice>
+				<xs:element minOccurs="0" ref="era"/>
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="era">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- measurements -->
+	<xs:element name="measurementsSet">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" ref="diameter"/>
+				<xs:element minOccurs="0" ref="height"/>
+				<xs:element minOccurs="0" ref="thickness"/>
+				<xs:element minOccurs="0" ref="weight"/>
+				<xs:element minOccurs="0" ref="width"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="diameter">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:restriction base="xs:anyType">
+					<xs:simpleType>
+						<xs:restriction base="xs:decimal"/>
+					</xs:simpleType>
+					<xs:attribute ref="xml:id"/>
+					<xs:attribute ref="xml:lang"/>
+					<xs:attributeGroup ref="m.default"/>
+					<xs:attribute name="units"/>
+				</xs:restriction>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="height">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:restriction base="xs:anyType">
+					<xs:simpleType>
+						<xs:restriction base="xs:decimal"/>
+					</xs:simpleType>
+					<xs:attribute ref="xml:id"/>
+					<xs:attribute ref="xml:lang"/>
+					<xs:attributeGroup ref="m.default"/>
+					<xs:attribute name="units"/>
+				</xs:restriction>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="thickness">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:restriction base="xs:anyType">
+					<xs:simpleType>
+						<xs:restriction base="xs:decimal"/>
+					</xs:simpleType>
+					<xs:attribute ref="xml:id"/>
+					<xs:attribute ref="xml:lang"/>
+					<xs:attributeGroup ref="m.default"/>
+					<xs:attribute name="units"/>
+				</xs:restriction>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="weight">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:restriction base="xs:anyType">
+					<xs:simpleType>
+						<xs:restriction base="xs:decimal"/>
+					</xs:simpleType>
+					<xs:attribute ref="xml:id"/>
+					<xs:attribute ref="xml:lang"/>
+					<xs:attributeGroup ref="m.default"/>
+					<xs:attribute name="units"/>
+				</xs:restriction>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="width">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:restriction base="xs:anyType">
+					<xs:simpleType>
+						<xs:restriction base="xs:decimal"/>
+					</xs:simpleType>
+					<xs:attribute ref="xml:id"/>
+					<xs:attribute ref="xml:lang"/>
+					<xs:attributeGroup ref="m.default"/>
+					<xs:attribute name="units"/>
+				</xs:restriction>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:attribute name="units">
+		<xs:simpleType>
+			<xs:restriction base="xs:NMTOKEN"/>
+		</xs:simpleType>
+	</xs:attribute>
+	<!-- end measurements -->
+
+	<xs:element name="shape">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+	<!-- ************* END PHYSDESC ************** -->
+
+	<!-- ************* TYPEDESC ************** -->
+	<xs:element name="typeDesc">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:group ref="m.typeElements"/>
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+			<xs:attributeGroup ref="xlink:simpleLink"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:group name="m.typeElements">
+		<xs:sequence>
+			<!-- only objectType is required -->
+			<!-- only material may be repeated -->
+			<xs:element minOccurs="0" ref="objectType"/>
+			<xs:choice>
+				<xs:element minOccurs="0" ref="date"/>
+				<xs:element minOccurs="0" ref="dateRange"/>
+			</xs:choice>
+			<xs:element minOccurs="0" ref="denomination"/>
+			<xs:element minOccurs="0" ref="manufacture"/>
+			<xs:element minOccurs="0" maxOccurs="unbounded" ref="material"/>
+			<xs:element minOccurs="0" ref="authority"/>
+			<xs:element minOccurs="0" ref="geographic"/>
+			<xs:element minOccurs="0" ref="obverse"/>
+			<xs:element minOccurs="0" ref="reverse"/>
+			<xs:element minOccurs="0" ref="edge"/>
+			<xs:element minOccurs="0" ref="weightStandard"/>
+		</xs:sequence>
+	</xs:group>
+
+	<xs:element name="objectType">
+		<xs:complexType mixed="true">
+			<xs:attributeGroup ref="xlink:simpleLink"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="denomination">
+		<xs:complexType mixed="true">
+			<xs:attributeGroup ref="xlink:simpleLink"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="manufacture">
+		<xs:complexType mixed="true">
+			<xs:attributeGroup ref="xlink:simpleLink"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="material">
+		<xs:complexType mixed="true">
+			<xs:attributeGroup ref="xlink:simpleLink"/>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- personal, family, corporate, and geographic names -->
+	<xs:element name="persname">
+		<xs:complexType mixed="true">
+			<xs:attribute name="title"/>
+			<xs:attributeGroup ref="xlink:simpleLink"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="geogname">
+		<xs:complexType mixed="true">
+			<xs:attributeGroup ref="xlink:simpleLink"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="corpname">
+		<xs:complexType mixed="true">
+			<xs:attribute name="title"/>
+			<xs:attributeGroup ref="xlink:simpleLink"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="famname">
+		<xs:complexType mixed="true">
+			<xs:attribute name="title"/>
+			<xs:attributeGroup ref="xlink:simpleLink"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="authority">
+		<xs:complexType>
+			<xs:choice minOccurs="1" maxOccurs="unbounded">
+				<xs:element ref="persname"/>
+				<xs:element ref="corpname"/>
+				<xs:element ref="famname"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="geographic">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" ref="geogname"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="edge">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element ref="description"/>
+				<xs:choice minOccurs="1">
+					<xs:element minOccurs="0" ref="type"/>
+					<xs:element minOccurs="0" ref="legend"/>
+				</xs:choice>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:group name="m.sideCharacteristics">
+		<xs:sequence>
+			<xs:element minOccurs="0" ref="description"/>
+			<xs:element minOccurs="0" ref="legend"/>
+			<xs:element minOccurs="0" ref="type"/>
+			<xs:element minOccurs="0" ref="typeSeries"/>
+			<xs:element minOccurs="0" ref="symbol"/>
+			<xs:element minOccurs="0" ref="die"/>
+			<xs:element minOccurs="0" maxOccurs="unbounded" ref="persname"/>
+			<xs:element minOccurs="0" ref="reference"/>
+		</xs:sequence>
+	</xs:group>
+
+	<xs:element name="type">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" ref="description"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="legend">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+			<xs:attributeGroup ref="a.scriptCode"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="typeSeries">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="symbol">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="die">
+		<xs:complexType mixed="true">
+			<xs:attribute name="state" use="required"/>
+			<xs:attribute ref="xml:id"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="weightStandard">
+		<xs:complexType mixed="true">
+			<xs:attribute name="origin" use="required"/>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- ************* END TYPEDESC ************** -->
+
+	<xs:element name="undertypeDesc">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:group ref="m.typeElements"/>
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+			<xs:attributeGroup ref="xlink:simpleLink"/>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- ************* FINDSPOT ************** -->
+	<xs:element name="findspotDesc">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:annotation>
+					<xs:documentation>The aim here is that the findspotDesc may contain anything in the NUDS-Hoard hoardDesc: typically a findspot/geogname.</xs:documentation>
+				</xs:annotation>
+				<xs:element minOccurs="0" ref="findspot"/>
+				<xs:element minOccurs="0" ref="deposit"/>
+				<xs:element minOccurs="0" ref="discovery"/>
+				<xs:element minOccurs="0" ref="disposition"/>
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+			<xs:attributeGroup ref="xlink:simpleLink"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="findspot">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="geogname"/>
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="deposit">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element ref="date"/>
+					<xs:element ref="dateRange"/>
+				</xs:choice>				
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="discovery">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element ref="date"/>
+					<xs:element ref="dateRange"/>
+				</xs:choice>				
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="disposition">
+		<xs:complexType mixed="true">			
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- ************* END FINDSPOT ************** -->
+	<!-- ************* REFERENCES ************** -->
+	<xs:element name="refDesc">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" ref="reference"/>
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+			<xs:attributeGroup ref="xlink:simpleLink"/>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- ********** ADMINDESC ********** -->
+	<xs:element name="adminDesc">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice minOccurs="1" maxOccurs="unbounded">
+					<xs:element ref="identifier"/>
+					<xs:element minOccurs="0" maxOccurs="unbounded" ref="department"/>
+					<xs:element ref="collection"/>
+					<xs:element ref="repository"/>
+					<xs:element ref="physloc"/>
+					<xs:element ref="owner"/>
+					<xs:element ref="acknowledgment"/>
+					<xs:element ref="display"/>
+					<xs:element ref="appraisal"/>
+				</xs:choice>
+				<xs:sequence>
+					<xs:element minOccurs="0" ref="acqinfo"/>
+					<xs:element minOccurs="0" ref="custodhist"/>
+				</xs:sequence>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="identifier">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="collection">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+			<xs:attributeGroup ref="xlink:simpleLink"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="repository">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+			<xs:attributeGroup ref="xlink:simpleLink"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="physloc">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+			<xs:attributeGroup ref="xlink:simpleLink"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="owner">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+			<xs:attributeGroup ref="xlink:simpleLink"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="acknowledgment">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+			<xs:attributeGroup ref="xlink:simpleLink"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="display">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element ref="institution"/>
+					<xs:element ref="location"/>
+				</xs:choice>
+				<xs:element minOccurs="0" ref="label"/>
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+			<xs:attribute name="onDisplay" use="required"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="institution">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+			<xs:attributeGroup ref="xlink:simpleLink"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="location">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+			<xs:attributeGroup ref="xlink:simpleLink"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="label">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appraisal">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="date"/>
+				<xs:element ref="appraiser"/>
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appraiser">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- provenience: acquisition -->
+	<xs:element name="acqinfo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element ref="date"/>
+					<xs:element ref="dateRange"/>
+				</xs:choice>
+				<xs:element ref="acquiredFrom"/>				
+				<xs:group ref="m.provenance"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="method">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="acquiredFrom">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- previous collections -->
+	<xs:element name="custodhist">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element ref="description"/>
+					<xs:element ref="chronlist"/>
+				</xs:choice>				
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chronlist">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" ref="chronitem"/>
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chronitem">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element ref="date"/>
+					<xs:element ref="dateRange"/>
+				</xs:choice>				
+				<xs:element ref="previousColl"/>
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="previousColl">
+		<xs:complexType>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element ref="description"/>
+					<xs:sequence>
+						<xs:group ref="m.provenance"/>
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:group name="m.provenance">
+		<xs:sequence>
+			<xs:element minOccurs="0" ref="method"/>
+			<xs:element minOccurs="0" ref="saleCatalog"/>
+			<xs:element minOccurs="0" ref="saleItem"/>
+			<xs:element minOccurs="0" ref="salePrice"/>
+		</xs:sequence>
+	</xs:group>
+
+	<!-- sale/lot -->
+	<xs:element name="saleCatalog">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="saleItem">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="salePrice">
+		<xs:complexType mixed="true">
+			<xs:attribute name="currency" use="required" type="xs:NCName"/>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- ********** END ADMINDESC ********** -->
+
+	<!-- ********** COMMONLY REPEATED ELEMENTS ********** -->
+	<xs:element name="title">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attribute name="localType" type="xs:anyURI"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="description">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="obverse">
+		<xs:complexType>
+			<xs:sequence>
+				<!-- obverse/reverse can contain metadata about conservationState or characteristics under typeDesc/undertypeDesc -->
+				<xs:choice>
+					<xs:choice>
+						<xs:group ref="m.conservationStates"/>
+					</xs:choice>
+					<xs:choice>
+						<!--<xs:element ref="reference"/>-->
+						<xs:sequence>
+							<xs:group ref="m.sideCharacteristics"/>
+						</xs:sequence>
+					</xs:choice>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="reverse">
+		<xs:complexType>
+			<xs:sequence>
+				<!-- obverse/reverse can contain metadata about conservationState or characteristics under typeDesc/undertypeDesc -->
+				<xs:choice>
+					<xs:choice>
+						<xs:group ref="m.conservationStates"/>
+					</xs:choice>
+					<xs:choice>
+						<xs:sequence>
+							<xs:group ref="m.sideCharacteristics"/>
+						</xs:sequence>
+					</xs:choice>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="reference">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="title"/>
+				<xs:element minOccurs="0" ref="identifier"/>
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.default"/>
+			<xs:attributeGroup ref="xlink:simpleLink"/>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- ********** END DESCMETA ********** -->
+
+	<xs:element name="digRep">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:any processContents="skip"/>
+			</xs:sequence>
+
+			<xs:attribute ref="xml:id"/>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- ********** DATES ********** -->
+	<!-- ******* SimpleTypes ******* -->
+	<xs:simpleType name="m.data.standardDateTime">
+		<xs:union>
+			<xs:simpleType>
+				<xs:restriction base="xs:date">
+					<xs:maxInclusive value="2099-12-31"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType>
+				<xs:restriction base="xs:gYear">
+					<xs:maxInclusive value="2099"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType>
+				<xs:restriction base="xs:gYearMonth">
+					<xs:maxInclusive value="2099-12"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType>
+				<xs:restriction base="xs:dateTime">
+					<xs:maxInclusive value="2099-12-31T23:59:59"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:simpleType name="m.data.standardDate">
+		<xs:union>
+			<xs:simpleType>
+				<xs:restriction base="xs:date">
+					<xs:maxInclusive value="2099-12-31"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType>
+				<xs:restriction base="xs:gYear">
+					<xs:maxInclusive value="2099"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType>
+				<xs:restriction base="xs:gYearMonth">
+					<xs:maxInclusive value="2099-12"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+
+	<!-- dates -->
+	<xs:element name="date">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attribute name="localType" type="xs:anyURI"/>
+			<xs:attributeGroup ref="m.dateSingle"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:attributeGroup name="m.dateSingle">
+		<xs:attribute name="standardDate" type="m.data.standardDate"/>
+		<xs:attribute name="notBefore" type="m.data.standardDate"/>
+		<xs:attribute name="notAfter" type="m.data.standardDate"/>
+	</xs:attributeGroup>
+
+	<xs:element name="dateRange">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" ref="fromDate"/>
+				<xs:element minOccurs="0" ref="toDate"/>
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attribute name="localType" type="xs:anyURI"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="fromDate">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.dateSingle"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="toDate">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attributeGroup ref="m.dateSingle"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dateSet">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element ref="date"/>
+					<xs:element ref="dateRange"/>
+				</xs:choice>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="date"/>
+					<xs:element ref="dateRange"/>
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute ref="xml:id"/>
+			<xs:attribute ref="xml:lang"/>
+			<xs:attribute name="localType" type="xs:anyURI"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:group name="m.dates">
+		<xs:choice>
+			<xs:element ref="date"/>
+			<xs:element ref="dateRange"/>
+			<xs:element ref="dateSet"/>
+		</xs:choice>
+	</xs:group>
+	<!-- ********** END DATES ********** -->
+
+	<!-- ********** ATTRIBUTES/DATA TYPES ********** -->
+	<xs:attribute name="certainty">
+		<xs:simpleType>
+			<xs:restriction base="xs:NMTOKEN"/>
+		</xs:simpleType>
+	</xs:attribute>
+
+	<!--<xs:attributeGroup name="base">
+		<xs:attribute ref="xml:base" use="required"/>
+		</xs:attributeGroup>-->
+
+	<xs:attributeGroup name="m.default">
+		<xs:attribute name="localType" type="xs:anyURI"/>
+		<xs:attribute name="certainty" type="xs:anyURI"/>
+		<xs:attribute name="semantic" type="xs:anyURI"/>
+	</xs:attributeGroup>
+	
+	<xs:attributeGroup name="a.scriptCode">
+		<xs:attribute name="scriptCode">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="[A-Z][a-z]{3}"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	
+	<xs:simpleType name="m.data.standardRepository">
+		<xs:restriction base="xs:token">
+			<xs:pattern value="(([A-Z]{2})|([a-zA-Z]{1})|([a-zA-Z]{3,4}))(-[a-zA-Z0-9:/\-]{1,11})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:attributeGroup name="a.localType">
+		<xs:attribute name="localType" type="xs:anyURI" use="required"/>
+	</xs:attributeGroup>
+	<!-- ********** END ATTRIBUTES ********** -->
+
+</xs:schema>
