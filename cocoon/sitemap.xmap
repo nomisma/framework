@@ -376,7 +376,7 @@
 			</map:match>
 			
 			<map:match pattern="nuds/*.xsd">
-				<map:read src="xml/schema/nuds-{1}.xsd"/>
+				<map:read src="xml/schema/{1}.xsd"/>
 			</map:match>
 
 			<!-- SPARQL widget templates -->
