@@ -1,0 +1,123 @@
+/*
+  ****************************************
+  GLOBAL
+  ****************************************
+ */
+body {
+	background-color:#F8F8F8;
+}
+.navbar {
+	margin-bottom:0;
+}
+.row {
+	background-color:white;
+}
+
+
+/*
+  ***************************************
+  FOOTER
+  ***************************************
+ */
+#footer {
+	height: 60px;	
+	border-top:1px solid #e7e7e7;
+	text-align:center;
+}
+/*
+  ***************************************
+  PAGINATION/SEARCH RESULTS
+  ***************************************
+ */
+.result-doc {
+	margin:10px 0;
+	padding:10px 0;
+	border-bottom: 1px solid silver;
+}
+.doc-label {
+	font-size:120%;
+}
+.paging_div {
+	padding:10px 0;
+	vertical-align:top
+}
+.page-nos {
+	text-align:right;
+}
+.filter-form {
+	display:inline;
+}
+.filter-form .form-control {
+	width:200px;
+	display:inline;
+	margin-right:10px;	
+}
+/*
+  ***************************************
+  SPARQL
+  ***************************************
+ */
+ #sparqlForm {
+ 	margin:20px 0;
+ }
+ #sparqlForm select {
+ 	width:200px;	
+ }
+/*
+  ***************************************
+  PAGE DISPLAY
+  ***************************************
+ */
+.lang {
+	font-style:italic;
+}
+/*
+  ***************************************
+  Timemap CSS
+  ***************************************
+ */
+div#timelinecontainer {
+	width:100%;
+	height: 150px;
+}
+div#mapcontainer {
+	width:100%;
+	height: 500px;
+}
+div.olFramedCloudPopupContent {
+	width: 300px;
+}
+div#help {
+	font-size: 12px;
+	width: 45em;
+	padding: 1em;
+}
+/*
+  div#timemap {
+  padding: 1em;
+  }
+ */
+div#timeline {
+	width: 100%;
+	height: 100%;
+	font-size: 12px;
+	background: #CCCCCC;
+}
+div#map {
+	width: 100%;
+	height: 100%;
+	background: #EEEEEE;
+}
+div.infotitle {
+	font-size: 14px;
+	font-weight: bold;
+}
+div.infodescription {
+	font-size: 14px;
+	font-style: italic;
+}
+div.custominfostyle {
+	font-family: Georgia, Garamond, serif;
+	font-size: 1.5em;
+	font-style: italic;
+	width: 20em;

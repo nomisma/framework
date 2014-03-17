@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<url>http://localhost:8080/orbeon/nomisma/</url>
+	<sparql>http://localhost:3030/nomisma/query</sparql>
+	<solr_published>http://localhost:8080/solr/nomisma/</solr_published>
+	<content>
+		<index>
+			<div>
+				<p>Nomisma.org is a collaborative project to provide stable digital representations of numismatic concepts according to the principles of <a
+					href="http://www.w3.org/DesignIssues/LinkedData.html">Linked Open Data</a>. These take the form of http URIs that also provide
+					access to reusable information about those concepts, along with links to other resources. The base format of nomisma.org is
+					xhtml+rdfa1.1, with versions available in multiple formats.</p>
+				
+				<p>While the URIs provided by nomisma.org are stable, the project is in progress and subject to constant expansion and ongoing correction.
+					This is particularly the case for the information provided about each nomisma.org identifier.</p>
+				
+				<p>The information provided by nomisma.org has been provided by a wide community of scholars and insitutions.</p>
+				
+				<p>The project is steered by a committee currently consisting of:</p>
+				
+				
+				<ul>
+					<li>Sebastian Heath, <a href="http://isaw.nyu.edu/">NYU ISAW</a></li>
+					<li>Andrew Meadows, <a href="http://numismatics.org">ANS</a></li>
+					<li>Daniel Pett, <a href="http://finds.org.uk/">BM PAS</a></li>
+					<li>David Wigg-Wolf, <a href="http://www.dainst.org/en/department/rgk">DAI RGK</a></li>
+				</ul>
+				
+				<p>Implementation is by:</p>
+				
+				<ul>
+					<li>Ethan Gruber, <a href="http://numismatics.org">ANS</a></li>
+					<li>Sebastian Heath, <a href="http://isaw.nyu.edu/">NYU ISAW</a></li>
+				</ul>
+				
+				<p>Nomisma.org also hosts the <a href="http://nomisma.org/nuds/numismatic_database_standard">Numismatic Description Standard</a></p>
+			</div>
+		</index>
+	</content>
+</config>

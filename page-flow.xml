@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2007 Orbeon, Inc.
+
+    This program is free software; you can redistribute it and/or modify it under the terms of the
+    GNU Lesser General Public License as published by the Free Software Foundation; either version
+    2.1 of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU Lesser General Public License for more details.
+
+    The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
+-->
+<config xmlns="http://www.orbeon.com/oxf/controller" xmlns:oxf="http://www.orbeon.com/oxf/processors">
+
+	<!-- ****************
+	* ADMIN INTERFACE *
+	***************** -->
+	<page path="/nomisma/admin/edit/" view="xforms/edit.xhtml"/>
+	<page path="/nomisma/admin/" view="xforms/admin.xhtml"/>
+	<page path="/nomisma/login" view="xforms/login.xhtml"/>
+	
+	<!-- ****************
+	* PUBLIC INTERFACE *
+	***************** -->
+
+	<!-- **** SERIALIZATION **** -->
+	<!-- RDF direct output -->
+	<page path="/nomisma/id/(.*)\.rdf" matcher="oxf:perl5-matcher" model="xpl/get-id.xpl" view="xpl/id-to-rdf.xpl"/>	
+	<!-- Object KML -->
+	<page path="/nomisma/id/(.*)\.kml" matcher="oxf:perl5-matcher" model="xpl/get-id.xpl" view="xpl/id-to-kml.xpl"/>	
+
+	<!-- Atom feed -->
+	<page path="/nomisma/feed" model="xpl/solr-query.xpl" view="xpl/feed.xpl"/>
+	
+	<!-- SPARQL wrapper (URL generator) -->
+	<page path="/nomisma/query" view="xpl/sparql-query.xpl"/>
+	
+	<!-- **** PAGES **** -->
+	<page path="/nomisma/id/" model="xpl/solr-query.xpl" view="xpl/results.xpl"/>	
+	<page path="/nomisma/sparql" view="xpl/sparql.xpl"/>
+	<page path="/nomisma/ontology" view="xpl/ontology.xpl"/>
+	<page path="/nomisma/" view="xpl/index.xpl"/>
+	
+	<!-- **** DATA DUMPS **** -->
+	<page path="/nomisma/kerameikos.org.xml" view="dump/kerameikos.org.xml"/>
+	
+	<!-- 303 redirect from official URI to .html -->
+	<!--<page path="/nomisma/id/(.*)" matcher="oxf:perl5-matcher" model="xpl/303-redirect.xpl"/>-->
+
+	<!-- public html view -->
+	<page path="/nomisma/id/(.*)" matcher="regexp" model="xpl/get-id.xpl" view="xpl/display.xpl"/>
+
+	<epilogue url="oxf:/config/epilogue.xpl"/>
+</config>
