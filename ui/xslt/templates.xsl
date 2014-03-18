@@ -17,13 +17,19 @@
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
 						<li>
-							<a href="{$display_path}id/">Browse</a>
+							<a href="{$display_path}id/">Search IDs</a>
+						</li>
+						<li>
+							<a href="{$display_path}apis">APIs</a>
 						</li>
 						<!--<li>
 							<a href="{$display_path}ontology">Ontology</a>
 						</li>-->
 						<li>
 							<a href="{$display_path}sparql">SPARQL</a>
+						</li>
+						<li>
+							<a href="{$display_path}flickr">Flickr Machine Tags</a>
 						</li>
 					</ul>
 					<div class="col-sm-3 col-md-3 pull-right">

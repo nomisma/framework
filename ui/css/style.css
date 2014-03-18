@@ -12,8 +12,18 @@ body {
 .row {
 	background-color:white;
 }
-
-
+/*
+  ***************************************
+  PAGE DISPLAY
+  ***************************************
+ */
+ .media {
+ 	display:inline;
+ }
+ .media img {
+ 	height:50px;
+ 	margin:5px;
+ }
 /*
   ***************************************
   FOOTER

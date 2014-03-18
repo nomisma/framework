@@ -20,25 +20,23 @@
 		<p:input name="config">
 			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 				<xsl:output indent="yes"/>
-				<xsl:template match="/">					
-					<xsl:variable name="path" select="substring-after(doc('input:request')/request/request-url, 'id/')"/>
+				<xsl:template match="/">
 					<xsl:variable name="doc">
 						<xsl:choose>
-							<xsl:when test="contains($path, '.')">
-								<xsl:variable name="pieces" select="tokenize($path, '\.')"/>
-								
-								<xsl:for-each select="$pieces[not(position()=last())]">
-									<xsl:value-of select="."/>
-									<xsl:if test="not(position()=last())">
-										<xsl:text>.</xsl:text>
-									</xsl:if>
-								</xsl:for-each>
+							<xsl:when test="contains(substring-after(doc('input:request')/request/request-url, 'id/'), '.rdf')">
+								<xsl:value-of select="substring-before(substring-after(doc('input:request')/request/request-url, 'id/'), '.rdf')"/>
+							</xsl:when>
+							<xsl:when test="contains(substring-after(doc('input:request')/request/request-url, 'id/'), '.kml')">
+								<xsl:value-of select="substring-before(substring-after(doc('input:request')/request/request-url, 'id/'), '.kml')"/>
+							</xsl:when>
+							<xsl:when test="contains(substring-after(doc('input:request')/request/request-url, 'id/'), '.nuds')">
+								<xsl:value-of select="substring-before(substring-after(doc('input:request')/request/request-url, 'id/'), '.nuds')"/>
 							</xsl:when>
 							<xsl:otherwise>
-								<xsl:value-of select="$path"/>
+								<xsl:value-of select="substring-after(doc('input:request')/request/request-url, 'id/')"/>
 							</xsl:otherwise>
 						</xsl:choose>
-					</xsl:variable>
+					</xsl:variable>					
 					
 					<config>
 						<url>

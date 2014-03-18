@@ -25,20 +25,18 @@
 	</xsl:template>
 
 	<xsl:template name="body">
-		<xsl:variable name="default-query">
-			<![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+		<xsl:variable name="default-query"><![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:	<http://purl.org/dc/terms/>
 PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
 PREFIX owl:	<http://www.w3.org/2002/07/owl#>
 PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
 PREFIX ecrm:	<http://erlangen-crm.org/current/>
 PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
-PREFIX kid:	<http://kerameikos.org/id/>
-PREFIX kon:	<http://kerameikos.org/ontology#>
+PREFIX nm:	<http://nomisma.org/id/>
 
 SELECT * WHERE {
 ?s ?p ?o
-}]]></xsl:variable>
+} LIMIT 100]]></xsl:variable>
 
 		<div class="container-fluid">
 			<div class="row">
@@ -53,11 +51,11 @@ SELECT * WHERE {
 						<div class="form-group">
 							<label for="output">Output</label>
 							<select name="output" class="form-control">
+								<option value="html">HTML</option>
 								<option value="xml">XML</option>
 								<option value="json">JSON</option>
-								<!--<option value="text">Text</option>
-									<option value="csv">CSV</option>
-									<option value="tsv">TSV</option>-->
+								<option value="text">Text</option>
+								<option value="csv">CSV</option>
 							</select>
 						</div>
 						<button type="submit" class="btn btn-default">Submit</button>

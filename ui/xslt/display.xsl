@@ -6,8 +6,12 @@
 	<xsl:variable name="display_path">../</xsl:variable>
 	<xsl:variable name="id" select="//@about"/>
 	<xsl:variable name="uri" select="concat('http://nomisma.org/id/', $id)"/>
-	<xsl:variable name="html-uri" select="concat(/content/config/url, 'id/', $id, '.html')"/>
+	<xsl:variable name="html-uri" select="concat(/content/config/url, 'id/', $id)"/>
 	<xsl:variable name="type" select="/content/*/@typeof"/>
+
+	<!-- flickr -->
+	<xsl:variable name="flickr_api_key" select="/content/config/flickr_api_key"/>
+	<xsl:variable name="service" select="concat('http://api.flickr.com/services/rest/?api_key=', $flickr_api_key)"/>
 
 	<!-- definition of namespaces for turning in solr type field URIs into abbreviations -->
 	<xsl:variable name="namespaces" as="item()*">
@@ -43,7 +47,7 @@
 
 				<xsl:if test="$type='mint' or $type='type_series_item' or $type='hoard'">
 					<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"/>
-					<!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.9&amp;sensor=false"/>-->
+					<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.9&amp;sensor=false"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/display_map_functions.js"/>
 				</xsl:if>
 				<link rel="stylesheet" href="{$display_path}ui/css/style.css"/>
@@ -62,44 +66,67 @@
 				<div class="col-md-9">
 					<xsl:apply-templates select="/content/xhtml:div" mode="type"/>
 					<xsl:if test="$type='mint' or $type='type_series_item' or $type='hoard'">
-						<div class="center">
-							<div id="mapcontainer"/>
-						</div>
+						<div id="mapcontainer"/>
 					</xsl:if>
 				</div>
-				
+
 				<div class="col-md-3">
-					<h3>Export</h3>
-					<ul>
-						<li>
-							<a href="https://github.com/AmericanNumismaticSociety/nomisma-ids/blob/master/id/{$id}.txt">GitHub File</a>
-						</li>
-						<li>
-							<a href="{$id}.rdf">RDF/XML</a>
-						</li>
-						<li>
-							<a href="http://www.w3.org/2012/pyRdfa/extract?uri={$uri}">RDF Triples (Turtle)</a>
-						</li>
-						<li>
-							<a href="http://www.w3.org/2012/pyRdfa/extract?uri={$uri}&amp;format=json">JSON-LD</a>
-						</li>
-						<li>
-							<a href="{$id}.pelagios.rdf">Pelagios RDF/XML</a>
-						</li>
-						<xsl:if test="$type='type_series_item'">
+					<div>
+						<h3>Export</h3>
+						<ul>
 							<li>
-								<a href="{$id}.nuds">NUDS/XML</a>
+								<a href="https://github.com/AmericanNumismaticSociety/nomisma-ids/blob/master/id/{$id}.txt">GitHub File</a>
 							</li>
-						</xsl:if>
-						<xsl:if test="$type='mint' or $type='type_series_item' or $type='hoard'">
 							<li>
-								<a href="{$id}.kml">KML</a>
+								<a href="{$id}.rdf">RDF/XML</a>
 							</li>
+							<li>
+								<a href="http://www.w3.org/2012/pyRdfa/extract?uri={$html-uri}">RDF Triples (Turtle)</a>
+							</li>
+							<li>
+								<a href="http://www.w3.org/2012/pyRdfa/extract?uri={$html-uri}&amp;format=json">JSON-LD</a>
+							</li>
+							<li>
+								<a href="{$id}.pelagios.rdf">Pelagios RDF/XML</a>
+							</li>
+							<xsl:if test="$type='type_series_item'">
+								<li>
+									<a href="{$id}.nuds">NUDS/XML</a>
+								</li>
+							</xsl:if>
+							<xsl:if test="$type='mint' or $type='type_series_item' or $type='hoard'">
+								<li>
+									<a href="{$id}.kml">KML</a>
+								</li>
+							</xsl:if>
+							<li>
+								<a href="http://isaw2.atlantides.org/lawdi/force-graph.html?s={$uri}">Visualize RDF</a>
+							</li>
+						</ul>
+					</div>
+					<!--<xsl:if test="$type != 'numismatic_term'">
+						<xsl:variable name="predicate" select="if ($type='roman_emperor') then 'authority' else $type"/>
+						<xsl:variable name="photos" as="element()*">
+							<xsl:copy-of
+								select="document(concat($service, '&amp;method=flickr.photos.search&amp;per_page=12&amp;machine_tags=nomisma:', $predicate, '=', $id))/*"
+							/>
+						</xsl:variable>
+						<xsl:if test="count($photos//photo) &gt; 0">
+							<div>
+								<h3>Flickr Images of this Typology <small><a href="http://www.flickr.com/photos/tags/nomisma:{$predicate}={$id}">See all
+											photos.</a></small></h3>
+								<xsl:for-each select="$photos//photo">
+									<div class="flickr_thumbnail">
+										<a href="http://www.flickr.com/photos/{@owner}/{@id}" title="{@title}">
+											<img
+												src="{document(concat($service, '&amp;method=flickr.photos.getSizes&amp;photo_id=', @id))//size[@label='Thumbnail']/@source}"
+												alt="{@title}"/>
+										</a>
+									</div>
+								</xsl:for-each>
+							</div>
 						</xsl:if>
-						<li>
-							<a href="http://isaw2.atlantides.org/lawdi/force-graph.html?s={$uri}">Visualize RDF</a>
-						</li>
-					</ul>	
+					</xsl:if>-->
 				</div>
 			</div>
 		</div>

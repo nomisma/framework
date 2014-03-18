@@ -38,19 +38,20 @@
 	<page path="/nomisma/query" view="xpl/sparql-query.xpl"/>
 	
 	<!-- **** PAGES **** -->
-	<page path="/nomisma/id/" model="xpl/solr-query.xpl" view="xpl/results.xpl"/>	
-	<page path="/nomisma/sparql" view="xpl/sparql.xpl"/>
-	<page path="/nomisma/ontology" view="xpl/ontology.xpl"/>
-	<page path="/nomisma/" view="xpl/index.xpl"/>
+	<page path="/nomisma/id/" model="xpl/solr-query.xpl" view="xpl/page-results.xpl"/>	
+	<page path="/nomisma/sparql" view="xpl/page-sparql.xpl"/>
+	<page path="/nomisma/apis" view="xpl/page-apis.xpl"/>
+	<page path="/nomisma/flickr" view="xpl/page-flickr.xpl"/>
+	<page path="/nomisma/" view="xpl/page-index.xpl"/>
 	
 	<!-- **** DATA DUMPS **** -->
-	<page path="/nomisma/kerameikos.org.xml" view="dump/kerameikos.org.xml"/>
+	<page path="/nomisma/nomisma.org.xml" view="dump/nomisma.org.xml"/>
 	
 	<!-- 303 redirect from official URI to .html -->
 	<!--<page path="/nomisma/id/(.*)" matcher="oxf:perl5-matcher" model="xpl/303-redirect.xpl"/>-->
 
 	<!-- public html view -->
-	<page path="/nomisma/id/(.*)" matcher="regexp" model="xpl/get-id.xpl" view="xpl/display.xpl"/>
+	<page path="/nomisma/id/(.*)" matcher="regexp" model="xpl/get-id.xpl" view="xpl/page-display.xpl"/>
 
 	<epilogue url="oxf:/config/epilogue.xpl"/>
 </config>
