@@ -133,12 +133,12 @@
 	</xsl:template>
 
 	<xsl:template match="*" mode="type">
-		<div typeof="{name()}" about="{$id}">
+		<div typeof="{$type}" about="{$id}">
 			<h2>
 				<xsl:value-of select="$id"/>
 				<small>
 					<xsl:text> (</xsl:text>
-					<a href="{concat(namespace-uri(.), $type)}">
+					<a href="{$type}">
 						<xsl:value-of select="$type"/>
 					</a>
 					<xsl:text>)</xsl:text>
