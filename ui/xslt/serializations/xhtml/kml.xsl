@@ -2,8 +2,8 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:cinclude="http://apache.org/cocoon/include/1.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
 	xmlns:java="http://www.java.com/" exclude-result-prefixes="xs cinclude geo xhtml java" version="2.0">
-	<xsl:param name="id"/>
-
+	
+	<xsl:variable name="id" select="/content/xhtml:div/@about"/>
 	<xsl:variable name="uri">
 		<xsl:text>http://nomisma.org/id/</xsl:text>
 		<xsl:value-of select="$id"/>
@@ -66,14 +66,16 @@
 								</coordinates>
 							</Point>
 						</Placemark>
-						<!--<cinclude:include src="cocoon:/widget?uri={$uri}&amp;curie={$typeof}&amp;template=kml"/>-->
+						<xsl:variable name="service" select="concat(/content/config/url, 'apis/getKml?uri=', $uri, '&amp;curie=', $typeof)"/>
+						<xsl:copy-of select="document($service)//*[local-name()='Placemark']"/>
 					</xsl:when>
 					<xsl:when test="$typeof='type_series_item'">
 						<!-- create point for mints -->
 						<xsl:apply-templates select="descendant::*[@property='mint'][string(@resource)]">
 							<xsl:with-param name="style">hoard</xsl:with-param>
 						</xsl:apply-templates>
-						<!--<cinclude:include src="cocoon:/widget?uri={$uri}&amp;curie={$typeof}&amp;template=kml"/>-->
+						<xsl:variable name="service" select="concat(/content/config/url, 'apis/getKml?uri=', $uri, '&amp;curie=', $typeof)"/>
+						<xsl:copy-of select="document($service)//*[local-name()='Placemark']"/>>-->
 					</xsl:when>
 					<xsl:when test="$typeof='hoard'">
 						<!-- create point for findspot -->

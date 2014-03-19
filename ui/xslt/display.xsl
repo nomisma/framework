@@ -151,7 +151,7 @@
 				<xsl:apply-templates select="*[@property='skos:definition']" mode="list-item">
 					<xsl:sort select="@xml:lang"/>
 				</xsl:apply-templates>
-				<xsl:apply-templates select="*[not(@property='skos:prefLabel') and not(@property='skos:definition')][@content or @resource]" mode="list-item">
+				<xsl:apply-templates select="*[not(@property='skos:prefLabel') and not(@property='skos:definition')][not(child::*)]" mode="list-item">
 					<xsl:sort select="name()"/>
 					<xsl:sort select="@resource"/>
 				</xsl:apply-templates>

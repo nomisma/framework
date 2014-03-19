@@ -36,7 +36,7 @@
 					</div>
 					<div>
 						<h3>Atom Feed</h3>
-						<a href="feed/">
+						<a href="feed">
 							<img src="{$display_path}ui/images/atom-large.png"/>
 						</a>
 					</div>

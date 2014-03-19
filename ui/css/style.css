@@ -14,7 +14,7 @@ body {
 }
 /*
   ***************************************
-  PAGE DISPLAY
+  INDEX
   ***************************************
  */
  .media {
@@ -81,6 +81,18 @@ body {
 .lang {
 	font-style:italic;
 }
+/*
+  ***************************************
+  APIs
+  ***************************************
+ */
+ .api-desc {
+ 	padding:5px;
+ 	border:1px solid silver;
+ 	border-radius:10px;
+ 	margin:20px;
+ 	background-color:#F7F7F9;
+ }
 /*
   ***************************************
   Timemap CSS

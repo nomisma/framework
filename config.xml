@@ -3,6 +3,7 @@
 	<url>http://localhost:8080/orbeon/nomisma/</url>
 	<sparql>http://localhost:3030/nomisma/query</sparql>
 	<solr_published>http://localhost:8080/solr/nomisma/</solr_published>
+	<id_path>/usr/local/projects/nomisma-ids/id</id_path>
 	<flickr_api_key>226cb53f91a6c1331adfb52c365584e9</flickr_api_key>
 	<content>
 		<index>
@@ -36,15 +37,22 @@
 
 				<p>Nomisma.org also hosts the <a href="http://nomisma.org/nuds/numismatic_database_standard">Numismatic Description Standard</a></p>
 			</div>
-			
+
 			<div>
 				<h3>Example Nomisma.org URIs</h3>
-				<p>Nomisma.org focuses on URIs for concepts that are unique to numismatics or which have a distinct meaning within the discipline. Examples are:</p>
-				
+				<p>Nomisma.org focuses on URIs for concepts that are unique to numismatics or which have a distinct meaning within the discipline. Examples
+					are:</p>
+
 				<ol>
-					<li><a href="http://nomisma.org/id/axis">http://nomisma.org/id/axis</a>. The 'axis' is the angular relationship between the obverse and reverse of a coin.</li>
-					<li><a href="http://nomisma.org/id/ephesus">http://nomisma.org/id/ephesus</a>. The 'mint' at Ephesus. Nomisma relates this numismatic concept to other URIs such as <a href="http://en.wikipedia.org/wiki/Ephesus">wikipedia</a>, <a href="http://pleiades.stoa.org/places/599612">Pleiades</a>, <a href="http://vocab.getty.edu/tgn/7002499">Getty thesauri</a>, and the <a href="http://collection.britishmuseum.org/id/place/x107267">British Museum</a>.</li>
-					<li><a href="http://nomisma.org/id/quinarius">http://nomisma.org/id/quinarius</a>. Nomisma.org maintains lists of Roman and other denominations. To indicate that “quinarius” is a concept within Roman numismatics, the Dublin Core property "dcterms:isPartOf" relates this URI to <a href="http://nomisma.org/id/roman_numismatics">http://nomisma.org/id/roman_numismatics</a>.</li>
+					<li><a href="http://nomisma.org/id/axis">http://nomisma.org/id/axis</a>. The 'axis' is the angular relationship between the obverse and
+						reverse of a coin.</li>
+					<li><a href="http://nomisma.org/id/ephesus">http://nomisma.org/id/ephesus</a>. The 'mint' at Ephesus. Nomisma relates this numismatic
+						concept to other URIs such as <a href="http://en.wikipedia.org/wiki/Ephesus">wikipedia</a>, <a
+							href="http://pleiades.stoa.org/places/599612">Pleiades</a>, <a href="http://vocab.getty.edu/tgn/7002499">Getty thesauri</a>, and the
+							<a href="http://collection.britishmuseum.org/id/place/x107267">British Museum</a>.</li>
+					<li><a href="http://nomisma.org/id/quinarius">http://nomisma.org/id/quinarius</a>. Nomisma.org maintains lists of Roman and other
+						denominations. To indicate that “quinarius” is a concept within Roman numismatics, the Dublin Core property "dcterms:isPartOf" relates
+						this URI to <a href="http://nomisma.org/id/roman_numismatics">http://nomisma.org/id/roman_numismatics</a>.</li>
 				</ol>
 			</div>
 		</index>
@@ -64,27 +72,31 @@
 							<a href="#avgAxis">avgAxis</a>
 						</td>
 						<td>
-							<a href="apis/avgAxis?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1a&gt;">XML</a>
+							<a href="apis/avgAxis?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;">XML</a>
 						</td>
-						<td/>
+						<td><a href="apis/avgAxis?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;&amp;format=json">JSON</a></td>
 					</tr>
 					<tr>
 						<td>
 							<a href="#avgDiameter">avgDiameter</a>
 						</td>
 						<td>
-							<a href="apis/avgDiameter?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1a&gt;">XML</a>
+							<a href="apis/avgDiameter?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;">XML</a>
 						</td>
-						<td/>
+						<td>
+							<a href="apis/avgDiameter?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;&amp;format=json">JSON</a>
+						</td>
 					</tr>
 					<tr>
 						<td>
 							<a href="#avgWeight">avgWeight</a>
 						</td>
 						<td>
-							<a href="apis/avgWeight?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1a&gt;">XML</a>
+							<a href="apis/avgWeight?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;">XML</a>
 						</td>
-						<td/>
+						<td>
+							<a href="apis/avgWeight?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;&amp;format=json">JSON</a>
+						</td>
 					</tr>
 					<tr>
 						<td>
@@ -92,10 +104,14 @@
 						</td>
 						<td>
 							<a
-								href="apis/closingDate?identifiers=http://nomisma.org/id/rrc-385.4|http://nomisma.org/id/rrc-409.2|http://numismatics.org/ocre/id/ric.1(2).aug.1a"
+								href="apis/closingDate?identifiers=http://nomisma.org/id/rrc-385.4|http://nomisma.org/id/rrc-409.2|http://numismatics.org/ocre/id/ric.1(2).aug.1A"
 								>XML</a>
 						</td>
-						<td/>
+						<td>
+							<a
+								href="apis/closingDate?identifiers=http://nomisma.org/id/rrc-385.4|http://nomisma.org/id/rrc-409.2|http://numismatics.org/ocre/id/ric.1(2).aug.1A&amp;format=json"
+								>JSON</a>
+						</td>
 					</tr>
 					<tr>
 						<td>
@@ -104,7 +120,9 @@
 						<td>
 							<a href="apis/getLabel?uri=http://nomisma.org/id/ar&amp;lang=fr">XML</a>
 						</td>
-						<td/>
+						<td>
+							<a href="apis/getLabel?uri=http://nomisma.org/id/ar&amp;lang=fr&amp;format=json">JSON</a>
+						</td>
 					</tr>
 					<tr>
 						<td>
@@ -126,82 +144,82 @@
 					</tr>
 				</tbody>
 			</table>
-			<div>
+			<div class="api-desc">
 				<a name="avgAxis"/>
 				<h2>Average Axis</h2>
 				<p>Get average axis for given SPARQL query.<br/>
 					<b>Webservice Type</b> : REST<br/>
 					<b>Url</b> : nomisma.org/avgAxis?<br/>
-					<b>Parameters</b> : constraints (following predicate - object format. multiple contraints separated by ' AND '. See examples below)<br/>
+					<b>Parameters</b> : constraints (following predicate - object format. multiple contraints separated by ' AND '. See examples below), format ('json' or 'xml', default 'xml')<br/>
 					<b>Result</b> : returns a decimal number in a response wrapper.<br/>
 					<b>Examples</b>: <a
 						href="apis/avgAxis?constraints=dcterms:isPartOf &lt;http://nomisma.org/id/ric> AND nm:mint &lt;http://nomisma.org/id/rome> AND nm:denomination &lt;http://nomisma.org/id/denarius>"
 						>http://nomisma.org/apis/avgAxis?constraints=dcterms:isPartOf &lt;http://nomisma.org/id/ric> AND nm:mint &lt;http://nomisma.org/id/rome>
 						AND nm:denomination &lt;http://nomisma.org/id/denarius></a>
 					<br/>
-					<a href="apis/avgAxis?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1a&gt;"
-						>http://nomisma.org/apis/avgWeight?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1a&gt;</a>
+					<a href="apis/avgAxis?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;"
+						>http://nomisma.org/apis/avgWeight?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;</a>
 				</p>
 			</div>
-			<div>
+			<div class="api-desc">
 				<a name="avgDiameter"/>
 				<h2>Average Diameter</h2>
 				<p>Get average diameter for given SPARQL query.<br/>
 					<b>Webservice Type</b> : REST<br/>
 					<b>Url</b> : nomisma.org/avgDiameter?<br/>
-					<b>Parameters</b> : constraints (following predicate - object format. multiple contraints separated by ' AND '. See examples below)<br/>
+					<b>Parameters</b> : constraints (following predicate - object format. multiple contraints separated by ' AND '. See examples below), format ('json' or 'xml', default 'xml')<br/>
 					<b>Result</b> : returns a decimal number in a response wrapper.<br/>
 					<b>Examples</b>: <a
 						href="apis/avgDiameter?constraints=dcterms:isPartOf &lt;http://nomisma.org/id/ric> AND nm:mint &lt;http://nomisma.org/id/rome> AND nm:denomination &lt;http://nomisma.org/id/denarius>"
 						>http://nomisma.org/apis/avgDiameter?constraints=dcterms:isPartOf &lt;http://nomisma.org/id/ric> AND nm:mint
 						&lt;http://nomisma.org/id/rome> AND nm:denomination &lt;http://nomisma.org/id/denarius></a>
 					<br/>
-					<a href="apis/avgDiameter?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1a&gt;"
-						>http://nomisma.org/apis/avgDiameter?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1a&gt;</a>
+					<a href="apis/avgDiameter?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;"
+						>http://nomisma.org/apis/avgDiameter?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;</a>
 				</p>
 			</div>
-			<div>
+			<div class="api-desc">
 				<a name="avgWeight"/>
 				<h2>Average Weight</h2>
 				<p>Get average weight for given SPARQL query.<br/>
 					<b>Webservice Type</b> : REST<br/>
 					<b>Url</b> : nomisma.org/avgWeight?<br/>
-					<b>Parameters</b> : constraints (following predicate - object format. multiple contraints separated by ' AND '. See examples below)<br/>
+					<b>Parameters</b> : constraints (following predicate - object format. multiple contraints separated by ' AND '. See examples below), format ('json' or 'xml', default 'xml')<br/>
 					<b>Result</b> : returns a decimal number in a response wrapper.<br/>
 					<b>Examples</b>: <a
 						href="apis/avgWeight?constraints=dcterms:isPartOf &lt;http://nomisma.org/id/ric> AND nm:mint &lt;http://nomisma.org/id/rome> AND nm:denomination &lt;http://nomisma.org/id/denarius>"
 						>http://nomisma.org/apis/avgWeight?constraints=dcterms:isPartOf &lt;http://nomisma.org/id/ric> AND nm:mint
 						&lt;http://nomisma.org/id/rome> AND nm:denomination &lt;http://nomisma.org/id/denarius></a>
 					<br/>
-					<a href="apis/avgWeight?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1a&gt;"
-						>http://nomisma.org/apis/avgWeight?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1a&gt;</a>
+					<a href="apis/avgWeight?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;"
+						>http://nomisma.org/apis/avgWeight?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;</a>
 				</p>
 			</div>
-			<div>
+			<div class="api-desc">
 				<a name="closingDate"/>
 				<h2>Closing Date</h2>
 				<p>Get the closing date of a hoard based on coin type URIs provided in the request parameter.<br/>
 					<b>Webservice Type</b> : REST<br/>
 					<b>Url</b> : nomisma.org/closingDate?<br/>
-					<b>Parameters</b> : identifiers (coin type URIs divided by a pipe '|')<br/>
+					<b>Parameters</b> : identifiers (coin type URIs divided by a pipe '|'), format ('json' or 'xml', default 'xml')<br/>
 					<b>Result</b> : returns an integer which represents the year. Negative numbers refer to B.C. dates.<br/>
 					<b>Examples</b>: <a
-						href="apis/closingDate?identifiers=http://nomisma.org/id/rrc-385.4|http://nomisma.org/id/rrc-409.2|http://numismatics.org/ocre/id/ric.1(2).aug.1a"
-						>http://nomisma.org/apis/closingDate?identifiers=http://nomisma.org/id/rrc-385.4|http://nomisma.org/id/rrc-409.2|http://numismatics.org/ocre/id/ric.1(2).aug.1a</a>
+						href="apis/closingDate?identifiers=http://nomisma.org/id/rrc-385.4|http://nomisma.org/id/rrc-409.2|http://numismatics.org/ocre/id/ric.1(2).aug.1A"
+						>http://nomisma.org/apis/closingDate?identifiers=http://nomisma.org/id/rrc-385.4|http://nomisma.org/id/rrc-409.2|http://numismatics.org/ocre/id/ric.1(2).aug.1A</a>
 				</p>
 			</div>
-			<div>
+			<div class="api-desc">
 				<a name="getLabel"/>
 				<h2>Get Label</h2>
 				<p>Get the label of a Nomisma ID given its URI and language code.<br/>
 					<b>Webservice Type</b> : REST<br/>
 					<b>Url</b> : nomisma.org/getLabel?<br/>
-					<b>Parameters</b> : uri (of Nomisma ID), lang (two-letter ISO language code)<br/>
+					<b>Parameters</b> : uri (of Nomisma ID), lang (two-letter ISO language code), format ('json' or 'xml', default 'xml')<br/>
 					<b>Result</b> : returns the label in given language, or English as default.<br/>
 					<b>Examples</b>: <a href="apis/getLabel?uri=http://nomisma.org/id/ar&amp;lang=fr">apis/getLabel?uri=http://nomisma.org/id/ar&amp;lang=fr</a>
 				</p>
 			</div>
-			<div>
+			<div class="api-desc">
 				<a name="getNuds"/>
 				<h2>Get NUDS</h2>
 				<p>Get an aggregated NUDS/XML serialization for coin types.<br/>
@@ -213,7 +231,7 @@
 					<b>Examples</b>: <a href="apis/getNuds?identifiers=rrc-100.2|rrc-299.1b">apis/getNuds?identifiers=rrc-100.2|rrc-299.1b</a>
 				</p>
 			</div>
-			<div>
+			<div class="api-desc">
 				<a name="getRdf"/>
 				<h2>Get RDF</h2>
 				<p>Aggregate RDF for Nomisma ids.<br/>

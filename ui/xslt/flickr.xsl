@@ -9,7 +9,7 @@
 	<xsl:template match="/">
 		<html lang="en">
 			<head>
-				<title>nomisma.org</title>
+				<title>nomisma.org: Flickr Machine Tags</title>
 				<meta name="viewport" content="width=device-width, initial-scale=1"/>
 				<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"/>
 				<!-- bootstrap -->
