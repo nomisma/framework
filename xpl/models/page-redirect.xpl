@@ -24,7 +24,7 @@
 					<xsl:variable name="page" select="tokenize(doc('input:request')/request/request-url, '/')[last()]"/>
 					<redirect-url>
 						<path-info>
-							<xsl:value-of select="concat('/nomisma/', $page, '/')"/>
+							<xsl:value-of select="concat($page, '/')"/>
 						</path-info>
 					</redirect-url>
 				</xsl:template>
