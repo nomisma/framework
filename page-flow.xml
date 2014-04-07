@@ -54,12 +54,8 @@
 	<page path="/nomisma/apis/getRdf" model="xpl/aggregate-ids.xpl" view="xpl/api-getRdf.xpl"/>
 
 	<!-- **** PROJECT NAMESPACES **** -->
-	<page path="/nomisma/project">
-		<action>
-			<result page="project" instance-passing="redirect"/>
-		</action>
-	</page>
-	<page id="project" path="/nomisma/project/" matcher="oxf:perl5-matcher" model="xpl/models/project.xpl" view="xpl/serializations/project.xpl"/>
+	<page path="/nomisma/project" model="xpl/models/page-redirect.xpl"/>
+	<page path="/nomisma/project/" model="xpl/models/project.xpl" view="xpl/serializations/project.xpl"/>
 	<page path="/nomisma/project/(.*)\/" matcher="oxf:perl5-matcher" model="xpl/models/project.xpl" view="xpl/serializations/project.xpl"/>
 	<page path="/nomisma/project/(.*)\/(.*)" matcher="oxf:perl5-matcher" model="xpl/models/project-redirect.xpl"/>
 	
