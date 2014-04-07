@@ -12,25 +12,32 @@ body {
 .row {
 	background-color:white;
 }
+.highlight {
+	background-color: #F7F7F9;
+	border: 1px solid #E1E1E8;
+	border-radius: 4px;
+	margin-bottom: 14px;
+	padding: 9px 14px;
+}
 /*
   ***************************************
   INDEX
   ***************************************
  */
- .media {
- 	display:inline;
- }
- .media img {
- 	height:50px;
- 	margin:5px;
- }
+.media {
+	display:inline;
+}
+.media img {
+	height:50px;
+	margin:5px;
+}
 /*
   ***************************************
   FOOTER
   ***************************************
  */
 #footer {
-	height: 60px;	
+	height: 60px;
 	border-top:1px solid #e7e7e7;
 	text-align:center;
 }
@@ -60,19 +67,19 @@ body {
 .filter-form .form-control {
 	width:200px;
 	display:inline;
-	margin-right:10px;	
+	margin-right:10px;
 }
 /*
   ***************************************
   SPARQL
   ***************************************
  */
- #sparqlForm {
- 	margin:20px 0;
- }
- #sparqlForm select {
- 	width:200px;	
- }
+#sparqlForm {
+	margin:20px 0;
+}
+#sparqlForm select {
+	width:200px;
+}
 /*
   ***************************************
   PAGE DISPLAY
@@ -81,18 +88,6 @@ body {
 .lang {
 	font-style:italic;
 }
-/*
-  ***************************************
-  APIs
-  ***************************************
- */
- .api-desc {
- 	padding:5px;
- 	border:1px solid silver;
- 	border-radius:10px;
- 	margin:20px;
- 	background-color:#F7F7F9;
- }
 /*
   ***************************************
   Timemap CSS

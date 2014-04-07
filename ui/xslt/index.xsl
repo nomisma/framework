@@ -27,7 +27,7 @@
 			<div class="row">
 				<div class="col-md-8">
 					<h1>Nomisma</h1>
-					<xsl:copy-of select="//index/*"/>
+					<xsl:copy-of select="/content/content/index/*"/>
 				</div>
 				<div class="col-md-4">
 					<div>

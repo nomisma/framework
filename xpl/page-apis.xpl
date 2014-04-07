@@ -12,7 +12,7 @@
 	<p:param type="output" name="data"/>
 	
 	<p:processor name="oxf:unsafe-xslt">
-		<p:input name="data" href="../config.xml"/>		
+		<p:input name="data" href="aggregate('content', ../config.xml, ../content.xml)"/>		
 		<p:input name="config" href="../ui/xslt/apis.xsl"/>
 		<p:output name="data" ref="data"/>
 	</p:processor>

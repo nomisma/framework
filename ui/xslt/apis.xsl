@@ -26,7 +26,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
-					<xsl:copy-of select="//apis/*"/>
+					<xsl:copy-of select="/content/content/apis/*"/>
 				</div>
 			</div>
 		</div>

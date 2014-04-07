@@ -29,8 +29,11 @@
 							<a href="{$display_path}sparql">SPARQL</a>
 						</li>
 						<li>
-							<a href="{$display_path}flickr">Flickr Machine Tags</a>
+							<a href="{$display_path}project">Project Namespaces</a>
 						</li>
+						<!--<li>
+							<a href="{$display_path}flickr">Flickr Machine Tags</a>
+						</li>-->
 					</ul>
 					<div class="col-sm-3 col-md-3 pull-right">
 						<form class="navbar-form" role="search" action="{$display_path}id/" method="get">
