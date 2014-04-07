@@ -24,7 +24,6 @@
 				<xsl:template match="/">
 					<xsl:variable name="page" select="tokenize(doc('input:request')/request/request-url, '/')[last()]"/>
 					<redirect-url>
-						<!--<xsl:copy-of select="doc('input:request')/request"/>-->
 						<path-info>./<xsl:value-of select="$page"/>/</path-info>
 					</redirect-url>
 				</xsl:template>

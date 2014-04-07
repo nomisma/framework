@@ -29,7 +29,7 @@
 							<a href="{$display_path}sparql">SPARQL</a>
 						</li>
 						<li>
-							<a href="{$display_path}project">Project Namespaces</a>
+							<a href="{$display_path}project/">Project Namespaces</a>
 						</li>
 						<!--<li>
 							<a href="{$display_path}flickr">Flickr Machine Tags</a>
