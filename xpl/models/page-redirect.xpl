@@ -5,7 +5,8 @@
 <p:config xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:oxf="http://www.orbeon.com/oxf/processors">
 
 	<p:param type="input" name="data"/>
-	
+	<!--<p:param type="output" name="data"/>-->
+
 	<p:processor name="oxf:request">
 		<p:input name="config">
 			<config>
@@ -23,9 +24,8 @@
 				<xsl:template match="/">
 					<xsl:variable name="page" select="tokenize(doc('input:request')/request/request-url, '/')[last()]"/>
 					<redirect-url>
-						<path-info>
-							<xsl:value-of select="concat($page, '/')"/>
-						</path-info>
+						<!--<xsl:copy-of select="doc('input:request')/request"/>-->
+						<path-info>./<xsl:value-of select="$page"/>/</path-info>
 					</redirect-url>
 				</xsl:template>
 			</xsl:stylesheet>
@@ -33,7 +33,7 @@
 		<p:output name="data" id="config"/>
 	</p:processor>
 
-	<p:processor xmlns:p="http://www.orbeon.com/oxf/pipeline" name="oxf:redirect">
+	<p:processor name="oxf:redirect">
 		<p:input name="data" href="#config"/>
 	</p:processor>
 </p:config>
