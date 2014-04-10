@@ -264,6 +264,14 @@
 			OPTIONAL { ?object nm:reverseReference ?revRef }
 			OPTIONAL { ?object foaf:thumbnail ?comThumb }
 			OPTIONAL { ?object foaf:depiction ?comRef }
+			OPTIONAL { ?object nm:obverse ?obverse .
+			?obverse foaf:thumbnail ?obvThumb }
+			OPTIONAL { ?object nm:obverse ?obverse .
+			?obverse foaf:depiction ?obvRef }
+			OPTIONAL { ?object nm:reverse ?reverse .
+			?reverse foaf:thumbnail ?revThumb }
+			OPTIONAL { ?object nm:reverse ?reverse .
+			?reverse foaf:depiction ?revRef }
 			}]]>
 		</xsl:variable>
 
