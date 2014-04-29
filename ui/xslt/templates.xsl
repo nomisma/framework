@@ -12,7 +12,9 @@
 						<span class="icon-bar"/>
 						<span class="icon-bar"/>
 					</button>
-					<a class="navbar-brand" href="{$display_path}./">nomisma.org</a>
+					<a class="navbar-brand logo-nav" href="{$display_path}./">
+						<img style="display:inline" src="{$display_path}ui/images/nomisma.png" alt="nomisma.org"/>
+					</a>
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
@@ -22,9 +24,9 @@
 						<li>
 							<a href="{$display_path}apis">APIs</a>
 						</li>
-						<!--<li>
-							<a href="{$display_path}ontology">Ontology</a>
-						</li>-->
+						<li>
+							<a href="{$display_path}ontology/">Ontology</a>
+						</li>
 						<li>
 							<a href="{$display_path}sparql">SPARQL</a>
 						</li>
@@ -58,8 +60,8 @@
 			<div class="container-fluid">
 				<p class="text-muted"><a href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0"
 							src="http://i.creativecommons.org/l/by/3.0/88x31.png"/></a><br/>Unless specified otherwise, content in <a href="http://nomisma.org"
-						xmlns:dc="http://purl.org/dc/elements/1.1/">Nomisma.org</a> is licensed under a <a xmlns:cc="http://creativecommons.org/ns#"
-						href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>.</p>
+						xmlns:dc="http://purl.org/dc/elements/1.1/">Nomisma.org</a> is licensed under a <a xmlns:cc="http://creativecommons.org/ns#" href="http://creativecommons.org/licenses/by/3.0/"
+						>Creative Commons Attribution 3.0 License</a>.</p>
 			</div>
 		</div>
 	</xsl:template>

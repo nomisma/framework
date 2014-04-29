@@ -6,9 +6,16 @@
 body {
 	background-color:#F8F8F8;
 }
+.nav {
+	margin-top:10px;	
+}
 .navbar {
 	margin-bottom:0;
 }
+/*.navbar-brand {
+	background: url('../images/nomisma.png') no-repeat left center;
+	width:100%;
+}*/
 .row {
 	background-color:white;
 }
