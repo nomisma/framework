@@ -43,7 +43,7 @@
 	
 	<p:processor name="oxf:pipeline">
 		<p:input name="data" href="#dump"/>
-		<p:input name="config" href="api-getRdf.xpl"/>		
+		<p:input name="config" href="getRdf.xpl"/>		
 		<p:output name="data" id="rdf"/>
 	</p:processor>
 
