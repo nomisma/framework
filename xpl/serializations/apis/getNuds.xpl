@@ -22,7 +22,7 @@
 	
 	<!-- read ids in the XHTML+RDFa, aggregate them -->
 	<p:processor name="oxf:unsafe-xslt">
-		<p:input name="data" href="aggregate('content', ../config.xml, #data)"/>
+		<p:input name="data" href="aggregate('content', ../../../config.xml, #data)"/>
 		<p:input name="config">
 			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 				<xsl:variable name="id-path" select="/content/config/id_path"/>
@@ -50,7 +50,7 @@
 	<p:processor name="oxf:unsafe-xslt">
 		<p:input name="request" href="#request"/>
 		<p:input name="data" href="aggregate('content', #data, #rdf)"/>
-		<p:input name="config" href="../ui/xslt/apis/getNuds.xsl"/>
+		<p:input name="config" href="../../../ui/xslt/apis/getNuds.xsl"/>
 		<p:output name="data" id="model"/>
 	</p:processor>
 	

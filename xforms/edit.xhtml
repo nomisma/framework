@@ -193,7 +193,7 @@
 					<xforms:setvalue ref="instance('load-config')/url"
 						value="concat('file://', instance('control-instance')/id_path, xxforms:get-request-parameter('id'), '.txt')"/>
 					<xforms:insert nodeset="instance('doc')"
-						origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/load-id.xpl', 'file', instance('load-config'), 'data')"/>
+						origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/load-id.xpl', 'file', instance('load-config'), 'data')"/>
 				</xforms:action>
 				
 				<!-- if create parameter is passed, populate @about with the param, ignore when id param is also passed -->
@@ -393,7 +393,7 @@
 								<xforms:setvalue ref="instance('save-config')/url"
 									value="concat('file://', instance('control-instance')/id_path, instance('doc')/@about, '.txt')"/>
 								<xforms:insert nodeset="instance('dump')"
-									origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/save-id.xpl', ('doc', 'configuration'), (instance('doc'), instance('save-config')), 'data')"/>
+									origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('doc'), instance('save-config')), 'data')"/>
 								<!-- first RDF to triplestore -->
 								<xforms:send submission="getRdf"/>
 								<xforms:setvalue ref="instance('sparqlUpdate')"
@@ -402,7 +402,7 @@
 								<xforms:send submission="post-new"/>
 								<!-- post to Solr -->
 								<xforms:insert nodeset="instance('addIndex')"
-									origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/id-to-solr.xpl', 'data', instance('doc'), 'data')"/>
+									origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/serializations/xhtml/solr.xpl', 'data', instance('doc'), 'data')"/>
 								<xforms:send submission="post-solr-doc"/>
 								<!-- set value of id in control-instance to prevent re-naming -->
 								<xforms:setvalue ref="instance('control-instance')/id" value="instance('doc')/@about"/>
@@ -820,7 +820,7 @@
 								<xforms:setvalue ref="instance('delete-config')/delete/url"
 									value="concat('file://', instance('control-instance')/id_path, instance('control-instance')/id, '.txt')"/>
 								<xforms:insert nodeset="instance('dump')"
-									origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/delete-id.xpl', 'file', instance('delete-config'), 'data')"/>
+									origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/delete-id.xpl', 'file', instance('delete-config'), 'data')"/>
 								<!-- redirect to admin, only if all other processes completed successfully -->
 								<xforms:load resource="{$display_path}" if="instance('control-instance')/delete-success = true()"/>
 							</xforms:action>

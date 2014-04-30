@@ -18,8 +18,8 @@
 
 	<p:processor name="oxf:unsafe-xslt">
 		<p:input name="request" href="#request"/>
-		<p:input name="data" href="aggregate('content', #data, ../../config.xml)"/>
-		<p:input name="config" href="../../ui/xslt/project.xsl"/>
+		<p:input name="data" href="aggregate('content', #data, ../../../config.xml)"/>
+		<p:input name="config" href="../../../ui/xslt/project.xsl"/>
 		<p:output name="data" id="sparql-to-html"/>
 	</p:processor>
 	

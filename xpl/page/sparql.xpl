@@ -12,8 +12,8 @@
 	<p:param type="output" name="data"/>
 	
 	<p:processor name="oxf:unsafe-xslt">
-		<p:input name="data" href="../config.xml"/>		
-		<p:input name="config" href="../ui/xslt/sparql.xsl"/>
+		<p:input name="data" href="../../config.xml"/>		
+		<p:input name="config" href="../../ui/xslt/sparql.xsl"/>
 		<p:output name="data" ref="data"/>
 	</p:processor>
 	

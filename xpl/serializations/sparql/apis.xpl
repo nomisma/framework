@@ -21,8 +21,8 @@
 
 	<p:processor name="oxf:unsafe-xslt">
 		<p:input name="request" href="#request"/>
-		<p:input name="data" href="../config.xml"/>
-		<p:input name="config" href="../ui/xslt/apis/sparql.xsl"/>
+		<p:input name="data" href="../../../config.xml"/>
+		<p:input name="config" href="../../../ui/xslt/apis/sparql.xsl"/>
 		<p:output name="data" id="model"/>
 	</p:processor>
 	

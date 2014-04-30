@@ -5,11 +5,17 @@
 	Apache License 2.0: http://code.google.com/p/eaditor/
 	
 -->
-<p:config xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:oxf="http://www.orbeon.com/oxf/processors">
+<p:config xmlns:p="http://www.orbeon.com/oxf/pipeline"
+	xmlns:oxf="http://www.orbeon.com/oxf/processors">
 
 	<p:param type="input" name="data"/>
-	<p:param type="output" name="data"/>
-
+	<p:param type="output" name="data"/>	
+	
+	<p:processor name="oxf:pipeline">
+		<p:input name="config" href="../../../config.xml"/>		
+		<p:output name="data" id="config"/>
+	</p:processor>
+	
 	<p:processor name="oxf:request">
 		<p:input name="config">
 			<config>
@@ -18,11 +24,12 @@
 		</p:input>
 		<p:output name="data" id="request"/>
 	</p:processor>
-
+	
 	<p:processor name="oxf:unsafe-xslt">
 		<p:input name="request" href="#request"/>
-		<p:input name="data" href="../config.xml"/>
-		<p:input name="config" href="../ui/xslt/apis/aggregate-ids.xsl"/>		
+		<p:input name="data" href="#data"/>		
+		<p:input name="config" href="../../../xforms/xslt/solr.xsl"/>
 		<p:output name="data" ref="data"/>
-	</p:processor>	
+	</p:processor>
+
 </p:config>

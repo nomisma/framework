@@ -9,13 +9,8 @@
 	xmlns:oxf="http://www.orbeon.com/oxf/processors">
 
 	<p:param type="input" name="data"/>
-	<p:param type="output" name="data"/>	
-	
-	<p:processor name="oxf:pipeline">
-		<p:input name="config" href="config.xpl"/>		
-		<p:output name="data" id="config"/>
-	</p:processor>
-	
+	<p:param type="output" name="data"/>
+
 	<p:processor name="oxf:request">
 		<p:input name="config">
 			<config>
@@ -24,11 +19,22 @@
 		</p:input>
 		<p:output name="data" id="request"/>
 	</p:processor>
-	
+
 	<p:processor name="oxf:unsafe-xslt">
 		<p:input name="request" href="#request"/>
-		<p:input name="data" href="#data"/>		
-		<p:input name="config" href="../xforms/xslt/solr.xsl"/>
+		<p:input name="data" href="aggregate('content', #data, ../../../config.xml)"/>
+		<p:input name="config" href="../../../ui/xslt/serializations/solr/atom.xsl"/>
+		<p:output name="data" id="model"/>
+	</p:processor>
+	
+	<p:processor name="oxf:xml-serializer">
+		<p:input name="data" href="#model"/>
+		<p:input name="config">
+			<config>
+				<content-type>application/atom+xml</content-type>
+				<indent>true</indent>
+			</config>
+		</p:input>
 		<p:output name="data" ref="data"/>
 	</p:processor>
 

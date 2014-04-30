@@ -19,7 +19,7 @@
 	<!-- generator config for URL generator -->
 	<p:processor name="oxf:unsafe-xslt">
 		<p:input name="request" href="#request"/>
-		<p:input name="data" href="../config.xml"/>
+		<p:input name="data" href="../../../config.xml"/>
 		<p:input name="config">
 			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 				<!-- url params -->
@@ -99,8 +99,8 @@
 		<p:when test="mode='html'">
 			<p:processor name="oxf:unsafe-xslt">
 				<p:input name="request" href="#request"/>
-				<p:input name="data" href="aggregate('content', #model, ../config.xml)"/>
-				<p:input name="config" href="../ui/xslt/serializations/sparql/html.xsl"/>
+				<p:input name="data" href="aggregate('content', #model, ../../../config.xml)"/>
+				<p:input name="config" href="../../../ui/xslt/serializations/sparql/html.xsl"/>
 				<p:output name="data" id="sparql-to-html"/>
 			</p:processor>
 			
