@@ -40,7 +40,7 @@
 					
 					<config>
 						<url>
-							<xsl:value-of select="concat('file:///usr/local/projects/nomisma-ids/id/', $doc, '.txt')"/>
+							<xsl:value-of select="concat('file://', /config/id_path, '/', $doc, '.txt')"/>
 						</url>
 						<mode>xml</mode>
 						<content-type>application/xml</content-type>

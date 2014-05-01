@@ -31,14 +31,52 @@
 				</div>
 				<div class="col-md-4">
 					<div>
-						<h3>Data Download</h3>
-						<a href="nomisma.org.xml">RDF/XML</a>
+						<h3>Data Export</h3>
+						<div>
+							<h4>Nomisma Linked Data</h4>
+							<table class="table-dl">
+								<tr>
+									<td><img src="{$display_path}ui/images/nomisma.png"/></td>
+									<td>
+										<a href="nomisma.org.rdf">RDF/XML</a>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div>
+							<h4>Pelagios Annotations</h4>
+							<table class="table-dl">
+								<tr>
+									<td>
+										<a href="http://pelagios-project.blogspot.com/">
+											<img src="{$display_path}ui/images/pelagios_icon.png"/>
+										</a>
+									</td>
+									<td>
+										<a href="pelagios.void.rdf">VoID RDF/XML</a>
+										<br/>
+										<a href="pelagios.rdf">Data Dump RDF/XML</a>
+									</td>
+								</tr>
+							</table>
+						</div>
 					</div>
 					<div>
 						<h3>Atom Feed</h3>
-						<a href="feed">
-							<img src="{$display_path}ui/images/atom-large.png"/>
-						</a>
+						<table class="table-dl">
+							<tr>
+								<td>
+									<a href="feed">
+										<img src="{$display_path}ui/images/atom-large.png"/>
+									</a>
+								</td>
+								<td>
+									<a href="feed">Feed</a>
+									<br/>
+									<a href="http://numishare.blogspot.com/2013/07/updates-to-nomisma-atom-feed.html">Documentation</a>
+								</td>
+							</tr>
+						</table>
 					</div>
 					<div>
 						<h3>Contributors</h3>

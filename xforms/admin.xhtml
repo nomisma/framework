@@ -1,40 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:fr="http://orbeon.org/oxf/xml/form-runner"
-	xmlns:exist="http://exist.sourceforge.net/NS/exist" xmlns:nm="http://nomisma.org/id/" xmlns:ov="http://open.vocab.org/terms/" xmlns:owl="http://www.w3.org/2002/07/owl#"
-	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2008/05/skos#" xmlns:batlas="http://atlantides.org/batlas/" xmlns:cc="http://creativecommons.org/ns#"
-	xmlns:nuds="http://nomisma.org/id/nuds" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:gml="http://www.opengis.net/gml/" xmlns:kml="http://www.opengis.net/kml/2.2">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ev="http://www.w3.org/2001/xml-events"
+	xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:nm="http://nomisma.org/id/"
+	xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2008/05/skos#" xmlns:foaf="http://xmlns.com/foaf/0.1/">
 	<head>
 		<title>nomisma.org: Administrative Interface</title>
 		<link rel="stylesheet" href="/fr/style/bootstrap/css/bootstrap.css" type="text/css"/>
 		<link rel="stylesheet" href="/fr/style/form-runner-bootstrap-override.css" type="text/css"/>
-		<link rel="stylesheet" href="/config/theme/examples.css" type="text/css" media="all"/>
 		<link rel="shortcut icon" href="/ops/images/orbeon-icon-16.ico"/>
 		<link rel="icon" href="/ops/images/orbeon-icon-16.png" type="image/png"/>
-		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.8.0/build/cssgrids/grids-min.css"/>
-		<link rel="stylesheet" href="/apps/nomisma/css/style.css"/>
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+		<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"/>
+		<link rel="stylesheet" href="/apps/nomisma/xforms/css/style.css"/>
+
 		<xforms:model>
-			<xforms:instance id="doc">
-				<div xmlns="http://www.w3.org/1999/xhtml"
-					prefix="nm: http://nomisma.org/id/
-					dcterms: http://purl.org/dc/terms/
-					foaf: http://xmlns.com/foaf/0.1/
-					geo: http://www.w3.org/2003/01/geo/wgs84_pos#
-					owl:  http://www.w3.org/2002/07/owl#
-					rdfs: http://www.w3.org/2000/01/rdf-schema#
-					rdfa: http://www.w3.org/ns/rdfa#
-					rdf:  http://www.w3.org/1999/02/22-rdf-syntax-ns#
-					skos: http://www.w3.org/2004/02/skos/core#"
-					vocab="http://nomisma.org/id/" about="" typeof="">
-					<div property="skos:prefLabel" xml:lang="en"/>
-					<div property="skos:definition" xml:lang="en"/>
-				</div>
+			<xforms:instance id="rdf">
+				<rdf:RDF xmlns=""/>
 			</xforms:instance>
 
-			<xforms:instance id="rdf">
-				<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:nm="http://nomisma.org/id/"
-					xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfa="http://www.w3.org/ns/rdfa#"
-					xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"/>
+			<xforms:instance id="config">
+				<xi:include href="../config.xml"/>
 			</xforms:instance>
 
 			<xforms:instance id="control-instance">
@@ -43,28 +27,17 @@
 					<original_id/>
 					<save-trigger/>
 					<status/>
-					<dbpedia/>
 					<id_path>/usr/local/projects/nomisma-ids/id/</id_path>
 					<endpoint>http://localhost:3030/nomisma/</endpoint>
 					<solr_url>http://localhost:8080/solr/nomisma/</solr_url>
-					<lat>40</lat>
-					<long>1</long>
 					<dump/>
 				</controls>
 			</xforms:instance>
 
-			<xforms:instance id="load-config">
+			<xforms:instance id="save-rdfxml-config">
 				<config xmlns="">
 					<url/>
 					<content-type>application/xml</content-type>
-					<mode>xml</mode>
-				</config>
-			</xforms:instance>
-
-			<xforms:instance id="save-config">
-				<config xmlns="">
-					<url/>
-					<content-type>text/plain</content-type>
 					<make-directories>false</make-directories>
 					<append>false</append>
 				</config>
@@ -72,39 +45,6 @@
 
 			<xforms:instance id="dump">
 				<dump xmlns=""/>
-			</xforms:instance>
-
-			<!-- sparql queries -->
-			<xforms:instance id="sparqlQueryTemplate">
-				<query><![CDATA[
-					PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-					PREFIX dcterms:  <http://purl.org/dc/terms/>
-					PREFIX nm:       <http://nomisma.org/id/>
-					PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-					SELECT ?uri ?label WHERE {
-					?uri  rdf:type <http://nomisma.org/id/TERM>.
-					?uri skos:prefLabel ?label .
-					FILTER (lang(?label) = "en")}
-					ORDER BY ASC(?label)
-					]]>
-				</query>
-			</xforms:instance>
-
-			<xforms:instance id="sparqlQuery">
-				<query/>
-			</xforms:instance>
-
-			<!-- preloaded instances -->
-			<xforms:instance id="sparqlResponse">
-				<sparql xmlns="http://www.w3.org/2005/sparql-results#"/>
-			</xforms:instance>
-
-			<xforms:instance id="nt-response">
-				<sparql xmlns="http://www.w3.org/2005/sparql-results#"/>
-			</xforms:instance>
-
-			<xforms:instance id="fon-response">
-				<sparql xmlns="http://www.w3.org/2005/sparql-results#"/>
 			</xforms:instance>
 
 			<!-- sparql update -->
@@ -130,77 +70,84 @@
 				</delete>
 			</xforms:instance>
 
-
 			<!-- ************* SPARQL SUBMISSIONS **********************-->
-			<xforms:submission id="getRdf" action="http://localhost:8080/cocoon/nomisma/id/{instance('control-instance')/id}.rdf" ref="instance('rdf')"
-				replace="instance" method="get">
-				<xforms:message ev:event="xforms-submit-error" level="modal">Failed to get RDF.</xforms:message>
-			</xforms:submission>
-
-			<!-- ************* SPARQL SUBMISSIONS **********************-->
-			<!-- SPARQL queries -->
-			<xforms:submission id="submit-sparqlQuery"
-				action="{instance('control-instance')/endpoint}query?query={encode-for-uri(instance('sparqlQuery'))}&amp;output=xml"
-				ref="instance('sparqlResponse')" replace="instance" method="get">
-				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL query failed.</xforms:message>
-			</xforms:submission>
-
-			<xforms:submission id="delete-graph" action="{instance('control-instance')/endpoint}update" ref="instance('sparqlUpdate')"
-				serialization="text/plain" replace="none" method="post" mediatype="application/sparql-update">
+			<xforms:submission id="delete-graph" action="{instance('control-instance')/endpoint}update" ref="instance('sparqlUpdate')" serialization="text/plain" replace="none" method="post"
+				mediatype="application/sparql-update">
 				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL update failed.</xforms:message>
-			</xforms:submission>
-
-			<xforms:submission id="post-new" action="{instance('control-instance')/endpoint}data?default" ref="instance('rdf')" replace="none" method="post"
-				mediatype="application/rdf+xml">
-				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Successfully posted to endpoint.</xforms:setvalue>
-				<xforms:message ev:event="xforms-submit-error" level="modal">Post to endpoint failed.</xforms:message>
 			</xforms:submission>
 
 			<!-- ************************* SOLR SUBMISSIONS ************************** -->
 			<!-- post instance to Solr -->
-			<xforms:submission id="post-solr-doc" action="{instance('control-instance')/solr_url}update" ref="instance('addIndex')" instance="addIndex"
-				replace="instance" method="post">
-				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is
-					incorrect.</xforms:message>
+			<xforms:submission id="post-solr-doc" action="{instance('control-instance')/solr_url}update" ref="instance('addIndex')" instance="addIndex" replace="instance" method="post">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
 				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"/>
 			</xforms:submission>
 
-			<xforms:submission id="delete-id-from-solr" action="{instance('control-instance')/solr_url}update" ref="instance('deleteId')" instance="deleteId"
-				replace="instance" method="post">
-				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is
-					incorrect.</xforms:message>
+			<xforms:submission id="delete-id-from-solr" action="{instance('control-instance')/solr_url}update" ref="instance('deleteId')" instance="deleteId" replace="instance" method="post">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
 				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"/>
 			</xforms:submission>
 
 			<!-- send commit -->
-			<xforms:submission id="submit-commit" action="{instance('control-instance')/solr_url}update" ref="instance('sendCommit')" instance="sendCommit"
-				replace="none" method="post">
+			<xforms:submission id="submit-commit" action="{instance('control-instance')/solr_url}update" ref="instance('sendCommit')" instance="sendCommit" replace="none" method="post">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Failed to commit to Solr index.</xforms:message>
-				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Document successfully committed to
-					Solr.</xforms:setvalue>
+				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Document successfully committed to Solr.</xforms:setvalue>
 			</xforms:submission>
 		</xforms:model>
 	</head>
 
 	<body>
-		<xxforms:variable name="display_path">../</xxforms:variable>
-		<div class="yui3-g">
-			<div class="yui3-u-1">
-				<div class="content">
+		<xforms:var name="display_path">../</xforms:var>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-9">
 					<xforms:group ref=".[string-length(instance('control-instance')/status) &gt; 0]">
-						<div class="ui-state-highlight ui-corner-all">
+						<div class="bg-info">
 							<p>
-								<span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"/>
+								<span class="glyphicon glyphicon-info-sign"/>
 								<strong>Status:</strong>
 								<xforms:output ref="instance('control-instance')/status"/>
 							</p>
 						</div>
 					</xforms:group>
 					<h1>nomisma Admin</h1>
-					<p>This is a placeholder for the nomisma.org administrative page.</p>
-<!--					<fr:xforms-inspector/>-->
+					<fr:xforms-inspector/>
+				</div>
+				<div class="col-md-3">
+					<h2>Actions</h2>
+					<div>
+						<h3>Generate Data Dumps</h3>
+						<!--<ul>
+							<li>
+								<xforms:trigger appearance="minimal">
+									<xforms:label>RDF/XML</xforms:label>
+									<xforms:action ev:event="DOMActivate">
+										<xforms:dispatch target="generate-rdfxml-dialog" name="fr-show"/>
+									</xforms:action>
+								</xforms:trigger>
+							</li>
+						</ul>-->
+					</div>
 				</div>
 			</div>
 		</div>
+
+		<!-- *********** DIALOGS *********** -->
+		<fr:alert-dialog id="generate-rdfxml-dialog">
+			<fr:label>Generate RDF/XML</fr:label>
+			<fr:message>This process may take several minutes. Continue?</fr:message>
+			<fr:positive-choice>
+				<fr:label>Yes</fr:label>
+				<xforms:action ev:event="DOMActivate">
+					<xforms:setvalue ref="instance('save-rdfxml-config')/url" value="instance('config')/dump_path"/>
+					<xforms:insert nodeset="instance('rdf')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/models/generate-rdfxml.xpl', 'config-xml', instance('config'), 'data')"/>					
+					<!--<xforms:insert nodeset="instance('dump')"
+						origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-rdfxml.xpl', ('rdf', 'configuration'), (instance('rdf'), instance('save-rdfxml-config')), 'data')"/>-->
+				</xforms:action>
+			</fr:positive-choice>
+			<fr:negative-choice>
+				<fr:label>No</fr:label>
+			</fr:negative-choice>
+		</fr:alert-dialog>
 	</body>
 </html>

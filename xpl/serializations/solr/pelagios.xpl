@@ -5,7 +5,8 @@
 	Apache License 2.0: http://code.google.com/p/eaditor/
 	
 -->
-<p:config xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:oxf="http://www.orbeon.com/oxf/processors">
+<p:config xmlns:p="http://www.orbeon.com/oxf/pipeline"
+	xmlns:oxf="http://www.orbeon.com/oxf/processors">
 
 	<p:param type="input" name="data"/>
 	<p:param type="output" name="data"/>
@@ -22,21 +23,19 @@
 	<p:processor name="oxf:unsafe-xslt">
 		<p:input name="request" href="#request"/>
 		<p:input name="data" href="aggregate('content', #data, ../../../config.xml)"/>
-		<p:input name="config" href="../../../ui/xslt/serializations/xhtml/html.xsl"/>
+		<p:input name="config" href="../../../ui/xslt/serializations/solr/pelagios.xsl"/>
 		<p:output name="data" id="model"/>
 	</p:processor>
-
-	<p:processor name="oxf:html-converter">
+	
+	<p:processor name="oxf:xml-serializer">
 		<p:input name="data" href="#model"/>
 		<p:input name="config">
 			<config>
-				<version>5.0</version>
+				<content-type>application/rdf+xml</content-type>
 				<indent>true</indent>
-				<content-type>text/html</content-type>
-				<encoding>utf-8</encoding>
-				<indent-amount>4</indent-amount>
 			</config>
 		</p:input>
 		<p:output name="data" ref="data"/>
 	</p:processor>
+
 </p:config>

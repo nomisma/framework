@@ -10,7 +10,7 @@
 		<link rel="shortcut icon" href="/ops/images/orbeon-icon-16.ico"/>
 		<link rel="icon" href="/ops/images/orbeon-icon-16.png" type="image/png"/>
 		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.8.0/build/cssgrids/grids-min.css"/>
-		<link rel="stylesheet" href="/apps/nomisma/css/style.css"/>
+		<link rel="stylesheet" href="/apps/nomisma/xforms/css/style.css"/>
 		<xforms:model>
 			<xforms:instance id="doc">
 				<div xmlns="http://www.w3.org/1999/xhtml"
@@ -29,7 +29,7 @@
 				</div>
 			</xforms:instance>
 
-			<xforms:instance id="rdf">
+			<xforms:instance id="rdf" xxforms:exclude-result-prefixes="#all">
 				<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:nm="http://nomisma.org/id/"
 					xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfa="http://www.w3.org/ns/rdfa#"
 					xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"/>
@@ -38,8 +38,12 @@
 			<xforms:instance id="dbpedia">
 				<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
 			</xforms:instance>
+			
+			<xforms:instance id="config" xxforms:exclude-result-prefixes="#all">
+				<xi:include href="../config.xml"/>
+			</xforms:instance>
 
-			<xforms:instance id="control-instance">
+			<xforms:instance id="control-instance" xxforms:exclude-result-prefixes="#all">
 				<controls xmlns="">
 					<id/>
 					<original_id/>
@@ -274,7 +278,7 @@
 				replace="instance" method="get">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Failed to get Dbpedia RDF.</xforms:message>
 				<xforms:action ev:event="xforms-submit-done" xxforms:iterate="instance('dbpedia')//rdfs:label">
-					<xxforms:variable name="lang" select="@xml:lang"/>
+					<xforms:var name="lang" select="@xml:lang"/>
 					<xforms:action if="not(instance('doc')/xhtml:div[@property='skos:prefLabel'][@xml:lang=$lang])">
 						<xforms:insert context="instance('doc')" nodeset="./xhtml:div[@property='skos:prefLabel'][last()]"
 							origin="instance('prefLabel-template')"/>
@@ -353,8 +357,8 @@
 	</head>
 
 	<body>
-		<xxforms:variable name="display_path">../</xxforms:variable>
-		<xxforms:variable name="triggerGroup" as="node()?"> </xxforms:variable>
+		<xforms:var name="display_path">../</xforms:var>
+		<xforms:var name="triggerGroup" as="node()?"> </xforms:var>
 		<div class="yui3-g">
 			<div class="yui3-u-1">
 				<div class="content">
@@ -385,7 +389,7 @@
 					</xforms:group>
 					<div class="submission">
 						<xforms:trigger bind="save-trigger">
-							<xforms:label><img src="{$display_path}images/save.gif" alt="Save"/>Save</xforms:label>
+							<xforms:label><img src="/apps/nomisma/xforms/images/save.gif" alt="Save"/>Save</xforms:label>
 							<xforms:action ev:event="DOMActivate">
 								<!-- set id -->
 								<xforms:setvalue ref="instance('control-instance')/id" value="instance('doc')/@about"/>
@@ -409,7 +413,7 @@
 							</xforms:action>
 						</xforms:trigger>
 						<xforms:trigger bind="delete-trigger">
-							<xforms:label class="file_control"><img src="{$display_path}images/remove.gif" alt="Delete"/>Delete</xforms:label>
+							<xforms:label class="file_control"><img src="/apps/nomisma/xforms/images/remove.gif" alt="Delete"/>Delete</xforms:label>
 							<xforms:dispatch ev:event="DOMActivate" target="delete-dialog" name="fr-show"/>
 						</xforms:trigger>
 						<xforms:group ref="instance('doc')//xhtml:div[contains(@resource, 'wikipedia')]">
@@ -461,25 +465,25 @@
 							<div class="trigger_container">
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
-										<img src="{$display_path}images/add.gif"/>Preferred Label</xforms:label>
+										<img src="/apps/nomisma/xforms/images/add.gif"/>Preferred Label</xforms:label>
 									<xforms:insert ev:event="DOMActivate" origin="instance('prefLabel-template')" context="." nodeset="./child::node()[last()]"
 									/>
 								</xforms:trigger>
 								<span> | </span>
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
-										<img src="{$display_path}images/add.gif"/>Alternate Label</xforms:label>
+										<img src="/apps/nomisma/xforms/images/add.gif"/>Alternate Label</xforms:label>
 									<xforms:insert ev:event="DOMActivate" origin="instance('altLabel-template')" context="." nodeset="./child::node()[last()]"/>
 								</xforms:trigger>
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
-										<img src="{$display_path}images/add.gif"/>Comment</xforms:label>
+										<img src="/apps/nomisma/xforms/images/add.gif"/>Comment</xforms:label>
 									<xforms:insert ev:event="DOMActivate" origin="instance('comment-template')" context="." nodeset="./child::node()[last()]"/>
 								</xforms:trigger>
 								<xforms:group ref=".[count(xhtml:div[@property='geo:lat']) = 0 and @typeof='mint']">
 									<xforms:trigger appearance="minimal">
 										<xforms:label>
-											<img src="{$display_path}images/add.gif"/>Coordinates</xforms:label>
+											<img src="/apps/nomisma/xforms/images/add.gif"/>Coordinates</xforms:label>
 										<xforms:action ev:event="DOMActivate">
 											<xforms:insert context="." nodeset="./child::node()[last()]" origin="instance('lat-template')"/>
 											<xforms:insert context="." nodeset="./child::node()[last()]" origin="instance('long-template')"/>
@@ -488,18 +492,18 @@
 								</xforms:group>
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
-										<img src="{$display_path}images/add.gif"/>Definition</xforms:label>
+										<img src="/apps/nomisma/xforms/images/add.gif"/>Definition</xforms:label>
 									<xforms:insert ev:event="DOMActivate" origin="instance('definition-template')" context="."/>
 								</xforms:trigger>
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
-										<img src="{$display_path}images/add.gif"/>Field of Numismatics</xforms:label>
+										<img src="/apps/nomisma/xforms/images/add.gif"/>Field of Numismatics</xforms:label>
 									<xforms:insert ev:event="DOMActivate" origin="instance('isPartOf-template')" context="." nodeset="./child::node()[last()]"/>
 								</xforms:trigger>
 								<xforms:group ref=".[count(xhtml:div[@property='nm:numismatic_start_date']) = 0]">
 									<xforms:trigger appearance="minimal">
 										<xforms:label>
-											<img src="{$display_path}images/add.gif"/>Numismatic Start Date</xforms:label>
+											<img src="/apps/nomisma/xforms/images/add.gif"/>Numismatic Start Date</xforms:label>
 										<xforms:insert ev:event="DOMActivate" origin="instance('numismatic_start_date-template')" context="."
 											nodeset="./child::node()[last()]"/>
 									</xforms:trigger>
@@ -507,14 +511,14 @@
 								<xforms:group ref=".[count(xhtml:div[@property='nm:numismatic_end_date']) = 0]">
 									<xforms:trigger appearance="minimal">
 										<xforms:label>
-											<img src="{$display_path}images/add.gif"/>Numismatic End Date</xforms:label>
+											<img src="/apps/nomisma/xforms/images/add.gif"/>Numismatic End Date</xforms:label>
 										<xforms:insert ev:event="DOMActivate" origin="instance('numismatic_end_date-template')" context="."
 											nodeset="./child::node()[last()]"/>
 									</xforms:trigger>
 								</xforms:group>
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
-										<img src="{$display_path}images/add.gif"/>Related Link</xforms:label>
+										<img src="/apps/nomisma/xforms/images/add.gif"/>Related Link</xforms:label>
 									<xforms:insert ev:event="DOMActivate" origin="instance('related-template')" context="." nodeset="./child::node()[last()]"/>
 								</xforms:trigger>
 							</div>
@@ -541,7 +545,7 @@
 											<xforms:trigger appearance="minimal">
 												<xforms:delete ev:event="DOMActivate" context="."/>
 												<xforms:label>
-													<img src="{$display_path}images/remove.gif"/>
+													<img src="/apps/nomisma/xforms/images/remove.gif"/>
 												</xforms:label>
 											</xforms:trigger>
 										</xforms:group>
@@ -567,7 +571,7 @@
 										<xforms:trigger appearance="minimal">
 											<xforms:delete ev:event="DOMActivate" context="."/>
 											<xforms:label>
-												<img src="{$display_path}images/remove.gif"/>
+												<img src="/apps/nomisma/xforms/images/remove.gif"/>
 											</xforms:label>
 										</xforms:trigger>
 									</div>
@@ -593,7 +597,7 @@
 											<xforms:trigger appearance="minimal">
 												<xforms:delete ev:event="DOMActivate" context="."/>
 												<xforms:label>
-													<img src="{$display_path}images/remove.gif"/>
+													<img src="/apps/nomisma/xforms/images/remove.gif"/>
 												</xforms:label>
 											</xforms:trigger>
 										</xforms:group>
@@ -622,7 +626,7 @@
 										<xforms:trigger appearance="minimal">
 											<xforms:delete ev:event="DOMActivate" context="."/>
 											<xforms:label>
-												<img src="{$display_path}images/remove.gif"/>
+												<img src="/apps/nomisma/xforms/images/remove.gif"/>
 											</xforms:label>
 										</xforms:trigger>
 									</div>
@@ -636,7 +640,7 @@
 										<xforms:trigger appearance="minimal">
 											<xforms:delete ev:event="DOMActivate" context="."/>
 											<xforms:label>
-												<img src="{$display_path}images/remove.gif"/>
+												<img src="/apps/nomisma/xforms/images/remove.gif"/>
 											</xforms:label>
 										</xforms:trigger>
 									</div>
@@ -658,7 +662,7 @@
 										<xforms:trigger appearance="minimal">
 											<xforms:delete ev:event="DOMActivate" context="."/>
 											<xforms:label>
-												<img src="{$display_path}images/remove.gif"/>
+												<img src="/apps/nomisma/xforms/images/remove.gif"/>
 											</xforms:label>
 										</xforms:trigger>
 									</div>
@@ -669,7 +673,7 @@
 								<xforms:trigger appearance="minimal">
 									<xforms:delete ev:event="DOMActivate" context="."/>
 									<xforms:label>
-										<img src="{$display_path}images/remove.gif"/>
+										<img src="/apps/nomisma/xforms/images/remove.gif"/>
 									</xforms:label>
 								</xforms:trigger>
 								<div>
@@ -694,7 +698,7 @@
 								<xforms:trigger appearance="minimal">
 									<xforms:delete ev:event="DOMActivate" context="."/>
 									<xforms:label>
-										<img src="{$display_path}images/remove.gif"/>
+										<img src="/apps/nomisma/xforms/images/remove.gif"/>
 									</xforms:label>
 								</xforms:trigger>
 								<div>
@@ -723,7 +727,7 @@
 											<xforms:delete nodeset="xhtml:div[@property='geo:long']"/>
 										</xforms:action>
 										<xforms:label>
-											<img src="{$display_path}images/remove.gif"/>
+											<img src="/apps/nomisma/xforms/images/remove.gif"/>
 										</xforms:label>
 									</xforms:trigger>
 									<div>
@@ -745,24 +749,24 @@
 						<div class="trigger_container">
 							<xforms:trigger appearance="minimal">
 								<xforms:label>
-									<img src="{$display_path}images/add.gif"/>Preferred Label</xforms:label>
+									<img src="/apps/nomisma/xforms/images/add.gif"/>Preferred Label</xforms:label>
 								<xforms:insert ev:event="DOMActivate" origin="instance('prefLabel-template')" context="." nodeset="./child::node()[last()]"/>
 							</xforms:trigger>
 							<span> | </span>
 							<xforms:trigger appearance="minimal">
 								<xforms:label>
-									<img src="{$display_path}images/add.gif"/>Alternate Label</xforms:label>
+									<img src="/apps/nomisma/xforms/images/add.gif"/>Alternate Label</xforms:label>
 								<xforms:insert ev:event="DOMActivate" origin="instance('altLabel-template')" context="." nodeset="./child::node()[last()]"/>
 							</xforms:trigger>
 							<xforms:trigger appearance="minimal">
 								<xforms:label>
-									<img src="{$display_path}images/add.gif"/>Comment</xforms:label>
+									<img src="/apps/nomisma/xforms/images/add.gif"/>Comment</xforms:label>
 								<xforms:insert ev:event="DOMActivate" origin="instance('comment-template')" context="." nodeset="./child::node()[last()]"/>
 							</xforms:trigger>
 							<xforms:group ref=".[count(xhtml:div[@property='geo:lat']) = 0 and @typeof='mint']">
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
-										<img src="{$display_path}images/add.gif"/>Coordinates</xforms:label>
+										<img src="/apps/nomisma/xforms/images/add.gif"/>Coordinates</xforms:label>
 									<xforms:action ev:event="DOMActivate">
 										<xforms:insert context="." nodeset="./child::node()[last()]" origin="instance('lat-template')"/>
 										<xforms:insert context="." nodeset="./child::node()[last()]" origin="instance('long-template')"/>
@@ -771,18 +775,18 @@
 							</xforms:group>
 							<xforms:trigger appearance="minimal">
 								<xforms:label>
-									<img src="{$display_path}images/add.gif"/>Definition</xforms:label>
+									<img src="/apps/nomisma/xforms/images/add.gif"/>Definition</xforms:label>
 								<xforms:insert ev:event="DOMActivate" origin="instance('definition-template')" context="."/>
 							</xforms:trigger>
 							<xforms:trigger appearance="minimal">
 								<xforms:label>
-									<img src="{$display_path}images/add.gif"/>Field of Numismatics</xforms:label>
+									<img src="/apps/nomisma/xforms/images/add.gif"/>Field of Numismatics</xforms:label>
 								<xforms:insert ev:event="DOMActivate" origin="instance('isPartOf-template')" context="." nodeset="./child::node()[last()]"/>
 							</xforms:trigger>
 							<xforms:group ref=".[count(xhtml:div[@property='nm:numismatic_start_date']) = 0]">
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
-										<img src="{$display_path}images/add.gif"/>Numismatic Start Date</xforms:label>
+										<img src="/apps/nomisma/xforms/images/add.gif"/>Numismatic Start Date</xforms:label>
 									<xforms:insert ev:event="DOMActivate" origin="instance('numismatic_start_date-template')" context="."
 										nodeset="./child::node()[last()]"/>
 								</xforms:trigger>
@@ -790,14 +794,14 @@
 							<xforms:group ref=".[count(xhtml:div[@property='nm:numismatic_end_date']) = 0]">
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
-										<img src="{$display_path}images/add.gif"/>Numismatic End Date</xforms:label>
+										<img src="/apps/nomisma/xforms/images/add.gif"/>Numismatic End Date</xforms:label>
 									<xforms:insert ev:event="DOMActivate" origin="instance('numismatic_end_date-template')" context="."
 										nodeset="./child::node()[last()]"/>
 								</xforms:trigger>
 							</xforms:group>
 							<xforms:trigger appearance="minimal">
 								<xforms:label>
-									<img src="{$display_path}images/add.gif"/>Related Link</xforms:label>
+									<img src="/apps/nomisma/xforms/images/add.gif"/>Related Link</xforms:label>
 								<xforms:insert ev:event="DOMActivate" origin="instance('related-template')" context="." nodeset="./child::node()[last()]"/>
 							</xforms:trigger>
 						</div>

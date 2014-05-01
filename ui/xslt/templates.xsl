@@ -13,7 +13,7 @@
 						<span class="icon-bar"/>
 					</button>
 					<a class="navbar-brand logo-nav" href="{$display_path}./">
-						<img style="display:inline" src="{$display_path}ui/images/nomisma.png" alt="nomisma.org"/>
+						<img style="display:inline" src="{$display_path}ui/images/nomisma-nav.png" alt="nomisma.org"/>
 					</a>
 				</div>
 				<div class="navbar-collapse collapse">
