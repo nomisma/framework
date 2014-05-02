@@ -2,7 +2,7 @@
 OUTPUT="$(date +%Y-%m-%dT%T) - Automatic Update"
 cd /usr/local/projects/nomisma-ids
 #add new files
-git add *.txt
+git add *.xml
 #commit
 git commit -am "$OUTPUT"
 git push

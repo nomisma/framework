@@ -4,7 +4,7 @@
 	xmlns:datetime="http://exslt.org/dates-and-times" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:nm="http://nomisma.org/id/"
 	exclude-result-prefixes="xhtml xsl xs nm rdf rdfa skos datetime" version="2.0">
 	<!--***************************************** Process Nomisma Coin Type XHTML+RDFa into NUDS **************************************** -->
-	<xsl:template match="xhtml:div[@typeof='type_series_item']">
+	<xsl:template match="xhtml:div[@type='type_series_item']">
 		<nuds xmlns="http://nomisma.org/nuds" xmlns:xlink="http://www.w3.org/1999/xlink">
 			<control>
 				<recordId>

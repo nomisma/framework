@@ -406,7 +406,7 @@
 								<xforms:send submission="post-new"/>
 								<!-- post to Solr -->
 								<xforms:insert nodeset="instance('addIndex')"
-									origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/serializations/xhtml/solr.xpl', 'data', instance('doc'), 'data')"/>
+									origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/serializations/rdf/solr.xpl', 'data', instance('doc'), 'data')"/>
 								<xforms:send submission="post-solr-doc"/>
 								<!-- set value of id in control-instance to prevent re-naming -->
 								<xforms:setvalue ref="instance('control-instance')/id" value="instance('doc')/@about"/>

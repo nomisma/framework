@@ -36,9 +36,12 @@
 							<h4>Nomisma Linked Data</h4>
 							<table class="table-dl">
 								<tr>
-									<td><img src="{$display_path}ui/images/nomisma.png"/></td>
 									<td>
-										<a href="nomisma.org.rdf">RDF/XML</a>
+										<img src="{$display_path}ui/images/nomisma.png"/>
+									</td>
+									<td>
+										<strong>RDF: </strong>
+										<a href="nomisma.org.nt">N-Triples</a>, <a href="nomisma.org.ttl">TTL</a>, <a href="nomisma.org.rdf">XML</a>
 									</td>
 								</tr>
 							</table>
@@ -53,9 +56,11 @@
 										</a>
 									</td>
 									<td>
-										<a href="pelagios.void.rdf">VoID RDF/XML</a>
+										<strong>VoID (RDF): </strong>
+										<a href="pelagios.void.rdf">XML</a>
 										<br/>
-										<a href="pelagios.rdf">Data Dump RDF/XML</a>
+										<strong>Dump (RDF): </strong>
+										<a href="pelagios.rdf">XML</a>
 									</td>
 								</tr>
 							</table>

@@ -119,7 +119,7 @@
 						<a href="apis/getLabel?uri=http://nomisma.org/id/ar&amp;lang=fr&amp;format=json">JSON</a>
 					</td>
 				</tr>
-				<tr>
+				<!--<tr>
 					<td>
 						<a href="#getNuds">getNuds</a>
 					</td>
@@ -127,7 +127,7 @@
 						<a href="apis/getNuds?identifiers=rrc-100.2|rrc-299.1b">XML</a>
 					</td>
 					<td/>
-				</tr>
+				</tr>-->
 				<tr>
 					<td>
 						<a href="#getRdf">getRdf</a>
@@ -214,7 +214,7 @@
 				<b>Examples</b>: <a href="apis/getLabel?uri=http://nomisma.org/id/ar&amp;lang=fr">apis/getLabel?uri=http://nomisma.org/id/ar&amp;lang=fr</a>
 			</p>
 		</div>
-		<div class="highlight">
+		<!--<div class="highlight">
 			<a name="getNuds"/>
 			<h2>Get NUDS</h2>
 			<p>Get an aggregated NUDS/XML serialization for coin types.<br/>
@@ -225,7 +225,7 @@
 				<b>Result</b> : returns NUDS/XML records aggregated in a nudsGroup root element. Note, NUDS is returned only for type_series_item ids.<br/>
 				<b>Examples</b>: <a href="apis/getNuds?identifiers=rrc-100.2|rrc-299.1b">apis/getNuds?identifiers=rrc-100.2|rrc-299.1b</a>
 			</p>
-		</div>
+		</div>-->
 		<div class="highlight">
 			<a name="getRdf"/>
 			<h2>Get RDF</h2>

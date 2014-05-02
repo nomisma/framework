@@ -13,11 +13,11 @@
 		<link rel="stylesheet" href="/apps/nomisma/xforms/css/style.css"/>
 
 		<xforms:model>
-			<xforms:instance id="rdf">
-				<rdf:RDF xmlns=""/>
+			<xforms:instance id="rdf" xxforms:exclude-result-prefixes="#all">
+				<rdf:RDF/>
 			</xforms:instance>
 
-			<xforms:instance id="config">
+			<xforms:instance id="config" xxforms:exclude-result-prefixes="#all">
 				<xi:include href="../config.xml"/>
 			</xforms:instance>
 
@@ -69,6 +69,14 @@
 					<id/>
 				</delete>
 			</xforms:instance>
+			<xforms:instance id="deleteAll">
+				<delete xmlns="">
+					<query>id:*</query>
+				</delete>
+			</xforms:instance>
+			<xforms:instance id="optimizeIndex">
+				<optimize/>
+			</xforms:instance>
 
 			<!-- ************* SPARQL SUBMISSIONS **********************-->
 			<xforms:submission id="delete-graph" action="{instance('control-instance')/endpoint}update" ref="instance('sparqlUpdate')" serialization="text/plain" replace="none" method="post"
@@ -78,7 +86,12 @@
 
 			<!-- ************************* SOLR SUBMISSIONS ************************** -->
 			<!-- post instance to Solr -->
-			<xforms:submission id="post-solr-doc" action="{instance('control-instance')/solr_url}update" ref="instance('addIndex')" instance="addIndex" replace="instance" method="post">
+			<xforms:submission id="delete-all" action="{instance('control-instance')/solr_url}update" ref="instance('deleteAll')" instance="deleteAll" replace="none" method="post">
+				<xforms:send ev:event="xforms-submit-done" submission="submit-commit"/>
+				<xforms:message ev:event="xforms-submit-error" level="modal">Failed to delete all Solr docs.</xforms:message>
+			</xforms:submission>
+
+			<xforms:submission id="post-to-solr" action="{instance('control-instance')/solr_url}update" ref="instance('addIndex')" instance="addIndex" replace="instance" method="post">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
 				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"/>
 			</xforms:submission>
@@ -91,7 +104,11 @@
 			<!-- send commit -->
 			<xforms:submission id="submit-commit" action="{instance('control-instance')/solr_url}update" ref="instance('sendCommit')" instance="sendCommit" replace="none" method="post">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Failed to commit to Solr index.</xforms:message>
-				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Document successfully committed to Solr.</xforms:setvalue>
+			</xforms:submission>
+			
+			<xforms:submission id="optimize" action="{instance('control-instance')/solr_url}update" ref="instance('optimizeIndex')" instance="optimizeIndex" replace="none" method="post">
+				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Solr index flushed and reloaded.</xforms:setvalue>
+				<xforms:message ev:event="xforms-submit-error" level="modal">Solr optimize failed.</xforms:message>
 			</xforms:submission>
 		</xforms:model>
 	</head>
@@ -100,7 +117,8 @@
 		<xforms:var name="display_path">../</xforms:var>
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-9">
+				<div class="col-md-9">					
+					<h1>nomisma Admin</h1>
 					<xforms:group ref=".[string-length(instance('control-instance')/status) &gt; 0]">
 						<div class="bg-info">
 							<p>
@@ -110,14 +128,14 @@
 							</p>
 						</div>
 					</xforms:group>
-					<h1>nomisma Admin</h1>
-					<fr:xforms-inspector/>
+					<p>Placeholder for administrative functions.</p>
+					<!--<fr:xforms-inspector/>-->
 				</div>
 				<div class="col-md-3">
 					<h2>Actions</h2>
 					<div>
 						<h3>Generate Data Dumps</h3>
-						<!--<ul>
+						<ul>
 							<li>
 								<xforms:trigger appearance="minimal">
 									<xforms:label>RDF/XML</xforms:label>
@@ -126,7 +144,20 @@
 									</xforms:action>
 								</xforms:trigger>
 							</li>
-						</ul>-->
+						</ul>
+					</div>
+					<div>
+						<h3>Solr</h3>
+						<ul>
+							<li>
+								<xforms:trigger appearance="minimal">
+									<xforms:label>Flush and Reload Index</xforms:label>
+									<xforms:action ev:event="DOMActivate">
+										<xforms:dispatch target="solr-dialog" name="fr-show"/>
+									</xforms:action>
+								</xforms:trigger>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -139,10 +170,29 @@
 			<fr:positive-choice>
 				<fr:label>Yes</fr:label>
 				<xforms:action ev:event="DOMActivate">
-					<xforms:setvalue ref="instance('save-rdfxml-config')/url" value="instance('config')/dump_path"/>
-					<xforms:insert nodeset="instance('rdf')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/models/generate-rdfxml.xpl', 'config-xml', instance('config'), 'data')"/>					
-					<!--<xforms:insert nodeset="instance('dump')"
-						origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-rdfxml.xpl', ('rdf', 'configuration'), (instance('rdf'), instance('save-rdfxml-config')), 'data')"/>-->
+					<xforms:setvalue ref="instance('save-rdfxml-config')/url" value="concat('file://', instance('config')/dump_path, '/nomisma.org.rdf')"/>
+					<xforms:insert nodeset="instance('rdf')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/models/aggregate-all.xpl', 'config-xml', instance('config'), 'data')"/>
+					<xforms:insert nodeset="instance('dump')"
+						origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-rdfxml.xpl', ('rdf', 'configuration'), (instance('rdf'), instance('save-rdfxml-config')), 'data')"/>
+				</xforms:action>
+			</fr:positive-choice>
+			<fr:negative-choice>
+				<fr:label>No</fr:label>
+			</fr:negative-choice>
+		</fr:alert-dialog>
+		<fr:alert-dialog id="solr-dialog">
+			<fr:label>Flush and Reload Solr Index</fr:label>
+			<fr:message>This will flush the Solr index and reload all nomisma ids. It may take several minutes. Continue?</fr:message>
+			<fr:positive-choice>
+				<fr:label>Yes</fr:label>
+				<xforms:action ev:event="DOMActivate">
+					<!-- delete all objects -->
+					<xforms:send submission="delete-all"/>
+					<!-- gather RDF dump -->
+					<xforms:insert nodeset="instance('rdf')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/models/aggregate-all.xpl', 'config-xml', instance('config'), 'data')"/>
+					<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/serializations/rdf/solr.xpl', 'data', instance('rdf'), 'data')"/>
+					<xforms:send submission="post-to-solr"/>
+					<xforms:send submission="optimize" ev:event="xforms-submit-done"/>
 				</xforms:action>
 			</fr:positive-choice>
 			<fr:negative-choice>

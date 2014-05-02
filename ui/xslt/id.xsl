@@ -133,7 +133,7 @@
 			<select id="search_filter">
 				<option value="">Select Type...</option>
 				<xsl:for-each select="descendant::lst[@name='type']/int">
-					<xsl:variable name="value" select="concat('typeof:&#x022;', @name, '&#x022;')"/>
+					<xsl:variable name="value" select="concat('type:&#x022;', @name, '&#x022;')"/>
 					<option value="{$value}">
 						<xsl:if test="contains($q, $value)">
 							<xsl:attribute name="selected">selected</xsl:attribute>

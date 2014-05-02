@@ -455,24 +455,27 @@
 
 	<fields>
 		<!-- nomisma field list -->
-		<field name="id" type="string" indexed="true" stored="true"/>
+		<field name="id" type="string" indexed="true" required="true" stored="true"/>
 		<field name="pleiades_uri" type="string" indexed="true" stored="true" multiValued="true"/>
-		<field name="typeof" type="string" indexed="true" stored="true" multiValued="true"/>
-		<field name="prefLabel" type="text_general" indexed="true" stored="true"/>
-		<field name="altLabel" type="text_general" indexed="true" stored="true" multiValued="true"/>
-		<field name="related" type="string" indexed="true" stored="true" multiValued="true"/>		
+		<field name="type" type="string" indexed="true" stored="true" multiValued="true"/>
+		<field name="prefLabel" type="string" indexed="true" stored="true"/>
+		<field name="label" type="text_general" indexed="true" stored="true" multiValued="true"/>
+		<field name="broader" type="string" indexed="true" stored="true" multiValued="true"/>
+		<field name="narrower" type="string" indexed="true" stored="true" multiValued="true"/>
+		<field name="related" type="string" indexed="true" stored="true" multiValued="true"/>
+		<field name="exactMatch" type="string" indexed="true" stored="true" multiValued="true"/>
 		<field name="definition" type="text_general" indexed="true" stored="true"/>
 		<field name="location" type="location" indexed="true" stored="true"/>
 		<field name="timestamp" type="date" indexed="true" stored="true"/>
 		<!-- fulltext -->
-		<field name="fulltext" type="text_general" indexed="true" stored="false" multiValued="true"/>
+		<field name="text" type="text_general" indexed="true" stored="false" multiValued="true"/>
 	</fields>
 
 	<!-- field to use to determine and enforce document uniqueness. -->
 	<uniqueKey>id</uniqueKey>
 
 	<!-- field for the QueryParser to use when an explicit fieldname is absent -->
-	<defaultSearchField>fulltext</defaultSearchField>
+	<defaultSearchField>text</defaultSearchField>
 
 	<!-- SolrQueryParser configuration: defaultOperator="AND|OR" -->
 	<solrQueryParser defaultOperator="AND"/>

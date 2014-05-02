@@ -14,7 +14,7 @@
 	</xsl:template>
 
 	<xsl:template match="xhtml:div" mode="root">
-		<xsl:variable name="typeof" select="@typeof"/>
+		<xsl:variable name="type" select="@type"/>
 
 		<kml xmlns="http://earth.google.com/kml/2.0">
 			<Document>
@@ -47,7 +47,7 @@
 				</Style>
 				<!-- display mint -->
 				<xsl:choose>
-					<xsl:when test="$typeof='mint'">
+					<xsl:when test="$type='mint'">
 						<Placemark xmlns="http://earth.google.com/kml/2.0">
 							<name>
 								<xsl:value-of select="descendant::xhtml:div[@property='skos:prefLabel'][@xml:lang='en']"/>
@@ -66,18 +66,18 @@
 								</coordinates>
 							</Point>
 						</Placemark>
-						<xsl:variable name="service" select="concat(/content/config/url, 'apis/getKml?uri=', $uri, '&amp;curie=', $typeof)"/>
+						<xsl:variable name="service" select="concat(/content/config/url, 'apis/getKml?uri=', $uri, '&amp;curie=', $type)"/>
 						<xsl:copy-of select="document($service)//*[local-name()='Placemark']"/>
 					</xsl:when>
-					<xsl:when test="$typeof='type_series_item'">
+					<xsl:when test="$type='type_series_item'">
 						<!-- create point for mints -->
 						<xsl:apply-templates select="descendant::*[@property='mint'][string(@resource)]">
 							<xsl:with-param name="style">hoard</xsl:with-param>
 						</xsl:apply-templates>
-						<xsl:variable name="service" select="concat(/content/config/url, 'apis/getKml?uri=', $uri, '&amp;curie=', $typeof)"/>
+						<xsl:variable name="service" select="concat(/content/config/url, 'apis/getKml?uri=', $uri, '&amp;curie=', $type)"/>
 						<xsl:copy-of select="document($service)//*[local-name()='Placemark']"/>>-->
 					</xsl:when>
-					<xsl:when test="$typeof='hoard'">
+					<xsl:when test="$type='hoard'">
 						<!-- create point for findspot -->
 						<Placemark xmlns="http://earth.google.com/kml/2.0">
 							<name>

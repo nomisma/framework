@@ -43,7 +43,7 @@
 	<xsl:template name="kml">
 		<xsl:variable name="query">
 			<xsl:choose>
-				<xsl:when test="$curie='mint'">
+				<xsl:when test="$curie='nm:mint'">
 					<![CDATA[
 					PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 					PREFIX dcterms:  <http://purl.org/dc/terms/>
@@ -68,7 +68,7 @@
 					OPTIONAL {?object nm:closing_date ?closing_date}
 					}]]>
 				</xsl:when>
-				<xsl:when test="$curie='type_series_item'">
+				<xsl:when test="$curie='nm:type_series_item'">
 					<![CDATA[
 					PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 					PREFIX dcterms:  <http://purl.org/dc/terms/>

@@ -36,7 +36,7 @@
 		<namespaces>
 			<namespace prefix="ecrm" uri="http://erlangen-crm.org/current/"/>
 			<namespace prefix="foaf" uri="http://xmlns.com/foaf/0.1/"/>
-			<namespace prefix="kon" uri="http://kerameikos.org/ontology#"/>
+			<namespace prefix="nm" uri="http://nomisma.org/id/"/>
 			<namespace prefix="skos" uri="http://www.w3.org/2004/02/skos/core#"/>
 		</namespaces>
 	</xsl:variable>
@@ -133,13 +133,16 @@
 			</span>
 			<select id="search_filter" class="form-control">
 				<option value="">Select Type...</option>
-				<xsl:for-each select="descendant::lst[@name='typeof']/int">
-					<xsl:variable name="value" select="concat('typeof:&#x022;', @name, '&#x022;')"/>
+				<xsl:for-each select="descendant::lst[@name='type']/int">
+					<xsl:variable name="uri" select="@name"/>
+					<xsl:variable name="value" select="concat('type:&#x022;', $uri, '&#x022;')"/>
 					<option value="{$value}">
 						<xsl:if test="contains($q, $value)">
 							<xsl:attribute name="selected">selected</xsl:attribute>
 						</xsl:if>
-						<xsl:value-of select="@name"/>
+						<xsl:value-of
+							select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"
+						/>
 					</option>
 				</xsl:for-each>
 			</select>
