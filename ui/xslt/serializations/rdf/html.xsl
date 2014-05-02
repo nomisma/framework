@@ -7,7 +7,7 @@
 	<xsl:variable name="display_path">../</xsl:variable>
 	<xsl:variable name="uri" select="concat('http://nomisma.org/id/', $id)"/>
 	<xsl:variable name="id" select="substring-after(//@rdf:about, 'id/')"/>
-	<xsl:variable name="html-uri" select="concat(/content/config/url, 'id/', $id, '.html')"/>
+	<xsl:variable name="html-uri" select="concat(/content/config/url, 'id/', $id)"/>
 	<xsl:variable name="type" select="/content/rdf:RDF/*/name()"/>
 
 	<!-- flickr -->
