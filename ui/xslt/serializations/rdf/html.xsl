@@ -6,7 +6,7 @@
 
 	<xsl:variable name="display_path">../</xsl:variable>
 	<xsl:variable name="uri" select="concat('http://nomisma.org/id/', $id)"/>
-	<xsl:variable name="id" select="substring-after(//@rdf:about, 'id/')"/>
+	<xsl:variable name="id" select="substring-after(/content/rdf:RDF/*/@rdf:about, 'id/')"/>
 	<xsl:variable name="html-uri" select="concat(/content/config/url, 'id/', $id)"/>
 	<xsl:variable name="type" select="/content/rdf:RDF/*/name()"/>
 
@@ -18,9 +18,13 @@
 	<xsl:variable name="namespaces" as="item()*">
 		<namespaces>
 			<namespace prefix="ecrm" uri="http://erlangen-crm.org/current/"/>
+			<namespace prefix="dcterms" uri="http://purl.org/dc/terms/"/>
 			<namespace prefix="foaf" uri="http://xmlns.com/foaf/0.1/"/>
+			<namespace prefix="geo" uri="http://www.w3.org/2003/01/geo/wgs84_pos#"/>
 			<namespace prefix="nm" uri="http://nomisma.org/id/"/>
+			<namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
 			<namespace prefix="skos" uri="http://www.w3.org/2004/02/skos/core#"/>
+			<namespace prefix="xsd" uri="http://www.w3.org/2001/XMLSchema#"/>
 		</namespaces>
 	</xsl:variable>
 
@@ -80,7 +84,7 @@
 								<a href="{$id}.rdf">RDF/XML</a>
 							</li>
 							<li>
-								<a href="http://www.w3.org/2012/pyRdfa/extract?uri={$html-uri}">RDF Triples (Turtle)</a>
+								<a href="{$id}.ttl">RDF/TTL</a>
 							</li>
 							<li>
 								<a href="http://www.w3.org/2012/pyRdfa/extract?uri={$html-uri}&amp;format=json">JSON-LD</a>
@@ -132,10 +136,10 @@
 	</xsl:template>
 
 	<xsl:template match="*" mode="type">
-		<div type="{name()}" about="{@rdf:about}">
+		<div typeof="{name()}" about="{@rdf:about}">
 			<h2>
 				<a href="{@rdf:about}">
-					<xsl:value-of select="substring-after(@rdf:about, 'id/')"/>
+					<xsl:value-of select="$id"/>
 				</a>
 				<small>
 					<xsl:text> (</xsl:text>
@@ -152,17 +156,24 @@
 				<xsl:apply-templates select="skos:definition" mode="list-item">
 					<xsl:sort select="@xml:lang"/>
 				</xsl:apply-templates>
-				<xsl:apply-templates select="*[not(name()='skos:prefLabel') and not(name()='skos:definition')]" mode="list-item">
+				<xsl:apply-templates select="*[not(name()='skos:prefLabel') and not(name()='skos:definition')][not(child::*)]" mode="list-item">
 					<xsl:sort select="name()"/>
 					<xsl:sort select="@rdf:resource"/>
 				</xsl:apply-templates>
 			</dl>
+			<xsl:apply-templates select="*[(child::*)]" mode="suburi">
+				<xsl:sort select="name()"/>
+				<xsl:sort select="@rdf:resource"/>
+			</xsl:apply-templates>
 		</div>
 	</xsl:template>
 
 	<xsl:template match="*" mode="list-item">
+		<xsl:variable name="name" select="name()"/>
 		<dt>
-			<xsl:value-of select="name()"/>
+			<a href="{concat($namespaces//namespace[@prefix=substring-before($name, ':')]/@uri, substring-after($name, ':'))}">
+				<xsl:value-of select="name()"/>
+			</a>
 		</dt>
 		<dd>
 			<xsl:choose>
@@ -182,9 +193,7 @@
 							<xsl:choose>
 								<xsl:when test="name()='rdf:type'">
 									<xsl:variable name="uri" select="@rdf:resource"/>
-									<xsl:value-of
-										select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"
-									/>
+									<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/>
 								</xsl:when>
 								<xsl:otherwise>
 									<xsl:value-of select="@rdf:resource"/>
@@ -195,6 +204,40 @@
 				</xsl:when>
 			</xsl:choose>
 		</dd>
+	</xsl:template>
+
+	<xsl:template match="*" mode="suburi">
+		<xsl:variable name="about" select="if(@rdf:about) then @rdf:about else rdf:Description/@rdf:about"/>
+
+		<div rel="{name()}">
+			<xsl:if test="string($about)">
+				<xsl:attribute name="resource" select="$about"/>
+			</xsl:if>
+			<h3>
+				<xsl:value-of select="name()"/>
+				<xsl:if test="string($about)">					
+					<small>
+						<xsl:text> (</xsl:text>
+						<a href="{$about}">
+							<xsl:value-of select="$about"/>
+						</a>
+						<xsl:text>)</xsl:text>
+					</small>					
+				</xsl:if>
+			</h3>
+			<dl class="dl-horizontal">
+				<xsl:apply-templates select="descendant::skos:prefLabel" mode="list-item">
+					<xsl:sort select="@xml:lang"/>
+				</xsl:apply-templates>
+				<xsl:apply-templates select="descendant::skos:definition" mode="list-item">
+					<xsl:sort select="@xml:lang"/>
+				</xsl:apply-templates>
+				<xsl:apply-templates select="descendant::*[not(name()='skos:prefLabel') and not(name()='skos:definition')][not(child::*)]" mode="list-item">
+					<xsl:sort select="name()"/>
+					<xsl:sort select="@rdf:resource"/>
+				</xsl:apply-templates>
+			</dl>
+		</div>
 	</xsl:template>
 
 	<xsl:function name="nomisma:normalize_date">

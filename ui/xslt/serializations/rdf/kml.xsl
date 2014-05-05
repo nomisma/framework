@@ -77,6 +77,26 @@
 						<xsl:variable name="service" select="concat(/content/config/url, 'apis/getKml?uri=', $uri, '&amp;curie=', $type)"/>
 						<xsl:copy-of select="document($service)//*[local-name()='Placemark']"/>
 					</xsl:when>
+					<xsl:when test="$type='nm:hoard'">
+						<Placemark xmlns="http://earth.google.com/kml/2.0">
+							<name>
+								<xsl:value-of select="descendant::skos:prefLabel[@xml:lang='en']"/>
+							</name>
+							<description>
+								<![CDATA[
+								<dl class="dl-horizontal"><dt>Latitude</dt><dd>]]><xsl:value-of select="descendant::geo:lat"/><![CDATA[</dd>
+								<dt>Longitude</dt><dd>]]><xsl:value-of select="descendant::geo:long"/><![CDATA[</dd>
+								<![CDATA[</dl>]]>
+							</description>
+							<styleUrl>#hoard</styleUrl>
+							<!-- add placemark -->
+							<Point>
+								<coordinates>
+									<xsl:value-of select="concat(descendant::geo:long, ',', descendant::geo:lat)"/>
+								</coordinates>
+							</Point>
+						</Placemark>
+					</xsl:when>
 				</xsl:choose>
 			</Document>
 		</kml>

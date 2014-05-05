@@ -35,6 +35,9 @@
 							<xsl:when test="contains(substring-after(doc('input:request')/request/request-url, 'id/'), '.solr')">
 								<xsl:value-of select="substring-before(substring-after(doc('input:request')/request/request-url, 'id/'), '.solr')"/>
 							</xsl:when>
+							<xsl:when test="contains(substring-after(doc('input:request')/request/request-url, 'id/'), '.ttl')">
+								<xsl:value-of select="substring-before(substring-after(doc('input:request')/request/request-url, 'id/'), '.ttl')"/>
+							</xsl:when>
 							<xsl:otherwise>
 								<xsl:value-of select="substring-after(doc('input:request')/request/request-url, 'id/')"/>
 							</xsl:otherwise>
