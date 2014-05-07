@@ -33,6 +33,9 @@
 			<xsl:when test="$template = 'getLabel'">
 				<xsl:call-template name="getLabel"/>
 			</xsl:when>
+			<xsl:when test="$template = 'numishareResults'">
+				<xsl:call-template name="numishareResults"/>
+			</xsl:when>
 		</xsl:choose>
 	</xsl:template>
 </xsl:stylesheet>
