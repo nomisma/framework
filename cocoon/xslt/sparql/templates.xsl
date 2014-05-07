@@ -461,7 +461,7 @@
 			</hoard-count>
 			<objects>
 				<xsl:for-each select="descendant::res:result[res:binding[contains(@name, 'rev') or contains(@name, 'obv') or contains(@name,'com')]][position() &lt;=5]">
-					<object collection="{res:binding[@name='collection']/res:literal}" identifier="{res:binding[@name='identifier']/res:literal}">
+					<object collection="{res:binding[@name='collection']/res:literal}" identifier="{res:binding[@name='identifier']/res:literal}" uri="{res:binding[@name='object']/res:uri}">
 						<xsl:if test="string(res:binding[@name='obvRef']/res:uri)">
 							<obvRef>
 								<xsl:value-of select="res:binding[@name='obvRef']/res:uri"/>
