@@ -128,6 +128,14 @@
 			<xforms:instance id="numismatic_end_date-template" xxforms:exclude-result-prefixes="#all">
 				<div property="nm:numismatic_end_date" content="" datatype="xsd:gYear"/>
 			</xforms:instance>
+			
+			<xforms:instance id="thumbnail-template" xxforms:exclude-result-prefixes="#all">
+				<div property="foaf:thumbnail" resource=""/>
+			</xforms:instance>			
+			
+			<xforms:instance id="homepage-template" xxforms:exclude-result-prefixes="#all">
+				<div property="foaf:homepage" resource=""/>
+			</xforms:instance>
 
 			<!-- sparql queries -->
 			<xforms:instance id="sparqlQueryTemplate">
@@ -236,6 +244,12 @@
 					<xforms:bind nodeset="@xml:lang" constraint="string-length(.) &gt; 0"/>
 				</xforms:bind>
 				<xforms:bind nodeset="xhtml:div[@property='skos:related']">
+					<xforms:bind nodeset="@resource" required="true()" type="xs:anyURI"/>
+				</xforms:bind>
+				<xforms:bind nodeset="xhtml:div[@property='foaf:thumbnail']">
+					<xforms:bind nodeset="@resource" required="true()" type="xs:anyURI"/>
+				</xforms:bind>
+				<xforms:bind nodeset="xhtml:div[@property='foaf:homepage']">
 					<xforms:bind nodeset="@resource" required="true()" type="xs:anyURI"/>
 				</xforms:bind>
 				<xforms:bind nodeset="xhtml:div[@property='dcterms:isPartOf']">
@@ -517,6 +531,20 @@
 										<img src="{$display_path}images/add.gif"/>Related Link</xforms:label>
 									<xforms:insert ev:event="DOMActivate" origin="instance('related-template')" context="." nodeset="./child::node()[last()]"/>
 								</xforms:trigger>
+								<xforms:group ref=".[count(xhtml:div[@property='foaf:homepage']) = 0 and @typeof='collection']">
+									<xforms:trigger appearance="minimal">
+										<xforms:label>
+											<img src="{$display_path}images/add.gif"/>Home Page</xforms:label>
+										<xforms:insert ev:event="DOMActivate" origin="instance('homepage-template')" context="." nodeset="./child::node()[last()]"/>
+									</xforms:trigger>
+								</xforms:group>								
+								<xforms:group ref=".[count(xhtml:div[@property='foaf:thumbnail']) = 0 and @typeof='collection']">
+									<xforms:trigger appearance="minimal">
+										<xforms:label>
+											<img src="{$display_path}images/add.gif"/>Thumbnail</xforms:label>
+										<xforms:insert ev:event="DOMActivate" origin="instance('thumbnail-template')" context="." nodeset="./child::node()[last()]"/>
+									</xforms:trigger>
+								</xforms:group>
 							</div>
 							<div class="section">
 								<h4>Labels and Definitions</h4>
@@ -664,6 +692,34 @@
 									</div>
 								</xforms:repeat>
 							</div>
+							<xforms:repeat nodeset="xhtml:div[@property='foaf:homepage']">
+								<div>
+									<xforms:input ref="@resource">
+										<xforms:label>Home Page</xforms:label>
+										<xforms:alert>Required, must be URI</xforms:alert>
+									</xforms:input>
+									<xforms:trigger appearance="minimal">
+										<xforms:delete ev:event="DOMActivate" context="."/>
+										<xforms:label>
+											<img src="{$display_path}images/remove.gif"/>
+										</xforms:label>
+									</xforms:trigger>
+								</div>
+							</xforms:repeat>
+							<xforms:repeat nodeset="xhtml:div[@property='foaf:thumbnail']">
+								<div>
+									<xforms:input ref="@resource">
+										<xforms:label>Thumbnail</xforms:label>
+										<xforms:alert>Required, must be URI</xforms:alert>
+									</xforms:input>
+									<xforms:trigger appearance="minimal">
+										<xforms:delete ev:event="DOMActivate" context="."/>
+										<xforms:label>
+											<img src="{$display_path}images/remove.gif"/>
+										</xforms:label>
+									</xforms:trigger>
+								</div>
+							</xforms:repeat>
 							<xforms:group ref="xhtml:div[@property='nm:numismatic_start_date']">
 								<h5>Numismatic Start Date</h5>
 								<xforms:trigger appearance="minimal">
