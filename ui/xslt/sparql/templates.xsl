@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="http://www.w3.org/2005/sparql-results#"
 	xmlns:nm="http://nomisma.org/id/" exclude-result-prefixes="xs res nm" version="2.0">
 	<!-- config variables -->
-	<xsl:variable name="sparql_endpoint" select="/config/sparql"/>
+	<xsl:variable name="sparql_endpoint" select="/config/sparql_query"/>
 	<!-- url params -->
 	<xsl:param name="identifiers" select="doc('input:request')/request/parameters/parameter[name='identifiers']/value"/>
 	<xsl:param name="constraints" select="doc('input:request')/request/parameters/parameter[name='constraints']/value"/>

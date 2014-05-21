@@ -71,12 +71,12 @@
 						<table class="table-dl">
 							<tr>
 								<td>
-									<a href="feed">
+									<a href="feed/">
 										<img src="{$display_path}ui/images/atom-large.png"/>
 									</a>
 								</td>
 								<td>
-									<a href="feed">Feed</a>
+									<a href="feed/">Feed</a>
 									<br/>
 									<a href="http://numishare.blogspot.com/2013/07/updates-to-nomisma-atom-feed.html">Documentation</a>
 								</td>

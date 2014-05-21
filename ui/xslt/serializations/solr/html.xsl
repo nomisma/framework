@@ -52,7 +52,7 @@
 				<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
 				<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"/>
 				<link rel="stylesheet" href="{$display_path}ui/css/style.css"/>
-				<link rel="alternate" type="application/atom+xml" href="feed{if ($q = '*:*') then '' else concat('./?q=', $q)}"/>
+				<link rel="alternate" type="application/atom+xml" href="feed/{if ($q = '*:*') then '' else concat('./?q=', $q)}"/>
 				<!-- opensearch compliance -->
 				<link rel="search" type="application/opensearchdescription+xml" href="http://nomisma.org/opensearch.xml" title="Example Search"/>
 				<meta name="totalResults" content="{$numFound}"/>

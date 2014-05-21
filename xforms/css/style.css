@@ -48,12 +48,6 @@
 .xbl-component {
 	margin:5px 0;
 }
-.ui-state-error, .ui-state-highlight {
-	padding: 0pt 0.7em;
-	margin:20px auto;
-	width:400px;
-	font-size:12px;
-}
 
 /*
   ****************************************
@@ -65,4 +59,15 @@
 	margin-right:auto;
 	text-align:center;
 	width:50%;	
+}
+.alert {
+	width:50%;
+	margin:20px auto;
+	padding:5px;	
+}
+.subsection {
+	margin-bottom:20px;	
+}
+.control-list {
+	list-style-type:none;	
 }

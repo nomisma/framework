@@ -34,7 +34,7 @@
 	<!-- **** SERIALIZATIONS **** -->
 	<!-- Solr -->
 	<page path="/nomisma/id/" model="xpl/models/solr-query.xpl" view="xpl/serializations/solr/html.xpl"/>
-	<page path="/nomisma/feed" model="xpl/models/solr-query.xpl" view="xpl/serializations/solr/atom.xpl"/>
+	<page path="/nomisma/feed/" model="xpl/models/solr-query.xpl" view="xpl/serializations/solr/atom.xpl"/>
 	
 	<!-- ID -->
 	<page path="/nomisma/id/(.*)\.rdf" matcher="oxf:perl5-matcher" view="xpl/models/get-id.xpl"/>	

@@ -25,7 +25,7 @@
 				<xsl:variable name="id" select="tokenize(substring-after(doc('input:request')/request/request-url, 'project/'), '/')[2]"/>
 
 				<!-- config variables -->
-				<xsl:variable name="sparql_endpoint" select="/config/sparql"/>
+				<xsl:variable name="sparql_endpoint" select="/config/sparql_query"/>
 				<xsl:variable name="query"><![CDATA[ PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:	<http://purl.org/dc/terms/>
 PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>

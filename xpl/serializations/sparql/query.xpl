@@ -36,7 +36,7 @@
 				</xsl:variable>
 
 				<!-- config variables -->
-				<xsl:variable name="sparql_endpoint" select="/config/sparql"/>
+				<xsl:variable name="sparql_endpoint" select="/config/sparql_query"/>
 
 				<xsl:variable name="service">
 					<xsl:value-of select="concat($sparql_endpoint, '?query=', encode-for-uri($query), '&amp;output=', $output-normalized)"/>
