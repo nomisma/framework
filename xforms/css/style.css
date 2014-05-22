@@ -71,3 +71,15 @@
 .control-list {
 	list-style-type:none;	
 }
+/*
+  ***************************************
+  PAGINATION/SEARCH RESULTS
+  ***************************************
+ */
+.paging_div {
+	padding:10px 0;
+	vertical-align:top
+}
+.page-nos {
+	text-align:right;
+}

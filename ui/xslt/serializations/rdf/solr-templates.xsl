@@ -4,6 +4,9 @@
 	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:nomisma="http://nomisma.org/" xmlns:datetime="http://exslt.org/dates-and-times"
 	exclude-result-prefixes="#all" version="2.0">
 
+	<!-- suppress geo:spatialThing -->
+	<xsl:template match="geo:spatialThing" mode="generateDoc"/>
+
 	<xsl:template match="*" mode="generateDoc">
 		<doc>
 			<xsl:variable name="id" select="substring-after(@rdf:about, 'id/')"/>
@@ -29,7 +32,7 @@
 					<xsl:value-of select="."/>
 				</field>
 			</xsl:for-each>
-			<xsl:for-each select="skos:exactMatch|skos:related">
+			<xsl:for-each select="skos:exactMatch|skos:relatedMatch">
 				<field name="{local-name()}">
 					<xsl:value-of select="@rdf:resource"/>
 				</field>

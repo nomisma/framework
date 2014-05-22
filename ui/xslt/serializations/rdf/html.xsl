@@ -5,10 +5,10 @@
 	<xsl:include href="../../templates.xsl"/>
 
 	<xsl:variable name="display_path">../</xsl:variable>
+	<xsl:variable name="id" select="substring-after(/content/rdf:RDF/*[not(name()='geo:spatialThing')]/@rdf:about, 'id/')"/>
 	<xsl:variable name="uri" select="concat('http://nomisma.org/id/', $id)"/>
-	<xsl:variable name="id" select="substring-after(/content/rdf:RDF/*/@rdf:about, 'id/')"/>
 	<xsl:variable name="html-uri" select="concat(/content/config/url, 'id/', $id)"/>
-	<xsl:variable name="type" select="/content/rdf:RDF/*/name()"/>
+	<xsl:variable name="type" select="/content/rdf:RDF/*[not(name()='geo:spatialThing')]/name()"/>
 
 	<!-- flickr -->
 	<xsl:variable name="flickr_api_key" select="/content/config/flickr_api_key"/>
@@ -137,9 +137,17 @@
 
 	<xsl:template match="*" mode="type">
 		<div typeof="{name()}" about="{@rdf:about}">
+			<xsl:if test="contains(@rdf:resource, '#this')">
+				<a name="#this"/>
+			</xsl:if>
 			<h2>
 				<a href="{@rdf:about}">
-					<xsl:value-of select="$id"/>
+					<xsl:choose>
+						<xsl:when test="contains(@rdf:about, '#this')">#this</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="$id"/>
+						</xsl:otherwise>
+					</xsl:choose>
 				</a>
 				<small>
 					<xsl:text> (</xsl:text>

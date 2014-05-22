@@ -427,7 +427,7 @@ OPTIONAL { ?object nm:reverse ?reverse .
 				</xsl:if>
 				<![CDATA[</dl>]]>
 			</description>
-			<styleUrl>#mapped</styleUrl>
+			<styleUrl>#findspot</styleUrl>
 			<Point>
 				<coordinates>
 					<xsl:value-of select="concat(res:binding[@name='long']/res:literal, ',', res:binding[@name='lat']/res:literal)"/>
