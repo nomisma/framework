@@ -38,6 +38,7 @@
 			<namespace prefix="foaf" uri="http://xmlns.com/foaf/0.1/"/>
 			<namespace prefix="nm" uri="http://nomisma.org/id/"/>
 			<namespace prefix="skos" uri="http://www.w3.org/2004/02/skos/core#"/>
+			<namespace prefix="un" uri="http://www.owl-ontologies.com/Ontology1181490123.owl#"/>
 		</namespaces>
 	</xsl:variable>
 

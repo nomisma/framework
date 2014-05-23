@@ -13,6 +13,7 @@
 			<namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
 			<namespace prefix="skos" uri="http://www.w3.org/2004/02/skos/core#"/>
 			<namespace prefix="xsd" uri="http://www.w3.org/2001/XMLSchema#"/>
+			<namespace prefix="un" uri="http://www.owl-ontologies.com/Ontology1181490123.owl#"/>
 		</namespaces>
 	</xsl:variable>
 	
