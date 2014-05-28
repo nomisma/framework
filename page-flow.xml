@@ -55,7 +55,7 @@
 	<page path="/nomisma/apis/getKml" view="xpl/serializations/sparql/apis.xpl"/>
 	<page path="/nomisma/apis/getLabel" view="xpl/serializations/sparql/apis.xpl"/>	
 	<!--<page path="/nomisma/apis/getNuds" model="xpl/models/aggregate-ids.xpl" view="xpl/serializations/apis/getNuds.xpl"/>-->
-	<page path="/nomisma/apis/getRdf" view="xpl/models/aggregate-ids.xpl"/>
+	<page path="/nomisma/apis/getRdf" model="xpl/models/aggregate-ids.xpl" view="xpl/serializations/apis/getRdf.xpl"/>
 	<page path="/nomisma/apis/numishareResults" view="xpl/serializations/sparql/apis.xpl"/>
 
 	<!-- **** PROJECT NAMESPACES **** -->

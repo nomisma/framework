@@ -103,9 +103,6 @@
 									<a href="{$id}.kml">KML</a>
 								</li>
 							</xsl:if>
-							<li>
-								<a href="http://isaw2.atlantides.org/lawdi/force-graph.html?s={$uri}">Visualize RDF</a>
-							</li>
 						</ul>
 					</div>
 					<!--<xsl:if test="$type != 'numismatic_term'">
