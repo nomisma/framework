@@ -36,7 +36,7 @@
 					</IconStyle>
 				</Style>
 
-				<xsl:apply-templates select="nm:mint|nm:region|nm:hoard">
+				<xsl:apply-templates select="nm:mint|nm:region|nm:hoard|nm:region">
 					<xsl:with-param name="lat">
 						<xsl:value-of select="geo:spatialThing/geo:lat"/>
 					</xsl:with-param>
