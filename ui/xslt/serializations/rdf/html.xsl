@@ -51,7 +51,7 @@
 				<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
 				<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"/>
 
-				<xsl:if test="$type='nm:mint' or $type='nm:type_series_item' or $type='nm:hoard'">
+				<xsl:if test="$type='nm:mint' or $type='nm:type_series_item' or $type='nm:hoard' or $type='nm:region'">
 					<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"/>
 					<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.9&amp;sensor=false"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/display_map_functions.js"/>
@@ -71,7 +71,7 @@
 			<div class="row">
 				<div class="col-md-9">
 					<xsl:apply-templates select="/content/rdf:RDF/*" mode="type"/>
-					<xsl:if test="$type='nm:mint' or $type='nm:type_series_item' or $type='nm:hoard'">
+					<xsl:if test="$type='nm:mint' or $type='nm:type_series_item' or $type='nm:hoard' or $type='nm:region'">
 						<div id="mapcontainer"/>
 					</xsl:if>
 				</div>
@@ -100,7 +100,7 @@
 									<a href="{$id}.nuds">NUDS/XML</a>
 								</li>
 							</xsl:if>-->
-							<xsl:if test="$type='nm:mint' or $type='nm:type_series_item' or $type='nm:hoard'">
+							<xsl:if test="$type='nm:mint' or $type='nm:type_series_item' or $type='nm:hoard' or $type='nm:region'">
 								<li>
 									<a href="{$id}.kml">KML</a>
 								</li>
