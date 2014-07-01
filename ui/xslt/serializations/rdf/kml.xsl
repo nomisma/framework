@@ -36,7 +36,7 @@
 					</IconStyle>
 				</Style>
 
-				<xsl:apply-templates select="nm:mint|nm:region|nm:hoard|nm:region">
+				<xsl:apply-templates select="nm:mint|nm:region|nm:hoard">
 					<xsl:with-param name="lat">
 						<xsl:value-of select="geo:spatialThing/geo:lat"/>
 					</xsl:with-param>
@@ -54,7 +54,7 @@
 		<xsl:variable name="type" select="name()"/>
 
 		<xsl:choose>
-			<xsl:when test="$type='nm:mint'">
+			<xsl:when test="$type='nm:mint' or $type='nm:region'">
 				<Placemark xmlns="http://earth.google.com/kml/2.0">
 					<name>
 						<xsl:value-of select="skos:prefLabel[@xml:lang='en']"/>
