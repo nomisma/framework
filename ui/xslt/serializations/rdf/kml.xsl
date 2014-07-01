@@ -26,7 +26,7 @@
 						</Icon>
 					</IconStyle>
 				</Style>
-				<Style id="hoard">
+				<Style id="findspot">
 					<IconStyle>
 						<scale>1</scale>
 						<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>

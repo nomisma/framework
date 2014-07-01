@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/"
-	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:nomisma="http://nomisma.org/" exclude-result-prefixes="#all" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/"
+	xmlns:nomisma="http://nomisma.org/" exclude-result-prefixes="#all" version="2.0">
 	<xsl:include href="../../templates.xsl"/>
 
 	<xsl:variable name="display_path">../</xsl:variable>
@@ -22,6 +23,7 @@
 			<namespace prefix="foaf" uri="http://xmlns.com/foaf/0.1/"/>
 			<namespace prefix="geo" uri="http://www.w3.org/2003/01/geo/wgs84_pos#"/>
 			<namespace prefix="nm" uri="http://nomisma.org/id/"/>
+			<namespace prefix="nmo" uri="http://nomisma.org/ontology#"/>
 			<namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
 			<namespace prefix="skos" uri="http://www.w3.org/2004/02/skos/core#"/>
 			<namespace prefix="xsd" uri="http://www.w3.org/2001/XMLSchema#"/>
@@ -138,10 +140,13 @@
 			<xsl:if test="contains(@rdf:resource, '#this')">
 				<a name="#this"/>
 			</xsl:if>
-			<h2>
+			<xsl:element name="{if(position()=1) then 'h2' else 'h3'}">
 				<a href="{@rdf:about}">
 					<xsl:choose>
 						<xsl:when test="contains(@rdf:about, '#this')">#this</xsl:when>
+						<xsl:when test="contains(@rdf:about, 'geonames.org')">
+							<xsl:value-of select="@rdf:about"/>
+						</xsl:when>
 						<xsl:otherwise>
 							<xsl:value-of select="$id"/>
 						</xsl:otherwise>
@@ -154,7 +159,7 @@
 					</a>
 					<xsl:text>)</xsl:text>
 				</small>
-			</h2>
+			</xsl:element>
 			<dl class="dl-horizontal">
 				<xsl:apply-templates select="skos:prefLabel" mode="list-item">
 					<xsl:sort select="@xml:lang"/>
@@ -199,7 +204,9 @@
 							<xsl:choose>
 								<xsl:when test="name()='rdf:type'">
 									<xsl:variable name="uri" select="@rdf:resource"/>
-									<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/>
+									<xsl:value-of
+										select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"
+									/>
 								</xsl:when>
 								<xsl:otherwise>
 									<xsl:value-of select="@rdf:resource"/>
@@ -221,14 +228,14 @@
 			</xsl:if>
 			<h3>
 				<xsl:value-of select="name()"/>
-				<xsl:if test="string($about)">					
+				<xsl:if test="string($about)">
 					<small>
 						<xsl:text> (</xsl:text>
 						<a href="{$about}">
 							<xsl:value-of select="$about"/>
 						</a>
 						<xsl:text>)</xsl:text>
-					</small>					
+					</small>
 				</xsl:if>
 			</h3>
 			<dl class="dl-horizontal">
