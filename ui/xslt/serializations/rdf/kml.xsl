@@ -61,11 +61,14 @@
 					</name>
 					<styleUrl>#mint</styleUrl>
 					<xsl:if test="string($lat) and string($long)">
-						<description>
+						<xsl:variable name="description">
 							<![CDATA[
 								<dl class="dl-horizontal"><dt>Latitude</dt><dd>]]><xsl:value-of select="$lat"/><![CDATA[</dd>
 								<dt>Longitude</dt><dd>]]><xsl:value-of select="$long"/><![CDATA[</dd>
 								<![CDATA[</dl>]]>
+						</xsl:variable>
+						<description>
+							<xsl:value-of select="normalize-space($description)"/>
 						</description>
 
 						<!-- add placemark -->
@@ -86,11 +89,14 @@
 					</name>
 					<styleUrl>#findspot</styleUrl>
 					<xsl:if test="string($lat) and string($long)">
-						<description>
+						<xsl:variable name="description">
 							<![CDATA[
 								<dl class="dl-horizontal"><dt>Latitude</dt><dd>]]><xsl:value-of select="$lat"/><![CDATA[</dd>
 								<dt>Longitude</dt><dd>]]><xsl:value-of select="$long"/><![CDATA[</dd>
 								<![CDATA[</dl>]]>
+						</xsl:variable>
+						<description>
+							<xsl:value-of select="normalize-space($description)"/>
 						</description>
 
 						<!-- add placemark -->

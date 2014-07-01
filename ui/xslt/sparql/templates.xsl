@@ -44,7 +44,7 @@
 	<xsl:template name="kml">
 		<xsl:variable name="query">
 			<xsl:choose>
-				<xsl:when test="$curie='nm:mint'">
+				<xsl:when test="$curie='nm:mint' or $curie='nm:region'">
 					<![CDATA[
 					PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 					PREFIX dcterms:  <http://purl.org/dc/terms/>
