@@ -47,7 +47,7 @@ body {
   ***************************************
  */
 #footer {
-	height: 60px;
+	padding:10px 0;
 	border-top:1px solid #e7e7e7;
 	text-align:center;
 }
@@ -109,7 +109,7 @@ div#timelinecontainer {
 }
 div#mapcontainer {
 	width:100%;
-	height: 500px;
+	height: 400px;
 }
 div.olFramedCloudPopupContent {
 	width: 300px;

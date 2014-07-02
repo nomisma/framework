@@ -24,6 +24,7 @@
 			<namespace prefix="geo" uri="http://www.w3.org/2003/01/geo/wgs84_pos#"/>
 			<namespace prefix="nm" uri="http://nomisma.org/id/"/>
 			<namespace prefix="nmo" uri="http://nomisma.org/ontology#"/>
+			<namespace prefix="osgeo" uri="http://data.ordnancesurvey.co.uk/ontology/geometry/"/>
 			<namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
 			<namespace prefix="skos" uri="http://www.w3.org/2004/02/skos/core#"/>
 			<namespace prefix="xsd" uri="http://www.w3.org/2001/XMLSchema#"/>
@@ -41,7 +42,8 @@
 			rdf:  http://www.w3.org/1999/02/22-rdf-syntax-ns#
 			skos: http://www.w3.org/2004/02/skos/core#
 			ecrm: http://erlangen-crm.org/current/
-			nm: http://nomisma.org/id/"
+			nm: http://nomisma.org/id/
+			osgeo: http://data.ordnancesurvey.co.uk/ontology/geometry/"
 			vocab="http://nomisma.org/id/">
 			<head>
 				<title id="{$id}">nomisma.org: <xsl:value-of select="$id"/></title>
@@ -69,17 +71,13 @@
 	<xsl:template name="body">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-9">
+				<div class="col-md-{if ($type='nm:mint' or $type='nm:type_series_item' or $type='nm:hoard' or $type='nm:region') then '6' else '9'}">
 					<xsl:apply-templates select="/content/rdf:RDF/*" mode="type"/>
-					<xsl:if test="$type='nm:mint' or $type='nm:type_series_item' or $type='nm:hoard' or $type='nm:region'">
-						<div id="mapcontainer"/>
-					</xsl:if>
 				</div>
-
-				<div class="col-md-3">
+				<div class="col-md-{if ($type='nm:mint' or $type='nm:type_series_item' or $type='nm:hoard' or $type='nm:region') then '6' else '3'}">
 					<div>
 						<h3>Export</h3>
-						<ul>
+						<ul class="list-inline">
 							<li>
 								<a href="https://github.com/AmericanNumismaticSociety/nomisma-ids/blob/master/id/{$id}.txt">GitHub File</a>
 							</li>
@@ -92,14 +90,9 @@
 							<li>
 								<a href="http://www.w3.org/2012/pyRdfa/extract?uri={$html-uri}&amp;format=json">JSON-LD</a>
 							</li>
-							<li>
+							<!--<li>
 								<a href="{$id}.pelagios.rdf">Pelagios RDF/XML</a>
-							</li>
-							<!--<xsl:if test="$type='nm:type_series_item'">
-								<li>
-									<a href="{$id}.nuds">NUDS/XML</a>
-								</li>
-							</xsl:if>-->
+								</li>-->
 							<xsl:if test="$type='nm:mint' or $type='nm:type_series_item' or $type='nm:hoard' or $type='nm:region'">
 								<li>
 									<a href="{$id}.kml">KML</a>
@@ -107,6 +100,10 @@
 							</xsl:if>
 						</ul>
 					</div>
+					<xsl:if test="$type='nm:mint' or $type='nm:type_series_item' or $type='nm:hoard' or $type='nm:region'">
+						<div id="mapcontainer"/>
+					</xsl:if>
+					
 					<!--<xsl:if test="$type != 'numismatic_term'">
 						<xsl:variable name="predicate" select="if ($type='roman_emperor') then 'authority' else $type"/>
 						<xsl:variable name="photos" as="element()*">
@@ -161,9 +158,16 @@
 				</small>
 			</xsl:element>
 			<dl class="dl-horizontal">
-				<xsl:apply-templates select="skos:prefLabel" mode="list-item">
-					<xsl:sort select="@xml:lang"/>
-				</xsl:apply-templates>
+				<xsl:if test="skos:prefLabel">
+					<dt>
+						<a href="{concat($namespaces//namespace[@prefix='skos']/@uri, 'prefLabel')}">skos:prefLabel</a>
+					</dt>				
+					<dd>
+						<xsl:apply-templates select="skos:prefLabel" mode="prefLabel">
+							<xsl:sort select="@xml:lang"/>
+						</xsl:apply-templates>
+					</dd>
+				</xsl:if>
 				<xsl:apply-templates select="skos:definition" mode="list-item">
 					<xsl:sort select="@xml:lang"/>
 				</xsl:apply-templates>
@@ -177,6 +181,20 @@
 				<xsl:sort select="@rdf:resource"/>
 			</xsl:apply-templates>
 		</div>
+	</xsl:template>
+	
+	<xsl:template match="skos:prefLabel" mode="prefLabel">
+		<span property="{name()}" xml:lang="{@xml:lang}">
+			<xsl:value-of select="."/>
+		</span>
+		<xsl:if test="string(@xml:lang)">
+			<span class="lang">
+				<xsl:value-of select="concat(' (', @xml:lang, ')')"/>
+			</span>
+		</xsl:if>
+		<xsl:if test="not(position()=last())">
+			<xsl:text>, </xsl:text>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="*" mode="list-item">

@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/"
 	xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" exclude-result-prefixes="#all"
-	version="2.0">
+	xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:kml="http://earth.google.com/kml/2.0" version="2.0">
 
 	<xsl:variable name="id" select="substring-after(//*[not(name()='geo:spatialThing')]/@rdf:about, 'id/')"/>
 	<xsl:variable name="uri">
@@ -35,6 +35,12 @@
 						</Icon>
 					</IconStyle>
 				</Style>
+				<Style id="polygon">
+					<PolyStyle>
+						<color>50F00014</color>
+						<outline>1</outline>
+					</PolyStyle>
+				</Style>
 
 				<xsl:apply-templates select="nm:mint|nm:region|nm:hoard">
 					<xsl:with-param name="lat">
@@ -42,6 +48,9 @@
 					</xsl:with-param>
 					<xsl:with-param name="long">
 						<xsl:value-of select="geo:spatialThing/geo:long"/>
+					</xsl:with-param>
+					<xsl:with-param name="polygon">
+						<xsl:value-of select="geo:spatialThing/osgeo:asGeoJSON"/>
 					</xsl:with-param>
 				</xsl:apply-templates>
 			</Document>
@@ -51,63 +60,55 @@
 	<xsl:template match="nm:hoard|nm:mint|nm:region">
 		<xsl:param name="lat"/>
 		<xsl:param name="long"/>
+		<xsl:param name="polygon"/>
 		<xsl:variable name="type" select="name()"/>
 
-		<xsl:choose>
-			<xsl:when test="$type='nm:mint' or $type='nm:region'">
-				<Placemark xmlns="http://earth.google.com/kml/2.0">
-					<name>
-						<xsl:value-of select="skos:prefLabel[@xml:lang='en']"/>
-					</name>
-					<styleUrl>#mint</styleUrl>
-					<xsl:if test="string($lat) and string($long)">
-						<xsl:variable name="description">
-							<![CDATA[
-								<dl class="dl-horizontal"><dt>Latitude</dt><dd>]]><xsl:value-of select="$lat"/><![CDATA[</dd>
-								<dt>Longitude</dt><dd>]]><xsl:value-of select="$long"/><![CDATA[</dd>
-								<![CDATA[</dl>]]>
-						</xsl:variable>
-						<description>
-							<xsl:value-of select="normalize-space($description)"/>
-						</description>
+		<xsl:if test="(string($lat) and string($long)) or string($polygon)">
+			<Placemark xmlns="http://earth.google.com/kml/2.0">
+				<name>
+					<xsl:value-of select="skos:prefLabel[@xml:lang='en']"/>
+				</name>
 
-						<!-- add placemark -->
+				<xsl:choose>
+					<xsl:when test="string($lat) and string($long)">
+						<xsl:choose>
+							<xsl:when test="$type='nm:mint' or $type='nm:region'">
+								<styleUrl>#mint</styleUrl>
+							</xsl:when>
+							<xsl:when test="$type='nm:hoard'">
+								<styleUrl>#findspot</styleUrl>
+							</xsl:when>
+						</xsl:choose>
 						<Point>
 							<coordinates>
 								<xsl:value-of select="concat($long, ',', $lat)"/>
 							</coordinates>
 						</Point>
-					</xsl:if>
-				</Placemark>
-				<xsl:variable name="service" select="concat(/content/config/url, 'apis/getKml?uri=', $uri, '&amp;curie=', $type)"/>
-				<xsl:copy-of select="document($service)//*[local-name()='Placemark']"/>
-			</xsl:when>
-			<xsl:when test="$type='nm:hoard'">
-				<Placemark xmlns="http://earth.google.com/kml/2.0">
-					<name>
-						<xsl:value-of select="skos:prefLabel[@xml:lang='en']"/>
-					</name>
-					<styleUrl>#findspot</styleUrl>
-					<xsl:if test="string($lat) and string($long)">
-						<xsl:variable name="description">
-							<![CDATA[
-								<dl class="dl-horizontal"><dt>Latitude</dt><dd>]]><xsl:value-of select="$lat"/><![CDATA[</dd>
-								<dt>Longitude</dt><dd>]]><xsl:value-of select="$long"/><![CDATA[</dd>
-								<![CDATA[</dl>]]>
-						</xsl:variable>
-						<description>
-							<xsl:value-of select="normalize-space($description)"/>
-						</description>
-
-						<!-- add placemark -->
-						<Point>
-							<coordinates>
-								<xsl:value-of select="concat($long, ',', $lat)"/>
-							</coordinates>
-						</Point>
-					</xsl:if>
-				</Placemark>
-			</xsl:when>
-		</xsl:choose>
+					</xsl:when>
+					<xsl:when test="string($polygon)">
+						<styleUrl>#polygon</styleUrl>
+						<Polygon>
+							<outerBoundaryIs>
+								<LinearRing>
+									<coordinates>
+										<xsl:analyze-string regex="\[(\d[^\]]+)\]" select="$polygon">
+											<xsl:matching-substring>
+												<xsl:for-each select="regex-group(1)">
+													<xsl:value-of select="normalize-space(tokenize(., ',')[1])"/>
+													<xsl:text>, </xsl:text>
+													<xsl:value-of select="normalize-space(tokenize(., ',')[2])"/>
+													<xsl:text>, 0. </xsl:text>
+												</xsl:for-each>
+											</xsl:matching-substring>
+										</xsl:analyze-string>
+										<!--135.2, 35.4, 0. 135.4, 35.6, 0. 135.2, 35.6, 0. 135.2, 35.4, 0. -->
+									</coordinates>
+								</LinearRing>
+							</outerBoundaryIs>
+						</Polygon>
+					</xsl:when>
+				</xsl:choose>
+			</Placemark>
+		</xsl:if>
 	</xsl:template>
 </xsl:stylesheet>
