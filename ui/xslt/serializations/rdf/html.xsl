@@ -2,14 +2,14 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/"
 	xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/"
-	xmlns:nomisma="http://nomisma.org/" exclude-result-prefixes="#all" version="2.0">
+	xmlns:org="http://www.w3.org/ns/org#" xmlns:nomisma="http://nomisma.org/" exclude-result-prefixes="#all" version="2.0">
 	<xsl:include href="../../templates.xsl"/>
 
 	<xsl:variable name="display_path">../</xsl:variable>
-	<xsl:variable name="id" select="substring-after(/content/rdf:RDF/*[not(name()='geo:spatialThing')]/@rdf:about, 'id/')"/>
+	<xsl:variable name="id" select="substring-after(/content/rdf:RDF/*[not(name()='geo:spatialThing') and not(name()='org:Membership')]/@rdf:about, 'id/')"/>
 	<xsl:variable name="uri" select="concat('http://nomisma.org/id/', $id)"/>
 	<xsl:variable name="html-uri" select="concat(/content/config/url, 'id/', $id)"/>
-	<xsl:variable name="type" select="/content/rdf:RDF/*[not(name()='geo:spatialThing')]/name()"/>
+	<xsl:variable name="type" select="/content/rdf:RDF/*[not(name()='geo:spatialThing') and not(name()='org:Membership')]/name()"/>
 
 	<!-- flickr -->
 	<xsl:variable name="flickr_api_key" select="/content/config/flickr_api_key"/>
@@ -24,6 +24,7 @@
 			<namespace prefix="geo" uri="http://www.w3.org/2003/01/geo/wgs84_pos#"/>
 			<namespace prefix="nm" uri="http://nomisma.org/id/"/>
 			<namespace prefix="nmo" uri="http://nomisma.org/ontology#"/>
+			<namespace prefix="org" uri="http://www.w3.org/ns/org#"/>
 			<namespace prefix="osgeo" uri="http://data.ordnancesurvey.co.uk/ontology/geometry/"/>
 			<namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
 			<namespace prefix="skos" uri="http://www.w3.org/2004/02/skos/core#"/>
@@ -103,7 +104,7 @@
 					<xsl:if test="$type='nm:mint' or $type='nm:type_series_item' or $type='nm:hoard' or $type='nm:region'">
 						<div id="mapcontainer"/>
 					</xsl:if>
-					
+
 					<!--<xsl:if test="$type != 'numismatic_term'">
 						<xsl:variable name="predicate" select="if ($type='roman_emperor') then 'authority' else $type"/>
 						<xsl:variable name="photos" as="element()*">
@@ -140,7 +141,9 @@
 			<xsl:element name="{if(position()=1) then 'h2' else 'h3'}">
 				<a href="{@rdf:about}">
 					<xsl:choose>
-						<xsl:when test="contains(@rdf:about, '#this')">#this</xsl:when>
+						<xsl:when test="contains(@rdf:about, '#')">
+							<xsl:value-of select="concat('#', substring-after(@rdf:about, '#'))"/>
+						</xsl:when>
 						<xsl:when test="contains(@rdf:about, 'geonames.org')">
 							<xsl:value-of select="@rdf:about"/>
 						</xsl:when>
@@ -161,7 +164,7 @@
 				<xsl:if test="skos:prefLabel">
 					<dt>
 						<a href="{concat($namespaces//namespace[@prefix='skos']/@uri, 'prefLabel')}">skos:prefLabel</a>
-					</dt>				
+					</dt>
 					<dd>
 						<xsl:apply-templates select="skos:prefLabel" mode="prefLabel">
 							<xsl:sort select="@xml:lang"/>
@@ -182,7 +185,7 @@
 			</xsl:apply-templates>
 		</div>
 	</xsl:template>
-	
+
 	<xsl:template match="skos:prefLabel" mode="prefLabel">
 		<span property="{name()}" xml:lang="{@xml:lang}">
 			<xsl:value-of select="."/>
