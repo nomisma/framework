@@ -20,12 +20,6 @@
 		<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"/>
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.9&amp;sensor=false"/>
 		<script type="text/javascript" src="/apps/nomisma/xforms/javascript/georeference.js"/>
-		<style type="text/css">
-        #map {
-            width: 100%;
-            height: 225px;
-        }
-       </style>
 
 		<!-- model -->
 		<xforms:model>
@@ -962,7 +956,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-6">
+									<div class="col-md-4">
 										<xforms:select1 ref="instance('control-instance')/geo/type" appearance="full">
 											<xforms:item>
 												<xforms:label>point</xforms:label>
@@ -1039,7 +1033,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											</div>
 										</xforms:group>
 									</div>
-									<div class="col-md-6">
+									<div class="col-md-8">
 										<xforms:group ref=".[string(instance('control-instance')/geo/type)]">
 											<div id="map"/>
 										</xforms:group>
