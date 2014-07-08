@@ -1,6 +1,13 @@
 $(document).ready(function () {
 	var id = $('title').attr('id');
 	//$('a.thumbImage').fancybox();
+	
+	$('.toggle-geoJSON').click(function() {
+		$('#geoJSON-fragment').toggle();
+		$('#geoJSON-full').toggle();
+		return false;
+	});
+	
 	initialize_map(id);
 });
 

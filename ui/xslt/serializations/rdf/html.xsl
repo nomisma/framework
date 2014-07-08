@@ -44,7 +44,10 @@
 			skos: http://www.w3.org/2004/02/skos/core#
 			ecrm: http://erlangen-crm.org/current/
 			nm: http://nomisma.org/id/
-			osgeo: http://data.ordnancesurvey.co.uk/ontology/geometry/"
+			osgeo: http://data.ordnancesurvey.co.uk/ontology/geometry/
+			org: http://www.w3.org/ns/org#			
+			un: http://www.owl-ontologies.com/Ontology1181490123.owl#
+			xsd: http://www.w3.org/2001/XMLSchema#"
 			vocab="http://nomisma.org/id/">
 			<head>
 				<title id="{$id}">nomisma.org: <xsl:value-of select="$id"/></title>
@@ -210,14 +213,31 @@
 		<dd>
 			<xsl:choose>
 				<xsl:when test="string(.)">
-					<span property="{name()}" xml:lang="{@xml:lang}">
-						<xsl:value-of select="."/>
-					</span>
-					<xsl:if test="string(@xml:lang)">
-						<span class="lang">
-							<xsl:value-of select="concat(' (', @xml:lang, ')')"/>
-						</span>
-					</xsl:if>
+					<xsl:choose>
+						<xsl:when test="name()= 'osgeo:asGeoJSON' and string-length(.) &gt; 100">
+							<div id="geoJSON-fragment">
+								<xsl:value-of select="substring(., 1, 100)"/>
+								<xsl:text>...</xsl:text>
+								<a href="#" class="toggle-geoJSON">[more]</a>
+							</div>
+							<div id="geoJSON-full" style="display:none">
+								<span property="{name()}" xml:lang="{@xml:lang}">
+									<xsl:value-of select="."/>
+								</span>
+								<a href="#" class="toggle-geoJSON">[less]</a>
+							</div>
+						</xsl:when>
+						<xsl:otherwise>
+							<span property="{name()}" xml:lang="{@xml:lang}">
+								<xsl:value-of select="."/>
+							</span>
+							<xsl:if test="string(@xml:lang)">
+								<span class="lang">
+									<xsl:value-of select="concat(' (', @xml:lang, ')')"/>
+								</span>
+							</xsl:if>
+						</xsl:otherwise>
+					</xsl:choose>
 				</xsl:when>
 				<xsl:when test="string(@rdf:resource)">
 					<span>

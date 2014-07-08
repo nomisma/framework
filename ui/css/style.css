@@ -98,6 +98,9 @@ body {
 .lang {
 	font-style:italic;
 }
+.toggle-geoJSON {
+	margin-left:10px;	
+}
 /*
   ***************************************
   Timemap CSS

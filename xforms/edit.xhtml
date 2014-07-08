@@ -16,6 +16,17 @@
 		<link rel="icon" href="/ops/images/orbeon-icon-16.png" type="image/png"/>
 		<link rel="stylesheet" href="/apps/nomisma/xforms/css/style.css"/>
 
+		<!-- mapping -->
+		<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"/>
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.9&amp;sensor=false"/>
+		<script type="text/javascript" src="/apps/nomisma/xforms/javascript/georeference.js"/>
+		<style type="text/css">
+        #map {
+            width: 100%;
+            height: 225px;
+        }
+       </style>
+
 		<!-- model -->
 		<xforms:model>
 			<xforms:instance id="doc" xxforms:exclude-result-prefixes="#all">
@@ -41,6 +52,13 @@
 					<atom-id/>
 					<atom-summary/>
 					<dump/>
+					<geo>
+						<type/>
+						<hasFeature/>
+						<lat/>
+						<long/>
+						<geoJSON/>
+					</geo>
 				</controls>
 			</xforms:instance>
 
@@ -156,7 +174,7 @@
 			<xforms:instance id="long-template" xxforms:exclude-result-prefixes="#all">
 				<geo:long rdf:datatype="xsd:float"/>
 			</xforms:instance>
-			
+
 			<xforms:instance id="asGeoJSON-template" xxforms:exclude-result-prefixes="#all">
 				<osgeo:asGeoJSON/>
 			</xforms:instance>
@@ -176,7 +194,7 @@
 			<xforms:instance id="thumbnail-template" xxforms:exclude-result-prefixes="#all">
 				<foaf:thumbnail rdf:resource=""/>
 			</xforms:instance>
-			
+
 			<xforms:instance id="hasUncertainty-template" xxforms:exclude-result-prefixes="#all">
 				<un:hasUncertainty rdf:resource=""/>
 			</xforms:instance>
@@ -195,7 +213,7 @@
 			<!-- preloaded instances -->
 			<xforms:instance id="sparqlResponse">
 				<sparql xmlns="http://www.w3.org/2005/sparql-results#"/>
-			</xforms:instance>			
+			</xforms:instance>
 
 			<!-- sparql update -->
 			<xforms:instance id="sparqlUpdate-template">
@@ -206,12 +224,12 @@
 			<xforms:instance id="sparqlUpdate">
 				<query/>
 			</xforms:instance>
-			
+
 			<!-- lists to populate drop-down menus, derived from SPARQL -->
 			<xforms:instance id="uncertainty-list" xxforms:exclude-result-prefixes="#all">
 				<list xmlns=""/>
 			</xforms:instance>
-			
+
 			<!-- sparql query templates -->
 			<xforms:instance id="sparql-templates">
 				<templates xmlns="">
@@ -225,7 +243,8 @@ PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
 PREFIX nm:	<http://nomisma.org/id/>
 PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
 PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
-					<query id="uncertainty">SELECT ?uri ?label WHERE {?uri a un:Uncertainty ; skos:prefLabel ?label . FILTER(langMatches(lang(?label), "en"))} ORDER BY ?label</query>
+					<query id="uncertainty">SELECT ?uri ?label WHERE {?uri a un:Uncertainty ; skos:prefLabel ?label . FILTER(langMatches(lang(?label), "en"))} ORDER BY
+						?label</query>
 				</templates>
 			</xforms:instance>
 
@@ -249,6 +268,11 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 					<xforms:setvalue ref="instance('control-instance')/new_id" value="false()" if="string(xxforms:get-request-parameter('id'))"/>
 					<xforms:setvalue ref="instance('load-config')/url" value="concat('file://', instance('config')/id_path, '/', xxforms:get-request-parameter('id'), '.xml')"/>
 					<xforms:insert nodeset="instance('doc')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/load-id.xpl', 'file', instance('load-config'), 'data')"/>
+					
+					<!-- set geo values -->
+					<xforms:setvalue ref="instance('control-instance')/geo/lat" value="instance('doc')/geo:spatialThing/geo:lat"/>
+					<xforms:setvalue ref="instance('control-instance')/geo/long" value="instance('doc')/geo:spatialThing/geo:long"/>
+					<xforms:setvalue ref="instance('control-instance')/geo/geoJSON" value="instance('doc')/geo:spatialThing/osgeo:asGeoJSON"/>
 				</xforms:action>
 				<!-- load uncertainty ids -->
 				<xforms:setvalue ref="instance('sparqlQuery')" value="concat(instance('sparql-templates')/prefix, ' ', instance('sparql-templates')/query[@id='uncertainty'])"/>
@@ -256,15 +280,20 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 				<xforms:action xxforms:iterate="instance('sparqlResponse')//res:result" ev:event="xforms-submit-done">
 					<xforms:var name="uri" select="data(res:binding[@name='uri']/res:uri)"/>
 					<xforms:var name="label" select="(res:binding[@name='label']/res:literal)"/>
-					<xforms:insert context="instance('uncertainty-list')" nodeset="./child::node()[last()]" origin="xforms:element('item', (xforms:attribute('uri', $uri), $label))"/>
+					<xforms:insert context="instance('uncertainty-list')" nodeset="./child::node()[last()]" origin="xforms:element('item', (xforms:attribute('uri', $uri), $label))"
+					/>
 				</xforms:action>
 			</xforms:action>
 
+			<xforms:action ev:event="xforms-ready">
+				<xforms:setvalue ref="instance('control-instance')/geo/type" value="if (instance('doc')/geo:spatialThing/geo:lat) then 'point' else if (instance('doc')/geo:spatialThing/osgeo:asGeoJSON) then 'polygon' else ''"/>
+				<xforms:setvalue ref="instance('control-instance')/geo/hasFeature" value="if (instance('doc')/geo:spatialThing/geo:lat or instance('doc')/geo:spatialThing/osgeo:asGeoJSON) then true() else false()"/>
+			</xforms:action>
 
 			<!-- **************** BINDINGS ********************** -->
 			<xforms:bind nodeset="instance('doc')">
 				<!-- handle top-level rdf:type -->
-				<xforms:bind nodeset="*[not(name()='geo:spatialThing')]">
+				<xforms:bind nodeset="*[1]">
 					<xforms:bind nodeset="@rdf:about" required="true()" type="xs:anyURI"/>
 					<!-- skos -->
 					<xforms:bind nodeset="skos:prefLabel" required="true()">
@@ -305,6 +334,10 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 				<xforms:bind nodeset="id" required="true()" type="xs:anyURI" readonly="../new_id != true()"/>
 				<xforms:bind nodeset="new_id" type="xs:boolean"/>
 				<xforms:bind nodeset="delete-success" type="xs:boolean"/>
+				<xforms:bind nodeset="geo">
+					<xforms:bind nodeset="type" constraint="string-length(.) &gt; 0"/>
+					<xforms:bind nodeset="hasFeature" type="xs:boolean"/>
+				</xforms:bind>				
 				<xforms:bind id="save-trigger" nodeset="save-trigger" type="xs:boolean" readonly=". != true()"/>
 			</xforms:bind>
 
@@ -400,7 +433,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 						</div>
 					</xforms:group>
 					<xforms:group
-						ref=".[count(instance('doc')/*[not(name()='geo:spatialThing')]/skos:prefLabel/@xml:lang) &gt; count(instance('doc')/*[not(name()='geo:spatialThing')]/skos:prefLabel/@xml:lang[not(preceding::skos:prefLabel/@xml:lang = .)])]">
+						ref=".[count(instance('doc')/*[1]/skos:prefLabel/@xml:lang) &gt; count(instance('doc')/*[1]/skos:prefLabel/@xml:lang[not(preceding::skos:prefLabel/@xml:lang = .)])]">
 						<div class="bg-danger alert">
 							<p>
 								<span class="glyphicon glyphicon-exclamation-sign"/>
@@ -408,7 +441,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 						</div>
 					</xforms:group>
 					<xforms:group
-						ref=".[count(instance('doc')/*[not(name()='geo:spatialThing')]/skos:definition/@xml:lang) &gt; count(instance('doc')/*[not(name()='geo:spatialThing')]/skos:definition/@xml:lang[not(preceding::skos:definition/@xml:lang = .)])]">
+						ref=".[count(instance('doc')/*[1]/skos:definition/@xml:lang) &gt; count(instance('doc')/*[1]/skos:definition/@xml:lang[not(preceding::skos:definition/@xml:lang = .)])]">
 						<div class="bg-danger alert">
 							<p>
 								<span class="glyphicon glyphicon-exclamation-sign"/>
@@ -441,7 +474,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 			</div>
 			<div class="row">
 				<div class="col-md-2">
-					<xforms:group ref="instance('doc')/*[not(name()='geo:spatialThing')]">
+					<xforms:group ref="instance('doc')/*[1]">
 						<xforms:var name="type" select="name()"/>
 						<h2>Controls</h2>
 						<ul class="control-list">
@@ -500,7 +533,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										</xforms:label>
 										<xforms:action ev:event="DOMActivate">
 											<xforms:setvalue ref="instance('control-instance')/atom-type"
-												value="if ($type='nm:mint') then concat(namespace-uri(instance('doc')/*[not(name()='geo:spatialThing')]), 'region') else concat(namespace-uri(instance('doc')/*[not(name()='geo:spatialThing')]), $type)"/>
+												value="if ($type='nm:mint') then concat(namespace-uri(instance('doc')/*[1]), 'region') else concat(namespace-uri(instance('doc')/*[1]), $type)"/>
 											<xxforms:show dialog="broader-dialog"/>
 										</xforms:action>
 									</xforms:trigger>
@@ -564,8 +597,6 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											<!-- insert spatialThing -->
 											<xforms:insert context="instance('doc')" nodeset="./child::node()[last()]"
 												origin="xforms:element('geo:spatialThing', (xforms:attribute('rdf:about', concat('http://nomisma.org/id/', instance('control-instance')/id, '#this')), ''))"/>
-											<xforms:insert context="instance('doc')/geo:spatialThing" origin="instance('lat-template')"/>
-											<xforms:insert context="instance('doc')/geo:spatialThing" nodeset="./child::node()[last()]" origin="instance('long-template')"/>
 										</xforms:action>
 									</xforms:trigger>
 								</li>
@@ -586,7 +617,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 							<xforms:alert>Required</xforms:alert>
 							<!-- set id -->
 							<xforms:action ev:event="xforms-value-changed">
-								<xforms:setvalue ref="instance('doc')/*[not(name()='geo:spatialThing')]/@rdf:about"
+								<xforms:setvalue ref="instance('doc')/*[1]/@rdf:about"
 									value="concat('http://nomisma.org/id/', instance('control-instance')/id)"/>
 								<xforms:setvalue ref="instance('doc')/geo:spatialThing/@rdf:about"
 									value="concat('http://nomisma.org/id/', instance('control-instance')/id, '#this')" if="instance('doc')/geo:spatialThing"/>
@@ -616,12 +647,12 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 									<!-- create resource description -->
 									<xforms:insert context="instance('doc')" origin="xforms:element($type, xforms:attribute('rdf:about', ''))"/>
 									<!-- insert skos:prefLabel and skos:definition with @xml:lang='en'-->
-									<xforms:insert context="instance('doc')/*[not(name()='geo:spatialThing')]"
+									<xforms:insert context="instance('doc')/*[1]"
 										origin="xforms:element('skos:prefLabel', xforms:attribute('xml:lang', 'en'))"/>
-									<xforms:insert context="instance('doc')/*[not(name()='geo:spatialThing')]" nodeset="./child::node()[last()]"
+									<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]"
 										origin="xforms:element('skos:definition', xforms:attribute('xml:lang', 'en'))"/>
 									<!-- insert rdf:type as skos:Concept -->
-									<!--<xforms:insert context="instance('doc')/*[not(name()='geo:spatialThing')]"
+									<!--<xforms:insert context="instance('doc')/*[1]"
 										origin="xforms:element('rdf:type', xforms:attribute('rdf:resource', 'http://www.w3.org/2004/02/skos/core#Concept'))"
 										/>-->
 									<!-- insert related foaf:webpage for a collection -->
@@ -634,7 +665,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 						</div>
 					</xforms:group>
 					<xforms:group ref="instance('doc')" id="form">
-						<xforms:group ref="*[not(name()='geo:spatialThing')]">
+						<xforms:group ref="*[1]">
 							<xforms:var name="type" select="name()"/>
 							<h3>
 								<xforms:output ref="instance('classes')/class[type=$type]/label"/>
@@ -898,71 +929,128 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 								</xforms:group>
 							</div>
 						</xforms:group>
+						<!-- geographic -->
 						<xforms:group ref="geo:spatialThing">
 							<div class="subsection">
-								<h3>Geography <small>
-										<xforms:output value="concat('(', @rdf:about, ')')"/>
-										<xforms:trigger appearance="minimal">
-											<xforms:action ev:event="DOMActivate">
-												<xforms:delete nodeset="instance('doc')/*[not(name()='geo:spatialThing')]/geo:location"/>
-												<xforms:delete nodeset="."/>
-											</xforms:action>
-											<xforms:label>
-												<span class="glyphicon glyphicon-remove"/>
-											</xforms:label>
-										</xforms:trigger>
-									</small>
-								</h3>
-								<div class="trigger_container">
-									<xforms:group ref=".[count(un:hasUncertainty) = 0]">
-										<xforms:trigger appearance="minimal">
-											<xforms:label>
-												<span class="glyphicon glyphicon-plus"/>Uncertainty</xforms:label>
-											<xforms:insert ev:event="DOMActivate" origin="instance('hasUncertainty-template')" context="." nodeset="./child::node()[last()]"
-											/>
-										</xforms:trigger>
-									</xforms:group>
-								</div>
-								<div>
-									<xforms:input ref="geo:lat">
-										<xforms:label>Latitude</xforms:label>
-										<xforms:alert>Must be decimal integer between -180 and 180</xforms:alert>
-									</xforms:input>
-								</div>
-								<div>
-									<xforms:input ref="geo:long">
-										<xforms:label>Longitude</xforms:label>
-										<xforms:alert>Must be decimal integer between -180 and 180</xforms:alert>
-									</xforms:input>
-								</div>
-								<xforms:group ref="un:hasUncertainty">
-									<div>
-										<xforms:select1 ref="@rdf:resource">
-											<xforms:label>Uncertainty</xforms:label>
-											<xforms:alert>Required</xforms:alert>
-											<xforms:item>
-												<xforms:label>Select...</xforms:label>
-												<xforms:value/>
-											</xforms:item>
-											<xforms:itemset nodeset="instance('uncertainty-list')//item">
-												<xforms:label ref="."/>
-												<xforms:value ref="@uri"/>
-											</xforms:itemset>
-										</xforms:select1>
-										<xforms:trigger appearance="minimal">
-											<xforms:delete ev:event="DOMActivate" context="."/>
-											<xforms:label>
-												<span class="glyphicon glyphicon-remove"/>
-											</xforms:label>
-										</xforms:trigger>
+								<div class="row">
+									<div class="col-md-12">
+										<h3>Geography <small>
+												<xforms:output value="concat('(', @rdf:about, ')')"/>
+												<xforms:trigger appearance="minimal">
+													<xforms:action ev:event="DOMActivate">
+														<xforms:delete nodeset="instance('doc')/*[1]/geo:location"/>
+														<xforms:delete nodeset="."/>
+														<xforms:setvalue ref="instance('control-instance')/geo/type"/>
+														<xforms:setvalue ref="instance('control-instance')/geo/hasFeature" value="false()"/>
+													</xforms:action>
+													<xforms:label>
+														<span class="glyphicon glyphicon-remove"/>
+													</xforms:label>
+												</xforms:trigger>
+											</small>
+										</h3>
+										<div class="trigger_container">
+											<xforms:group ref=".[count(un:hasUncertainty) = 0]">
+												<xforms:trigger appearance="minimal">
+													<xforms:label>
+														<span class="glyphicon glyphicon-plus"/>Uncertainty</xforms:label>
+													<xforms:insert ev:event="DOMActivate" origin="instance('hasUncertainty-template')" context="." nodeset="./child::node()[last()]"
+													/>
+												</xforms:trigger>
+											</xforms:group>
+										</div>
 									</div>
-								</xforms:group>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<xforms:select1 ref="instance('control-instance')/geo/type" appearance="full">
+											<xforms:item>
+												<xforms:label>point</xforms:label>
+												<xforms:value>point</xforms:value>
+											</xforms:item>
+											<xforms:item>
+												<xforms:label>polygon</xforms:label>
+												<xforms:value>polygon</xforms:value>
+											</xforms:item>
+											<xforms:action ev:event="xforms-value-changed">
+												<!-- insert elements, if necessary -->
+												<xforms:var name="type" select="."/>
+												<xforms:action if="$type='point'">
+													<xforms:delete nodeset="instance('doc')/geo:spatialThing/osgeo:asGeoJSON"/>
+													<!-- insert geo:lat and geo:long if they do not exist -->
+													<xforms:action if="not(instance('doc')/geo:spatialThing/geo:lat)">
+														<xforms:insert context="instance('doc')/geo:spatialThing" origin="instance('long-template')"/>
+														<xforms:insert context="instance('doc')/geo:spatialThing" origin="instance('lat-template')"/>
+													</xforms:action>
+												</xforms:action>
+												<xforms:action if="$type='polygon'">
+													<xforms:delete nodeset="instance('doc')/geo:spatialThing/geo:lat"/>
+													<xforms:delete nodeset="instance('doc')/geo:spatialThing/geo:long"/>
+													<!-- insert geo:lat and geo:long if they do not exist -->
+													<xforms:action if="not(instance('doc')/geo:spatialThing/osgeo:asGeoJSON)">
+														<xforms:insert context="instance('doc')/geo:spatialThing" origin="instance('asGeoJSON-template')"/>
+													</xforms:action>
+												</xforms:action>												
+												<!-- initialize openlayers -->
+												<xxforms:script>init();</xxforms:script>
+											</xforms:action>
+										</xforms:select1>
+										
+										<xforms:group ref="geo:lat">
+											<div>
+												<xforms:output ref=".">
+													<xforms:label>Latitude</xforms:label>
+												</xforms:output>
+											</div>
+										</xforms:group>
+										<xforms:group ref="geo:long">
+											<div>
+												<xforms:output ref=".">
+													<xforms:label>Longitude</xforms:label>
+												</xforms:output>
+											</div>
+										</xforms:group>
+										<xforms:group ref="osgeo:asGeoJSON">
+											<div>
+												<xforms:output ref=".">
+													<xforms:label>Polygon</xforms:label>
+												</xforms:output>
+											</div>
+										</xforms:group>
+										
+										<xforms:group ref="un:hasUncertainty">
+											<div>
+												<xforms:select1 ref="@rdf:resource">
+													<xforms:label>Uncertainty</xforms:label>
+													<xforms:alert>Required</xforms:alert>
+													<xforms:item>
+														<xforms:label>Select...</xforms:label>
+														<xforms:value/>
+													</xforms:item>
+													<xforms:itemset nodeset="instance('uncertainty-list')//item">
+														<xforms:label ref="."/>
+														<xforms:value ref="@uri"/>
+													</xforms:itemset>
+												</xforms:select1>
+												<xforms:trigger appearance="minimal">
+													<xforms:delete ev:event="DOMActivate" context="."/>
+													<xforms:label><span class="glyphicon glyphicon-remove"/></xforms:label>
+												</xforms:trigger>
+											</div>
+										</xforms:group>
+									</div>
+									<div class="col-md-6">
+										<xforms:group ref=".[string(instance('control-instance')/geo/type)]">
+											<div id="map"/>
+										</xforms:group>
+									</div>
+								</div>
 							</div>
 						</xforms:group>
 					</xforms:group>
 				</div>
 				<div class="col-md-2">
-					<xforms:group ref="instance('doc')/*[not(name()='geo:spatialThing')]">
+					<xforms:group ref="instance('doc')/*[1]">
 						<xforms:var name="type" select="name()"/>
 						<h3>Import</h3>
 						<!-- import skos:prefLabels from dbpedia for those languages that are not already in the RDF -->
@@ -1012,9 +1100,9 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 								<xforms:trigger>
 									<xforms:label>Select</xforms:label>
 									<xforms:action ev:event="DOMActivate">
-										<xforms:var name="type" select="instance('doc')/*[not(name()='geo:spatialThing')]/name()"/>
+										<xforms:var name="type" select="instance('doc')/*[1]/name()"/>
 										<xforms:var name="property" select="if ($type = 'nm:region' or $type='nm:mint') then 'ecrm:P88i_forms_part_of' else 'skos:broader'"/>
-										<xforms:insert context="instance('doc')/*[not(name()='geo:spatialThing')]" nodeset="./child::node()[last()]"
+										<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]"
 											origin="xforms:element($property, (xforms:attribute('rdf:resource', concat('http://nomisma.org/id/', instance('control-instance')/atom-id)), ''))"/>
 										<!-- blank atom search nodes and atom feed -->
 										<xforms:delete nodeset="instance('feed')/*"/>
@@ -1036,7 +1124,20 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 						</xforms:group>
 					</div>
 				</xxforms:dialog>
-				<!--<fr:xforms-inspector/>-->
+				
+				<!-- hidden values -->
+				<div style="display:none">
+					<xforms:input ref="instance('control-instance')/geo/hasFeature" id="geo-hasFeature"/>
+					<xforms:output ref="instance('control-instance')/geo/type" id="geo-type-control"/>
+					<xforms:output ref="instance('control-instance')/geo/lat" id="geo-lat"/>
+					<xforms:output ref="instance('control-instance')/geo/long" id="geo-long"/>
+					<xforms:output ref="instance('control-instance')/geo/geoJSON" id="geo-geoJSON"/>
+					<xforms:input ref="instance('doc')/geo:spatialThing/osgeo:asGeoJSON" id="geoJSON-input"/>
+					<xforms:input ref="instance('doc')/geo:spatialThing/geo:lat" id="lat-input"/>
+					<xforms:input ref="instance('doc')/geo:spatialThing/geo:long" id="long-input"/>
+				</div>
+				
+				<!--<fr:xforms-inspector-->/>
 			</div>
 		</div>
 
