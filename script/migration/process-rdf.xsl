@@ -48,7 +48,7 @@
 			<xsl:apply-templates select="@*|*[not(name()='nm:uncertain_value') and not(name()='geo:lat') and not(name()='geo:long')]"/>
 			<geo:location rdf:resource="{concat(@rdf:about, '#this')}"/>
 		</xsl:element>
-		<geo:spatialThing rdf:about="{concat(@rdf:about, '#this')}">
+		<geo:SpatialThing rdf:about="{concat(@rdf:about, '#this')}">
 			<xsl:if test="descendant::geo:lat">
 				<geo:lat rdf:datatype="http://www.w3.org/2001/XMLSchema#float">
 					<xsl:value-of select="descendant::geo:lat"/>
@@ -62,7 +62,7 @@
 			<xsl:if test="nm:uncertain_value">
 				<un:hasUncertainty rdf:resource="http://nomisma.org/id/uncertain_value"/>
 			</xsl:if>
-		</geo:spatialThing>
+		</geo:SpatialThing>
 	</xsl:template>
 
 </xsl:stylesheet>

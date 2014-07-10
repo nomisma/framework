@@ -4,7 +4,7 @@
 	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" exclude-result-prefixes="#all"
 	xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:kml="http://earth.google.com/kml/2.0" version="2.0">
 
-	<xsl:variable name="id" select="substring-after(//*[not(name()='geo:spatialThing')]/@rdf:about, 'id/')"/>
+	<xsl:variable name="id" select="substring-after(//rdf:RDF/*[1]/@rdf:about, 'id/')"/>
 	<xsl:variable name="uri">
 		<xsl:text>http://nomisma.org/id/</xsl:text>
 		<xsl:value-of select="$id"/>
@@ -44,13 +44,13 @@
 
 				<xsl:apply-templates select="nm:mint|nm:region|nm:hoard">
 					<xsl:with-param name="lat">
-						<xsl:value-of select="geo:spatialThing/geo:lat"/>
+						<xsl:value-of select="geo:SpatialThing/geo:lat"/>
 					</xsl:with-param>
 					<xsl:with-param name="long">
-						<xsl:value-of select="geo:spatialThing/geo:long"/>
+						<xsl:value-of select="geo:SpatialThing/geo:long"/>
 					</xsl:with-param>
 					<xsl:with-param name="polygon">
-						<xsl:value-of select="geo:spatialThing/osgeo:asGeoJSON"/>
+						<xsl:value-of select="geo:SpatialThing/osgeo:asGeoJSON"/>
 					</xsl:with-param>
 				</xsl:apply-templates>
 			</Document>

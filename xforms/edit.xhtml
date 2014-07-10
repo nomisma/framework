@@ -264,9 +264,9 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 					<xforms:insert nodeset="instance('doc')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/load-id.xpl', 'file', instance('load-config'), 'data')"/>
 					
 					<!-- set geo values -->
-					<xforms:setvalue ref="instance('control-instance')/geo/lat" value="instance('doc')/geo:spatialThing/geo:lat"/>
-					<xforms:setvalue ref="instance('control-instance')/geo/long" value="instance('doc')/geo:spatialThing/geo:long"/>
-					<xforms:setvalue ref="instance('control-instance')/geo/geoJSON" value="instance('doc')/geo:spatialThing/osgeo:asGeoJSON"/>
+					<xforms:setvalue ref="instance('control-instance')/geo/lat" value="instance('doc')/geo:SpatialThing/geo:lat"/>
+					<xforms:setvalue ref="instance('control-instance')/geo/long" value="instance('doc')/geo:SpatialThing/geo:long"/>
+					<xforms:setvalue ref="instance('control-instance')/geo/geoJSON" value="instance('doc')/geo:SpatialThing/osgeo:asGeoJSON"/>
 				</xforms:action>
 				<!-- load uncertainty ids -->
 				<xforms:setvalue ref="instance('sparqlQuery')" value="concat(instance('sparql-templates')/prefix, ' ', instance('sparql-templates')/query[@id='uncertainty'])"/>
@@ -280,8 +280,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 			</xforms:action>
 
 			<xforms:action ev:event="xforms-ready">
-				<xforms:setvalue ref="instance('control-instance')/geo/type" value="if (instance('doc')/geo:spatialThing/geo:lat) then 'point' else if (instance('doc')/geo:spatialThing/osgeo:asGeoJSON) then 'polygon' else ''"/>
-				<xforms:setvalue ref="instance('control-instance')/geo/hasFeature" value="if (instance('doc')/geo:spatialThing/geo:lat or instance('doc')/geo:spatialThing/osgeo:asGeoJSON) then true() else false()"/>
+				<xforms:setvalue ref="instance('control-instance')/geo/type" value="if (instance('doc')/geo:SpatialThing/geo:lat) then 'point' else if (instance('doc')/geo:SpatialThing/osgeo:asGeoJSON) then 'polygon' else ''"/>
+				<xforms:setvalue ref="instance('control-instance')/geo/hasFeature" value="if (instance('doc')/geo:SpatialThing/geo:lat or instance('doc')/geo:SpatialThing/osgeo:asGeoJSON) then true() else false()"/>
 			</xforms:action>
 
 			<!-- **************** BINDINGS ********************** -->
@@ -315,7 +315,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 					<xforms:bind nodeset="//@rdf:resource" required="true()" type="xs:anyURI"/>
 				</xforms:bind>
 				<!-- geographic -->
-				<xforms:bind nodeset="geo:spatialThing">
+				<xforms:bind nodeset="geo:SpatialThing">
 					<xforms:bind nodeset="@rdf:about" required="true()" type="xs:anyURI"/>
 					<xforms:bind nodeset="geo:lat" constraint="(number(.) &gt; -180 and number(.) &lt; 180)"/>
 					<xforms:bind nodeset="geo:long" constraint="(number(.) &gt; -180 and number(.) &lt; 180)"/>
@@ -576,7 +576,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 
 								</xforms:group>
 							</xforms:group>
-							<xforms:group ref=".[$type='nm:mint' or $type='nm:region'][not(instance('doc')/geo:spatialThing)]">
+							<xforms:group ref=".[$type='nm:mint' or $type='nm:region'][not(instance('doc')/geo:SpatialThing)]">
 								<li>
 									<h4>Geography</h4>
 								</li>
@@ -588,9 +588,9 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											<!-- insert geo:location -->
 											<xforms:insert context="." nodeset="./child::node()[last()]"
 												origin="xforms:element('geo:location', (xforms:attribute('rdf:resource', concat('http://nomisma.org/id/', instance('control-instance')/id, '#this')), ''))"/>
-											<!-- insert spatialThing -->
+											<!-- insert SpatialThing -->
 											<xforms:insert context="instance('doc')" nodeset="./child::node()[last()]"
-												origin="xforms:element('geo:spatialThing', (xforms:attribute('rdf:about', concat('http://nomisma.org/id/', instance('control-instance')/id, '#this')), ''))"/>
+												origin="xforms:element('geo:SpatialThing', (xforms:attribute('rdf:about', concat('http://nomisma.org/id/', instance('control-instance')/id, '#this')), ''))"/>
 										</xforms:action>
 									</xforms:trigger>
 								</li>
@@ -613,8 +613,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 							<xforms:action ev:event="xforms-value-changed">
 								<xforms:setvalue ref="instance('doc')/*[1]/@rdf:about"
 									value="concat('http://nomisma.org/id/', instance('control-instance')/id)"/>
-								<xforms:setvalue ref="instance('doc')/geo:spatialThing/@rdf:about"
-									value="concat('http://nomisma.org/id/', instance('control-instance')/id, '#this')" if="instance('doc')/geo:spatialThing"/>
+								<xforms:setvalue ref="instance('doc')/geo:SpatialThing/@rdf:about"
+									value="concat('http://nomisma.org/id/', instance('control-instance')/id, '#this')" if="instance('doc')/geo:SpatialThing"/>
 							</xforms:action>
 						</xforms:input>
 						<xforms:group ref=".[string-length(instance('control-instance')/id) &gt; 0]">
@@ -924,7 +924,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 							</div>
 						</xforms:group>
 						<!-- geographic -->
-						<xforms:group ref="geo:spatialThing">
+						<xforms:group ref="geo:SpatialThing">
 							<div class="subsection">
 								<div class="row">
 									<div class="col-md-12">
@@ -970,19 +970,19 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 												<!-- insert elements, if necessary -->
 												<xforms:var name="type" select="."/>
 												<xforms:action if="$type='point'">
-													<xforms:delete nodeset="instance('doc')/geo:spatialThing/osgeo:asGeoJSON"/>
+													<xforms:delete nodeset="instance('doc')/geo:SpatialThing/osgeo:asGeoJSON"/>
 													<!-- insert geo:lat and geo:long if they do not exist -->
-													<xforms:action if="not(instance('doc')/geo:spatialThing/geo:lat)">
-														<xforms:insert context="instance('doc')/geo:spatialThing" origin="instance('long-template')"/>
-														<xforms:insert context="instance('doc')/geo:spatialThing" origin="instance('lat-template')"/>
+													<xforms:action if="not(instance('doc')/geo:SpatialThing/geo:lat)">
+														<xforms:insert context="instance('doc')/geo:SpatialThing" origin="instance('long-template')"/>
+														<xforms:insert context="instance('doc')/geo:SpatialThing" origin="instance('lat-template')"/>
 													</xforms:action>
 												</xforms:action>
 												<xforms:action if="$type='polygon'">
-													<xforms:delete nodeset="instance('doc')/geo:spatialThing/geo:lat"/>
-													<xforms:delete nodeset="instance('doc')/geo:spatialThing/geo:long"/>
+													<xforms:delete nodeset="instance('doc')/geo:SpatialThing/geo:lat"/>
+													<xforms:delete nodeset="instance('doc')/geo:SpatialThing/geo:long"/>
 													<!-- insert geo:lat and geo:long if they do not exist -->
-													<xforms:action if="not(instance('doc')/geo:spatialThing/osgeo:asGeoJSON)">
-														<xforms:insert context="instance('doc')/geo:spatialThing" origin="instance('asGeoJSON-template')"/>
+													<xforms:action if="not(instance('doc')/geo:SpatialThing/osgeo:asGeoJSON)">
+														<xforms:insert context="instance('doc')/geo:SpatialThing" origin="instance('asGeoJSON-template')"/>
 													</xforms:action>
 												</xforms:action>												
 												<!-- initialize openlayers -->
@@ -1126,9 +1126,9 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 					<xforms:output ref="instance('control-instance')/geo/lat" id="geo-lat"/>
 					<xforms:output ref="instance('control-instance')/geo/long" id="geo-long"/>
 					<xforms:output ref="instance('control-instance')/geo/geoJSON" id="geo-geoJSON"/>
-					<xforms:input ref="instance('doc')/geo:spatialThing/osgeo:asGeoJSON" id="geoJSON-input"/>
-					<xforms:input ref="instance('doc')/geo:spatialThing/geo:lat" id="lat-input"/>
-					<xforms:input ref="instance('doc')/geo:spatialThing/geo:long" id="long-input"/>
+					<xforms:input ref="instance('doc')/geo:SpatialThing/osgeo:asGeoJSON" id="geoJSON-input"/>
+					<xforms:input ref="instance('doc')/geo:SpatialThing/geo:lat" id="lat-input"/>
+					<xforms:input ref="instance('doc')/geo:SpatialThing/geo:long" id="long-input"/>
 				</div>
 				
 				<!--<fr:xforms-inspector-->/>
