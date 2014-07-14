@@ -19,7 +19,7 @@
 <!-- ***** DEPLOYTMENT NOTES *****
 	
 	In July 2014, this stylesheet was imported from https://github.com/Graphity/graphity-browser/blob/master/src/main/webapp/static/org/graphity/client/xsl/rdfxml2json-ld.xsl
-
+	Updates by Ethan Gruber.
 -->
 
 
