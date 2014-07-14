@@ -5,15 +5,9 @@
 
 	<xsl:variable name="namespaces" as="item()*">
 		<namespaces>
-			<namespace prefix="ecrm" uri="http://erlangen-crm.org/current/"/>
-			<namespace prefix="dcterms" uri="http://purl.org/dc/terms/"/>
-			<namespace prefix="foaf" uri="http://xmlns.com/foaf/0.1/"/>
-			<namespace prefix="geo" uri="http://www.w3.org/2003/01/geo/wgs84_pos#"/>
-			<namespace prefix="nm" uri="http://nomisma.org/id/"/>
-			<namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
-			<namespace prefix="skos" uri="http://www.w3.org/2004/02/skos/core#"/>
-			<namespace prefix="xsd" uri="http://www.w3.org/2001/XMLSchema#"/>
-			<namespace prefix="un" uri="http://www.owl-ontologies.com/Ontology1181490123.owl#"/>
+			<xsl:for-each select="/rdf:RDF/namespace::*[not(name()='xml')]">
+				<namespace prefix="{name()}" uri="{.}"/>
+			</xsl:for-each>
 		</namespaces>
 	</xsl:variable>
 	

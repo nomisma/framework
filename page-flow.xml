@@ -41,6 +41,7 @@
 	<!--<page path="/nomisma/id/(.*)\.nuds" matcher="oxf:perl5-matcher" model="xpl/models/get-id.xpl" view="xpl/serializations/rdf/nuds.xpl"/>-->
 	<page path="/nomisma/id/(.*)\.kml" matcher="oxf:perl5-matcher" model="xpl/models/get-id.xpl" view="xpl/serializations/rdf/kml.xpl"/>
 	<page path="/nomisma/id/(.*)\.ttl" matcher="oxf:perl5-matcher" model="xpl/models/get-id.xpl" view="xpl/serializations/rdf/ttl.xpl"/>
+	<page path="/nomisma/id/(.*)\.jsonld" matcher="oxf:perl5-matcher" model="xpl/models/get-id.xpl" view="xpl/serializations/rdf/json-ld.xpl"/>
 	<page path="/nomisma/id/(.*)\.solr" matcher="oxf:perl5-matcher" model="xpl/models/get-id.xpl" view="xpl/serializations/rdf/solr.xpl"/>
 	<page path="/nomisma/id/(.*)" matcher="regexp" model="xpl/models/get-id.xpl" view="xpl/serializations/rdf/html.xpl"/>
 	

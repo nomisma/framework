@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/"
-	xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/"
-	xmlns:org="http://www.w3.org/ns/org#" xmlns:nomisma="http://nomisma.org/" exclude-result-prefixes="#all" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:org="http://www.w3.org/ns/org#" xmlns:nomisma="http://nomisma.org/"
+	exclude-result-prefixes="#all" version="2.0">
 	<xsl:include href="../../templates.xsl"/>
 
 	<xsl:variable name="display_path">../</xsl:variable>
@@ -18,37 +18,23 @@
 	<!-- definition of namespaces for turning in solr type field URIs into abbreviations -->
 	<xsl:variable name="namespaces" as="item()*">
 		<namespaces>
-			<namespace prefix="ecrm" uri="http://erlangen-crm.org/current/"/>
-			<namespace prefix="dcterms" uri="http://purl.org/dc/terms/"/>
-			<namespace prefix="foaf" uri="http://xmlns.com/foaf/0.1/"/>
-			<namespace prefix="geo" uri="http://www.w3.org/2003/01/geo/wgs84_pos#"/>
-			<namespace prefix="nm" uri="http://nomisma.org/id/"/>
-			<namespace prefix="nmo" uri="http://nomisma.org/ontology#"/>
-			<namespace prefix="org" uri="http://www.w3.org/ns/org#"/>
-			<namespace prefix="osgeo" uri="http://data.ordnancesurvey.co.uk/ontology/geometry/"/>
-			<namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
-			<namespace prefix="skos" uri="http://www.w3.org/2004/02/skos/core#"/>
-			<namespace prefix="xsd" uri="http://www.w3.org/2001/XMLSchema#"/>
-			<namespace prefix="un" uri="http://www.owl-ontologies.com/Ontology1181490123.owl#"/>
+			<xsl:for-each select="//rdf:RDF/namespace::*[not(name()='xml')]">
+				<namespace prefix="{name()}" uri="{.}"/>
+			</xsl:for-each>
 		</namespaces>
 	</xsl:variable>
 
+	<xsl:variable name="prefix">
+		<xsl:for-each select="$namespaces/namespace">
+			<xsl:value-of select="concat(@prefix, ':', @uri)"/>
+			<xsl:if test="not(position()=last())">
+				<xsl:text> </xsl:text>
+			</xsl:if>
+		</xsl:for-each>
+	</xsl:variable>
+
 	<xsl:template match="/">
-		<html lang="en"
-			prefix="dcterms: http://purl.org/dc/terms/
-			foaf: http://xmlns.com/foaf/0.1/
-			geo:  http://www.w3.org/2003/01/geo/wgs84_pos#
-			owl:  http://www.w3.org/2002/07/owl#
-			rdfs: http://www.w3.org/2000/01/rdf-schema#
-			rdf:  http://www.w3.org/1999/02/22-rdf-syntax-ns#
-			skos: http://www.w3.org/2004/02/skos/core#
-			ecrm: http://erlangen-crm.org/current/
-			nm: http://nomisma.org/id/
-			osgeo: http://data.ordnancesurvey.co.uk/ontology/geometry/
-			org: http://www.w3.org/ns/org#			
-			un: http://www.owl-ontologies.com/Ontology1181490123.owl#
-			xsd: http://www.w3.org/2001/XMLSchema#"
-			vocab="http://nomisma.org/id/">
+		<html lang="en" prefix="{$prefix}">
 			<head>
 				<title id="{$id}">nomisma.org: <xsl:value-of select="$id"/></title>
 				<meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -92,7 +78,7 @@
 								<a href="{$id}.ttl">RDF/TTL</a>
 							</li>
 							<li>
-								<a href="http://www.w3.org/2012/pyRdfa/extract?uri={$html-uri}&amp;format=json">JSON-LD</a>
+								<a href="{$id}.jsonld">JSON-LD</a>
 							</li>
 							<!--<li>
 								<a href="{$id}.pelagios.rdf">Pelagios RDF/XML</a>
@@ -245,9 +231,7 @@
 							<xsl:choose>
 								<xsl:when test="name()='rdf:type'">
 									<xsl:variable name="uri" select="@rdf:resource"/>
-									<xsl:value-of
-										select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"
-									/>
+									<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/>
 								</xsl:when>
 								<xsl:otherwise>
 									<xsl:value-of select="@rdf:resource"/>
