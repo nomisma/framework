@@ -140,7 +140,7 @@
 							<xsl:value-of select="parent::node()/name()"/>
 						</type>
 					</xsl:if>
-					<xsl:if test="(parent::node()/name()='geo:SpatialThing' or parent::node()/rdf:type[contains(@rdf:resource, 'SpatialThing')]) and parent::node()/osgeo:geoJSON">
+					<xsl:if test="(parent::node()/name()='geo:SpatialThing' or parent::node()/rdf:type[contains(@rdf:resource, 'SpatialThing')]) and parent::node()/osgeo:asGeoJSON">
 						<type>FeatureCollection</type>
 					</xsl:if>
 					<xsl:for-each select="parent::node()/rdf:type">
@@ -150,7 +150,7 @@
 					</xsl:for-each>
 				</types>
 			</xsl:variable>
-			<xsl:if test="not(parent::node()/name()='rdf:Description') or count(parent::node()/rdf:type) &gt; 0">
+			<xsl:if test="count($types/type) &gt; 0">
 				<xsl:text>, "@type": [</xsl:text>
 				<xsl:for-each select="$types/type"> "<xsl:value-of select="."/>" <xsl:if test="not(position()=last())">
 						<xsl:text>,</xsl:text>
