@@ -47,14 +47,14 @@
 					<config>
 						<url>
 							<xsl:value-of select="concat('file://', /config/id_path, '/', $doc, '.xml')"/>
-						</url>
+						</url>						
 						<mode>xml</mode>
 						<content-type>application/xml</content-type>
 						<encoding>utf-8</encoding>
 					</config>			
 				</xsl:template>
 			</xsl:stylesheet>
-		</p:input>
+		</p:input>		
 		<p:output name="data" id="url-generator-config"/>
 	</p:processor>
 	
