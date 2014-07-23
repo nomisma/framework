@@ -6,10 +6,10 @@
 	<xsl:include href="../../templates.xsl"/>
 
 	<xsl:variable name="display_path">../</xsl:variable>
-	<xsl:variable name="id" select="substring-after(/content/rdf:RDF/*[not(name()='geo:SpatialThing') and not(name()='org:Membership')]/@rdf:about, 'id/')"/>
-	<xsl:variable name="uri" select="concat('http://nomisma.org/id/', $id)"/>
-	<xsl:variable name="html-uri" select="concat(/content/config/url, 'id/', $id)"/>
-	<xsl:variable name="type" select="/content/rdf:RDF/*[not(name()='geo:SpatialThing') and not(name()='org:Membership')]/name()"/>
+	<xsl:variable name="id" select="substring-after(/content/rdf:RDF/*[1]/@rdf:about, 'id/')"/>
+	<xsl:variable name="html-uri" select="concat(/content/config/url, 'id/', $id, '.html')"/>
+	<xsl:variable name="type" select="/content/rdf:RDF/*[1]/name()"/>
+	<xsl:variable name="title" select="/content/rdf:RDF/*[1]/skos:prefLabel[@xml:lang='en']"/>
 
 	<!-- flickr -->
 	<xsl:variable name="flickr_api_key" select="/content/config/flickr_api_key"/>
