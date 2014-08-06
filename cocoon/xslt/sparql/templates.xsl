@@ -456,6 +456,9 @@
 			<coin-count>
 				<xsl:value-of select="count(descendant::res:result[contains(res:binding[@name='objectType']/res:uri, 'coin')])"/>
 			</coin-count>
+			<object-count>
+				<xsl:value-of select="count(descendant::res:result[contains(res:binding[@name='objectType']/res:uri, 'E18_Physical_Thing')])"/>
+			</object-count>
 			<hoard-count>
 				<xsl:value-of select="count(descendant::res:result[contains(res:binding[@name='objectType']/res:uri, 'hoard')])"/>
 			</hoard-count>
