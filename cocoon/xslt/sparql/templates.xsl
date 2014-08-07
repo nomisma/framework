@@ -252,7 +252,9 @@
 			PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
 			
 			SELECT ?object ?objectType ?identifier ?collection ?obvThumb ?revThumb ?obvRef ?revRef ?comThumb ?comRef ?type WHERE {
-			?object nm:type_series_item <typeUri> .
+			{ ?object nm:type_series_item <typeUri> }
+			UNION { ?broader skos:broader <typeUri> .
+			?object nm:type_series_item ?broader }
 			?object rdf:type ?objectType .
 			OPTIONAL { ?object dcterms:identifier ?identifier }
 			OPTIONAL { ?object nm:collection ?colUri .
