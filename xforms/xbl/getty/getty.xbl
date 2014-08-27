@@ -11,21 +11,61 @@
 					</xforms:var>
 					<xforms:trigger appearance="minimal">
 						<xforms:label><span class="glyphicon glyphicon-search"/>Getty AAT</xforms:label>
-						<xforms:action ev:event="DOMActivate">
-							<xxforms:show dialog="getty-dialog"/>
+						<xforms:action ev:event="DOMActivate">							
 							<!-- if there is a skos:prefLabel and no Getty URIs, automatically submit the label -->
-							<xforms:action if="count($binding//@rdf:resource[contains(., 'vocab.getty.edu/aat/')]) = 0 and string-length($binding/skos:prefLabel[@xml:lang='en']) &gt; 0">
+							<xforms:action if="count($binding//@rdf:resource[contains(., 'vocab.getty.edu/')]) = 0 and string-length($binding/skos:prefLabel[@xml:lang='en']) &gt; 0">
 								<xforms:setvalue ref="instance('control-instance')/getty-search" value="$binding/skos:prefLabel[@xml:lang='en']"/>
 								<xforms:var name="search_text" select="string-join(tokenize(instance('control-instance')/getty-search, ' '), ' AND ')"/>
 								<xforms:var name="type" select="$binding/name()"/>
-								<xforms:setvalue ref="instance('sparqlQuery')"
-									value="normalize-space(replace(replace(instance('getty-sparql-template'), 'SEARCH_QUERY', $search_text), 'FACET', instance('getty-facets')//facet[@type=$type]/text()))"/>
+								<xforms:var name="scheme" select="if ($type='nm:mint' or $type='nm:region') then 'tgn' else 'aat'"/>
+								<xforms:action if="$scheme = 'aat'">
+									<xforms:setvalue ref="instance('sparqlQuery')"
+										value="normalize-space(replace(replace(instance('getty-aat-template'), 'SEARCH_QUERY', $search_text), 'FACET', instance('getty-facets')//facet[@type=$type]/text()))"/>
+								</xforms:action>
+								<xforms:action if="$scheme = 'tgn'">
+									<xforms:setvalue ref="instance('sparqlQuery')"
+										value="normalize-space(replace(instance('getty-tgn-template'), 'SEARCH_QUERY', $search_text))"/>
+								</xforms:action>								
 								<xforms:delete context="instance('getty-options')/*"/>
-								<xforms:send submission="query-aat"/>
+								<xforms:send submission="query-getty"/>
+								<xxforms:show dialog="getty-results-dialog"/>
+							</xforms:action>
+							<!-- else, just show search dialog -->
+							<xforms:action if="not(count($binding//@rdf:resource[contains(., 'vocab.getty.edu/')]) = 0 and string-length($binding/skos:prefLabel[@xml:lang='en']) &gt; 0)">
+								<xxforms:show dialog="getty-search-dialog"/>
 							</xforms:action>
 						</xforms:action>
 					</xforms:trigger>
-					<xxforms:dialog id="getty-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
+					
+					<!-- separate search and results dialog for recentering -->
+					<xxforms:dialog id="getty-search-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
+						<xforms:label>Query Getty</xforms:label>
+						<div>
+							<xforms:input ref="instance('control-instance')/getty-search"/>
+							<xforms:trigger>
+								<xforms:action ev:event="DOMActivate">
+									<xxforms:hide dialog="getty-search-dialog"/>g
+									<xforms:var name="search_text" select="string-join(tokenize(instance('control-instance')/getty-search, ' '), ' AND ')"/>
+									<xforms:var name="type" select="$binding/name()"/>
+									<xforms:var name="scheme" select="if ($type='nm:mint' or $type='nm:region') then 'tgn' else 'aat'"/>
+									<xforms:action if="$scheme = 'aat'">
+										<xforms:setvalue ref="instance('sparqlQuery')"
+											value="normalize-space(replace(replace(instance('getty-aat-template'), 'SEARCH_QUERY', $search_text), 'FACET', instance('getty-facets')//facet[@type=$type]/text()))"/>
+									</xforms:action>
+									<xforms:action if="$scheme = 'tgn'">
+										<xforms:setvalue ref="instance('sparqlQuery')"
+											value="normalize-space(replace(instance('getty-tgn-template'), 'SEARCH_QUERY', $search_text))"/>
+									</xforms:action>
+									<xforms:delete context="instance('getty-options')/*"/>
+									<xforms:send submission="query-getty"/>									
+									<xxforms:show dialog="getty-results-dialog"/>
+								</xforms:action>
+								<xforms:label>Search</xforms:label>
+							</xforms:trigger>
+						</div>
+					</xxforms:dialog>
+					
+					<xxforms:dialog id="getty-results-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
 						<xforms:label>Query Getty</xforms:label>
 						<div>
 							<xforms:input ref="instance('control-instance')/getty-search"/>
@@ -33,10 +73,17 @@
 								<xforms:action ev:event="DOMActivate">
 									<xforms:var name="search_text" select="string-join(tokenize(instance('control-instance')/getty-search, ' '), ' AND ')"/>
 									<xforms:var name="type" select="$binding/name()"/>
-									<xforms:setvalue ref="instance('sparqlQuery')"
-										value="normalize-space(replace(replace(instance('getty-sparql-template'), 'SEARCH_QUERY', $search_text), 'FACET', instance('getty-facets')//facet[@type=$type]/text()))"/>
+									<xforms:var name="scheme" select="if ($type='nm:mint' or $type='nm:region') then 'tgn' else 'aat'"/>
+									<xforms:action if="$scheme = 'aat'">
+										<xforms:setvalue ref="instance('sparqlQuery')"
+											value="normalize-space(replace(replace(instance('getty-aat-template'), 'SEARCH_QUERY', $search_text), 'FACET', instance('getty-facets')//facet[@type=$type]/text()))"/>
+									</xforms:action>
+									<xforms:action if="$scheme = 'tgn'">
+										<xforms:setvalue ref="instance('sparqlQuery')"
+											value="normalize-space(replace(instance('getty-tgn-template'), 'SEARCH_QUERY', $search_text))"/>
+									</xforms:action>
 									<xforms:delete context="instance('getty-options')/*"/>
-									<xforms:send submission="query-aat"/>
+									<xforms:send submission="query-getty"/>
 								</xforms:action>
 								<xforms:label>Search</xforms:label>
 							</xforms:trigger>
@@ -49,6 +96,7 @@
 											<th>Select</th>
 											<th>Name</th>
 											<th>Id</th>
+											<th>Description</th>
 											<th>Type</th>
 										</tr>
 									</thead>
@@ -59,12 +107,16 @@
 													<xforms:input ref="@select"/>
 												</td>
 												<td>
-													<xforms:output ref="." style="width:20px"/>
+													<xforms:output ref="." style="width:50px"/>
 												</td>
 												<td>
 													<a href="{@link}" target="_blank">
 														<xforms:output ref="tokenize(@link, '/')[last()]"/>
 													</a>
+												</td>
+												<td>
+													<xforms:output ref="substring(@description, 1, 100)" style="width:200px;"/>
+													<xforms:group ref=".[string-length(@description) &gt; 100]">...</xforms:group>
 												</td>
 												<td>
 													<xforms:select1 ref="@type" class="short-input">
@@ -92,12 +144,14 @@
 												<xforms:insert context="$binding" nodeset="./child::node()[last()]" origin="xforms:element($type, xforms:attribute('rdf:resource', $resource))"/>
 											</xforms:action>
 										</xforms:action>
-										<xxforms:hide dialog="getty-dialog"/>
+										<xxforms:hide dialog="getty-results-dialog"/>
 									</xforms:action>
 								</xforms:trigger>
 							</xforms:group>
 						</div>
-					</xxforms:dialog>
+					</xxforms:dialog>		
+					<!--<xforms:output ref="instance('sparqlQuery')"/>
+					<fr:xforms-inspector xmlns:fr="http://orbeon.org/oxf/xml/form-runner" />-->
 					<!-- ***************** MODEL ***************-->
 					<xforms:model id="getty-model">
 						<!-- instances -->
@@ -117,17 +171,31 @@
 							</facets>
 						</xforms:instance>
 
-						<xforms:instance id="getty-sparql-template">
+						<xforms:instance id="getty-aat-template">
 							<query><![CDATA[PREFIX gvp: <http://vocab.getty.edu/ontology#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX luc: <http://www.ontotext.com/owlim/lucene#>
 PREFIX aat: <http://vocab.getty.edu/aat/>
-SELECT ?c ?label WHERE {
+SELECT ?c ?label ?scopeNote WHERE {
 ?c a gvp:Concept; skos:inScheme aat: ;
 gvp:broaderTransitive aat:FACET ;
 gvp:prefLabelGVP/xl:literalForm ?label ;
+skos:scopeNote/rdf:value ?scopeNote ;
 luc:term "SEARCH_QUERY"
 FILTER langMatches(lang(?label), "en")} LIMIT 25]]>
+							</query>
+						</xforms:instance>
+						
+						<xforms:instance id="getty-tgn-template">
+							<query><![CDATA[PREFIX gvp: <http://vocab.getty.edu/ontology#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX luc: <http://www.ontotext.com/owlim/lucene#>
+PREFIX tgn: <http://vocab.getty.edu/tgn/>
+SELECT ?c ?label ?scopeNote WHERE {
+?c a gvp:AdminPlaceConcept; skos:inScheme tgn: ;
+gvp:prefLabelGVP/xl:literalForm ?label ;
+skos:scopeNote/rdf:value ?scopeNote ;
+luc:term "SEARCH_QUERY"} LIMIT 25]]>
 							</query>
 						</xforms:instance>
 
@@ -151,14 +219,25 @@ FILTER langMatches(lang(?label), "en")} LIMIT 25]]>
 						</xforms:bind>
 
 						<!-- submissions -->
-						<xforms:submission id="query-aat" action="http://vocab.getty.edu/sparql?query={encode-for-uri(instance('sparqlQuery'))}&amp;format=xml" ref="instance('getty-response')"
+						<xforms:submission id="query-getty" action="http://vocab.getty.edu/sparql?query={encode-for-uri(instance('sparqlQuery'))}" ref="instance('getty-response')"
 							replace="instance" method="get">
-							<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL query failed.</xforms:message>
+							<xforms:header>
+								<xforms:name>User-Agent</xforms:name>
+								<xforms:value>XForms/Nomisma.org</xforms:value>
+							</xforms:header>
+							<xforms:header>
+								<xforms:name>Accept</xforms:name>
+								<xforms:value>application/sparql-results+xml</xforms:value>
+							</xforms:header>
+							<xforms:message ev:event="xforms-submit-error" level="modal"><!--SPARQL query failed.-->
+								<xforms:output value="event('response-headers')"/> 
+							</xforms:message>
 							<xforms:action xxforms:iterate="instance('getty-response')//res:result" ev:event="xforms-submit-done">
 								<xforms:var name="link" select="context()/res:binding[@name='c']/res:uri"/>
 								<xforms:var name="title" select="context()/res:binding[@name='label']/res:literal"/>
+								<xforms:var name="scopeNote" select="context()/res:binding[@name='scopeNote']/res:literal"/>
 								<xforms:insert context="instance('getty-options')" nodeset="./child::node()[last()]"
-									origin="xforms:element('option', (xforms:attribute('select', false()), xforms:attribute('link', $link), xforms:attribute('type', 'skos:exactMatch'), $title))"/>
+									origin="xforms:element('option', (xforms:attribute('select', false()), xforms:attribute('link', $link), xforms:attribute('type', 'skos:exactMatch'), xforms:attribute('description', $scopeNote), $title))"/>
 							</xforms:action>
 						</xforms:submission>
 					</xforms:model>

@@ -1075,8 +1075,11 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 							<nomisma:getty/>
 						</xforms:group>
 						<!-- extract coordinates from Pleiades if there is a Pleiades URI in skos:exactMatch, but no geo:lat and geo:long -->
-						<xforms:group ref=".[($type='nm:mint' or $type='nm:region') and not(skos:relatedMatch[contains(@rdf:resource, 'pleiades.stoa.org')])]">
-							<nomisma:pleiades/>
+						<xforms:group ref=".[$type='nm:mint' or $type='nm:region']">
+							<xforms:group ref=".[not(skos:relatedMatch[contains(@rdf:resource, 'pleiades.stoa.org')])]">
+								<nomisma:pleiades/>
+							</xforms:group>
+							<nomisma:getty/>
 						</xforms:group>
 						<!-- query VIAF to add associated URIs -->
 						<xforms:group ref=".[$type='foaf:Person' or $type='foaf:Organization']">
