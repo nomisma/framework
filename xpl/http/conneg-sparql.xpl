@@ -24,7 +24,7 @@
 					<xsl:choose>
 						<xsl:when test="string($output)">
 							<xsl:choose>
-								<xsl:when test="$output='text' or $output='csv' or $output='json'">
+								<xsl:when test="$output='text' or $output='csv' or $output='json' or $output='xml'">
 									<xsl:value-of select="$output"/>
 								</xsl:when>
 								<xsl:otherwise>html</xsl:otherwise>
