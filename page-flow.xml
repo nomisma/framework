@@ -43,10 +43,10 @@
 	<page path="/nomisma/id/(.*)\.ttl" matcher="oxf:perl5-matcher" model="xpl/models/get-id.xpl" view="xpl/serializations/rdf/ttl.xpl"/>
 	<page path="/nomisma/id/(.*)\.jsonld" matcher="oxf:perl5-matcher" model="xpl/models/get-id.xpl" view="xpl/serializations/rdf/json-ld.xpl"/>
 	<page path="/nomisma/id/(.*)\.solr" matcher="oxf:perl5-matcher" model="xpl/models/get-id.xpl" view="xpl/serializations/rdf/solr.xpl"/>
-	<page path="/nomisma/id/(.*)" matcher="regexp" model="xpl/models/get-id.xpl" view="xpl/http/conneg.xpl"/>
+	<page path="/nomisma/id/(.*)" matcher="regexp" model="xpl/models/get-id.xpl" view="xpl/http/conneg-id.xpl"/>
 	
 	<!-- SPARQL -->
-	<page path="/nomisma/query" view="xpl/serializations/sparql/query.xpl"/>
+	<page path="/nomisma/query" view="xpl/http/conneg-sparql.xpl"/>
 	
 	<!-- **** APIs **** -->
 	<page path="/nomisma/apis/avgAxis" view="xpl/serializations/sparql/apis.xpl"/>
