@@ -25,7 +25,7 @@
 	</xsl:template>
 
 	<xsl:template name="body">
-		<div class="container-fluid">
+		<div class="container-fluid content">
 			<div class="row">
 				<div class="col-md-12">
 					<h1>Results</h1>
@@ -47,26 +47,28 @@
 			</div>
 		</div>
 	</xsl:template>
-	
+
 	<xsl:template match="res:result">
 		<tr>
 			<xsl:apply-templates select="res:binding"/>
 		</tr>
 	</xsl:template>
-	
+
 	<xsl:template match="res:binding">
 		<td>
 			<xsl:choose>
 				<xsl:when test="res:uri">
-					<a href="{res:uri}"><xsl:value-of select="res:uri"/></a>
+					<a href="{res:uri}">
+						<xsl:value-of select="res:uri"/>
+					</a>
 				</xsl:when>
 				<xsl:otherwise>
 					<xsl:value-of select="res:literal"/>
-					<xsl:if test="@xml:lang">
-						<i> (<xsl:value-of select="@xml:lang"/>)</i>
+					<xsl:if test="res:literal/@xml:lang">
+						<i> (<xsl:value-of select="res:literal/@xml:lang"/>)</i>
 					</xsl:if>
-					<xsl:if test="@datatype">
-						<i> (<xsl:value-of select="@datatype"/>)</i>
+					<xsl:if test="res:literal/@datatype">
+						<i> (<xsl:value-of select="res:literal/@datatype"/>)</i>
 					</xsl:if>
 				</xsl:otherwise>
 			</xsl:choose>

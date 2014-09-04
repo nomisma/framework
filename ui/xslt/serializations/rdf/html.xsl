@@ -59,7 +59,7 @@
 	</xsl:template>
 
 	<xsl:template name="body">
-		<div class="container-fluid">
+		<div class="container-fluid content">
 			<div class="row">
 				<div class="col-md-{if ($type='nm:mint' or $type='nm:type_series_item' or $type='nm:hoard' or $type='nm:region') then '6' else '9'}">
 					<xsl:apply-templates select="/content/rdf:RDF/*" mode="type"/>
