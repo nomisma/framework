@@ -18,7 +18,6 @@
 				<script type="text/javascript" src="{$display_path}ui/javascript/sparql.js"/>
 				<script type="text/javascript" src="{$display_path}ui/javascript/sparql_functions.js"/>
 				<link rel="stylesheet" href="{$display_path}ui/css/codemirror.css"/>
-				<!--<link rel="stylesheet" href="{$display_path}ui/css/sparqlcolors.css"/>-->
 				<link rel="stylesheet" href="{$display_path}ui/css/style.css"/>
 			</head>
 			<body>
