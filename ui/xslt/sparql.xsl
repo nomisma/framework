@@ -67,7 +67,7 @@ SELECT * WHERE {
 							<button type="submit" class="btn btn-default">Submit</button>
 						</div>
 						<div class="col-md-6">
-							<p class="text-info">This endpoint (<xsl:value-of select="/config/sparql_query"/>) supports content negotiation for the following content types:
+							<p class="text-info">This endpoint (<xsl:value-of select="concat(/config/url, 'query')"/>) supports content negotiation for the following content types:
 									<i>text/html</i>, <i>text/csv</i>, <i>text/plain</i>, <i>application/sparql-results+json</i>, and <i>application/sparql-results+xml</i></p>
 						</div>
 					</form>
