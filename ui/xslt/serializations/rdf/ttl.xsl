@@ -86,17 +86,23 @@
 				</xsl:when>
 				<xsl:when test="string(@rdf:resource)">
 					<xsl:variable name="uri" select="@rdf:resource"/>
-					<xsl:choose>
+					<!--<xsl:choose>
 						<xsl:when test="$namespaces//namespace[contains($uri, @uri)]">
+							<xsl:text>&lt;</xsl:text>
 							<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/>
+							<xsl:text>&gt;</xsl:text>
 						</xsl:when>
 						<xsl:otherwise>
 							<xsl:text>&lt;</xsl:text>
 							<xsl:value-of select="$uri"/>
 							<xsl:text>&gt;</xsl:text>
 						</xsl:otherwise>
-					</xsl:choose>
-
+					</xsl:choose>-->
+					
+					<!-- apparently the object must be a URI without prefix -->
+					<xsl:text>&lt;</xsl:text>
+					<xsl:value-of select="$uri"/>
+					<xsl:text>&gt;</xsl:text>
 				</xsl:when>
 			</xsl:choose>
 			<xsl:if test="string(.) and string(@xml:lang)">
