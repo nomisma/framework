@@ -26,7 +26,7 @@
 				<xsl:text> .</xsl:text>
 			</xsl:variable>
 
-			<xsl:value-of select="concat(normalize-space($prefix), '&#xD;')"/>
+			<xsl:value-of select="concat(normalize-space($prefix), '&#xA;')"/>
 		</xsl:for-each>
 		<xsl:apply-templates select="*" mode="root"/>
 	</xsl:template>
@@ -51,7 +51,7 @@
 			
 		</xsl:variable>
 		
-		<xsl:value-of select="concat('&#xD;', normalize-space($about), '&#xD;')"/>
+		<xsl:value-of select="concat('&#xA;', normalize-space($about), '&#xA;')"/>
 		
 		<xsl:variable name="count" select="count(distinct-values(*[not(child::*)]/name()))"/>
 		<xsl:for-each select="distinct-values(*[not(child::*)]/name())">
@@ -151,7 +151,7 @@
 				</xsl:when>				
 			</xsl:choose>	
 		</xsl:variable>
-		<xsl:value-of select="concat(if (position() = 1) then ' ' else '&#x9;&#x9;', normalize-space($line), '&#xD;')"/>
+		<xsl:value-of select="concat(if (position() = 1) then ' ' else '&#x9;&#x9;', normalize-space($line), '&#xA;')"/>
 	</xsl:template>
 	
 	<xsl:template match="*" mode="suburi">
@@ -182,6 +182,6 @@
 				<xsl:otherwise>.</xsl:otherwise>				
 			</xsl:choose>
 		</xsl:variable>
-		<xsl:value-of select="concat('&#x9;', normalize-space($chunk), '&#xD;')"/>
+		<xsl:value-of select="concat('&#x9;', normalize-space($chunk), '&#xA;')"/>
 	</xsl:template>
 </xsl:stylesheet>
