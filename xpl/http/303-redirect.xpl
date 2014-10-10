@@ -15,19 +15,19 @@
 	<!-- generate HTML fragment to be returned -->
 	<p:processor name="oxf:unsafe-xslt">
 		<p:input name="request" href="#request"/>
-		<p:input name="data" href="../config.xml"/>
+		<p:input name="data" href="#data"/>
 		<p:input name="config">
 			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 				<xsl:output indent="yes"/>
 				<xsl:template match="/">
-					<xsl:variable name="path" select="substring-after(doc('input:request')/request/request-url, 'id/')"/>
-					<html xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+					<html xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/"
+						xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 						<head>
 							<title>303 See Other</title>
 						</head>
 						<body>
 							<h1>See Other</h1>
-							<p>The answer to your request is located <a href="{/config/url}id/{$path}.html">here</a>.</p>
+							<p>The answer to your request is located <a href="{descendant::dcterms:isReplacedBy/@rdf:resource}">here</a>.</p>
 						</body>
 					</html>
 				</xsl:template>
@@ -39,19 +39,18 @@
 	<!-- generate config for http-serializer -->
 	<p:processor name="oxf:unsafe-xslt">
 		<p:input name="request" href="#request"/>
-		<p:input name="data" href="../config.xml"/>
+		<p:input name="data" href="#data"/>
 		<p:input name="config">
-			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 				<xsl:output indent="yes"/>
 				<xsl:template match="/">
-					<xsl:variable name="path" select="substring-after(doc('input:request')/request/request-url, 'id/')"/>
 					<config>
 						<status-code>303</status-code>
-						<content-type>text/plain</content-type>
+						<content-type>text/html</content-type>
 						<header>
 							<name>Location</name>
 							<value>
-								<xsl:value-of select="concat(/config/url, 'id/', $path, '.html')"/>
+								<xsl:value-of select="descendant::dcterms:isReplacedBy/@rdf:resource"/>
 							</value>
 						</header>
 					</config>
@@ -61,7 +60,7 @@
 		<p:output name="data" id="config"/>
 	</p:processor>
 
-	<p:processor name="oxf:http-serializer">
+	<p:processor name="oxf:html-serializer">
 		<p:input name="data" href="#converted"/>
 		<p:input name="config" href="#config"/>
 	</p:processor>

@@ -7,7 +7,8 @@
 	<!-- suppress geo:SpatialThing -->
 	<xsl:template match="geo:SpatialThing" mode="generateDoc"/>
 
-	<xsl:template match="*" mode="generateDoc">
+	<!-- process any object except those which have been deprecated -->
+	<xsl:template match="*[not(dcterms:isReplacedBy)]" mode="generateDoc">
 		<doc>
 			<xsl:variable name="id" select="substring-after(@rdf:about, 'id/')"/>
 			<field name="id">

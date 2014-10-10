@@ -68,19 +68,41 @@
 			</p:processor>
 		</p:when>
 		<p:when test="content-type='html'">
-			<p:processor name="oxf:pipeline">
-				<p:input name="config" href="../serializations/rdf/html.xpl"/>
-				<p:input name="data" href="#data"/>		
-				<p:output name="data" ref="data"/>
-			</p:processor>
-		</p:when>
-		<!--<p:when test="content-type='303'">
-			<p:processor name="oxf:pipeline">
+			<!-- read the data. if the RDF contains the dcterms:isReplacedBy property, then create an HTTP 303 redirect -->
+			<p:processor name="oxf:unsafe-xslt">
 				<p:input name="data" href="#data"/>
-				<p:input name="config" href="303-redirect.xpl"/>		
-				<p:output name="data" ref="data"/>
+				<p:input name="config">
+					<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+						<xsl:template match="/">
+							<redirect>
+								<xsl:choose>
+									<xsl:when test="descendant::dcterms:isReplacedBy/@rdf:resource">true</xsl:when>
+									<xsl:otherwise>false</xsl:otherwise>
+								</xsl:choose>
+							</redirect>
+						</xsl:template>
+					</xsl:stylesheet>
+				</p:input>
+				<p:output name="data" id="redirect-config"/>
 			</p:processor>
-		</p:when>-->
+			
+			<p:choose href="#redirect-config">
+				<p:when test="redirect='true'">
+					<p:processor name="oxf:pipeline">
+						<p:input name="data" href="#data"/>
+						<p:input name="config" href="303-redirect.xpl"/>		
+						<p:output name="data" ref="data"/>
+					</p:processor>
+				</p:when>
+				<p:otherwise>
+					<p:processor name="oxf:pipeline">
+						<p:input name="config" href="../serializations/rdf/html.xpl"/>
+						<p:input name="data" href="#data"/>		
+						<p:output name="data" ref="data"/>
+					</p:processor>
+				</p:otherwise>
+			</p:choose>
+		</p:when>
 		<p:otherwise>
 			<p:processor name="oxf:pipeline">
 				<p:input name="data" href="#data"/>
