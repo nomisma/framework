@@ -291,7 +291,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 			</xforms:action>
 
 			<!-- **************** BINDINGS ********************** -->
-			<xforms:bind nodeset="instance('doc')" readonly="*[1]/dcterms:isReplacedBy/@rdf:resource">
+			<xforms:bind nodeset="instance('doc')" id="doc-active" readonly="*[1]/dcterms:isReplacedBy/@rdf:resource">
 				<!-- handle top-level rdf:type -->
 				<xforms:bind nodeset="*[1]">
 					<xforms:bind nodeset="@rdf:about" required="true()" type="xs:anyURI"></xforms:bind>
@@ -339,8 +339,10 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 					<xforms:bind nodeset="type" constraint="string-length(.) &gt; 0"></xforms:bind>
 					<xforms:bind nodeset="hasFeature" type="xs:boolean"></xforms:bind>
 				</xforms:bind>
-				<xforms:bind id="save-trigger" nodeset="save-trigger" type="xs:boolean" readonly=". != true()"></xforms:bind>
+				<xforms:bind id="save-trigger" nodeset="save-trigger" type="xs:boolean" readonly=". != true()"></xforms:bind>				
 			</xforms:bind>
+			
+			<xforms:bind id="deprecate-trigger" readonly="instance('doc')/*[1]/dcterms:isReplacedBy"></xforms:bind>
 
 			<!-- **************** DYNAMIC VALIDATION CONTROLS ********************** -->
 			<xforms:action ev:event="xxforms-invalid" ev:observer="doc">
@@ -478,7 +480,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 								</xforms:action>
 							</xforms:action>
 						</xforms:trigger>
-						<xforms:trigger>
+						<xforms:trigger bind="deprecate-trigger">
 							<xforms:label><span class="glyphicon glyphicon-remove-sign"></span>Deprecate</xforms:label>
 							<xforms:action ev:event="DOMActivate">
 								<!-- show deprecate window -->
@@ -493,7 +495,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 			</div>
 			<div class="row">
 				<div class="col-md-2">
-					<xforms:group ref="instance('doc')/*[1]">
+					<xforms:group ref="instance('doc')/*[1][not(dcterms:isReplacedBy)]">
 						<xforms:var name="type" select="name()"></xforms:var>
 						<h2>Controls</h2>
 						<ul class="control-list">
@@ -649,6 +651,13 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 								></xforms:output>)</a>
 						</xforms:group>
 					</div>
+					<xforms:group ref="instance('doc')/*/dcterms:isReplacedBy">
+						<div>
+							<xforms:output ref="@rdf:resource">
+								<xforms:label>Replaced By</xforms:label>
+							</xforms:output>
+						</div>
+					</xforms:group>
 					<xforms:group ref=".[not(instance('doc')/child::node())]">
 						<h3>Select Class</h3>
 						<div>
@@ -1089,7 +1098,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 					</xforms:group>
 				</div>
 				<div class="col-md-2">
-					<xforms:group ref="instance('doc')/*[1]">
+					<xforms:group ref="instance('doc')/*[1][not(dcterms:isReplacedBy)]">
 						<xforms:var name="type" select="name()"></xforms:var>
 						<h3>Import</h3>
 						<!-- import skos:prefLabels from dbpedia for those languages that are not already in the RDF -->
