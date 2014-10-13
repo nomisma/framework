@@ -25,52 +25,50 @@
 	* PUBLIC INTERFACE *
 	***************** -->
 	<!-- **** PAGES **** -->			
-	<page path="/nomisma/sparql" view="xpl/page/sparql.xpl"/>
-	<page path="/nomisma/apis" view="xpl/page/apis.xpl"/>
+	<page path="/nomisma/sparql" view="xpl/views/pages/sparql.xpl"/>
+	<page path="/nomisma/apis" view="xpl/views/pages/apis.xpl"/>
 	<!--<page path="/nomisma/flickr" view="xpl/page/flickr.xpl"/>-->
-	<page path="/nomisma/ontology" view="xpl/page/ontology.xpl"/>
-	<page path="/nomisma/" view="xpl/page/index.xpl"/>
+	<page path="/nomisma/ontology" view="xpl/views/pages/ontology.xpl"/>
+	<page path="/nomisma/" view="xpl/views/pages/index.xpl"/>
 	
 	<!-- **** SERIALIZATIONS **** -->
 	<!-- Solr -->
-	<page path="/nomisma/id/" model="xpl/models/solr-query.xpl" view="xpl/serializations/solr/html.xpl"/>
-	<page path="/nomisma/feed/" model="xpl/models/solr-query.xpl" view="xpl/serializations/solr/atom.xpl"/>
+	<page path="/nomisma/id/" model="xpl/models/solr-query.xpl" view="xpl/views/serializations/solr/html.xpl"/>
+	<page path="/nomisma/feed/" model="xpl/models/solr-query.xpl" view="xpl/views/serializations/solr/atom.xpl"/>
 	
 	<!-- ID -->
 	<page path="/nomisma/id/(.*)\.rdf" matcher="oxf:perl5-matcher" view="xpl/models/get-id.xpl"/>	
-	<!--<page path="/nomisma/id/(.*)\.nuds" matcher="oxf:perl5-matcher" model="xpl/models/get-id.xpl" view="xpl/serializations/rdf/nuds.xpl"/>-->
-	<page path="/nomisma/id/(.*)\.kml" matcher="oxf:perl5-matcher" model="xpl/models/get-id.xpl" view="xpl/serializations/rdf/kml.xpl"/>
-	<page path="/nomisma/id/(.*)\.ttl" matcher="oxf:perl5-matcher" model="xpl/models/get-id.xpl" view="xpl/serializations/rdf/ttl.xpl"/>
-	<page path="/nomisma/id/(.*)\.jsonld" matcher="oxf:perl5-matcher" model="xpl/models/get-id.xpl" view="xpl/serializations/rdf/json-ld.xpl"/>
-	<page path="/nomisma/id/(.*)\.solr" matcher="oxf:perl5-matcher" model="xpl/models/get-id.xpl" view="xpl/serializations/rdf/solr.xpl"/>
-	<page path="/nomisma/id/(.*)" matcher="regexp" model="xpl/models/get-id.xpl" view="xpl/http/conneg-id.xpl"/>
+	<page path="/nomisma/id/(.*)\.kml" matcher="oxf:perl5-matcher" model="xpl/models/get-id.xpl" view="xpl/views/serializations/rdf/kml.xpl"/>
+	<page path="/nomisma/id/(.*)\.ttl" matcher="oxf:perl5-matcher" model="xpl/models/get-id.xpl" view="xpl/views/serializations/rdf/ttl.xpl"/>
+	<page path="/nomisma/id/(.*)\.jsonld" matcher="oxf:perl5-matcher" model="xpl/models/get-id.xpl" view="xpl/views/serializations/rdf/json-ld.xpl"/>
+	<page path="/nomisma/id/(.*)\.solr" matcher="oxf:perl5-matcher" model="xpl/models/get-id.xpl" view="xpl/views/serializations/rdf/solr.xpl"/>
+	<page path="/nomisma/id/(.*)" matcher="regexp" model="xpl/models/get-id.xpl" view="xpl/controllers/conneg-id.xpl"/>
 	
 	<!-- SPARQL -->
-	<page path="/nomisma/query" view="xpl/http/conneg-sparql.xpl"/>
+	<page path="/nomisma/query" view="xpl/controllers/conneg-sparql.xpl"/>
 	
 	<!-- **** APIs **** -->
-	<page path="/nomisma/apis/avgAxis" view="xpl/serializations/sparql/apis.xpl"/>
-	<page path="/nomisma/apis/avgDiameter" view="xpl/serializations/sparql/apis.xpl"/>
-	<page path="/nomisma/apis/avgWeight" view="xpl/serializations/sparql/apis.xpl"/>
-	<page path="/nomisma/apis/closingDate" view="xpl/serializations/sparql/apis.xpl"/>
+	<page path="/nomisma/apis/avgAxis" view="xpl/views/serializations/sparql/apis.xpl"/>
+	<page path="/nomisma/apis/avgDiameter" view="xpl/views/serializations/sparql/apis.xpl"/>
+	<page path="/nomisma/apis/avgWeight" view="xpl/views/serializations/sparql/apis.xpl"/>
+	<page path="/nomisma/apis/closingDate" view="xpl/views/serializations/sparql/apis.xpl"/>
 	<page path="/nomisma/apis/getKml" view="xpl/serializations/sparql/apis.xpl"/>
-	<page path="/nomisma/apis/getLabel" view="xpl/serializations/sparql/apis.xpl"/>	
-	<!--<page path="/nomisma/apis/getNuds" model="xpl/models/aggregate-ids.xpl" view="xpl/serializations/apis/getNuds.xpl"/>-->
-	<page path="/nomisma/apis/getRdf" model="xpl/models/aggregate-ids.xpl" view="xpl/serializations/apis/getRdf.xpl"/>
-	<page path="/nomisma/apis/numishareResults" view="xpl/serializations/sparql/apis.xpl"/>
+	<page path="/nomisma/apis/getLabel" view="xpl/views/serializations/sparql/apis.xpl"/>
+	<page path="/nomisma/apis/getRdf" model="xpl/models/aggregate-ids.xpl" view="xpl/views/serializations/apis/getRdf.xpl"/>
+	<page path="/nomisma/apis/numishareResults" view="xpl/views/serializations/sparql/apis.xpl"/>
 
 	<!-- **** PROJECT NAMESPACES **** -->
-	<page path="/nomisma/project" model="xpl/models/page-redirect.xpl"/>
-	<page path="/nomisma/project/" model="xpl/models/project.xpl" view="xpl/serializations/sparql/project.xpl"/>
-	<page path="/nomisma/project/(.*)\/" matcher="oxf:perl5-matcher" model="xpl/models/project.xpl" view="xpl/serializations/sparql/project.xpl"/>
-	<page path="/nomisma/project/(.*)\/(.*)" matcher="oxf:perl5-matcher" model="xpl/models/project-redirect.xpl"/>
+	<page path="/nomisma/project" model="xpl/controllers/page-redirect.xpl"/>
+	<page path="/nomisma/project/" model="xpl/models/project.xpl" view="xpl/views/serializations/sparql/project.xpl"/>
+	<page path="/nomisma/project/(.*)\/" matcher="oxf:perl5-matcher" model="xpl/models/project.xpl" view="xpl/views/serializations/sparql/project.xpl"/>
+	<page path="/nomisma/project/(.*)\/(.*)" matcher="oxf:perl5-matcher" model="xpl/controllers/project-redirect.xpl"/>
 	
 	<!-- **** DATA DUMPS **** -->	
 	<page path="/nomisma/pelagios.void.rdf" view="dump/pelagios.void.rdf"/>
-	<page path="/nomisma/pelagios.rdf" model="xpl/models/solr-pelagios.xpl" view="xpl/serializations/solr/pelagios.xpl"/>
-	<page path="/nomisma/nomisma.org.rdf" view="xpl/serializations/serialize-dump.xpl"/>
-	<page path="/nomisma/nomisma.org.nt" view="xpl/serializations/serialize-dump.xpl"/>
-	<page path="/nomisma/nomisma.org.ttl" view="xpl/serializations/serialize-dump.xpl"/>
+	<page path="/nomisma/pelagios.rdf" model="xpl/models/solr-pelagios.xpl" view="xpl/views/serializations/solr/pelagios.xpl"/>
+	<page path="/nomisma/nomisma.org.rdf" view="xpl/views/serializations/serialize-dump.xpl"/>
+	<page path="/nomisma/nomisma.org.nt" view="xpl/views/serializations/serialize-dump.xpl"/>
+	<page path="/nomisma/nomisma.org.ttl" view="xpl/views/serializations/serialize-dump.xpl"/>
 	
 	<!-- 303 redirect from official URI to .html -->
 	<!--<page path="/nomisma/id/(.*)" matcher="oxf:perl5-matcher" model="xpl/303-redirect.xpl"/>-->
