@@ -363,7 +363,7 @@
 				<fr:label>Yes</fr:label>
 				<xforms:action ev:event="DOMActivate">
 					<xforms:setvalue ref="instance('save-rdfxml-config')/url" value="concat('file://', instance('config')/dump_path, '/nomisma.org.rdf')"/>
-					<xforms:insert nodeset="instance('rdf')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/models/aggregate-all.xpl', 'config-xml', instance('config'), 'data')"/>
+					<xforms:insert nodeset="instance('rdf')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/models/rdf/aggregate-all.xpl', 'config-xml', instance('config'), 'data')"/>
 					<xforms:insert nodeset="instance('dump')"
 						origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-rdfxml.xpl', ('rdf', 'configuration'), (instance('rdf'), instance('save-rdfxml-config')), 'data')"
 					/>
@@ -382,8 +382,8 @@
 					<!-- delete all objects -->
 					<xforms:send submission="delete-all"/>
 					<!-- gather RDF dump -->
-					<xforms:insert nodeset="instance('rdf')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/models/aggregate-all.xpl', 'config-xml', instance('config'), 'data')"/>
-					<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/serializations/rdf/solr.xpl', 'data', instance('rdf'), 'data')"/>
+					<xforms:insert nodeset="instance('rdf')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/models/rdf/aggregate-all.xpl', 'config-xml', instance('config'), 'data')"/>
+					<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/views/serializations/rdf/solr.xpl', 'data', instance('rdf'), 'data')"/>
 					<xforms:send submission="post-to-solr"/>
 					<xforms:send submission="optimize" ev:event="xforms-submit-done"/>
 				</xforms:action>
