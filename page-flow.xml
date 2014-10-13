@@ -27,8 +27,8 @@
 	<!-- **** PAGES **** -->			
 	<page path="/nomisma/sparql" view="xpl/page/sparql.xpl"/>
 	<page path="/nomisma/apis" view="xpl/page/apis.xpl"/>
-	<page path="/nomisma/flickr" view="xpl/page/flickr.xpl"/>
-	<page path="/nomisma/ontology/" view="xpl/page/ontology.xpl"/>
+	<!--<page path="/nomisma/flickr" view="xpl/page/flickr.xpl"/>-->
+	<page path="/nomisma/ontology" view="xpl/page/ontology.xpl"/>
 	<page path="/nomisma/" view="xpl/page/index.xpl"/>
 	
 	<!-- **** SERIALIZATIONS **** -->

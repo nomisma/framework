@@ -25,7 +25,7 @@
 							<a href="{$display_path}apis">APIs</a>
 						</li>
 						<li>
-							<a href="{$display_path}ontology/">Ontology</a>
+							<a href="{$display_path}ontology">Ontology</a>
 						</li>
 						<li>
 							<a href="{$display_path}sparql">SPARQL</a>
