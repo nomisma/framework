@@ -19,7 +19,15 @@
 	***************** -->
 	<page path="/nomisma/admin/edit/" view="xforms/edit.xhtml"/>
 	<page path="/nomisma/admin/" view="xforms/admin.xhtml"/>
-	<page path="/nomisma/login" view="xforms/login.xhtml"/>
+	
+	<!-- authentication -->
+	<page path="/nomisma/login" view="xforms/login.html"/>
+	<page path="/nomisma/login-failed" view="xforms/login-failed.html"/>
+	<page path="/nomisma/admin/logout">
+		<action action="xpl/xforms/logout.xpl">
+			<result page="index"/>
+		</action>
+	</page>
 	
 	<!-- ****************
 	* PUBLIC INTERFACE *
@@ -29,7 +37,7 @@
 	<page path="/nomisma/apis" view="xpl/views/pages/apis.xpl"/>
 	<!--<page path="/nomisma/flickr" view="xpl/page/flickr.xpl"/>-->
 	<page path="/nomisma/ontology" view="xpl/views/pages/ontology.xpl"/>
-	<page path="/nomisma/" view="xpl/views/pages/index.xpl"/>
+	<page path="/nomisma/" view="xpl/views/pages/index.xpl" id="index"/>
 	
 	<!-- **** SERIALIZATIONS **** -->
 	<!-- Solr -->

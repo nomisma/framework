@@ -1,0 +1,20 @@
+<!-- this is the authentication template for Orbeon's web.xml to enable form authentication in nomisma-->
+<web-app>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Nomisma</web-resource-name>
+			<url-pattern>/nomisma/admin/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>nomisma</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<form-login-config>
+			<form-login-page>/nomisma/login</form-login-page>
+			<form-error-page>/nomisma/login-failed</form-error-page>
+		</form-login-config>
+	</login-config>
+</web-app>

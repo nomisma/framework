@@ -30,8 +30,7 @@
 	
 	<p:processor name="oxf:directory-scanner">
 		<p:input name="config" href="#scanner-config"/>
-		<p:output name="data" id="directory-scan"/>
-		
+		<p:output name="data" id="directory-scan"/>		
 	</p:processor>
 
 	<p:processor name="oxf:unsafe-xslt">
