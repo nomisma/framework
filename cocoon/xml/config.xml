@@ -21,19 +21,16 @@
 
 
 					<ul>
+						<li>Florence Codine, <a href="http://www.bnf.fr">BnF</a></li>
+						<li>Karsten Dahman, <a href="http://ww2.smb.museum/ikmk/">MK Berlin</a></li>
+						<li>Ethan Gruber, <a href="http://numismatics.org">ANS</a></li>						
 						<li>Sebastian Heath, <a href="http://isaw.nyu.edu/">NYU ISAW</a></li>
+						<li>Chris Howgego, <a href="http://www.ashmolean.org/">Ashmolean Museum, University of Oxford</a></li>
 						<li>Andrew Meadows, <a href="http://numismatics.org">ANS</a></li>
 						<li>Daniel Pett, <a href="http://finds.org.uk/">BM PAS</a></li>
+						<li>Karsten Tolle, <a href="www.dbis.informatik.uni-frankfurt.de/">DBIS, University of Frankfurt</a></li>
 						<li>David Wigg-Wolf, <a href="http://www.dainst.org/en/department/rgk">DAI RGK</a></li>
 					</ul>
-
-					<p>Implementation is by:</p>
-
-					<ul>
-						<li>Ethan Gruber, <a href="http://numismatics.org">ANS</a></li>
-						<li>Sebastian Heath, <a href="http://isaw.nyu.edu/">NYU ISAW</a></li>
-					</ul>
-
 					<p>Nomisma.org also hosts the <a href="http://nomisma.org/nuds/numismatic_database_standard">Numismatic Description Standard</a></p>
 				</div>
 			
