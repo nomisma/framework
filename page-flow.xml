@@ -41,7 +41,7 @@
 	
 	<!-- **** SERIALIZATIONS **** -->
 	<!-- Solr -->
-	<page path="/nomisma/id/" model="xpl/models/solr/query.xpl" view="xpl/views/serializations/solr/html.xpl"/>
+	<page path="/nomisma/id/" model="xpl/models/solr/query.xpl" view="xpl/controllers/conneg-results.xpl"/>
 	<page path="/nomisma/feed/" model="xpl/models/solr/query.xpl" view="xpl/views/serializations/solr/atom.xpl"/>
 	
 	<!-- ID -->
