@@ -55,9 +55,9 @@
 				<xsl:value-of select="str[@name='definition']"/>
 			</summary>
 			<link href="{$url}id/{str[@name='id']}"/>
-			<link rel="rdf/xml" type="application/rdf+xml" href="{$url}id/{str[@name='id']}.rdf"/>
-			<link rel="rdf/ttl" type="text/turte" href="{$url}id/{str[@name='id']}.ttl"/>
-			<link rel="json-ld" type="application/ld+json" href="{$url}id/{str[@name='id']}.jsonld"/>
+			<link rel="alternate" type="application/rdf+xml" href="{$url}id/{str[@name='id']}.rdf"/>
+			<link rel="alternate" type="text/turtle" href="{$url}id/{str[@name='id']}.ttl"/>
+			<link rel="alternate" type="application/ld+json" href="{$url}id/{str[@name='id']}.jsonld"/>
 			<id>
 				<xsl:value-of select="str[@name='id']"/>
 			</id>
