@@ -142,7 +142,7 @@
 			</span>
 			<select id="search_filter" class="form-control">
 				<option value="">Select Type...</option>
-				<xsl:for-each select="descendant::lst[@name='type']/int">
+				<xsl:for-each select="descendant::lst[@name='type']/int[not(@name='http://www.w3.org/2004/02/skos/core#Concept')]">
 					<xsl:variable name="uri" select="@name"/>
 					<xsl:variable name="value" select="concat('type:&#x022;', $uri, '&#x022;')"/>
 					<option value="{$value}">

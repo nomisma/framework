@@ -8,7 +8,7 @@
 
 	<xsl:template match="/">
 		<add>
-			<xsl:apply-templates select="/rdf:RDF/*" mode="generateDoc"/>
+			<xsl:apply-templates select="/rdf:RDF/*[rdf:type/@rdf:resource='http://www.w3.org/2004/02/skos/core#Concept'][not(child::dcterms:isReplacedBy)]" mode="generateDoc"/>
 		</add>
 	</xsl:template>
 </xsl:stylesheet>
