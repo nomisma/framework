@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/"
 	xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" exclude-result-prefixes="#all"
-	xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:kml="http://earth.google.com/kml/2.0" version="2.0">
+	xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:nmo="http://nomisma.org/ontology#" xmlns:kml="http://earth.google.com/kml/2.0" version="2.0">
 
 	<xsl:variable name="id" select="substring-after(//rdf:RDF/*[1]/@rdf:about, 'id/')"/>
 	<xsl:variable name="uri">
@@ -42,7 +42,7 @@
 					</PolyStyle>
 				</Style>
 
-				<xsl:apply-templates select="nm:mint|nm:region|nm:hoard">
+				<xsl:apply-templates select="nmo:Mint|nmo:Region|nm:hoard">
 					<xsl:with-param name="lat">
 						<xsl:value-of select="geo:SpatialThing/geo:lat"/>
 					</xsl:with-param>
@@ -57,7 +57,7 @@
 		</kml>
 	</xsl:template>
 
-	<xsl:template match="nm:hoard|nm:mint|nm:region">
+	<xsl:template match="nm:hoard|nmo:Mint|nmo:Region">
 		<xsl:param name="lat"/>
 		<xsl:param name="long"/>
 		<xsl:param name="polygon"/>
@@ -72,7 +72,7 @@
 				<xsl:choose>
 					<xsl:when test="string($lat) and string($long)">
 						<xsl:choose>
-							<xsl:when test="$type='nm:mint' or $type='nm:region'">
+							<xsl:when test="$type='nmo:Mint' or $type='nmo:Region'">
 								<styleUrl>#mint</styleUrl>
 							</xsl:when>
 							<xsl:when test="$type='nm:hoard'">

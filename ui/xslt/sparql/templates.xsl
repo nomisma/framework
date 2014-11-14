@@ -12,81 +12,30 @@
 	<xsl:param name="format" select="doc('input:request')/request/parameters/parameter[name='format']/value"/>
 	<xsl:param name="baseUri" select="doc('input:request')/request/parameters/parameter[name='baseUri']/value"/>
 
-	<xsl:template name="display">
-		<xsl:variable name="query">
-			<![CDATA[ 
-			PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-			PREFIX dcterms:  <http://purl.org/dc/terms/>
-			PREFIX nm:       <http://nomisma.org/id/>
-			PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
-			
-			SELECT ?object ?title ?identifier ?collection ?weight ?axis ?diameter ?obvThumb ?revThumb ?obvRef ?revRef  WHERE {
-			?object nm:type_series_item <typeUri>.
-			?object a nm:coin .
-			?object dcterms:title ?title .
-			OPTIONAL { ?object dcterms:identifier ?identifier } .
-			OPTIONAL { ?object nm:collection ?colUri .
-			?colUri skos:prefLabel ?collection 
-			FILTER(langMatches(lang(?collection), "EN"))}
-			OPTIONAL { ?object nm:weight ?weight }
-			OPTIONAL { ?object nm:axis ?axis }
-			OPTIONAL { ?object nm:diameter ?diameter }
-			OPTIONAL { ?object nm:obverseThumbnail ?obvThumb }
-			OPTIONAL { ?object nm:reverseThumbnail ?revThumb }
-			OPTIONAL { ?object nm:obverseReference ?obvRef }
-			OPTIONAL { ?object nm:reverseReference ?revRef }}
-			ORDER BY ASC(?collection)]]>
-		</xsl:variable>
-		<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'typeUri', $uri))), '&amp;output=xml')"/>
-		<xsl:apply-templates select="document($service)/res:sparql" mode="display"/>
-	</xsl:template>
-
 	<xsl:template name="kml">
 		<xsl:variable name="query">
-			<xsl:choose>
-				<xsl:when test="$curie='nm:mint' or $curie='nm:region'">
-					<![CDATA[
-					PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-					PREFIX dcterms:  <http://purl.org/dc/terms/>
-					PREFIX nm:       <http://nomisma.org/id/>
-					PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
-					PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
-					SELECT DISTINCT ?object ?findspot ?lat ?long ?title ?prefLabel ?closing_date WHERE {
-					{?type nm:mint <URI> .
-					?object nm:type_series_item ?type.
-					?object nm:findspot ?findspot .
-					?findspot geo:lat ?lat .
-					?findspot geo:long ?long
-					}
-					UNION {
-					?object nm:mint <URI> .
-					?object nm:findspot ?findspot .
-					?findspot geo:lat ?lat .
-					?findspot geo:long ?long
-					}					
-					OPTIONAL {?object skos:prefLabel ?prefLabel}
-					OPTIONAL {?object dcterms:title ?title}
-					OPTIONAL {?object nm:closing_date ?closing_date}
-					}]]>
-				</xsl:when>
-				<xsl:when test="$curie='nm:type_series_item'">
-					<![CDATA[
-					PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-					PREFIX dcterms:  <http://purl.org/dc/terms/>
-					PREFIX nm:       <http://nomisma.org/id/>
-					PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
-					PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
-					SELECT ?object ?findspot ?lat ?long ?title ?prefLabel WHERE {
-					?object nm:type_series_item <URI> .
-					?object nm:findspot ?findspot .
-					?findspot geo:lat ?lat .
-					?findspot geo:long ?long .
-					OPTIONAL {?object skos:prefLabel ?prefLabel}
-					OPTIONAL {?object dcterms:title ?title}
-					}
-					]]>
-				</xsl:when>
-			</xsl:choose>
+			<![CDATA[PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:  <http://purl.org/dc/terms/>
+PREFIX nm:       <http://nomisma.org/id/>
+PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+SELECT DISTINCT ?object ?findspot ?lat ?long ?title ?prefLabel ?closing_date WHERE {
+{?type nmo:Mint <URI> .
+?object nm:type_series_item ?type.
+?object nm:findspot ?findspot .
+?findspot geo:lat ?lat .
+?findspot geo:long ?long
+}
+UNION {
+?object nmo:Mint <URI> .
+?object nm:findspot ?findspot .
+?findspot geo:lat ?lat .
+?findspot geo:long ?long
+}					
+OPTIONAL {?object skos:prefLabel ?prefLabel}
+OPTIONAL {?object dcterms:title ?title}
+OPTIONAL {?object nm:closing_date ?closing_date}
+}]]>
 		</xsl:variable>
 
 		<xsl:if test="string($query)">
@@ -263,10 +212,6 @@ OPTIONAL { ?object dcterms:identifier ?identifier }
 OPTIONAL { ?object nm:collection ?colUri .
 ?colUri skos:prefLabel ?collection
 FILTER(langMatches(lang(?collection), "EN"))}
-OPTIONAL { ?object nm:obverseThumbnail ?obvThumb }
-OPTIONAL { ?object nm:reverseThumbnail ?revThumb }
-OPTIONAL { ?object nm:obverseReference ?obvRef }
-OPTIONAL { ?object nm:reverseReference ?revRef }
 OPTIONAL { ?object foaf:thumbnail ?comThumb }
 OPTIONAL { ?object foaf:depiction ?comRef }
 OPTIONAL { ?object nm:obverse ?obverse .
@@ -300,98 +245,6 @@ OPTIONAL { ?object nm:reverse ?reverse .
 				</xsl:otherwise>
 			</xsl:choose>	
 		</response>
-	</xsl:template>
-
-	<!-- **************** PROCESS SPARQL RESPONSE ****************-->
-	<xsl:template match="res:sparql" mode="display">
-		<xsl:variable name="coin-count" select="count(descendant::res:result)"/>
-		<xsl:if test="$coin-count &gt; 0">
-			<div class="center">
-				<h2>Examples of this type</h2>
-
-				<!-- choose between between Metis (preferred) or internal links -->
-				<xsl:apply-templates select="descendant::res:result" mode="display"/>
-			</div>
-		</xsl:if>
-	</xsl:template>
-
-	<xsl:template match="res:result" mode="display">
-		<div class="g_doc">
-			<span class="result_link">
-				<a href="{res:binding[@name='object']/res:uri}" target="_blank">
-					<xsl:value-of select="res:binding[@name='title']/res:literal"/>
-				</a>
-			</span>
-			<dl>
-				<xsl:if test="res:binding[@name='collection']/res:literal">
-					<div>
-						<dt>Collection: </dt>
-						<dd style="margin-left:125px;">
-							<xsl:value-of select="res:binding[@name='collection']/res:literal"/>
-						</dd>
-					</div>
-				</xsl:if>
-				<xsl:if test="string(res:binding[@name='axis']/res:literal)">
-					<div>
-						<dt>Axis: </dt>
-						<dd style="margin-left:125px;">
-							<xsl:value-of select="string(res:binding[@name='axis']/res:literal)"/>
-						</dd>
-					</div>
-				</xsl:if>
-				<xsl:if test="string(res:binding[@name='diameter']/res:literal)">
-					<div>
-						<dt>Diameter: </dt>
-						<dd style="margin-left:125px;">
-							<xsl:value-of select="string(res:binding[@name='diameter']/res:literal)"/>
-						</dd>
-					</div>
-				</xsl:if>
-				<xsl:if test="string(res:binding[@name='weight']/res:literal)">
-					<div>
-						<dt>Weight: </dt>
-						<dd style="margin-left:125px;">
-							<xsl:value-of select="string(res:binding[@name='weight']/res:literal)"/>
-						</dd>
-					</div>
-				</xsl:if>
-			</dl>
-			<div class="gi_c">
-				<xsl:choose>
-					<xsl:when test="string(res:binding[@name='obvRef']/res:uri) and string(res:binding[@name='obvThumb']/res:uri)">
-						<a class="thumbImage" href="{res:binding[@name='obvRef']/res:uri}"
-							title="Obverse of {res:binding[@name='identifier']/res:literal}: {res:binding[@name='collection']/res:literal}">
-							<img class="gi" src="{res:binding[@name='obvThumb']/res:uri}"/>
-						</a>
-					</xsl:when>
-					<xsl:when test="not(string(res:binding[@name='obvRef']/res:uri)) and string(res:binding[@name='obvThumb']/res:uri)">
-						<img class="gi" src="{res:binding[@name='obvThumb']/res:uri}"/>
-					</xsl:when>
-					<xsl:when test="string(res:binding[@name='obvRef']/res:uri) and not(string(res:binding[@name='obvThumb']/res:uri))">
-						<a class="thumbImage" href="{res:binding[@name='obvRef']/res:uri}">
-							<img class="gi" src="{res:binding[@name='obvRef']/res:uri}" style="max-width:120px"/>
-						</a>
-					</xsl:when>
-				</xsl:choose>
-				<!-- reverse-->
-				<xsl:choose>
-					<xsl:when test="string(res:binding[@name='revRef']/res:uri) and string(res:binding[@name='revThumb']/res:uri)">
-						<a class="thumbImage" href="{res:binding[@name='revRef']/res:uri}"
-							title="Reverse of {res:binding[@name='identifier']/res:literal}: {res:binding[@name='collection']/res:literal}">
-							<img class="gi" src="{res:binding[@name='revThumb']/res:uri}"/>
-						</a>
-					</xsl:when>
-					<xsl:when test="not(string(res:binding[@name='revRef']/res:uri)) and string(res:binding[@name='revThumb']/res:uri)">
-						<img class="gi" src="{res:binding[@name='revThumb']/res:uri}"/>
-					</xsl:when>
-					<xsl:when test="string(res:binding[@name='revRef']/res:uri) and not(string(res:binding[@name='revThumb']/res:uri))">
-						<a class="thumbImage" href="{res:binding[@name='revRef']/res:uri}">
-							<img class="gi" src="{res:binding[@name='revRef']/res:uri}" style="max-width:120px"/>
-						</a>
-					</xsl:when>
-				</xsl:choose>
-			</div>
-		</div>
 	</xsl:template>
 
 	<xsl:template match="res:sparql" mode="kml">

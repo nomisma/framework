@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/"
-	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:org="http://www.w3.org/ns/org#" xmlns:nomisma="http://nomisma.org/"
-	exclude-result-prefixes="#all" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/"
+	xmlns:org="http://www.w3.org/ns/org#" xmlns:nomisma="http://nomisma.org/" xmlns:nmo="http://nomisma.org/ontology#" exclude-result-prefixes="#all" version="2.0">
 	<xsl:include href="../../templates.xsl"/>
 
 	<xsl:variable name="display_path">../</xsl:variable>
@@ -43,7 +43,7 @@
 				<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
 				<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"/>
 
-				<xsl:if test="$type='nm:mint' or $type='nm:type_series_item' or $type='nm:hoard' or $type='nm:region'">
+				<xsl:if test="$type='nmo:Mint' or $type='nm:hoard' or $type='nmo:Region'">
 					<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"/>
 					<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.9&amp;sensor=false"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/display_map_functions.js"/>
@@ -61,10 +61,10 @@
 	<xsl:template name="body">
 		<div class="container-fluid content">
 			<div class="row">
-				<div class="col-md-{if ($type='nm:mint' or $type='nm:type_series_item' or $type='nm:hoard' or $type='nm:region') then '6' else '9'}">
+				<div class="col-md-{if ($type='nmo:Mint' or $type='nm:hoard' or $type='nmo:Region') then '6' else '9'}">
 					<xsl:apply-templates select="/content/rdf:RDF/*" mode="type"/>
 				</div>
-				<div class="col-md-{if ($type='nm:mint' or $type='nm:type_series_item' or $type='nm:hoard' or $type='nm:region') then '6' else '3'}">
+				<div class="col-md-{if ($type='nmo:Mint' or $type='nm:hoard' or $type='nmo:Region') then '6' else '3'}">
 					<div>
 						<h3>Export</h3>
 						<ul class="list-inline">
@@ -83,14 +83,14 @@
 							<!--<li>
 								<a href="{$id}.pelagios.rdf">Pelagios RDF/XML</a>
 								</li>-->
-							<xsl:if test="$type='nm:mint' or $type='nm:type_series_item' or $type='nm:hoard' or $type='nm:region'">
+							<xsl:if test="$type='nmo:Mint' or $type='nm:hoard' or $type='nmo:Region'">
 								<li>
 									<a href="{$id}.kml">KML</a>
 								</li>
 							</xsl:if>
 						</ul>
 					</div>
-					<xsl:if test="$type='nm:mint' or $type='nm:type_series_item' or $type='nm:hoard' or $type='nm:region'">
+					<xsl:if test="$type='nmo:Mint' or $type='nm:hoard' or $type='nmo:Region'">
 						<div id="mapcontainer"/>
 					</xsl:if>
 
@@ -231,7 +231,9 @@
 							<xsl:choose>
 								<xsl:when test="name()='rdf:type'">
 									<xsl:variable name="uri" select="@rdf:resource"/>
-									<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/>
+									<xsl:value-of
+										select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"
+									/>
 								</xsl:when>
 								<xsl:otherwise>
 									<xsl:value-of select="@rdf:resource"/>
