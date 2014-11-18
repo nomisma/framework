@@ -519,7 +519,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 								</xforms:action>
 								<xforms:action if="not(instance('doc')/*[1]/dcterms:isReplacedBy)">
 									<xforms:insert nodeset="instance('addIndex')"
-										origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/serializations/rdf/solr.xpl', 'data', instance('doc'), 'data')"/>
+										origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/views/serializations/rdf/solr.xpl', 'data', instance('doc'), 'data')"/>
 									<xforms:send submission="post-solr-doc"/>
 								</xforms:action>
 							</xforms:action>

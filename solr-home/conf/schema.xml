@@ -7,7 +7,7 @@
  (the "License"); you may not use this file except in compliance with
  the License.  You may obtain a copy of the License at
 
-     http://www.apache.org/licenses/LICENSE-2.0
+     ht	tp://www.apache.org/licenses/LICENSE-2.0
 
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
@@ -456,6 +456,7 @@
 	<fields>
 		<!-- nomisma field list -->
 		<field name="id" type="string" indexed="true" required="true" stored="true"/>
+		<field name="uri" type="string" indexed="true" required="true" stored="true"/>
 		<field name="pleiades_uri" type="string" indexed="true" stored="true" multiValued="true"/>
 		<field name="type" type="string" indexed="true" stored="true" multiValued="true"/>
 		<field name="prefLabel" type="string" indexed="true" stored="true"/>
@@ -465,7 +466,7 @@
 		<field name="relatedMatch" type="string" indexed="true" stored="true" multiValued="true"/>
 		<field name="exactMatch" type="string" indexed="true" stored="true" multiValued="true"/>
 		<field name="definition" type="text_general" indexed="true" stored="true"/>
-		<field name="location" type="location" indexed="true" stored="true"/>
+		<field name="geo" type="location" indexed="true" stored="true"/>
 		<field name="timestamp" type="date" indexed="true" stored="true"/>
 		<!-- fulltext -->
 		<field name="text" type="text_general" indexed="true" stored="false" multiValued="true"/>
