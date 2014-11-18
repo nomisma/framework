@@ -446,8 +446,6 @@
 
 		<!-- A specialized field for geospatial search. If indexed, this fieldType must not be multivalued. -->
 		<fieldType name="location" class="solr.LatLonType" subFieldSuffix="_coordinate"/>
-		<fieldType name="location_rpt" class="solr.SpatialRecursivePrefixTreeFieldType" spatialContextFactory="com.spatial4j.core.context.jts.JtsSpatialContextFactory" geo="true"
-			distErrPct="0.025" maxDistErr="0.000009" units="degrees"/>
 
 		<!--
     A Geohash is a compact representation of a latitude longitude pair in a single field.
