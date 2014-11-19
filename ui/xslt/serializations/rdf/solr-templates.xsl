@@ -97,7 +97,7 @@
 					<xsl:value-of select="geo:lat"/>
 				</field>
 			</xsl:when>
-			<xsl:when test="osgeo:asGeoJSON">
+			<!--<xsl:when test="osgeo:asGeoJSON">
 				<xsl:variable name="points" as="item()*">
 					<xsl:analyze-string select="osgeo:asGeoJSON" regex="\[(-?\d+\.?\d+),(-?\d+\.?\d+)\]">
 						<xsl:matching-substring>
@@ -116,7 +116,7 @@
 					</xsl:for-each>
 					<xsl:text>))</xsl:text>
 				</field>
-			</xsl:when>
+			</xsl:when>-->
 		</xsl:choose>
 	</xsl:template>
 

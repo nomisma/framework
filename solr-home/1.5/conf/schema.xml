@@ -62,6 +62,8 @@
 	<!-- required for geoSPARQL via Jena/Fuseki extensions -->
 	<field name="uri" type="string" indexed="true" required="true" stored="true" multiValued="false"/>
 	<field name="geo" type="location_rpt" indexed="true" stored="true" multiValued="true"/>
+	<!-- Type used to index the lat and lon components for the "location" FieldType -->
+	<dynamicField name="*_coordinate"  type="tdouble" indexed="true"  stored="false" />
 
 	<!-- fulltext -->
 	<field name="text" type="text_general" indexed="true" stored="false" multiValued="true"/>
@@ -475,8 +477,9 @@
       For more information about this and other Spatial fields new to Solr 4, see:
       http://wiki.apache.org/solr/SolrAdaptersForLuceneSpatial4
     -->
-	<fieldType name="location_rpt" class="solr.SpatialRecursivePrefixTreeFieldType" geo="true" distErrPct="0.025" maxDistErr="0.000009" units="degrees"/>
-
+	<fieldType name="location_rpt" class="solr.SpatialRecursivePrefixTreeFieldType" geo="true"
+		distErrPct="0.025" maxDistErr="0.000009" units="degrees"/>
+	<!-- spatialContextFactory="com.spatial4j.core.context.jts.JtsSpatialContextFactory"-->
 	<!-- Spatial rectangle (bounding box) field. It supports most spatial predicates, and has
      special relevancy modes: score=overlapRatio|area|area2D (local-param to the query).  DocValues is required for
      relevancy. -->
