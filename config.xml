@@ -5,6 +5,7 @@
 	<sparql_update>http://localhost:3030/nomisma/update</sparql_update>
 	<sparql_store>http://localhost:3030/nomisma/data</sparql_store>
 	<solr_published>http://localhost:8080/solr/nomisma/</solr_published>
+	<solr_fuseki>http://localhost:8080/solr/nomisma-fuseki/</solr_fuseki>
 	<id_path>/usr/local/projects/ids-fork/rdf</id_path>
 	<dump_path>/usr/local/projects/nomisma/dump</dump_path>
 	<flickr_api_key>226cb53f91a6c1331adfb52c365584e9</flickr_api_key>	
