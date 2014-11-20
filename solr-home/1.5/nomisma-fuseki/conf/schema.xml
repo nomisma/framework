@@ -47,18 +47,6 @@
 
 <schema name="example" version="1.5">
 	<field name="_version_" type="long" indexed="true" stored="true"/>
-	<field name="id" type="string" indexed="true" required="true" stored="true" multiValued="false"/>
-	<field name="pleiades_uri" type="string" indexed="true" stored="true" multiValued="true"/>
-	<field name="type" type="string" indexed="true" stored="true" multiValued="true"/>
-	<field name="prefLabel" type="string" indexed="true" stored="true"/>
-	<field name="label" type="text_general" indexed="true" stored="true" multiValued="true"/>
-	<field name="broader" type="string" indexed="true" stored="true" multiValued="true"/>
-	<field name="narrower" type="string" indexed="true" stored="true" multiValued="true"/>
-	<field name="relatedMatch" type="string" indexed="true" stored="true" multiValued="true"/>
-	<field name="exactMatch" type="string" indexed="true" stored="true" multiValued="true"/>
-	<field name="definition" type="text_general" indexed="true" stored="true"/>
-	<field name="timestamp" type="date" indexed="true" stored="true"/>
-
 	<!-- required for geoSPARQL via Jena/Fuseki extensions -->
 	<field name="uri" type="string" indexed="true" required="true" stored="true" multiValued="false"/>
 	<field name="geo" type="location_rpt" indexed="true" stored="true" multiValued="true"/>
@@ -68,7 +56,7 @@
 	<!-- fulltext -->
 	<field name="text" type="text_general" indexed="true" stored="false" multiValued="true"/>
 
-	<uniqueKey>id</uniqueKey>
+	<uniqueKey>uri</uniqueKey>
 	<!-- field for the QueryParser to use when an explicit fieldname is absent -->
 	<defaultSearchField>text</defaultSearchField>
 
