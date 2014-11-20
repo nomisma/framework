@@ -40,6 +40,7 @@ PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
 PREFIX osgeo:	<http://data.ordnancesurvey.co.uk/ontology/geometry/>
 PREFIX nm:	<http://nomisma.org/id/>
 PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX spatial: <http://jena.apache.org/spatial#>
 
 SELECT * WHERE {
 ?s ?p ?o

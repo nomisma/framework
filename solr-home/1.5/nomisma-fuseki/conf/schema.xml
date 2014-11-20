@@ -47,7 +47,7 @@
 
 <schema name="example" version="1.5">
 	<field name="_version_" type="long" indexed="true" stored="true"/>
-	<field name="id" type="string" indexed="true" required="true" stored="true"/>
+	<field name="id" type="string" indexed="true" required="true" stored="true" multiValued="false"/>
 	<field name="pleiades_uri" type="string" indexed="true" stored="true" multiValued="true"/>
 	<field name="type" type="string" indexed="true" stored="true" multiValued="true"/>
 	<field name="prefLabel" type="string" indexed="true" stored="true"/>
