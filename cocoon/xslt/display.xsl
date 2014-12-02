@@ -8,7 +8,7 @@
 	<xsl:param name="serverPort "/>
 	<xsl:param name="requestURI "/>
 	<xsl:param name="flickr_api_key"/>
-	<xsl:variable name="service" select="concat('http://api.flickr.com/services/rest/?api_key=', $flickr_api_key)"/>
+	<xsl:variable name="service" select="concat('https://api.flickr.com/services/rest/?api_key=', $flickr_api_key)"/>
 
 	<xsl:variable name="uri" select="concat('http://nomisma.org/id/', $id)"/>
 
