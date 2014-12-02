@@ -104,11 +104,17 @@
 			<xforms:instance id="related-template" xxforms:exclude-result-prefixes="#all">
 				<div property="skos:related" resource=""/>
 			</xforms:instance>
+			
+			<xforms:instance id="scopeNote-template" xxforms:exclude-result-prefixes="#all">
+				<div property="skos:scopeNote" xml:lang=""/>
+			</xforms:instance>
 
 			<xforms:instance id="isPartOf-template" xxforms:exclude-result-prefixes="#all">
 				<div property="dcterms:isPartOf" resource=""/>
 			</xforms:instance>
-
+			<xforms:instance id="source-template" xxforms:exclude-result-prefixes="#all">
+				<div property="dcterms:source" resource=""/>
+			</xforms:instance>
 			<xforms:instance id="lat-template" xxforms:exclude-result-prefixes="#all">
 				<div property="geo:lat"/>
 			</xforms:instance>
@@ -117,10 +123,7 @@
 				<div property="geo:long"/>
 			</xforms:instance>
 
-			<xforms:instance id="comment-template" xxforms:exclude-result-prefixes="#all">
-				<div property="rdfs:comment" xml:lang=""/>
-			</xforms:instance>
-
+			
 			<xforms:instance id="numismatic_start_date-template" xxforms:exclude-result-prefixes="#all">
 				<div property="nm:numismatic_start_date" content="" datatype="xsd:gYear"/>
 			</xforms:instance>
@@ -240,8 +243,10 @@
 						constraint="string-length(.) &gt; 0 and count(parent::node()/parent::node()/xhtml:div[@property='skos:definition'][@xml:lang='en']) = 1 and count(parent::node()/parent::node()/xhtml:div[@property='skos:definition']/@xml:lang) = count(distinct-values(parent::node()/parent::node()/xhtml:div[@property='skos:definition']/@xml:lang))"
 					/>
 				</xforms:bind>
-				<xforms:bind nodeset="xhtml:div[@property='rdfs:comment']" required="true()">
-					<xforms:bind nodeset="@xml:lang" constraint="string-length(.) &gt; 0"/>
+				<xforms:bind nodeset="xhtml:div[@property='skos:scopeNote']" required="true()">
+					<xforms:bind nodeset="@xml:lang"
+						constraint="string-length(.) &gt; 0 and count(parent::node()/parent::node()/xhtml:div[@property='skos:scopeNote'][@xml:lang='en']) = 1 and count(parent::node()/parent::node()/xhtml:div[@property='skos:scopeNote']/@xml:lang) = count(distinct-values(parent::node()/parent::node()/xhtml:div[@property='skos:scopeNote']/@xml:lang))"
+					/>
 				</xforms:bind>
 				<xforms:bind nodeset="xhtml:div[@property='skos:related']">
 					<xforms:bind nodeset="@resource" required="true()" type="xs:anyURI"/>
@@ -253,6 +258,9 @@
 					<xforms:bind nodeset="@resource" required="true()" type="xs:anyURI"/>
 				</xforms:bind>
 				<xforms:bind nodeset="xhtml:div[@property='dcterms:isPartOf']">
+					<xforms:bind nodeset="@resource" required="true()"/>
+				</xforms:bind>
+				<xforms:bind nodeset="xhtml:div[@property='dcterms:source']">
 					<xforms:bind nodeset="@resource" required="true()"/>
 				</xforms:bind>
 				<xforms:bind nodeset="xhtml:div[@property='geo:lat']" constraint="(number(.) &gt; -180 and number(.) &lt; 180)"/>
@@ -507,6 +515,11 @@
 								</xforms:trigger>
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
+										<img src="{$display_path}images/add.gif"/>Scope Note</xforms:label>
+									<xforms:insert ev:event="DOMActivate" origin="instance('scopeNote-template')" context="."/>
+								</xforms:trigger>
+								<xforms:trigger appearance="minimal">
+									<xforms:label>
 										<img src="{$display_path}images/add.gif"/>Field of Numismatics</xforms:label>
 									<xforms:insert ev:event="DOMActivate" origin="instance('isPartOf-template')" context="." nodeset="./child::node()[last()]"/>
 								</xforms:trigger>
@@ -627,15 +640,12 @@
 										</xforms:group>
 									</div>
 								</xforms:repeat>
-							</div>
-							<div>
-								<h4>Miscellaneous Fields</h4>
-								<xforms:repeat nodeset="xhtml:div[@property='rdfs:comment']">
+								<xforms:repeat nodeset="xhtml:div[@property='skos:scopeNote']">
 									<div>
-										<xforms:input ref=".">
-											<xforms:label>Comment</xforms:label>
+										<xforms:textarea ref=".">
+											<xforms:label>Scope Note</xforms:label>
 											<xforms:alert>Required</xforms:alert>
-										</xforms:input>
+										</xforms:textarea>
 										<xforms:select1 ref="@xml:lang">
 											<xforms:item>
 												<xforms:label>Select...</xforms:label>
@@ -645,7 +655,7 @@
 												<xforms:label ref="."/>
 												<xforms:value ref="@value"/>
 											</xforms:itemset>
-											<xforms:alert>Required</xforms:alert>
+											<xforms:alert>Required; English label most occur once.</xforms:alert>
 										</xforms:select1>
 										<xforms:trigger appearance="minimal">
 											<xforms:delete ev:event="DOMActivate" context="."/>
@@ -655,10 +665,27 @@
 										</xforms:trigger>
 									</div>
 								</xforms:repeat>
+							</div>
+							<div>
+								<h4>Miscellaneous Fields</h4>								
 								<xforms:repeat nodeset="xhtml:div[@property='skos:related']">
 									<div>
 										<xforms:input ref="@resource">
 											<xforms:label>Related Link</xforms:label>
+											<xforms:alert>Required, must be URI</xforms:alert>
+										</xforms:input>
+										<xforms:trigger appearance="minimal">
+											<xforms:delete ev:event="DOMActivate" context="."/>
+											<xforms:label>
+												<img src="{$display_path}images/remove.gif"/>
+											</xforms:label>
+										</xforms:trigger>
+									</div>
+								</xforms:repeat>
+								<xforms:repeat nodeset="xhtml:div[@property='dcterms:source']">
+									<div>
+										<xforms:input ref="@resource">
+											<xforms:label>Source</xforms:label>
 											<xforms:alert>Required, must be URI</xforms:alert>
 										</xforms:input>
 										<xforms:trigger appearance="minimal">
