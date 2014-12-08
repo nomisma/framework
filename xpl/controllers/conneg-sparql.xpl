@@ -121,74 +121,95 @@
 	<!-- get the data from fuseki -->
 	<p:processor name="oxf:url-generator">
 		<p:input name="config" href="#url-generator-config"/>
-		<p:output name="data" id="model"/>
+		<p:output name="data" id="url-data"/>
 	</p:processor>
 	
+	<p:processor name="oxf:exception-catcher">
+		<p:input name="data" href="#url-data"/>
+		<p:output name="data" id="url-data-checked"/>
+	</p:processor>
 	
-	<p:choose href="#conneg-config">
-		<p:when test="content-type='xml'">
-			<p:processor name="oxf:xml-converter">
-				<p:input name="data" href="#model"/>
-				<p:input name="config">
-					<config>
-						<content-type>application/sparql-results+xml</content-type>
-						<encoding>utf-8</encoding>
-						<version>1.0</version>
-						<indent>true</indent>
-						<indent-amount>4</indent-amount>
-					</config>
-				</p:input>
-				<p:output name="data" ref="data"/>
-			</p:processor>
-		</p:when>
-		<p:when test="content-type='json'">
-			<p:processor name="oxf:text-converter">
-				<p:input name="data" href="#model"/>
-				<p:input name="config">
-					<config>
-						<content-type>application/sparql-results+json</content-type>
-						<encoding>utf-8</encoding>
-					</config>
-				</p:input>
-				<p:output name="data" ref="data"/>
-			</p:processor>
-		</p:when>
-		<p:when test="content-type='csv'">
-			<p:processor name="oxf:text-converter">
-				<p:input name="data" href="#model"/>
-				<p:input name="config">
-					<config>
-						<content-type>text/csv</content-type>
-						<encoding>utf-8</encoding>
-					</config>
-				</p:input>
-				<p:output name="data" ref="data"/>
-			</p:processor>
-		</p:when>
-		<p:when test="content-type='text'">
-			<p:processor name="oxf:text-converter">
-				<p:input name="data" href="#model"/>
-				<p:input name="config">
-					<config>
-						<encoding>utf-8</encoding>
-					</config>
-				</p:input>
-				<p:output name="data" ref="data"/>
-			</p:processor>
-		</p:when>
-		<p:when test="content-type='html'">
+	<p:choose href="#url-data-checked">
+		<p:when test="//*/@status-code != '200'">
 			<p:processor name="oxf:pipeline">
-				<p:input name="data" href="#model"/>
-				<p:input name="config" href="../views/serializations/sparql/html.xpl"/>		
+				<p:input name="data" href="#url-data"/>
+				<p:input name="config" href="error.xpl"/>		
 				<p:output name="data" ref="data"/>
-			</p:processor>
+			</p:processor>			
 		</p:when>
 		<p:otherwise>
-			<p:processor name="oxf:pipeline">
-				<p:input name="data" href="#data"/>
-				<p:input name="config" href="406-not-acceptable.xpl"/>		
-				<p:output name="data" ref="data"/>
+			<!-- Just return the document -->
+			<p:processor name="oxf:identity">
+				<p:input name="data" href="#url-data-checked"/>
+				<p:output name="data" id="model"/>
 			</p:processor>
+			
+			<p:choose href="#conneg-config">
+				<p:when test="content-type='xml'">
+					<p:processor name="oxf:xml-converter">
+						<p:input name="data" href="#model"/>
+						<p:input name="config">
+							<config>
+								<content-type>application/sparql-results+xml</content-type>
+								<encoding>utf-8</encoding>
+								<version>1.0</version>
+								<indent>true</indent>
+								<indent-amount>4</indent-amount>
+							</config>
+						</p:input>
+						<p:output name="data" ref="data"/>
+					</p:processor>
+				</p:when>
+				<p:when test="content-type='json'">
+					<p:processor name="oxf:text-converter">
+						<p:input name="data" href="#model"/>
+						<p:input name="config">
+							<config>
+								<content-type>application/sparql-results+json</content-type>
+								<encoding>utf-8</encoding>
+							</config>
+						</p:input>
+						<p:output name="data" ref="data"/>
+					</p:processor>
+				</p:when>
+				<p:when test="content-type='csv'">
+					<p:processor name="oxf:text-converter">
+						<p:input name="data" href="#model"/>
+						<p:input name="config">
+							<config>
+								<content-type>text/csv</content-type>
+								<encoding>utf-8</encoding>
+							</config>
+						</p:input>
+						<p:output name="data" ref="data"/>
+					</p:processor>
+				</p:when>
+				<p:when test="content-type='text'">
+					<p:processor name="oxf:text-converter">
+						<p:input name="data" href="#model"/>
+						<p:input name="config">
+							<config>
+								<encoding>utf-8</encoding>
+							</config>
+						</p:input>
+						<p:output name="data" ref="data"/>
+					</p:processor>
+				</p:when>
+				<p:when test="content-type='html'">
+					<p:processor name="oxf:pipeline">
+						<p:input name="data" href="#model"/>
+						<p:input name="config" href="../views/serializations/sparql/html.xpl"/>		
+						<p:output name="data" ref="data"/>
+					</p:processor>
+				</p:when>
+				<p:otherwise>
+					<p:processor name="oxf:pipeline">
+						<p:input name="data" href="#data"/>
+						<p:input name="config" href="406-not-acceptable.xpl"/>		
+						<p:output name="data" ref="data"/>
+					</p:processor>
+				</p:otherwise>
+			</p:choose>
 		</p:otherwise>
 	</p:choose>
 </p:pipeline>
