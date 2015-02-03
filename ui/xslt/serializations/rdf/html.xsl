@@ -224,18 +224,7 @@
 								
 								<xsl:choose>
 									<xsl:when test="contains(@rdf:datatype, '#gYear')">
-										<xsl:choose>
-											<xsl:when test="number(.) &lt;= 0">
-												<xsl:value-of select="abs(number(.)) +1"/>
-												<xsl:text> B.C.</xsl:text>
-											</xsl:when>
-											<xsl:otherwise>
-												<xsl:if test="number(.) &lt; 400">
-													<xsl:text>A. D.</xsl:text>
-												</xsl:if>
-												<xsl:value-of select="abs(number(.))"/>
-											</xsl:otherwise>
-										</xsl:choose>										
+										<xsl:value-of select="nomisma:normalizeDate(.)"/>										
 									</xsl:when>
 									<xsl:otherwise>
 										<xsl:value-of select="."/>
@@ -305,7 +294,7 @@
 		</div>
 	</xsl:template>
 
-	<xsl:function name="nomisma:normalize_date">
+	<xsl:function name="nomisma:normalizeDate">
 		<xsl:param name="date"/>
 
 		<xsl:choose>

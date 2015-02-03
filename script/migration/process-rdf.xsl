@@ -50,6 +50,9 @@
 				<xsl:if test="nm:uncertain_value">
 					<un:hasUncertainty rdf:resource="http://nomisma.org/id/uncertain_value"/>
 				</xsl:if>
+				<xsl:if test="nm:approximate_value">
+					<un:hasUncertainty rdf:resource="http://nomisma.org/id/approximate_value"/>
+				</xsl:if>
 			</geo:SpatialThing>
 		</xsl:if>
 	</xsl:template>
@@ -168,6 +171,12 @@
 		</foaf:Person>
 		<org:Membership rdf:about="{@rdf:about}#{local-name()}">
 			<org:role rdf:resource="http://nomisma.org/id/{local-name()}"/>
+			<xsl:if test="nm:numismatic_start_date">
+				<nmo:hasStartDate>
+					<xsl:attribute name="rdf:datatype" select="nm:numismatic_start_date/@rdf:datatype"/>
+					<xsl:value-of select="nm:numismatic_start_date"/>
+				</nmo:hasStartDate>
+			</xsl:if>
 		</org:Membership>
 	</xsl:template>
 
@@ -253,9 +262,6 @@
 		<nmo:hasMaterial rdf:resource="{@rdf:resource}"/>
 	</xsl:template>
 
-	<!-- ignore geo:lat, geo:long, nm:uncertain_value -->
-	<xsl:template match="geo:long|geo:lat|nm:uncertain_value|nm:findspot|nm:mint[not(parent::rdf:RDF)]"/>
-
 	<!-- handle closing dates -->
 	<xsl:template name="closing-date">
 		<xsl:param name="uri"/>
@@ -272,6 +278,6 @@
 		</dcterms:PeriodOfTime>
 	</xsl:template>
 
-	<!-- ignore closing date generic template -->
-	<xsl:template match="nm:closing_date_start|nm:closing_date_end|nm:closing_date"/>
+	<!-- suppress old properties -->
+	<xsl:template match="nm:closing_date_start|nm:closing_date_end|nm:closing_date|nm:item|nm:numismatic_start_date|geo:long|geo:lat|nm:uncertain_value|nm:approximate_value|nm:approximateburialdata_end|nm:findspot|nm:struck_as|nm:material|nm:legend|nm:total|nm:cite|nm:approximateburialdate|nm:struck_as|nm:mint[not(parent::rdf:RDF)]|nm:collection[not(parent::rdf:RDF)]"/>
 </xsl:stylesheet>
