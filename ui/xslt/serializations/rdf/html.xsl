@@ -214,8 +214,33 @@
 							</div>
 						</xsl:when>
 						<xsl:otherwise>
-							<span property="{name()}" xml:lang="{@xml:lang}">
-								<xsl:value-of select="."/>
+							<span property="{name()}">
+								<xsl:if test="@xml:lang">
+									<xsl:attribute name="xml:lang" select="@xml:lang"/>
+								</xsl:if>
+								<xsl:if test="@rdf:datatype">
+									<xsl:attribute name="datatype" select="@rdf:datatype"/>
+								</xsl:if>
+								
+								<xsl:choose>
+									<xsl:when test="contains(@rdf:datatype, '#gYear')">
+										<xsl:choose>
+											<xsl:when test="number(.) &lt;= 0">
+												<xsl:value-of select="abs(number(.)) +1"/>
+												<xsl:text> B.C.</xsl:text>
+											</xsl:when>
+											<xsl:otherwise>
+												<xsl:if test="number(.) &lt; 400">
+													<xsl:text>A. D.</xsl:text>
+												</xsl:if>
+												<xsl:value-of select="abs(number(.))"/>
+											</xsl:otherwise>
+										</xsl:choose>										
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:value-of select="."/>
+									</xsl:otherwise>
+								</xsl:choose>								
 							</span>
 							<xsl:if test="string(@xml:lang)">
 								<span class="lang">
