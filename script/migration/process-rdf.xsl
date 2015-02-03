@@ -14,7 +14,7 @@
 
 	<xsl:template match="rdf:RDF">
 		<xsl:for-each select="*">
-			<xsl:result-document method="xml" href="new/{substring-after(@rdf:about, 'id/')}.rdf">
+			<xsl:result-document method="xml" href="/usr/local/projects/nomisma-data/id/{substring-after(@rdf:about, 'id/')}.rdf">
 				<rdf:RDF>
 					<xsl:apply-templates select="current()"/>
 				</rdf:RDF>
@@ -29,7 +29,7 @@
 	<xsl:template match="nm:nomisma_region|nm:head_1911_region|nm:region">
 		<xsl:element name="nmo:Region" namespace="http://nomisma.org/ontology#">
 			<xsl:attribute name="rdf:about" select="@rdf:about"/>
-			<rdf:type resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+			<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
 			<xsl:apply-templates/>
 			<xsl:if test="descendant::geo:lat">
 				<geo:location rdf:resource="{concat(@rdf:about, '#this')}"/>
@@ -55,10 +55,11 @@
 	</xsl:template>
 
 	<!-- generic types -->
-	<xsl:template match="nm:denomination[parent::rdf:RDF]|nm:mint[parent::rdf:RDF]|nm:material[parent::rdf:RDF]|nm:manufacture[parent::rdf:RDF]|nm:collection[parent::rdf:RDF]|nm:ethnic[parent::rdf:RDF]">
+	<xsl:template
+		match="nm:denomination[parent::rdf:RDF]|nm:mint[parent::rdf:RDF]|nm:material[parent::rdf:RDF]|nm:manufacture[parent::rdf:RDF]|nm:collection[parent::rdf:RDF]|nm:ethnic[parent::rdf:RDF]">
 		<xsl:element name="nmo:{concat(upper-case(substring(local-name(), 1, 1)), substring(local-name(), 2))}" namespace="http://nomisma.org/ontology#">
 			<xsl:attribute name="rdf:about" select="@rdf:about"/>
-			<rdf:type resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+			<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
 			<xsl:apply-templates/>
 			<xsl:if test="descendant::geo:lat">
 				<geo:location rdf:resource="{concat(@rdf:about, '#this')}"/>
@@ -100,7 +101,7 @@
 				'artist') or contains($uri, 'engraver') or contains($uri, 'league')">
 				<xsl:element name="org:Role" namespace="http://www.w3.org/ns/org#">
 					<xsl:attribute name="rdf:about" select="@rdf:about"/>
-					<rdf:type resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+					<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
 					<xsl:apply-templates/>
 				</xsl:element>
 			</xsl:when>
@@ -108,14 +109,14 @@
 			<xsl:when test="$uri = 'http://nomisma.org/id/hoard'">
 				<xsl:element name="nmo:FindType" namespace="http://nomisma.org/ontology#">
 					<xsl:attribute name="rdf:about" select="@rdf:about"/>
-					<rdf:type resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+					<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
 					<xsl:apply-templates/>
 				</xsl:element>
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:element name="nmo:{$element}" namespace="http://nomisma.org/ontology#">
 					<xsl:attribute name="rdf:about" select="@rdf:about"/>
-					<rdf:type resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+					<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
 					<xsl:apply-templates/>
 				</xsl:element>
 			</xsl:otherwise>
@@ -128,7 +129,7 @@
 		<xsl:variable name="id" select="tokenize($uri, '/')[last()]"/>
 		<nmo:TypeSeriesItem>
 			<xsl:attribute name="rdf:about" select="$uri"/>
-			<rdf:type resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+			<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
 
 
 			<xsl:choose>
@@ -161,7 +162,7 @@
 	<xsl:template match="nm:authority|nm:issuer|nm:rrc_moneyer|nm:ruler|nm:roman_emperor|nm:artist|nm:engraver|nm:league">
 		<foaf:Person>
 			<xsl:attribute name="rdf:about" select="@rdf:about"/>
-			<rdf:type resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+			<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
 			<xsl:apply-templates/>
 			<org:hasMembership rdf:resource="{@rdf:about}#{local-name()}"/>
 		</foaf:Person>
@@ -173,14 +174,21 @@
 	<xsl:template match="nm:hoard">
 		<nmo:Hoard>
 			<xsl:attribute name="rdf:about" select="@rdf:about"/>
-			<rdf:type resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+			<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
 			<xsl:apply-templates/>
-			<xsl:if test="nm:closing_date_start and nm:closing_date_end">
-				<xsl:call-template name="closing-date"/>
+			<xsl:if test="(nm:closing_date_start and nm:closing_date_end) or nm:closing_date">
+				<nmo:hasClosingDate rdf:resource="{concat(@rdf:about, '#closingDate')}"/>				
 			</xsl:if>
 			<xsl:apply-templates select="nm:findspot/rdf:Description" mode="property"/>
 		</nmo:Hoard>
 		<xsl:apply-templates select="nm:findspot/rdf:Description" mode="class"/>
+		<xsl:if test="(nm:closing_date_start and nm:closing_date_end) or nm:closing_date">
+			<xsl:call-template name="closing-date">
+				<xsl:with-param name="uri" select="@rdf:about"/>
+				<xsl:with-param name="startDate" select="if (nm:closing_date_start) then nm:closing_date_start else nm:closing_date"/>
+				<xsl:with-param name="endDate" select="if (nm:closing_date_end) then nm:closing_date_end else nm:closing_date"/>
+			</xsl:call-template>
+		</xsl:if>
 	</xsl:template>
 
 	<!-- reprocess skos:related -->
@@ -208,7 +216,7 @@
 	<!-- reprocess dcterms:isPartOf -->
 	<xsl:template match="dcterms:isPartOf">
 		<xsl:choose>
-			<xsl:when test="parent::nm:type_series_item">
+			<xsl:when test="parent::nm:type_series_item or parent::nm:hoard">
 				<dcterms:source rdf:resource="{@rdf:resource}"/>
 			</xsl:when>
 			<xsl:otherwise>
@@ -249,39 +257,21 @@
 	<xsl:template match="geo:long|geo:lat|nm:uncertain_value|nm:findspot|nm:mint[not(parent::rdf:RDF)]"/>
 
 	<!-- handle closing dates -->
-	<xsl:template match="nm:closing_date">
-		<nmo:hasClosingDate>
-			<dcterms:PeriodOfTime>
-				<nmo:hasStartDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">
-					<xsl:value-of select="."/>
-				</nmo:hasStartDate>
-				<nmo:hasEndDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">
-					<xsl:value-of select="."/>
-				</nmo:hasEndDate>
-			</dcterms:PeriodOfTime>
-		</nmo:hasClosingDate>
-	</xsl:template>
-	
 	<xsl:template name="closing-date">
-		<nmo:hasClosingDate>
-			<dcterms:PeriodOfTime>
-				<xsl:apply-templates select="nm:closing_date_start|nm:closing_date_end" mode="closing-date"/>
-			</dcterms:PeriodOfTime>
-		</nmo:hasClosingDate>
+		<xsl:param name="uri"/>
+		<xsl:param name="startDate"/>
+		<xsl:param name="endDate"/>
+		
+		<dcterms:PeriodOfTime rdf:about="{concat($uri, '#closingDate')}">
+			<nmo:hasStartDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">
+				<xsl:value-of select="$startDate"/>
+			</nmo:hasStartDate>
+			<nmo:hasEndDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">
+				<xsl:value-of select="$endDate"/>
+			</nmo:hasEndDate>				
+		</dcterms:PeriodOfTime>
 	</xsl:template>
 
-	<xsl:template match="nm:closing_date_start" mode="closing-date">
-		<nmo:hasStartDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">
-			<xsl:value-of select="."/>
-		</nmo:hasStartDate>
-	</xsl:template>
-
-	<xsl:template match="nm:closing_date_end" mode="closing-date">
-		<nmo:hasEndDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">
-			<xsl:value-of select="."/>
-		</nmo:hasEndDate>
-	</xsl:template>
-	
 	<!-- ignore closing date generic template -->
-	<xsl:template match="nm:closing_date_start|nm:closing_date_end"/>
+	<xsl:template match="nm:closing_date_start|nm:closing_date_end|nm:closing_date"/>
 </xsl:stylesheet>

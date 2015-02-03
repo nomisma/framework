@@ -43,7 +43,7 @@
 				<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
 				<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"/>
 
-				<xsl:if test="$type='nmo:Mint' or $type='nm:hoard' or $type='nmo:Region'">
+				<xsl:if test="$type='nmo:Mint' or $type='nmo:Hoard' or $type='nmo:Region'">
 					<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"/>
 					<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.9&amp;sensor=false"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/display_map_functions.js"/>
@@ -61,10 +61,10 @@
 	<xsl:template name="body">
 		<div class="container-fluid content">
 			<div class="row">
-				<div class="col-md-{if ($type='nmo:Mint' or $type='nm:hoard' or $type='nmo:Region') then '6' else '9'}">
+				<div class="col-md-{if ($type='nmo:Mint' or $type='nmo:Hoard' or $type='nmo:Region') then '6' else '9'}">
 					<xsl:apply-templates select="/content/rdf:RDF/*" mode="type"/>
 				</div>
-				<div class="col-md-{if ($type='nmo:Mint' or $type='nm:hoard' or $type='nmo:Region') then '6' else '3'}">
+				<div class="col-md-{if ($type='nmo:Mint' or $type='nmo:Hoard' or $type='nmo:Region') then '6' else '3'}">
 					<div>
 						<h3>Export</h3>
 						<ul class="list-inline">
@@ -83,14 +83,14 @@
 							<!--<li>
 								<a href="{$id}.pelagios.rdf">Pelagios RDF/XML</a>
 								</li>-->
-							<xsl:if test="$type='nmo:Mint' or $type='nm:hoard' or $type='nmo:Region'">
+							<xsl:if test="$type='nmo:Mint' or $type='nmo:Hoard' or $type='nmo:Region'">
 								<li>
 									<a href="{$id}.kml">KML</a>
 								</li>
 							</xsl:if>
 						</ul>
 					</div>
-					<xsl:if test="$type='nmo:Mint' or $type='nm:hoard' or $type='nmo:Region'">
+					<xsl:if test="$type='nmo:Mint' or $type='nmo:Hoard' or $type='nmo:Region'">
 						<div id="mapcontainer"/>
 					</xsl:if>
 
@@ -124,8 +124,8 @@
 
 	<xsl:template match="*" mode="type">
 		<div typeof="{name()}" about="{@rdf:about}">
-			<xsl:if test="contains(@rdf:resource, '#this')">
-				<a name="#this"/>
+			<xsl:if test="contains(@rdf:about, '#')">
+				<xsl:attribute name="id" select="substring-after(@rdf:about, '#')"/>
 			</xsl:if>
 			<xsl:element name="{if(position()=1) then 'h2' else 'h3'}">
 				<a href="{@rdf:about}">

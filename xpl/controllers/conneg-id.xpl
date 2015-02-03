@@ -42,7 +42,7 @@
 	<p:choose href="#conneg-config">
 		<p:when test="content-type='xml'">
 			<p:processor name="oxf:pipeline">
-				<p:input name="config" href="../models/get-id.xpl"/>		
+				<p:input name="config" href="../models/rdf/get-id.xpl"/>		
 				<p:output name="data" ref="data"/>
 			</p:processor>
 		</p:when>

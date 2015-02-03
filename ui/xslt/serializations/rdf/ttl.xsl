@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/"
-	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/" version="2.0">
+	xmlns:nmo="http://nomisma.org/ontology#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/" version="2.0">
 
 	<xsl:variable name="namespaces" as="item()*">
 		<namespaces>
@@ -10,7 +10,7 @@
 			</xsl:for-each>
 		</namespaces>
 	</xsl:variable>
-	
+
 	<xsl:variable name="rdf" as="node()*">
 		<xsl:copy-of select="/rdf:RDF"/>
 	</xsl:variable>
@@ -48,16 +48,16 @@
 					<xsl:text>&gt;</xsl:text>
 				</xsl:otherwise>
 			</xsl:choose>
-			
+
 		</xsl:variable>
-		
+
 		<xsl:value-of select="concat('&#xA;', normalize-space($about), '&#xA;')"/>
-		
+
 		<xsl:variable name="count" select="count(distinct-values(*[not(child::*)]/name()))"/>
 		<xsl:for-each select="distinct-values(*[not(child::*)]/name())">
 			<xsl:variable name="position" select="position()"/>
-			<xsl:variable name="name" select="."/>		
-			<xsl:value-of select="concat('&#x9;', $name)"/>			
+			<xsl:variable name="name" select="."/>
+			<xsl:value-of select="concat('&#x9;', $name)"/>
 			<xsl:apply-templates select="$rdf//*[@rdf:about=$uri]/*[name()=$name]" mode="predicate">
 				<xsl:with-param name="position" select="$position"/>
 				<xsl:with-param name="count" select="$count"/>
@@ -72,12 +72,12 @@
 		<xsl:param name="position"/>
 		<xsl:param name="count"/>
 		<xsl:param name="level"/>
-		
-		<xsl:variable name="line">	
+
+		<xsl:variable name="line">
 			<xsl:if test="$level='bottom'">
 				<xsl:value-of select="name()"/>
 				<xsl:text> </xsl:text>
-			</xsl:if>			
+			</xsl:if>
 			<xsl:choose>
 				<xsl:when test="string(.)">
 					<xsl:text>"</xsl:text>
@@ -98,7 +98,7 @@
 							<xsl:text>&gt;</xsl:text>
 						</xsl:otherwise>
 					</xsl:choose>-->
-					
+
 					<!-- apparently the object must be a URI without prefix -->
 					<xsl:text>&lt;</xsl:text>
 					<xsl:value-of select="$uri"/>
@@ -131,11 +131,11 @@
 						<xsl:when test="$level='bottom'">
 							<xsl:text>;</xsl:text>
 						</xsl:when>
-					</xsl:choose>					
+					</xsl:choose>
 				</xsl:when>
 				<xsl:when test="position()=last() and $position &lt; $count">
-					<xsl:text>;</xsl:text>					
-				</xsl:when>	
+					<xsl:text>;</xsl:text>
+				</xsl:when>
 				<xsl:when test="position()=last() and $position = $count">
 					<xsl:choose>
 						<xsl:when test="parent::node()/*[child::*]">
@@ -145,15 +145,15 @@
 							<xsl:if test="$level='top'">
 								<xsl:text>.</xsl:text>
 							</xsl:if>
-							
+
 						</xsl:otherwise>
-					</xsl:choose>					
-				</xsl:when>				
-			</xsl:choose>	
+					</xsl:choose>
+				</xsl:when>
+			</xsl:choose>
 		</xsl:variable>
 		<xsl:value-of select="concat(if (position() = 1) then ' ' else '&#x9;&#x9;', normalize-space($line), '&#xA;')"/>
 	</xsl:template>
-	
+
 	<xsl:template match="*" mode="suburi">
 		<xsl:variable name="chunk">
 			<xsl:value-of select="name()"/>
@@ -169,7 +169,7 @@
 					<xsl:apply-templates select="child::*/*" mode="predicate">
 						<xsl:with-param name="level">bottom</xsl:with-param>
 					</xsl:apply-templates>
-					<xsl:text> ]</xsl:text>					
+					<xsl:text> ]</xsl:text>
 				</xsl:otherwise>
 			</xsl:choose>
 			<xsl:choose>
@@ -178,8 +178,8 @@
 				</xsl:when>
 				<xsl:when test="position()=last() and count(parent::node()/descendant::*[@rdf:about]) &gt; 0">
 					<xsl:text>.</xsl:text>
-				</xsl:when>	
-				<xsl:otherwise>.</xsl:otherwise>				
+				</xsl:when>
+				<xsl:otherwise>.</xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
 		<xsl:value-of select="concat('&#x9;', normalize-space($chunk), '&#xA;')"/>

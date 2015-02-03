@@ -42,7 +42,7 @@
 					</PolyStyle>
 				</Style>
 
-				<xsl:apply-templates select="nmo:Mint|nmo:Region|nm:hoard">
+				<xsl:apply-templates select="nmo:Mint|nmo:Region|nmo:Hoard">
 					<xsl:with-param name="lat">
 						<xsl:value-of select="geo:SpatialThing/geo:lat"/>
 					</xsl:with-param>
@@ -57,7 +57,7 @@
 		</kml>
 	</xsl:template>
 
-	<xsl:template match="nm:hoard|nmo:Mint|nmo:Region">
+	<xsl:template match="nmo:Hoard|nmo:Mint|nmo:Region">
 		<xsl:param name="lat"/>
 		<xsl:param name="long"/>
 		<xsl:param name="polygon"/>
@@ -75,7 +75,7 @@
 							<xsl:when test="$type='nmo:Mint' or $type='nmo:Region'">
 								<styleUrl>#mint</styleUrl>
 							</xsl:when>
-							<xsl:when test="$type='nm:hoard'">
+							<xsl:when test="$type='nmo:Hoard'">
 								<styleUrl>#findspot</styleUrl>
 							</xsl:when>
 						</xsl:choose>
@@ -101,7 +101,6 @@
 												</xsl:for-each>
 											</xsl:matching-substring>
 										</xsl:analyze-string>
-										<!--135.2, 35.4, 0. 135.4, 35.6, 0. 135.2, 35.6, 0. 135.2, 35.4, 0. -->
 									</coordinates>
 								</LinearRing>
 							</outerBoundaryIs>
