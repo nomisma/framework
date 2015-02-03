@@ -1,110 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:fr="http://orbeon.org/oxf/xml/form-runner"
-	xmlns:exist="http://exist.sourceforge.net/NS/exist" xmlns:nm="http://nomisma.org/id/" xmlns:ov="http://open.vocab.org/terms/" xmlns:owl="http://www.w3.org/2002/07/owl#"
-	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2008/05/skos#" xmlns:batlas="http://atlantides.org/batlas/" xmlns:cc="http://creativecommons.org/ns#"
-	xmlns:nuds="http://nomisma.org/id/nuds" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:gml="http://www.opengis.net/gml/" xmlns:kml="http://www.opengis.net/kml/2.2">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ev="http://www.w3.org/2001/xml-events"
+	xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:nm="http://nomisma.org/id/"
+	xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2008/05/skos#" xmlns:foaf="http://xmlns.com/foaf/0.1/">
 	<head>
-		<title>nomisma.org: Administrative Interface</title>
-		<link rel="stylesheet" href="/fr/style/bootstrap/css/bootstrap.css" type="text/css"/>
-		<link rel="stylesheet" href="/fr/style/form-runner-bootstrap-override.css" type="text/css"/>
-		<link rel="stylesheet" href="/config/theme/examples.css" type="text/css" media="all"/>
-		<link rel="shortcut icon" href="/ops/images/orbeon-icon-16.ico"/>
-		<link rel="icon" href="/ops/images/orbeon-icon-16.png" type="image/png"/>
-		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.8.0/build/cssgrids/grids-min.css"/>
-		<link rel="stylesheet" href="/apps/nomisma/css/style.css"/>
+		<title>nomisma.org: admin</title>
+		<link rel="stylesheet" href="/fr/style/bootstrap/css/bootstrap.css" type="text/css" />
+		<link rel="stylesheet" href="/fr/style/form-runner-bootstrap-override.css" type="text/css" />
+		<link rel="shortcut icon" href="/ops/images/orbeon-icon-16.ico" />
+		<link rel="icon" href="/ops/images/orbeon-icon-16.png" type="image/png" />
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+		<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="/apps/nomisma/xforms/css/style.css" />
+
 		<xforms:model>
-			<xforms:instance id="doc">
-				<div xmlns="http://www.w3.org/1999/xhtml"
-					prefix="nm: http://nomisma.org/id/
-					dcterms: http://purl.org/dc/terms/
-					foaf: http://xmlns.com/foaf/0.1/
-					geo: http://www.w3.org/2003/01/geo/wgs84_pos#
-					owl:  http://www.w3.org/2002/07/owl#
-					rdfs: http://www.w3.org/2000/01/rdf-schema#
-					rdfa: http://www.w3.org/ns/rdfa#
-					rdf:  http://www.w3.org/1999/02/22-rdf-syntax-ns#
-					skos: http://www.w3.org/2004/02/skos/core#"
-					vocab="http://nomisma.org/id/" about="" typeof="">
-					<div property="skos:prefLabel" xml:lang="en"/>
-					<div property="skos:definition" xml:lang="en"/>
-				</div>
+			<xforms:instance id="rdf" xxforms:exclude-result-prefixes="#all">
+				<rdf:RDF></rdf:RDF>
 			</xforms:instance>
 
-			<xforms:instance id="rdf">
-				<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:nm="http://nomisma.org/id/"
-					xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfa="http://www.w3.org/ns/rdfa#"
-					xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"/>
+			<xforms:instance id="config" xxforms:exclude-result-prefixes="#all">
+				<xi:include href="../config.xml"></xi:include>
 			</xforms:instance>
 
 			<xforms:instance id="control-instance">
 				<controls xmlns="">
-					<id/>
-					<original_id/>
-					<save-trigger/>
-					<status/>
-					<dbpedia/>
-					<id_path>/usr/local/projects/nomisma-ids/id/</id_path>
-					<endpoint>http://localhost:3030/nomisma/</endpoint>
-					<solr_url>http://localhost:8080/solr/nomisma/</solr_url>
-					<lat>40</lat>
-					<long>1</long>
-					<dump/>
+					<id></id>
+					<original_id></original_id>
+					<save-trigger></save-trigger>
+					<status></status>
+					<solr-query>*:*</solr-query>
+					<page>1</page>
+					<dump></dump>
+					<solr-core/>
 				</controls>
 			</xforms:instance>
 
-			<xforms:instance id="load-config">
+			<xforms:instance id="save-rdfxml-config">
 				<config xmlns="">
-					<url/>
+					<url></url>
 					<content-type>application/xml</content-type>
-					<mode>xml</mode>
-				</config>
-			</xforms:instance>
-
-			<xforms:instance id="save-config">
-				<config xmlns="">
-					<url/>
-					<content-type>text/plain</content-type>
 					<make-directories>false</make-directories>
 					<append>false</append>
 				</config>
 			</xforms:instance>
 
 			<xforms:instance id="dump">
-				<dump xmlns=""/>
-			</xforms:instance>
-
-			<!-- sparql queries -->
-			<xforms:instance id="sparqlQueryTemplate">
-				<query><![CDATA[
-					PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-					PREFIX dcterms:  <http://purl.org/dc/terms/>
-					PREFIX nm:       <http://nomisma.org/id/>
-					PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-					SELECT ?uri ?label WHERE {
-					?uri  rdf:type <http://nomisma.org/id/TERM>.
-					?uri skos:prefLabel ?label .
-					FILTER (lang(?label) = "en")}
-					ORDER BY ASC(?label)
-					]]>
-				</query>
-			</xforms:instance>
-
-			<xforms:instance id="sparqlQuery">
-				<query/>
-			</xforms:instance>
-
-			<!-- preloaded instances -->
-			<xforms:instance id="sparqlResponse">
-				<sparql xmlns="http://www.w3.org/2005/sparql-results#"/>
-			</xforms:instance>
-
-			<xforms:instance id="nt-response">
-				<sparql xmlns="http://www.w3.org/2005/sparql-results#"/>
-			</xforms:instance>
-
-			<xforms:instance id="fon-response">
-				<sparql xmlns="http://www.w3.org/2005/sparql-results#"/>
+				<dump xmlns=""></dump>
 			</xforms:instance>
 
 			<!-- sparql update -->
@@ -114,93 +54,356 @@
 				</query>
 			</xforms:instance>
 			<xforms:instance id="sparqlUpdate">
-				<query/>
+				<query></query>
 			</xforms:instance>
 
 			<!-- Solr instances -->
 			<xforms:instance id="addIndex">
-				<add xmlns=""/>
+				<add xmlns=""></add>
 			</xforms:instance>
 			<xforms:instance id="sendCommit">
-				<commit/>
+				<commit></commit>
 			</xforms:instance>
 			<xforms:instance id="deleteId">
 				<delete xmlns="">
-					<id/>
+					<id></id>
 				</delete>
 			</xforms:instance>
-
+			<xforms:instance id="deleteAll">
+				<delete xmlns="">
+					<query>*:*</query>
+				</delete>
+			</xforms:instance>
+			<xforms:instance id="optimizeIndex">
+				<optimize></optimize>
+			</xforms:instance>
+			<xforms:instance id="solr-response">
+				<response></response>
+			</xforms:instance>
 
 			<!-- ************* SPARQL SUBMISSIONS **********************-->
-			<xforms:submission id="getRdf" action="http://localhost:8080/cocoon/nomisma/id/{instance('control-instance')/id}.rdf" ref="instance('rdf')"
-				replace="instance" method="get">
-				<xforms:message ev:event="xforms-submit-error" level="modal">Failed to get RDF.</xforms:message>
-			</xforms:submission>
-
-			<!-- ************* SPARQL SUBMISSIONS **********************-->
-			<!-- SPARQL queries -->
-			<xforms:submission id="submit-sparqlQuery"
-				action="{instance('control-instance')/endpoint}query?query={encode-for-uri(instance('sparqlQuery'))}&amp;output=xml"
-				ref="instance('sparqlResponse')" replace="instance" method="get">
-				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL query failed.</xforms:message>
-			</xforms:submission>
-
-			<xforms:submission id="delete-graph" action="{instance('control-instance')/endpoint}update" ref="instance('sparqlUpdate')"
-				serialization="text/plain" replace="none" method="post" mediatype="application/sparql-update">
+			<xforms:submission id="delete-graph" action="{instance('config')/sparql_update}" ref="instance('sparqlUpdate')" serialization="text/plain" replace="none" method="post"
+				mediatype="application/sparql-update">
 				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL update failed.</xforms:message>
-			</xforms:submission>
-
-			<xforms:submission id="post-new" action="{instance('control-instance')/endpoint}data?default" ref="instance('rdf')" replace="none" method="post"
-				mediatype="application/rdf+xml">
-				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Successfully posted to endpoint.</xforms:setvalue>
-				<xforms:message ev:event="xforms-submit-error" level="modal">Post to endpoint failed.</xforms:message>
 			</xforms:submission>
 
 			<!-- ************************* SOLR SUBMISSIONS ************************** -->
 			<!-- post instance to Solr -->
-			<xforms:submission id="post-solr-doc" action="{instance('control-instance')/solr_url}update" ref="instance('addIndex')" instance="addIndex"
-				replace="instance" method="post">
-				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is
-					incorrect.</xforms:message>
-				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"/>
+			<xforms:submission id="delete-all" action="{instance('control-instance')/solr-core}update" ref="instance('deleteAll')" instance="deleteAll" replace="none" method="post">
+				<xforms:send ev:event="xforms-submit-done" submission="submit-commit"></xforms:send>
+				<xforms:message ev:event="xforms-submit-error" level="modal">Failed to delete all Solr docs.</xforms:message>
 			</xforms:submission>
 
-			<xforms:submission id="delete-id-from-solr" action="{instance('control-instance')/solr_url}update" ref="instance('deleteId')" instance="deleteId"
-				replace="instance" method="post">
-				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is
-					incorrect.</xforms:message>
-				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"/>
+			<xforms:submission id="post-to-solr" action="{instance('control-instance')/solr-core}update" ref="instance('addIndex')" instance="addIndex" replace="instance" method="post">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
+				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"></xforms:send>
+			</xforms:submission>
+
+			<xforms:submission id="delete-id-from-solr" action="{instance('control-instance')/solr-core}update" ref="instance('deleteId')" instance="deleteId" replace="instance" method="post">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
+				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"></xforms:send>
 			</xforms:submission>
 
 			<!-- send commit -->
-			<xforms:submission id="submit-commit" action="{instance('control-instance')/solr_url}update" ref="instance('sendCommit')" instance="sendCommit"
-				replace="none" method="post">
+			<xforms:submission id="submit-commit" action="{instance('control-instance')/solr-core}update" ref="instance('sendCommit')" instance="sendCommit" replace="none" method="post">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Failed to commit to Solr index.</xforms:message>
-				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Document successfully committed to
-					Solr.</xforms:setvalue>
 			</xforms:submission>
+
+			<xforms:submission id="optimize" action="{instance('control-instance')/solr-core}update" ref="instance('optimizeIndex')" instance="optimizeIndex" replace="none" method="post">
+				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Solr index flushed and reloaded.</xforms:setvalue>
+				<xforms:message ev:event="xforms-submit-error" level="modal">Solr optimize failed.</xforms:message>
+			</xforms:submission>
+
+			<!-- query solr to populate the list -->
+			<xforms:submission id="query-solr" serialization="none" method="get"
+				action="{instance('config')/solr_published}select/?q={instance('control-instance')/solr-query}&amp;rows=100&amp;start={(instance('control-instance')/page - 1) * 100}&amp;fl=id,type,definition,prefLabel"
+				replace="instance" instance="solr-response">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Solr is inaccessible. Please check Solr configuration.</xforms:message>
+			</xforms:submission>
+
+			<!-- ********** XFORMS-MODEL-CONSTRUCT-DONE ********** -->
+			<xforms:action ev:event="xforms-model-construct-done">
+				<xforms:send submission="query-solr"></xforms:send>
+			</xforms:action>
 		</xforms:model>
 	</head>
 
 	<body>
-		<xxforms:variable name="display_path">../</xxforms:variable>
-		<div class="yui3-g">
-			<div class="yui3-u-1">
-				<div class="content">
+		<xforms:var name="display_path">../</xforms:var>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-3 pull-right text-right">
+					<h4>
+						<a href="logout"><span class="glyphicon glyphicon-log-out"></span> logout</a>
+					</h4>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-9">
+					<h1>nomisma Admin</h1>
 					<xforms:group ref=".[string-length(instance('control-instance')/status) &gt; 0]">
-						<div class="ui-state-highlight ui-corner-all">
+						<div class="bg-info alert">
 							<p>
-								<span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"/>
+								<span class="glyphicon glyphicon-info-sign"></span>
 								<strong>Status:</strong>
-								<xforms:output ref="instance('control-instance')/status"/>
+								<xforms:output ref="instance('control-instance')/status"></xforms:output>
 							</p>
 						</div>
 					</xforms:group>
-					<h1>nomisma Admin</h1>
-					<p>This is a placeholder for the nomisma.org administrative page.</p>
-<!--					<fr:xforms-inspector/>-->
+					<xforms:group ref="instance('solr-response')/result[@name='response']">
+						<xforms:var name="numFound" select="@numFound"></xforms:var>
+						<xforms:group ref=".[$numFound &gt; 0]">
+							<!-- pagination variables -->
+							<xforms:var name="rows" select="number(100)"></xforms:var>
+							<xforms:var name="page" select="number(instance('control-instance')/page)"></xforms:var>
+							<xforms:var name="next" select="$page + 1"></xforms:var>
+							<xforms:var name="previous" select="if ($page &gt;= 1) then $page - 1 else 1"></xforms:var>
+							<xforms:var name="current" select="$page"></xforms:var>
+							<xforms:var name="total" select="ceiling($numFound div $rows)"></xforms:var>
+							<div class="row">
+								<div class="col-md-12">
+									<xforms:input ref="instance('control-instance')/solr-query" />
+									<xforms:trigger>
+										<xforms:label>Search</xforms:label>
+										<xforms:action ev:event="DOMActivate">
+											<xforms:setvalue ref="instance('control-instance')/page">1</xforms:setvalue>
+											<xforms:send submission="query-solr"></xforms:send>
+										</xforms:action>
+									</xforms:trigger>
+									<xforms:group ref=".[instance('control-instance')/solr-query != '*:*']">
+										<xforms:trigger>
+											<xforms:label>Clear</xforms:label>
+											<xforms:action ev:event="DOMActivate">
+												<xforms:setvalue ref="instance('control-instance')/solr-query">*:*</xforms:setvalue>
+												<xforms:setvalue ref="instance('control-instance')/page">1</xforms:setvalue>
+												<xforms:send submission="query-solr"></xforms:send>
+											</xforms:action>
+										</xforms:trigger>
+									</xforms:group>
+								</div>
+							</div>
+							<!-- pagination -->
+							<div class="paging_div row">
+								<div class="col-md-6"> Displaying records <b>
+										<xforms:output value="(($page - 1) * $rows) + 1"></xforms:output>
+									</b> to <b>
+										<xforms:output value="if ($numFound &gt; $page * $rows) then $page * $rows else $numFound"></xforms:output>
+									</b> of <b>
+										<xforms:output value="$numFound"></xforms:output>
+									</b> total results.</div>
+								<div class="col-md-6 page-nos">
+									<!-- previous -->
+									<xforms:group ref=".[$page &gt; 1]">
+										<xforms:trigger>
+											<xforms:label><span class="glyphicon glyphicon-fast-backward"></span></xforms:label>
+											<xforms:action ev:event="DOMActivate">
+												<xforms:setvalue ref="instance('control-instance')/page">1</xforms:setvalue>
+												<xforms:send submission="query-solr"></xforms:send>
+											</xforms:action>
+										</xforms:trigger>
+										<xforms:trigger>
+											<xforms:label><span class="glyphicon glyphicon-backward"></span></xforms:label>
+											<xforms:action ev:event="DOMActivate">
+												<xforms:setvalue ref="instance('control-instance')/page" value="$previous"></xforms:setvalue>
+												<xforms:send submission="query-solr"></xforms:send>
+											</xforms:action>
+										</xforms:trigger>
+									</xforms:group>
+									<xforms:group ref=".[$page = 1]">
+										<a class="btn btn-default disabled" title="First" href="#">
+											<span class="glyphicon glyphicon-fast-backward"></span>
+										</a>
+										<a class="btn btn-default disabled" title="Previous" href="#">
+											<span class="glyphicon glyphicon-backward"></span>
+										</a>
+									</xforms:group>
+									<!-- current-->
+									<button type="button" class="btn btn-default">
+										<b>
+											<xforms:output value="$current"></xforms:output>
+										</b>
+									</button>
+									<!-- next -->
+									<xforms:group ref=".[$total &gt; $current]">
+										<xforms:trigger>
+											<xforms:label>
+												<span class="glyphicon glyphicon-forward"></span>
+											</xforms:label>
+											<xforms:action ev:event="DOMActivate">
+												<xforms:setvalue ref="instance('control-instance')/page" value="$next"></xforms:setvalue>
+												<xforms:send submission="query-solr"></xforms:send>
+											</xforms:action>
+										</xforms:trigger>
+										<xforms:trigger>
+											<xforms:label>
+												<span class="glyphicon glyphicon-fast-forward"></span>
+											</xforms:label>
+											<xforms:action ev:event="DOMActivate">
+												<xforms:setvalue ref="instance('control-instance')/page" value="$total"></xforms:setvalue>
+												<xforms:send submission="query-solr"></xforms:send>
+											</xforms:action>
+										</xforms:trigger>
+									</xforms:group>
+									<xforms:group ref=".[not($total &gt; $current)]">
+										<a class="btn btn-default disabled" title="Next" href="#">
+											<span class="glyphicon glyphicon-forward"></span>
+										</a>
+										<a class="btn btn-default disabled" href="#">
+											<span class="glyphicon glyphicon-fast-forward"></span>
+										</a>
+									</xforms:group>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th style="width:80%">ID</th>
+												<th style="width:10%">View</th>
+												<th style="width:10%">Delete</th>
+											</tr>
+										</thead>
+										<tbody>
+											<xforms:repeat nodeset="doc">
+												<xforms:var name="id" select="str[@name='id']"></xforms:var>
+												<tr>
+													<td>
+														<h4>
+															<a href="edit/?id={$id}">
+																<xforms:output ref="str[@name='prefLabel']"></xforms:output>
+															</a>
+														</h4>
+														<dl class="dl-horizontal">
+															<dt>id</dt>
+															<dd><xforms:output value="$id"></xforms:output></dd>
+															<xforms:repeat nodeset="arr[@name='type']/str">
+																<dt>rdf:type</dt>
+																<dd>
+																	<xforms:output ref="."></xforms:output>
+																</dd>
+															</xforms:repeat>
+
+														</dl>
+													</td>
+													<td class="text-center">
+														<a href="{instance('config')/url}id/{$id}" target="_blank">html</a>
+													</td>
+													<td class="text-center">
+														<xforms:trigger appearance="minimal">
+															<xforms:label>
+																<span class="glyphicon glyphicon-remove"></span>
+															</xforms:label>
+															<xforms:dispatch target="delete" name="fr-show" ev:event="DOMActivate"></xforms:dispatch>
+														</xforms:trigger>
+													</td>
+												</tr>
+											</xforms:repeat>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</xforms:group>
+						<xforms:group ref=".[$numFound = 0]">
+							<xforms:group ref=".[instance('control-instance')/solr-query = '*:*']">
+								<h1>No ids found in <xforms:output value="instance('config')/id_path"></xforms:output></h1>
+							</xforms:group>
+							<xforms:group ref=".[instance('control-instance')/solr-query != '*:*']">
+								<h1>No objects that match query: <xforms:output ref="instance('control-instance')/solr-query"></xforms:output>
+									<small>
+										<xforms:trigger appearance="minimal">
+											<xforms:label>clear</xforms:label>
+											<xforms:action ev:event="DOMActivate">
+												<xforms:setvalue ref="instance('control-instance')/solr-query">*:*</xforms:setvalue>
+												<xforms:setvalue ref="instance('control-instance')/page">1</xforms:setvalue>
+												<xforms:send submission="query-solr"></xforms:send>
+											</xforms:action>
+										</xforms:trigger>
+									</small>
+								</h1>
+							</xforms:group>
+						</xforms:group>
+					</xforms:group>
+					<!--<fr:xforms-inspector></fr:xforms-inspector>-->
+				</div>
+				<div class="col-md-3">
+					<h2>Actions</h2>
+					<div>
+						<h3>Generate Data Dumps</h3>
+						<ul>
+							<li>
+								<xforms:trigger appearance="minimal">
+									<xforms:label>RDF/XML</xforms:label>
+									<xforms:action ev:event="DOMActivate">
+										<xforms:dispatch target="generate-rdfxml-dialog" name="fr-show"></xforms:dispatch>
+									</xforms:action>
+								</xforms:trigger>
+							</li>
+						</ul>
+					</div>
+					<div>
+						<h3>Solr</h3>
+						<ul>
+							<li>
+								<xforms:trigger appearance="minimal">
+									<xforms:label>Flush and Reload Indices</xforms:label>
+									<xforms:action ev:event="DOMActivate">
+										<xforms:dispatch target="solr-dialog" name="fr-show"></xforms:dispatch>
+									</xforms:action>
+								</xforms:trigger>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
+
+		<!-- *********** DIALOGS *********** -->
+		<fr:alert-dialog id="generate-rdfxml-dialog">
+			<fr:label>Generate RDF/XML</fr:label>
+			<fr:message>This process may take several minutes. Continue?</fr:message>
+			<fr:positive-choice>
+				<fr:label>Yes</fr:label>
+				<xforms:action ev:event="DOMActivate">
+					<xforms:setvalue ref="instance('save-rdfxml-config')/url" value="concat('file://', instance('config')/dump_path, '/nomisma.org.rdf')"></xforms:setvalue>
+					<xforms:insert nodeset="instance('rdf')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/models/rdf/aggregate-all.xpl', 'config-xml', instance('config'), 'data')"></xforms:insert>
+					<xforms:insert nodeset="instance('dump')"
+						origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-rdfxml.xpl', ('rdf', 'configuration'), (instance('rdf'), instance('save-rdfxml-config')), 'data')"></xforms:insert>
+				</xforms:action>
+			</fr:positive-choice>
+			<fr:negative-choice>
+				<fr:label>No</fr:label>
+			</fr:negative-choice>
+		</fr:alert-dialog>
+		<fr:alert-dialog id="solr-dialog">
+			<fr:label>Flush and Reload Solr Index</fr:label>
+			<fr:message>This will flush the Solr main and fuseki indices and reload all nomisma ids. It may take several minutes. Continue?</fr:message>
+			<fr:positive-choice>
+				<fr:label>Yes</fr:label>
+				<xforms:action ev:event="DOMActivate">
+					<!-- gather RDF dump -->
+					<xforms:insert nodeset="instance('rdf')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/models/rdf/aggregate-all.xpl', 'config-xml', instance('config'), 'data')"></xforms:insert>
+					
+					<!-- transform into main solr model and post into solr/nomisma -->
+					<xforms:setvalue ref="instance('control-instance')/solr-core" value="instance('config')/solr_published"/>
+					<!-- delete all objects -->
+					<xforms:send submission="delete-all"></xforms:send>
+					<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/views/serializations/rdf/solr.xpl', 'data', instance('rdf'), 'data')"></xforms:insert>
+					<xforms:send submission="post-to-solr"></xforms:send>
+					<xforms:send submission="optimize" ev:event="xforms-submit-done"></xforms:send>
+					
+					<!-- transform into solr-fuseki post -->
+					<xforms:setvalue ref="instance('control-instance')/solr-core" value="instance('config')/solr_fuseki"/>
+					<!-- delete all objects -->
+					<xforms:send submission="delete-all"></xforms:send>
+					<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/views/serializations/rdf/solr-fuseki.xpl', 'data', instance('rdf'), 'data')"></xforms:insert>
+					<xforms:send submission="post-to-solr"></xforms:send>
+					<xforms:send submission="optimize" ev:event="xforms-submit-done"></xforms:send>
+				</xforms:action>
+			</fr:positive-choice>
+			<fr:negative-choice>
+				<fr:label>No</fr:label>
+			</fr:negative-choice>
+		</fr:alert-dialog>
 	</body>
 </html>

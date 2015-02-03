@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<content>
+	<index>
+		<div>
+			<p>Nomisma.org is a collaborative project to provide stable digital representations of numismatic concepts according to the principles of <a
+					href="http://www.w3.org/DesignIssues/LinkedData.html">Linked Open Data</a>. These take the form of http URIs that also provide access to reusable information
+				about those concepts, along with links to other resources. The base format of nomisma.org is xhtml+rdfa1.1, with versions available in multiple formats.</p>
+
+			<p>While the URIs provided by nomisma.org are stable, the project is in progress and subject to constant expansion and ongoing correction. This is particularly the case
+				for the information provided about each nomisma.org identifier.</p>
+
+			<p>The information provided by nomisma.org has been provided by a wide community of scholars and insitutions.</p>
+
+			<p>The project is steered by a committee currently consisting of:</p>
+
+
+			<ul>
+				<li>Sebastian Heath, <a href="http://isaw.nyu.edu/">NYU ISAW</a></li>
+				<li>Andrew Meadows, <a href="http://numismatics.org">ANS</a></li>
+				<li>Daniel Pett, <a href="http://finds.org.uk/">BM PAS</a></li>
+				<li>David Wigg-Wolf, <a href="http://www.dainst.org/en/department/rgk">DAI RGK</a></li>
+			</ul>
+
+			<p>Implementation is by:</p>
+
+			<ul>
+				<li>Ethan Gruber, <a href="http://numismatics.org">ANS</a></li>
+				<li>Sebastian Heath, <a href="http://isaw.nyu.edu/">NYU ISAW</a></li>
+				<li>Karsten Tolle, <a href="http://www.dbis.informatik.uni-frankfurt.de">DBIS, University of Frankfurt</a></li>
+			</ul>
+
+			<p>Nomisma.org also hosts the <a href="http://nomisma.org/nuds/numismatic_database_standard">Numismatic Description Standard</a></p>
+		</div>
+
+		<div>
+			<h3>Example Nomisma.org URIs</h3>
+			<p>Nomisma.org focuses on URIs for concepts that are unique to numismatics or which have a distinct meaning within the discipline. Examples are:</p>
+
+			<ol>
+				<li><a href="http://nomisma.org/id/axis">http://nomisma.org/id/axis</a>. The 'axis' is the angular relationship between the obverse and reverse of a coin.</li>
+				<li><a href="http://nomisma.org/id/ephesus">http://nomisma.org/id/ephesus</a>. The 'mint' at Ephesus. Nomisma relates this numismatic concept to other URIs such as
+						<a href="http://en.wikipedia.org/wiki/Ephesus">wikipedia</a>, <a href="http://pleiades.stoa.org/places/599612">Pleiades</a>, <a
+						href="http://vocab.getty.edu/tgn/7002499">Getty thesauri</a>, and the <a href="http://collection.britishmuseum.org/id/place/x107267">British
+					Museum</a>.</li>
+				<li><a href="http://nomisma.org/id/quinarius">http://nomisma.org/id/quinarius</a>. Nomisma.org maintains lists of Roman and other denominations. To indicate that
+					“quinarius” is a concept within Roman numismatics, the Dublin Core property "dcterms:isPartOf" relates this URI to <a
+						href="http://nomisma.org/id/roman_numismatics">http://nomisma.org/id/roman_numismatics</a>.</li>
+			</ol>
+		</div>
+	</index>
+	<apis>
+		<h1>Documentation</h1>
+		<div>
+			<h2>APIs</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th style="width:50%">API</th>
+						<th>XML</th>
+						<th>JSON</th>
+						<th>Turtle</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<a href="#avgAxis">avgAxis</a>
+						</td>
+						<td>
+							<a href="apis/avgAxis?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;">XML</a>
+						</td>
+						<td>
+							<a href="apis/avgAxis?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;&amp;format=json">JSON</a>
+						</td>
+						<td/>
+					</tr>
+					<tr>
+						<td>
+							<a href="#avgDiameter">avgDiameter</a>
+						</td>
+						<td>
+							<a href="apis/avgDiameter?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;">XML</a>
+						</td>
+						<td>
+							<a href="apis/avgDiameter?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;&amp;format=json">JSON</a>
+						</td>
+						<td/>
+					</tr>
+					<tr>
+						<td>
+							<a href="#avgWeight">avgWeight</a>
+						</td>
+						<td>
+							<a href="apis/avgWeight?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;">XML</a>
+						</td>
+						<td>
+							<a href="apis/avgWeight?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;&amp;format=json">JSON</a>
+						</td>
+						<td/>
+					</tr>
+					<tr>
+						<td>
+							<a href="#closingDate">closingDate</a>
+						</td>
+						<td>
+							<a href="apis/closingDate?identifiers=http://nomisma.org/id/rrc-385.4|http://nomisma.org/id/rrc-409.2|http://numismatics.org/ocre/id/ric.1(2).aug.1A"
+								>XML</a>
+						</td>
+						<td>
+							<a
+								href="apis/closingDate?identifiers=http://nomisma.org/id/rrc-385.4|http://nomisma.org/id/rrc-409.2|http://numismatics.org/ocre/id/ric.1(2).aug.1A&amp;format=json"
+								>JSON</a>
+						</td>
+						<td/>
+					</tr>
+					<tr>
+						<td>
+							<a href="#getLabel">getLabel</a>
+						</td>
+						<td>
+							<a href="apis/getLabel?uri=http://nomisma.org/id/ar&amp;lang=fr">XML</a>
+						</td>
+						<td>
+							<a href="apis/getLabel?uri=http://nomisma.org/id/ar&amp;lang=fr&amp;format=json">JSON</a>
+						</td>
+						<td/>
+					</tr>
+					<tr>
+						<td>
+							<a href="#getRdf">getRdf</a>
+						</td>
+						<td>
+							<a href="apis/getRdf?identifiers=rome|augustus|av|aureus">RDF/XML</a>
+						</td>
+						<td>
+							<a href="apis/getRdf?identifiers=rome|augustus|av|aureus&amp;format=json">JSON-LD</a>
+						</td>
+						<td>
+							<a href="apis/getRdf?identifiers=rome|augustus|av|aureus&amp;format=ttl">RDF/TTL</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="highlight">
+				<a name="avgAxis"/>
+				<h2>Average Axis</h2>
+				<p>Get average axis for given SPARQL query.<br/>
+					<b>Webservice Type</b> : REST<br/>
+					<b>Url</b> : nomisma.org/avgAxis?<br/>
+					<b>Parameters</b> : constraints (following predicate - object format. multiple contraints separated by ' AND '. See examples below), format ('json' or 'xml',
+					default 'xml')<br/>
+					<b>Result</b> : returns a decimal number in a response wrapper.<br/>
+					<b>Examples</b>: <a
+						href="apis/avgAxis?constraints=dcterms:isPartOf &lt;http://nomisma.org/id/ric> AND nm:mint &lt;http://nomisma.org/id/rome> AND nm:denomination &lt;http://nomisma.org/id/denarius>"
+						>http://nomisma.org/apis/avgAxis?constraints=dcterms:isPartOf &lt;http://nomisma.org/id/ric> AND nm:mint &lt;http://nomisma.org/id/rome> AND nm:denomination
+						&lt;http://nomisma.org/id/denarius></a>
+					<br/>
+					<a href="apis/avgAxis?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;"
+						>http://nomisma.org/apis/avgWeight?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;</a>
+				</p>
+			</div>
+			<div class="highlight">
+				<a name="avgDiameter"/>
+				<h2>Average Diameter</h2>
+				<p>Get average diameter for given SPARQL query.<br/>
+					<b>Webservice Type</b> : REST<br/>
+					<b>Url</b> : nomisma.org/avgDiameter?<br/>
+					<b>Parameters</b> : constraints (following predicate - object format. multiple contraints separated by ' AND '. See examples below), format ('json' or 'xml',
+					default 'xml')<br/>
+					<b>Result</b> : returns a decimal number in a response wrapper.<br/>
+					<b>Examples</b>: <a
+						href="apis/avgDiameter?constraints=dcterms:isPartOf &lt;http://nomisma.org/id/ric> AND nm:mint &lt;http://nomisma.org/id/rome> AND nm:denomination &lt;http://nomisma.org/id/denarius>"
+						>http://nomisma.org/apis/avgDiameter?constraints=dcterms:isPartOf &lt;http://nomisma.org/id/ric> AND nm:mint &lt;http://nomisma.org/id/rome> AND nm:denomination
+						&lt;http://nomisma.org/id/denarius></a>
+					<br/>
+					<a href="apis/avgDiameter?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;"
+						>http://nomisma.org/apis/avgDiameter?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;</a>
+				</p>
+			</div>
+			<div class="highlight">
+				<a name="avgWeight"/>
+				<h2>Average Weight</h2>
+				<p>Get average weight for given SPARQL query.<br/>
+					<b>Webservice Type</b> : REST<br/>
+					<b>Url</b> : nomisma.org/avgWeight?<br/>
+					<b>Parameters</b> : constraints (following predicate - object format. multiple contraints separated by ' AND '. See examples below), format ('json' or 'xml',
+					default 'xml')<br/>
+					<b>Result</b> : returns a decimal number in a response wrapper.<br/>
+					<b>Examples</b>: <a
+						href="apis/avgWeight?constraints=dcterms:isPartOf &lt;http://nomisma.org/id/ric> AND nm:mint &lt;http://nomisma.org/id/rome> AND nm:denomination &lt;http://nomisma.org/id/denarius>"
+						>http://nomisma.org/apis/avgWeight?constraints=dcterms:isPartOf &lt;http://nomisma.org/id/ric> AND nm:mint &lt;http://nomisma.org/id/rome> AND nm:denomination
+						&lt;http://nomisma.org/id/denarius></a>
+					<br/>
+					<a href="apis/avgWeight?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;"
+						>http://nomisma.org/apis/avgWeight?constraints=nm:type_series_item &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;</a>
+				</p>
+			</div>
+			<div class="highlight">
+				<a name="closingDate"/>
+				<h2>Closing Date</h2>
+				<p>Get the closing date of a hoard based on coin type URIs provided in the request parameter.<br/>
+					<b>Webservice Type</b> : REST<br/>
+					<b>Url</b> : nomisma.org/closingDate?<br/>
+					<b>Parameters</b> : identifiers (coin type URIs divided by a pipe '|'), format ('json' or 'xml', default 'xml')<br/>
+					<b>Result</b> : returns an integer which represents the year. Negative numbers refer to B.C. dates.<br/>
+					<b>Examples</b>: <a
+						href="apis/closingDate?identifiers=http://nomisma.org/id/rrc-385.4|http://nomisma.org/id/rrc-409.2|http://numismatics.org/ocre/id/ric.1(2).aug.1A"
+						>http://nomisma.org/apis/closingDate?identifiers=http://nomisma.org/id/rrc-385.4|http://nomisma.org/id/rrc-409.2|http://numismatics.org/ocre/id/ric.1(2).aug.1A</a>
+				</p>
+			</div>
+			<div class="highlight">
+				<a name="getLabel"/>
+				<h2>Get Label</h2>
+				<p>Get the label of a Nomisma ID given its URI and language code.<br/>
+					<b>Webservice Type</b> : REST<br/>
+					<b>Url</b> : nomisma.org/getLabel?<br/>
+					<b>Parameters</b> : uri (of Nomisma ID), lang (two-letter ISO language code), format ('json' or 'xml', default 'xml')<br/>
+					<b>Result</b> : returns the label in given language, or English as default.<br/>
+					<b>Examples</b>: <a href="apis/getLabel?uri=http://nomisma.org/id/ar&amp;lang=fr">apis/getLabel?uri=http://nomisma.org/id/ar&amp;lang=fr</a>
+				</p>
+			</div>
+			<div class="highlight">
+				<a name="getRdf"/>
+				<h2>Get RDF</h2>
+				<p>Aggregate RDF for Nomisma ids. The default stream is in RDF/XML, but Turtle and JSON-LD are available.<br/>
+					<b>Webservice Type</b> : REST<br/>
+					<b>Url</b> : nomisma.org/getRdf?<br/>
+					<b>Parameters</b> : identifiers (Nomisma ids divided by a pipe '|'), format ('xml', 'ttl', 'json'; default 'xml')<br/>
+					<b>Result</b> : RDF/XML, RDF/TTL. Other RDF formats will be supported eventually.<br/>
+					<b>Examples</b>: <a href="apis/getRdf?identifiers=rome|augustus|av|aureus">apis/getRdf?identifiers=rome|augustus|av|aureus</a>
+				</p>
+			</div>
+		</div>
+		<div>
+			<h2>Data Access</h2>
+			<div>
+				<h3>Individual Records</h3>
+				<p>Numishare supports delivery of individual records in a variety of models and serializations through both REST and content negotiation. Content negotiation (with the
+					accept header) requests should be sent to the URI space http://nomisma/id/. Requesting an unsupported content type will result
+					in an HTTP 406: Not Acceptable error.</p>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Model</th>
+							<th>REST</th>
+							<th>Content Type</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>HTML</td>
+							<td>http://nomisma.org/id/{$id}</td>
+							<td>
+								<code>text/html</code>
+							</td>
+						</tr>
+						<tr>
+							<td>KML</td>
+							<td>http://nomisma.org/id/{$id}.kml</td>
+							<td>
+								<code>application/vnd.google-earth.kml+xml</code>
+							</td>
+						</tr>
+						<tr>
+							<td>RDF/XML</td>
+							<td>http://nomisma.org/id/{$id}.rdf</td>
+							<td>
+								<code>application/rdf+xml</code>
+							</td>
+						</tr>
+						<tr>
+							<td>Turtle</td>
+							<td>http://nomisma.org/id/{$id}.ttl</td>
+							<td>
+								<code>text/turtle</code>
+							</td>
+						</tr>
+						<tr>
+							<td>JSON-LD</td>
+							<td>http://nomisma.org/id/{$id}.jsonld</td>
+							<td>
+								<code>application/ld+json</code>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<div>
+				<h3>Search Results</h3>
+				<p>Search results (the browse page) are returned in HTML5, but Numishare supports Atom and RSS via REST, as well as Atom and raw Solr XML via content negotiation of the
+					browse page URL, http://nomisma.org/id/. The REST-based Atom feed sorts
+					by the Lucene syntax 'timestamp desc' by default, but the sort parameter may be provided manually to alter the default field and order.</p>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Model</th>
+							<th>REST</th>
+							<th>Content Type</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>HTML</td>
+							<td>
+								<a href="http://nomisma.org/id/">http://nomisma.org/id/</a>
+							</td>
+							<td>
+								<code>text/html</code>
+							</td>
+						</tr>
+						<tr>
+							<td>Atom</td>
+							<td>
+								<a href="http://nomisma.org/feed/">http://nomisma.org/feed/</a>
+							</td>
+							<td>
+								<code>application/atom+xml</code>
+							</td>
+						</tr>									
+						<tr>
+							<td>Solr/XML</td>
+							<td>N/A</td>
+							<td>
+								<code>application/xml</code>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>			
+			<div>
+				<h3>Pelagios RDF Dump</h3>
+				<p>Data dumps conforming to the <a href="http://pelagios-project.blogspot.com/">Pelagios 3</a> model are linked on the index page. At present, these files are only available in RDF/XML.</p>
+				<ul>
+					<li>
+						<a href="pelagios.void.rdf">VoID RDF</a>
+					</li>
+					<li>
+						<a href="pelagios.rdf">Dump RDF</a>
+					</li>
+				</ul>
+			</div>
+		</div>		
+	</apis>
+</content>

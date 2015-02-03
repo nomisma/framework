@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2007 Orbeon, Inc.
+
+    This program is free software; you can redistribute it and/or modify it under the terms of the
+    GNU Lesser General Public License as published by the Free Software Foundation; either version
+    2.1 of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU Lesser General Public License for more details.
+
+    The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
+-->
+<config xmlns="http://www.orbeon.com/oxf/controller" xmlns:oxf="http://www.orbeon.com/oxf/processors" matcher="oxf:perl5-matcher">
+
+	<!-- ****************
+	* ADMIN INTERFACE *
+	***************** -->
+	<page path="/nomisma/admin/edit/" view="xforms/edit.xhtml"/>
+	<page path="/nomisma/admin/" view="xforms/admin.xhtml"/>
+	
+	<!-- authentication -->
+	<page path="/nomisma/login" view="xforms/login.html"/>
+	<page path="/nomisma/login-failed" view="xforms/login-failed.html"/>
+	<page path="/nomisma/admin/logout">
+		<action action="xpl/xforms/logout.xpl">
+			<result page="index"/>
+		</action>
+	</page>
+	
+	<!-- ****************
+	* PUBLIC INTERFACE *
+	***************** -->
+	<!-- **** PAGES **** -->			
+	<page path="/nomisma/sparql" view="xpl/views/pages/sparql.xpl"/>
+	<page path="/nomisma/apis" view="xpl/views/pages/apis.xpl"/>
+	<!--<page path="/nomisma/flickr" view="xpl/page/flickr.xpl"/>-->
+	<page path="/nomisma/ontology" view="xpl/views/pages/ontology.xpl"/>
+	<page path="/nomisma/" view="xpl/views/pages/index.xpl" id="index"/>
+	
+	<!-- **** SERIALIZATIONS **** -->
+	<!-- Solr -->
+	<page path="/nomisma/id/" model="xpl/models/solr/query.xpl" view="xpl/controllers/conneg-results.xpl"/>
+	<page path="/nomisma/feed/" model="xpl/models/solr/query.xpl" view="xpl/views/serializations/solr/atom.xpl"/>
+	
+	<!-- ID -->
+	<page path="/nomisma/id/(.*)\.rdf" view="xpl/models/rdf/get-id.xpl"/>	
+	<page path="/nomisma/id/(.*)\.kml" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/kml.xpl"/>
+	<page path="/nomisma/id/(.*)\.ttl" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/ttl.xpl"/>
+	<page path="/nomisma/id/(.*)\.jsonld" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/json-ld.xpl"/>
+	<page path="/nomisma/id/(.*)\.solr" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/solr.xpl"/>
+	<page path="/nomisma/id/(.*)" model="xpl/models/rdf/get-id.xpl" view="xpl/controllers/conneg-id.xpl"/>
+	
+	<!-- SPARQL -->
+	<page path="/nomisma/query" view="xpl/controllers/conneg-sparql.xpl"/>
+	
+	<!-- **** APIs **** -->
+	<page path="/nomisma/apis/avgAxis" view="xpl/views/serializations/sparql/apis.xpl"/>
+	<page path="/nomisma/apis/avgDiameter" view="xpl/views/serializations/sparql/apis.xpl"/>
+	<page path="/nomisma/apis/avgWeight" view="xpl/views/serializations/sparql/apis.xpl"/>
+	<page path="/nomisma/apis/closingDate" view="xpl/views/serializations/sparql/apis.xpl"/>
+	<page path="/nomisma/apis/getKml" view="xpl/serializations/sparql/apis.xpl"/>
+	<page path="/nomisma/apis/getLabel" view="xpl/views/serializations/sparql/apis.xpl"/>
+	<page path="/nomisma/apis/getRdf" model="xpl/models/rdf/aggregate-ids.xpl" view="xpl/views/serializations/apis/getRdf.xpl"/>
+	<page path="/nomisma/apis/numishareResults" view="xpl/views/serializations/sparql/apis.xpl"/>
+
+	<!-- **** PROJECT NAMESPACES **** -->
+	<page path="/nomisma/project" model="xpl/controllers/page-redirect.xpl"/>
+	<page path="/nomisma/project/" model="xpl/models/sparql/project.xpl" view="xpl/views/serializations/sparql/project.xpl"/>
+	<page path="/nomisma/project/(.*)\/" model="xpl/models/sparql/project.xpl" view="xpl/views/serializations/sparql/project.xpl"/>
+	<page path="/nomisma/project/(.*)\/(.*)" model="xpl/controllers/project-redirect.xpl"/>
+	
+	<!-- **** DATA DUMPS **** -->	
+	<page path="/nomisma/pelagios.void.rdf" view="dump/pelagios.void.rdf"/>
+	<page path="/nomisma/pelagios.rdf" model="xpl/models/solr/pelagios.xpl" view="xpl/views/serializations/solr/pelagios.xpl"/>
+	<page path="/nomisma/nomisma.org.rdf" view="xpl/models/rdf/aggregate-all.xpl"/>
+	<page path="/nomisma/nomisma.org.nt" view="xpl/views/serializations/serialize-dump.xpl"/>
+	<page path="/nomisma/nomisma.org.ttl" view="xpl/views/serializations/serialize-dump.xpl"/>
+
+	<epilogue url="oxf:/config/epilogue.xpl"/>
+</config>
