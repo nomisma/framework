@@ -10,8 +10,8 @@
 	<xsl:template match="/">
 		<rdf:RDF>
 			<xsl:for-each select="tokenize($identifiers, '\|')">
-				<xsl:if test="doc-available(concat('file://', $id-path, '/', ., '.xml'))">
-					<xsl:copy-of select="document(concat('file://', $id-path, '/', ., '.xml'))/rdf:RDF/*"/>
+				<xsl:if test="doc-available(concat('file://', $id-path, '/', ., '.rdf'))">
+					<xsl:copy-of select="document(concat('file://', $id-path, '/', ., '.rdf'))/rdf:RDF/*"/>
 				</xsl:if>
 			</xsl:for-each>
 		</rdf:RDF>

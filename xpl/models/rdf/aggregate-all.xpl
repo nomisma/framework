@@ -7,11 +7,11 @@
 -->
 <p:config xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:oxf="http://www.orbeon.com/oxf/processors">
 
-	<p:param type="input" name="config-xml"/>
+	<p:param type="input" name="data"/>
 	<p:param type="output" name="data"/>
 
 	<p:processor name="oxf:unsafe-xslt">
-		<p:input name="data" href="#config-xml"/>
+		<p:input name="data" href="#data"/>
 		<p:input name="config">
 			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 				<xsl:output indent="yes"/>
@@ -20,7 +20,7 @@
 						<base-directory>
 							<xsl:value-of select="concat('file://', config/id_path)"/>
 						</base-directory>
-						<include>*.xml</include>
+						<include>*.rdf</include>
 					</config>
 				</xsl:template>
 			</xsl:stylesheet>
@@ -35,14 +35,14 @@
 
 	<p:processor name="oxf:unsafe-xslt">
 		<p:input name="data" href="#directory-scan"/>
-		<p:input name="config-xml" href="#config-xml"/>
+		<p:input name="config-xml" href="#data"/>
 		<p:input name="config">
 			<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xsl xs" version="2.0">				
 				<xsl:template match="/">					
 					<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 						xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
 						xmlns:ecrm="http://erlangen-crm.org/current/" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:un="http://www.owl-ontologies.com/Ontology1181490123.owl#"
-						xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:nmo="http://nomisma.org/ontology#">
+						xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:nmo="http://nomisma.org/ontology#" xmlns:org="http://www.w3.org/ns/org#">
 						<xsl:for-each select="//file">
 							<xsl:copy-of select="document(concat('file://', doc('input:config-xml')/config/id_path, '/', @name))/rdf:RDF/*"/>
 						</xsl:for-each>

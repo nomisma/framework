@@ -30,6 +30,14 @@
 	</page>
 	
 	<!-- ****************
+	* DATA DUMP GENERATION*
+	***************** -->
+	
+	<!-- pass the repository request parameter to the pipeline to load the RDF/XML and execute the transformation and serialization (into a file) of RDF/XML, TTL, or JSON-LD 
+	The XForms Submissions are GET, but have no output (seralization='none'). The process is much more efficient handled in the XPL workflow than through XForms controls in the web interface -->
+	<page path="/nomisma/admin/generateXML" model="xpl/controllers/generate-rdfxml.xpl"/>
+	
+	<!-- ****************
 	* PUBLIC INTERFACE *
 	***************** -->
 	<!-- **** PAGES **** -->			
@@ -74,9 +82,9 @@
 	<!-- **** DATA DUMPS **** -->	
 	<page path="/nomisma/pelagios.void.rdf" view="dump/pelagios.void.rdf"/>
 	<page path="/nomisma/pelagios.rdf" model="xpl/models/solr/pelagios.xpl" view="xpl/views/serializations/solr/pelagios.xpl"/>
-	<page path="/nomisma/nomisma.org.rdf" view="xpl/models/rdf/aggregate-all.xpl"/>
-	<page path="/nomisma/nomisma.org.nt" view="xpl/views/serializations/serialize-dump.xpl"/>
-	<page path="/nomisma/nomisma.org.ttl" view="xpl/views/serializations/serialize-dump.xpl"/>
+	<page path="/nomisma/nomisma.org.rdf" view="xpl/controllers/serialize-dump.xpl"/>
+	<page path="/nomisma/nomisma.org.jsonld" view="xpl/controllers/serialize-dump.xpl"/>
+	<page path="/nomisma/nomisma.org.ttl" view="xpl/controllers/serialize-dump.xpl"/>
 
 	<epilogue url="oxf:/config/epilogue.xpl"/>
 </config>

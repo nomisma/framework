@@ -34,19 +34,6 @@
 				</controls>
 			</xforms:instance>
 
-			<xforms:instance id="save-rdfxml-config">
-				<config xmlns="">
-					<url></url>
-					<content-type>application/xml</content-type>
-					<make-directories>false</make-directories>
-					<append>false</append>
-				</config>
-			</xforms:instance>
-
-			<xforms:instance id="dump">
-				<dump xmlns=""></dump>
-			</xforms:instance>
-
 			<!-- sparql update -->
 			<xforms:instance id="sparqlUpdate-template">
 				<query>
@@ -77,6 +64,7 @@
 			<xforms:instance id="optimizeIndex">
 				<optimize></optimize>
 			</xforms:instance>
+			
 			<xforms:instance id="solr-response">
 				<response></response>
 			</xforms:instance>
@@ -119,6 +107,26 @@
 				action="{instance('config')/solr_published}select/?q={instance('control-instance')/solr-query}&amp;rows=100&amp;start={(instance('control-instance')/page - 1) * 100}&amp;fl=id,type,definition,prefLabel"
 				replace="instance" instance="solr-response">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Solr is inaccessible. Please check Solr configuration.</xforms:message>
+			</xforms:submission>
+			
+			<!-- ************************* DATA DUMP GENERATION ************************** -->
+			<!-- Generation of RDF/XML TTL and JSON-LD dumps -->
+			<xforms:submission id="generate-rdf-xml" serialization="none" method="get" action="/nomisma/admin/generateXML" replace="none">
+				<xforms:action ev:event="xforms-submit-error">
+					<xforms:message level="modal">RDF/XML generation failed.</xforms:message>
+				</xforms:action>
+			</xforms:submission>
+			
+			<xforms:submission id="generate-ttl" serialization="none" method="get" action="/nomisma/admin/generateTTL" replace="none">
+				<xforms:action ev:event="xforms-submit-error">
+					<xforms:message level="modal">TTL generation failed.</xforms:message>
+				</xforms:action>
+			</xforms:submission>
+			
+			<xforms:submission id="generate-json-ld" serialization="none" method="get" action="/nomisma/admin/generateJSON" replace="none">
+				<xforms:action ev:event="xforms-submit-error">
+					<xforms:message level="modal">JSON-LD generation failed.</xforms:message>
+				</xforms:action>
 			</xforms:submission>
 
 			<!-- ********** XFORMS-MODEL-CONSTRUCT-DONE ********** -->
@@ -256,7 +264,7 @@
 							</div>
 							<div class="row">
 								<div class="col-md-12">
-									<table class="table table-striped">
+									<table class="table">
 										<thead>
 											<tr>
 												<th style="width:80%">ID</th>
@@ -335,7 +343,7 @@
 								<xforms:trigger appearance="minimal">
 									<xforms:label>RDF/XML</xforms:label>
 									<xforms:action ev:event="DOMActivate">
-										<xforms:dispatch target="generate-rdfxml-dialog" name="fr-show"></xforms:dispatch>
+										<xforms:dispatch target="generate-rdf-dump-dialog" name="fr-show"></xforms:dispatch>
 									</xforms:action>
 								</xforms:trigger>
 							</li>
@@ -359,16 +367,14 @@
 		</div>
 
 		<!-- *********** DIALOGS *********** -->
-		<fr:alert-dialog id="generate-rdfxml-dialog">
+		<fr:alert-dialog id="generate-rdf-dump-dialog">
 			<fr:label>Generate RDF/XML</fr:label>
-			<fr:message>This process may take several minutes. Continue?</fr:message>
+			<fr:message>This process to generate the RDF/XML dump may take several minutes. Continue?</fr:message>
 			<fr:positive-choice>
 				<fr:label>Yes</fr:label>
 				<xforms:action ev:event="DOMActivate">
-					<xforms:setvalue ref="instance('save-rdfxml-config')/url" value="concat('file://', instance('config')/dump_path, '/nomisma.org.rdf')"></xforms:setvalue>
-					<xforms:insert nodeset="instance('rdf')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/models/rdf/aggregate-all.xpl', 'config-xml', instance('config'), 'data')"></xforms:insert>
-					<xforms:insert nodeset="instance('dump')"
-						origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-rdfxml.xpl', ('rdf', 'configuration'), (instance('rdf'), instance('save-rdfxml-config')), 'data')"></xforms:insert>
+					<!-- generate RDF/XML via web service -->
+					<xforms:send submission="generate-rdf-xml"/>
 				</xforms:action>
 			</fr:positive-choice>
 			<fr:negative-choice>

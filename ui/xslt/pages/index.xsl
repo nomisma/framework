@@ -40,8 +40,8 @@
 										<img src="{$display_path}ui/images/nomisma.png"/>
 									</td>
 									<td>
-										<strong>RDF: </strong>
-										<a href="nomisma.org.nt">N-Triples</a>, <a href="nomisma.org.ttl">TTL</a>, <a href="nomisma.org.rdf">XML</a>
+										<strong>Linked Data: </strong>
+										<a href="nomisma.org.jsonld">JSON-LD</a>, <a href="nomisma.org.ttl">TTL</a>, <a href="nomisma.org.rdf">RDF/XML</a>
 									</td>
 								</tr>
 							</table>
