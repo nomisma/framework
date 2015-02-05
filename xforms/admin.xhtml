@@ -17,6 +17,10 @@
 				<rdf:RDF></rdf:RDF>
 			</xforms:instance>
 
+			<xforms:instance id="rdfxml-dump" xxforms:exclude-result-prefixes="#all">
+				<rdf:RDF></rdf:RDF>
+			</xforms:instance>
+
 			<xforms:instance id="config" xxforms:exclude-result-prefixes="#all">
 				<xi:include href="../config.xml"></xi:include>
 			</xforms:instance>
@@ -30,7 +34,7 @@
 					<solr-query>*:*</solr-query>
 					<page>1</page>
 					<dump></dump>
-					<solr-core/>
+					<solr-core></solr-core>
 				</controls>
 			</xforms:instance>
 
@@ -64,7 +68,7 @@
 			<xforms:instance id="optimizeIndex">
 				<optimize></optimize>
 			</xforms:instance>
-			
+
 			<xforms:instance id="solr-response">
 				<response></response>
 			</xforms:instance>
@@ -108,7 +112,7 @@
 				replace="instance" instance="solr-response">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Solr is inaccessible. Please check Solr configuration.</xforms:message>
 			</xforms:submission>
-			
+
 			<!-- ************************* DATA DUMP GENERATION ************************** -->
 			<!-- Generation of RDF/XML TTL and JSON-LD dumps -->
 			<xforms:submission id="generate-rdf-xml" serialization="none" method="get" action="/nomisma/admin/generateXML" replace="none">
@@ -116,16 +120,11 @@
 					<xforms:message level="modal">RDF/XML generation failed.</xforms:message>
 				</xforms:action>
 			</xforms:submission>
-			
-			<xforms:submission id="generate-ttl" serialization="none" method="get" action="/nomisma/admin/generateTTL" replace="none">
+
+			<!-- ************************* LOAD RDF/XML ************************** -->
+			<xforms:submission id="load-rdfxml" serialization="none" method="get" action="/nomisma/nomisma.org.rdf" replace="instance" instance="rdfxml-dump">
 				<xforms:action ev:event="xforms-submit-error">
-					<xforms:message level="modal">TTL generation failed.</xforms:message>
-				</xforms:action>
-			</xforms:submission>
-			
-			<xforms:submission id="generate-json-ld" serialization="none" method="get" action="/nomisma/admin/generateJSON" replace="none">
-				<xforms:action ev:event="xforms-submit-error">
-					<xforms:message level="modal">JSON-LD generation failed.</xforms:message>
+					<xforms:message level="modal">Unable to load RDF/XML from oxf:/apps/nomisma/dump/nomisma.org.rdf</xforms:message>
 				</xforms:action>
 			</xforms:submission>
 
@@ -332,7 +331,7 @@
 							</xforms:group>
 						</xforms:group>
 					</xforms:group>
-					<!--<fr:xforms-inspector></fr:xforms-inspector>-->
+					<fr:xforms-inspector></fr:xforms-inspector>
 				</div>
 				<div class="col-md-3">
 					<h2>Actions</h2>
@@ -374,7 +373,7 @@
 				<fr:label>Yes</fr:label>
 				<xforms:action ev:event="DOMActivate">
 					<!-- generate RDF/XML via web service -->
-					<xforms:send submission="generate-rdf-xml"/>
+					<xforms:send submission="generate-rdf-xml"></xforms:send>
 				</xforms:action>
 			</fr:positive-choice>
 			<fr:negative-choice>
@@ -387,24 +386,25 @@
 			<fr:positive-choice>
 				<fr:label>Yes</fr:label>
 				<xforms:action ev:event="DOMActivate">
-					<!-- gather RDF dump -->
-					<xforms:insert nodeset="instance('rdf')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/models/rdf/aggregate-all.xpl', 'config-xml', instance('config'), 'data')"></xforms:insert>
-					
-					<!-- transform into main solr model and post into solr/nomisma -->
-					<xforms:setvalue ref="instance('control-instance')/solr-core" value="instance('config')/solr_published"/>
-					<!-- delete all objects -->
-					<xforms:send submission="delete-all"></xforms:send>
-					<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/views/serializations/rdf/solr.xpl', 'data', instance('rdf'), 'data')"></xforms:insert>
-					<xforms:send submission="post-to-solr"></xforms:send>
-					<xforms:send submission="optimize" ev:event="xforms-submit-done"></xforms:send>
-					
-					<!-- transform into solr-fuseki post -->
-					<xforms:setvalue ref="instance('control-instance')/solr-core" value="instance('config')/solr_fuseki"/>
-					<!-- delete all objects -->
-					<xforms:send submission="delete-all"></xforms:send>
-					<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/views/serializations/rdf/solr-fuseki.xpl', 'data', instance('rdf'), 'data')"></xforms:insert>
-					<xforms:send submission="post-to-solr"></xforms:send>
-					<xforms:send submission="optimize" ev:event="xforms-submit-done"></xforms:send>
+					<xforms:send submission="load-rdfxml"></xforms:send>
+					<xforms:action ev:event="xforms-submit-done">
+						<!-- transform into main solr model and post into solr/nomisma -->
+						<xforms:setvalue ref="instance('control-instance')/solr-core" value="instance('config')/solr_published"></xforms:setvalue>
+						<!-- delete all objects -->
+						<xforms:send submission="delete-all"></xforms:send>
+						<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/views/serializations/rdf/solr.xpl', 'data', instance('rdfxml-dump'), 'data')"></xforms:insert>
+						<xforms:send submission="post-to-solr"></xforms:send>
+						<xforms:send submission="optimize" ev:event="xforms-submit-done"></xforms:send>
+
+						<!--<!-\- transform into solr-fuseki post -\->
+						<xforms:setvalue ref="instance('control-instance')/solr-core" value="instance('config')/solr_fuseki"></xforms:setvalue>
+						<!-\- delete all objects -\->
+						<xforms:send submission="delete-all"></xforms:send>
+						<xforms:insert nodeset="instance('addIndex')"
+							origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/views/serializations/rdf/solr-fuseki.xpl', 'data', instance('rdfxml-dump'), 'data')"></xforms:insert>
+						<xforms:send submission="post-to-solr"></xforms:send>
+						<xforms:send submission="optimize" ev:event="xforms-submit-done"></xforms:send>-->
+					</xforms:action>
 				</xforms:action>
 			</fr:positive-choice>
 			<fr:negative-choice>

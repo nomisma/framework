@@ -5,7 +5,7 @@
 	
 	<!-- aggregate all RDF/XML into a single model -->
 	<p:processor name="oxf:pipeline">
-		<p:input name="data" href="../../config.xml"/>
+		<p:input name="config-xml" href="../../config.xml"/>
 		<p:input name="config" href="../models/rdf/aggregate-all.xpl"/>
 		<p:output name="data" id="rdfxml"/>
 	</p:processor>

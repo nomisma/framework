@@ -7,11 +7,11 @@
 -->
 <p:config xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:oxf="http://www.orbeon.com/oxf/processors">
 
-	<p:param type="input" name="data"/>
+	<p:param type="input" name="config-xml"/>
 	<p:param type="output" name="data"/>
 
 	<p:processor name="oxf:unsafe-xslt">
-		<p:input name="data" href="#data"/>
+		<p:input name="data" href="#config-xml"/>
 		<p:input name="config">
 			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 				<xsl:output indent="yes"/>
@@ -35,7 +35,7 @@
 
 	<p:processor name="oxf:unsafe-xslt">
 		<p:input name="data" href="#directory-scan"/>
-		<p:input name="config-xml" href="#data"/>
+		<p:input name="config-xml" href="#config-xml"/>
 		<p:input name="config">
 			<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xsl xs" version="2.0">				
 				<xsl:template match="/">					
