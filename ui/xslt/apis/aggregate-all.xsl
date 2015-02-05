@@ -4,15 +4,14 @@
 	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
 	xmlns:ecrm="http://erlangen-crm.org/current/" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:un="http://www.owl-ontologies.com/Ontology1181490123.owl#"
 	xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:nmo="http://nomisma.org/ontology#" xmlns:org="http://www.w3.org/ns/org#" version="2.0">
-	<xsl:variable name="id-path" select="/config/id_path"/>
-	<xsl:param name="identifiers" select="doc('input:request')/request/parameters/parameter[name='identifiers']/value"/>
-
+	<xsl:strip-space elements="*"/>
+	<xsl:output method="xml" indent="yes" encoding="UTF-8"/>
+	
 	<xsl:template match="/">
+		<xsl:variable name="collection" select="concat('file://', /config/id_path, '/?select=*.rdf')"/>
 		<rdf:RDF>
-			<xsl:for-each select="tokenize($identifiers, '\|')">
-				<xsl:if test="doc-available(concat('file://', $id-path, '/', ., '.rdf'))">
-					<xsl:copy-of select="document(concat('file://', $id-path, '/', ., '.rdf'))/rdf:RDF/*"/>
-				</xsl:if>
+			<xsl:for-each select="collection($collection)">
+				<xsl:copy-of select="document(document-uri(.))/rdf:RDF/*"/>
 			</xsl:for-each>
 		</rdf:RDF>
 	</xsl:template>
