@@ -43,8 +43,20 @@
 	<!-- serialize it -->
 	<p:choose href="#parser-config">
 		<p:when test="mode='ttl'">
+			<p:processor name="oxf:url-generator">
+				<p:input name="config">
+					<config>
+						<url>oxf:/apps/nomisma/dump/nomisma.org.ttl</url>						
+						<mode>text</mode>
+						<content-type>text/turtle</content-type>
+						<encoding>utf-8</encoding>
+					</config>
+				</p:input>
+				<p:output name="data" id="model"/>
+			</p:processor>
+			
 			<p:processor name="oxf:text-converter">
-				<p:input name="data" href="../../dump/nomisma.org.ttl"/>
+				<p:input name="data" href="#model"/>
 				<p:input name="config">
 					<config>
 						<content-type>text/turtle</content-type>
@@ -55,8 +67,20 @@
 			</p:processor>
 		</p:when>
 		<p:when test="mode='jsonld'">
+			<p:processor name="oxf:url-generator">
+				<p:input name="config">
+					<config>
+						<url>oxf:/apps/nomisma/dump/nomisma.org.jsonld</url>						
+						<mode>text</mode>
+						<content-type>application/ld+json</content-type>
+						<encoding>utf-8</encoding>
+					</config>
+				</p:input>
+				<p:output name="data" id="model"/>
+			</p:processor>
+			
 			<p:processor name="oxf:text-converter">
-				<p:input name="data" href="../../dump/nomisma.org.jsonld"/>
+				<p:input name="data" href="#model"/>
 				<p:input name="config">
 					<config>
 						<content-type>application/ld+json</content-type>
