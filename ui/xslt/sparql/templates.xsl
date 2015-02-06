@@ -17,9 +17,7 @@
 			<![CDATA[PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:  <http://purl.org/dc/terms/>
 PREFIX nm:       <http://nomisma.org/id/>
-xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-				xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
-				xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:org="http://www.w3.org/ns/org#" xmlns:nomisma="http://nomisma.org/" xmlns:nmo="http://nomisma.org/ontology#"
+PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
 PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 SELECT DISTINCT ?object ?findspot ?lat ?long ?title ?prefLabel ?closing_date WHERE {
@@ -114,8 +112,8 @@ OPTIONAL {?object nmo:hasClosingDate ?closing_date}
 			PREFIX dcterms:  <http://purl.org/dc/terms/>
 			PREFIX nm:	<http://nomisma.org/id/>
 			PREFIX nmo:	<http://nomisma.org/ontology#>
-			PREFIX xs:	<http://www.w3.org/2001/XMLSchema#>
-			SELECT (AVG(xs:decimal(?MEASUREMENT)) AS ?average)
+			PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
+			SELECT (AVG(xsd:decimal(?MEASUREMENT)) AS ?average)
 			WHERE {
 			<CONSTRAINTS>
 			}
@@ -152,7 +150,7 @@ OPTIONAL {?object nmo:hasClosingDate ?closing_date}
 		</xsl:variable>
 
 		<xsl:variable name="service"
-			select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace(replace($query, '&lt;CONSTRAINTS&gt;', replace($replace, '\\\\and', '&amp;&amp;')), 'MEASUREMENT', $measurement))), '&amp;output=xml')"/>
+			select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace(replace($query, '&lt;CONSTRAINTS&gt;', replace($replace, '\\\\and', '&amp;&amp;')), 'MEASUREMENT', concat(upper-case(substring($measurement, 1, 1)), substring($measurement, 2))))), '&amp;output=xml')"/>
 
 		<xsl:choose>
 			<xsl:when test="$format='json'">
