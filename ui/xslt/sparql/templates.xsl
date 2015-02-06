@@ -17,7 +17,9 @@
 			<![CDATA[PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:  <http://purl.org/dc/terms/>
 PREFIX nm:       <http://nomisma.org/id/>
-PREFIX nmo:	<http://nomisma.org/ontology#>
+xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+				xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+				xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:org="http://www.w3.org/ns/org#" xmlns:nomisma="http://nomisma.org/" xmlns:nmo="http://nomisma.org/ontology#"
 PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
 PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 SELECT DISTINCT ?object ?findspot ?lat ?long ?title ?prefLabel ?closing_date WHERE {

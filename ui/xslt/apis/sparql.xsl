@@ -15,10 +15,7 @@
 	</xsl:param>
 	
 	<xsl:template match="/">
-		<xsl:choose>
-			<xsl:when test="$template = 'display'">
-				<xsl:call-template name="display"/>
-			</xsl:when>
+		<xsl:choose>			
 			<xsl:when test="$template = 'kml'">
 				<xsl:call-template name="kml"/>
 			</xsl:when>
