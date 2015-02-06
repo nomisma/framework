@@ -17,24 +17,25 @@
 			<![CDATA[PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:  <http://purl.org/dc/terms/>
 PREFIX nm:       <http://nomisma.org/id/>
+PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
 PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 SELECT DISTINCT ?object ?findspot ?lat ?long ?title ?prefLabel ?closing_date WHERE {
-{?type nmo:Mint <URI> .
-?object nm:type_series_item ?type.
-?object nm:findspot ?findspot .
+{?type nmo:hasMint <URI> .
+?object nmo:hasTypeSeriesItem ?type.
+?object nmo:hasFindspot ?findspot .
 ?findspot geo:lat ?lat .
 ?findspot geo:long ?long
 }
 UNION {
-?object nmo:Mint <URI> .
-?object nm:findspot ?findspot .
+?object nmo:hasMint <URI> .
+?object nmo:hasFindspot ?findspot .
 ?findspot geo:lat ?lat .
 ?findspot geo:long ?long
 }					
 OPTIONAL {?object skos:prefLabel ?prefLabel}
 OPTIONAL {?object dcterms:title ?title}
-OPTIONAL {?object nm:closing_date ?closing_date}
+OPTIONAL {?object nmo:hasClosingDate ?closing_date}
 }]]>
 		</xsl:variable>
 
@@ -55,6 +56,7 @@ OPTIONAL {?object nm:closing_date ?closing_date}
 			PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 			PREFIX dcterms:  <http://purl.org/dc/terms/>
 			PREFIX nm:       <http://nomisma.org/id/>
+			PREFIX nmo:	<http://nomisma.org/ontology#>
 			PREFIX owl:      <http://www.w3.org/2002/07/owl#>
 			PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
 			SELECT (MAX(xsd:int(?date)) AS ?year)
@@ -70,12 +72,14 @@ OPTIONAL {?object nm:closing_date ?closing_date}
 					<xsl:when test="position() = 1">
 						<xsl:text>{&lt;</xsl:text>
 						<xsl:value-of select="."/>
-						<xsl:text>&gt; nm:end_date ?date }</xsl:text>
+						<xsl:text>&gt; nmo:hasClosingDate ?timeSpan .
+							?timeSpan nmo:hasEndDate ?date }</xsl:text>
 					</xsl:when>
 					<xsl:otherwise>
 						<xsl:text>UNION {&lt;</xsl:text>
 						<xsl:value-of select="."/>
-						<xsl:text>&gt; nm:end_date ?date }</xsl:text>
+						<xsl:text>&gt; nmo:hasClosingDate ?timeSpan .
+							?timeSpan nmo:hasEndDate ?date }</xsl:text>
 					</xsl:otherwise>
 				</xsl:choose>
 			</xsl:for-each>
@@ -88,7 +92,7 @@ OPTIONAL {?object nm:closing_date ?closing_date}
 
 		<xsl:choose>
 			<xsl:when test="$format='json'">
-				<xsl:text>{"closing_date":</xsl:text>
+				<xsl:text>{"nmo:hasClosingDate":</xsl:text>
 				<xsl:value-of select="number(document($service)/descendant::res:binding[@name='year']/res:literal)"/>
 				<xsl:text>}</xsl:text>
 			</xsl:when>
@@ -107,6 +111,7 @@ OPTIONAL {?object nm:closing_date ?closing_date}
 			PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 			PREFIX dcterms:  <http://purl.org/dc/terms/>
 			PREFIX nm:	<http://nomisma.org/id/>
+			PREFIX nmo:	<http://nomisma.org/ontology#>
 			PREFIX xs:	<http://www.w3.org/2001/XMLSchema#>
 			SELECT (AVG(xs:decimal(?MEASUREMENT)) AS ?average)
 			WHERE {
@@ -122,25 +127,25 @@ OPTIONAL {?object nm:closing_date ?closing_date}
 				<xsl:value-of select="."/>
 				<xsl:text> .</xsl:text>
 			</xsl:for-each>
-			<xsl:text>?coin nm:MEASUREMENT ?MEASUREMENT</xsl:text>
+			<xsl:text>?coin nmo:hasMEASUREMENT ?MEASUREMENT</xsl:text>
 			<xsl:text>} UNION {</xsl:text>
 			<xsl:for-each select="tokenize($constraints, ' AND ')">
 				<!-- ignore collection -->
-				<xsl:if test="not(contains(., 'nm:collection'))">
+				<xsl:if test="not(contains(., 'nmo:hasCollection'))">
 					<xsl:text>?type </xsl:text>
 					<xsl:value-of select="."/>
 					<xsl:text> .</xsl:text>
 				</xsl:if>
 			</xsl:for-each>
-			<xsl:text>?coin nm:type_series_item ?type .</xsl:text>
-			<xsl:if test="contains($constraints, 'nm:collection')">
-				<xsl:analyze-string select="$constraints" regex="(nm:collection\s&lt;[^&gt;]+&gt;)">
+			<xsl:text>?coin nmo:hasTypeSeriesItem ?type .</xsl:text>
+			<xsl:if test="contains($constraints, 'nmo:hasCollection')">
+				<xsl:analyze-string select="$constraints" regex="(nmo:hasCollection\s&lt;[^&gt;]+&gt;)">
 					<xsl:matching-substring>
 						<xsl:value-of select="concat('?coin ', regex-group(1), '.')"/>
 					</xsl:matching-substring>
 				</xsl:analyze-string>
 			</xsl:if>
-			<xsl:text>?coin nm:MEASUREMENT ?MEASUREMENT</xsl:text>
+			<xsl:text>?coin nmo:hasMEASUREMENT ?MEASUREMENT</xsl:text>
 			<xsl:text>}</xsl:text>
 		</xsl:variable>
 
@@ -168,6 +173,7 @@ OPTIONAL {?object nm:closing_date ?closing_date}
 			<![CDATA[
 			PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 			PREFIX nm:       <http://nomisma.org/id/>
+			PREFIX nmo:	<http://nomisma.org/ontology#>
 			PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>						
 			SELECT DISTINCT ?label WHERE {
 			<URI> skos:prefLabel ?label
@@ -203,24 +209,25 @@ OPTIONAL {?object nm:closing_date ?closing_date}
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX nm: <http://nomisma.org/id/>
+PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 SELECT ?object ?objectType ?identifier ?collection ?obvThumb ?revThumb ?obvRef ?revRef ?comThumb ?comRef ?type WHERE {
-?object nm:type_series_item <typeUri> .
-?object rdf:type ?objectType .
+?object nmo:hasTypeSeriesItem <typeUri> .
+?object nmo:hasObjectType ?objectType .
 OPTIONAL { ?object dcterms:identifier ?identifier }
-OPTIONAL { ?object nm:collection ?colUri .
+OPTIONAL { ?object nmo:hasCollection ?colUri .
 ?colUri skos:prefLabel ?collection
 FILTER(langMatches(lang(?collection), "EN"))}
 OPTIONAL { ?object foaf:thumbnail ?comThumb }
 OPTIONAL { ?object foaf:depiction ?comRef }
-OPTIONAL { ?object nm:obverse ?obverse .
+OPTIONAL { ?object nmo:hasObverse ?obverse .
 ?obverse foaf:thumbnail ?obvThumb }
-OPTIONAL { ?object nm:obverse ?obverse .
+OPTIONAL { ?object nmo:hasObverse ?obverse .
 ?obverse foaf:depiction ?obvRef }
-OPTIONAL { ?object nm:reverse ?reverse .
+OPTIONAL { ?object nmo:hasReverse ?reverse .
 ?reverse foaf:thumbnail ?revThumb }
-OPTIONAL { ?object nm:reverse ?reverse .
+OPTIONAL { ?object nmo:hasReverse ?reverse .
 ?reverse foaf:depiction ?revRef }
 }]]>
 		</xsl:variable>
