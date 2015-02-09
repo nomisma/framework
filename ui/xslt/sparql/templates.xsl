@@ -301,10 +301,10 @@ OPTIONAL { ?object nmo:hasReverse ?reverse .
 		<xsl:param name="id"/>
 		<group id="{$id}">
 			<coin-count>
-				<xsl:value-of select="count(descendant::res:result[contains(res:binding[@name='type']/res:uri, 'coin')])"/>
+				<xsl:value-of select="count(descendant::res:result[contains(res:binding[@name='type']/res:uri, 'Physical_Thing')])"/>
 			</coin-count>
 			<hoard-count>
-				<xsl:value-of select="count(descendant::res:result[contains(res:binding[@name='type']/res:uri, 'hoard')])"/>
+				<xsl:value-of select="count(descendant::res:result[contains(res:binding[@name='type']/res:uri, 'Hoard')])"/>
 			</hoard-count>
 			<objects>
 				<xsl:for-each select="descendant::res:result[res:binding[contains(@name, 'rev') or contains(@name, 'obv') or contains(@name,'com')]][position() &lt;=5]">
