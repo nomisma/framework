@@ -212,9 +212,9 @@ PREFIX nm: <http://nomisma.org/id/>
 PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-SELECT ?object ?objectType ?identifier ?collection ?obvThumb ?revThumb ?obvRef ?revRef ?comThumb ?comRef ?type WHERE {
+SELECT ?object ?type ?identifier ?collection ?obvThumb ?revThumb ?obvRef ?revRef ?comThumb ?comRef ?type WHERE {
 ?object nmo:hasTypeSeriesItem <typeUri> .
-?object nmo:hasObjectType ?objectType .
+?object rdf:type ?type .
 OPTIONAL { ?object dcterms:identifier ?identifier }
 OPTIONAL { ?object nmo:hasCollection ?colUri .
 ?colUri skos:prefLabel ?collection
@@ -301,10 +301,10 @@ OPTIONAL { ?object nmo:hasReverse ?reverse .
 		<xsl:param name="id"/>
 		<group id="{$id}">
 			<coin-count>
-				<xsl:value-of select="count(descendant::res:result[contains(res:binding[@name='objectType']/res:uri, 'coin')])"/>
+				<xsl:value-of select="count(descendant::res:result[contains(res:binding[@name='type']/res:uri, 'coin')])"/>
 			</coin-count>
 			<hoard-count>
-				<xsl:value-of select="count(descendant::res:result[contains(res:binding[@name='objectType']/res:uri, 'hoard')])"/>
+				<xsl:value-of select="count(descendant::res:result[contains(res:binding[@name='type']/res:uri, 'hoard')])"/>
 			</hoard-count>
 			<objects>
 				<xsl:for-each select="descendant::res:result[res:binding[contains(@name, 'rev') or contains(@name, 'obv') or contains(@name,'com')]][position() &lt;=5]">
