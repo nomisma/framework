@@ -7,6 +7,7 @@
 	<solr_published>http://localhost:8080/solr4.10/nomisma/</solr_published>
 	<solr_fuseki>http://localhost:8080/solr4.10/nomisma-fuseki/</solr_fuseki>
 	<id_path>/usr/local/projects/nomisma-data/id</id_path>
+	<ontology_path>/usr/local/projects/nomisma-data/ontology</ontology_path>
 	<dump_path>/usr/local/projects/nomisma/dump</dump_path>
 	<flickr_api_key>226cb53f91a6c1331adfb52c365584e9</flickr_api_key>	
 </config>

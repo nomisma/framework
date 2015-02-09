@@ -43,7 +43,7 @@
 	<!-- **** PAGES **** -->			
 	<page path="/nomisma/sparql" view="xpl/views/pages/sparql.xpl"/>
 	<page path="/nomisma/apis" view="xpl/views/pages/apis.xpl"/>
-	<page path="/nomisma/ontology" view="xpl/views/pages/ontology.xpl"/>
+	<page path="/nomisma/ontology" model="xpl/models/rdf/get-rdf-ontology-current.xpl" view="xpl/controllers/conneg-ontology.xpl"/>
 	<page path="/nomisma/" view="xpl/views/pages/index.xpl" id="index"/>
 	
 	<!-- **** SERIALIZATIONS **** -->
@@ -84,6 +84,12 @@
 	<page path="/nomisma/nomisma.org.rdf" view="xpl/controllers/serialize-dump.xpl"/>
 	<page path="/nomisma/nomisma.org.jsonld" view="xpl/controllers/serialize-dump.xpl"/>
 	<page path="/nomisma/nomisma.org.ttl" view="xpl/controllers/serialize-dump.xpl"/>
+	
+	<!-- **** ONTOLOGY **** -->
+	<page path="/nomisma/ontology.rdf" view="xpl/models/rdf/get-rdf-ontology-current.xpl"/>
+	<page path="/nomisma/ontology.(.*).rdf" view="xpl/models/rdf/get-rdf-ontology.xpl"/>
+	<page path="/nomisma/ontology.ttl" view="xpl/models/rdf/get-ttl-ontology-current.xpl"/>
+	<page path="/nomisma/ontology.(.*).ttl" view="xpl/models/rdf/get-ttl-ontology.xpl"/>
 
 	<epilogue url="oxf:/config/epilogue.xpl"/>
 </config>

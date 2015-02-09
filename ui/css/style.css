@@ -3,13 +3,13 @@
   GLOBAL
   ****************************************
  */
-body {
+body{
 	background-color:#F8F8F8;
 }
-.nav {
+.nav{
 	margin-top:10px;
 }
-.navbar {
+.navbar{
 	margin-bottom:0;
 }
 /*
@@ -18,40 +18,45 @@ body {
   width:100%;
   }
  */
-.row {
+.row{
 	background-color:white;
 }
-.highlight {
-	background-color: #F7F7F9;
-	border: 1px solid #E1E1E8;
-	border-radius: 4px;
-	margin-bottom: 14px;
-	padding: 9px 14px;
+.highlight{
+	background-color:#F7F7F9;
+	border:1px solid #E1E1E8;
+	border-radius:4px;
+	margin-bottom:14px;
+	padding:9px 14px;
 }
-.table-dl td {
+.table-dl td{
 	padding:5px;
-}
-.content {
-	padding-bottom:10px;
 }
 /*
   ***************************************
   INDEX
   ***************************************
  */
-.media {
+.media{
 	display:inline;
 }
-.media img {
+.media img{
 	height:50px;
 	margin:5px;
+}
+/*
+  ***************************************
+  ONTOLOGY PAGE
+  ***************************************
+ */
+.def{
+	margin-left:20px;
 }
 /*
   ***************************************
   FOOTER
   ***************************************
  */
-#footer {
+#footer{
 	padding:10px 0;
 	border-top:1px solid #e7e7e7;
 	text-align:center;
@@ -61,25 +66,25 @@ body {
   PAGINATION/SEARCH RESULTS
   ***************************************
  */
-.result-doc {
+.result-doc{
 	margin:10px 0;
 	padding:10px 0;
-	border-bottom: 1px solid silver;
+	border-bottom:1px solid silver;
 }
-.doc-label {
+.doc-label{
 	font-size:120%;
 }
-.paging_div {
+.paging_div{
 	padding:10px 0;
 	vertical-align:top
 }
-.page-nos {
+.page-nos{
 	text-align:right;
 }
-.filter-form {
+.filter-form{
 	display:inline;
 }
-.filter-form .form-control {
+.filter-form .form-control{
 	width:200px;
 	display:inline;
 	margin-right:10px;
@@ -89,36 +94,36 @@ body {
   SPARQL
   ***************************************
  */
-#sparqlForm {
+#sparqlForm{
 	margin:20px 0;
 }
-#sparqlForm select {
+#sparqlForm select{
 	width:200px;
 }
-.CodeMirror {
-	background-color: #fff;
-	background-image: none;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-	color: #555;
-	padding: 6px 12px;
-	transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+.CodeMirror{
+	background-color:#fff;
+	background-image:none;
+	border:1px solid #ccc;
+	border-radius:4px;
+	box-shadow:0 1px 1px rgba(0, 0, 0, 0.075) inset;
+	color:#555;
+	padding:6px 12px;
+	transition:border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
 }
-.CodeMirror:focus {
-	border-color: #66afe9;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
-	outline: 0 none;
+.CodeMirror:focus{
+	border-color:#66afe9;
+	box-shadow:0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
+	outline:0 none;
 }
 /*
   ***************************************
   PAGE DISPLAY
   ***************************************
  */
-.lang {
+.lang{
 	font-style:italic;
 }
-.toggle-geoJSON {
+.toggle-geoJSON{
 	margin-left:10px;
 }
 /*
@@ -126,48 +131,49 @@ body {
   Timemap CSS
   ***************************************
  */
-div#timelinecontainer {
+div#timelinecontainer{
 	width:100%;
-	height: 150px;
+	height:150px;
 }
-div#mapcontainer {
+div#mapcontainer{
 	width:100%;
-	height: 400px;
+	height:400px;
 }
-div.olFramedCloudPopupContent {
-	width: 300px;
+div.olFramedCloudPopupContent{
+	width:300px;
 }
-div#help {
-	font-size: 12px;
-	width: 45em;
-	padding: 1em;
+div#help{
+	font-size:12px;
+	width:45em;
+	padding:1em;
 }
 /*
   div#timemap {
   padding: 1em;
   }
  */
-div#timeline {
-	width: 100%;
-	height: 100%;
-	font-size: 12px;
-	background: #CCCCCC;
+div#timeline{
+	width:100%;
+	height:100%;
+	font-size:12px;
+	background:#CCCCCC;
 }
-div#map {
-	width: 100%;
-	height: 100%;
-	background: #EEEEEE;
+div#map{
+	width:100%;
+	height:100%;
+	background:#EEEEEE;
 }
-div.infotitle {
-	font-size: 14px;
-	font-weight: bold;
+div.infotitle{
+	font-size:14px;
+	font-weight:bold;
 }
-div.infodescription {
-	font-size: 14px;
-	font-style: italic;
+div.infodescription{
+	font-size:14px;
+	font-style:italic;
 }
-div.custominfostyle {
-	font-family: Georgia, Garamond, serif;
-	font-size: 1.5em;
-	font-style: italic;
-	width: 20em;
+div.custominfostyle{
+	font-family:Georgia, Garamond, serif;
+	font-size:1.5em;
+	font-style:italic;
+	width:20em;
+}
