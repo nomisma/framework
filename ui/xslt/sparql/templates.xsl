@@ -300,9 +300,9 @@ OPTIONAL { ?object nmo:hasReverse ?reverse .
 	<xsl:template match="res:sparql" mode="numishareResults">
 		<xsl:param name="id"/>
 		<group id="{$id}">
-			<coin-count>
+			<object-count>
 				<xsl:value-of select="count(descendant::res:result[contains(res:binding[@name='type']/res:uri, 'Physical_Thing')])"/>
-			</coin-count>
+			</object-count>
 			<hoard-count>
 				<xsl:value-of select="count(descendant::res:result[contains(res:binding[@name='type']/res:uri, 'Hoard')])"/>
 			</hoard-count>
