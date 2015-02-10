@@ -213,11 +213,10 @@ PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 SELECT ?object ?type ?identifier ?collection ?obvThumb ?revThumb ?obvRef ?revRef ?comThumb ?comRef ?type WHERE {
-{ ?object nmo:hasTypeSeriesItem <typeUri> .
-?object rdf:type ?type }
+{ ?object nmo:hasTypeSeriesItem <typeUri> }
 UNION { ?object dcterms:tableOfContents ?contents .
-?contents nmo:hasTypeSeriesItem <typeUri> .
-?object rdf:type ?type }
+?contents nmo:hasTypeSeriesItem <typeUri> }
+?object rdf:type ?type .
 OPTIONAL { ?object dcterms:identifier ?identifier }
 OPTIONAL { ?object nmo:hasCollection ?colUri .
 ?colUri skos:prefLabel ?collection
