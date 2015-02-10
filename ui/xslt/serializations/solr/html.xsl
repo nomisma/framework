@@ -29,7 +29,7 @@
 	</xsl:variable>
 	<xsl:variable name="tokenized_q" select="tokenize($q, ' AND ')"/>
 	<xsl:variable name="numFound" select="//result[@name='response']/@numFound" as="xs:integer"/>
-	<xsl:variable name="display_path">../</xsl:variable>
+	<xsl:variable name="display_path"/>
 
 	<!-- definition of namespaces for turning in solr type field URIs into abbreviations -->
 	<xsl:variable name="namespaces" as="item()*">

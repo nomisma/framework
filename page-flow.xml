@@ -41,6 +41,7 @@
 	* PUBLIC INTERFACE *
 	***************** -->
 	<!-- **** PAGES **** -->			
+	<page path="/nomisma/id/" view="xpl/views/pages/id.xpl"/>
 	<page path="/nomisma/sparql" view="xpl/views/pages/sparql.xpl"/>
 	<page path="/nomisma/apis" view="xpl/views/pages/apis.xpl"/>
 	<page path="/nomisma/ontology" model="xpl/models/rdf/get-rdf-ontology-current.xpl" view="xpl/controllers/conneg-ontology.xpl"/>
@@ -48,7 +49,7 @@
 	
 	<!-- **** SERIALIZATIONS **** -->
 	<!-- Solr -->
-	<page path="/nomisma/id/" model="xpl/models/solr/query.xpl" view="xpl/controllers/conneg-results.xpl"/>
+	<page path="/nomisma/browse" model="xpl/models/solr/query.xpl" view="xpl/controllers/conneg-results.xpl"/>
 	<page path="/nomisma/feed/" model="xpl/models/solr/query.xpl" view="xpl/views/serializations/solr/atom.xpl"/>
 	
 	<!-- ID -->

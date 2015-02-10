@@ -19,7 +19,7 @@
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
 						<li>
-							<a href="{$display_path}id/">Search IDs</a>
+							<a href="{$display_path}browse">Browse IDs</a>
 						</li>
 						<li>
 							<a href="{$display_path}apis">APIs</a>
