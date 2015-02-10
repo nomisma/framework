@@ -301,7 +301,7 @@ OPTIONAL { ?object nmo:hasReverse ?reverse .
 		<xsl:param name="id"/>
 		<group id="{$id}">
 			<object-count>
-				<xsl:value-of select="count(descendant::res:result[contains(res:binding[@name='type']/res:uri, 'Physical_Thing')])"/>
+				<xsl:value-of select="count(descendant::res:result[contains(res:binding[@name='type']/res:uri, 'NumismaticObject')])"/>
 			</object-count>
 			<hoard-count>
 				<xsl:value-of select="count(descendant::res:result[contains(res:binding[@name='type']/res:uri, 'Hoard')])"/>
