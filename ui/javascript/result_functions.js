@@ -11,7 +11,7 @@ $(document).ready(function () {
 		if (text.length > 0) {
 			query.push(text);
 		}
-		if (role.length > 0) {
+		if (role.length > 0 &&  $('#role_filter').prop('disabled') == false) {
 			query.push(role);
 		}
 		$(this).siblings('input[name=q]').attr('value', query.join(' AND '));
