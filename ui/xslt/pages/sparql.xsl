@@ -32,15 +32,16 @@
 	<xsl:template name="body">
 		<xsl:variable name="default-query"><![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:	<http://purl.org/dc/terms/>
-PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
-PREFIX owl:	<http://www.w3.org/2002/07/owl#>
 PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
-PREFIX ecrm:	<http://erlangen-crm.org/current/>
 PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
-PREFIX osgeo:	<http://data.ordnancesurvey.co.uk/ontology/geometry/>
 PREFIX nm:	<http://nomisma.org/id/>
 PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX org:	<http://www.w3.org/ns/org#>
+PREFIX osgeo:	<http://data.ordnancesurvey.co.uk/ontology/geometry/>
+PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
 PREFIX spatial: <http://jena.apache.org/spatial#>
+PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>
+PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
 
 SELECT * WHERE {
 ?s ?p ?o

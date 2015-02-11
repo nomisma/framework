@@ -12,5 +12,6 @@
 	<flickr_api_key>226cb53f91a6c1331adfb52c365584e9</flickr_api_key>
 	<documentation>
 		<page stub="contribute" label="How to Contribute Data"/>
+		<page stub="sparql" label="SPARQL Examples"/>
 	</documentation>
 </config>

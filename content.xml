@@ -45,6 +45,146 @@
 		</div>
 	</index>
 	<documentation>
+		<page stub="sparql" label="SPARQL examples">
+			<h1>SPARQL Examples</h1>
+			<p>This page contains a collection of basic SPARQL examples which can be applied to data in Nomisma.org. It is not intended to be an introduction to SPARQL as a whole, but a good <a
+					href="http://jena.apache.org/tutorials/sparql.html">tutorial</a> can be found on the Jena site.</p>
+			<h2>Querying within Nomisma.org Concepts</h2>
+			<div>
+				<h3>Get a list of all Roman Emperors</h3>
+				<pre><![CDATA[
+PREFIX rdf:		<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:		<http://purl.org/dc/terms/>
+PREFIX foaf:		<http://xmlns.com/foaf/0.1/>
+PREFIX nm:		<http://nomisma.org/id/>
+PREFIX nmo:		<http://nomisma.org/ontology#>
+PREFIX org:		<http://www.w3.org/ns/org#>
+PREFIX skos:		<http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?uri ?label WHERE {
+?uri a foaf:Person ;
+  skos:prefLabel ?label ;         
+  org:hasMembership ?membership .
+?membership org:role nm:roman_emperor .
+FILTER(langMatches(lang(?label), "EN"))
+} ]]>
+</pre>
+			</div>
+			
+			<h2>Querying Coins linked to Nomisma.org Concepts</h2>			
+			<div>
+				<h3>Get all weights of Augustan denarii</h3>
+				<pre><![CDATA[
+PREFIX rdf:		<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:		<http://purl.org/dc/terms/>
+PREFIX nm:		<http://nomisma.org/id/>
+PREFIX nmo:		<http://nomisma.org/ontology#>
+
+SELECT ?type ?weight WHERE {
+?type nmo:hasAuthority nm:augustus ;
+  nmo:hasDenomination nm:denarius ;
+  dcterms:source nm:ric.
+?coin nmo:hasTypeSeriesItem ?type .
+?coin nmo:hasWeight ?weight
+}]]>
+</pre>
+			</div>
+			<div>
+				<h3>Get average weight of Augustan denarii</h3>
+				<pre><![CDATA[
+PREFIX rdf:		<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:		<http://purl.org/dc/terms/>
+PREFIX nm:		<http://nomisma.org/id/>
+PREFIX nmo:		<http://nomisma.org/ontology#>
+PREFIX xsd:		<http://www.w3.org/2001/XMLSchema#>
+
+SELECT (AVG(xsd:decimal(?weight)) AS ?average) WHERE {
+?type nmo:hasAuthority nm:augustus ;
+  nmo:hasDenomination nm:denarius ;
+  dcterms:source nm:ric.
+?coin nmo:hasTypeSeriesItem ?type .
+?coin nmo:hasWeight ?weight
+}]]>
+</pre>
+			</div>
+			<div>
+				<h3>Get coins of RIC Augustus 1A and 1B</h3>
+				<p>This will also gather measurements data, source collecton (with English label), and thumbnail/references images.</p>
+				<pre><![CDATA[
+PREFIX rdf:		<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:		<http://purl.org/dc/terms/>
+PREFIX nm:		<http://nomisma.org/id/>
+PREFIX nmo:		<http://nomisma.org/ontology#>
+PREFIX foaf:		<http://xmlns.com/foaf/0.1/>
+
+SELECT ?object ?type ?diameter ?weight ?axis ?type ?collection ?obvThumb ?revThumb ?obvRef ?revRef ?comThumb ?comRef WHERE {
+{?object nmo:hasTypeSeriesItem <http://numismatics.org/ocre/id/ric.1(2).aug.1A> }
+UNION { ?object nmo:hasTypeSeriesItem <http://numismatics.org/ocre/id/ric.1(2).aug.1B> }
+OPTIONAL { ?object nmo:hasWeight ?weight }
+OPTIONAL { ?object nmo:hasDiameter ?diameter }
+OPTIONAL { ?object nmo:hasAxis ?axis }
+?object rdf:type ?type .
+OPTIONAL { ?object dcterms:identifier ?identifier }
+OPTIONAL { ?object nmo:hasCollection ?colUri .
+?colUri skos:prefLabel ?collection
+FILTER(langMatches(lang(?collection), "EN"))}
+OPTIONAL { ?object foaf:thumbnail ?comThumb }
+OPTIONAL { ?object foaf:depiction ?comRef }
+OPTIONAL { ?object nmo:hasObverse ?obverse .
+?obverse foaf:thumbnail ?obvThumb }
+OPTIONAL { ?object nmo:hasObverse ?obverse .
+?obverse foaf:depiction ?obvRef }
+OPTIONAL { ?object nmo:hasReverse ?reverse .
+?reverse foaf:thumbnail ?revThumb }
+OPTIONAL { ?object nmo:hasReverse ?reverse .
+?reverse foaf:depiction ?revRef }
+}]]>
+</pre>
+			</div>
+			<div>
+				<h3>Get Average Diameter of RIC Augustus 1A</h3>				
+				<pre><![CDATA[
+PREFIX rdf:		<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:		<http://purl.org/dc/terms/>
+PREFIX nm:		<http://nomisma.org/id/>
+PREFIX nmo:		<http://nomisma.org/ontology#>
+PREFIX xsd:		<http://www.w3.org/2001/XMLSchema#>
+
+SELECT (AVG(xsd:decimal(?diameter)) AS ?average) WHERE {
+?object nmo:hasTypeSeriesItem <http://numismatics.org/ocre/id/ric.1(2).aug.1A> ;
+  nmo:hasDiameter ?diameter
+}]]>
+</pre>
+			</div>
+			<div>
+				<h3>Get all findspots for RIC Augustus 1A</h3>				
+				<pre><![CDATA[
+PREFIX rdf:		<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:		<http://purl.org/dc/terms/>
+PREFIX nm:		<http://nomisma.org/id/>
+PREFIX nmo:		<http://nomisma.org/ontology#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+
+SELECT ?object ?title ?findspot ?lat ?long ?type ?burial WHERE {
+{ ?object nmo:hasTypeSeriesItem <typeUri> }
+UNION { ?contents nmo:hasTypeSeriesItem <http://numismatics.org/ocre/id/ric.1(2).aug.1A> .
+?object dcterms:tableOfContents ?contents }
+?object dcterms:title ?title .			
+?object nmo:hasFindspot ?findspot .
+{?findspot geo:lat ?lat .
+?findspot geo:long ?long }
+UNION {
+ ?findspot nmo:hasFindspot ?loc .
+ ?loc geo:lat ?lat.
+ ?loc geo:long ?long			 
+ OPTIONAL { ?findspot nmo:hasClosingDate ?burial }
+}
+OPTIONAL { ?object rdf:type ?type }
+OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
+</pre>
+			</div>			
+		</page>
 		<page stub="contribute" label="How to Contribute Data">
 			<h1>How to Contribute Data</h1>
 			<p>In the spring of 2013, we took a new approach in establishing links from RIC types in <a href="http://numismatics.org/ocre/">OCRE</a> to physical coins and hoards which reference those
@@ -152,7 +292,7 @@
 </rdf:RDF>]]>
 				</code>
 			</pre>
-			
+
 			<p>Like physical coins, the dcterms:title, and dcterms:identifier are required, and the resource must carry the nmo:Hoard class.</p>
 			<p>Presently, the hoard model is very simple and does not contain all the information stored in the database or NUDS XML record. The nmo:Hoard object should link to a dcmitype:Collection,
 				which merely contains a list of associated TypeSeriesItems (linked with the nmo:hasTypeSeriesItem property). These records are meant to facilitate basic mapping and timelines in OCRE
