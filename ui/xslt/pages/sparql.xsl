@@ -51,6 +51,8 @@ SELECT * WHERE {
 			<div class="row">
 				<div class="col-md-12">
 					<h1>SPARQL Query</h1>
+					<p>For examples, see <a href="{$display_path}documentation/sparql">SPARQL Examples</a>. A basic tutorial on SPARQL is available from <a
+							href="http://jena.apache.org/tutorials/sparql.html">Apache Jena</a>.</p>
 					<form role="form" id="sparqlForm" action="{$display_path}query" method="GET" accept-charset="UTF-8">
 						<textarea name="query" rows="20" class="form-control" id="code">
 							<xsl:value-of select="$default-query"/>
@@ -67,12 +69,11 @@ SELECT * WHERE {
 									<option value="csv">CSV</option>
 								</select>
 							</div>
-							<button type="submit" class="btn btn-default">Submit</button>							
+							<button type="submit" class="btn btn-default">Submit</button>
 						</div>
 						<div class="col-md-6">
-							<p class="text-info">This endpoint (<xsl:value-of select="concat(/config/url, 'query')"/>) supports content negotiation for the following content types:
-									<i>text/html</i>, <i>text/csv</i>, <i>text/plain</i>, <i>application/sparql-results+json</i>, and <i>application/sparql-results+xml</i></p>
-							<p class="text-info">For further documentation and examples, see <a href="{$display_path}documentation/sparql">SPARQL Examples</a>.</p>
+							<p class="text-info">This endpoint (<xsl:value-of select="concat(/config/url, 'query')"/>) supports content negotiation for the following content types: <i>text/html</i>,
+									<i>text/csv</i>, <i>text/plain</i>, <i>application/sparql-results+json</i>, and <i>application/sparql-results+xml</i></p>
 						</div>
 					</form>
 				</div>
