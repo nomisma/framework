@@ -24,6 +24,18 @@
 						<li>
 							<a href="{$display_path}apis">APIs</a>
 						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"/></a>
+							<ul class="dropdown-menu">
+								<xsl:for-each select="//config/documentation/page">
+									<li>
+										<a href="{$display_path}documentation/{@stub}">
+											<xsl:value-of select="@label"/>
+										</a>
+									</li>
+								</xsl:for-each>
+							</ul>
+						</li>						
 						<li>
 							<a href="{$display_path}ontology">Ontology</a>
 						</li>
