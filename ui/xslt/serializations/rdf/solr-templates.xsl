@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/"
-	xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:nmo="http://nomisma.org/ontology#"
-	xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:org="http://www.w3.org/ns/org#" xmlns:foaf="http://xmlns.com/foaf/0.1/"
-	xmlns:nomisma="http://nomisma.org/" exclude-result-prefixes="#all" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:nmo="http://nomisma.org/ontology#" xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/"
+	xmlns:org="http://www.w3.org/ns/org#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:nomisma="http://nomisma.org/" exclude-result-prefixes="#all" version="2.0">
 
 	<!-- process any object except those which have been deprecated -->
 	<xsl:template match="*[not(dcterms:isReplacedBy)]" mode="generateDoc">
@@ -17,14 +16,17 @@
 			</field>
 
 			<!-- types -->
-			<field name="type">
+			<field name="type_uri">
 				<xsl:value-of select="concat(namespace-uri(.), local-name())"/>
 			</field>
 			<xsl:for-each select="rdf:type">
-				<field name="type">
+				<field name="type_uri">
 					<xsl:value-of select="@rdf:resource"/>
 				</field>
 			</xsl:for-each>
+
+			<!-- roles for Persons/Organizations -->
+			<xsl:apply-templates select="org:hasMembership"/>
 
 			<!-- labels -->
 			<field name="prefLabel">
@@ -43,7 +45,7 @@
 
 			<!-- associated URIs -->
 			<xsl:for-each select="skos:exactMatch|skos:relatedMatch">
-				<field name="{local-name()}">
+				<field name="{local-name()}_uri">
 					<xsl:value-of select="@rdf:resource"/>
 				</field>
 				<xsl:if test="contains(@rdf:resource, 'pleiades.stoa.org')">
@@ -118,6 +120,23 @@
 				</field>
 			</xsl:when>-->
 		</xsl:choose>
+	</xsl:template>
+
+	<xsl:template match="org:hasMembership">
+		<xsl:variable name="uri" select="@rdf:resource"/>
+
+		<xsl:apply-templates select="ancestor::rdf:RDF/org:Membership[@rdf:about=$uri]"/>
+	</xsl:template>
+
+	<xsl:template match="org:Membership">
+		<xsl:variable name="uri" select="org:role/@rdf:resource"/>
+		
+		<field name="role_uri">
+			<xsl:value-of select="$uri"/>
+		</field>
+		<field name="role_facet">
+			<xsl:value-of select="$roles/role[@uri=$uri]"/>
+		</field>
 	</xsl:template>
 
 </xsl:stylesheet>
