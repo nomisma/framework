@@ -26,7 +26,7 @@
 
 	<xsl:variable name="prefix">
 		<xsl:for-each select="$namespaces/namespace">
-			<xsl:value-of select="concat(@prefix, ':', @uri)"/>
+			<xsl:value-of select="concat(@prefix, ': ', @uri)"/>
 			<xsl:if test="not(position()=last())">
 				<xsl:text> </xsl:text>
 			</xsl:if>
@@ -69,7 +69,7 @@
 						<h3>Export</h3>
 						<ul class="list-inline">
 							<li>
-								<a href="https://github.com/AmericanNumismaticSociety/nomisma-ids/blob/master/id/{$id}.txt">GitHub File</a>
+								<a href="https://github.com/nomisma/data/blob/master/id/{$id}.rdf">GitHub File</a>
 							</li>
 							<li>
 								<a href="{$id}.rdf">RDF/XML</a>
