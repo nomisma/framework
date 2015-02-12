@@ -4,7 +4,8 @@
 		<div>
 			<p>Nomisma.org is a collaborative project to provide stable digital representations of numismatic concepts according to the principles of <a
 					href="http://www.w3.org/DesignIssues/LinkedData.html">Linked Open Data</a>. These take the form of http URIs that also provide access to reusable information about those concepts,
-				along with links to other resources. The base format of nomisma.org is RDF/XML, with serializations available in JSON-LD, Turtle, KML (when applicable), and HTML5+RDFa 1.1.</p>
+				along with links to other resources. The canonical format of nomisma.org is RDF/XML, with serializations available in JSON-LD (including geoJSON-LD for complex geographic features),
+				Turtle, KML (when applicable), and HTML5+RDFa 1.1.</p>
 
 			<p>While the URIs provided by nomisma.org are stable, the project is in progress and subject to constant expansion and ongoing correction. This is particularly the case for the information
 				provided about each nomisma.org identifier.</p>
@@ -27,6 +28,9 @@
 			</ul>
 
 			<p>Nomisma.org also hosts the <a href="https://github.com/ewg118/NUDS">Numismatic Description XML Schema</a></p>
+
+			<p>There are two Github repositories associated with the project. The application code is available in <a href="https://github.com/nomisma/framework"
+					>https://github.com/nomisma/framework</a>. The RDF/XML data and ontology versions are in <a href="https://github.com/nomisma/data">https://github.com/nomisma/data</a>.</p>
 		</div>
 
 		<div>
