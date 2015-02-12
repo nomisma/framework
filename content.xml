@@ -634,7 +634,7 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 						<tr>
 							<td>HTML</td>
 							<td>
-								<a href="http://nomisma.org/browse">http://nomisma.org/id/</a>
+								<a href="http://nomisma.org/browse">http://nomisma.org/browse</a>
 							</td>
 							<td>
 								<code>text/html</code>
