@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- folder name corresponds to lucene version; configuration files may vary from version to version, so copy conf from the example folder in the appropriate version solr zip file
+remember to create a data folder and set tomcat write permissions -->
+<solr persistent="false">
+	<cores adminPath="/admin/cores">
+		<core name="nomisma" instanceDir="1.5/nomisma"/>
+		<core name="nomisma-fuseki" instanceDir="1.5/nomisma-fuseki"/>
+	</cores>
+</solr>
