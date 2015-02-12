@@ -386,7 +386,16 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 	</documentation>
 	<apis>
 		<h1>Documentation</h1>
-		<div>
+		<p>This page contains documentation for using web services provided by Nomisma and how to access machine readable serializations through REST and content negotiation.</p>
+		<ul>
+			<li>
+				<a href="#apis">APIs</a>
+			</li>
+			<li>
+				<a href="#access">Accessing Data</a>
+			</li>
+		</ul>
+		<div id="apis">
 			<h2>APIs</h2>
 			<table class="table">
 				<thead>
@@ -561,8 +570,8 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 				</p>
 			</div>
 		</div>
-		<div>
-			<h2>Data Access</h2>
+		<div id="access">
+			<h2>Accessing Data</h2>
 			<div>
 				<h3>Individual Records</h3>
 				<p>Numishare supports delivery of individual records in a variety of models and serializations through both REST and content negotiation. Content negotiation (with the accept header)
