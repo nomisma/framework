@@ -49,9 +49,37 @@
 			<h1>SPARQL Examples</h1>
 			<p>This page contains a collection of basic SPARQL examples which can be applied to data in Nomisma.org. It is not intended to be an introduction to SPARQL as a whole, but a good <a
 					href="http://jena.apache.org/tutorials/sparql.html">tutorial</a> can be found on the Jena site.</p>
+
+			<ul>
+				<li>
+					<a href="#e1">List of all Roman Emperors</a>
+				</li>
+				<li>
+					<a href="#e2">All hoards found within 50 km of Goranu, Romania</a>
+				</li>
+				<li>
+					<a href="#e3">All mints found within 50 km of Athens</a>
+				</li>
+				<li>
+					<a href="#e4">All weights of Augustan denarii</a>
+				</li>
+				<li>
+					<a href="#e5">Average weight of Augustan denarii</a>
+				</li>
+				<li>
+					<a href="#e6">Coins of RIC Augustus 1A and 1B</a>
+				</li>
+				<li>
+					<a href="#e7">Average Diameter of RIC Augustus 1A</a>
+				</li>
+				<li>
+					<a href="#e8">All findspots for RIC Augustus 1A</a>
+				</li>
+			</ul>
+
 			<h2>Querying within Nomisma.org Concepts</h2>
-			<div>
-				<h3>Get a list of all Roman Emperors</h3>
+			<div id="e1">
+				<h3>List of all Roman Emperors</h3>
 				<pre><![CDATA[
 PREFIX rdf:		<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:		<http://purl.org/dc/terms/>
@@ -70,10 +98,58 @@ FILTER(langMatches(lang(?label), "EN"))
 } ]]>
 </pre>
 			</div>
-			
-			<h2>Querying Coins linked to Nomisma.org Concepts</h2>			
-			<div>
-				<h3>Get all weights of Augustan denarii</h3>
+			<h2>Spatial Queries</h2>
+			<p>The Apache Fuseki triplestore and SPARQL endpoint has been extended to support spatial queries by interacting with a Solr search index. For further documentation for spatial queries in
+				SPARQL, see <a href="http://jena.apache.org/documentation/query/spatial-query.html">http://jena.apache.org/documentation/query/spatial-query.html</a></p>
+			<div id="e2">
+				<h3>All hoards found within 50 km of Goranu, Romania</h3>
+				<p>The format of spatial:nearby is (lat long distance 'unit')</p>
+				<pre><![CDATA[
+PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:	<http://purl.org/dc/terms/>
+PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX nm:	<http://nomisma.org/id/>
+PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX spatial: <http://jena.apache.org/spatial#>
+PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
+
+SELECT * WHERE {
+   ?loc spatial:nearby (45.10523 24.38431 50 'km') .
+   ?hoard nmo:hasFindspot ?loc ;
+          a nmo:Hoard ;
+          dcterms:title ?label .
+          OPTIONAL {?hoard nmo:hasClosingDate ?date}
+  FILTER langMatches (lang(?label), 'en')
+}]]>
+</pre>
+			</div>
+			<div id="e3">
+				<h3>All mints found within 50 km of Athens</h3>
+				<p>The format of spatial:nearby is (lat long distance 'unit').</p>
+				<pre><![CDATA[
+PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:	<http://purl.org/dc/terms/>
+PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX nm:	<http://nomisma.org/id/>
+PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
+PREFIX spatial: <http://jena.apache.org/spatial#>
+PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
+
+SELECT * WHERE {
+   ?loc spatial:nearby (37.974722 23.7225 50 'km') ;
+        geo:lat ?lat ;
+        geo:long ?long .
+   ?mint geo:location ?loc ;
+         skos:prefLabel ?label ;
+         a nmo:Mint
+  FILTER langMatches (lang(?label), 'en')
+}]]>
+</pre>
+			</div>
+			<h2>Querying Coins linked to Nomisma.org Concepts</h2>
+			<div id="e4">
+				<h3>All weights of Augustan denarii</h3>
 				<pre><![CDATA[
 PREFIX rdf:		<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:		<http://purl.org/dc/terms/>
@@ -89,8 +165,8 @@ SELECT ?type ?weight WHERE {
 }]]>
 </pre>
 			</div>
-			<div>
-				<h3>Get average weight of Augustan denarii</h3>
+			<div id="e5">
+				<h3>Average weight of Augustan denarii</h3>
 				<pre><![CDATA[
 PREFIX rdf:		<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:		<http://purl.org/dc/terms/>
@@ -107,8 +183,8 @@ SELECT (AVG(xsd:decimal(?weight)) AS ?average) WHERE {
 }]]>
 </pre>
 			</div>
-			<div>
-				<h3>Get coins of RIC Augustus 1A and 1B</h3>
+			<div id="e6">
+				<h3>Coins of RIC Augustus 1A and 1B</h3>
 				<p>This will also gather measurements data, source collecton (with English label), and thumbnail/references images.</p>
 				<pre><![CDATA[
 PREFIX rdf:		<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -141,8 +217,8 @@ OPTIONAL { ?object nmo:hasReverse ?reverse .
 }]]>
 </pre>
 			</div>
-			<div>
-				<h3>Get Average Diameter of RIC Augustus 1A</h3>				
+			<div id="e7">
+				<h3>Average Diameter of RIC Augustus 1A</h3>
 				<pre><![CDATA[
 PREFIX rdf:		<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:		<http://purl.org/dc/terms/>
@@ -156,8 +232,8 @@ SELECT (AVG(xsd:decimal(?diameter)) AS ?average) WHERE {
 }]]>
 </pre>
 			</div>
-			<div>
-				<h3>Get all findspots for RIC Augustus 1A</h3>				
+			<div id="e8">
+				<h3>All findspots for RIC Augustus 1A</h3>
 				<pre><![CDATA[
 PREFIX rdf:		<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:		<http://purl.org/dc/terms/>
@@ -183,7 +259,7 @@ UNION {
 OPTIONAL { ?object rdf:type ?type }
 OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 </pre>
-			</div>			
+			</div>
 		</page>
 		<page stub="contribute" label="How to Contribute Data">
 			<h1>How to Contribute Data</h1>
