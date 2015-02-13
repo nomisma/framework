@@ -43,7 +43,7 @@
 						href="http://dbpedia.org/resource/Ephesus">wikipedia</a>, <a href="http://pleiades.stoa.org/places/599612">Pleiades</a>, <a href="http://vocab.getty.edu/tgn/7002499">Getty
 						thesauri</a>, and the <a href="http://collection.britishmuseum.org/id/place/x107267">British Museum</a>.</li>
 				<li><a href="http://nomisma.org/id/quinarius">http://nomisma.org/id/quinarius</a>. Nomisma.org maintains lists of Roman and other denominations. To indicate that “quinarius” is a
-					concept within Roman numismatics, the Dublin Core property "dcterms:isPartOf" relates this URI to <a href="http://nomisma.org/id/roman_numismatics"
+					concept within Roman numismatics, the Dublin Core property "dcterms:source" relates this URI to <a href="http://nomisma.org/id/roman_numismatics"
 						>http://nomisma.org/id/roman_numismatics</a>.</li>
 			</ol>
 		</div>
@@ -494,9 +494,9 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 					<b>Url</b> : nomisma.org/avgAxis?<br/>
 					<b>Parameters</b> : constraints (following predicate - object format. multiple contraints separated by ' AND '. See examples below), format ('json' or 'xml', default 'xml')<br/>
 					<b>Result</b> : returns a decimal number in a response wrapper.<br/>
-					<b>Examples</b>: <a href="apis/avgAxis?constraints=dcterms:isPartOf &lt;http://nomisma.org/id/ric> AND nmo:hasMint &lt;http://nomisma.org/id/rome> AND nmo:hasDenomination
-						&lt;http://nomisma.org/id/denarius>">http://nomisma.org/apis/avgAxis?constraints=dcterms:isPartOf &lt;http://nomisma.org/id/ric> AND nmo:hasMint &lt;http://nomisma.org/id/rome>
-						AND nmo:hasDenomination &lt;http://nomisma.org/id/denarius></a>
+					<b>Examples</b>: <a href="apis/avgAxis?constraints=dcterms:source nm:ric AND nmo:hasMint nm:rome AND nmo:hasDenomination
+						nm:denarius">http://nomisma.org/apis/avgAxis?constraints=dcterms:source nm:ric AND nmo:hasMint nm:rome
+						AND nmo:hasDenomination nm:denarius</a>
 					<br/>
 					<a href="apis/avgAxis?constraints=nmo:hasTypeSeriesItem &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;">http://nomisma.org/apis/avgWeight?constraints=nmo:hasTypeSeriesItem
 						&lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;</a>
@@ -510,9 +510,9 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 					<b>Url</b> : nomisma.org/avgDiameter?<br/>
 					<b>Parameters</b> : constraints (following predicate - object format. multiple contraints separated by ' AND '. See examples below), format ('json' or 'xml', default 'xml')<br/>
 					<b>Result</b> : returns a decimal number in a response wrapper.<br/>
-					<b>Examples</b>: <a href="apis/avgDiameter?constraints=dcterms:isPartOf &lt;http://nomisma.org/id/ric> AND nmo:hasMint &lt;http://nomisma.org/id/rome> AND nmo:hasDenomination
-						&lt;http://nomisma.org/id/denarius>">http://nomisma.org/apis/avgDiameter?constraints=dcterms:isPartOf &lt;http://nomisma.org/id/ric> AND nmo:hasMint
-						&lt;http://nomisma.org/id/rome> AND nmo:hasDenomination &lt;http://nomisma.org/id/denarius></a>
+					<b>Examples</b>: <a href="apis/avgDiameter?constraints=dcterms:source nm:ric AND nmo:hasMint nm:rome AND nmo:hasDenomination
+						nm:denarius">http://nomisma.org/apis/avgDiameter?constraints=dcterms:source nm:ric AND nmo:hasMint
+						nm:rome AND nmo:hasDenomination nm:denarius</a>
 					<br/>
 					<a href="apis/avgDiameter?constraints=nmo:hasTypeSeriesItem &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;"
 						>http://nomisma.org/apis/avgDiameter?constraints=nmo:hasTypeSeriesItem &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;</a>
@@ -526,9 +526,9 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 					<b>Url</b> : nomisma.org/avgWeight?<br/>
 					<b>Parameters</b> : constraints (following predicate - object format. multiple contraints separated by ' AND '. See examples below), format ('json' or 'xml', default 'xml')<br/>
 					<b>Result</b> : returns a decimal number in a response wrapper.<br/>
-					<b>Examples</b>: <a href="apis/avgWeight?constraints=dcterms:isPartOf &lt;http://nomisma.org/id/ric> AND nmo:hasMint &lt;http://nomisma.org/id/rome> AND nmo:hasDenomination
-						&lt;http://nomisma.org/id/denarius>">http://nomisma.org/apis/avgWeight?constraints=dcterms:isPartOf &lt;http://nomisma.org/id/ric> AND nmo:hasMint
-						&lt;http://nomisma.org/id/rome> AND nmo:hasDenomination &lt;http://nomisma.org/id/denarius></a>
+					<b>Examples</b>: <a href="apis/avgWeight?constraints=dcterms:source nm:ric AND nmo:hasMint nm:rome AND nmo:hasDenomination
+						nm:denarius">http://nomisma.org/apis/avgWeight?constraints=dcterms:source nm:ric AND nmo:hasMint
+						nm:rome AND nmo:hasDenomination nm:denarius</a>
 					<br/>
 					<a href="apis/avgWeight?constraints=nmo:hasTypeSeriesItem &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;"
 						>http://nomisma.org/apis/avgWeight?constraints=nmo:hasTypeSeriesItem &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;</a>
@@ -628,7 +628,7 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 			<div>
 				<h3>Search Results</h3>
 				<p>Search results (the browse page) are returned in HTML5, but Numishare supports Atom and RSS via REST, as well as Atom and raw Solr XML via content negotiation of the browse page
-					URL, http://nomisma.org/id/. The REST-based Atom feed sorts by the Lucene syntax 'timestamp desc' by default, but the sort parameter may be provided manually to alter the default
+					URL, http://nomisma.org/browse. The REST-based Atom feed sorts by the Lucene syntax 'timestamp desc' by default, but the sort parameter may be provided manually to alter the default
 					field and order.</p>
 				<table class="table">
 					<thead>
