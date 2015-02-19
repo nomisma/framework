@@ -6,7 +6,7 @@
 
 
 	<xsl:variable name="id" select="substring-after(//rdf:RDF/*[1]/@rdf:about, 'id/')"/>
-	<xsl:variable name="sparql_endpoint" select="/config/sparql_query"/>
+	<xsl:variable name="sparql_endpoint" select="/content/config/sparql_query"/>
 
 	<xsl:template match="/">
 		<xsl:apply-templates select="/content/rdf:RDF"/>
@@ -152,7 +152,7 @@ SELECT ?object ?lat ?long ?label WHERE {
 		<xsl:if test="string($query)">
 			<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'URI', $uri))), '&amp;output=xml')"/>
 			
-			<xsl:copy-of select="document($service)//res:result" />
+			<xsl:apply-templates select="document($service)//res:result" mode="kml"/>
 		</xsl:if>
 	</xsl:template>
 	
