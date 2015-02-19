@@ -7,10 +7,6 @@
 
 
 	<xsl:variable name="id" select="substring-after(//rdf:RDF/*[1]/@rdf:about, 'id/')"/>
-	<xsl:variable name="uri">
-		<xsl:text>http://nomisma.org/id/</xsl:text>
-		<xsl:value-of select="$id"/>
-	</xsl:variable>
 
 	<xsl:template match="/">
 		<xsl:apply-templates select="/content/rdf:RDF"/>
