@@ -12,46 +12,6 @@
 	<xsl:param name="format" select="doc('input:request')/request/parameters/parameter[name='format']/value"/>
 	<xsl:param name="baseUri" select="doc('input:request')/request/parameters/parameter[name='baseUri']/value"/>
 
-	<xsl:template name="kml">
-		<xsl:param name="uri"/>
-		
-		<xsl:variable name="query">
-			<![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX dcterms:	<http://purl.org/dc/terms/>
-PREFIX dcmitype:	<http://purl.org/dc/dcmitype/>
-PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
-PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
-PREFIX nm:	<http://nomisma.org/id/>
-PREFIX nmo:	<http://nomisma.org/ontology#>
-PREFIX org:	<http://www.w3.org/ns/org#>
-PREFIX osgeo:	<http://data.ordnancesurvey.co.uk/ontology/geometry/>
-PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
-PREFIX spatial: <http://jena.apache.org/spatial#>
-PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>
-PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
-
-SELECT ?object ?lat ?long ?label WHERE {
-  {?collection a dcmitype:Collection ;
-              nmo:hasMint <URI> }
-  UNION {?collection a dcmitype:Collection ;
-                       nmo:hasTypeSeriesItem ?type .
-        ?type nmo:hasMint <URI> }
-  ?object dcterms:tableOfContents ?collection ;
-          nmo:hasFindspot ?findspot .
-  ?findspot geo:lat ?lat ;
-            geo:long ?long .
-  OPTIONAL {?object skos:prefLabel ?label }
-  OPTIONAL {?object dcterms:title ?label }
-}]]>
-		</xsl:variable>
-
-		<xsl:if test="string($query)">
-			<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'URI', $uri))), '&amp;output=xml')"/>
-			
-			<xsl:apply-templates select="document($service)/res:sparql" mode="kml"/>
-		</xsl:if>
-	</xsl:template>
-
 	<xsl:template name="closingDate">
 		<xsl:variable name="query">
 			<![CDATA[ 
@@ -256,32 +216,6 @@ OPTIONAL { ?object nmo:hasReverse ?reverse .
 				</xsl:otherwise>
 			</xsl:choose>	
 		</response>
-	</xsl:template>
-
-	<xsl:template match="res:sparql" mode="kml">
-		<xsl:apply-templates select="descendant::res:result" mode="kml"/>
-	</xsl:template>
-
-	<xsl:template match="res:result" mode="kml">
-		<xsl:variable name="label" select="res:binding[@name='label']/res:literal"/>
-
-		<Placemark xmlns="http://earth.google.com/kml/2.0">
-			<name>
-				<xsl:value-of select="$label"/>
-			</name>
-			<description>
-				<![CDATA[
-				<dl class="dl-horizontal"><dt>URI</dt><dd><a href="]]><xsl:value-of select="res:binding[@name='object']/res:uri"/><![CDATA[">]]><xsl:value-of
-					select="res:binding[@name='object']/res:uri"/><![CDATA[</a></dd>]]>
-				<![CDATA[</dl>]]>
-			</description>
-			<styleUrl>#findspot</styleUrl>
-			<Point>
-				<coordinates>
-					<xsl:value-of select="concat(res:binding[@name='long']/res:literal, ',', res:binding[@name='lat']/res:literal)"/>
-				</coordinates>
-			</Point>
-		</Placemark>
 	</xsl:template>
 	
 	<!-- format SPARQL results into a manageable chunk for manipulation in Numishare results pages -->
