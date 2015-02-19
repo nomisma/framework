@@ -3,6 +3,8 @@
 	xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" exclude-result-prefixes="#all"
 	xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:nmo="http://nomisma.org/ontology#" xmlns:kml="http://earth.google.com/kml/2.0" version="2.0">
+	<xsl:include href="../../sparql/templates.xsl"/>
+
 
 	<xsl:variable name="id" select="substring-after(//rdf:RDF/*[1]/@rdf:about, 'id/')"/>
 	<xsl:variable name="uri">
@@ -53,6 +55,13 @@
 						<xsl:value-of select="geo:SpatialThing/osgeo:asGeoJSON"/>
 					</xsl:with-param>
 				</xsl:apply-templates>
+				
+				<!-- if it's a mint, then call the SPARQL kml template -->
+				<xsl:if test="child::nmo:Mint">
+					<xsl:call-template name="kml">
+						<xsl:with-param name="uri" select="nmo:Mint/@rdf:about"/>
+					</xsl:call-template>
+				</xsl:if>
 			</Document>
 		</kml>
 	</xsl:template>
