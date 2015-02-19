@@ -164,8 +164,11 @@ SELECT ?object ?lat ?long ?label WHERE {
 				<xsl:value-of select="$label"/>
 			</name>
 			<description>
-				<![CDATA[<a href="]]><xsl:value-of select="res:binding[@name='object']/res:uri"/><![CDATA[">]]><xsl:value-of
-					select="res:binding[@name='object']/res:uri"/><![CDATA[</a>]]>
+				<xsl:variable name="description">
+					<![CDATA[<a href="]]><xsl:value-of select="res:binding[@name='object']/res:uri"/><![CDATA[">]]><xsl:value-of
+						select="res:binding[@name='object']/res:uri"/><![CDATA[</a>]]>
+				</xsl:variable>
+				<xsl:value-of select="normalize-space($description)"/>
 			</description>
 			<styleUrl>#findspot</styleUrl>
 			<Point>
