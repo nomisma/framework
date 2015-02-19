@@ -152,7 +152,7 @@ SELECT ?object ?lat ?long ?label WHERE {
 		<xsl:if test="string($query)">
 			<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'URI', $uri))), '&amp;output=xml')"/>
 			
-			<xsl:apply-templates select="document($service)//res:result" mode="kml"/>
+			<xsl:copy-of select="document($service)//res:result" />
 		</xsl:if>
 	</xsl:template>
 	
