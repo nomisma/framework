@@ -41,8 +41,8 @@
 	
 	<p:choose href="#conneg-config">
 		<p:when test="content-type='xml'">
-			<p:processor name="oxf:pipeline">
-				<p:input name="config" href="../models/rdf/get-id.xpl"/>		
+			<p:processor name="oxf:identity">
+				<p:input name="data" href="#data"/>		
 				<p:output name="data" ref="data"/>
 			</p:processor>
 		</p:when>
@@ -97,9 +97,26 @@
 				<p:otherwise>
 					<p:processor name="oxf:pipeline">
 						<p:input name="config" href="../views/serializations/rdf/html.xpl"/>
-						<p:input name="data" href="#data"/>		
+						<p:input name="data" href="#data"/>	
 						<p:output name="data" ref="data"/>
+						<!--<p:output name="data" id="html"/>-->
 					</p:processor>
+					
+					<!-- header -->
+					<!--<p:processor name="oxf:http-serializer">
+						<p:input name="data" href="#html"/>
+						<p:input name="config" >
+							<config>
+								<status-code>200</status-code>
+								<content-type>text/html</content-type>
+								<header>
+									<name>Accept</name>
+									<value>text/html;1.0, application/rdf+xml;0.9, text/turtle;0.9, application/vnd.google-earth.kml+xml;0.5, application/ld+json;0.8</value>
+								</header>								
+							</config>
+						</p:input>	
+						<p:output name="data" ref="data"/>
+					</p:processor>-->
 				</p:otherwise>
 			</p:choose>
 		</p:when>
