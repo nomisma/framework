@@ -12,6 +12,44 @@
 	<xsl:param name="format" select="doc('input:request')/request/parameters/parameter[name='format']/value"/>
 	<xsl:param name="baseUri" select="doc('input:request')/request/parameters/parameter[name='baseUri']/value"/>
 
+	<xsl:template name="kml">
+		<xsl:variable name="query">
+			<![CDATA[PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:  <http://purl.org/dc/terms/>
+PREFIX nm:       <http://nomisma.org/id/>
+PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+SELECT DISTINCT ?object ?findspot ?lat ?long ?title ?prefLabel ?closing_date WHERE {
+{?type nmo:hasMint <URI> .
+?object nmo:hasTypeSeriesItem ?type.
+?object nmo:hasFindspot ?findspot .
+?findspot geo:lat ?lat .
+?findspot geo:long ?long
+}
+UNION {
+?object nmo:hasMint <URI> .
+?object nmo:hasFindspot ?findspot .
+?findspot geo:lat ?lat .
+?findspot geo:long ?long
+}					
+OPTIONAL {?object skos:prefLabel ?prefLabel}
+OPTIONAL {?object dcterms:title ?title}
+OPTIONAL {?object nmo:hasClosingDate ?closing_date}
+}]]>
+		</xsl:variable>
+
+		<xsl:if test="string($query)">
+			<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'URI', $uri))), '&amp;output=xml')"/>
+			
+			<kml xmlns="http://earth.google.com/kml/2.0">
+				<Document>
+					<xsl:apply-templates select="document($service)/res:sparql" mode="kml"/>
+				</Document>
+			</kml>
+		</xsl:if>
+	</xsl:template>
+
 	<xsl:template name="closingDate">
 		<xsl:variable name="query">
 			<![CDATA[ 
@@ -218,6 +256,48 @@ OPTIONAL { ?object nmo:hasReverse ?reverse .
 				</xsl:otherwise>
 			</xsl:choose>	
 		</response>
+	</xsl:template>
+
+	<xsl:template match="res:sparql" mode="kml">
+		<xsl:apply-templates select="descendant::res:result" mode="kml"/>
+	</xsl:template>
+
+	<xsl:template match="res:result" mode="kml">
+		<xsl:variable name="label">
+			<xsl:choose>
+				<xsl:when test="res:binding[@name='title']/res:literal">
+					<xsl:value-of select="res:binding[@name='title']/res:literal"/>
+				</xsl:when>
+				<xsl:when test="res:binding[@name='prefLabel']/res:literal">
+					<xsl:value-of select="res:binding[@name='prefLabel']/res:literal"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="res:binding[@name='object']/res:uri"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+
+		<Placemark xmlns="http://earth.google.com/kml/2.0">
+			<name>
+				<xsl:value-of select="$label"/>
+			</name>
+			<description>
+				<![CDATA[
+				<dl class="dl-horizontal"><dt>URI</dt><dd><a href="]]><xsl:value-of select="res:binding[@name='object']/res:uri"/><![CDATA[">]]><xsl:value-of
+					select="res:binding[@name='object']/res:uri"/><![CDATA[</a></dd>]]>
+				<xsl:if test="string(res:binding[@name='closing_date']/res:literal)">
+					<![CDATA[<dt>Closing Date</dt><dd>]]><xsl:value-of select="nm:normalizeYear(res:binding[@name='closing_date']/res:literal)"
+					/><![CDATA[</dd>]]>
+				</xsl:if>
+				<![CDATA[</dl>]]>
+			</description>
+			<styleUrl>#findspot</styleUrl>
+			<Point>
+				<coordinates>
+					<xsl:value-of select="concat(res:binding[@name='long']/res:literal, ',', res:binding[@name='lat']/res:literal)"/>
+				</coordinates>
+			</Point>
+		</Placemark>
 	</xsl:template>
 	
 	<!-- format SPARQL results into a manageable chunk for manipulation in Numishare results pages -->
