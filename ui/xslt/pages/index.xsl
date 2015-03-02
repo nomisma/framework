@@ -97,11 +97,11 @@
 								<img src="ui/images/paris-small.jpg" alt="http://www.paris-sorbonne.fr/"/>
 							</a>
 						</div>
-						<div class="media">
+						<!--<div class="media">
 							<a href="http://stanford.edu" title="http://stanford.edu" rel="nofollow">
 								<img src="ui/images/stanford-small.jpg" alt="http://stanford.edu"/>
 							</a>
-						</div>
+						</div>-->
 						<!--<a href="http://www.jisc.ac.uk" class="media" title="http://www.jisc.ac.uk" rel="nofollow">
 								<img src="http://www.jisc.ac.uk/media/3/4/5/%7B345F1B7F-4AD6-4A61-B5BE-70AFA60F002F%7Djisclogojpgweb.jpg" />
 								</a>-->

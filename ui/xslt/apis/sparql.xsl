@@ -16,9 +16,9 @@
 	
 	<xsl:template match="/">
 		<xsl:choose>			
-			<xsl:when test="$template = 'kml'">
+			<!--<xsl:when test="$template = 'kml'">
 				<xsl:call-template name="kml"/>
-			</xsl:when>
+			</xsl:when>-->
 			<xsl:when test="$template = 'closingDate'">
 				<xsl:call-template name="closingDate"/>
 			</xsl:when>
