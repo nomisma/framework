@@ -215,7 +215,7 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 SELECT ?object ?type ?identifier ?collection ?obvThumb ?revThumb ?obvRef ?revRef ?comThumb ?comRef ?type WHERE {
 { ?object nmo:hasTypeSeriesItem <typeUri> }
 UNION { ?broader skos:broader <typeUri> .
-?object nm:type_series_item ?broader }
+?object nmo:hasTypeSeriesItem ?broader }
 UNION { ?contents nmo:hasTypeSeriesItem <typeUri> .
 ?object dcterms:tableOfContents ?contents }
 ?object rdf:type ?type .
