@@ -355,7 +355,10 @@ SELECT * WHERE {
 						</td>
 						<td>
 							<xsl:variable name="uri" select="res:binding[@name='role']/res:uri"/>
-							<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/>
+							<a href="{$uri}">
+								<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/>
+							</a>
+							
 						</td>
 					</tr>
 				</xsl:for-each>
