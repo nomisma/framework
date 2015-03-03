@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/"
-	xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/"
-	xmlns:org="http://www.w3.org/ns/org#" xmlns:nomisma="http://nomisma.org/" xmlns:nmo="http://nomisma.org/ontology#" exclude-result-prefixes="#all" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:org="http://www.w3.org/ns/org#"
+	xmlns:nomisma="http://nomisma.org/" xmlns:nmo="http://nomisma.org/ontology#" exclude-result-prefixes="#all" version="2.0">
 	<xsl:include href="../../templates.xsl"/>
 
 	<xsl:variable name="display_path">../</xsl:variable>
@@ -13,7 +13,10 @@
 
 	<!-- flickr -->
 	<xsl:variable name="flickr_api_key" select="/content/config/flickr_api_key"/>
-	<xsl:variable name="service" select="concat('http://api.flickr.com/services/rest/?api_key=', $flickr_api_key)"/>
+	<!--<xsl:variable name="service" select="concat('http://api.flickr.com/services/rest/?api_key=', $flickr_api_key)"/>-->
+
+	<!-- sparql -->
+	<xsl:variable name="sparql_endpoint" select="/content/config/sparql_query"/>
 
 	<!-- definition of namespaces for turning in solr type field URIs into abbreviations -->
 	<xsl:variable name="namespaces" as="item()*">
@@ -63,6 +66,11 @@
 			<div class="row">
 				<div class="col-md-{if ($type='nmo:Mint' or $type='nmo:Hoard' or $type='nmo:Region') then '6' else '9'}">
 					<xsl:apply-templates select="/content/rdf:RDF/*" mode="type"/>
+					
+					<!-- further context -->
+					<xsl:if test="descendant::org:role/@rdf:resource">						
+						<xsl:call-template name="nomisma:listTypes"/>
+					</xsl:if>
 				</div>
 				<div class="col-md-{if ($type='nmo:Mint' or $type='nmo:Hoard' or $type='nmo:Region') then '6' else '3'}">
 					<div>
@@ -221,15 +229,15 @@
 								<xsl:if test="@rdf:datatype">
 									<xsl:attribute name="datatype" select="@rdf:datatype"/>
 								</xsl:if>
-								
+
 								<xsl:choose>
 									<xsl:when test="contains(@rdf:datatype, '#gYear')">
-										<xsl:value-of select="nomisma:normalizeDate(.)"/>										
+										<xsl:value-of select="nomisma:normalizeDate(.)"/>
 									</xsl:when>
 									<xsl:otherwise>
 										<xsl:value-of select="."/>
 									</xsl:otherwise>
-								</xsl:choose>								
+								</xsl:choose>
 							</span>
 							<xsl:if test="string(@xml:lang)">
 								<span class="lang">
@@ -245,9 +253,7 @@
 							<xsl:choose>
 								<xsl:when test="name()='rdf:type'">
 									<xsl:variable name="uri" select="@rdf:resource"/>
-									<xsl:value-of
-										select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"
-									/>
+									<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/>
 								</xsl:when>
 								<xsl:otherwise>
 									<xsl:value-of select="@rdf:resource"/>
@@ -294,6 +300,65 @@
 		</div>
 	</xsl:template>
 
+	<!-- ***** SPARQL TEMPLATES ***** -->
+
+	<!-- list up to 10 associate types for a authority or issuer -->
+	<xsl:template name="nomisma:listTypes">
+		<xsl:variable name="query">
+			<![CDATA[ PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX nm:	<http://nomisma.org/id/>
+PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
+
+SELECT * WHERE {
+ ?type ?role nm:ID ;
+   a nmo:TypeSeriesItem ;
+   skos:prefLabel ?label
+   OPTIONAL {?type nmo:hasStartDate ?startDate}
+   OPTIONAL {?type nmo:hasEndDate ?endDate}
+   FILTER(langMatches(lang(?label), "en"))
+} ORDER BY ?label LIMIT 10]]></xsl:variable>
+
+		<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(replace($query, 'ID', $id)), '&amp;output=xml')"/>
+		<xsl:apply-templates select="document($service)/res:sparql" mode="listTypes"/>
+	</xsl:template>
+
+	<xsl:template match="res:sparql[count(descendant::res:result) &gt; 0]" mode="listTypes">
+		<h3>Associated Types (max 10)</h3>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Type</th>
+					<th>From Date</th>
+					<th>To Date</th>
+					<th>Role</th>
+				</tr>
+			</thead>
+			<tbody>
+				<xsl:for-each select="descendant::res:result">
+					<tr>
+						<td>
+							<a href="{res:binding[@name='type']/res:uri}">
+								<xsl:value-of select="res:binding[@name='label']/res:literal"/>
+							</a>
+						</td>
+						<td>
+							<xsl:value-of select="res:binding[@name='startDate']/res:literal"/>
+						</td>
+						<td>
+							<xsl:value-of select="res:binding[@name='endDate']/res:literal"/>
+						</td>
+						<td>
+							<xsl:variable name="uri" select="res:binding[@name='role']/res:uri"/>
+							<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/>							
+						</td>
+					</tr>
+				</xsl:for-each>
+			</tbody>
+		</table>
+	</xsl:template>
+
+	<!-- ***** FUNCTIONS ***** -->
 	<xsl:function name="nomisma:normalizeDate">
 		<xsl:param name="date"/>
 
@@ -308,4 +373,5 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:function>
+
 </xsl:stylesheet>
