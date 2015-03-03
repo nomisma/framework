@@ -11,11 +11,10 @@ $(document).ready(function(){
 		$('#' + div).toggle();
 		
 		//replace minus with plus and vice versa
-		var span = $(this).child('span');
+		var span = $(this).children('span');
 		if (span.attr('class').indexOf('minus') > 0) {
 			span.removeClass('glyphicon-minus');
 			span.addClass('glyphicon-plus');
-			$('#' + list).hide();
 		} else {
 			span.removeClass('glyphicon-plus');
 			span.addClass('glyphicon-minus');
