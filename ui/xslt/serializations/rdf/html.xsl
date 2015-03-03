@@ -324,7 +324,7 @@ SELECT * WHERE {
 	
 	<xsl:template match="res:sparql[count(descendant::res:result) &gt; 0]" mode="listTypes">
 		<h3>Associated Types <small>(max 10)</small></h3>
-		<a class="toggle-button" id="toggle-listTypes"><span class="glyphicon glyphicon-plus"/> View SPARQL for full query</a>
+		<a href="#" class="toggle-button" id="toggle-listTypes"><span class="glyphicon glyphicon-plus"/> View SPARQL for full query</a>
 		<div id="listTypes" style="display:none">
 			<pre>
 				<xsl:value-of select="replace(replace($listTypes-query, 'ID', $id), ' LIMIT 10', '')"/>
