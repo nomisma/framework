@@ -1,0 +1,248 @@
+<xbl:xbl xmlns="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxforms="http://orbeon.org/oxf/xml/xforms"
+	xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:xxbl="http://orbeon.org/oxf/xml/xbl" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+	xmlns:nomisma="https://github.com/nomisma">
+	<xbl:binding id="nomisma-bm" element="nomisma|bm">
+		<xbl:template>
+			<xforms:group xbl:attr="model context ref bind" xxbl:scope="outer">
+				<xbl:content includes="xforms|label,xforms|help,xforms|hint,xforms|alert"/>
+				<xforms:group xxbl:scope="inner">
+					<xforms:var name="binding" as="node()?">
+						<xxforms:sequence select="." xxbl:scope="outer"/>
+					</xforms:var>
+					<xforms:trigger appearance="minimal">
+						<xforms:label>
+							<span class="glyphicon glyphicon-search"/> British Museum</xforms:label>
+						<xforms:action ev:event="DOMActivate">
+							<!-- if there is a skos:prefLabel and no bm URIs, automatically submit the label -->
+							<xforms:action if="count($binding//@rdf:resource[contains(., 'britishmuseum.org')]) = 0 and string-length($binding/skos:prefLabel[@xml:lang='en']) &gt; 0">
+								<xforms:setvalue ref="instance('control-instance')/bm-search" value="$binding/skos:prefLabel[@xml:lang='en']"/>
+								<xforms:var name="search_text" select="string-join(tokenize(instance('control-instance')/bm-search, ' '), ' AND ')"/>
+								<xforms:var name="type" select="$binding/name()"/>
+								<xforms:var name="scheme" select="if ($type='nmo:Mint' or $type='nmo:Region') then 'tgn' else 'aat'"/>
+								<xforms:action if="$scheme = 'aat'">
+									<xforms:setvalue ref="instance('sparqlQuery')" value="normalize-space(replace(replace(instance('bm-aat-template'), 'SEARCH_QUERY', $search_text), 'FACET',
+										instance('bm-facets')//facet[@type=$type]/text()))"/>
+								</xforms:action>								
+								<xforms:delete context="instance('bm-options')/*"/>
+								<xforms:send submission="query-bm"/>
+								<xxforms:show dialog="bm-results-dialog"/>
+							</xforms:action>
+							<!-- else, just show search dialog -->
+							<xforms:action if="not(count($binding//@rdf:resource[contains(., 'britishmuseum.orbg')]) = 0 and string-length($binding/skos:prefLabel[@xml:lang='en']) &gt; 0)">
+								<xxforms:show dialog="bm-search-dialog"/>
+							</xforms:action>
+						</xforms:action>
+					</xforms:trigger>
+
+					<!-- separate search and results dialog for recentering -->
+					<xxforms:dialog id="bm-search-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
+						<xforms:label>Query bm</xforms:label>
+						<div>
+							<xforms:input ref="instance('control-instance')/bm-search"/>
+							<xforms:trigger>
+								<xforms:action ev:event="DOMActivate">
+									<xxforms:hide dialog="bm-search-dialog"/>
+									<xforms:var name="search_text" select="string-join(tokenize(instance('control-instance')/bm-search, ' '), ' AND ')"/>
+									<xforms:var name="type" select="$binding/name()"/>
+									<xforms:var name="scheme" select="if ($type='nmo:Mint' or $type='nmo:Region') then 'tgn' else 'aat'"/>
+									<xforms:action if="$scheme = 'aat'">
+										<xforms:setvalue ref="instance('sparqlQuery')" value="normalize-space(replace(replace(instance('bm-aat-template'), 'SEARCH_QUERY', $search_text), 'FACET',
+											instance('bm-facets')//facet[@type=$type]/text()))"/>
+									</xforms:action>
+									<xforms:action if="$scheme = 'tgn'">
+										<xforms:setvalue ref="instance('sparqlQuery')" value="normalize-space(replace(instance('bm-tgn-template'), 'SEARCH_QUERY', $search_text))"/>
+									</xforms:action>
+									<xforms:delete context="instance('bm-options')/*"/>
+									<xforms:send submission="query-bm"/>
+									<xxforms:show dialog="bm-results-dialog"/>
+								</xforms:action>
+								<xforms:label>Search</xforms:label>
+							</xforms:trigger>
+						</div>
+					</xxforms:dialog>
+
+					<xxforms:dialog id="bm-results-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
+						<xforms:label>Query bm</xforms:label>
+						<div>
+							<xforms:input ref="instance('control-instance')/bm-search"/>
+							<xforms:trigger>
+								<xforms:action ev:event="DOMActivate">
+									<xforms:var name="search_text" select="string-join(tokenize(instance('control-instance')/bm-search, ' '), ' AND ')"/>
+									<xforms:var name="type" select="$binding/name()"/>
+									<xforms:var name="scheme" select="if ($type='nmo:Mint' or $type='nmo:Region') then 'tgn' else 'aat'"/>
+									<xforms:action if="$scheme = 'aat'">
+										<xforms:setvalue ref="instance('sparqlQuery')" value="normalize-space(replace(replace(instance('bm-aat-template'), 'SEARCH_QUERY', $search_text), 'FACET',
+											instance('bm-facets')//facet[@type=$type]/text()))"/>
+									</xforms:action>
+									<xforms:action if="$scheme = 'tgn'">
+										<xforms:setvalue ref="instance('sparqlQuery')" value="normalize-space(replace(instance('bm-tgn-template'), 'SEARCH_QUERY', $search_text))"/>
+									</xforms:action>
+									<xforms:delete context="instance('bm-options')/*"/>
+									<xforms:send submission="query-bm"/>
+								</xforms:action>
+								<xforms:label>Search</xforms:label>
+							</xforms:trigger>
+						</div>
+						<div>
+							<xforms:group ref=".[count(instance('bm-options')/option) &gt; 0]">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>Select</th>
+											<th>Name</th>
+											<th>Id</th>
+											<th style="width:20em">Description</th>
+											<th>Type</th>
+										</tr>
+									</thead>
+									<tbody>
+										<xforms:repeat nodeset="instance('bm-options')/option">
+											<tr>
+												<td>
+													<xforms:input ref="@select" class="checkbox"/>
+												</td>
+												<td>
+													<xforms:output ref="."/>
+												</td>
+												<td>
+													<a href="{@link}" target="_blank">
+														<xforms:output ref="tokenize(@link, '/')[last()]"/>
+													</a>
+												</td>
+												<td>
+													<xforms:output ref="substring(@description, 1, 100)"/>
+													<xforms:group ref=".[string-length(@description) &gt; 100]">...</xforms:group>
+												</td>
+												<td>
+													<xforms:select1 ref="@type" class="short-input">
+														<xforms:item>
+															<xforms:label>Exact Match</xforms:label>
+															<xforms:value>skos:exactMatch</xforms:value>
+														</xforms:item>
+														<xforms:item>
+															<xforms:label>Related Match</xforms:label>
+															<xforms:value>skos:relatedMatch</xforms:value>
+														</xforms:item>
+													</xforms:select1>
+												</td>
+											</tr>
+										</xforms:repeat>
+									</tbody>
+								</table>
+								<xforms:trigger>
+									<xforms:label>Add Selected</xforms:label>
+									<xforms:action ev:event="DOMActivate">
+										<xforms:action xxforms:iterate="instance('bm-options')/option[@select=true()]">
+											<xforms:var name="resource" select="context()/@link"/>
+											<xforms:var name="type" select="context()/@type"/>
+											<xforms:action if="not($binding/skos:exactMatch[@rdf:resource=$resource])">
+												<xforms:insert context="$binding" nodeset="./child::node()[last()]" origin="xforms:element($type, xforms:attribute('rdf:resource', $resource))"/>
+											</xforms:action>
+										</xforms:action>
+										<xxforms:hide dialog="bm-results-dialog"/>
+									</xforms:action>
+								</xforms:trigger>
+							</xforms:group>
+						</div>
+					</xxforms:dialog>
+					<!--<xforms:output ref="instance('sparqlQuery')"/>
+					<fr:xforms-inspector xmlns:fr="http://orbeon.org/oxf/xml/form-runner" />-->
+					<!-- ***************** MODEL ***************-->
+					<xforms:model id="bm-model">
+						<!-- instances -->
+						<xforms:instance id="control-instance">
+							<controls xmlns="">
+								<bm-search/>
+								<bm-id/>
+							</controls>
+						</xforms:instance>
+
+						<xforms:instance id="bm-facets">
+							<facets xmlns="">
+								<facet type="nmo:Denomination">300037222</facet>
+								<facet type="nmo:FieldOfNumismatics">300015646</facet>
+								<facet type="nmo:Manufacture">300264090</facet>
+								<facet type="nmo:Material">300264091</facet>
+								<facet type="nmo:ObjectType">300264092</facet>
+								<facet type="ecrm:E4_Period">300264088</facet>
+							</facets>
+						</xforms:instance>
+
+						<xforms:instance id="bm-aat-template">
+							<query><![CDATA[PREFIX gvp: <http://vocab.bm.edu/ontology#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX luc: <http://www.ontotext.com/owlim/lucene#>
+PREFIX aat: <http://vocab.bm.edu/aat/>
+SELECT ?c ?label ?scopeNote WHERE {
+?c a gvp:Concept; skos:inScheme aat: ;
+gvp:broaderExtended aat:FACET ;
+gvp:prefLabelGVP/xl:literalForm ?label ;
+skos:scopeNote/rdf:value ?scopeNote ;
+luc:term "SEARCH_QUERY"
+FILTER langMatches(lang(?label), "en")
+FILTER langMatches(lang(?scopeNote), "en")} LIMIT 25]]>
+							</query>
+						</xforms:instance>
+
+						<xforms:instance id="bm-tgn-template">
+							<query><![CDATA[PREFIX gvp: <http://vocab.bm.edu/ontology#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX luc: <http://www.ontotext.com/owlim/lucene#>
+PREFIX tgn: <http://vocab.bm.edu/tgn/>
+SELECT ?c ?label ?scopeNote WHERE {
+?c a gvp:AdminPlaceConcept; skos:inScheme tgn: ;
+gvp:prefLabelGVP/xl:literalForm ?label ;
+skos:scopeNote/rdf:value ?scopeNote ;
+luc:term "SEARCH_QUERY"} LIMIT 25]]>
+							</query>
+						</xforms:instance>
+
+						<xforms:instance id="sparqlQuery">
+							<query xmlns=""/>
+						</xforms:instance>
+
+						<xforms:instance id="bm-response">
+							<sparql xmlns="http://www.w3.org/2005/sparql-results#"/>
+						</xforms:instance>
+
+						<xforms:instance id="bm-options">
+							<options xmlns=""/>
+						</xforms:instance>
+
+						<!-- bindings -->
+						<xforms:bind nodeset="instance('bm-options')">
+							<xforms:bind nodeset="option">
+								<xforms:bind nodeset="@select" type="xs:boolean"/>
+							</xforms:bind>
+						</xforms:bind>
+
+						<!-- submissions -->
+						<xforms:submission id="query-bm" action="http://vocab.bm.edu/sparql?query={encode-for-uri(instance('sparqlQuery'))}" ref="instance('bm-response')" replace="instance"
+							method="get">
+							<xforms:header>
+								<xforms:name>User-Agent</xforms:name>
+								<xforms:value>XForms/Nomisma.org</xforms:value>
+							</xforms:header>
+							<xforms:header>
+								<xforms:name>Accept</xforms:name>
+								<xforms:value>application/sparql-results+xml</xforms:value>
+							</xforms:header>
+							<xforms:message ev:event="xforms-submit-error" level="modal">
+								<!--SPARQL query failed.-->
+								<xforms:output value="event('response-headers')"/>
+							</xforms:message>
+							<xforms:action xxforms:iterate="instance('bm-response')//res:result" ev:event="xforms-submit-done">
+								<xforms:var name="link" select="context()/res:binding[@name='c']/res:uri"/>
+								<xforms:var name="title" select="context()/res:binding[@name='label']/res:literal"/>
+								<xforms:var name="scopeNote" select="context()/res:binding[@name='scopeNote']/res:literal"/>
+								<xforms:insert context="instance('bm-options')" nodeset="./child::node()[last()]" origin="xforms:element('option', (xforms:attribute('select', false()),
+									xforms:attribute('link', $link), xforms:attribute('type', 'skos:exactMatch'), xforms:attribute('description', $scopeNote), $title))"/>
+							</xforms:action>
+						</xforms:submission>
+					</xforms:model>
+				</xforms:group>
+			</xforms:group>
+		</xbl:template>
+	</xbl:binding>
+
+</xbl:xbl>

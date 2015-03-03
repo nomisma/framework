@@ -51,6 +51,7 @@
 					<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.9&amp;sensor=false"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/display_map_functions.js"/>
 				</xsl:if>
+				<script type="text/javascript" src="{$display_path}ui/javascript/display_functions.js"/>
 				<link rel="stylesheet" href="{$display_path}ui/css/style.css"/>
 			</head>
 			<body>
@@ -66,9 +67,9 @@
 			<div class="row">
 				<div class="col-md-{if ($type='nmo:Mint' or $type='nmo:Hoard' or $type='nmo:Region') then '6' else '9'}">
 					<xsl:apply-templates select="/content/rdf:RDF/*" mode="type"/>
-					
+
 					<!-- further context -->
-					<xsl:if test="descendant::org:role/@rdf:resource">						
+					<xsl:if test="descendant::org:role/@rdf:resource">
 						<xsl:call-template name="nomisma:listTypes"/>
 					</xsl:if>
 				</div>
@@ -301,11 +302,7 @@
 	</xsl:template>
 
 	<!-- ***** SPARQL TEMPLATES ***** -->
-
-	<!-- list up to 10 associate types for a authority or issuer -->
-	<xsl:template name="nomisma:listTypes">
-		<xsl:variable name="query">
-			<![CDATA[ PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+	<xsl:variable name="listTypes-query"><![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX nm:	<http://nomisma.org/id/>
 PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
@@ -319,12 +316,20 @@ SELECT * WHERE {
    FILTER(langMatches(lang(?label), "en"))
 } ORDER BY ?label LIMIT 10]]></xsl:variable>
 
-		<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(replace($query, 'ID', $id)), '&amp;output=xml')"/>
+	<!-- list up to 10 associate types for a authority or issuer -->
+	<xsl:template name="nomisma:listTypes">
+		<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(replace($listTypes-query, 'ID', $id)), '&amp;output=xml')"/>
 		<xsl:apply-templates select="document($service)/res:sparql" mode="listTypes"/>
 	</xsl:template>
-
+	
 	<xsl:template match="res:sparql[count(descendant::res:result) &gt; 0]" mode="listTypes">
-		<h3>Associated Types (max 10)</h3>
+		<h3>Associated Types <small>(max 10)</small></h3>
+		<a href="#" class="toggle-button" id="toggle-listTypes"><span class="glyphicon glyphicon-plus"/> View SPARQL for full query</a>
+		<div id="listTypes" style="display:none">
+			<pre>
+				<xsl:value-of select="replace(replace($listTypes-query, 'ID', $id), ' LIMIT 10', '')"/>
+			</pre>
+		</div>
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -343,14 +348,14 @@ SELECT * WHERE {
 							</a>
 						</td>
 						<td>
-							<xsl:value-of select="res:binding[@name='startDate']/res:literal"/>
+							<xsl:value-of select="nomisma:normalizeDate(res:binding[@name='startDate']/res:literal)"/>
 						</td>
 						<td>
-							<xsl:value-of select="res:binding[@name='endDate']/res:literal"/>
+							<xsl:value-of select="nomisma:normalizeDate(res:binding[@name='endDate']/res:literal)"/>
 						</td>
 						<td>
 							<xsl:variable name="uri" select="res:binding[@name='role']/res:uri"/>
-							<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/>							
+							<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/>
 						</td>
 					</tr>
 				</xsl:for-each>
