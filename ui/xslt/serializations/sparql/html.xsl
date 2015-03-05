@@ -63,7 +63,7 @@
 			<xsl:when test="res:results">
 				<h1>Results</h1>
 				<xsl:choose>
-					<xsl:when test="count(res:result) &gt; 0">
+					<xsl:when test="count(descendant::res:result) &gt; 0">
 						<table class="table table-striped">
 							<thead>
 								<tr>
