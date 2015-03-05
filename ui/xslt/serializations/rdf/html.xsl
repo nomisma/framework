@@ -319,7 +319,9 @@ SELECT * WHERE {
 	<!-- list up to 10 associate types for a authority or issuer -->
 	<xsl:template name="nomisma:listTypes">
 		<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(replace($listTypes-query, 'ID', $id)), '&amp;output=xml')"/>
-		<xsl:apply-templates select="document($service)/res:sparql" mode="listTypes"/>
+		<xsl:if test="doc-available($service)">
+			<xsl:apply-templates select="document($service)/res:sparql" mode="listTypes"/>
+		</xsl:if>		
 	</xsl:template>
 	
 	<xsl:template match="res:sparql[count(descendant::res:result) &gt; 0]" mode="listTypes">
