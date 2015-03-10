@@ -308,7 +308,7 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 				<foaf:depiction rdf:resource="http://coins.lib.virginia.edu/images/coins/screen/n1997_7_2_rev.jpg"/>
 			</rdf:Description>
 		</nmo:hasReverse>
-	</nm:coin>
+	</nmo:NumismaticObject>
 </rdf:RDF>]]></code>
 			</pre>
 			<p>The title, publisher, and identifier are required, as is nmo:hasTypeSeriesItem. nmo:hasCollection is recommended for physical specimens. Before submitting your data to nomisma, please
