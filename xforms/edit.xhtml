@@ -722,7 +722,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 				<div class="col-md-8">
 					<h1>Edit id</h1>
 					<div>
-						<xforms:input ref="instance('control-instance')/id">
+						<xforms:input ref="instance('control-instance')/id" incremental="true">
 							<xforms:label>id</xforms:label>
 							<xforms:alert>Required</xforms:alert>
 						</xforms:input>
@@ -731,7 +731,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 							<xforms:trigger>
 								<xforms:label>Proceed</xforms:label>
 								<xforms:action ev:event="DOMActivate">
-									<xforms:setvalue ref="instance('control-instance')/nomisma_uri" value="concat('http://nomisma.org/id/', instance('control-instance')/id)"></xforms:setvalue>
+									<xforms:setvalue ref="instance('control-instance')/nomisma_uri" value="concat('http://nomisma.org/id/', instance('control-instance')/id)"></xforms:setvalue>									
 								</xforms:action>
 							</xforms:trigger>
 						</xforms:group>
