@@ -21,11 +21,12 @@
 	<page path="/nomisma/admin/" view="xforms/admin.xhtml"/>
 	
 	<!-- authentication -->
-	<page path="/nomisma/login" view="xforms/login.html"/>
+	<page path="/nomisma/signup" view="xforms/signup.xhtml"/>
+	<page path="/nomisma/login" view="xforms/login.html" id="login"/>
 	<page path="/nomisma/login-failed" view="xforms/login-failed.html"/>
 	<page path="/nomisma/admin/logout">
 		<action action="xpl/xforms/logout.xpl">
-			<result page="index"/>
+			<result page="login"/>
 		</action>
 	</page>
 	
@@ -46,7 +47,7 @@
 	<page path="/nomisma/apis" view="xpl/views/pages/apis.xpl"/>
 	<page path="/nomisma/ontology" model="xpl/models/rdf/get-rdf-ontology-current.xpl" view="xpl/controllers/conneg-ontology.xpl"/>
 	<page path="/nomisma/documentation/(.*)" view="xpl/views/pages/documentation.xpl"/>
-	<page path="/nomisma/" view="xpl/views/pages/index.xpl" id="index"/>
+	<page path="/nomisma/" view="xpl/views/pages/index.xpl"/>
 	
 	<!-- **** SERIALIZATIONS **** -->
 	<!-- Solr -->

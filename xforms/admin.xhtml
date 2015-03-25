@@ -157,6 +157,7 @@
 							</p>
 						</div>
 					</xforms:group>
+					<p><a href="edit/"><span class="glyphicon glyphicon-file"/> Create New Concept</a></p>
 					<xforms:group ref="instance('solr-response')/result[@name='response']">
 						<xforms:var name="numFound" select="@numFound"></xforms:var>
 						<xforms:group ref=".[$numFound &gt; 0]">

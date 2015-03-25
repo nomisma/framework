@@ -1,0 +1,187 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ev="http://www.w3.org/2001/xml-events"
+	xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<head>
+		<title>Nomisma: Sign Up</title>
+		<link rel="stylesheet" href="/fr/style/bootstrap/css/bootstrap.css" type="text/css" />
+		<link rel="stylesheet" href="/fr/style/form-runner-bootstrap-override.css" type="text/css" />
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+		<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<link rel="shortcut icon" href="/ops/images/orbeon-icon-16.ico" />
+		<link rel="icon" href="/ops/images/orbeon-icon-16.png" type="image/png" />
+		<link rel="stylesheet" href="/apps/nomisma/xforms/css/style.css" />
+
+		<xforms:model>
+			<xforms:instance id="form" xxforms:exclude-result-prefixes="#all">
+				<form xmlns="">
+					<name></name>
+					<email></email>
+					<password></password>
+				</form>
+			</xforms:instance>
+
+			<xforms:instance id="login" xxforms:exclude-result-prefixes="#all">
+				<login xmlns="">
+					<email></email>
+					<password></password>
+				</login>
+			</xforms:instance>
+
+			<xforms:instance id="control-instance">
+				<controls xmlns="">
+					<confirm-password></confirm-password>
+					<authorized>false</authorized>
+					<submit-trigger>false</submit-trigger>
+					<hash/>
+				</controls>
+			</xforms:instance>
+
+			<xforms:instance id="config" xxforms:exclude-result-prefixes="#all">
+				<xi:include href="../config.xml"></xi:include>
+			</xforms:instance>
+
+			<xforms:instance id="load-config">
+				<config xmlns="">
+					<url></url>
+					<content-type>application/xml</content-type>
+					<mode>xml</mode>
+				</config>
+			</xforms:instance>
+
+			<xforms:instance id="email" xxforms:exclude-result-prefixes="#all">
+				<email xmlns=""></email>
+			</xforms:instance>
+			
+			<xforms:instance id="email-input">
+				<message xmlns="">
+					<smtp-host>localhost</smtp-host>
+					<from>
+						<email/>
+						<name/>
+					</from>
+					<to>
+						<email/>
+						<name/>
+					</to>
+					<subject>Nomisma: New User</subject>
+					<body content-type="text/plain"/>
+				</message>
+			</xforms:instance>
+			
+			<xforms:instance id="dump">
+				<dump xmlns=""/>
+			</xforms:instance>
+
+			<!-- **************** BINDINGS ********************** -->
+			<xforms:bind nodeset="instance('form')">
+				<!--<xforms:bind nodeset="*" required="true()"></xforms:bind>-->
+				<xforms:bind nodeset="password" constraint=".= instance('control-instance')/confirm-password and matches(., '^([a-zA-Z0-9@*#!$%&amp;]{7,15})$')"></xforms:bind>
+			</xforms:bind>
+
+			<xforms:bind nodeset="instance('control-instance')">
+				<xforms:bind nodeset="confirm-password" constraint=".= instance('form')/password and matches(., '^([a-zA-Z0-9@*#!$%&amp;]{7,24})$')"></xforms:bind>
+				<xforms:bind nodeset="authorized" type="xs:boolean"></xforms:bind>
+				<xforms:bind nodeset="submit-trigger" id="submit-trigger" type="xs:boolean" readonly=". != true()"></xforms:bind>
+			</xforms:bind>
+
+			<!-- **************** DYNAMIC VALIDATION CONTROLS ********************** -->
+			<xforms:action ev:event="xxforms-invalid" ev:observer="form">
+				<xforms:setvalue ref="instance('control-instance')/submit-trigger" value="false()"></xforms:setvalue>
+			</xforms:action>
+
+			<xforms:action ev:event="xxforms-valid" ev:observer="form">
+				<xforms:setvalue ref="instance('control-instance')/submit-trigger" value="true()"></xforms:setvalue>
+			</xforms:action>
+
+			<!-- **************** MODEL-CONSTRUCT-DONE ********************** -->
+			<xforms:action ev:event="xforms-model-construct-done">
+				<xforms:action if="string(xxforms:get-request-parameter('auth'))">
+					<xforms:setvalue ref="instance('load-config')/url" value="concat('oxf:/apps/nomisma/auth/', xxforms:get-request-parameter('auth'), '.xml')"></xforms:setvalue>
+					<xforms:insert nodeset="instance('email')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/load-auth.xpl', 'file', instance('load-config'), 'data')"></xforms:insert>
+
+					<!-- if loading the XML does not result in an error -->
+					<xforms:action if="instance('email')/local-name() = 'email'">
+						<xforms:setvalue ref="instance('form')/email" value="instance('email')"></xforms:setvalue>
+						<xforms:setvalue ref="instance('control-instance')/authorized">true</xforms:setvalue>
+					</xforms:action>
+				</xforms:action>
+				<xforms:setvalue ref="instance('control-instance')/authorized">true</xforms:setvalue>
+			</xforms:action>
+
+			<!-- if authorized, show the sign up form -->
+			<xforms:toggle ev:event="xforms-ready" case="auth" if="instance('control-instance')/authorized = true()"></xforms:toggle>
+		</xforms:model>
+	</head>
+
+
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<xforms:switch>
+						<xforms:case id="not-auth">
+							<h1>Unauthorized</h1>
+							<p>You have not been authorized to create an editor account.</p>
+						</xforms:case>
+						<xforms:case id="auth">
+							<h1>Sign Up</h1>
+							<p>Please enter the following information to become a Nomisma.org editor. Your password will be encrypted into <a href="http://en.wikipedia.org/wiki/SHA-2">SHA-2</a>
+								upon submission, so your credentials will not be compromised. Your email address will be your login username.</p>
+							<p>The password must be between 7 and 24 characters, and can accept upper case and lower case letters, numbers, and the '@*#!$%&amp;' characters.</p>
+							<xforms:group ref="instance('form')">
+								<!--<div>
+									<xforms:input ref="name">
+										<xforms:label>Name</xforms:label>
+										<xforms:alert>Required</xforms:alert>
+									</xforms:input>
+								</div>-->
+								<!--<div>
+									<xforms:output ref="email">
+										<xforms:label>Email</xforms:label>
+										<xforms:alert>Required</xforms:alert>
+									</xforms:output>
+								</div>-->
+								<div>
+									<xforms:secret ref="password" incremental="true">
+										<xforms:label>Password</xforms:label>
+										<xforms:alert>Required</xforms:alert>
+									</xforms:secret>
+								</div>
+								<div>
+									<xforms:secret ref="instance('control-instance')/confirm-password" incremental="true">
+										<xforms:label>Confirm Password</xforms:label>
+										<xforms:alert>Required</xforms:alert>
+									</xforms:secret>
+								</div>
+							</xforms:group>
+							<xforms:trigger bind="submit-trigger">
+								<xforms:label>Submit</xforms:label>
+								<xforms:action ev:event="DOMActivate">
+									<xforms:var name="hash" select="xforms:digest(instance('form')/password, 'SHA-256', 'hex')"></xforms:var>
+									<xforms:setvalue ref="instance('control-instance')/hash" value="$hash"/>
+									<!-- send email -->
+									<!--<xforms:setvalue ref="instance('email-input')/body" value="concat('Name: ', instance('form')/name, '&#xD;Email: ', instance('form')/email, '&#xD;Password: ', $hash)"/>
+									<xforms:setvalue ref="instance('email-input')/from/email" value="instance('config')/admin_email_from"/>
+									<xforms:setvalue ref="instance('email-input')/from/name" value="instance('config')/admin_email_from"/>
+									<xforms:setvalue ref="instance('email-input')/to/email" value="instance('config')/admin_email_to"/>
+									<xforms:setvalue ref="instance('email-input')/to/name" value="instance('config')/admin_email_to"/>
+									<xforms:insert nodeset="instance('dump')"
+										origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/send-email.xpl', 'email-input', instance('email-input'), 'data')"/>-->
+									<!-- toggle success case -->
+									<xforms:toggle case="success"/>
+								</xforms:action>
+							</xforms:trigger>
+						</xforms:case>
+						<xforms:case id="success">
+							<h1>Submitted</h1>
+							<xforms:output ref="instance('control-instance')/hash">
+								<xforms:label>Password:</xforms:label>
+							</xforms:output>
+							<!--<p>Your credentials have been submitted. Access to the system will not be immediate. You will receive notification via email when your account is established. Click <a href="{instance('config')/url}">here</a> to return to <xforms:output ref="instance('config')/url"/></p>-->
+						</xforms:case>
+					</xforms:switch>
+					<!--<fr:xforms-inspector></fr:xforms-inspector>-->
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
