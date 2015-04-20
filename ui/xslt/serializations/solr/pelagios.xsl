@@ -21,7 +21,7 @@
 			<dcterms:title>
 				<xsl:value-of select="str[@name='prefLabel']"/>
 			</dcterms:title>
-			<dcterms:identifier rdf:resource="{$url}id/{$id}"/>
+			<foaf:homepage rdf:resource="{$url}id/{$id}"/>
 		</pelagios:AnnotatedThing>
 		<xsl:for-each select="distinct-values(arr[@name='pleiades_uri']/str)">
 			<oa:Annotation rdf:about="{$url}pelagios.rdf#{$id}/annotations/{format-number(position(), '000')}">
