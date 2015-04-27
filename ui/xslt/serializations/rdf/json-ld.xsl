@@ -34,7 +34,7 @@
 	xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:gc="http://client.graphity.org/ontology#" xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:date="http://exslt.org/dates-and-times" exclude-result-prefixes="xs">
 	<xsl:strip-space elements="*"/>
-	<xsl:output method="text"/>
+	<xsl:output encoding="UTF-8" method="text" omit-xml-declaration="yes"/>
 
 	<xsl:variable name="namespaces" as="item()*">
 		<namespaces>
@@ -120,7 +120,7 @@
 		mode="gc:JSONLDMode" priority="1"> "@value": <xsl:value-of select="."/>, <xsl:apply-templates select="../@rdf:datatype" mode="gc:JSONLDMode"/>
 	</xsl:template>
 
-	<xsl:template match="text()[../@rdf:datatype = '&xsd;string']" mode="gc:JSONLDMode" priority="1"> "@value": "<xsl:value-of select="."/>" </xsl:template>
+	<xsl:template match="text()[../@rdf:datatype = '&xsd;string']" mode="gc:JSONLDMode" priority="1"> "@value": "<xsl:value-of select="replace(., '&#x022;', '\\&#x022;')"/>" </xsl:template>
 
 	<xsl:template match="text()" mode="gc:JSONLDMode"> "@value": "<xsl:value-of select="replace(., '&#x022;', '\\&#x022;')"/>" <xsl:if test="../@rdf:datatype"> , <xsl:apply-templates select="../@rdf:datatype" mode="gc:JSONLDMode"/>
 		</xsl:if>
