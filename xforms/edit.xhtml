@@ -500,6 +500,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 		</xforms:model>
 
 		<!-- XBL components -->
+		<xi:include href="xbl/bm/bm.xbl" xi:omit-xml-base="true"></xi:include>
 		<xi:include href="xbl/dbpedia/dbpedia.xbl" xi:omit-xml-base="true"></xi:include>
 		<xi:include href="xbl/getty/getty.xbl" xi:omit-xml-base="true"></xi:include>
 		<xi:include href="xbl/pleiades/pleiades.xbl" xi:omit-xml-base="true"></xi:include>
@@ -1294,19 +1295,23 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 						<xforms:group ref=".[skos:exactMatch[contains(@rdf:resource, 'dbpedia')]]">
 							<nomisma:dbpedia></nomisma:dbpedia>
 						</xforms:group>
-						<!-- import AAT URIs from Getty -->
+						<!-- import AAT/TGN/ULAN URIs from Getty -->
 						<xforms:group ref=".[$type='nmo:Denomination' or $type='nmo:Material' or $type='nmo:ObjectType']">
+							<nomisma:bm></nomisma:bm>
 							<nomisma:getty></nomisma:getty>
 						</xforms:group>
 						<!-- extract coordinates from Pleiades if there is a Pleiades URI in skos:exactMatch, but no geo:lat and geo:long -->
 						<xforms:group ref=".[$type='nmo:Mint' or $type='nmo:Region']">
+							<nomisma:bm></nomisma:bm>
+							<nomisma:getty></nomisma:getty>
 							<xforms:group ref=".[not(skos:relatedMatch[contains(@rdf:resource, 'pleiades.stoa.org')])]">
 								<nomisma:pleiades></nomisma:pleiades>
-							</xforms:group>
-							<nomisma:getty></nomisma:getty>
+							</xforms:group>							
 						</xforms:group>
 						<!-- query VIAF to add associated URIs -->
 						<xforms:group ref=".[$type='foaf:Person' or $type='foaf:Organization']">
+							<nomisma:bm></nomisma:bm>
+							<nomisma:getty></nomisma:getty>
 							<nomisma:viaf></nomisma:viaf>
 						</xforms:group>
 					</xforms:group>
