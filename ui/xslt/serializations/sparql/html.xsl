@@ -67,7 +67,7 @@
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<xsl:for-each select="//res:result[1]/res:binding">
+									<xsl:for-each select="res:head/res:variable">
 										<th>
 											<xsl:value-of select="@name"/>
 										</th>
@@ -87,15 +87,31 @@
 			</xsl:when>
 			<xsl:when test="res:boolean">
 				<h1>Response</h1>
-				<p> The response to your query is <strong><xsl:value-of select="res:boolean"/>.</strong>
-				</p>
+				<p> The response to your query is <strong><xsl:value-of select="res:boolean"/></strong>.</p>
 			</xsl:when>
 		</xsl:choose>
 	</xsl:template>
 
 	<xsl:template match="res:result">
+		<xsl:variable name="result" as="element()*">
+			<xsl:copy-of select="."/>
+		</xsl:variable>
+
 		<tr>
-			<xsl:apply-templates select="res:binding"/>
+			<xsl:for-each select="ancestor::res:sparql/res:head/res:variable">
+				<xsl:variable name="name" select="@name"/>
+
+				<xsl:choose>
+					<xsl:when test="$result/res:binding[@name=$name]">
+						<xsl:apply-templates select="$result/res:binding[@name=$name]"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<td/>
+					</xsl:otherwise>
+				</xsl:choose>
+
+			</xsl:for-each>
+
 		</tr>
 	</xsl:template>
 
@@ -115,6 +131,9 @@
 						</xsl:choose>
 					</a>
 				</xsl:when>
+				<xsl:when test="res:bnode">
+					<xsl:text>_:</xsl:text>
+				</xsl:when>
 				<xsl:otherwise>
 					<xsl:value-of select="res:literal"/>
 					<xsl:if test="res:literal/@xml:lang">
@@ -122,11 +141,8 @@
 					</xsl:if>
 					<xsl:if test="res:literal/@datatype">
 						<xsl:variable name="uri" select="res:literal/@datatype"/>
-						<i>
-							(<!--<a href="{$uri}">
-								<xsl:value-of
-									select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"
-								/></a>-->)</i>
+						<i> (<a href="{$uri}">
+								<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/></a>)</i>
 					</xsl:if>
 				</xsl:otherwise>
 			</xsl:choose>
