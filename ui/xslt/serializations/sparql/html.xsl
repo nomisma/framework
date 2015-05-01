@@ -142,7 +142,7 @@
 					<xsl:if test="res:literal/@datatype">
 						<xsl:variable name="uri" select="res:literal/@datatype"/>
 						<i> (<a href="{$uri}">
-								<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/></a>)</i>
+								<xsl:value-of select="concat('xsd:', substring-after($uri, '#'))"/></a>)</i>
 					</xsl:if>
 				</xsl:otherwise>
 			</xsl:choose>
