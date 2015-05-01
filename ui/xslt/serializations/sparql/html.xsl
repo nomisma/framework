@@ -140,9 +140,12 @@
 						<i> (<xsl:value-of select="res:literal/@xml:lang"/>)</i>
 					</xsl:if>
 					<xsl:if test="res:literal/@datatype">
-						<xsl:variable name="uri" select="res:literal/@datatype"/>
+						<xsl:variable name="datatype" select="res:literal/@datatype"/>
+						<xsl:variable name="uri" select="if (contains($datatype, 'xs:')) then replace($datatype, 'xs:', 'http://www.w3.org/2001/XMLSchema#') else $datatype"/>
+						
 						<i> (<a href="{$uri}">
-								<xsl:value-of select="concat('xsd:', substring-after($uri, '#'))"/></a>)</i>
+							<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/></a>)</i>
+						
 					</xsl:if>
 				</xsl:otherwise>
 			</xsl:choose>
