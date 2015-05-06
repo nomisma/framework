@@ -37,7 +37,8 @@
 	</xsl:variable>
 
 	<xsl:template match="/">
-		<html lang="en" prefix="{$prefix}">
+		<html lang="en" prefix="{$prefix}" itemscope="" itemtype="http://schema.org/{if (contains($type, 'foaf:')) then substring-after($type, 'foaf:') else if ($type='nmo:Mint' or $type='nmo:Region')
+			then 'Place' else 'Thing'}">
 			<head>
 				<title id="{$id}">nomisma.org: <xsl:value-of select="$id"/></title>
 				<meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -53,6 +54,25 @@
 				</xsl:if>
 				<script type="text/javascript" src="{$display_path}ui/javascript/display_functions.js"/>
 				<link rel="stylesheet" href="{$display_path}ui/css/style.css"/>
+
+				<!-- schema.org metadata -->
+				<xsl:for-each select="descendant::skos:prefLabel">
+					<meta itemprop="name" content="{.}" lang="{@xml:lang}"/>
+				</xsl:for-each>
+				<xsl:for-each select="descendant::skos:definition">
+					<meta itemprop="description" content="{.}" lang="{@xml:lang}"/>
+				</xsl:for-each>
+				<meta itemprop="url" content="{concat(/content/config/url, 'id/', $id)}"/>
+				<xsl:for-each select="descendant::skos:exactMatch|descendant::skos:relatedMatch">
+					<meta itemprop="sameAs" content="{@rdf:resource}"/>
+				</xsl:for-each>
+				<xsl:if test="$type='nmo:Mint' and descendant::geo:lat">
+					<meta itemprop="latitude" content="{descendant::geo:lat}"/>
+					<meta itemprop="longitude" content="{descendant::geo:long}"/>
+				</xsl:if>
+				<xsl:if test="descendant::geo:SpatialThing/dcterms:isPartOf">
+					<meta itemprop="containedIn" content="{descendant::geo:SpatialThing/dcterms:isPartOf/@rdf:resource}"/>
+				</xsl:if>
 			</head>
 			<body>
 				<xsl:call-template name="header"/>
@@ -321,9 +341,9 @@ SELECT * WHERE {
 		<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(replace($listTypes-query, 'ID', $id)), '&amp;output=xml')"/>
 		<xsl:if test="doc-available($service)">
 			<xsl:apply-templates select="document($service)/res:sparql" mode="listTypes"/>
-		</xsl:if>		
+		</xsl:if>
 	</xsl:template>
-	
+
 	<xsl:template match="res:sparql[count(descendant::res:result) &gt; 0]" mode="listTypes">
 		<h3>Associated Types <small>(max 10)</small></h3>
 		<a href="#" class="toggle-button" id="toggle-listTypes"><span class="glyphicon glyphicon-plus"/> View SPARQL for full query</a>
@@ -360,7 +380,7 @@ SELECT * WHERE {
 							<a href="{$uri}">
 								<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/>
 							</a>
-							
+
 						</td>
 					</tr>
 				</xsl:for-each>

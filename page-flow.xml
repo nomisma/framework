@@ -17,6 +17,7 @@
 	<!-- ****************
 	* ADMIN INTERFACE *
 	***************** -->
+	<page path="/nomisma/admin/manage/" view="xforms/manage.xhtml"/>
 	<page path="/nomisma/admin/edit/" view="xforms/edit.xhtml"/>
 	<page path="/nomisma/admin/" view="xforms/admin.xhtml"/>
 	
