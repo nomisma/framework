@@ -249,6 +249,7 @@
 					<![CDATA[DELETE {?s ?p ?o} WHERE { <URI> ?p ?o . ?s ?p ?o . FILTER (?s = <URI>) }]]>
 				</query>
 			</xforms:instance>
+
 			<xforms:instance id="sparqlUpdate">
 				<query></query>
 			</xforms:instance>
@@ -417,7 +418,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 					<xforms:bind nodeset="hasFeature" type="xs:boolean"></xforms:bind>
 				</xforms:bind>
 				<xforms:bind nodeset="fons">
-					<xforms:bind nodeset="fon" required="true()"/>
+					<xforms:bind nodeset="fon" required="true()"></xforms:bind>
 				</xforms:bind>
 				<xforms:bind id="save-trigger" nodeset="save-trigger" type="xs:boolean" readonly=". != true()"></xforms:bind>
 			</xforms:bind>
@@ -513,28 +514,22 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 				<div class="col-md-12">
 					<p><a href="../"><span class="glyphicon glyphicon-arrow-left"></span>Return to Admin</a></p>
 					<xforms:group ref=".[string-length(instance('control-instance')/status) &gt; 0]">
-						<div class="bg-info alert">
-							<p>
-								<span class="glyphicon glyphicon-info-sign"></span>
-								<strong>Status:</strong>
-								<xforms:output ref="instance('control-instance')/status"></xforms:output>
-							</p>
+						<div class="bg-info alert-box">
+							<span class="glyphicon glyphicon-info-sign"></span>
+							<strong>Status:</strong>
+							<xforms:output ref="instance('control-instance')/status"></xforms:output>
 						</div>
 					</xforms:group>
 					<xforms:group ref=".[count(instance('doc')/*[1]/skos:prefLabel/@xml:lang) &gt; count(instance('doc')/*[1]/skos:prefLabel/@xml:lang[not(preceding::skos:prefLabel/@xml:lang = .)])]">
-						<div class="bg-danger alert">
-							<p>
-								<span class="glyphicon glyphicon-exclamation-sign"></span>
-								<strong>Alert:</strong> Preferred label languages must be unique. </p>
-						</div>
+						<div class="bg-danger alert-box">
+							<span class="glyphicon glyphicon-exclamation-sign"></span>
+							<strong>Alert:</strong> Preferred label languages must be unique. </div>
 					</xforms:group>
 					<xforms:group
 						ref=".[count(instance('doc')/*[1]/skos:definition/@xml:lang) &gt; count(instance('doc')/*[1]/skos:definition/@xml:lang[not(preceding::skos:definition/@xml:lang = .)])]">
-						<div class="bg-danger alert">
-							<p>
-								<span class="glyphicon glyphicon-exclamation-sign"></span>
-								<strong>Alert:</strong> Definition languages must be unique. </p>
-						</div>
+						<div class="bg-danger alert-box">
+							<span class="glyphicon glyphicon-exclamation-sign"></span>
+							<strong>Alert:</strong> Definition languages must be unique. </div>
 					</xforms:group>
 					<xforms:group ref=".[instance('doc')/child::node()]">
 						<div class="submission">
@@ -664,13 +659,14 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										</xforms:trigger>
 									</li>
 
-								</xforms:group>								
+								</xforms:group>
 							</xforms:group>
 							<li>
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
 										<span class="glyphicon glyphicon-plus"></span>Field of Numismatics</xforms:label>
-									<xforms:insert  ev:event="DOMActivate" context="instance('control-instance')/fons" nodeset="./child::node()[last()]" origin="xforms:element('fon', '')"></xforms:insert>							
+									<xforms:insert ev:event="DOMActivate" context="instance('control-instance')/fons" nodeset="./child::node()[last()]" origin="xforms:element('fon', '')"
+									></xforms:insert>
 								</xforms:trigger>
 							</li>
 							<xforms:group ref=".[$type='nmo:Mint' or $type='nmo:Region'][not(instance('doc')/geo:SpatialThing)]">
@@ -717,7 +713,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 									</xforms:trigger>
 								</li>
 							</xforms:group>
-						</ul>						
+						</ul>
 					</xforms:group>
 				</div>
 				<div class="col-md-8">
@@ -732,7 +728,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 							<xforms:trigger>
 								<xforms:label>Proceed</xforms:label>
 								<xforms:action ev:event="DOMActivate">
-									<xforms:setvalue ref="instance('control-instance')/nomisma_uri" value="concat('http://nomisma.org/id/', instance('control-instance')/id)"></xforms:setvalue>									
+									<xforms:setvalue ref="instance('control-instance')/nomisma_uri" value="concat('http://nomisma.org/id/', instance('control-instance')/id)"></xforms:setvalue>
 								</xforms:action>
 							</xforms:trigger>
 						</xforms:group>
@@ -959,15 +955,15 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 								</xforms:repeat>
 								<!-- treat the field of numismatics separately in the control-instance, then write changes into the RDF doc -->
 								<xforms:repeat nodeset="instance('control-instance')/fons/fon">
-									<xforms:var name="uri" select="."/>
-									<xforms:var name="position" select="position()"/>
+									<xforms:var name="uri" select="."></xforms:var>
+									<xforms:var name="position" select="position()"></xforms:var>
 									<div>
 										<xforms:select1 ref=".">
 											<xforms:label>Field</xforms:label>
 											<xforms:alert>Required</xforms:alert>
 											<xforms:item>
 												<xforms:label>Select...</xforms:label>
-												<xforms:value/>
+												<xforms:value></xforms:value>
 											</xforms:item>
 											<xforms:itemset nodeset="instance('fon-list')//item">
 												<xforms:label ref="."></xforms:label>
@@ -975,27 +971,29 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											</xforms:itemset>
 											<xforms:action ev:event="xforms-value-changed">
 												<!-- if there are more entries in fon than dcterms:isPartOf, then insert new isPartOf -->
-												<xforms:action if="count(instance('control-instance')/fons/fon) &gt; count(instance('doc')/*[1]/dcterms:isPartOf[contains(@rdf:resource, '_numismatics')])">
-													<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]" origin="instance('isPartOf-template')"/>
-													<xforms:setvalue ref="instance('doc')/*[1]/dcterms:isPartOf[last()]/@rdf:resource" value="$uri"/>
+												<xforms:action
+													if="count(instance('control-instance')/fons/fon) &gt; count(instance('doc')/*[1]/dcterms:isPartOf[contains(@rdf:resource, '_numismatics')])">
+													<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]" origin="instance('isPartOf-template')"></xforms:insert>
+													<xforms:setvalue ref="instance('doc')/*[1]/dcterms:isPartOf[last()]/@rdf:resource" value="$uri"></xforms:setvalue>
 												</xforms:action>
 												<!-- otherwise, change the value of the dcterms:isPartOf -->
 												<xforms:action if="count(instance('control-instance')/fons/fon) = count(instance('doc')/*[1]/dcterms:isPartOf[contains(@rdf:resource, '_numismatics')])">
-													<xforms:setvalue ref="instance('doc')/*[1]/dcterms:isPartOf[contains(@rdf:resource, '_numismatics') and position() = $position]/@rdf:resource" value="$uri"/>
+													<xforms:setvalue ref="instance('doc')/*[1]/dcterms:isPartOf[contains(@rdf:resource, '_numismatics') and position() = $position]/@rdf:resource"
+														value="$uri"></xforms:setvalue>
 												</xforms:action>
 											</xforms:action>
 										</xforms:select1>
-										<xforms:trigger appearance="minimal">											
+										<xforms:trigger appearance="minimal">
 											<xforms:label>
-												<span class="glyphicon glyphicon-remove"/>
+												<span class="glyphicon glyphicon-remove"></span>
 											</xforms:label>
 											<xforms:action ev:event="DOMActivate">
 												<!-- only delete the matching dcterms:isPartOf if there is a value -->
 												<xforms:action if="string-length($uri) &gt; 0">
-													<xforms:delete context="instance('doc')/*[1]/dcterms:isPartOf[@rdf:resource=$uri and position()=$position]"/>
-												</xforms:action>												
-												<xforms:delete context="."/>
-											</xforms:action>											
+													<xforms:delete context="instance('doc')/*[1]/dcterms:isPartOf[@rdf:resource=$uri and position()=$position]"></xforms:delete>
+												</xforms:action>
+												<xforms:delete context="."></xforms:delete>
+											</xforms:action>
 										</xforms:trigger>
 									</div>
 								</xforms:repeat>
@@ -1061,25 +1059,19 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											</small>
 										</h3>
 										<xforms:group ref=".[not(geo:lat and geo:long) and not(osgeo:asGeoJSON)]">
-											<div class="bg-danger alert">
-												<p>
-													<span class="glyphicon glyphicon-exclamation-sign"></span>
-													<strong>Alert:</strong> Must contain coordinates.</p>
-											</div>
+											<div class="bg-danger alert-box">
+												<span class="glyphicon glyphicon-exclamation-sign"></span>
+												<strong>Alert:</strong> Must contain coordinates. </div>
 										</xforms:group>
 										<xforms:group ref=".[child::geo:lat and not(number(geo:lat)) and child::geo:long and not(number(geo:long))]">
-											<div class="bg-danger alert">
-												<p>
-													<span class="glyphicon glyphicon-exclamation-sign"></span>
-													<strong>Alert:</strong> Latitude and Longitude must contain valid coordinates.</p>
-											</div>
+											<div class="bg-danger alert-box">
+												<span class="glyphicon glyphicon-exclamation-sign"></span>
+												<strong>Alert:</strong> Latitude and Longitude must contain valid coordinates. </div>
 										</xforms:group>
 										<xforms:group ref=".[child::osgeo:asGeoJSON and not(string(osgeo:asGeoJSON))]">
-											<div class="bg-danger alert">
-												<p>
-													<span class="glyphicon glyphicon-exclamation-sign"></span>
-													<strong>Alert:</strong> A polygon must be drawn.</p>
-											</div>
+											<div class="bg-danger alert-box">
+												<span class="glyphicon glyphicon-exclamation-sign"></span>
+												<strong>Alert:</strong> A polygon must be drawn. </div>
 										</xforms:group>
 										<div class="trigger_container">
 											<xforms:group ref=".[count(un:hasUncertainty) = 0]">
@@ -1203,11 +1195,9 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										</small>
 									</h3>
 									<xforms:group ref=".[count(ancestor::rdf:RDF/org:Membership[@rdf:about=$uri]) != 1]">
-										<div class="bg-danger alert">
-											<p>
-												<span class="glyphicon glyphicon-exclamation-sign"></span>
-												<strong>Alert:</strong> A role must only be applied once.</p>
-										</div>
+										<div class="bg-danger alert-box">
+											<span class="glyphicon glyphicon-exclamation-sign"></span>
+											<strong>Alert:</strong> A role must only be applied once. </div>
 									</xforms:group>
 									<div class="trigger_container">
 										<xforms:group ref=".[count(nmo:hasStartDate) = 0]">
@@ -1306,7 +1296,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 							<nomisma:getty></nomisma:getty>
 							<xforms:group ref=".[not(skos:relatedMatch[contains(@rdf:resource, 'pleiades.stoa.org')])]">
 								<nomisma:pleiades></nomisma:pleiades>
-							</xforms:group>							
+							</xforms:group>
 						</xforms:group>
 						<!-- query VIAF to add associated URIs -->
 						<xforms:group ref=".[$type='foaf:Person' or $type='foaf:Organization']">
