@@ -50,16 +50,19 @@
 				<templates xmlns="">
 					<query id="delete-metadata">
 						<![CDATA[PREFIX void:	<http://rdfs.org/ns/void#> 
-DELETE {?s ?p ?o} WHERE { <DATASET> ?p ?o . ?s ?p ?o }]]>
+DELETE {?s ?p ?o} WHERE { <DATASET> ?p ?o . ?s ?p ?o . FILTER (?s = <DATASET>)}]]>
 					</query>
 					<query id="delete-dump">
 						<![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX void:	<http://rdfs.org/ns/void#>
+PREFIX dcterms:	<http://purl.org/dc/terms/>
 DELETE {?s ?p ?o} WHERE { 
 { ?object void:inDataset <DATASET> ;
   nmo:hasObverse ?s . ?s ?p ?o }
 UNION { ?object void:inDataset <DATASET> ;
-nmo:hasReverse ?s . ?s ?p ?o }
+  nmo:hasReverse ?s . ?s ?p ?o }
+UNION { ?object void:inDataset <DATASET> ;
+  dcterms:tableOfContents ?s . ?s ?p ?o }
 UNION { ?s void:inDataset <DATASET> . ?s ?p ?o}
   }]]>
 					</query>

@@ -31,8 +31,15 @@ PREFIX dcterms:	<http://purl.org/dc/terms/>
 PREFIX rdfs:	<http://www.w3.org/2000/01/rdf-schema#>
 PREFIX void:	<http://rdfs.org/ns/void#>
 
-SELECT *  WHERE {
-?dataset a void:Dataset ; dcterms:title ?title ; dcterms:description ?description ; dcterms:publisher ?publisher ; dcterms:license ?license ; void:dataDump ?dump} ORDER BY ASC(?publisher) ASC(?title)]]>
+SELECT ?dataset ?title ?description ?publisher ?license ?dump ?count WHERE {
+?dataset a void:Dataset ; 
+ dcterms:title ?title ; 
+ dcterms:description ?description ; 
+ dcterms:publisher ?publisher ; 
+ dcterms:license ?license ; 
+ void:dataDump ?dump 
+ { SELECT ( count(?object) as ?count ) { ?object void:inDataset ?dataset } GROUP BY ?dataset }
+ } ORDER BY ASC(?publisher) ASC(?title)]]>
 				</xsl:variable>
 
 				<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri($query), '&amp;output=xml')"/>

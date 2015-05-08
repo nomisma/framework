@@ -43,6 +43,9 @@
 							<a href="{$display_path}sparql">SPARQL</a>
 						</li>
 						<li>
+							<a href="{$display_path}datasets">Datasets</a>
+						</li>
+						<li>
 							<a href="{$display_path}project/">Project Namespaces</a>
 						</li>
 						<!--<li>

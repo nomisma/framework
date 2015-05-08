@@ -48,7 +48,8 @@
 									<th>Description</th>
 									<th>Publisher</th>
 									<th class="text-center">License</th>
-									<th class="text-center">Data Dump</th>
+									<th class="text-center">Count</th>
+									<th class="text-center">Data Dump</th>									
 								</tr>
 							</thead>
 							<tbody>
@@ -111,6 +112,9 @@
 						</xsl:otherwise>
 					</xsl:choose>
 				</a>
+			</td>
+			<td class="text-center">
+				<xsl:value-of select="res:binding[@name='count']/res:literal"/>
 			</td>
 			<td class="text-center">
 				<a href="{res:binding[@name='dump']/res:uri}">
