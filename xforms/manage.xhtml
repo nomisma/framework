@@ -27,8 +27,11 @@
 
 			<xforms:instance id="control-instance">
 				<controls xmlns="">
+					<status></status>
 					<void_uri></void_uri>
 					<dump_uri></dump_uri>
+					<dataset></dataset>
+					<validate-trigger>false</validate-trigger>
 				</controls>
 			</xforms:instance>
 
@@ -44,9 +47,23 @@
 
 			<!-- sparql update -->
 			<xforms:instance id="sparqlUpdate-template">
-				<query>
-					<![CDATA[DELETE {?s ?p ?o} WHERE { <URI> ?p ?o . ?s ?p ?o . FILTER (?s = <URI>) }]]>
-				</query>
+				<templates xmlns="">
+					<query id="delete-metadata">
+						<![CDATA[PREFIX void:	<http://rdfs.org/ns/void#> 
+DELETE {?s ?p ?o} WHERE { <DATASET> ?p ?o . ?s ?p ?o }]]>
+					</query>
+					<query id="delete-dump">
+						<![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX void:	<http://rdfs.org/ns/void#>
+DELETE {?s ?p ?o} WHERE { 
+{ ?object void:inDataset <DATASET> ;
+  nmo:hasObverse ?s . ?s ?p ?o }
+UNION { ?object void:inDataset <DATASET> ;
+nmo:hasReverse ?s . ?s ?p ?o }
+UNION { ?s void:inDataset <DATASET> . ?s ?p ?o}
+  }]]>
+					</query>
+				</templates>
 			</xforms:instance>
 
 			<xforms:instance id="sparqlUpdate">
@@ -59,10 +76,25 @@
 					<prefix><![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:	<http://purl.org/dc/terms/>
 PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
-					<query id="get-datasets">SELECT * WHERE {?uri a void:Dataset ; dcterms:title ?title ; dcterms:publisher ?publisher ; void:dataDump ?dump . } ORDER BY ?title</query>
+					<query id="get-datasets">SELECT * WHERE {?uri a void:Dataset ; dcterms:title ?title ; dcterms:publisher ?publisher ; void:dataDump ?dump } ORDER BY ASC(?publisher) ASC(?title)</query>
 				</templates>
 			</xforms:instance>
 
+			<!-- ************* BINDINGS **********************-->
+			<xforms:bind nodeset="instance('void-rdf')">
+				<xforms:bind nodeset="void:Dataset">
+					<xforms:bind nodeset="rdf:about" required="true()" type="xs:anyURI"></xforms:bind>
+					<xforms:bind nodeset="dcterms:title" required="true()"></xforms:bind>
+					<xforms:bind nodeset="dcterms:description" constraint="if (not(@rdf:resource)) then string-length(normalize-space(.)) &gt; 0 else string-length(normalize-space(.)) = 0"></xforms:bind>
+					<xforms:bind nodeset="dcterms:publisher" constraint="if (not(@rdf:resource)) then string-length(normalize-space(.)) &gt; 0 else string-length(normalize-space(.)) = 0"></xforms:bind>
+					<xforms:bind nodeset="dcterms:license" constraint="if (not(@rdf:resource)) then string-length(normalize-space(.)) &gt; 0 else string-length(normalize-space(.)) = 0"></xforms:bind>
+					<xforms:bind nodeset="//@rdf:resource" type="xs:anyURI" required="true()"></xforms:bind>
+				</xforms:bind>
+			</xforms:bind>
+
+			<xforms:bind nodeset="instance('control-instance')">
+				<xforms:bind id="validate-trigger" nodeset="validate-trigger" type="xs:boolean" readonly=". != true()"></xforms:bind>
+			</xforms:bind>
 
 			<!-- ************* SPARQL SUBMISSIONS **********************-->
 			<xforms:submission id="submit-sparqlQuery" action="{instance('config')/sparql_query}?query={encode-for-uri(instance('sparqlQuery'))}&amp;output=xml" ref="instance('sparqlResponse')"
@@ -72,7 +104,18 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 
 			<xforms:submission id="delete-graph" action="{instance('config')/sparql_update}" ref="instance('sparqlUpdate')" serialization="text/plain" replace="none" method="post"
 				mediatype="application/sparql-update">
+				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Graph successfully deleted from endpoint.</xforms:setvalue>
 				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL update failed.</xforms:message>
+			</xforms:submission>
+
+			<xforms:submission id="post-void" action="{instance('config')/sparql_store}?default" ref="instance('void-rdf')" replace="none" method="post" mediatype="application/rdf+xml">
+				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Successfully posted to endpoint.</xforms:setvalue>
+				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to post VoID metadata.</xforms:message>
+			</xforms:submission>
+
+			<xforms:submission id="post-dump" action="{instance('config')/sparql_store}?default" ref="instance('void-dump')" replace="none" method="post" mediatype="application/rdf+xml">
+				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Successfully posted to endpoint.</xforms:setvalue>
+				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to post data dump.</xforms:message>
 			</xforms:submission>
 
 			<!-- ************************* LOAD RDF/XML ************************** -->
@@ -108,15 +151,73 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
+					<p><a href="../"><span class="glyphicon glyphicon-arrow-left"></span>Return to Admin</a></p>
+					<xforms:group ref=".[string-length(instance('control-instance')/status) &gt; 0]">
+						<div class="bg-info alert-box">
+							<span class="glyphicon glyphicon-info-sign"></span>
+							<strong>Status:</strong>
+							<xforms:output ref="instance('control-instance')/status"></xforms:output>
+						</div>
+					</xforms:group>
 					<h1>Manage Datasets</h1>
+					<div>
+						<xforms:trigger appearance="minimal">
+							<xforms:label><span class="glyphicon glyphicon-plus"></span>Add dataset</xforms:label>
+							<xforms:action ev:event="DOMActivate">
+								<xforms:setvalue ref="instance('control-instance')/void_uri"/>
+								<xxforms:show dialog="lookup-dialog"></xxforms:show>
+							</xforms:action>
+						</xforms:trigger>
+					</div>
 					<xforms:switch>
 						<xforms:case id="default">
 							<xforms:group ref="instance('sparqlResponse')">
-								<xforms:group ref=".[count(descendant::res:result) &gt; 0]"> found </xforms:group>
+								<xforms:group ref=".[count(descendant::res:result) &gt; 0]">
+									<table class="table">
+										<thead>
+											<tr>
+												<th>Dataset</th>
+												<th>Publisher</th>
+												<th>Refresh</th>
+												<th>Delete</th>
+											</tr>
+										</thead>
+										<tbody>
+											<xforms:repeat nodeset="descendant::res:result">
+												<tr>
+													<td><a href="{res:binding[@name='uri']/res:uri}" target="_blank"><xforms:output ref="res:binding[@name='title']/res:literal"
+														></xforms:output></a></td>
+													<td><xforms:output ref="res:binding[@name='publisher']/res:literal"></xforms:output></td>
+													<td class="text-center">
+														<xforms:trigger appearance="minimal">
+															<xforms:label><span class="glyphicon glyphicon-refresh"></span></xforms:label>
+															<xforms:action ev:event="DOMActivate">
+																<xforms:var name="dump" select="res:binding[@name='dump']/res:uri"></xforms:var>
+																<xforms:setvalue ref="instance('control-instance')/dump_uri" value="$dump"></xforms:setvalue>
+																<xforms:dispatch target="refresh-dataset-dialog" name="fr-show"></xforms:dispatch>
+															</xforms:action>
+														</xforms:trigger>
+													</td>
+													<td class="text-center">
+														<xforms:trigger appearance="minimal">
+															<xforms:label><span class="glyphicon glyphicon-remove"></span></xforms:label>
+															<xforms:action ev:event="DOMActivate">
+																<xforms:var name="dataset" select="res:binding[@name='uri']/res:uri"></xforms:var>
+																<xforms:setvalue ref="instance('control-instance')/dataset" value="$dataset"></xforms:setvalue>
+																<xforms:dispatch target="delete-dataset-dialog" name="fr-show"></xforms:dispatch>
+															</xforms:action>
+														</xforms:trigger>
+													</td>
+												</tr>
+											</xforms:repeat>
+										</tbody>
+									</table>
+								</xforms:group>
 								<xforms:group ref=".[count(descendant::res:result) = 0]">
 									<p>No datasets found in endpoint. <xforms:trigger appearance="minimal">
 											<xforms:label>Add a dataset.</xforms:label>
 											<xforms:action ev:event="DOMActivate">
+												<xforms:setvalue ref="instance('control-instance')/void_uri"/>
 												<xxforms:show dialog="lookup-dialog"></xxforms:show>
 											</xforms:action>
 										</xforms:trigger></p>
@@ -126,13 +227,31 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 						<xforms:case id="validate-void">
 							<xforms:group ref="instance('void-rdf')">
 								<xforms:group ref="void:Dataset[@rdf:about]">
+									<!-- display error messages for missing fields -->
 									<xforms:group ref=".[not(string(dcterms:title))]">
 										<div class="bg-danger alert-box">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> Title is required. </div>
-									</xforms:group> <div>
+									</xforms:group>
+									<xforms:group ref=".[not(string(dcterms:description)) and not(dcterms:description[@rdf:resource castable as xs:anyURI])]">
+										<div class="bg-danger alert-box">
+											<span class="glyphicon glyphicon-exclamation-sign"></span>
+											<strong>Alert:</strong> Description is required. </div>
+									</xforms:group>
+									<xforms:group ref=".[not(string(dcterms:publisher)) and not(dcterms:publisher[@rdf:resource castable as xs:anyURI])]">
+										<div class="bg-danger alert-box">
+											<span class="glyphicon glyphicon-exclamation-sign"></span>
+											<strong>Alert:</strong> Description is required. </div>
+									</xforms:group>
+									<xforms:group ref=".[not(string(dcterms:license)) and not(dcterms:license[@rdf:resource castable as xs:anyURI])]">
+										<div class="bg-danger alert-box">
+											<span class="glyphicon glyphicon-exclamation-sign"></span>
+											<strong>Alert:</strong> Description is required. </div>
+									</xforms:group>
+									<div>
 										<xforms:output ref="@rdf:about">
 											<xforms:label>URI</xforms:label>
+											<xforms:alert>Required</xforms:alert>
 										</xforms:output>
 									</div>
 									<div>
@@ -144,6 +263,7 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 										<div>
 											<xforms:output value="if (@rdf:resource) then @rdf:resource else .">
 												<xforms:label>Description</xforms:label>
+												<xforms:alert>test</xforms:alert>
 											</xforms:output>
 										</div>
 									</xforms:group>
@@ -161,7 +281,29 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 											</xforms:output>
 										</div>
 									</xforms:group>
+									<!-- the validate trigger is only enabled when the VoID RDF metadata conforms to basic requirements -->
+									<xforms:trigger bind="validate-trigger">
+										<xforms:label><span class="glyphicon glyphicon-check"></span>Validate</xforms:label>
+										<xforms:action ev:event="DOMActivate">
+											<xforms:message level="modal">test</xforms:message>
+										</xforms:action>
+									</xforms:trigger>
+									<xforms:trigger>
+										<xforms:label><span class="glyphicon glyphicon-upload"></span> Import</xforms:label>
+										<xforms:action ev:event="DOMActivate">
+											<xforms:setvalue ref="instance('control-instance')/dump_uri" value="instance('void-rdf')/void:Dataset/void:dataDump/@rdf:resource"></xforms:setvalue>
+											<xforms:send submission="load-dump"></xforms:send>
+											<!-- push VoID RDF into triplestore -->
+											<xforms:action ev:event="xforms-submit-done">
+												<xforms:send submission="post-void"></xforms:send>
+												<xforms:send submission="post-dump"></xforms:send>
+												<xforms:send submission="submit-sparqlQuery"></xforms:send>
+												<xforms:toggle case="default"></xforms:toggle>
+											</xforms:action>
+										</xforms:action>
+									</xforms:trigger>
 								</xforms:group>
+								<!-- if there is not a void:Dataset child and/or there is no URI for the Dataset, then validation fails outright -->
 								<xforms:group ref=".[not(void:Dataset[@rdf:about])]">
 									<div class="bg-danger alert-box"><span class="glyphicon glyphicon-exclamation-sign"></span>
 										<strong>Alert:</strong> No void:Dataset object or missing dataset URI.</div>
@@ -173,12 +315,13 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 							</xforms:group>
 						</xforms:case>
 					</xforms:switch>
-					<fr:xforms-inspector></fr:xforms-inspector>
+					<!--<fr:xforms-inspector></fr:xforms-inspector>-->
 				</div>
 			</div>
 		</div>
 
 		<!-- *********** DIALOGS *********** -->
+		<!-- this is the dialog for looking up a VoID RDF metadata object -->
 		<xxforms:dialog id="lookup-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
 			<xforms:label>Load VoID RDF</xforms:label>
 			<p>Insert the URI for VoID metadata RDF.</p>
@@ -191,11 +334,64 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 						<xforms:send submission="load-void"></xforms:send>
 						<xforms:action ev:event="xforms-submit-done">
 							<xforms:toggle case="validate-void"></xforms:toggle>
+							<xforms:setvalue ref="instance('control-instance')/validate-trigger" value="true()" if="xxforms:valid(instance('void-rdf'), true())"></xforms:setvalue>
 						</xforms:action>
 						<xxforms:hide dialog="lookup-dialog"></xxforms:hide>
 					</xforms:action>
 				</xforms:trigger>
 			</div>
 		</xxforms:dialog>
+
+		<!-- dialog to confirm deletion of a void:Dataset and associated objects -->
+		<fr:alert-dialog id="delete-dataset-dialog">
+			<fr:label>Delete Dataset</fr:label>
+			<fr:message>Are you sure you want to remove this dataset from the Nomisma.org SPARQL endpoint?</fr:message>
+			<fr:positive-choice>
+				<fr:label>Yes</fr:label>
+				<xforms:action ev:event="DOMActivate">
+					<!-- first delete the objects associated with the dataset, linked by void:inDataset -->
+					<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-template')/query[@id='delete-dump'], 'DATASET', instance('control-instance')/dataset)"
+					></xforms:setvalue>
+					<xforms:send submission="delete-graph"/>
+					<!-- then delete the void:Dataset object -->
+					<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-template')/query[@id='delete-metadata'], 'DATASET', instance('control-instance')/dataset)"
+						></xforms:setvalue>
+					<xforms:send submission="delete-graph"/>
+					
+					<!-- resubmit SPARQL query for void:Datasets to reset the table -->
+					<xforms:setvalue ref="instance('sparqlQuery')" value="concat(instance('sparql-templates')/prefix, ' ', instance('sparql-templates')/query[@id='get-datasets'])"></xforms:setvalue>
+					<xforms:send submission="submit-sparqlQuery"></xforms:send>
+				</xforms:action>
+			</fr:positive-choice>
+			<fr:negative-choice>
+				<fr:label>No</fr:label>
+			</fr:negative-choice>
+		</fr:alert-dialog>
+		
+		<fr:alert-dialog id="refresh-dataset-dialog">
+			<fr:label>Refresh Dataset</fr:label>
+			<fr:message>Refreshing the dataset may take several minutes. Continue?</fr:message>
+			<fr:positive-choice>
+				<fr:label>Yes</fr:label>
+				<xforms:action ev:event="DOMActivate">
+					<!-- first delete the objects associated with the dataset, linked by void:inDataset -->
+					<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-template')/query[@id='delete-dump'], 'DATASET', instance('control-instance')/dataset)"
+						></xforms:setvalue>
+					<xforms:send submission="delete-graph"/>
+					
+					<!-- then fetch the new data dump -->
+					<xforms:send submission="load-dump"></xforms:send>
+					<xforms:action ev:event="xforms-submit-done">
+						<xforms:send submission="post-dump"/>
+						<!-- resubmit SPARQL query for void:Datasets to reset the table -->
+						<xforms:setvalue ref="instance('sparqlQuery')" value="concat(instance('sparql-templates')/prefix, ' ', instance('sparql-templates')/query[@id='get-datasets'])"></xforms:setvalue>
+						<xforms:send submission="submit-sparqlQuery"></xforms:send>
+					</xforms:action>
+				</xforms:action>
+			</fr:positive-choice>
+			<fr:negative-choice>
+				<fr:label>No</fr:label>
+			</fr:negative-choice>
+		</fr:alert-dialog>
 	</body>
 </html>

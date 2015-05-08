@@ -21,6 +21,8 @@
 	<page path="/nomisma/admin/edit/" view="xforms/edit.xhtml"/>
 	<page path="/nomisma/admin/" view="xforms/admin.xhtml"/>
 	
+	<!-- void:Dataset validation -->
+	
 	<!-- authentication -->
 	<page path="/nomisma/signup" view="xforms/signup.xhtml"/>
 	<page path="/nomisma/login" view="xforms/login.html" id="login"/>
@@ -46,6 +48,7 @@
 	<page path="/nomisma/id/" view="xpl/views/pages/id.xpl"/>
 	<page path="/nomisma/sparql" view="xpl/views/pages/sparql.xpl"/>
 	<page path="/nomisma/apis" view="xpl/views/pages/apis.xpl"/>
+	<page path="/nomisma/datasets" model="xpl/models/sparql/datasets.xpl" view="xpl/views/serializations/sparql/datasets.xpl"/>
 	<page path="/nomisma/ontology" model="xpl/models/rdf/get-rdf-ontology-current.xpl" view="xpl/controllers/conneg-ontology.xpl"/>
 	<page path="/nomisma/documentation/(.*)" view="xpl/views/pages/documentation.xpl"/>
 	<page path="/nomisma/" view="xpl/views/pages/index.xpl"/>
