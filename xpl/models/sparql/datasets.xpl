@@ -38,7 +38,7 @@ SELECT ?dataset ?title ?description ?publisher ?license ?dump ?count WHERE {
  dcterms:publisher ?publisher ; 
  dcterms:license ?license ; 
  void:dataDump ?dump 
- { SELECT ( count(?object) as ?count ) { ?object void:inDataset ?dataset } GROUP BY ?dataset }
+ { SELECT ?dataset ( count(?object) as ?count ) { ?object void:inDataset ?dataset } GROUP BY ?dataset }
  } ORDER BY ASC(?publisher) ASC(?title)]]>
 				</xsl:variable>
 
