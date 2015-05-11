@@ -95,7 +95,7 @@
 						<xsl:when test="contains($license, 'http://creativecommons.org/licenses/by-nd/')">
 							<img src="http://i.creativecommons.org/l/by-nd/3.0/88x31.png" alt="CC BY-ND" title="CC BY-ND"/>
 						</xsl:when>
-						<xsl:when test="contains($license, 'hhttp://creativecommons.org/licenses/by-nc-sa/')">
+						<xsl:when test="contains($license, 'http://creativecommons.org/licenses/by-nc-sa/')">
 							<img src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" alt="CC BY-NC-SA" title="CC BY-NC-SA"/>
 						</xsl:when>
 						<xsl:when test="contains($license, 'http://creativecommons.org/licenses/by-sa/')">
