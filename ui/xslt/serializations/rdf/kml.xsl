@@ -146,7 +146,7 @@ SELECT ?object ?lat ?long ?label WHERE {
             geo:long ?long .
   OPTIONAL {?object skos:prefLabel ?label }
   OPTIONAL {?object dcterms:title ?label }
-}]]>
+} LIMIT 250]]>
 		</xsl:variable>
 		
 		<xsl:if test="string($query)">
