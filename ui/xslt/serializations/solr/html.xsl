@@ -42,6 +42,7 @@
 			<namespace prefix="nmo" uri="http://nomisma.org/ontology#"/>
 			<namespace prefix="org" uri="http://www.w3.org/ns/org#"/>
 			<namespace prefix="osgeo" uri="http://data.ordnancesurvey.co.uk/ontology/geometry/"/>
+			<namespace prefix="rdac" uri="http://www.rdaregistry.info/Elements/c/"/>
 			<namespace prefix="rdf" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
 			<namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
 			<namespace prefix="skos" uri="http://www.w3.org/2004/02/skos/core#"/>

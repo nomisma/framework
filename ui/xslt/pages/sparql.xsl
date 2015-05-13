@@ -39,6 +39,7 @@ PREFIX nm:	<http://nomisma.org/id/>
 PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX org:	<http://www.w3.org/ns/org#>
 PREFIX osgeo:	<http://data.ordnancesurvey.co.uk/ontology/geometry/>
+PREFIX rdac:	<http://www.rdaregistry.info/Elements/c/>
 PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
 PREFIX spatial: <http://jena.apache.org/spatial#>
 PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>
