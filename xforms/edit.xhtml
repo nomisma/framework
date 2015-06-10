@@ -1,16 +1,26 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:res="http://www.w3.org/2005/sparql-results#"
-	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/" xmlns:foaf="http://xmlns.com/foaf/0.1/"
-	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:un="http://www.owl-ontologies.com/Ontology1181490123.owl#"
-	xmlns:atom="http://www.w3.org/2005/Atom" xmlns:nomisma="https://github.com/nomisma" xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:nmo="http://nomisma.org/ontology#"
-	xmlns:org="http://www.w3.org/ns/org#">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxforms="http://orbeon.org/oxf/xml/xforms"
+	xmlns:fr="http://orbeon.org/oxf/xml/form-runner"
+	xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/"
+	xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+	xmlns:un="http://www.owl-ontologies.com/Ontology1181490123.owl#"
+	xmlns:atom="http://www.w3.org/2005/Atom" xmlns:nomisma="https://github.com/nomisma"
+	xmlns:rdac="http://www.rdaregistry.info/Elements/c/"
+	xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/"
+	xmlns:nmo="http://nomisma.org/ontology#" xmlns:org="http://www.w3.org/ns/org#">
 	<head>
 		<title>nomisma.org: edit</title>
 		<link rel="stylesheet" href="/fr/style/bootstrap/css/bootstrap.css" type="text/css" />
 		<link rel="stylesheet" href="/fr/style/form-runner-bootstrap-override.css" type="text/css" />
 
-		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+		<link rel="stylesheet"
+			href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
 		<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 		<link rel="shortcut icon" href="/ops/images/orbeon-icon-16.ico" />
 		<link rel="icon" href="/ops/images/orbeon-icon-16.png" type="image/png" />
@@ -24,10 +34,17 @@
 		<!-- model -->
 		<xforms:model>
 			<xforms:instance id="doc" xxforms:exclude-result-prefixes="#all">
-				<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/" xmlns:nmo="http://nomisma.org/ontology#" xmlns:foaf="http://xmlns.com/foaf/0.1/"
-					xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-					xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:un="http://www.owl-ontologies.com/Ontology1181490123.owl#"
-					xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:org="http://www.w3.org/ns/org#"></rdf:RDF>
+				<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/"
+					xmlns:nmo="http://nomisma.org/ontology#" xmlns:foaf="http://xmlns.com/foaf/0.1/"
+					xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+					xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+					xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+					xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+					xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+					xmlns:un="http://www.owl-ontologies.com/Ontology1181490123.owl#"
+					xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/"
+					xmlns:org="http://www.w3.org/ns/org#"
+					xmlns:rdac="http://www.rdaregistry.info/Elements/c/"></rdf:RDF>
 			</xforms:instance>
 
 			<xforms:instance id="config" xxforms:exclude-result-prefixes="#all">
@@ -100,6 +117,10 @@
 					<class>
 						<label>Denomination</label>
 						<type>nmo:Denomination</type>
+					</class>
+					<class>
+						<label>Dynasty</label>
+						<type>rdac:Family</type>
 					</class>
 					<class>
 						<label>Ethnic</label>
@@ -212,11 +233,13 @@
 			</xforms:instance>
 
 			<xforms:instance id="hasStartDate-template" xxforms:exclude-result-prefixes="#all">
-				<nmo:hasStartDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear"></nmo:hasStartDate>
+				<nmo:hasStartDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear"
+				></nmo:hasStartDate>
 			</xforms:instance>
 
 			<xforms:instance id="hasEndDate-template" xxforms:exclude-result-prefixes="#all">
-				<nmo:hasEndDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear"></nmo:hasEndDate>
+				<nmo:hasEndDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear"
+				></nmo:hasEndDate>
 			</xforms:instance>
 
 			<xforms:instance id="thumbnail-template" xxforms:exclude-result-prefixes="#all">
@@ -281,9 +304,14 @@ PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX org:	<http://www.w3.org/ns/org#>
 PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
 PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
-					<query id="uncertainty">SELECT ?uri ?label WHERE {?uri a un:Uncertainty ; skos:prefLabel ?label . FILTER(langMatches(lang(?label), "en"))} ORDER BY ?label</query>
-					<query id="role">SELECT ?uri ?label WHERE {?uri a org:Role ; skos:prefLabel ?label . FILTER(langMatches(lang(?label), "en"))} ORDER BY ?label</query>
-					<query id="fon">SELECT ?uri ?label WHERE {?uri a nmo:FieldOfNumismatics ; skos:prefLabel ?label . FILTER(langMatches(lang(?label), "en"))} ORDER BY ?label</query>
+					<query id="uncertainty">SELECT ?uri ?label WHERE {?uri a un:Uncertainty ;
+						skos:prefLabel ?label . FILTER(langMatches(lang(?label), "en"))} ORDER BY
+						?label</query>
+					<query id="role">SELECT ?uri ?label WHERE {?uri a org:Role ; skos:prefLabel
+						?label . FILTER(langMatches(lang(?label), "en"))} ORDER BY ?label</query>
+					<query id="fon">SELECT ?uri ?label WHERE {?uri a nmo:FieldOfNumismatics ;
+						skos:prefLabel ?label . FILTER(langMatches(lang(?label), "en"))} ORDER BY
+						?label</query>
 				</templates>
 			</xforms:instance>
 
@@ -304,64 +332,90 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 			<xforms:action ev:event="xforms-model-construct-done">
 				<!-- load id if parameter is passed -->
 				<xforms:action if="string(xxforms:get-request-parameter('id'))">
-					<xforms:setvalue ref="instance('control-instance')/id" value="xxforms:get-request-parameter('id')"></xforms:setvalue>
-					<xforms:setvalue ref="instance('control-instance')/new_id" value="false()" if="string(xxforms:get-request-parameter('id'))"></xforms:setvalue>
-					<xforms:setvalue ref="instance('load-config')/url" value="concat('file://', instance('config')/id_path, '/', xxforms:get-request-parameter('id'), '.rdf')"></xforms:setvalue>
-					<xforms:insert nodeset="instance('doc')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/load-id.xpl', 'file', instance('load-config'), 'data')"></xforms:insert>
+					<xforms:setvalue ref="instance('control-instance')/id"
+						value="xxforms:get-request-parameter('id')"></xforms:setvalue>
+					<xforms:setvalue ref="instance('control-instance')/new_id" value="false()"
+						if="string(xxforms:get-request-parameter('id'))"></xforms:setvalue>
+					<xforms:setvalue ref="instance('load-config')/url"
+						value="concat('file://', instance('config')/id_path, '/', xxforms:get-request-parameter('id'), '.rdf')"></xforms:setvalue>
+					<xforms:insert nodeset="instance('doc')"
+						origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/load-id.xpl', 'file', instance('load-config'), 'data')"></xforms:insert>
 
 					<!-- set geo values -->
-					<xforms:setvalue ref="instance('control-instance')/geo/lat" value="instance('doc')/geo:SpatialThing/geo:lat"></xforms:setvalue>
-					<xforms:setvalue ref="instance('control-instance')/geo/long" value="instance('doc')/geo:SpatialThing/geo:long"></xforms:setvalue>
-					<xforms:setvalue ref="instance('control-instance')/geo/geoJSON" value="instance('doc')/geo:SpatialThing/osgeo:asGeoJSON"></xforms:setvalue>
+					<xforms:setvalue ref="instance('control-instance')/geo/lat"
+						value="instance('doc')/geo:SpatialThing/geo:lat"></xforms:setvalue>
+					<xforms:setvalue ref="instance('control-instance')/geo/long"
+						value="instance('doc')/geo:SpatialThing/geo:long"></xforms:setvalue>
+					<xforms:setvalue ref="instance('control-instance')/geo/geoJSON"
+						value="instance('doc')/geo:SpatialThing/osgeo:asGeoJSON"></xforms:setvalue>
 				</xforms:action>
 				<!-- load uncertainty ids -->
-				<xforms:setvalue ref="instance('sparqlQuery')" value="concat(instance('sparql-templates')/prefix, ' ', instance('sparql-templates')/query[@id='uncertainty'])"></xforms:setvalue>
+				<xforms:setvalue ref="instance('sparqlQuery')"
+					value="concat(instance('sparql-templates')/prefix, ' ', instance('sparql-templates')/query[@id='uncertainty'])"></xforms:setvalue>
 				<xforms:send submission="submit-sparqlQuery"></xforms:send>
-				<xforms:action xxforms:iterate="instance('sparqlResponse')//res:result" ev:event="xforms-submit-done">
+				<xforms:action xxforms:iterate="instance('sparqlResponse')//res:result"
+					ev:event="xforms-submit-done">
 					<xforms:var name="uri" select="data(res:binding[@name='uri']/res:uri)"></xforms:var>
 					<xforms:var name="label" select="(res:binding[@name='label']/res:literal)"></xforms:var>
-					<xforms:insert context="instance('uncertainty-list')" nodeset="./child::node()[last()]" origin="xforms:element('item', (xforms:attribute('uri', $uri), $label))"></xforms:insert>
+					<xforms:insert context="instance('uncertainty-list')"
+						nodeset="./child::node()[last()]"
+						origin="xforms:element('item', (xforms:attribute('uri', $uri), $label))"
+					></xforms:insert>
 				</xforms:action>
 
 				<!-- load role ids -->
-				<xforms:setvalue ref="instance('sparqlQuery')" value="concat(instance('sparql-templates')/prefix, ' ', instance('sparql-templates')/query[@id='role'])"></xforms:setvalue>
+				<xforms:setvalue ref="instance('sparqlQuery')"
+					value="concat(instance('sparql-templates')/prefix, ' ', instance('sparql-templates')/query[@id='role'])"></xforms:setvalue>
 				<xforms:send submission="submit-sparqlQuery"></xforms:send>
-				<xforms:action xxforms:iterate="instance('sparqlResponse')//res:result" ev:event="xforms-submit-done">
+				<xforms:action xxforms:iterate="instance('sparqlResponse')//res:result"
+					ev:event="xforms-submit-done">
 					<xforms:var name="uri" select="data(res:binding[@name='uri']/res:uri)"></xforms:var>
 					<xforms:var name="label" select="(res:binding[@name='label']/res:literal)"></xforms:var>
-					<xforms:insert context="instance('role-list')" nodeset="./child::node()[last()]" origin="xforms:element('item', (xforms:attribute('uri', $uri), $label))"></xforms:insert>
+					<xforms:insert context="instance('role-list')" nodeset="./child::node()[last()]"
+						origin="xforms:element('item', (xforms:attribute('uri', $uri), $label))"
+					></xforms:insert>
 				</xforms:action>
 
 				<!-- load fields of numismatics -->
-				<xforms:setvalue ref="instance('sparqlQuery')" value="concat(instance('sparql-templates')/prefix, ' ', instance('sparql-templates')/query[@id='fon'])"></xforms:setvalue>
+				<xforms:setvalue ref="instance('sparqlQuery')"
+					value="concat(instance('sparql-templates')/prefix, ' ', instance('sparql-templates')/query[@id='fon'])"></xforms:setvalue>
 				<xforms:send submission="submit-sparqlQuery"></xforms:send>
-				<xforms:action xxforms:iterate="instance('sparqlResponse')//res:result" ev:event="xforms-submit-done">
+				<xforms:action xxforms:iterate="instance('sparqlResponse')//res:result"
+					ev:event="xforms-submit-done">
 					<xforms:var name="uri" select="data(res:binding[@name='uri']/res:uri)"></xforms:var>
 					<xforms:var name="label" select="(res:binding[@name='label']/res:literal)"></xforms:var>
-					<xforms:insert context="instance('fon-list')" nodeset="./child::node()[last()]" origin="xforms:element('item', (xforms:attribute('uri', $uri), $label))"></xforms:insert>
+					<xforms:insert context="instance('fon-list')" nodeset="./child::node()[last()]"
+						origin="xforms:element('item', (xforms:attribute('uri', $uri), $label))"
+					></xforms:insert>
 				</xforms:action>
 
 				<!-- insert currently used fields of numismatics into control instance -->
-				<xforms:action xxforms:iterate="instance('doc')/*[1]/dcterms:isPartOf[contains(@rdf:resource, '_numismatics')]">
+				<xforms:action
+					xxforms:iterate="instance('doc')/*[1]/dcterms:isPartOf[contains(@rdf:resource, '_numismatics')]">
 					<xforms:var name="uri" select="data(context()/@rdf:resource)"></xforms:var>
-					<xforms:insert context="instance('control-instance')/fons" nodeset="./child::node()[last()]" origin="xforms:element('fon', $uri)"></xforms:insert>
+					<xforms:insert context="instance('control-instance')/fons"
+						nodeset="./child::node()[last()]" origin="xforms:element('fon', $uri)"
+					></xforms:insert>
 				</xforms:action>
 			</xforms:action>
 
 			<!-- **************** XFORMS-READY ********************** -->
 			<xforms:action ev:event="xforms-ready">
 				<!-- enable save trigger if the document is valid on ready -->
-				<xforms:setvalue ref="instance('control-instance')/save-trigger" value="true()" if="xxforms:valid(instance('doc'), true())"></xforms:setvalue>
+				<xforms:setvalue ref="instance('control-instance')/save-trigger" value="true()"
+					if="xxforms:valid(instance('doc'), true())"></xforms:setvalue>
 
 				<!-- set geographic controls -->
 				<xforms:setvalue ref="instance('control-instance')/geo/type"
 					value="if (instance('doc')/geo:SpatialThing/geo:lat) then 'point' else if (instance('doc')/geo:SpatialThing/osgeo:asGeoJSON) then 'polygon' else ''"></xforms:setvalue>
 				<xforms:setvalue ref="instance('control-instance')/geo/hasFeature"
-					value="if (instance('doc')/geo:SpatialThing/geo:lat or instance('doc')/geo:SpatialThing/osgeo:asGeoJSON) then true() else false()"></xforms:setvalue>
+					value="if (instance('doc')/geo:SpatialThing/geo:lat or instance('doc')/geo:SpatialThing/osgeo:asGeoJSON) then true() else false()"
+				></xforms:setvalue>
 			</xforms:action>
 
 			<!-- **************** BINDINGS ********************** -->
-			<xforms:bind nodeset="instance('doc')" id="doc-active" readonly="*[1]/dcterms:isReplacedBy/@rdf:resource">
+			<xforms:bind nodeset="instance('doc')" id="doc-active"
+				readonly="*[1]/dcterms:isReplacedBy/@rdf:resource">
 				<!-- handle top-level rdf:type -->
 				<xforms:bind nodeset="*[1]">
 					<xforms:bind nodeset="@rdf:about" required="true()" type="xs:anyURI"></xforms:bind>
@@ -372,7 +426,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 						></xforms:bind>
 					</xforms:bind>
 					<xforms:bind nodeset="skos:altLabel" required="true()">
-						<xforms:bind nodeset="@xml:lang" constraint="string-length(.) &gt; 0"></xforms:bind>
+						<xforms:bind nodeset="@xml:lang" constraint="string-length(.) &gt; 0"
+						></xforms:bind>
 					</xforms:bind>
 					<xforms:bind nodeset="skos:definition" required="true()">
 						<xforms:bind nodeset="@xml:lang"
@@ -387,16 +442,21 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 					<!-- nomisma properties -->
 					<xforms:bind nodeset="nmo:hasDate" type="xs:gYear" required="true()"></xforms:bind>
 					<!-- @rdf:resource -->
-					<xforms:bind nodeset="//@rdf:resource" required="true()" type="xs:anyURI"></xforms:bind>
+					<xforms:bind nodeset="//@rdf:resource" required="true()" type="xs:anyURI"
+					></xforms:bind>
 				</xforms:bind>
 				<!-- geographic -->
-				<xforms:bind nodeset="geo:SpatialThing" constraint="(geo:lat and geo:long) or osgeo:asGeoJSON">
+				<xforms:bind nodeset="geo:SpatialThing"
+					constraint="(geo:lat and geo:long) or osgeo:asGeoJSON">
 					<xforms:bind nodeset="@rdf:about" required="true()" type="xs:anyURI"></xforms:bind>
-					<xforms:bind nodeset="geo:lat" type="xs:decimal" constraint="(number(.) &gt; -180 and number(.) &lt; 180)" id="lat-coord"></xforms:bind>
-					<xforms:bind nodeset="geo:long" type="xs:decimal" constraint="(number(.) &gt; -180 and number(.) &lt; 180)"></xforms:bind>
+					<xforms:bind nodeset="geo:lat" type="xs:decimal"
+						constraint="(number(.) &gt; -180 and number(.) &lt; 180)" id="lat-coord"></xforms:bind>
+					<xforms:bind nodeset="geo:long" type="xs:decimal"
+						constraint="(number(.) &gt; -180 and number(.) &lt; 180)"></xforms:bind>
 					<xforms:bind nodeset="osgeo:asGeoJSON" constraint="string-length(.) &gt; 0"></xforms:bind>
 					<!-- @rdf:resource -->
-					<xforms:bind nodeset="//@rdf:resource" required="true()" type="xs:anyURI"></xforms:bind>
+					<xforms:bind nodeset="//@rdf:resource" required="true()" type="xs:anyURI"
+					></xforms:bind>
 				</xforms:bind>
 				<xforms:bind nodeset="org:Membership">
 					<!-- forbid duplicate URIs for membership -->
@@ -405,12 +465,14 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 					<xforms:bind nodeset="nmo:hasStartDate" type="xs:gYear" required="true()"></xforms:bind>
 					<xforms:bind nodeset="nmo:hasEndDate" type="xs:gYear" required="true()"></xforms:bind>
 					<!-- @rdf:resource -->
-					<xforms:bind nodeset="//@rdf:resource" required="true()" type="xs:anyURI"></xforms:bind>
+					<xforms:bind nodeset="//@rdf:resource" required="true()" type="xs:anyURI"
+					></xforms:bind>
 				</xforms:bind>
 			</xforms:bind>
 
 			<xforms:bind nodeset="instance('control-instance')">
-				<xforms:bind nodeset="id" required="true()" type="xs:anyURI" readonly="../new_id != true()"></xforms:bind>
+				<xforms:bind nodeset="id" required="true()" type="xs:anyURI"
+					readonly="../new_id != true()"></xforms:bind>
 				<xforms:bind nodeset="new_id" type="xs:boolean"></xforms:bind>
 				<xforms:bind nodeset="delete-success" type="xs:boolean"></xforms:bind>
 				<xforms:bind nodeset="geo">
@@ -420,18 +482,21 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 				<xforms:bind nodeset="fons">
 					<xforms:bind nodeset="fon" required="true()"></xforms:bind>
 				</xforms:bind>
-				<xforms:bind id="save-trigger" nodeset="save-trigger" type="xs:boolean" readonly=". != true()"></xforms:bind>
+				<xforms:bind id="save-trigger" nodeset="save-trigger" type="xs:boolean"
+					readonly=". != true()"></xforms:bind>
 			</xforms:bind>
 
 			<xforms:bind id="deprecate-trigger" readonly="instance('doc')/*[1]/dcterms:isReplacedBy"></xforms:bind>
 
 			<!-- **************** DYNAMIC VALIDATION CONTROLS ********************** -->
 			<xforms:action ev:event="xxforms-invalid" ev:observer="doc">
-				<xforms:setvalue ref="instance('control-instance')/save-trigger" value="false()"></xforms:setvalue>
+				<xforms:setvalue ref="instance('control-instance')/save-trigger" value="false()"
+				></xforms:setvalue>
 			</xforms:action>
 
 			<xforms:action ev:event="xxforms-valid" ev:observer="doc">
-				<xforms:setvalue ref="instance('control-instance')/save-trigger" value="true()"></xforms:setvalue>
+				<xforms:setvalue ref="instance('control-instance')/save-trigger" value="true()"
+				></xforms:setvalue>
 			</xforms:action>
 
 			<!-- ************* QUERY ATOM **********************-->
@@ -439,63 +504,85 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 			<xforms:submission id="query-feed" serialization="none" method="get"
 				action="/nomisma/feed/?q=type_uri:&#x022;{encode-for-uri(instance('control-instance')/atom-type)}&#x022;+{instance('control-instance')/atom-search}&amp;sort=prefLabel+asc"
 				instance="feed" replace="instance">
-				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to communicate with nomisma.org Atom feed.</xforms:message>
+				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to communicate
+					with nomisma.org Atom feed.</xforms:message>
 			</xforms:submission>
 
 			<!-- ************* SPARQL SUBMISSIONS **********************-->
 			<!-- SPARQL queries -->
-			<xforms:submission id="submit-sparqlQuery" action="{instance('config')/sparql_query}?query={encode-for-uri(instance('sparqlQuery'))}&amp;output=xml" ref="instance('sparqlResponse')"
-				replace="instance" method="get">
-				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL query failed.</xforms:message>
+			<xforms:submission id="submit-sparqlQuery"
+				action="{instance('config')/sparql_query}?query={encode-for-uri(instance('sparqlQuery'))}&amp;output=xml"
+				ref="instance('sparqlResponse')" replace="instance" method="get">
+				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL query
+					failed.</xforms:message>
 			</xforms:submission>
 
-			<xforms:submission id="delete-graph" action="{instance('config')/sparql_update}" ref="instance('sparqlUpdate')" serialization="text/plain" replace="none" method="post"
-				mediatype="application/sparql-update">
+			<xforms:submission id="delete-graph" action="{instance('config')/sparql_update}"
+				ref="instance('sparqlUpdate')" serialization="text/plain" replace="none"
+				method="post" mediatype="application/sparql-update">
 				<xforms:action ev:event="xforms-submit-error">
 					<xforms:message level="modal">SPARQL update failed.</xforms:message>
-					<xforms:setvalue ref="instance('control-instance')/delete-success" value="false()"></xforms:setvalue>
+					<xforms:setvalue ref="instance('control-instance')/delete-success"
+						value="false()"></xforms:setvalue>
 				</xforms:action>
 				<xforms:action ev:event="xforms-submit-done">
-					<xforms:setvalue ref="instance('control-instance')/delete-success" value="true()"></xforms:setvalue>
+					<xforms:setvalue ref="instance('control-instance')/delete-success"
+						value="true()"></xforms:setvalue>
 				</xforms:action>
 			</xforms:submission>
 
-			<xforms:submission id="post-new" action="{instance('config')/sparql_store}?default" ref="instance('doc')" replace="none" method="post" mediatype="application/rdf+xml">
-				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Successfully posted to endpoint.</xforms:setvalue>
-				<xforms:message ev:event="xforms-submit-error" level="modal">Post to endpoint failed.</xforms:message>
+			<xforms:submission id="post-new" action="{instance('config')/sparql_store}?default"
+				ref="instance('doc')" replace="none" method="post" mediatype="application/rdf+xml">
+				<xforms:setvalue ev:event="xforms-submit-done"
+					ref="instance('control-instance')/status">Successfully posted to
+					endpoint.</xforms:setvalue>
+				<xforms:message ev:event="xforms-submit-error" level="modal">Post to endpoint
+					failed.</xforms:message>
 			</xforms:submission>
 
 			<!-- ************************* SOLR SUBMISSIONS ************************** -->
 			<!-- post instance to Solr -->
-			<xforms:submission id="post-solr-doc" action="{instance('config')/solr_published}update" ref="instance('addIndex')" instance="addIndex" replace="instance" method="post">
-				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
+			<xforms:submission id="post-solr-doc" action="{instance('config')/solr_published}update"
+				ref="instance('addIndex')" instance="addIndex" replace="instance" method="post">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to
+					Solr. Index may be offline or URL is incorrect.</xforms:message>
 				<xforms:action ev:event="xforms-submit-done">
-					<xforms:setvalue ref="instance('control-instance')/status">Document successfully saved to Solr.</xforms:setvalue>
+					<xforms:setvalue ref="instance('control-instance')/status">Document successfully
+						saved to Solr.</xforms:setvalue>
 					<xforms:send submission="submit-commit"></xforms:send>
 				</xforms:action>
 
 			</xforms:submission>
 
-			<xforms:submission id="delete-id-from-solr" action="{instance('config')/solr_published}update" ref="instance('deleteId')" instance="deleteId" replace="instance" method="post">
+			<xforms:submission id="delete-id-from-solr"
+				action="{instance('config')/solr_published}update" ref="instance('deleteId')"
+				instance="deleteId" replace="instance" method="post">
 				<xforms:action ev:event="xforms-submit-error">
-					<xforms:message level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
-					<xforms:setvalue ref="instance('control-instance')/delete-success" value="false()"></xforms:setvalue>
+					<xforms:message level="modal">Data Failed to POST to Solr. Index may be offline
+						or URL is incorrect.</xforms:message>
+					<xforms:setvalue ref="instance('control-instance')/delete-success"
+						value="false()"></xforms:setvalue>
 				</xforms:action>
 				<xforms:action ev:event="xforms-submit-done">
 					<xforms:send submission="submit-commit"></xforms:send>
-					<xforms:setvalue ref="instance('control-instance')/status">Document successfully deleted from Solr.</xforms:setvalue>
-					<xforms:setvalue ref="instance('control-instance')/delete-success" value="true()"></xforms:setvalue>
+					<xforms:setvalue ref="instance('control-instance')/status">Document successfully
+						deleted from Solr.</xforms:setvalue>
+					<xforms:setvalue ref="instance('control-instance')/delete-success"
+						value="true()"></xforms:setvalue>
 				</xforms:action>
 			</xforms:submission>
 
 			<!-- send commit -->
-			<xforms:submission id="submit-commit" action="{instance('config')/solr_published}update" ref="instance('sendCommit')" instance="sendCommit" replace="none" method="post">
+			<xforms:submission id="submit-commit" action="{instance('config')/solr_published}update"
+				ref="instance('sendCommit')" instance="sendCommit" replace="none" method="post">
 				<xforms:action ev:event="xforms-submit-error">
 					<xforms:message level="modal">Failed to commit to Solr index.</xforms:message>
-					<xforms:setvalue ref="instance('control-instance')/delete-success" value="false()"></xforms:setvalue>
+					<xforms:setvalue ref="instance('control-instance')/delete-success"
+						value="false()"></xforms:setvalue>
 				</xforms:action>
 				<xforms:action ev:event="xforms-submit-done">
-					<xforms:setvalue ref="instance('control-instance')/delete-success" value="true()"></xforms:setvalue>
+					<xforms:setvalue ref="instance('control-instance')/delete-success"
+						value="true()"></xforms:setvalue>
 				</xforms:action>
 			</xforms:submission>
 		</xforms:model>
@@ -512,15 +599,18 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
-					<p><a href="../"><span class="glyphicon glyphicon-arrow-left"></span>Return to Admin</a></p>
+					<p><a href="../"><span class="glyphicon glyphicon-arrow-left"></span>Return to
+							Admin</a></p>
 					<xforms:group ref=".[string-length(instance('control-instance')/status) &gt; 0]">
 						<div class="bg-info alert-box">
 							<span class="glyphicon glyphicon-info-sign"></span>
 							<strong>Status:</strong>
-							<xforms:output ref="instance('control-instance')/status"></xforms:output>
+							<xforms:output ref="instance('control-instance')/status"
+							></xforms:output>
 						</div>
 					</xforms:group>
-					<xforms:group ref=".[count(instance('doc')/*[1]/skos:prefLabel/@xml:lang) &gt; count(instance('doc')/*[1]/skos:prefLabel/@xml:lang[not(preceding::skos:prefLabel/@xml:lang = .)])]">
+					<xforms:group
+						ref=".[count(instance('doc')/*[1]/skos:prefLabel/@xml:lang) &gt; count(instance('doc')/*[1]/skos:prefLabel/@xml:lang[not(preceding::skos:prefLabel/@xml:lang = .)])]">
 						<div class="bg-danger alert-box">
 							<span class="glyphicon glyphicon-exclamation-sign"></span>
 							<strong>Alert:</strong> Preferred label languages must be unique. </div>
@@ -534,24 +624,29 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 					<xforms:group ref=".[instance('doc')/child::node()]">
 						<div class="submission">
 							<xforms:trigger bind="save-trigger">
-								<xforms:label><span class="glyphicon glyphicon-floppy-disk"></span>Save</xforms:label>
+								<xforms:label><span class="glyphicon glyphicon-floppy-disk"
+									></span>Save</xforms:label>
 								<xforms:action ev:event="DOMActivate">
 									<!-- save file back to disk -->
-									<xforms:setvalue ref="instance('save-config')/url" value="concat('file://', instance('config')/id_path, '/',  instance('control-instance')/id, '.rdf')"></xforms:setvalue>
+									<xforms:setvalue ref="instance('save-config')/url"
+										value="concat('file://', instance('config')/id_path, '/',  instance('control-instance')/id, '.rdf')"></xforms:setvalue>
 									<xforms:insert nodeset="instance('dump')"
 										origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('doc'), instance('save-config')), 'data')"></xforms:insert>
 									<!-- delete graphs from triplestore, then repost updates -->
 									<xforms:action xxforms:iterate="instance('doc')/*">
-										<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-template'), 'URI', context()/@rdf:about)"></xforms:setvalue>
+										<xforms:setvalue ref="instance('sparqlUpdate')"
+											value="replace(instance('sparqlUpdate-template'), 'URI', context()/@rdf:about)"></xforms:setvalue>
 										<xforms:send submission="delete-graph"></xforms:send>
 									</xforms:action>
 									<xforms:send submission="post-new"></xforms:send>
 									<!-- post to Solr, if it isn't deprecated. otherwise delete from Solr -->
 									<xforms:action if="instance('doc')/*[1]/dcterms:isReplacedBy">
-										<xforms:setvalue ref="instance('deleteId')/id" value="instance('control-instance')/id"></xforms:setvalue>
+										<xforms:setvalue ref="instance('deleteId')/id"
+											value="instance('control-instance')/id"></xforms:setvalue>
 										<xforms:send submission="delete-id-from-solr"></xforms:send>
 									</xforms:action>
-									<xforms:action if="not(instance('doc')/*[1]/dcterms:isReplacedBy)">
+									<xforms:action
+										if="not(instance('doc')/*[1]/dcterms:isReplacedBy)">
 										<xforms:insert nodeset="instance('addIndex')"
 											origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/views/serializations/rdf/solr.xpl', 'data', instance('doc'), 'data')"></xforms:insert>
 										<xforms:send submission="post-solr-doc"></xforms:send>
@@ -559,7 +654,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 								</xforms:action>
 							</xforms:trigger>
 							<xforms:trigger bind="deprecate-trigger">
-								<xforms:label><span class="glyphicon glyphicon-remove-sign"></span>Deprecate</xforms:label>
+								<xforms:label><span class="glyphicon glyphicon-remove-sign"
+									></span>Deprecate</xforms:label>
 								<xforms:action ev:event="DOMActivate">
 									<!-- show deprecate window -->
 									<xforms:var name="type" select="instance('doc')/*[1]/name()"></xforms:var>
@@ -582,30 +678,42 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 							<li>
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
-										<span class="glyphicon glyphicon-plus"></span>Preferred Label</xforms:label>
-									<xforms:insert ev:event="DOMActivate" origin="instance('prefLabel-template')" context="." nodeset="./child::node()[last()]"></xforms:insert>
+										<span class="glyphicon glyphicon-plus"></span>Preferred
+										Label</xforms:label>
+									<xforms:insert ev:event="DOMActivate"
+										origin="instance('prefLabel-template')" context="."
+										nodeset="./child::node()[last()]"></xforms:insert>
 								</xforms:trigger>
 							</li>
 							<li>
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
-										<span class="glyphicon glyphicon-plus"></span>Alternate Label</xforms:label>
-									<xforms:insert ev:event="DOMActivate" origin="instance('altLabel-template')" context="." nodeset="./child::node()[last()]"></xforms:insert>
+										<span class="glyphicon glyphicon-plus"></span>Alternate
+										Label</xforms:label>
+									<xforms:insert ev:event="DOMActivate"
+										origin="instance('altLabel-template')" context="."
+										nodeset="./child::node()[last()]"></xforms:insert>
 								</xforms:trigger>
 							</li>
 							<li>
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
-										<span class="glyphicon glyphicon-plus"></span>Definition</xforms:label>
-									<xforms:insert ev:event="DOMActivate" origin="instance('definition-template')" context="." node="./child::node()[last()]"></xforms:insert>
+										<span class="glyphicon glyphicon-plus"
+										></span>Definition</xforms:label>
+									<xforms:insert ev:event="DOMActivate"
+										origin="instance('definition-template')" context="."
+										node="./child::node()[last()]"></xforms:insert>
 								</xforms:trigger>
 							</li>
 							<xforms:group ref=".[count(skos:scopeNote) = 0]">
 								<li>
 									<xforms:trigger appearance="minimal">
 										<xforms:label>
-											<span class="glyphicon glyphicon-plus"></span>Scope Note</xforms:label>
-										<xforms:insert ev:event="DOMActivate" origin="instance('scopeNote-template')" context="." node="./child::node()[last()]"></xforms:insert>
+											<span class="glyphicon glyphicon-plus"></span>Scope
+											Note</xforms:label>
+										<xforms:insert ev:event="DOMActivate"
+											origin="instance('scopeNote-template')" context="."
+											node="./child::node()[last()]"></xforms:insert>
 									</xforms:trigger>
 								</li>
 							</xforms:group>
@@ -613,26 +721,35 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 							<li>
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
-										<span class="glyphicon glyphicon-plus"></span>Exact Match</xforms:label>
-									<xforms:insert ev:event="DOMActivate" origin="instance('exactMatch-template')" context="." nodeset="./child::node()[last()]"></xforms:insert>
+										<span class="glyphicon glyphicon-plus"></span>Exact
+										Match</xforms:label>
+									<xforms:insert ev:event="DOMActivate"
+										origin="instance('exactMatch-template')" context="."
+										nodeset="./child::node()[last()]"></xforms:insert>
 								</xforms:trigger>
 							</li>
 							<li>
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
-										<span class="glyphicon glyphicon-plus"></span>Related Match</xforms:label>
-									<xforms:insert ev:event="DOMActivate" origin="instance('relatedMatch-template')" context="." nodeset="./child::node()[last()]"></xforms:insert>
+										<span class="glyphicon glyphicon-plus"></span>Related
+										Match</xforms:label>
+									<xforms:insert ev:event="DOMActivate"
+										origin="instance('relatedMatch-template')" context="."
+										nodeset="./child::node()[last()]"></xforms:insert>
 								</xforms:trigger>
 							</li>
 							<xforms:group ref=".[not($type='foaf:Person')]">
 								<li>
 									<xforms:trigger appearance="minimal">
 										<xforms:label>
-											<span class="glyphicon glyphicon-plus"></span><xforms:output value="if ($type='nmo:Mint' or $type='nmo:Region') then 'Parent Region' else 'Broader Concept'"
+											<span class="glyphicon glyphicon-plus"
+												></span><xforms:output
+												value="if ($type='nmo:Mint' or $type='nmo:Region') then 'Parent Region' else 'Broader Concept'"
 											></xforms:output>
 										</xforms:label>
 										<xforms:action ev:event="DOMActivate">
-											<xforms:setvalue ref="instance('control-instance')/atom-type"
+											<xforms:setvalue
+												ref="instance('control-instance')/atom-type"
 												value="if ($type='nmo:Mint') then concat(namespace-uri(instance('doc')/*[1]), 'Region') else concat(namespace-uri(instance('doc')/*[1]), substring-after($type, ':'))"></xforms:setvalue>
 											<xxforms:show dialog="broader-dialog"></xxforms:show>
 										</xforms:action>
@@ -642,8 +759,11 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 							<li>
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
-										<span class="glyphicon glyphicon-plus"></span>See Also</xforms:label>
-									<xforms:insert ev:event="DOMActivate" origin="instance('seeAlso-template')" context="." nodeset="./child::node()[last()]"></xforms:insert>
+										<span class="glyphicon glyphicon-plus"></span>See
+										Also</xforms:label>
+									<xforms:insert ev:event="DOMActivate"
+										origin="instance('seeAlso-template')" context="."
+										nodeset="./child::node()[last()]"></xforms:insert>
 								</xforms:trigger>
 							</li>
 							<li>
@@ -654,8 +774,11 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 									<li>
 										<xforms:trigger appearance="minimal">
 											<xforms:label>
-												<span class="glyphicon glyphicon-plus"></span>Thumbnail</xforms:label>
-											<xforms:insert ev:event="DOMActivate" origin="instance('thumbnail-template')" context="." nodeset="./child::node()[last()]"></xforms:insert>
+												<span class="glyphicon glyphicon-plus"
+												></span>Thumbnail</xforms:label>
+											<xforms:insert ev:event="DOMActivate"
+												origin="instance('thumbnail-template')" context="."
+												nodeset="./child::node()[last()]"></xforms:insert>
 										</xforms:trigger>
 									</li>
 
@@ -664,30 +787,40 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 							<li>
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
-										<span class="glyphicon glyphicon-plus"></span>Field of Numismatics</xforms:label>
-									<xforms:insert ev:event="DOMActivate" context="instance('control-instance')/fons" nodeset="./child::node()[last()]" origin="xforms:element('fon', '')"
-									></xforms:insert>
+										<span class="glyphicon glyphicon-plus"></span>Field of
+										Numismatics</xforms:label>
+									<xforms:insert ev:event="DOMActivate"
+										context="instance('control-instance')/fons"
+										nodeset="./child::node()[last()]"
+										origin="xforms:element('fon', '')"></xforms:insert>
 								</xforms:trigger>
 							</li>
-							<xforms:group ref=".[$type='nmo:Mint' or $type='nmo:Region'][not(instance('doc')/geo:SpatialThing)]">
+							<xforms:group
+								ref=".[$type='nmo:Mint' or $type='nmo:Region'][not(instance('doc')/geo:SpatialThing)]">
 								<li>
 									<h4>Geography</h4>
 								</li>
 								<li>
 									<xforms:trigger appearance="minimal">
 										<xforms:label>
-											<span class="glyphicon glyphicon-plus"></span>Coordinates</xforms:label>
+											<span class="glyphicon glyphicon-plus"
+											></span>Coordinates</xforms:label>
 										<xforms:action ev:event="DOMActivate">
 											<!-- insert geo:location -->
-											<xforms:insert context="." nodeset="./child::node()[last()]"
+											<xforms:insert context="."
+												nodeset="./child::node()[last()]"
 												origin="xforms:element('geo:location', (xforms:attribute('rdf:resource', concat('http://nomisma.org/id/', instance('control-instance')/id, '#this')), ''))"></xforms:insert>
 											<!-- insert SpatialThing -->
-											<xforms:insert context="instance('doc')" nodeset="./child::node()[last()]"
+											<xforms:insert context="instance('doc')"
+												nodeset="./child::node()[last()]"
 												origin="xforms:element('geo:SpatialThing', (xforms:attribute('rdf:about', concat('http://nomisma.org/id/', instance('control-instance')/id, '#this')), ''))"></xforms:insert>
 											<!-- insert dcterms:isPartOf if there is a skos:broader -->
-											<xforms:insert context="instance('doc')/geo:SpatialThing" nodeset="./child::node()[last()]"
+											<xforms:insert
+												context="instance('doc')/geo:SpatialThing"
+												nodeset="./child::node()[last()]"
 												origin="xforms:element('dcterms:isPartOf', (xforms:attribute('rdf:resource', concat(instance('doc')/*[1]/skos:broader/@rdf:resource, '#this')), ''))"
-												if="instance('doc')/*[1]/skos:broader"></xforms:insert>
+												if="instance('doc')/*[1]/skos:broader"
+											></xforms:insert>
 										</xforms:action>
 									</xforms:trigger>
 								</li>
@@ -699,16 +832,23 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 								<li>
 									<xforms:trigger appearance="minimal">
 										<xforms:label>
-											<span class="glyphicon glyphicon-plus"></span>Role</xforms:label>
+											<span class="glyphicon glyphicon-plus"
+											></span>Role</xforms:label>
 										<xforms:action ev:event="DOMActivate">
 											<!-- insert geo:location -->
-											<xforms:insert context="." nodeset="./child::node()[last()]" origin="xforms:element('org:hasMembership', (xforms:attribute('rdf:resource', ''), ''))"></xforms:insert>
+											<xforms:insert context="."
+												nodeset="./child::node()[last()]"
+												origin="xforms:element('org:hasMembership', (xforms:attribute('rdf:resource', ''), ''))"></xforms:insert>
 											<!-- insert org:Membership -->
-											<xforms:insert context="instance('doc')" nodeset="./child::node()[last()]"
+											<xforms:insert context="instance('doc')"
+												nodeset="./child::node()[last()]"
 												origin="xforms:element('org:Membership', (xforms:attribute('rdf:about', ''), ''))"></xforms:insert>
 											<!-- insert org:role into the last org:Membership -->
-											<xforms:insert context="instance('doc')/org:Membership[last()]" nodeset="./child::node()[last()]"
-												origin="xforms:element('org:role', (xforms:attribute('rdf:resource', ''), ''))"></xforms:insert>
+											<xforms:insert
+												context="instance('doc')/org:Membership[last()]"
+												nodeset="./child::node()[last()]"
+												origin="xforms:element('org:role', (xforms:attribute('rdf:resource', ''), ''))"
+											></xforms:insert>
 										</xforms:action>
 									</xforms:trigger>
 								</li>
@@ -724,17 +864,23 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 							<xforms:alert>Required</xforms:alert>
 						</xforms:input>
 						<!-- display trigger to set the @rdf:about of the concept for new ids in order to proceed with class selection -->
-						<xforms:group ref=".[string-length(instance('control-instance')/id) &gt; 0 and instance('control-instance')/new_id = true()]">
+						<xforms:group
+							ref=".[string-length(instance('control-instance')/id) &gt; 0 and instance('control-instance')/new_id = true()]">
 							<xforms:trigger>
 								<xforms:label>Proceed</xforms:label>
 								<xforms:action ev:event="DOMActivate">
-									<xforms:setvalue ref="instance('control-instance')/nomisma_uri" value="concat('http://nomisma.org/id/', instance('control-instance')/id)"></xforms:setvalue>
+									<xforms:setvalue ref="instance('control-instance')/nomisma_uri"
+										value="concat('http://nomisma.org/id/', instance('control-instance')/id)"
+									></xforms:setvalue>
 								</xforms:action>
 							</xforms:trigger>
 						</xforms:group>
 						<!-- display a clickable link to the concept if it is not a new id -->
-						<xforms:group ref=".[string-length(instance('control-instance')/id) &gt; 0 and instance('control-instance')/new_id = false()]">
-							<a href="http://nomisma.org/id/{instance('control-instance')/id}"> (<xforms:output ref="concat('http://nomisma.org/id/', instance('control-instance')/id)"
+						<xforms:group
+							ref=".[string-length(instance('control-instance')/id) &gt; 0 and instance('control-instance')/new_id = false()]">
+							<a href="http://nomisma.org/id/{instance('control-instance')/id}">
+									(<xforms:output
+									ref="concat('http://nomisma.org/id/', instance('control-instance')/id)"
 								></xforms:output>)</a>
 						</xforms:group>
 					</div>
@@ -745,7 +891,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 							</xforms:output>
 						</div>
 					</xforms:group>
-					<xforms:group ref=".[not(instance('doc')/child::node()) and string-length(instance('control-instance')/nomisma_uri) != 0]">
+					<xforms:group
+						ref=".[not(instance('doc')/child::node()) and string-length(instance('control-instance')/nomisma_uri) != 0]">
 						<h3>Select Class</h3>
 						<div>
 							<xforms:select1 ref="instance('control-instance')/type">
@@ -762,19 +909,27 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 								<xforms:action ev:event="xforms-value-changed">
 									<xforms:var name="type" select="."></xforms:var>
 									<!-- create resource description -->
-									<xforms:insert context="instance('doc')" origin="xforms:element($type, xforms:attribute('rdf:about', instance('control-instance')/nomisma_uri))"></xforms:insert>
+									<xforms:insert context="instance('doc')"
+										origin="xforms:element($type, xforms:attribute('rdf:about', instance('control-instance')/nomisma_uri))"></xforms:insert>
 									<!-- insert skos:prefLabel and skos:definition with @xml:lang='en'-->
-									<xforms:insert context="instance('doc')/*[1]" origin="xforms:element('skos:prefLabel', xforms:attribute('xml:lang', 'en'))"></xforms:insert>
-									<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]" origin="xforms:element('skos:definition', xforms:attribute('xml:lang', 'en'))"></xforms:insert>
+									<xforms:insert context="instance('doc')/*[1]"
+										origin="xforms:element('skos:prefLabel', xforms:attribute('xml:lang', 'en'))"></xforms:insert>
+									<xforms:insert context="instance('doc')/*[1]"
+										nodeset="./child::node()[last()]"
+										origin="xforms:element('skos:definition', xforms:attribute('xml:lang', 'en'))"></xforms:insert>
 									<!-- insert rdf:type as skos:Concept -->
-									<xforms:insert context="instance('doc')/*[1]" origin="xforms:element('rdf:type', xforms:attribute('rdf:resource', 'http://www.w3.org/2004/02/skos/core#Concept'))"></xforms:insert>
+									<xforms:insert context="instance('doc')/*[1]"
+										origin="xforms:element('rdf:type', xforms:attribute('rdf:resource', 'http://www.w3.org/2004/02/skos/core#Concept'))"></xforms:insert>
 									<!-- insert related foaf:webpage for a collection -->
 									<xforms:action if="$type='nmo:Collection'">
-										<xforms:insert context="instance('doc')/nmo:Collection" nodeset="./child::node()[last()]"
-											origin="xforms:element('foaf:homepage', xforms:attribute('rdf:resource', ''))"></xforms:insert>
+										<xforms:insert context="instance('doc')/nmo:Collection"
+											nodeset="./child::node()[last()]"
+											origin="xforms:element('foaf:homepage', xforms:attribute('rdf:resource', ''))"
+										></xforms:insert>
 									</xforms:action>
 									<!-- set new_id to false() to disable id editing -->
-									<xforms:setvalue ref="instance('control-instance')/new_id">false</xforms:setvalue>
+									<xforms:setvalue ref="instance('control-instance')/new_id"
+										>false</xforms:setvalue>
 								</xforms:action>
 							</xforms:select1>
 						</div>
@@ -784,7 +939,9 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 							<xforms:var name="type" select="name()"></xforms:var>
 							<h3>
 								<xforms:output ref="instance('classes')/class[type=$type]/label"></xforms:output>
-								<small> (<xforms:output ref="instance('classes')/class[type=$type]/type"></xforms:output>)</small>
+								<small> (<xforms:output
+										ref="instance('classes')/class[type=$type]/type"
+									></xforms:output>)</small>
 							</h3>
 							<div class="subsection">
 								<h4>Labels and Definitions</h4>
@@ -803,13 +960,14 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 												<xforms:label ref="."></xforms:label>
 												<xforms:value ref="@value"></xforms:value>
 											</xforms:itemset>
-											<xforms:alert>Required; English label most occur once.</xforms:alert>
+											<xforms:alert>Required; English label most occur
+												once.</xforms:alert>
 										</xforms:select1>
 										<xforms:group ref=".[count(.) &gt; 1]">
 											<xforms:trigger appearance="minimal">
 												<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
 												<xforms:label>
-													<span class="glyphicon glyphicon-remove"></span>
+												<span class="glyphicon glyphicon-remove"></span>
 												</xforms:label>
 											</xforms:trigger>
 										</xforms:group>
@@ -855,13 +1013,14 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 												<xforms:label ref="."></xforms:label>
 												<xforms:value ref="@value"></xforms:value>
 											</xforms:itemset>
-											<xforms:alert>Required; English label most occur once.</xforms:alert>
+											<xforms:alert>Required; English label most occur
+												once.</xforms:alert>
 										</xforms:select1>
 										<xforms:group ref=".[count(.) &gt; 1]">
 											<xforms:trigger appearance="minimal">
 												<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
 												<xforms:label>
-													<span class="glyphicon glyphicon-remove"></span>
+												<span class="glyphicon glyphicon-remove"></span>
 												</xforms:label>
 											</xforms:trigger>
 										</xforms:group>
@@ -882,7 +1041,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 												<xforms:label ref="."></xforms:label>
 												<xforms:value ref="@value"></xforms:value>
 											</xforms:itemset>
-											<xforms:alert>Required; English label most occur once.</xforms:alert>
+											<xforms:alert>Required; English label most occur
+												once.</xforms:alert>
 										</xforms:select1>
 										<xforms:trigger appearance="minimal">
 											<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
@@ -903,7 +1063,10 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										<xforms:trigger appearance="minimal">
 											<xforms:action ev:event="DOMActivate">
 												<xforms:delete context="."></xforms:delete>
-												<xforms:delete context="instance('doc')/geo:SpatialThing/dcterms:isPartOf" if="instance('doc')/geo:SpatialThing"></xforms:delete>
+												<xforms:delete
+												context="instance('doc')/geo:SpatialThing/dcterms:isPartOf"
+												if="instance('doc')/geo:SpatialThing"
+												></xforms:delete>
 											</xforms:action>
 											<xforms:label>
 												<span class="glyphicon glyphicon-remove"></span>
@@ -972,14 +1135,20 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											<xforms:action ev:event="xforms-value-changed">
 												<!-- if there are more entries in fon than dcterms:isPartOf, then insert new isPartOf -->
 												<xforms:action
-													if="count(instance('control-instance')/fons/fon) &gt; count(instance('doc')/*[1]/dcterms:isPartOf[contains(@rdf:resource, '_numismatics')])">
-													<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]" origin="instance('isPartOf-template')"></xforms:insert>
-													<xforms:setvalue ref="instance('doc')/*[1]/dcterms:isPartOf[last()]/@rdf:resource" value="$uri"></xforms:setvalue>
+												if="count(instance('control-instance')/fons/fon) &gt; count(instance('doc')/*[1]/dcterms:isPartOf[contains(@rdf:resource, '_numismatics')])">
+												<xforms:insert context="instance('doc')/*[1]"
+												nodeset="./child::node()[last()]"
+												origin="instance('isPartOf-template')"></xforms:insert>
+												<xforms:setvalue
+												ref="instance('doc')/*[1]/dcterms:isPartOf[last()]/@rdf:resource"
+												value="$uri"></xforms:setvalue>
 												</xforms:action>
 												<!-- otherwise, change the value of the dcterms:isPartOf -->
-												<xforms:action if="count(instance('control-instance')/fons/fon) = count(instance('doc')/*[1]/dcterms:isPartOf[contains(@rdf:resource, '_numismatics')])">
-													<xforms:setvalue ref="instance('doc')/*[1]/dcterms:isPartOf[contains(@rdf:resource, '_numismatics') and position() = $position]/@rdf:resource"
-														value="$uri"></xforms:setvalue>
+												<xforms:action
+												if="count(instance('control-instance')/fons/fon) = count(instance('doc')/*[1]/dcterms:isPartOf[contains(@rdf:resource, '_numismatics')])">
+												<xforms:setvalue
+												ref="instance('doc')/*[1]/dcterms:isPartOf[contains(@rdf:resource, '_numismatics') and position() = $position]/@rdf:resource"
+												value="$uri"></xforms:setvalue>
 												</xforms:action>
 											</xforms:action>
 										</xforms:select1>
@@ -990,7 +1159,9 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											<xforms:action ev:event="DOMActivate">
 												<!-- only delete the matching dcterms:isPartOf if there is a value -->
 												<xforms:action if="string-length($uri) &gt; 0">
-													<xforms:delete context="instance('doc')/*[1]/dcterms:isPartOf[@rdf:resource=$uri and position()=$position]"></xforms:delete>
+												<xforms:delete
+												context="instance('doc')/*[1]/dcterms:isPartOf[@rdf:resource=$uri and position()=$position]"
+												></xforms:delete>
 												</xforms:action>
 												<xforms:delete context="."></xforms:delete>
 											</xforms:action>
@@ -1046,39 +1217,53 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										<h3>Geography <small>
 												<xforms:output value="concat('(', @rdf:about, ')')"></xforms:output>
 												<xforms:trigger appearance="minimal">
-													<xforms:action ev:event="DOMActivate">
-														<xforms:delete nodeset="instance('doc')/*[1]/geo:location"></xforms:delete>
-														<xforms:delete nodeset="."></xforms:delete>
-														<xforms:setvalue ref="instance('control-instance')/geo/type"></xforms:setvalue>
-														<xforms:setvalue ref="instance('control-instance')/geo/hasFeature" value="false()"></xforms:setvalue>
-													</xforms:action>
-													<xforms:label>
-														<span class="glyphicon glyphicon-remove"></span>
-													</xforms:label>
+												<xforms:action ev:event="DOMActivate">
+												<xforms:delete
+												nodeset="instance('doc')/*[1]/geo:location"></xforms:delete>
+												<xforms:delete nodeset="."></xforms:delete>
+												<xforms:setvalue
+												ref="instance('control-instance')/geo/type"></xforms:setvalue>
+												<xforms:setvalue
+												ref="instance('control-instance')/geo/hasFeature"
+												value="false()"></xforms:setvalue>
+												</xforms:action>
+												<xforms:label>
+												<span class="glyphicon glyphicon-remove"></span>
+												</xforms:label>
 												</xforms:trigger>
 											</small>
 										</h3>
-										<xforms:group ref=".[not(geo:lat and geo:long) and not(osgeo:asGeoJSON)]">
+										<xforms:group
+											ref=".[not(geo:lat and geo:long) and not(osgeo:asGeoJSON)]">
 											<div class="bg-danger alert-box">
 												<span class="glyphicon glyphicon-exclamation-sign"></span>
-												<strong>Alert:</strong> Must contain coordinates. </div>
+												<strong>Alert:</strong> Must contain coordinates.
+											</div>
 										</xforms:group>
-										<xforms:group ref=".[child::geo:lat and not(number(geo:lat)) and child::geo:long and not(number(geo:long))]">
+										<xforms:group
+											ref=".[child::geo:lat and not(number(geo:lat)) and child::geo:long and not(number(geo:long))]">
 											<div class="bg-danger alert-box">
 												<span class="glyphicon glyphicon-exclamation-sign"></span>
-												<strong>Alert:</strong> Latitude and Longitude must contain valid coordinates. </div>
+												<strong>Alert:</strong> Latitude and Longitude must
+												contain valid coordinates. </div>
 										</xforms:group>
-										<xforms:group ref=".[child::osgeo:asGeoJSON and not(string(osgeo:asGeoJSON))]">
+										<xforms:group
+											ref=".[child::osgeo:asGeoJSON and not(string(osgeo:asGeoJSON))]">
 											<div class="bg-danger alert-box">
 												<span class="glyphicon glyphicon-exclamation-sign"></span>
-												<strong>Alert:</strong> A polygon must be drawn. </div>
+												<strong>Alert:</strong> A polygon must be drawn.
+											</div>
 										</xforms:group>
 										<div class="trigger_container">
 											<xforms:group ref=".[count(un:hasUncertainty) = 0]">
 												<xforms:trigger appearance="minimal">
-													<xforms:label>
-														<span class="glyphicon glyphicon-plus"></span>Uncertainty</xforms:label>
-													<xforms:insert ev:event="DOMActivate" origin="instance('hasUncertainty-template')" context="." nodeset="./child::node()[last()]"></xforms:insert>
+												<xforms:label>
+												<span class="glyphicon glyphicon-plus"
+												></span>Uncertainty</xforms:label>
+												<xforms:insert ev:event="DOMActivate"
+												origin="instance('hasUncertainty-template')"
+												context="." nodeset="./child::node()[last()]"
+												></xforms:insert>
 												</xforms:trigger>
 											</xforms:group>
 										</div>
@@ -1086,7 +1271,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 								</div>
 								<div class="row">
 									<div class="col-md-4">
-										<xforms:select1 ref="instance('control-instance')/geo/type" appearance="full">
+										<xforms:select1 ref="instance('control-instance')/geo/type"
+											appearance="full">
 											<xforms:item>
 												<xforms:label>point</xforms:label>
 												<xforms:value>point</xforms:value>
@@ -1099,20 +1285,32 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 												<!-- insert elements, if necessary -->
 												<xforms:var name="type" select="."></xforms:var>
 												<xforms:action if="$type='point'">
-													<xforms:delete nodeset="instance('doc')/geo:SpatialThing/osgeo:asGeoJSON"></xforms:delete>
-													<!-- insert geo:lat and geo:long if they do not exist -->
-													<xforms:action if="not(instance('doc')/geo:SpatialThing/geo:lat)">
-														<xforms:insert context="instance('doc')/geo:SpatialThing" origin="instance('long-template')"></xforms:insert>
-														<xforms:insert context="instance('doc')/geo:SpatialThing" origin="instance('lat-template')"></xforms:insert>
-													</xforms:action>
+												<xforms:delete
+												nodeset="instance('doc')/geo:SpatialThing/osgeo:asGeoJSON"></xforms:delete>
+												<!-- insert geo:lat and geo:long if they do not exist -->
+												<xforms:action
+												if="not(instance('doc')/geo:SpatialThing/geo:lat)">
+												<xforms:insert
+												context="instance('doc')/geo:SpatialThing"
+												origin="instance('long-template')"></xforms:insert>
+												<xforms:insert
+												context="instance('doc')/geo:SpatialThing"
+												origin="instance('lat-template')"></xforms:insert>
+												</xforms:action>
 												</xforms:action>
 												<xforms:action if="$type='polygon'">
-													<xforms:delete nodeset="instance('doc')/geo:SpatialThing/geo:lat"></xforms:delete>
-													<xforms:delete nodeset="instance('doc')/geo:SpatialThing/geo:long"></xforms:delete>
-													<!-- insert geo:lat and geo:long if they do not exist -->
-													<xforms:action if="not(instance('doc')/geo:SpatialThing/osgeo:asGeoJSON)">
-														<xforms:insert context="instance('doc')/geo:SpatialThing" origin="instance('asGeoJSON-template')"></xforms:insert>
-													</xforms:action>
+												<xforms:delete
+												nodeset="instance('doc')/geo:SpatialThing/geo:lat"></xforms:delete>
+												<xforms:delete
+												nodeset="instance('doc')/geo:SpatialThing/geo:long"></xforms:delete>
+												<!-- insert geo:lat and geo:long if they do not exist -->
+												<xforms:action
+												if="not(instance('doc')/geo:SpatialThing/osgeo:asGeoJSON)">
+												<xforms:insert
+												context="instance('doc')/geo:SpatialThing"
+												origin="instance('asGeoJSON-template')"
+												></xforms:insert>
+												</xforms:action>
 												</xforms:action>
 												<!-- initialize openlayers -->
 												<xxforms:script>init();</xxforms:script>
@@ -1121,54 +1319,58 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										<xforms:group ref="geo:lat">
 											<div>
 												<xforms:output ref=".">
-													<xforms:label>Latitude</xforms:label>
+												<xforms:label>Latitude</xforms:label>
 												</xforms:output>
 											</div>
 										</xforms:group>
 										<xforms:group ref="geo:long">
 											<div>
 												<xforms:output ref=".">
-													<xforms:label>Longitude</xforms:label>
+												<xforms:label>Longitude</xforms:label>
 												</xforms:output>
 											</div>
 										</xforms:group>
 										<xforms:group ref="osgeo:asGeoJSON">
 											<div>
 												<xforms:output ref=".">
-													<xforms:label>Polygon</xforms:label>
+												<xforms:label>Polygon</xforms:label>
 												</xforms:output>
 											</div>
 										</xforms:group>
 										<xforms:group ref="dcterms:isPartOf">
 											<div>
 												<xforms:output ref="@rdf:resource">
-													<xforms:label>Parent Region</xforms:label>
+												<xforms:label>Parent Region</xforms:label>
 												</xforms:output>
 											</div>
 										</xforms:group>
 										<xforms:group ref="un:hasUncertainty">
 											<div>
 												<xforms:select1 ref="@rdf:resource">
-													<xforms:label>Uncertainty</xforms:label>
-													<xforms:alert>Required</xforms:alert>
-													<xforms:item>
-														<xforms:label>Select...</xforms:label>
-														<xforms:value></xforms:value>
-													</xforms:item>
-													<xforms:itemset nodeset="instance('uncertainty-list')//item">
-														<xforms:label ref="."></xforms:label>
-														<xforms:value ref="@uri"></xforms:value>
-													</xforms:itemset>
+												<xforms:label>Uncertainty</xforms:label>
+												<xforms:alert>Required</xforms:alert>
+												<xforms:item>
+												<xforms:label>Select...</xforms:label>
+												<xforms:value></xforms:value>
+												</xforms:item>
+												<xforms:itemset
+												nodeset="instance('uncertainty-list')//item">
+												<xforms:label ref="."></xforms:label>
+												<xforms:value ref="@uri"></xforms:value>
+												</xforms:itemset>
 												</xforms:select1>
 												<xforms:trigger appearance="minimal">
-													<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
-													<xforms:label><span class="glyphicon glyphicon-remove"></span></xforms:label>
+												<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
+												<xforms:label><span
+												class="glyphicon glyphicon-remove"
+												></span></xforms:label>
 												</xforms:trigger>
 											</div>
 										</xforms:group>
 									</div>
 									<div class="col-md-8">
-										<xforms:group ref=".[string(instance('control-instance')/geo/type)]">
+										<xforms:group
+											ref=".[string(instance('control-instance')/geo/type)]">
 											<div id="map"></div>
 										</xforms:group>
 									</div>
@@ -1185,33 +1387,44 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											<xforms:output value="concat('(', $uri, ')')"></xforms:output>
 											<xforms:trigger appearance="minimal">
 												<xforms:action ev:event="DOMActivate">
-													<xforms:delete nodeset="instance('doc')/*[1]/org:hasMembership[@rdf:resource=$uri]"></xforms:delete>
-													<xforms:delete nodeset="."></xforms:delete>
+												<xforms:delete
+												nodeset="instance('doc')/*[1]/org:hasMembership[@rdf:resource=$uri]"></xforms:delete>
+												<xforms:delete nodeset="."></xforms:delete>
 												</xforms:action>
 												<xforms:label>
-													<span class="glyphicon glyphicon-remove"></span>
+												<span class="glyphicon glyphicon-remove"></span>
 												</xforms:label>
 											</xforms:trigger>
 										</small>
 									</h3>
-									<xforms:group ref=".[count(ancestor::rdf:RDF/org:Membership[@rdf:about=$uri]) != 1]">
+									<xforms:group
+										ref=".[count(ancestor::rdf:RDF/org:Membership[@rdf:about=$uri]) != 1]">
 										<div class="bg-danger alert-box">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
-											<strong>Alert:</strong> A role must only be applied once. </div>
+											<strong>Alert:</strong> A role must only be applied
+											once. </div>
 									</xforms:group>
 									<div class="trigger_container">
 										<xforms:group ref=".[count(nmo:hasStartDate) = 0]">
 											<xforms:trigger appearance="minimal">
 												<xforms:label>
-													<span class="glyphicon glyphicon-plus"></span>Start Date</xforms:label>
-												<xforms:insert ev:event="DOMActivate" origin="instance('hasStartDate-template')" context="." nodeset="./child::node()[last()]"></xforms:insert>
+												<span class="glyphicon glyphicon-plus"
+												></span>Start Date</xforms:label>
+												<xforms:insert ev:event="DOMActivate"
+												origin="instance('hasStartDate-template')"
+												context="." nodeset="./child::node()[last()]"
+												></xforms:insert>
 											</xforms:trigger>
 										</xforms:group>
 										<xforms:group ref=".[count(nmo:hasEndDate) = 0]">
 											<xforms:trigger appearance="minimal">
 												<xforms:label>
-													<span class="glyphicon glyphicon-plus"></span>End Date</xforms:label>
-												<xforms:insert ev:event="DOMActivate" origin="instance('hasEndDate-template')" context="." nodeset="./child::node()[last()]"></xforms:insert>
+												<span class="glyphicon glyphicon-plus"></span>End
+												Date</xforms:label>
+												<xforms:insert ev:event="DOMActivate"
+												origin="instance('hasEndDate-template')"
+												context="." nodeset="./child::node()[last()]"
+												></xforms:insert>
 											</xforms:trigger>
 										</xforms:group>
 									</div>
@@ -1222,52 +1435,63 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 												<xforms:label>Role</xforms:label>
 												<xforms:alert>Required</xforms:alert>
 												<xforms:item>
-													<xforms:label>Select...</xforms:label>
-													<xforms:value></xforms:value>
+												<xforms:label>Select...</xforms:label>
+												<xforms:value></xforms:value>
 												</xforms:item>
-												<xforms:itemset nodeset="instance('role-list')//item">
-													<xforms:label ref="."></xforms:label>
-													<xforms:value ref="@uri"></xforms:value>
+												<xforms:itemset
+												nodeset="instance('role-list')//item">
+												<xforms:label ref="."></xforms:label>
+												<xforms:value ref="@uri"></xforms:value>
 												</xforms:itemset>
 												<!-- when the value of the drop down is changed, update the URI of this object and the org:hasMembership in the parent concept -->
 												<xforms:action ev:event="xforms-value-changed">
-													<xforms:var name="role" select="."></xforms:var>
-													<xforms:setvalue ref="ancestor::org:Membership/@rdf:about" value="concat(ancestor::rdf:RDF/*[1]/@rdf:about, '#', substring-after($role, 'id/'))"></xforms:setvalue>
-													<xforms:setvalue ref="ancestor::rdf:RDF/*[1]/org:hasMembership[position()=$position]/@rdf:resource"
-														value="concat(ancestor::rdf:RDF/*[1]/@rdf:about, '#', substring-after($role, 'id/'))"></xforms:setvalue>
+												<xforms:var name="role" select="."></xforms:var>
+												<xforms:setvalue
+												ref="ancestor::org:Membership/@rdf:about"
+												value="concat(ancestor::rdf:RDF/*[1]/@rdf:about, '#', substring-after($role, 'id/'))"></xforms:setvalue>
+												<xforms:setvalue
+												ref="ancestor::rdf:RDF/*[1]/org:hasMembership[position()=$position]/@rdf:resource"
+												value="concat(ancestor::rdf:RDF/*[1]/@rdf:about, '#', substring-after($role, 'id/'))"
+												></xforms:setvalue>
 												</xforms:action>
 											</xforms:select1>
 										</div>
 									</xforms:group>
 									<!-- start and end date -->
 									<xforms:group ref="nmo:hasStartDate">
-										<xforms:var name="year" select="if (number(.) &lt; 0) then abs(number(.)) + 1 else number(.)"></xforms:var>
+										<xforms:var name="year"
+											select="if (number(.) &lt; 0) then abs(number(.)) + 1 else number(.)"></xforms:var>
 										<div>
 											<xforms:input ref=".">
 												<xforms:label>Start Date</xforms:label>
-												<xforms:alert>Must conform to xsd:gYear</xforms:alert>
+												<xforms:alert>Must conform to
+												xsd:gYear</xforms:alert>
 											</xforms:input>
-											<xforms:output value="if (number(.) &lt; 0) then concat($year, ' B.C.') else concat('A.D. ', $year)"></xforms:output>
+											<xforms:output
+												value="if (number(.) &lt; 0) then concat($year, ' B.C.') else concat('A.D. ', $year)"></xforms:output>
 											<xforms:trigger appearance="minimal">
 												<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
 												<xforms:label>
-													<span class="glyphicon glyphicon-remove"></span>
+												<span class="glyphicon glyphicon-remove"></span>
 												</xforms:label>
 											</xforms:trigger>
 										</div>
 									</xforms:group>
 									<xforms:group ref="nmo:hasEndDate">
-										<xforms:var name="year" select="if (number(.) &lt; 0) then abs(number(.)) + 1 else number(.)"></xforms:var>
+										<xforms:var name="year"
+											select="if (number(.) &lt; 0) then abs(number(.)) + 1 else number(.)"></xforms:var>
 										<div>
 											<xforms:input ref=".">
 												<xforms:label>End Date</xforms:label>
-												<xforms:alert>Must conform to xsd:gYear</xforms:alert>
+												<xforms:alert>Must conform to
+												xsd:gYear</xforms:alert>
 											</xforms:input>
-											<xforms:output value="if (number(.) &lt; 0) then concat($year, ' B.C.') else concat('A.D. ', $year)"></xforms:output>
+											<xforms:output
+												value="if (number(.) &lt; 0) then concat($year, ' B.C.') else concat('A.D. ', $year)"></xforms:output>
 											<xforms:trigger appearance="minimal">
 												<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
 												<xforms:label>
-													<span class="glyphicon glyphicon-remove"></span>
+												<span class="glyphicon glyphicon-remove"></span>
 												</xforms:label>
 											</xforms:trigger>
 										</div>
@@ -1286,7 +1510,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 							<nomisma:dbpedia></nomisma:dbpedia>
 						</xforms:group>
 						<!-- import AAT/TGN/ULAN URIs from Getty -->
-						<xforms:group ref=".[$type='nmo:Denomination' or $type='nmo:Material' or $type='nmo:ObjectType']">
+						<xforms:group
+							ref=".[$type='nmo:Denomination' or $type='nmo:Material' or $type='nmo:ObjectType']">
 							<nomisma:bm></nomisma:bm>
 							<nomisma:getty></nomisma:getty>
 						</xforms:group>
@@ -1294,7 +1519,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 						<xforms:group ref=".[$type='nmo:Mint' or $type='nmo:Region']">
 							<nomisma:bm></nomisma:bm>
 							<nomisma:getty></nomisma:getty>
-							<xforms:group ref=".[not(skos:relatedMatch[contains(@rdf:resource, 'pleiades.stoa.org')])]">
+							<xforms:group
+								ref=".[not(skos:relatedMatch[contains(@rdf:resource, 'pleiades.stoa.org')])]">
 								<nomisma:pleiades></nomisma:pleiades>
 							</xforms:group>
 						</xforms:group>
@@ -1306,7 +1532,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 						</xforms:group>
 					</xforms:group>
 				</div>
-				<xxforms:dialog id="broader-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
+				<xxforms:dialog id="broader-dialog" appearance="full" level="modal" close="true"
+					draggable="true" visible="false">
 					<xforms:label>Broader Concept</xforms:label>
 					<div>
 						<xforms:input ref="instance('control-instance')/atom-search" />
@@ -1322,30 +1549,37 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 						<xforms:group ref=".[count(instance('feed')//atom:entry) &gt; 0]">
 							<h4>Results</h4>
 							<div>
-								<xforms:select1 ref="instance('control-instance')/atom-id" appearance="compact">
+								<xforms:select1 ref="instance('control-instance')/atom-id"
+									appearance="compact">
 									<xforms:itemset nodeset="instance('feed')//atom:entry">
 										<xforms:label ref="atom:title"></xforms:label>
 										<xforms:value ref="atom:id"></xforms:value>
 									</xforms:itemset>
 									<xforms:action ev:event="xforms-value-changed">
-										<xforms:setvalue ref="instance('control-instance')/atom-summary"
-											value="instance('feed')//atom:entry[atom:id = instance('control-instance')/atom-id]/atom:summary"></xforms:setvalue>
+										<xforms:setvalue
+											ref="instance('control-instance')/atom-summary"
+											value="instance('feed')//atom:entry[atom:id = instance('control-instance')/atom-id]/atom:summary"
+										></xforms:setvalue>
 									</xforms:action>
 								</xforms:select1>
 								<xforms:trigger>
 									<xforms:label>Select</xforms:label>
 									<xforms:action ev:event="DOMActivate">
-										<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]"
+										<xforms:insert context="instance('doc')/*[1]"
+											nodeset="./child::node()[last()]"
 											origin="xforms:element('skos:broader', (xforms:attribute('rdf:resource', concat('http://nomisma.org/id/', instance('control-instance')/atom-id)), ''))"></xforms:insert>
 										<!-- insert dcterms:isPartOf into the SpatialThing, if it exists -->
-										<xforms:insert context="instance('doc')/geo:SpatialThing" nodeset="./child::node()[last()]"
+										<xforms:insert context="instance('doc')/geo:SpatialThing"
+											nodeset="./child::node()[last()]"
 											origin="xforms:element('dcterms:isPartOf', (xforms:attribute('rdf:resource', concat('http://nomisma.org/id/', instance('control-instance')/atom-id, '#this')), ''))"
 											if="instance('doc')/geo:SpatialThing"></xforms:insert>
 										<!-- blank atom search nodes and atom feed -->
 										<xforms:delete nodeset="instance('feed')/*"></xforms:delete>
-										<xforms:setvalue ref="instance('control-instance')/atom-search"></xforms:setvalue>
+										<xforms:setvalue
+											ref="instance('control-instance')/atom-search"></xforms:setvalue>
 										<xforms:setvalue ref="instance('control-instance')/atom-id"></xforms:setvalue>
-										<xforms:setvalue ref="instance('control-instance')/atom-summary"></xforms:setvalue>
+										<xforms:setvalue
+											ref="instance('control-instance')/atom-summary"></xforms:setvalue>
 										<xxforms:hide dialog="broader-dialog"></xxforms:hide>
 									</xforms:action>
 								</xforms:trigger>
@@ -1356,12 +1590,14 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 								</xforms:output>
 							</div>
 						</xforms:group>
-						<xforms:group ref=".[count(instance('feed')//atom:entry) = 0 and string(instance('feed')/atom:title)]">
+						<xforms:group
+							ref=".[count(instance('feed')//atom:entry) = 0 and string(instance('feed')/atom:title)]">
 							<h4>No results found.</h4>
 						</xforms:group>
 					</div>
 				</xxforms:dialog>
-				<xxforms:dialog id="deprecate-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
+				<xxforms:dialog id="deprecate-dialog" appearance="full" level="modal" close="true"
+					draggable="true" visible="false">
 					<xforms:label>Deprecate ID</xforms:label>
 					<div>
 						<xforms:input ref="instance('control-instance')/atom-search" />
@@ -1377,42 +1613,53 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 						<xforms:group ref=".[count(instance('feed')//atom:entry) &gt; 0]">
 							<h4>Results</h4>
 							<div>
-								<xforms:select1 ref="instance('control-instance')/atom-id" appearance="compact">
+								<xforms:select1 ref="instance('control-instance')/atom-id"
+									appearance="compact">
 									<xforms:itemset nodeset="instance('feed')//atom:entry">
 										<xforms:label ref="atom:title"></xforms:label>
 										<xforms:value ref="atom:id"></xforms:value>
 									</xforms:itemset>
 									<xforms:action ev:event="xforms-value-changed">
-										<xforms:setvalue ref="instance('control-instance')/atom-summary"
-											value="instance('feed')//atom:entry[atom:id = instance('control-instance')/atom-id]/atom:summary"></xforms:setvalue>
+										<xforms:setvalue
+											ref="instance('control-instance')/atom-summary"
+											value="instance('feed')//atom:entry[atom:id = instance('control-instance')/atom-id]/atom:summary"
+										></xforms:setvalue>
 									</xforms:action>
 								</xforms:select1>
 								<xforms:trigger>
 									<xforms:label>Select</xforms:label>
 									<xforms:action ev:event="DOMActivate">
 										<!-- delete all triples which are not skos:prefLabel and skos:definition -->
-										<xforms:delete nodeset="instance('doc')/*[not(position() = 1)]"></xforms:delete>
-										<xforms:delete nodeset="instance('doc')/*[1]/*[not(name()='skos:prefLabel') and not(name()='skos:definition')]"></xforms:delete>
+										<xforms:delete
+											nodeset="instance('doc')/*[not(position() = 1)]"></xforms:delete>
+										<xforms:delete
+											nodeset="instance('doc')/*[1]/*[not(name()='skos:prefLabel') and not(name()='skos:definition')]"></xforms:delete>
 										<!-- insert dcterms:isReplacedBy -->
-										<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]"
+										<xforms:insert context="instance('doc')/*[1]"
+											nodeset="./child::node()[last()]"
 											origin="xforms:element('dcterms:isReplacedBy', (xforms:attribute('rdf:resource', concat('http://nomisma.org/id/', instance('control-instance')/atom-id)), ''))"></xforms:insert>
 										<!-- blank atom search nodes and atom feed -->
 										<xforms:delete nodeset="instance('feed')/*"></xforms:delete>
-										<xforms:setvalue ref="instance('control-instance')/atom-search"></xforms:setvalue>
+										<xforms:setvalue
+											ref="instance('control-instance')/atom-search"></xforms:setvalue>
 										<xforms:setvalue ref="instance('control-instance')/atom-id"></xforms:setvalue>
-										<xforms:setvalue ref="instance('control-instance')/atom-summary"></xforms:setvalue>
+										<xforms:setvalue
+											ref="instance('control-instance')/atom-summary"></xforms:setvalue>
 										<!-- save file back to disk -->
-										<xforms:setvalue ref="instance('save-config')/url" value="concat('file://', instance('config')/id_path, '/',  instance('control-instance')/id, '.rdf')"></xforms:setvalue>
+										<xforms:setvalue ref="instance('save-config')/url"
+											value="concat('file://', instance('config')/id_path, '/',  instance('control-instance')/id, '.rdf')"></xforms:setvalue>
 										<xforms:insert nodeset="instance('dump')"
 											origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('doc'), instance('save-config')), 'data')"></xforms:insert>
 										<!-- delete graphs from triplestore, then repost updates -->
 										<xforms:action xxforms:iterate="instance('doc')/*">
-											<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-template'), 'URI', context()/@rdf:about)"></xforms:setvalue>
+											<xforms:setvalue ref="instance('sparqlUpdate')"
+												value="replace(instance('sparqlUpdate-template'), 'URI', context()/@rdf:about)"></xforms:setvalue>
 											<xforms:send submission="delete-graph"></xforms:send>
 										</xforms:action>
 										<xforms:send submission="post-new"></xforms:send>
 										<!-- delete from Solr -->
-										<xforms:setvalue ref="instance('deleteId')/id" value="instance('control-instance')/id"></xforms:setvalue>
+										<xforms:setvalue ref="instance('deleteId')/id"
+											value="instance('control-instance')/id"></xforms:setvalue>
 										<xforms:send submission="delete-id-from-solr"></xforms:send>
 										<xxforms:hide dialog="deprecate-dialog"></xxforms:hide>
 									</xforms:action>
@@ -1424,19 +1671,22 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 								</xforms:output>
 							</div>
 						</xforms:group>
-						<xforms:group ref=".[count(instance('feed')//atom:entry) = 0 and string(instance('feed')/atom:title)]">
+						<xforms:group
+							ref=".[count(instance('feed')//atom:entry) = 0 and string(instance('feed')/atom:title)]">
 							<h4>No results found.</h4>
 						</xforms:group>
 					</div>
 				</xxforms:dialog>
 				<!-- hidden values -->
 				<div style="display:none">
-					<xforms:input ref="instance('control-instance')/geo/hasFeature" id="geo-hasFeature" />
+					<xforms:input ref="instance('control-instance')/geo/hasFeature"
+						id="geo-hasFeature" />
 					<xforms:output ref="instance('control-instance')/geo/type" id="geo-type-control"></xforms:output>
 					<xforms:output ref="instance('control-instance')/geo/lat" id="geo-lat"></xforms:output>
 					<xforms:output ref="instance('control-instance')/geo/long" id="geo-long"></xforms:output>
 					<xforms:output ref="instance('control-instance')/geo/geoJSON" id="geo-geoJSON"></xforms:output>
-					<xforms:input ref="instance('doc')/geo:SpatialThing/osgeo:asGeoJSON" id="geoJSON-input" />
+					<xforms:input ref="instance('doc')/geo:SpatialThing/osgeo:asGeoJSON"
+						id="geoJSON-input" />
 					<xforms:input ref="instance('doc')/geo:SpatialThing/geo:lat" id="lat-input" />
 					<xforms:input ref="instance('doc')/geo:SpatialThing/geo:long" id="long-input" />
 				</div>
