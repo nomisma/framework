@@ -59,7 +59,7 @@
 	<page path="/nomisma/feed/" model="xpl/models/solr/query.xpl" view="xpl/views/serializations/solr/atom.xpl"/>
 	
 	<!-- ID -->
-	<page path="/nomisma/id/(.*)\.rdf" view="xpl/models/rdf/get-id.xpl"/>	
+	<page path="/nomisma/id/(.*)\.rdf" model="xpl/models/rdf/get-id.xpl" view="xpl/controllers/serialize-rdfxml.xpl"/>	
 	<page path="/nomisma/id/(.*)\.kml" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/kml.xpl"/>
 	<page path="/nomisma/id/(.*)\.ttl" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/ttl.xpl"/>
 	<page path="/nomisma/id/(.*)\.jsonld" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/json-ld.xpl"/>

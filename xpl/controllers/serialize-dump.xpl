@@ -95,7 +95,7 @@
 				<p:input name="data" href="../../dump/nomisma.org.rdf"/>
 				<p:input name="config">
 					<config>
-						<content-type>application/xml</content-type>
+						<content-type>application/rdf+xml</content-type>
 						<encoding>utf-8</encoding>
 						<version>1.0</version>
 						<indent>true</indent>
