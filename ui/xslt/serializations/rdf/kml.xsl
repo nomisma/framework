@@ -53,11 +53,19 @@
 				</xsl:apply-templates>
 
 				<!-- if it's a mint, then call the SPARQL kml template -->
-				<xsl:if test="child::nmo:Mint">
-					<xsl:call-template name="kml">
-						<xsl:with-param name="uri" select="nmo:Mint/@rdf:about"/>
-					</xsl:call-template>
-				</xsl:if>
+				<xsl:choose>
+					<xsl:when test="child::nmo:Mint">
+						<xsl:call-template name="kml">
+							<xsl:with-param name="uri" select="nmo:Mint/@rdf:about"/>
+						</xsl:call-template>
+					</xsl:when>
+					<xsl:when test="child::nmo:Region">
+						<xsl:call-template name="kml">
+							<xsl:with-param name="uri" select="nmo:Region/@rdf:about"/>
+						</xsl:call-template>
+					</xsl:when>
+				</xsl:choose>
+				
 			</Document>
 		</kml>
 	</xsl:template>
@@ -90,11 +98,13 @@
 							</coordinates>
 						</Point>
 					</xsl:when>
-					<xsl:when test="string($polygon)">
+					<!-- temporarily suppress the polygon, conflicts with leaflet -->
+					<!--<xsl:when test="string($polygon)">
 						<styleUrl>#polygon</styleUrl>
 						<Polygon>
 							<outerBoundaryIs>
 								<LinearRing>
+									<tessellate>1</tessellate>
 									<coordinates>
 										<xsl:analyze-string regex="\[(\d[^\]]+)\]" select="$polygon">
 											<xsl:matching-substring>
@@ -102,7 +112,7 @@
 													<xsl:value-of select="normalize-space(tokenize(., ',')[1])"/>
 													<xsl:text>, </xsl:text>
 													<xsl:value-of select="normalize-space(tokenize(., ',')[2])"/>
-													<xsl:text>, 0. </xsl:text>
+													<xsl:text>, 0.00&#x000A;</xsl:text>
 												</xsl:for-each>
 											</xsl:matching-substring>
 										</xsl:analyze-string>
@@ -110,7 +120,7 @@
 								</LinearRing>
 							</outerBoundaryIs>
 						</Polygon>
-					</xsl:when>
+					</xsl:when>-->
 				</xsl:choose>
 			</Placemark>
 		</xsl:if>
@@ -127,6 +137,7 @@ PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
 PREFIX nm:       <http://nomisma.org/id/>
 PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX rdfs:	<http://www.w3.org/2000/01/rdf-schema#>
 SELECT DISTINCT ?findspot ?lat ?long ?name WHERE {
 ?coinType nmo:hasMint <URI> ;
   a nmo:TypeSeriesItem .
@@ -145,6 +156,7 @@ UNION { ?contents nmo:hasTypeSeriesItem ?coinType ;
 ?findspot geo:lat ?lat .
 ?findspot geo:long ?long .
 OPTIONAL { ?findspot foaf:name ?name }
+OPTIONAL { ?findspot rdfs:label ?name }
 }
 ]]>
 		</xsl:variable>

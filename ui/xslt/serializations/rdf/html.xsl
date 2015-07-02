@@ -57,7 +57,8 @@
 				<xsl:if test="$type='nmo:Mint' or $type='nmo:Hoard' or $type='nmo:Region'">
 					<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
 					<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"/>
-					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet-omnivore.min.js"/>
+					<!--<script type="text/javascript" src="{$display_path}ui/javascript/leaflet-omnivore.min.js"/>-->
+					<script type="text/javascript" src="{$display_path}ui/javascript/KML.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/heatmap.min.js"/>	
 					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet-heatmap.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/display_map_functions.js"/>
@@ -142,6 +143,11 @@
 					</xsl:if>
 				</div>
 			</div>
+		</div>
+		
+		<!-- variables retrieved from the config and used in javascript -->
+		<div class="hidden">
+			<span id="mapboxKey"><xsl:value-of select="/content/config/mapboxKey"/></span>
 		</div>
 	</xsl:template>
 
