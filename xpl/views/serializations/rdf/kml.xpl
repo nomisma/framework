@@ -31,8 +31,8 @@
 		<p:input name="data" href="#model"/>
 		<p:input name="config">
 			<config>
-				<content-type>application/xml</content-type>
-				<!--<content-type>application/vnd.google-earth.kml+xml</content-type>-->
+				<!--<content-type>application/xml</content-type>-->
+				<content-type>application/vnd.google-earth.kml+xml</content-type>
 			</config>
 		</p:input>
 		<p:output name="data" ref="data"/>
