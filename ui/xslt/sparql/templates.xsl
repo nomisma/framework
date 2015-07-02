@@ -24,32 +24,40 @@
 		<xsl:variable name="query">
 			<![CDATA[PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:  <http://purl.org/dc/terms/>
+PREFIX dcmitype:	<http://purl.org/dc/dcmitype/>
 PREFIX nm:       <http://nomisma.org/id/>
 PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
 PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 PREFIX rdfs:	<http://www.w3.org/2000/01/rdf-schema#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 SELECT DISTINCT ?findspot ?lat ?long ?name WHERE {
-?coinType nmo:hasMint <URI> ;
-  a nmo:TypeSeriesItem .
-{ ?object nmo:hasTypeSeriesItem ?coinType ;
+{ ?coinType nmo:hasMint <URI> ;
+  a nmo:TypeSeriesItem . 
+ ?object nmo:hasTypeSeriesItem ?coinType ;
   rdf:type nmo:NumismaticObject ;
   nmo:hasFindspot ?findspot }
-UNION { ?object nmo:hasTypeSeriesItem ?coinType ;
+UNION { ?coinType nmo:hasMint <URI> ;
+  a nmo:TypeSeriesItem .
+  ?object nmo:hasTypeSeriesItem ?coinType ;
   rdf:type nmo:NumismaticObject ;
   dcterms:isPartOf ?hoard .
   ?hoard nmo:hasFindspot ?findspot }
-UNION { ?contents nmo:hasTypeSeriesItem ?coinType ;
+UNION { ?coinType nmo:hasMint <URI> ;
+  a nmo:TypeSeriesItem .
+?contents nmo:hasTypeSeriesItem ?coinType ;
+                  a dcmitype:Collection .
+  ?object dcterms:tableOfContents ?contents ;
+    nmo:hasFindspot ?findspot }
+ UNION { ?contents nmo:hasMint <URI> ;
                   a dcmitype:Collection .
   ?object dcterms:tableOfContents ?contents ;
     nmo:hasFindspot ?findspot }
 ?object a ?type .
-?findspot geo:lat ?lat .
-?findspot geo:long ?long .
+?findspot geo:lat ?lat ; geo:long ?long .
 OPTIONAL { ?findspot foaf:name ?name }
 OPTIONAL { ?findspot rdfs:label ?name }
-}
-]]>
+}]]>
 		</xsl:variable>
 
 		<xsl:if test="string($query)">
@@ -74,16 +82,24 @@ PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
 PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 SELECT DISTINCT ?findspot ?lat ?long ?count WHERE {
-?coinType nmo:hasMint <URI> ;
-  a nmo:TypeSeriesItem .
-{ ?object nmo:hasTypeSeriesItem ?coinType ;
+{ ?coinType nmo:hasMint <URI> ;
+  a nmo:TypeSeriesItem . 
+ ?object nmo:hasTypeSeriesItem ?coinType ;
   rdf:type nmo:NumismaticObject ;
   nmo:hasFindspot ?findspot }
-UNION { ?object nmo:hasTypeSeriesItem ?coinType ;
+UNION { ?coinType nmo:hasMint <URI> ;
+  a nmo:TypeSeriesItem .
+  ?object nmo:hasTypeSeriesItem ?coinType ;
   rdf:type nmo:NumismaticObject ;
   dcterms:isPartOf ?hoard .
   ?hoard nmo:hasFindspot ?findspot }
-UNION { ?contents nmo:hasTypeSeriesItem ?coinType ;
+UNION { ?coinType nmo:hasMint <URI> ;
+  a nmo:TypeSeriesItem .
+?contents nmo:hasTypeSeriesItem ?coinType ;
+                  a dcmitype:Collection .
+  ?object dcterms:tableOfContents ?contents ;
+    nmo:hasFindspot ?findspot }
+ UNION { ?contents nmo:hasMint <URI> ;
                   a dcmitype:Collection .
   ?object dcterms:tableOfContents ?contents ;
     nmo:hasFindspot ?findspot }
