@@ -68,6 +68,7 @@ function initialize_map(id) {
         var lon = $('span[property="geo:long"]').text();
         var primaryLayer = L.marker([lat, lon]);
         primaryLayer.addTo(map).bindPopup(prefLabel);
+        map.panTo([lat, lon]);
     } else if ($('span[property="osgeo:asGeoJSON"]').length > 0) {
         var geoJsonString = $('span[property="osgeo:asGeoJSON"]').text();
         var polygon = jQuery.parseJSON(geoJsonString);
