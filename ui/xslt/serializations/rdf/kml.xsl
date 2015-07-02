@@ -120,33 +120,33 @@
 		<xsl:param name="uri"/>
 		
 		<xsl:variable name="query">
-			<![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX dcterms:	<http://purl.org/dc/terms/>
+			<![CDATA[PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:  <http://purl.org/dc/terms/>
 PREFIX dcmitype:	<http://purl.org/dc/dcmitype/>
 PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
-PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
-PREFIX nm:	<http://nomisma.org/id/>
+PREFIX nm:       <http://nomisma.org/id/>
 PREFIX nmo:	<http://nomisma.org/ontology#>
-PREFIX org:	<http://www.w3.org/ns/org#>
-PREFIX osgeo:	<http://data.ordnancesurvey.co.uk/ontology/geometry/>
-PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
-PREFIX spatial: <http://jena.apache.org/spatial#>
-PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>
-PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
-
-SELECT ?object ?lat ?long ?label WHERE {
-  {?collection a dcmitype:Collection ;
-              nmo:hasMint <URI> }
-  UNION {?collection a dcmitype:Collection ;
-                       nmo:hasTypeSeriesItem ?type .
-        ?type nmo:hasMint <URI> }
-  ?object dcterms:tableOfContents ?collection ;
-          nmo:hasFindspot ?findspot .
-  ?findspot geo:lat ?lat ;
-            geo:long ?long .
-  OPTIONAL {?object skos:prefLabel ?label }
-  OPTIONAL {?object dcterms:title ?label }
-} LIMIT 250]]>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+SELECT DISTINCT ?findspot ?lat ?long ?name WHERE {
+?coinType nmo:hasMint <URI> ;
+  a nmo:TypeSeriesItem .
+{ ?object nmo:hasTypeSeriesItem ?coinType ;
+  rdf:type nmo:NumismaticObject ;
+  nmo:hasFindspot ?findspot }
+UNION { ?object nmo:hasTypeSeriesItem ?coinType ;
+  rdf:type nmo:NumismaticObject ;
+  dcterms:isPartOf ?hoard .
+  ?hoard nmo:hasFindspot ?findspot }
+UNION { ?contents nmo:hasTypeSeriesItem ?coinType ;
+                  a dcmitype:Collection .
+  ?object dcterms:tableOfContents ?contents ;
+    nmo:hasFindspot ?findspot }
+?object a ?type .
+?findspot geo:lat ?lat .
+?findspot geo:long ?long .
+OPTIONAL { ?findspot foaf:name ?name }
+}
+]]>
 		</xsl:variable>
 		
 		<xsl:if test="string($query)">
@@ -157,7 +157,7 @@ SELECT ?object ?lat ?long ?label WHERE {
 	</xsl:template>
 	
 	<xsl:template match="res:result" mode="kml">
-		<xsl:variable name="label" select="res:binding[@name='label']/res:literal"/>
+		<xsl:variable name="label" select="res:binding[@name='name']/res:literal"/>
 		
 		<Placemark xmlns="http://earth.google.com/kml/2.0">
 			<name>
@@ -165,8 +165,8 @@ SELECT ?object ?lat ?long ?label WHERE {
 			</name>
 			<description>
 				<xsl:variable name="description">
-					<![CDATA[<a href="]]><xsl:value-of select="res:binding[@name='object']/res:uri"/><![CDATA[">]]><xsl:value-of
-						select="res:binding[@name='object']/res:uri"/><![CDATA[</a>]]>
+					<![CDATA[<a href="]]><xsl:value-of select="res:binding[@name='findspot']/res:uri"/><![CDATA[">]]><xsl:value-of
+						select="res:binding[@name='findspot']/res:uri"/><![CDATA[</a>]]>
 				</xsl:variable>
 				<xsl:value-of select="normalize-space($description)"/>
 			</description>

@@ -126,54 +126,13 @@ body{
 .toggle-geoJSON{
 	margin-left:10px;
 }
-/*
-  ***************************************
-  Timemap CSS
-  ***************************************
- */
-div#timelinecontainer{
-	width:100%;
-	height:150px;
-}
 div#mapcontainer{
 	width:100%;
 	height:400px;
 }
-div.olFramedCloudPopupContent{
-	width:300px;
+.ol-attribution {
+  max-width: calc(100% - 3em);
 }
-div#help{
-	font-size:12px;
-	width:45em;
-	padding:1em;
-}
-/*
-  div#timemap {
-  padding: 1em;
-  }
- */
-div#timeline{
-	width:100%;
-	height:100%;
-	font-size:12px;
-	background:#CCCCCC;
-}
-div#map{
-	width:100%;
-	height:100%;
-	background:#EEEEEE;
-}
-div.infotitle{
-	font-size:14px;
-	font-weight:bold;
-}
-div.infodescription{
-	font-size:14px;
-	font-style:italic;
-}
-div.custominfostyle{
-	font-family:Georgia, Garamond, serif;
-	font-size:1.5em;
-	font-style:italic;
-	width:20em;
+.ol-control button, .ol-attribution, .ol-scale-line-inner {
+  font-family: 'Lucida Grande',Verdana,Geneva,Lucida,Arial,Helvetica,sans-serif;
 }

@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/"
-	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:org="http://www.w3.org/ns/org#"
-	xmlns:nomisma="http://nomisma.org/" xmlns:nmo="http://nomisma.org/ontology#" exclude-result-prefixes="#all" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/"
+	xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:org="http://www.w3.org/ns/org#"
+	xmlns:nomisma="http://nomisma.org/" xmlns:nmo="http://nomisma.org/ontology#"
+	exclude-result-prefixes="#all" version="2.0">
 	<xsl:include href="../../templates.xsl"/>
 
 	<xsl:variable name="display_path">../</xsl:variable>
@@ -37,19 +42,24 @@
 	</xsl:variable>
 
 	<xsl:template match="/">
-		<html lang="en" prefix="{$prefix}" itemscope="" itemtype="http://schema.org/{if (contains($type, 'foaf:')) then substring-after($type, 'foaf:') else if ($type='nmo:Mint' or $type='nmo:Region')
+		<html lang="en" prefix="{$prefix}" itemscope=""
+			itemtype="http://schema.org/{if (contains($type, 'foaf:')) then substring-after($type, 'foaf:') else if ($type='nmo:Mint' or $type='nmo:Region')
 			then 'Place' else 'Thing'}">
 			<head>
 				<title id="{$id}">nomisma.org: <xsl:value-of select="$id"/></title>
 				<meta name="viewport" content="width=device-width, initial-scale=1"/>
-				<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"/>
+				<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"/>
 				<!-- bootstrap -->
-				<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+				<link rel="stylesheet"
+					href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
 				<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"/>
 
 				<xsl:if test="$type='nmo:Mint' or $type='nmo:Hoard' or $type='nmo:Region'">
-					<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"/>
-					<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.9&amp;sensor=false"/>
+					<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+					<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"/>
+					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet-omnivore.min.js"/>
+					<script type="text/javascript" src="{$display_path}ui/javascript/heatmap.min.js"/>	
+					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet-heatmap.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/display_map_functions.js"/>
 				</xsl:if>
 				<script type="text/javascript" src="{$display_path}ui/javascript/display_functions.js"/>
@@ -71,7 +81,8 @@
 					<meta itemprop="longitude" content="{descendant::geo:long}"/>
 				</xsl:if>
 				<xsl:if test="descendant::geo:SpatialThing/dcterms:isPartOf">
-					<meta itemprop="containedIn" content="{descendant::geo:SpatialThing/dcterms:isPartOf/@rdf:resource}"/>
+					<meta itemprop="containedIn"
+						content="{descendant::geo:SpatialThing/dcterms:isPartOf/@rdf:resource}"/>
 				</xsl:if>
 			</head>
 			<body>
@@ -85,7 +96,8 @@
 	<xsl:template name="body">
 		<div class="container-fluid content">
 			<div class="row">
-				<div class="col-md-{if ($type='nmo:Mint' or $type='nmo:Hoard' or $type='nmo:Region') then '6' else '9'}">
+				<div
+					class="col-md-{if ($type='nmo:Mint' or $type='nmo:Hoard' or $type='nmo:Region') then '6' else '9'}">
 					<xsl:apply-templates select="/content/rdf:RDF/*" mode="type"/>
 
 					<!-- further context -->
@@ -93,12 +105,14 @@
 						<xsl:call-template name="nomisma:listTypes"/>
 					</xsl:if>
 				</div>
-				<div class="col-md-{if ($type='nmo:Mint' or $type='nmo:Hoard' or $type='nmo:Region') then '6' else '3'}">
+				<div
+					class="col-md-{if ($type='nmo:Mint' or $type='nmo:Hoard' or $type='nmo:Region') then '6' else '3'}">
 					<div>
 						<h3>Export</h3>
 						<ul class="list-inline">
 							<li>
-								<a href="https://github.com/nomisma/data/blob/master/id/{$id}.rdf">GitHub File</a>
+								<a href="https://github.com/nomisma/data/blob/master/id/{$id}.rdf"
+									>GitHub File</a>
 							</li>
 							<li>
 								<a href="{$id}.rdf">RDF/XML</a>
@@ -112,7 +126,8 @@
 							<!--<li>
 								<a href="{$id}.pelagios.rdf">Pelagios RDF/XML</a>
 								</li>-->
-							<xsl:if test="$type='nmo:Mint' or $type='nmo:Hoard' or $type='nmo:Region'">
+							<xsl:if
+								test="$type='nmo:Mint' or $type='nmo:Hoard' or $type='nmo:Region'">
 								<li>
 									<a href="{$id}.kml">KML</a>
 								</li>
@@ -120,32 +135,11 @@
 						</ul>
 					</div>
 					<xsl:if test="$type='nmo:Mint' or $type='nmo:Hoard' or $type='nmo:Region'">
-						<div id="mapcontainer"/>
+						<!--<div id="mapcontainer"/>-->
+						<div id="mapcontainer" class="map">
+							<div id="info"/>
+						</div>
 					</xsl:if>
-
-					<!--<xsl:if test="$type != 'numismatic_term'">
-						<xsl:variable name="predicate" select="if ($type='roman_emperor') then 'authority' else $type"/>
-						<xsl:variable name="photos" as="element()*">
-							<xsl:copy-of
-								select="document(concat($service, '&amp;method=flickr.photos.search&amp;per_page=12&amp;machine_tags=nomisma:', $predicate, '=', $id))/*"
-							/>
-						</xsl:variable>
-						<xsl:if test="count($photos//photo) &gt; 0">
-							<div>
-								<h3>Flickr Images of this Typology <small><a href="http://www.flickr.com/photos/tags/nomisma:{$predicate}={$id}">See all
-											photos.</a></small></h3>
-								<xsl:for-each select="$photos//photo">
-									<div class="flickr_thumbnail">
-										<a href="http://www.flickr.com/photos/{@owner}/{@id}" title="{@title}">
-											<img
-												src="{document(concat($service, '&amp;method=flickr.photos.getSizes&amp;photo_id=', @id))//size[@label='Thumbnail']/@source}"
-												alt="{@title}"/>
-										</a>
-									</div>
-								</xsl:for-each>
-							</div>
-						</xsl:if>
-					</xsl:if>-->
 				</div>
 			</div>
 		</div>
@@ -181,7 +175,8 @@
 			<dl class="dl-horizontal">
 				<xsl:if test="skos:prefLabel">
 					<dt>
-						<a href="{concat($namespaces//namespace[@prefix='skos']/@uri, 'prefLabel')}">skos:prefLabel</a>
+						<a href="{concat($namespaces//namespace[@prefix='skos']/@uri, 'prefLabel')}"
+							>skos:prefLabel</a>
 					</dt>
 					<dd>
 						<xsl:apply-templates select="skos:prefLabel" mode="prefLabel">
@@ -192,7 +187,9 @@
 				<xsl:apply-templates select="skos:definition" mode="list-item">
 					<xsl:sort select="@xml:lang"/>
 				</xsl:apply-templates>
-				<xsl:apply-templates select="*[not(name()='skos:prefLabel') and not(name()='skos:definition')][not(child::*)]" mode="list-item">
+				<xsl:apply-templates
+					select="*[not(name()='skos:prefLabel') and not(name()='skos:definition')][not(child::*)]"
+					mode="list-item">
 					<xsl:sort select="name()"/>
 					<xsl:sort select="@rdf:resource"/>
 				</xsl:apply-templates>
@@ -205,7 +202,7 @@
 	</xsl:template>
 
 	<xsl:template match="skos:prefLabel" mode="prefLabel">
-		<span property="{name()}" xml:lang="{@xml:lang}">
+		<span property="{name()}" lang="{@xml:lang}">
 			<xsl:value-of select="."/>
 		</span>
 		<xsl:if test="string(@xml:lang)">
@@ -221,7 +218,8 @@
 	<xsl:template match="*" mode="list-item">
 		<xsl:variable name="name" select="name()"/>
 		<dt>
-			<a href="{concat($namespaces//namespace[@prefix=substring-before($name, ':')]/@uri, substring-after($name, ':'))}">
+			<a
+				href="{concat($namespaces//namespace[@prefix=substring-before($name, ':')]/@uri, substring-after($name, ':'))}">
 				<xsl:value-of select="name()"/>
 			</a>
 		</dt>
@@ -274,7 +272,9 @@
 							<xsl:choose>
 								<xsl:when test="name()='rdf:type'">
 									<xsl:variable name="uri" select="@rdf:resource"/>
-									<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/>
+									<xsl:value-of
+										select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"
+									/>
 								</xsl:when>
 								<xsl:otherwise>
 									<xsl:value-of select="@rdf:resource"/>
@@ -288,7 +288,8 @@
 	</xsl:template>
 
 	<xsl:template match="*" mode="suburi">
-		<xsl:variable name="about" select="if(@rdf:about) then @rdf:about else rdf:Description/@rdf:about"/>
+		<xsl:variable name="about"
+			select="if(@rdf:about) then @rdf:about else rdf:Description/@rdf:about"/>
 
 		<div rel="{name()}">
 			<xsl:if test="string($about)">
@@ -313,7 +314,9 @@
 				<xsl:apply-templates select="descendant::skos:definition" mode="list-item">
 					<xsl:sort select="@xml:lang"/>
 				</xsl:apply-templates>
-				<xsl:apply-templates select="descendant::*[not(name()='skos:prefLabel') and not(name()='skos:definition')][not(child::*)]" mode="list-item">
+				<xsl:apply-templates
+					select="descendant::*[not(name()='skos:prefLabel') and not(name()='skos:definition')][not(child::*)]"
+					mode="list-item">
 					<xsl:sort select="name()"/>
 					<xsl:sort select="@rdf:resource"/>
 				</xsl:apply-templates>
@@ -338,7 +341,8 @@ SELECT * WHERE {
 
 	<!-- list up to 10 associate types for a authority or issuer -->
 	<xsl:template name="nomisma:listTypes">
-		<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(replace($listTypes-query, 'ID', $id)), '&amp;output=xml')"/>
+		<xsl:variable name="service"
+			select="concat($sparql_endpoint, '?query=', encode-for-uri(replace($listTypes-query, 'ID', $id)), '&amp;output=xml')"/>
 		<xsl:if test="doc-available($service)">
 			<xsl:apply-templates select="document($service)/res:sparql" mode="listTypes"/>
 		</xsl:if>
@@ -346,7 +350,8 @@ SELECT * WHERE {
 
 	<xsl:template match="res:sparql[count(descendant::res:result) &gt; 0]" mode="listTypes">
 		<h3>Associated Types <small>(max 10)</small></h3>
-		<a href="#" class="toggle-button" id="toggle-listTypes"><span class="glyphicon glyphicon-plus"/> View SPARQL for full query</a>
+		<a href="#" class="toggle-button" id="toggle-listTypes"><span
+				class="glyphicon glyphicon-plus"/> View SPARQL for full query</a>
 		<div id="listTypes" style="display:none">
 			<pre>
 				<xsl:value-of select="replace(replace($listTypes-query, 'ID', $id), ' LIMIT 10', '')"/>
@@ -370,15 +375,21 @@ SELECT * WHERE {
 							</a>
 						</td>
 						<td>
-							<xsl:value-of select="nomisma:normalizeDate(res:binding[@name='startDate']/res:literal)"/>
+							<xsl:value-of
+								select="nomisma:normalizeDate(res:binding[@name='startDate']/res:literal)"
+							/>
 						</td>
 						<td>
-							<xsl:value-of select="nomisma:normalizeDate(res:binding[@name='endDate']/res:literal)"/>
+							<xsl:value-of
+								select="nomisma:normalizeDate(res:binding[@name='endDate']/res:literal)"
+							/>
 						</td>
 						<td>
 							<xsl:variable name="uri" select="res:binding[@name='role']/res:uri"/>
 							<a href="{$uri}">
-								<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/>
+								<xsl:value-of
+									select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"
+								/>
 							</a>
 
 						</td>
