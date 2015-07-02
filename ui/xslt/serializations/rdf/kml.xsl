@@ -176,7 +176,7 @@ OPTIONAL { ?findspot rdfs:label ?name }
 	</xsl:template>
 	
 	<xsl:template match="res:result" mode="kml">
-		<xsl:variable name="label" select="res:binding[@name='name']/res:literal"/>
+		<xsl:variable name="label" select="if (string(res:binding[@name='name']/res:literal)) then res:binding[@name='name']/res:literal else res:binding[@name='findspot']/res:uri"/>
 		
 		<Placemark xmlns="http://earth.google.com/kml/2.0">
 			<name>
