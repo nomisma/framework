@@ -264,18 +264,21 @@ UNION { ?contents nmo:hasTypeSeriesItem ?coinType ;
 
 	<xsl:template name="numishareResults">
 		<xsl:variable name="query">
-			<![CDATA[
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+			<![CDATA[PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcmitype:	<http://purl.org/dc/dcmitype/>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX nm: <http://nomisma.org/id/>
 PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 SELECT ?object ?type ?identifier ?collection ?obvThumb ?revThumb ?obvRef ?revRef ?comThumb ?comRef ?type WHERE {
-{ ?object nmo:hasTypeSeriesItem <typeUri> }
-UNION { ?broader skos:broader <typeUri> .
-?object nmo:hasTypeSeriesItem ?broader }
-UNION { ?contents nmo:hasTypeSeriesItem <typeUri> .
+{ ?object a nmo:NumismaticObject ;
+ nmo:hasTypeSeriesItem <typeUri>}
+UNION { ?broader skos:broader+ <typeUri> .
+?object nmo:hasTypeSeriesItem ?broader ;
+  a nmo:NumismaticObject }
+UNION { ?contents a dcmitype:Collection ; 
+  nmo:hasTypeSeriesItem <typeUri> .
 ?object dcterms:tableOfContents ?contents }
 ?object rdf:type ?type .
 OPTIONAL { ?object dcterms:identifier ?identifier }
