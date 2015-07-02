@@ -32,10 +32,12 @@
 		<p:input name="config">
 			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 				<xsl:param name="output" select="/request/parameters/parameter[name='format']/value"/>
+				<xsl:param name="api" select="tokenize(/request/request-url, '/')[last()]"/>
 				
 				<xsl:template match="/">
 					<mode>
 						<xsl:choose>
+							<xsl:when test="$api='heatmap'">json</xsl:when>
 							<xsl:when test="$output='json' or $output='jsonp'">json</xsl:when>
 							<xsl:otherwise>xml</xsl:otherwise>
 						</xsl:choose>

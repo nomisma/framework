@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="http://www.w3.org/2005/sparql-results#"
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="http://www.w3.org/2005/sparql-results#"
 	xmlns:nm="http://nomisma.org/id/" exclude-result-prefixes="xs res nm" version="2.0">
 	<!-- config variables -->
 	<xsl:variable name="sparql_endpoint" select="/config/sparql_query"/>
 	<!-- url params -->
-	<xsl:param name="identifiers" select="doc('input:request')/request/parameters/parameter[name='identifiers']/value"/>
-	<xsl:param name="constraints" select="doc('input:request')/request/parameters/parameter[name='constraints']/value"/>
-	<xsl:param name="uri" select="doc('input:request')/request/parameters/parameter[name='uri']/value"/>
-	<xsl:param name="curie" select="doc('input:request')/request/parameters/parameter[name='curie']/value"/>
-	<xsl:param name="lang" select="doc('input:request')/request/parameters/parameter[name='lang']/value"/>	
-	<xsl:param name="format" select="doc('input:request')/request/parameters/parameter[name='format']/value"/>
-	<xsl:param name="baseUri" select="doc('input:request')/request/parameters/parameter[name='baseUri']/value"/>
+	<xsl:param name="identifiers"
+		select="doc('input:request')/request/parameters/parameter[name='identifiers']/value"/>
+	<xsl:param name="constraints"
+		select="doc('input:request')/request/parameters/parameter[name='constraints']/value"/>
+	<xsl:param name="uri"
+		select="doc('input:request')/request/parameters/parameter[name='uri']/value"/>
+	<xsl:param name="curie"
+		select="doc('input:request')/request/parameters/parameter[name='curie']/value"/>
+	<xsl:param name="lang"
+		select="doc('input:request')/request/parameters/parameter[name='lang']/value"/>
+	<xsl:param name="format"
+		select="doc('input:request')/request/parameters/parameter[name='format']/value"/>
+	<xsl:param name="baseUri"
+		select="doc('input:request')/request/parameters/parameter[name='baseUri']/value"/>
 
 	<xsl:template name="kml">
 		<xsl:variable name="query">
@@ -20,33 +28,73 @@ PREFIX nm:       <http://nomisma.org/id/>
 PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
 PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
-SELECT DISTINCT ?object ?findspot ?lat ?long ?title ?prefLabel ?closing_date WHERE {
-{?type nmo:hasMint <URI> .
-?object nmo:hasTypeSeriesItem ?type.
-?object nmo:hasFindspot ?findspot .
+PREFIX rdfs:	<http://www.w3.org/2000/01/rdf-schema#>
+SELECT DISTINCT ?findspot ?lat ?long ?name WHERE {
+?coinType nmo:hasMint <URI> ;
+  a nmo:TypeSeriesItem .
+{ ?object nmo:hasTypeSeriesItem ?coinType ;
+  rdf:type nmo:NumismaticObject ;
+  nmo:hasFindspot ?findspot }
+UNION { ?object nmo:hasTypeSeriesItem ?coinType ;
+  rdf:type nmo:NumismaticObject ;
+  dcterms:isPartOf ?hoard .
+  ?hoard nmo:hasFindspot ?findspot }
+UNION { ?contents nmo:hasTypeSeriesItem ?coinType ;
+                  a dcmitype:Collection .
+  ?object dcterms:tableOfContents ?contents ;
+    nmo:hasFindspot ?findspot }
+?object a ?type .
 ?findspot geo:lat ?lat .
-?findspot geo:long ?long
+?findspot geo:long ?long .
+OPTIONAL { ?findspot foaf:name ?name }
+OPTIONAL { ?findspot rdfs:label ?name }
 }
-UNION {
-?object nmo:hasMint <URI> .
-?object nmo:hasFindspot ?findspot .
-?findspot geo:lat ?lat .
-?findspot geo:long ?long
-}					
-OPTIONAL {?object skos:prefLabel ?prefLabel}
-OPTIONAL {?object dcterms:title ?title}
-OPTIONAL {?object nmo:hasClosingDate ?closing_date}
-}]]>
+]]>
 		</xsl:variable>
 
 		<xsl:if test="string($query)">
-			<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'URI', $uri))), '&amp;output=xml')"/>
-			
+			<xsl:variable name="service"
+				select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'URI', $uri))), '&amp;output=xml')"/>
+
 			<kml xmlns="http://earth.google.com/kml/2.0">
 				<Document>
 					<xsl:apply-templates select="document($service)/res:sparql" mode="kml"/>
 				</Document>
 			</kml>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template name="heatmap">
+		<xsl:variable name="query">
+			<![CDATA[PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:  <http://purl.org/dc/terms/>
+PREFIX dcmitype:	<http://purl.org/dc/dcmitype/>
+PREFIX nm:       <http://nomisma.org/id/>
+PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+SELECT DISTINCT ?findspot ?lat ?long ?count WHERE {
+?coinType nmo:hasMint <URI> ;
+  a nmo:TypeSeriesItem .
+{ ?object nmo:hasTypeSeriesItem ?coinType ;
+  rdf:type nmo:NumismaticObject ;
+  nmo:hasFindspot ?findspot }
+UNION { ?object nmo:hasTypeSeriesItem ?coinType ;
+  rdf:type nmo:NumismaticObject ;
+  dcterms:isPartOf ?hoard .
+  ?hoard nmo:hasFindspot ?findspot }
+UNION { ?contents nmo:hasTypeSeriesItem ?coinType ;
+                  a dcmitype:Collection .
+  ?object dcterms:tableOfContents ?contents ;
+    nmo:hasFindspot ?findspot }
+?findspot geo:lat ?lat ; geo:long ?long}]]>
+		</xsl:variable>
+
+		<xsl:if test="string($query)">
+			<xsl:variable name="service"
+				select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'URI', $uri))), '&amp;output=xml')"/>
+
+			<xsl:apply-templates select="document($service)/res:sparql" mode="heatmap"/>
 		</xsl:if>
 	</xsl:template>
 
@@ -93,12 +141,15 @@ OPTIONAL {?object nmo:hasClosingDate ?closing_date}
 		<xsl:choose>
 			<xsl:when test="$format='json'">
 				<xsl:text>{"nmo:hasClosingDate":</xsl:text>
-				<xsl:value-of select="number(document($service)/descendant::res:binding[@name='year']/res:literal)"/>
+				<xsl:value-of
+					select="number(document($service)/descendant::res:binding[@name='year']/res:literal)"/>
 				<xsl:text>}</xsl:text>
 			</xsl:when>
 			<xsl:otherwise>
 				<response>
-					<xsl:value-of select="number(document($service)/descendant::res:binding[@name='year']/res:literal)"/>
+					<xsl:value-of
+						select="number(document($service)/descendant::res:binding[@name='year']/res:literal)"
+					/>
 				</response>
 			</xsl:otherwise>
 		</xsl:choose>
@@ -139,7 +190,8 @@ OPTIONAL {?object nmo:hasClosingDate ?closing_date}
 			</xsl:for-each>
 			<xsl:text>?coin nmo:hasTypeSeriesItem ?type .</xsl:text>
 			<xsl:if test="contains($constraints, 'nmo:hasCollection')">
-				<xsl:analyze-string select="$constraints" regex="(nmo:hasCollection\s&lt;[^&gt;]+&gt;)">
+				<xsl:analyze-string select="$constraints"
+					regex="(nmo:hasCollection\s&lt;[^&gt;]+&gt;)">
 					<xsl:matching-substring>
 						<xsl:value-of select="concat('?coin ', regex-group(1), '.')"/>
 					</xsl:matching-substring>
@@ -157,12 +209,15 @@ OPTIONAL {?object nmo:hasClosingDate ?closing_date}
 				<xsl:text>{"</xsl:text>
 				<xsl:value-of select="$measurement"/>
 				<xsl:text>":</xsl:text>
-				<xsl:value-of select="number(document($service)/descendant::res:binding[@name='average']/res:literal)"/>
+				<xsl:value-of
+					select="number(document($service)/descendant::res:binding[@name='average']/res:literal)"/>
 				<xsl:text>}</xsl:text>
 			</xsl:when>
 			<xsl:otherwise>
 				<response>
-					<xsl:value-of select="number(document($service)/descendant::res:binding[@name='average']/res:literal)"/>
+					<xsl:value-of
+						select="number(document($service)/descendant::res:binding[@name='average']/res:literal)"
+					/>
 				</response>
 			</xsl:otherwise>
 		</xsl:choose>
@@ -187,17 +242,21 @@ OPTIONAL {?object nmo:hasClosingDate ?closing_date}
 		<xsl:choose>
 			<xsl:when test="$format='json'">
 				<xsl:text>{"label":"</xsl:text>
-				<xsl:value-of select="document($service)/descendant::res:binding[@name='label']/res:literal"/>
+				<xsl:value-of
+					select="document($service)/descendant::res:binding[@name='label']/res:literal"/>
 				<xsl:text>"}</xsl:text>
 			</xsl:when>
 			<xsl:when test="$format='jsonp'">
 				<xsl:text>jsonCallback ({"label":"</xsl:text>
-				<xsl:value-of select="document($service)/descendant::res:binding[@name='label']/res:literal"/>
+				<xsl:value-of
+					select="document($service)/descendant::res:binding[@name='label']/res:literal"/>
 				<xsl:text>"})</xsl:text>
 			</xsl:when>
 			<xsl:otherwise>
 				<response>
-					<xsl:value-of select="document($service)/descendant::res:binding[@name='label']/res:literal"/>
+					<xsl:value-of
+						select="document($service)/descendant::res:binding[@name='label']/res:literal"
+					/>
 				</response>
 			</xsl:otherwise>
 		</xsl:choose>
@@ -238,7 +297,7 @@ OPTIONAL { ?object nmo:hasReverse ?reverse .
 ?reverse foaf:depiction ?revRef }
 }]]>
 		</xsl:variable>
-		
+
 		<!-- process identifiers, executing a SPARQL query internally for each one, restructuring data into a response to return to numishare -->
 		<response>
 			<xsl:choose>
@@ -251,13 +310,15 @@ OPTIONAL { ?object nmo:hasReverse ?reverse .
 				<xsl:otherwise>
 					<xsl:for-each select="tokenize($identifiers, '\|')">
 						<xsl:variable name="uri" select="concat($baseUri, .)"/>
-						<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'typeUri', $uri))), '&amp;output=xml')"/>
-						<xsl:apply-templates select="document($service)/res:sparql" mode="numishareResults">
+						<xsl:variable name="service"
+							select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'typeUri', $uri))), '&amp;output=xml')"/>
+						<xsl:apply-templates select="document($service)/res:sparql"
+							mode="numishareResults">
 							<xsl:with-param name="id" select="."/>
 						</xsl:apply-templates>
 					</xsl:for-each>
 				</xsl:otherwise>
-			</xsl:choose>	
+			</xsl:choose>
 		</response>
 	</xsl:template>
 
@@ -268,14 +329,11 @@ OPTIONAL { ?object nmo:hasReverse ?reverse .
 	<xsl:template match="res:result" mode="kml">
 		<xsl:variable name="label">
 			<xsl:choose>
-				<xsl:when test="res:binding[@name='title']/res:literal">
-					<xsl:value-of select="res:binding[@name='title']/res:literal"/>
-				</xsl:when>
-				<xsl:when test="res:binding[@name='prefLabel']/res:literal">
-					<xsl:value-of select="res:binding[@name='prefLabel']/res:literal"/>
+				<xsl:when test="res:binding[@name='name']/res:literal">
+					<xsl:value-of select="res:binding[@name='name']/res:literal"/>
 				</xsl:when>
 				<xsl:otherwise>
-					<xsl:value-of select="res:binding[@name='object']/res:uri"/>
+					<xsl:value-of select="res:binding[@name='findspot']/res:uri"/>
 				</xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
@@ -285,37 +343,60 @@ OPTIONAL { ?object nmo:hasReverse ?reverse .
 				<xsl:value-of select="$label"/>
 			</name>
 			<description>
-				<![CDATA[
-				<dl class="dl-horizontal"><dt>URI</dt><dd><a href="]]><xsl:value-of select="res:binding[@name='object']/res:uri"/><![CDATA[">]]><xsl:value-of
-					select="res:binding[@name='object']/res:uri"/><![CDATA[</a></dd>]]>
-				<xsl:if test="string(res:binding[@name='closing_date']/res:literal)">
-					<![CDATA[<dt>Closing Date</dt><dd>]]><xsl:value-of select="nm:normalizeYear(res:binding[@name='closing_date']/res:literal)"
-					/><![CDATA[</dd>]]>
-				</xsl:if>
-				<![CDATA[</dl>]]>
+				<xsl:variable name="description">
+					<![CDATA[<a href="]]><xsl:value-of
+						select="res:binding[@name='findspot']/res:uri"/><![CDATA[">]]><xsl:value-of
+						select="res:binding[@name='findspot']/res:uri"/><![CDATA[</a>]]>
+				</xsl:variable>
+				<xsl:value-of select="normalize-space($description)"/>
 			</description>
 			<styleUrl>#findspot</styleUrl>
 			<Point>
 				<coordinates>
-					<xsl:value-of select="concat(res:binding[@name='long']/res:literal, ',', res:binding[@name='lat']/res:literal)"/>
+					<xsl:value-of
+						select="concat(res:binding[@name='long']/res:literal, ',', res:binding[@name='lat']/res:literal)"
+					/>
 				</coordinates>
 			</Point>
 		</Placemark>
 	</xsl:template>
-	
+
+	<!-- results to generate JSON for leaflet heatmap -->
+	<xsl:template match="res:sparql" mode="heatmap">
+		<xsl:text>{"max":1</xsl:text>
+		<xsl:text>,"data":[</xsl:text>
+		<xsl:apply-templates select="descendant::res:result" mode="heatmap"/>
+		<xsl:text>]}</xsl:text>
+	</xsl:template>
+
+	<xsl:template match="res:result" mode="heatmap">
+		<xsl:value-of
+			select="concat('{&#x022;lat&#x022;:', res:binding[@name='lat']/res:literal, ', &#x022;lng&#x022;:', res:binding[@name='long']/res:literal, ', &#x022;count&#x022;:',1, '}')"/>
+		<xsl:if test="not(position()=last())">
+			<xsl:text>,</xsl:text>
+		</xsl:if>
+	</xsl:template>
+
 	<!-- format SPARQL results into a manageable chunk for manipulation in Numishare results pages -->
 	<xsl:template match="res:sparql" mode="numishareResults">
 		<xsl:param name="id"/>
 		<group id="{$id}">
 			<object-count>
-				<xsl:value-of select="count(descendant::res:result[contains(res:binding[@name='type']/res:uri, 'NumismaticObject')])"/>
+				<xsl:value-of
+					select="count(descendant::res:result[contains(res:binding[@name='type']/res:uri, 'NumismaticObject')])"
+				/>
 			</object-count>
 			<hoard-count>
-				<xsl:value-of select="count(descendant::res:result[contains(res:binding[@name='type']/res:uri, 'Hoard')])"/>
+				<xsl:value-of
+					select="count(descendant::res:result[contains(res:binding[@name='type']/res:uri, 'Hoard')])"
+				/>
 			</hoard-count>
 			<objects>
-				<xsl:for-each select="descendant::res:result[res:binding[contains(@name, 'rev') or contains(@name, 'obv') or contains(@name,'com')]][position() &lt;=5]">
-					<object collection="{res:binding[@name='collection']/res:literal}" identifier="{res:binding[@name='identifier']/res:literal}" uri="{res:binding[@name='object']/res:uri}">
+				<xsl:for-each
+					select="descendant::res:result[res:binding[contains(@name, 'rev') or contains(@name, 'obv') or contains(@name,'com')]][position() &lt;=5]">
+					<object collection="{res:binding[@name='collection']/res:literal}"
+						identifier="{res:binding[@name='identifier']/res:literal}"
+						uri="{res:binding[@name='object']/res:uri}">
 						<xsl:if test="string(res:binding[@name='obvRef']/res:uri)">
 							<obvRef>
 								<xsl:value-of select="res:binding[@name='obvRef']/res:uri"/>
@@ -354,7 +435,7 @@ OPTIONAL { ?object nmo:hasReverse ?reverse .
 
 	<xsl:function name="nm:normalizeYear">
 		<xsl:param name="gYear"/>
-		
+
 		<xsl:choose>
 			<xsl:when test="number($gYear) &gt; 0">
 				<xsl:if test="number($gYear) &lt; 400">
