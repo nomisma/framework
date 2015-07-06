@@ -269,7 +269,16 @@
 			<!-- sparql update -->
 			<xforms:instance id="sparqlUpdate-template">
 				<query>
-					<![CDATA[DELETE {?s ?p ?o} WHERE { <URI> ?p ?o . ?s ?p ?o . FILTER (?s = <URI>) }]]>
+					<![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX org:	<http://www.w3.org/ns/org#>
+PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
+DELETE {?s ?p ?o} WHERE { 
+{<URI> geo:location ?s . ?s ?p ?o }
+UNION {<URI> org:hasMembership ?s . ?s ?p ?o}
+UNION {<URI> ?p ?o . ?s ?p ?o . FILTER (?s = <URI>) }
+}]]>
 				</query>
 			</xforms:instance>
 

@@ -17,10 +17,6 @@
 				<rdf:RDF></rdf:RDF>
 			</xforms:instance>
 
-			<xforms:instance id="rdfxml-dump" xxforms:exclude-result-prefixes="#all">
-				<rdf:RDF></rdf:RDF>
-			</xforms:instance>
-
 			<xforms:instance id="config" xxforms:exclude-result-prefixes="#all">
 				<xi:include href="../config.xml"></xi:include>
 			</xforms:instance>
@@ -37,15 +33,38 @@
 					<solr-core></solr-core>
 				</controls>
 			</xforms:instance>
-
+			
 			<!-- sparql update -->
-			<xforms:instance id="sparqlUpdate-template">
-				<query>
-					<![CDATA[DELETE {?s ?p ?o} WHERE { <URI> ?p ?o . ?s ?p ?o . FILTER (?s = <URI>) }]]>
-				</query>
+			<xforms:instance id="sparqlUpdate-templates">
+				<queries xmlns="">
+					<query id="delete-id">
+						<![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX org:	<http://www.w3.org/ns/org#>
+PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
+DELETE {?s ?p ?o} WHERE { 
+{<URI> geo:location ?s . ?s ?p ?o }
+UNION {<URI> org:hasMembership ?s . ?s ?p ?o}
+UNION {<URI> ?p ?o . ?s ?p ?o . FILTER (?s = <URI>) }
+}]]>
+					</query>
+					<query id="delete-all-ids">
+						<![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX org:	<http://www.w3.org/ns/org#>
+PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
+DELETE {?s ?p ?o} WHERE {
+ {?place rdf:type skos:Concept ; geo:location ?s . ?s ?p ?o }
+ UNION {?person rdf:type skos:Concept ; org:hasMembership ?s . ?s ?p ?o }
+ UNION {?s rdf:type skos:Concept FILTER regex(str(?s), "nomisma", "i") . ?s ?p ?o}}]]>
+					</query>
+				</queries>
+
 			</xforms:instance>
 			<xforms:instance id="sparqlUpdate">
-				<query></query>
+				<query xmlns=""></query>
 			</xforms:instance>
 
 			<!-- Solr instances -->
@@ -77,6 +96,11 @@
 			<xforms:submission id="delete-graph" action="{instance('config')/sparql_update}" ref="instance('sparqlUpdate')" serialization="text/plain" replace="none" method="post"
 				mediatype="application/sparql-update">
 				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL update failed.</xforms:message>
+			</xforms:submission>
+
+			<xforms:submission id="post-new" action="{instance('config')/sparql_store}?default" ref="instance('rdf')" replace="none" method="post" mediatype="application/rdf+xml">
+				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Successfully posted to endpoint.</xforms:setvalue>
+				<xforms:message ev:event="xforms-submit-error" level="modal">Post to endpoint failed.</xforms:message>
 			</xforms:submission>
 
 			<!-- ************************* SOLR SUBMISSIONS ************************** -->
@@ -122,7 +146,7 @@
 			</xforms:submission>
 
 			<!-- ************************* LOAD RDF/XML ************************** -->
-			<xforms:submission id="load-rdfxml" serialization="none" method="get" action="/nomisma/nomisma.org.rdf" replace="instance" instance="rdfxml-dump">
+			<xforms:submission id="load-rdfxml" serialization="none" method="get" action="/nomisma/nomisma.org.rdf" replace="instance" instance="rdf">
 				<xforms:action ev:event="xforms-submit-error">
 					<xforms:message level="modal">Unable to load RDF/XML from oxf:/apps/nomisma/dump/nomisma.org.rdf</xforms:message>
 				</xforms:action>
@@ -157,7 +181,7 @@
 							</p>
 						</div>
 					</xforms:group>
-					<p><a href="edit/"><span class="glyphicon glyphicon-file"/> Create New Concept</a></p>
+					<p><a href="edit/"><span class="glyphicon glyphicon-file"></span> Create New Concept</a></p>
 					<xforms:group ref="instance('solr-response')/result[@name='response']">
 						<xforms:var name="numFound" select="@numFound"></xforms:var>
 						<xforms:group ref=".[$numFound &gt; 0]">
@@ -332,7 +356,7 @@
 							</xforms:group>
 						</xforms:group>
 					</xforms:group>
-					<!--<fr:xforms-inspector></fr:xforms-inspector>-->
+					<fr:xforms-inspector></fr:xforms-inspector>
 				</div>
 				<div class="col-md-3">
 					<h2>Actions</h2>
@@ -345,11 +369,19 @@
 						</ul>
 					</div>
 					<div>
-						<h3>Generate Data Dumps</h3>
+						<h3>Nomisma</h3>
 						<ul>
 							<li>
 								<xforms:trigger appearance="minimal">
-									<xforms:label>RDF/XML</xforms:label>
+									<xforms:label>Refresh Triplestore</xforms:label>
+									<xforms:action ev:event="DOMActivate">
+										<xforms:dispatch target="repost-nomisma" name="fr-show"></xforms:dispatch>
+									</xforms:action>
+								</xforms:trigger>
+							</li>
+							<li>
+								<xforms:trigger appearance="minimal">
+									<xforms:label>Generate RDF/XML</xforms:label>
 									<xforms:action ev:event="DOMActivate">
 										<xforms:dispatch target="generate-rdf-dump-dialog" name="fr-show"></xforms:dispatch>
 									</xforms:action>
@@ -389,6 +421,26 @@
 				<fr:label>No</fr:label>
 			</fr:negative-choice>
 		</fr:alert-dialog>
+		<fr:alert-dialog id="repost-nomisma">
+			<fr:label>Refresh Triplestore</fr:label>
+			<fr:message>This will refresh the Nomisma data in the triplestore. It may cause momentary loss of SPARQL functionality. Continue?</fr:message>
+			<fr:positive-choice>
+				<fr:label>Yes</fr:label>
+				<xforms:action ev:event="DOMActivate">
+					<!-- first delete all Nomisma concepts -->
+					<xforms:setvalue ref="instance('sparqlUpdate')" value="instance('sparqlUpdate-templates')/query[@id='delete-all-ids']"></xforms:setvalue>
+					<xforms:send submission="delete-graph"></xforms:send>
+					<!-- then get the current RDF/XML and post it -->
+					<xforms:action ev:event="xforms-submit-done">
+						<xforms:send submission="load-rdfxml"></xforms:send>
+						<xforms:send submission="post-new" ev:event="xforms-submit-done"></xforms:send>
+					</xforms:action>
+				</xforms:action>
+			</fr:positive-choice>
+			<fr:negative-choice>
+				<fr:label>No</fr:label>
+			</fr:negative-choice>
+		</fr:alert-dialog>
 		<fr:alert-dialog id="solr-dialog">
 			<fr:label>Flush and Reload Solr Index</fr:label>
 			<fr:message>This will flush the Solr main and fuseki indices and reload all nomisma ids. It may take several minutes. Continue?</fr:message>
@@ -401,18 +453,9 @@
 						<xforms:setvalue ref="instance('control-instance')/solr-core" value="instance('config')/solr_published"></xforms:setvalue>
 						<!-- delete all objects -->
 						<xforms:send submission="delete-all"></xforms:send>
-						<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/views/serializations/rdf/solr.xpl', 'data', instance('rdfxml-dump'), 'data')"></xforms:insert>
+						<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/views/serializations/rdf/solr.xpl', 'data', instance('rdf'), 'data')"></xforms:insert>
 						<xforms:send submission="post-to-solr"></xforms:send>
 						<xforms:send submission="optimize" ev:event="xforms-submit-done"></xforms:send>
-
-						<!--<!-\- transform into solr-fuseki post -\->
-						<xforms:setvalue ref="instance('control-instance')/solr-core" value="instance('config')/solr_fuseki"></xforms:setvalue>
-						<!-\- delete all objects -\->
-						<xforms:send submission="delete-all"></xforms:send>
-						<xforms:insert nodeset="instance('addIndex')"
-							origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/views/serializations/rdf/solr-fuseki.xpl', 'data', instance('rdfxml-dump'), 'data')"></xforms:insert>
-						<xforms:send submission="post-to-solr"></xforms:send>
-						<xforms:send submission="optimize" ev:event="xforms-submit-done"></xforms:send>-->
 					</xforms:action>
 				</xforms:action>
 			</fr:positive-choice>
