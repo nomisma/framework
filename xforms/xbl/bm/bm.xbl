@@ -11,15 +11,15 @@
 					</xforms:var>
 					<xforms:trigger appearance="minimal">
 						<xforms:label>
-							<span class="glyphicon glyphicon-search"/> British Museum</xforms:label>
+							<span class="glyphicon glyphicon-search"/>British Museum</xforms:label>
 						<xforms:action ev:event="DOMActivate">
 							<!-- if there is a skos:prefLabel and no Getty URIs, automatically submit the label -->
 							<xforms:action if="count($binding//@rdf:resource[contains(., 'britishmuseum.org')]) = 0 and string-length($binding/skos:prefLabel[@xml:lang='en']) &gt; 0">
 								<xforms:setvalue ref="instance('control-instance')/bm-search" value="$binding/skos:prefLabel[@xml:lang='en']"/>
 								<xforms:var name="search_text" select="instance('control-instance')/bm-search"/>
-								<xforms:var name="type" select="$binding/name()"/>								
+								<xforms:var name="type" select="$binding/name()"/>
 								<xforms:setvalue ref="instance('sparqlQuery')" value="normalize-space(replace(replace(instance('bm-template'), 'SEARCH_QUERY', $search_text), 'SCHEME',
-									instance('bm-facets')//facet[@type=$type]/text()))"/>								
+									instance('bm-facets')//facet[@type=$type]/text()))"/>
 								<xforms:delete context="instance('bm-options')/*"/>
 								<xforms:send submission="query-bm"/>
 								<xxforms:show dialog="bm-dialog"/>
@@ -30,9 +30,9 @@
 							</xforms:action>
 						</xforms:action>
 					</xforms:trigger>
-					
+
 					<xxforms:dialog id="bm-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
-						<xforms:label>Query British Museum</xforms:label>						
+						<xforms:label>Query British Museum</xforms:label>
 						<div>
 							<xforms:input ref="instance('control-instance')/bm-search"/>
 							<xforms:trigger>
@@ -48,24 +48,24 @@
 							</xforms:trigger>
 						</div>
 						<div>
-							
+
 							<xforms:group ref=".[count(instance('bm-options')/option) &gt; 0]">
 								<xforms:select1 ref="instance('control-instance')/uri" appearance="compact" size="10">
 									<xforms:label>Identifier</xforms:label>
 									<xforms:itemset nodeset="instance('bm-options')/option">
 										<xforms:label ref="."/>
 										<xforms:value ref="@link"/>
-									</xforms:itemset>								
+									</xforms:itemset>
 								</xforms:select1>
 								<xforms:trigger>
 									<xforms:label>Add Selected</xforms:label>
 									<xforms:action ev:event="DOMActivate">
-										<xforms:insert context="$binding" nodeset="./child::node()[last()]"
-											origin="xforms:element('skos:exactMatch', xforms:attribute('rdf:resource', instance('control-instance')/uri))"/>
+										<xforms:insert context="$binding" nodeset="./child::node()[last()]" origin="xforms:element('skos:exactMatch', xforms:attribute('rdf:resource',
+											instance('control-instance')/uri))"/>
 										<xxforms:hide dialog="bm-dialog"/>
 									</xforms:action>
 								</xforms:trigger>
-								
+
 							</xforms:group>
 						</div>
 					</xxforms:dialog>
@@ -82,15 +82,15 @@
 
 						<xforms:instance id="bm-facets">
 							<facets xmlns="">
-								
-								<facet type="nmo:Denomination">http://collection.britishmuseum.org/id/thesauri/currency</facet>								
-								<facet type="nmo:Ethnic">http://collection.britishmuseum.org/id/thesauri/matcult</facet>								
+
+								<facet type="nmo:Denomination">http://collection.britishmuseum.org/id/thesauri/currency</facet>
+								<facet type="nmo:Ethnic">http://collection.britishmuseum.org/id/thesauri/matcult</facet>
 								<facet type="nmo:Manufacture">http://collection.britishmuseum.org/id/thesauri/technique</facet>
-								<facet type="nmo:Material">http://collection.britishmuseum.org/id/thesauri/material</facet>	
+								<facet type="nmo:Material">http://collection.britishmuseum.org/id/thesauri/material</facet>
 								<facet type="nmo:Mint">http://collection.britishmuseum.org/id/place</facet>
 								<facet type="nmo:ObjectType">http://collection.britishmuseum.org/id/thesauri/object</facet>
 								<facet type="foaf:Organization">http://collection.britishmuseum.org/id/person-institution</facet>
-								<facet type="foaf:Person">http://collection.britishmuseum.org/id/person-institution</facet>								
+								<facet type="foaf:Person">http://collection.britishmuseum.org/id/person-institution</facet>
 								<facet type="nmo:Region">http://collection.britishmuseum.org/id/place</facet>
 							</facets>
 						</xforms:instance>
@@ -103,7 +103,7 @@ skos:inScheme <SCHEME> ;
 skos:prefLabel ?label 
 FILTER regex(?label, "^SEARCH_QUERY", "i" )} LIMIT 25]]>
 							</query>
-						</xforms:instance>						
+						</xforms:instance>
 
 						<xforms:instance id="sparqlQuery">
 							<query xmlns=""/>
@@ -125,8 +125,8 @@ FILTER regex(?label, "^SEARCH_QUERY", "i" )} LIMIT 25]]>
 						</xforms:bind>
 
 						<!-- submissions -->
-						<xforms:submission id="query-bm" action="http://collection.britishmuseum.org/sparql?query={encode-for-uri(instance('sparqlQuery'))}" ref="instance('bm-response')" replace="instance"
-							method="get">
+						<xforms:submission id="query-bm" action="http://collection.britishmuseum.org/sparql?query={encode-for-uri(instance('sparqlQuery'))}" ref="instance('bm-response')"
+							replace="instance" method="get">
 							<xforms:header>
 								<xforms:name>User-Agent</xforms:name>
 								<xforms:value>XForms/Nomisma.org</xforms:value>
@@ -141,7 +141,7 @@ FILTER regex(?label, "^SEARCH_QUERY", "i" )} LIMIT 25]]>
 							</xforms:message>
 							<xforms:action xxforms:iterate="instance('bm-response')//res:result" ev:event="xforms-submit-done">
 								<xforms:var name="link" select="context()/res:binding[@name='c']/res:uri"/>
-								<xforms:var name="title" select="context()/res:binding[@name='label']/res:literal"/>								
+								<xforms:var name="title" select="context()/res:binding[@name='label']/res:literal"/>
 								<xforms:insert context="instance('bm-options')" nodeset="./child::node()[last()]" origin="xforms:element('option', (xforms:attribute('select', false()),
 									xforms:attribute('link', $link), xforms:attribute('type', 'skos:exactMatch'), $title))"/>
 							</xforms:action>
