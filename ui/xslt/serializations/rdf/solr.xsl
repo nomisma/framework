@@ -7,6 +7,15 @@
 	
 	<xsl:variable name="id_path" select="/content/config/id_path"/>
 	
+	<!-- definition of namespaces for turning in solr type field URIs into abbreviations -->
+	<xsl:variable name="namespaces" as="item()*">
+		<namespaces>
+			<xsl:for-each select="//rdf:RDF/namespace::*[not(name()='xml')]">
+				<namespace prefix="{name()}" uri="{.}"/>
+			</xsl:for-each>
+		</namespaces>
+	</xsl:variable>
+	
 	<xsl:variable name="roles" as="element()*">
 		<roles>
 			<xsl:for-each select="distinct-values(descendant::org:role[contains(@rdf:resource, 'nomisma.org')]/@rdf:resource)">

@@ -19,9 +19,18 @@
 			<field name="type_uri">
 				<xsl:value-of select="concat(namespace-uri(.), local-name())"/>
 			</field>
+			<field name="type">
+				<xsl:value-of select="name()"/>
+			</field>
 			<xsl:for-each select="rdf:type">
+				<xsl:variable name="uri" select="@rdf:resource"/>
+				<field name="type">					
+					<xsl:value-of
+						select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"
+					/>
+				</field>
 				<field name="type_uri">
-					<xsl:value-of select="@rdf:resource"/>
+					<xsl:value-of select="$uri"/>
 				</field>
 			</xsl:for-each>
 

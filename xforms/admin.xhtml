@@ -33,7 +33,7 @@
 					<solr-core></solr-core>
 				</controls>
 			</xforms:instance>
-			
+
 			<!-- sparql update -->
 			<xforms:instance id="sparqlUpdate-templates">
 				<queries xmlns="">
@@ -149,6 +149,12 @@ DELETE {?s ?p ?o} WHERE {
 			<xforms:submission id="load-rdfxml" serialization="none" method="get" action="/nomisma/nomisma.org.rdf" replace="instance" instance="rdf">
 				<xforms:action ev:event="xforms-submit-error">
 					<xforms:message level="modal">Unable to load RDF/XML from oxf:/apps/nomisma/dump/nomisma.org.rdf</xforms:message>
+				</xforms:action>
+			</xforms:submission>
+
+			<xforms:submission id="load-rdf" serialization="none" method="get" action="/nomisma/id/{instance('control-instance')/id}.rdf" replace="instance" instance="rdf">
+				<xforms:action ev:event="xforms-submit-error">
+					<xforms:message level="modal">Unable to load RDF/XML from oxf:/apps/nomisma/id/{$id}.rdf</xforms:message>
 				</xforms:action>
 			</xforms:submission>
 
@@ -292,7 +298,7 @@ DELETE {?s ?p ?o} WHERE {
 										<thead>
 											<tr>
 												<th style="width:80%">ID</th>
-												<th style="width:10%">View</th>
+												<th style="width:10%">Refresh</th>
 												<th style="width:10%">Delete</th>
 											</tr>
 										</thead>
@@ -307,10 +313,14 @@ DELETE {?s ?p ?o} WHERE {
 															</a>
 														</h4>
 														<dl class="dl-horizontal">
-															<dt>id</dt>
-															<dd><xforms:output value="$id"></xforms:output></dd>
+															<dt>URI</dt>
+															<dd><a href="{instance('config')/url}id/{encode-for-uri($id)}" target="_blank">
+																	<xforms:output value="concat(instance('config')/url, 'id/', $id)"></xforms:output>
+																</a></dd>
+															<dt>Definition</dt>
+															<dd><xforms:output value="str[@name='definition']"></xforms:output></dd>
 															<xforms:repeat nodeset="arr[@name='type']/str">
-																<dt>rdf:type</dt>
+																<dt>Type</dt>
 																<dd>
 																	<xforms:output ref="."></xforms:output>
 																</dd>
@@ -319,7 +329,22 @@ DELETE {?s ?p ?o} WHERE {
 														</dl>
 													</td>
 													<td class="text-center">
-														<a href="{instance('config')/url}id/{$id}" target="_blank">html</a>
+														<xforms:trigger appearance="minimal">
+															<xforms:label>
+																<span class="glyphicon glyphicon-refresh"></span>
+															</xforms:label>
+															<xforms:action ev:event="DOMActivate">
+																<xforms:setvalue ref="instance('control-instance')/id" value="$id"></xforms:setvalue>
+																<xforms:setvalue ref="instance('sparqlUpdate')"
+																	value="replace(instance('sparqlUpdate-templates')/query[@id='delete-id'], 'URI', concat('http://nomisma.org/id/', $id))"></xforms:setvalue>
+																<xforms:send submission="delete-graph"></xforms:send>
+																<!-- then get the current RDF/XML and post it -->
+																<xforms:action ev:event="xforms-submit-done">
+																	<xforms:send submission="load-rdf"></xforms:send>
+																	<xforms:send submission="post-new" ev:event="xforms-submit-done"></xforms:send>
+																</xforms:action>
+															</xforms:action>
+														</xforms:trigger>
 													</td>
 													<td class="text-center">
 														<xforms:trigger appearance="minimal">

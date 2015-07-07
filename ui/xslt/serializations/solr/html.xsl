@@ -114,7 +114,7 @@
 					<xsl:value-of select="if(string(str[@name='prefLabel'])) then str[@name='prefLabel'] else str[@name='id']"/>
 				</a>
 			</h4>
-			<xsl:if test="string(str[@name='definition']) or not(contains($q, 'type_uri'))">
+			<xsl:if test="string(str[@name='definition']) or not(contains($q, 'type'))">
 				<dl class="dl-horizontal">
 					<xsl:if test="string(str[@name='definition'])">
 						<dt>Definition</dt>
@@ -122,14 +122,15 @@
 							<xsl:value-of select="str[@name='definition']"/>
 						</dd>
 					</xsl:if>
-					<xsl:if test="not(contains($q, 'type_uri'))">
+					<xsl:if test="not(contains($q, 'type'))">
 						<dt>Type</dt>
 						<dd>
-							<xsl:for-each select="arr[@name='type_uri']/str">
-								<xsl:variable name="uri" select="."/>
+							<xsl:for-each select="arr[@name='type']/str">
+								<xsl:variable name="name" select="."/>
 
-								<a href="{.}">
-									<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/>
+								<a
+									href="{concat($namespaces//namespace[@prefix=substring-before($name, ':')]/@uri, substring-after($name, ':'))}">
+									<xsl:value-of select="$name"/>
 								</a>
 								<xsl:if test="not(position()=last())">
 									<xsl:text>, </xsl:text>
@@ -149,25 +150,24 @@
 			</span>
 			<select id="type_filter" class="form-control">
 				<option value="">Select Type...</option>
-				<xsl:for-each select="descendant::lst[@name='type_uri']/int[not(@name='http://www.w3.org/2004/02/skos/core#Concept')]">
-					<xsl:variable name="uri" select="@name"/>
-					<xsl:variable name="value" select="concat('type_uri:&#x022;', $uri, '&#x022;')"/>
+				<xsl:for-each select="descendant::lst[@name='type']/int[not(@name='skos:Concept')]">					
+					<xsl:variable name="value" select="concat('type:&#x022;', @name, '&#x022;')"/>
 					<option value="{$value}">
 						<xsl:if test="contains($q, $value)">
 							<xsl:attribute name="selected">selected</xsl:attribute>
 						</xsl:if>
-						<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/>
+						<xsl:value-of select="@name"/>
 					</option>
 				</xsl:for-each>
 			</select>
 			<div class="role_div">
-				<xsl:attribute name="style" select="if (contains($q, 'http://xmlns.com/foaf/0.1/')) then 'display:inline' else 'display:none'"/>
+				<xsl:attribute name="style" select="if (contains($q, 'foaf:')) then 'display:inline' else 'display:none'"/>
 
 				<span>
 					<b>Role: </b>
 				</span>
 				<select id="role_filter" class="form-control">
-					<xsl:if test="not(contains($q, 'http://xmlns.com/foaf/0.1/'))">
+					<xsl:if test="not(contains($q, 'foaf:'))">
 						<xsl:attribute name="disabled">disabled</xsl:attribute>
 					</xsl:if>
 
@@ -187,8 +187,8 @@
 				<b>Keyword: </b>
 			</span>
 			<input type="text" id="search_text" class="form-control" placeholder="Search">
-				<xsl:if test="$tokenized_q[not(contains(., 'type_uri') or contains(., 'role_facet'))]">
-					<xsl:attribute name="value" select="$tokenized_q[not(contains(., 'type_uri') or contains(., 'role_facet'))]"/>
+				<xsl:if test="$tokenized_q[not(contains(., 'type') or contains(., 'role_facet'))]">
+					<xsl:attribute name="value" select="$tokenized_q[not(contains(., 'type') or contains(., 'role_facet'))]"/>
 				</xsl:if>
 			</input>
 			<button id="search_button" class="btn btn-default">
