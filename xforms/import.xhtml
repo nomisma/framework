@@ -245,6 +245,14 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 			<xforms:instance id="sparqlUpdate">
 				<query></query>
 			</xforms:instance>
+			
+			<!-- Solr instances -->
+			<xforms:instance id="addIndex">
+				<add xmlns=""></add>
+			</xforms:instance>
+			<xforms:instance id="sendCommit">
+				<commit></commit>
+			</xforms:instance>
 
 
 			<!-- ************* BINDINGS **********************-->
@@ -401,6 +409,21 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 			<xforms:submission id="post-new" action="{instance('config')/sparql_store}?default" ref="instance('rdf')" replace="none" method="post" mediatype="application/rdf+xml">
 				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Successfully posted to endpoint.</xforms:setvalue>
 				<xforms:message ev:event="xforms-submit-error" level="modal">Post to endpoint failed.</xforms:message>
+			</xforms:submission>
+			
+			<!-- ************************* SOLR SUBMISSIONS ************************** -->
+			<!-- post instance to Solr -->
+			<xforms:submission id="post-solr-doc" action="{instance('config')/solr_published}update" ref="instance('addIndex')" instance="addIndex" replace="instance" method="post">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
+				<xforms:action ev:event="xforms-submit-done">
+					<xforms:setvalue ref="instance('control-instance')/status">Document successfully saved to Solr.</xforms:setvalue>
+					<xforms:send submission="submit-commit"></xforms:send>
+				</xforms:action>				
+			</xforms:submission>
+			
+			<!-- send commit -->
+			<xforms:submission id="submit-commit" action="{instance('config')/solr_published}update" ref="instance('sendCommit')" instance="sendCommit" replace="none" method="post">
+				<xforms:message level="modal" ev:event="xforms-submit-error">Failed to commit to Solr index.</xforms:message>				
 			</xforms:submission>
 
 			<!-- ************************* POST RDF/XML ************************** -->
