@@ -179,8 +179,8 @@
 				<skos:definition xml:lang=""></skos:definition>
 			</xforms:instance>
 
-			<xforms:instance id="relatedMatch-template" xxforms:exclude-result-prefixes="#all">
-				<skos:relatedMatch rdf:resource=""></skos:relatedMatch>
+			<xforms:instance id="closeMatch-template" xxforms:exclude-result-prefixes="#all">
+				<skos:closeMatch rdf:resource=""></skos:closeMatch>
 			</xforms:instance>
 
 			<xforms:instance id="exactMatch-template" xxforms:exclude-result-prefixes="#all">
@@ -451,8 +451,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 			<!-- ************* QUERY ATOM **********************-->
 			<!-- query local atom feed to power skos:broader -->
 			<xforms:submission id="query-feed" serialization="none" method="get"
-				action="/nomisma/feed/?q=type:{encode-for-uri(normalize-space(instance('control-instance')/atom-type))};+{instance('control-instance')/atom-search}&amp;sort=prefLabel+asc" instance="feed"
-				replace="instance">
+				action="/nomisma/feed/?q=type:{encode-for-uri(normalize-space(instance('control-instance')/atom-type))};+{instance('control-instance')/atom-search}&amp;sort=prefLabel+asc"
+				instance="feed" replace="instance">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to communicate with nomisma.org Atom feed.</xforms:message>
 			</xforms:submission>
 
@@ -623,20 +623,25 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 								</li>
 							</xforms:group>
 							<li><h4>Relations</h4></li>
-							<li>
-								<xforms:trigger appearance="minimal">
-									<xforms:label>
-										<span class="glyphicon glyphicon-plus"></span>Exact Match</xforms:label>
-									<xforms:insert ev:event="DOMActivate" origin="instance('exactMatch-template')" context="." nodeset="./child::node()[last()]"></xforms:insert>
-								</xforms:trigger>
-							</li>
-							<li>
-								<xforms:trigger appearance="minimal">
-									<xforms:label>
-										<span class="glyphicon glyphicon-plus"></span>Related Match</xforms:label>
-									<xforms:insert ev:event="DOMActivate" origin="instance('relatedMatch-template')" context="." nodeset="./child::node()[last()]"></xforms:insert>
-								</xforms:trigger>
-							</li>
+							<!-- suppress skos:exactMatch from Mint -->
+							<xforms:group ref=".[not($type='nmo:Mint')]">
+								<li>
+									<xforms:trigger appearance="minimal">
+										<xforms:label>
+											<span class="glyphicon glyphicon-plus"></span>Exact Match</xforms:label>
+										<xforms:insert ev:event="DOMActivate" origin="instance('exactMatch-template')" context="." nodeset="./child::node()[last()]"></xforms:insert>
+									</xforms:trigger>
+								</li>
+							</xforms:group>
+							<xforms:group ref=".[$type='nmo:Mint']">
+								<li>
+									<xforms:trigger appearance="minimal">
+										<xforms:label>
+											<span class="glyphicon glyphicon-plus"></span>Close Match</xforms:label>
+										<xforms:insert ev:event="DOMActivate" origin="instance('closeMatch-template')" context="." nodeset="./child::node()[last()]"></xforms:insert>
+									</xforms:trigger>
+								</li>
+							</xforms:group>
 							<xforms:group ref=".[not($type='foaf:Person')]">
 								<li>
 									<xforms:trigger appearance="minimal">
@@ -938,10 +943,10 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										</xforms:trigger>
 									</div>
 								</xforms:repeat>
-								<xforms:repeat nodeset="skos:relatedMatch">
+								<xforms:repeat nodeset="skos:closeMatch">
 									<div>
 										<xforms:input ref="@rdf:resource">
-											<xforms:label>Related Match</xforms:label>
+											<xforms:label>Close Match</xforms:label>
 											<xforms:alert>Required, must be URI</xforms:alert>
 										</xforms:input>
 										<xforms:trigger appearance="minimal">
@@ -1191,7 +1196,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 						<!-- org:Membership -->
 						<xforms:repeat nodeset="org:Membership">
 							<xforms:var name="uri" select="@rdf:about"></xforms:var>
-							<xforms:var name="position" select="position()"></xforms:var>							
+							<xforms:var name="position" select="position()"></xforms:var>
 							<div class="subsection row">
 								<div class="col-md-12">
 									<h3>Membership <small>
@@ -1256,8 +1261,9 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 												<!-- when the value of the drop down is changed, update the URI of this object and the org:hasMembership in the parent concept -->
 												<xforms:action ev:event="xforms-value-changed">
 													<xforms:var name="role" select="."></xforms:var>
-													<xforms:var name="count" select="count(instance('doc')//org:role[@rdf:resource = $role])"/>
-													<xforms:setvalue ref="ancestor::org:Membership/@rdf:about" value="concat(ancestor::rdf:RDF/*[1]/@rdf:about, '#', substring-after($role, 'id/'), if ($count &gt; 1) then $count else '')"></xforms:setvalue>
+													<xforms:var name="count" select="count(instance('doc')//org:role[@rdf:resource = $role])"></xforms:var>
+													<xforms:setvalue ref="ancestor::org:Membership/@rdf:about"
+														value="concat(ancestor::rdf:RDF/*[1]/@rdf:about, '#', substring-after($role, 'id/'), if ($count &gt; 1) then $count else '')"></xforms:setvalue>
 													<xforms:setvalue ref="ancestor::rdf:RDF/*[1]/org:hasMembership[position()=$position]/@rdf:resource"
 														value="concat(ancestor::rdf:RDF/*[1]/@rdf:about, '#', substring-after($role, 'id/'), if ($count &gt; 1) then $count else '')"></xforms:setvalue>
 												</xforms:action>
@@ -1332,7 +1338,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 						<xforms:group ref=".[$type='nmo:Mint' or $type='nmo:Region']">
 							<nomisma:bm></nomisma:bm>
 							<nomisma:getty></nomisma:getty>
-							<xforms:group ref=".[not(skos:relatedMatch[contains(@rdf:resource, 'pleiades.stoa.org')])]">
+							<xforms:group ref=".[not(skos:closeMatch[contains(@rdf:resource, 'pleiades.stoa.org')])]">
 								<nomisma:pleiades></nomisma:pleiades>
 							</xforms:group>
 						</xforms:group>

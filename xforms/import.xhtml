@@ -1,0 +1,1047 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:res="http://www.w3.org/2005/sparql-results#"
+	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/" xmlns:foaf="http://xmlns.com/foaf/0.1/"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:un="http://www.owl-ontologies.com/Ontology1181490123.owl#"
+	xmlns:atom="http://www.w3.org/2005/Atom" xmlns:nomisma="https://github.com/nomisma" xmlns:rdac="http://www.rdaregistry.info/Elements/c/"
+	xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:nmo="http://nomisma.org/ontology#" xmlns:org="http://www.w3.org/ns/org#">
+	<head>
+		<title>nomisma.org: manage datasets</title>
+		<link rel="stylesheet" href="/fr/style/bootstrap/css/bootstrap.css" type="text/css" />
+		<link rel="stylesheet" href="/fr/style/form-runner-bootstrap-override.css" type="text/css" />
+		<link rel="shortcut icon" href="/ops/images/orbeon-icon-16.ico" />
+		<link rel="icon" href="/ops/images/orbeon-icon-16.png" type="image/png" />
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+		<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="/apps/nomisma/xforms/css/style.css" />
+
+		<xforms:model>
+			<xforms:instance id="rdf" xxforms:exclude-result-prefixes="#all">
+				<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/" xmlns:nmo="http://nomisma.org/ontology#" xmlns:foaf="http://xmlns.com/foaf/0.1/"
+					xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+					xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:un="http://www.owl-ontologies.com/Ontology1181490123.owl#"
+					xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:org="http://www.w3.org/ns/org#" xmlns:rdac="http://www.rdaregistry.info/Elements/c/"
+					xmlns:prov="http://www.w3.org/ns/prov#"></rdf:RDF>
+			</xforms:instance>
+
+			<xforms:instance id="config" xxforms:exclude-result-prefixes="#all">
+				<xi:include href="../config.xml"></xi:include>
+			</xforms:instance>
+
+			<xforms:instance id="control-instance">
+				<controls xmlns="">
+					<status></status>
+					<spreadsheet_key></spreadsheet_key>
+					<worksheet_id></worksheet_id>
+					<id></id>
+					<title></title>
+					<type></type>
+					<load-trigger>false</load-trigger>
+					<validate-trigger>false</validate-trigger>
+					<import-trigger>false</import-trigger>
+					<parse-wikipedia>true</parse-wikipedia>
+					<wiki-title></wiki-title>
+					<wiki-lang></wiki-lang>
+					<position></position>
+					<count></count>
+				</controls>
+			</xforms:instance>
+
+			<!-- XPL configurations for saving RDF/XML to the filesystem -->
+			<xforms:instance id="save-config">
+				<config xmlns="">
+					<url></url>
+					<content-type>text/plain</content-type>
+					<make-directories>false</make-directories>
+					<append>false</append>
+				</config>
+			</xforms:instance>
+
+			<!-- dump instance necessary for saving files to the disk -->
+			<xforms:instance id="dump">
+				<dump xmlns=""></dump>
+			</xforms:instance>
+
+			<!-- restricted instances -->
+			<xforms:instance id="classes">
+				<classes xmlns="">
+					<class>
+						<label>Collection</label>
+						<type>nmo:Collection</type>
+					</class>
+					<class>
+						<label>Denomination</label>
+						<type>nmo:Denomination</type>
+					</class>
+					<class>
+						<label>Dynasty</label>
+						<type>rdac:Family</type>
+					</class>
+					<class>
+						<label>Ethnic</label>
+						<type>nmo:Ethnic</type>
+					</class>
+					<class>
+						<label>Field of Numismatics</label>
+						<type>nmo:FieldOfNumismatics</type>
+					</class>
+					<class>
+						<label>Manufacture</label>
+						<type>nmo:Manufacture</type>
+					</class>
+					<class>
+						<label>Material</label>
+						<type>nmo:Material</type>
+					</class>
+					<class>
+						<label>Mint</label>
+						<type>nmo:Mint</type>
+					</class>
+					<class>
+						<label>Numismatic Term</label>
+						<type>nmo:NumismaticTerm</type>
+					</class>
+					<class>
+						<label>Object Type</label>
+						<type>nmo:ObjectType</type>
+					</class>
+					<class>
+						<label>Organization</label>
+						<type>foaf:Organization</type>
+					</class>
+					<class>
+						<label>Person</label>
+						<type>foaf:Person</type>
+					</class>
+					<class>
+						<label>Reference Work</label>
+						<type>nmo:ReferenceWork</type>
+					</class>
+					<class>
+						<label>Region</label>
+						<type>nmo:Region</type>
+					</class>
+					<class>
+						<label>Type Series</label>
+						<type>nmo:TypeSeries</type>
+					</class>
+					<class>
+						<label>Uncertainty</label>
+						<type>un:Uncertainty</type>
+					</class>
+					<class>
+						<label>Coin Wear</label>
+						<type>nmo:CoinWear</type>
+					</class>
+				</classes>
+			</xforms:instance>
+
+			<xforms:instance id="properties">
+				<properties xmlns="">
+					<property label="Nomisma ID">id</property>
+					<property label="Preferred Label">skos:prefLabel</property>
+					<property label="Definition">skos:definition</property>
+					<property label="Alternative Label">skos:altLabel</property>
+					<property label="Broader Concept" exclude="foaf:Person">skos:broader</property>
+					<property label="Close Match" constraint="nmo:Mint">skos:closeMatch</property>
+					<property label="Dynasty" constraint="foaf:Person">org:memberOf</property>
+					<property label="End Date">nmo:hasEndDate</property>
+					<property label="Exact Match" exclude="nmo:Mint">skos:exactMatch</property>
+					<property label="Field of Numismatics">dcterms:isPartOf</property>
+					<property label="Latitude" constraint="nmo:Mint">geo:lat</property>
+					<property label="Longitude" constraint="nmo:Mint">geo:long</property>
+					<property label="Organization" constraint="foaf:Person">org:organization</property>
+					<property label="Role" constraint="foaf:Person|foaf:Organization">org:role</property>
+					<property label="Scope Note">skos:scopeNote</property>
+					<property label="Source">dcterms:source</property>
+					<property label="Start Date">nmo:hasStartDate</property>
+				</properties>
+			</xforms:instance>
+
+			<xforms:instance id="languages">
+				<xi:include href="instances/languages.xml"></xi:include>
+			</xforms:instance>
+
+			<xforms:instance id="mappings" xxforms:exclude-result-prefixes="#all">
+				<mappings xmlns=""></mappings>
+			</xforms:instance>
+
+			<xforms:instance id="validation-model" xxforms:exclude-result-prefixes="#all">
+				<validation xmlns=""></validation>
+			</xforms:instance>
+
+			<xforms:instance id="nomisma-ids" xxforms:exclude-result-prefixes="#all">
+				<ids xmlns=""></ids>
+			</xforms:instance>
+
+			<!-- Google Spreadsheet Atom -->
+			<xforms:instance id="spreadsheet-feed">
+				<feed xmlns=""></feed>
+			</xforms:instance>
+
+			<xforms:instance id="feed" xxforms:exclude-result-prefixes="#all">
+				<feed xmlns=""></feed>
+			</xforms:instance>
+
+			<!-- Wikidata XML -->
+			<xforms:instance id="wikidata">
+				<api xmlns=""></api>
+			</xforms:instance>
+
+			<xforms:instance id="wikidata-properties">
+				<properties xmlns="">
+					<property id="P213">http://isni.org/</property>
+					<property id="P214">http://viaf.org/viaf/</property>
+					<property id="P227">http://d-nb.info/gnd/</property>
+					<property id="P245">http://vocab.getty.edu/ulan/</property>
+					<property id="P268">http://catalogue.bnf.fr/ark:/12148/cb</property>
+					<property id="P269">http://www.idref.fr/</property>
+					<property id="P646">https://www.freebase.com</property>
+					<property id="P1566">http://www.geonames.org/</property>
+					<property id="P1900">http://www.eagle-network.eu/voc/</property>
+				</properties>
+			</xforms:instance>
+
+			<!-- SPARQL instances -->
+			<xforms:instance id="sparqlQuery">
+				<query></query>
+			</xforms:instance>
+
+			<!-- preloaded instances -->
+			<xforms:instance id="sparqlResponse">
+				<sparql xmlns="http://www.w3.org/2005/sparql-results#"></sparql>
+			</xforms:instance>
+
+			<!-- sparql update -->
+			<xforms:instance id="sparqlUpdate-template">
+				<query>
+					<![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX org:	<http://www.w3.org/ns/org#>
+PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
+DELETE {?s ?p ?o} WHERE { 
+{<URI> geo:location ?s . ?s ?p ?o }
+UNION {<URI> org:hasMembership ?s . ?s ?p ?o}
+UNION {<URI> ?p ?o . ?s ?p ?o . FILTER (?s = <URI>) }
+}]]>
+				</query>
+			</xforms:instance>
+
+			<!-- sparql query templates -->
+			<xforms:instance id="sparql-templates">
+				<templates xmlns="">
+					<prefix><![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
+PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX org:	<http://www.w3.org/ns/org#>
+PREFIX rdac:	<http://www.rdaregistry.info/Elements/c/>
+PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
+					<query id="ask">ASK {&lt;URI&gt; rdf:type CLASS}</query>
+				</templates>
+			</xforms:instance>
+
+			<xforms:instance id="sparqlUpdate">
+				<query></query>
+			</xforms:instance>
+
+
+			<!-- ************* BINDINGS **********************-->
+			<xforms:bind nodeset="instance('control-instance')">
+				<xforms:bind nodeset="type" required="true()"></xforms:bind>
+				<xforms:bind nodeset="load-trigger" id="load-trigger" type="xs:boolean" readonly=". != true()" calculate="string-length(../type) != 0"></xforms:bind>
+				<xforms:bind nodeset="validate-trigger" id="validate-trigger" type="xs:boolean" readonly=". != true()"></xforms:bind>
+				<xforms:bind nodeset="import-trigger" id="import-trigger" type="xs:boolean" relevant=". = true()"></xforms:bind>
+				<xforms:bind nodeset="parse-wikipedia" type="xs:boolean"></xforms:bind>
+			</xforms:bind>
+
+			<xforms:bind nodeset="instance('mappings')"
+				constraint="count(mapping[@to = 'id']) = 1 and count(mapping[@to = 'skos:prefLabel'][@lang='en']) = 1 and count(mapping[@to = 'skos:definition'][@lang='en']) = 1 and count(mapping[@to='nmo:hasStartDate']) &lt;= 1 and  count(mapping[@to='nmo:hasEndDate']) &lt;= 1 and  count(mapping[@to='org:role']) &lt;= 1 and count(mapping[@to='org:organization']) &lt;= 1 and count(mapping[@to='geo:lat']) &lt;= 1 and count(mapping[@to='geo:long']) &lt;= 1">
+				<!-- language bindings -->
+				<xforms:bind nodeset="mapping[@to='skos:prefLabel']">
+					<xforms:bind nodeset="@lang" required="true()"
+						constraint="string-length(.) &gt; 0 and count(//mapping[@to='skos:prefLabel']/@lang) = count(distinct-values(//mapping[@to='skos:prefLabel']/@lang))"></xforms:bind>
+				</xforms:bind>
+				<xforms:bind nodeset="mapping[@to='skos:definition']">
+					<xforms:bind nodeset="@lang" required="true()"
+						constraint="string-length(.) &gt; 0 and count(//mapping[@to='skos:definition']/@lang) = count(distinct-values(//mapping[@to='skos:definition']/@lang))"></xforms:bind>
+				</xforms:bind>
+				<xforms:bind nodeset="mapping[@to='skos:scopeNote']">
+					<xforms:bind nodeset="@lang" required="true()"
+						constraint="string-length(.) &gt; 0 and count(//mapping[@to='skos:scopeNote']/@lang) = count(distinct-values(//mapping[@to='skos:scopeNote']/@lang))"></xforms:bind>
+				</xforms:bind>
+				<xforms:bind nodeset="mapping[@to='skos:altLabel']">
+					<xforms:bind nodeset="@lang" required="true()" constraint="string-length(.) &gt; 0"></xforms:bind>
+				</xforms:bind>
+				<!-- role validation for person/organization -->
+				<xforms:bind nodeset="role-invalid" required="true()" constraint=". = 'false'"></xforms:bind>
+				<xforms:bind nodeset="coordinates-invalid" required="true()" constraint=". = 'false'"></xforms:bind>
+			</xforms:bind>
+
+			<xforms:bind nodeset="instance('nomisma-ids')">
+				<xforms:bind nodeset="id" type="xs:boolean"></xforms:bind>
+			</xforms:bind>
+
+			<!-- **************** DYNAMIC VALIDATION CONTROLS ********************** -->
+			<xforms:action ev:event="xxforms-invalid" ev:observer="mappings">
+				<xforms:setvalue ref="instance('control-instance')/validate-trigger" value="false()"></xforms:setvalue>
+			</xforms:action>
+
+			<xforms:action ev:event="xxforms-valid" ev:observer="mappings">
+				<xforms:setvalue ref="instance('control-instance')/validate-trigger" value="true()"></xforms:setvalue>
+			</xforms:action>
+
+			<!-- **************** CUSTOM DATATYPES ********************** -->
+			<!-- URL validation. Example from http://stackoverflow.com/questions/3381507/xml-validation-validating-a-uri-type -->
+			<xs:schema elementFormDefault="qualified" attributeFormDefault="unqualified">
+				<xs:simpleType name="custom.httpURL">
+					<xs:restriction base="xs:anyURI">
+						<!-- accepts only http:// or https:// URIs. -->
+						<xs:pattern value="https?://.+"></xs:pattern>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:schema>
+
+			<!-- ************* SUBMISSIONS **********************-->
+			<!-- ************* GOOGLE DRIVE **********************-->
+			<xforms:submission id="query-spreadsheet-feed" serialization="none" method="get"
+				action="https://spreadsheets.google.com/feeds/worksheets/{instance('control-instance')/spreadsheet_key}/public/full" instance="spreadsheet-feed" replace="instance">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to receive Atom from Google Drive for the key provided.</xforms:message>
+				<!-- if a feed is successfully received, set the id for the workshop -->
+				<xforms:action ev:event="xforms-submit-done">
+					<xforms:setvalue ref="instance('control-instance')/worksheet_id" value="tokenize(instance('spreadsheet-feed')//atom:entry[1]/atom:id, '/')[last()]"></xforms:setvalue>
+					<xforms:send submission="load-worksheet"></xforms:send>
+				</xforms:action>
+			</xforms:submission>
+
+			<xforms:submission id="load-worksheet" serialization="none" method="get"
+				action="https://spreadsheets.google.com/feeds/list/{instance('control-instance')/spreadsheet_key}/{instance('control-instance')/worksheet_id}/public/full" instance="feed"
+				replace="instance">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to receive Atom from Google Drive for the worksheet ID.</xforms:message>
+				<!-- if a feed is successfully received, set the id for the workshop -->
+				<xforms:action ev:event="xforms-submit-done">
+					<!-- if there is at least one entry, set the mapping instance and toggle the mapping interface -->
+					<xforms:action if="count(instance('feed')//atom:entry) &gt; 0">
+						<xforms:action xxforms:iterate="instance('feed')//atom:entry[1]/*[namespace-uri()='http://schemas.google.com/spreadsheets/2006/extended']">
+							<xforms:var name="heading" select="name()"></xforms:var>
+							<xforms:insert context="instance('mappings')" nodeset="./child::node()[last()]"
+								origin="xforms:element('mapping', (xforms:attribute('from', $heading), xforms:attribute('to', '')))"></xforms:insert>
+						</xforms:action>
+						<!-- insert an element to test whether the role has been assigned for foaf:Person or foaf:Organization when dates are used or whether the role exists if org:organization is used -->
+						<xforms:action if="instance('control-instance')/type='foaf:Person' or instance('control-instance')/type='foaf:Organization'">
+							<xforms:insert context="instance('mappings')" nodeset="./child::node()[last()]" origin="xforms:element('role-invalid', 'false')"></xforms:insert>
+						</xforms:action>
+						<!-- insert an element to test whether the coordinates are valid -->
+						<xforms:action if="instance('control-instance')/type='nmo:Mint'">
+							<xforms:insert context="instance('mappings')" nodeset="./child::node()[last()]" origin="xforms:element('coordinates-invalid', 'false')"></xforms:insert>
+						</xforms:action>
+
+						<xforms:toggle case="mapping-interface"></xforms:toggle>
+					</xforms:action>
+					<!-- if there are no entries in the Atom feed, set the error interface -->
+					<xforms:action if="count(instance('feed')//atom:entry) = 0">
+						<xforms:toggle case="mapping-error-interface"></xforms:toggle>
+					</xforms:action>
+				</xforms:action>
+			</xforms:submission>
+
+			<!-- ************* WIKIDATA **********************-->
+			<xforms:submission id="get-wikidata" serialization="none" method="get"
+				action="https://www.wikidata.org/w/api.php?action=wbgetentities&amp;titles={instance('control-instance')/wiki-title}&amp;sites={instance('control-instance')/wiki-lang}wiki&amp;format=xml"
+				instance="wikidata" replace="instance">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to get data from Wikidata.</xforms:message>
+				<xforms:action ev:event="xforms-submit-done">
+					<!-- process wikidata XML if the entity has an @id -->
+					<xforms:action if="string(instance('wikidata')//entity[1]/@id)">
+						<!-- create mapping based on the type: skos:closeMatch for mints, skos:exactMatch for all else -->
+						<xforms:var name="mapping" select="if (instance('control-instance')/type = 'nmo:Mint') then 'skos:closeMatch' else 'skos:exactMatch'"></xforms:var>
+						<!-- insert the wikidata URI -->
+						<xforms:var name="wikidata-uri" select="concat('http://www.wikidata.org/entity/', instance('wikidata')//entity[1]/@id)"></xforms:var>
+						<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]" if="not(instance('rdf')/*[1]/*[name()=$mapping][@rdf:resource=$wikidata-uri])"
+							origin="xforms:element($mapping, (xforms:attribute('rdf:resource', $wikidata-uri), ''))"></xforms:insert>
+
+						<!-- import new labels, but only ones that follow the two-digit ISO standard -->
+						<xforms:action xxforms:iterate="instance('wikidata')//entity[1]/labels/label[string-length(@language) = 2]">
+							<xforms:var name="lang" select="data(context()/@language)"></xforms:var>
+							<xforms:var name="label" select="data(context()/@value)"></xforms:var>
+							<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]" if="not(instance('rdf')/*[1]/skos:prefLabel[@xml:lang=$lang])"
+								origin="xforms:element('skos:prefLabel', (xforms:attribute('xml:lang', $lang), $label))"></xforms:insert>
+						</xforms:action>
+
+						<!-- iterate through claims with matching properties to link to external vocabulary systems -->
+						<xforms:action
+							xxforms:iterate="instance('wikidata')//entity[1]/claims/property[@id='P214' or @id='P227' or @id='P213' or @id='P268' or @id='P269' or @id='P646' or @id='P245' or @id='P1566' or @id='P1900']">
+							<xforms:var name="property" select="data(context()/@id)"></xforms:var>
+							<xforms:var name="id" select="replace(data(context()/descendant::mainsnak/datavalue/@value), ' ', '')"></xforms:var>
+							<xforms:var name="uri" select="concat(instance('wikidata-properties')/property[@id=$property], $id)"></xforms:var>
+
+							<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]" if="not(instance('rdf')/*[1]/*[name()=$mapping][@rdf:resource=$uri])"
+								origin="xforms:element($mapping, (xforms:attribute('rdf:resource', $uri), ''))"></xforms:insert>
+						</xforms:action>
+					</xforms:action>
+					<!-- clear wiki stuff from control-instance -->
+					<xforms:setvalue ref="instance('control-instance')/wiki-title"></xforms:setvalue>
+					<xforms:setvalue ref="instance('control-instance')/wiki-lang"></xforms:setvalue>
+				</xforms:action>
+			</xforms:submission>
+
+			<!-- ************* SPARQL **********************-->
+			<xforms:submission id="delete-graph" action="{instance('config')/sparql_update}" ref="instance('sparqlUpdate')" serialization="text/plain" replace="none" method="post"
+				mediatype="application/sparql-update">
+				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Graph successfully deleted from endpoint.</xforms:setvalue>
+				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL update failed.</xforms:message>
+			</xforms:submission>
+
+			<xforms:submission id="submit-sparqlQuery" action="{instance('config')/sparql_query}?query={encode-for-uri(instance('sparqlQuery'))}&amp;output=xml" ref="instance('sparqlResponse')"
+				replace="instance" method="get">
+				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL query failed.</xforms:message>
+			</xforms:submission>
+
+			<xforms:submission id="post-new" action="{instance('config')/sparql_store}?default" ref="instance('rdf')" replace="none" method="post" mediatype="application/rdf+xml">
+				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Successfully posted to endpoint.</xforms:setvalue>
+				<xforms:message ev:event="xforms-submit-error" level="modal">Post to endpoint failed.</xforms:message>
+			</xforms:submission>
+
+			<!-- ************************* POST RDF/XML ************************** -->
+			<xforms:submission id="post-rdf" action="{instance('config')/sparql_store}?default" ref="instance('rdf')" replace="none" method="post" mediatype="application/rdf+xml">
+				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Successfully posted to endpoint.</xforms:setvalue>
+				<xforms:message ev:event="xforms-submit-error" level="modal">Post to endpoint failed.</xforms:message>
+			</xforms:submission>
+
+			<!-- ************************* LOAD RDF/XML ************************** -->
+			<xforms:submission id="load-rdf" serialization="none" method="get" action="/nomisma/id/{instance('control-instance')/id}.rdf" replace="instance" instance="rdf">
+				<!-- ************ RDF PROCESSING TO CREATE A NEW ID ************** -->
+				<xforms:action ev:event="xforms-submit-error">
+					<xforms:var name="uri" select="concat('http://nomisma.org/id/', instance('control-instance')/id)"></xforms:var>
+					<xforms:insert context="instance('rdf')" origin="xforms:element(instance('control-instance')/type, xforms:attribute('rdf:about', $uri))"></xforms:insert>
+					<!-- insert rdf:type as skos:Concept -->
+					<xforms:insert context="instance('rdf')/*[last()]" origin="xforms:element('rdf:type', xforms:attribute('rdf:resource', 'http://www.w3.org/2004/02/skos/core#Concept'))"
+					></xforms:insert>
+				</xforms:action>
+
+				<!-- ************ RDF PROCESSING TO ADD SUPPLEMENTAL INFORMATION ************** -->
+				<xforms:action ev:event="xforms-submit-done">
+					<!-- instantiation of empty callback so as to proceed with a single action under the xforms:send in the trigger -->
+				</xforms:action>
+			</xforms:submission>
+
+
+			<!-- ********** XFORMS-MODEL-CONSTRUCT-DONE ********** -->
+			<!--<xforms:action ev:event="xforms-model-construct-done">
+				
+			</xforms:action>-->
+		</xforms:model>
+	</head>
+
+	<body>
+		<xforms:var name="display_path">../</xforms:var>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-3 pull-right text-right">
+					<h4>
+						<a href="logout"><span class="glyphicon glyphicon-log-out"></span> logout</a>
+					</h4>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<p><a href="../"><span class="glyphicon glyphicon-arrow-left"></span>Return to Admin</a></p>
+					<xforms:group ref=".[string-length(instance('control-instance')/status) &gt; 0]">
+						<div class="bg-info alert-box">
+							<span class="glyphicon glyphicon-info-sign"></span>
+							<strong>Status:</strong>
+							<xforms:output ref="instance('control-instance')/status"></xforms:output>
+						</div>
+					</xforms:group>
+					<h1>Import/Update Nomisma IDs</h1>
+					<xforms:switch>
+						<xforms:case id="default">
+							<p>Select the type of IDs to be imported into Nomisma. Note that all IDs in the spreadsheet must conform to the same type.</p>
+							<xforms:group ref="instance('control-instance')">
+								<div>
+									<xforms:select1 ref="type">
+										<xforms:label>Type</xforms:label>
+										<xforms:alert>Required</xforms:alert>
+										<xforms:item>
+											<xforms:label>Select...</xforms:label>
+											<xforms:value></xforms:value>
+										</xforms:item>
+										<xforms:itemset nodeset="instance('classes')/class">
+											<xforms:label ref="label"></xforms:label>
+											<xforms:value ref="type"></xforms:value>
+										</xforms:itemset>
+									</xforms:select1>
+								</div>
+								<div>
+									<xforms:input ref="spreadsheet_key">
+										<xforms:label>Spreadsheet ID</xforms:label>
+									</xforms:input>
+									<xforms:trigger bind="load-trigger">
+										<xforms:label>Load Spreadsheet</xforms:label>
+										<xforms:send submission="query-spreadsheet-feed" ev:event="DOMActivate"></xforms:send>
+									</xforms:trigger>
+								</div>
+							</xforms:group>
+						</xforms:case>
+						<xforms:case id="mapping-interface">
+							<div>
+								<h3>Mapping</h3>
+								<p>Associate the headings with allowable properties, where applicable. Note that the Nomisma ID, Preferred Label (English), and Definition (English) are required.</p>
+								<xforms:group ref="instance('mappings')">
+									<xforms:group ref=".[count(mapping[@to='id']) != 1]">
+										<div class="bg-danger alert-box">
+											<span class="glyphicon glyphicon-exclamation-sign"></span>
+											<strong>Alert:</strong>There must be one Nomisma ID.</div>
+									</xforms:group>
+									<!-- language warnings -->
+									<xforms:group ref=".[count(mapping[@to='skos:prefLabel'][@lang='en']) = 0]">
+										<div class="bg-danger alert-box">
+											<span class="glyphicon glyphicon-exclamation-sign"></span>
+											<strong>Alert:</strong> Preferred English Label is required.</div>
+									</xforms:group>
+									<xforms:group ref=".[count(mapping[@to='skos:definition'][@lang='en']) = 0]">
+										<div class="bg-danger alert-box">
+											<span class="glyphicon glyphicon-exclamation-sign"></span>
+											<strong>Alert:</strong> Preferred English Definition is required.</div>
+									</xforms:group>
+									<xforms:group ref=".[count(mapping[@to='skos:prefLabel']/@lang) != count(distinct-values(mapping[@to='skos:prefLabel']/@lang))]">
+										<div class="bg-danger alert-box">
+											<span class="glyphicon glyphicon-exclamation-sign"></span>
+											<strong>Alert:</strong> Preferred label languages must be unique.</div>
+									</xforms:group>
+									<xforms:group ref=".[count(mapping[@to='skos:definition']/@lang) != count(distinct-values(mapping[@to='skos:definition']/@lang))]">
+										<div class="bg-danger alert-box">
+											<span class="glyphicon glyphicon-exclamation-sign"></span>
+											<strong>Alert:</strong> Definition languages must be unique.</div>
+									</xforms:group>
+									<xforms:group ref=".[count(mapping[@to='skos:scopeNote']/@lang) != count(distinct-values(mapping[@to='skos:scopeNote']/@lang))]">
+										<div class="bg-danger alert-box">
+											<span class="glyphicon glyphicon-exclamation-sign"></span>
+											<strong>Alert:</strong> Scope Note languages must be unique.</div>
+									</xforms:group>
+									<!-- coordinate warnings -->
+									<xforms:group
+										ref=".[count(mapping[@to='geo:lat']) &gt; 1 and count(mapping[@to='geo:long']) &gt; 1 or count(mapping[@to='geo:lat']) != count(mapping[@to='geo:long'])]">
+										<div class="bg-danger alert-box">
+											<span class="glyphicon glyphicon-exclamation-sign"></span>
+											<strong>Alert:</strong> There must be both a latitude and longitude, with a maximum of 1 mapping each.</div>
+									</xforms:group>
+									<!-- dates -->
+									<xforms:group ref=".[count(mapping[@to='nmo:hasStartDate']) &gt; 1]">
+										<div class="bg-danger alert-box">
+											<span class="glyphicon glyphicon-exclamation-sign"></span>
+											<strong>Alert:</strong> There can not be more than one start date.</div>
+									</xforms:group>
+									<xforms:group ref=".[count(mapping[@to='nmo:hasEndDate']) &gt; 1]">
+										<div class="bg-danger alert-box">
+											<span class="glyphicon glyphicon-exclamation-sign"></span>
+											<strong>Alert:</strong> There can not be more than one end date.</div>
+									</xforms:group>
+									<xforms:group
+										ref=".[(instance('control-instance')/type='foaf:Person' or instance('control-instance')/type='foaf:Organization') and (count(mapping[@to='nmo:hasStartDate']) &gt; 0 or count(mapping[@to='nmo:hasEndDate']) &gt; 0) and count(mapping[@to='org:role']) = 0]">
+										<div class="bg-danger alert-box">
+											<span class="glyphicon glyphicon-exclamation-sign"></span>
+											<strong>Alert:</strong> A person or organization must have a role if there is a start or end date.</div>
+									</xforms:group>
+									<!-- role, organization -->
+									<xforms:group ref=".[count(mapping[@to='org:role']) &gt; 1]">
+										<div class="bg-danger alert-box">
+											<span class="glyphicon glyphicon-exclamation-sign"></span>
+											<strong>Alert:</strong> There can not be more than one role.</div>
+									</xforms:group>
+									<xforms:group ref=".[count(mapping[@to='org:organization']) &gt; 1]">
+										<div class="bg-danger alert-box">
+											<span class="glyphicon glyphicon-exclamation-sign"></span>
+											<strong>Alert:</strong> There can not be more than one organization.</div>
+									</xforms:group>
+									<xforms:group ref=".[count(mapping[@to='org:organization']) = 1 and count(mapping[@to='org:role']) = 0]">
+										<div class="bg-danger alert-box">
+											<span class="glyphicon glyphicon-exclamation-sign"></span>
+											<strong>Alert:</strong> A role is required for an organization.</div>
+									</xforms:group>
+									<table class="table">
+										<thead>
+											<tr>
+												<th style="width:25%">Column Heading</th>
+												<th>Property Mapping</th>
+											</tr>
+										</thead>
+										<xforms:repeat nodeset="mapping">
+
+											<tr>
+												<td>
+													<xforms:output ref="substring-after(@from, ':')"></xforms:output>
+												</td>
+												<td>
+													<xforms:select1 ref="@to">
+														<xforms:alert>Mapping Error</xforms:alert>
+														<xforms:item>
+															<xforms:label>Select...</xforms:label>
+															<xforms:value></xforms:value>
+														</xforms:item>
+														<xforms:itemset
+															nodeset="instance('properties')/property[(not(@constraint) or contains(@constraint, instance('control-instance')/type)) and not(contains(@exclude, instance('control-instance')/type))]">
+															<xforms:label ref="@label"></xforms:label>
+															<xforms:value ref="."></xforms:value>
+														</xforms:itemset>
+														<xforms:action ev:event="xforms-value-changed">
+															<xforms:var name="property" select="."></xforms:var>
+															<!-- if it is a literal-based property, insert the @lang attribute -->
+															<xforms:action
+																if="$property = 'skos:prefLabel' or $property = 'skos:altLabel' or $property = 'skos:definition' or $property = 'skos:scopeNote'">
+																<xforms:insert context="parent::node()" origin="xforms:attribute('lang', '')"></xforms:insert>
+															</xforms:action>
+															<!-- if it is not a literal, then delete @lang -->
+															<xforms:action
+																if="$property != 'skos:prefLabel' and $property != 'skos:altLabel' and $property != 'skos:definition' and $property != 'skos:scopeNote'">
+																<xforms:delete context="parent::node()" nodeset="@lang"></xforms:delete>
+															</xforms:action>
+															<!-- special actions for Person and Organization and validation of org:role -->
+															<xforms:action if="instance('control-instance')/type='foaf:Person' or instance('control-instance')/type='foaf:Organization'">
+																<xforms:action
+																	if="(count(//mapping[@to='nmo:hasStartDate']) = 1 or count(//mapping[@to='nmo:hasEndDate']) = 1 or count(//mapping[@to='org:organization']) = 1) and count(//mapping[@to='org:role']) = 0">
+																	<xforms:setvalue ref="instance('mappings')/role-invalid">true</xforms:setvalue>
+																</xforms:action>
+																<xforms:action
+																	if="(count(//mapping[@to='nmo:hasStartDate']) = 1 or count(//mapping[@to='nmo:hasEndDate']) = 1 or count(//mapping[@to='org:organization']) = 1) and count(//mapping[@to='org:role']) &gt; 0">
+																	<xforms:setvalue ref="instance('mappings')/role-invalid">false</xforms:setvalue>
+																</xforms:action>
+																<xforms:action
+																	if="(count(//mapping[@to='nmo:hasStartDate']) = 0 and count(//mapping[@to='nmo:hasEndDate']) = 0 and count(//mapping[@to='org:organization']) = 0)">
+																	<xforms:setvalue ref="instance('mappings')/role-invalid">false</xforms:setvalue>
+																</xforms:action>
+															</xforms:action>
+															<xforms:action if="instance('control-instance')/type='nmo:Mint'">
+																<!-- set coordinates-invald to false if there is a count mismatch between lat and long -->
+																<xforms:action
+																	if="(count(//mapping[@to='geo:lat']) = 1 or count(//mapping[@to='geo:long']) = 1) and (count(//mapping[@to='geo:lat']) != count(//mapping[@to='geo:long']))">
+																	<xforms:setvalue ref="instance('mappings')/coordinates-invalid">true</xforms:setvalue>
+																</xforms:action>
+																<xforms:action if="count(//mapping[@to='geo:lat']) = count(//mapping[@to='geo:long'])">
+																	<xforms:setvalue ref="instance('mappings')/coordinates-invalid">false</xforms:setvalue>
+																</xforms:action>
+															</xforms:action>
+														</xforms:action>
+													</xforms:select1>
+													<xforms:group ref="@lang">
+														<xforms:select1 ref=".">
+															<xforms:alert>Mapping Error</xforms:alert>
+															<xforms:item>
+																<xforms:label>Select...</xforms:label>
+																<xforms:value></xforms:value>
+															</xforms:item>
+															<xforms:itemset nodeset="instance('languages')/language">
+																<xforms:label ref="."></xforms:label>
+																<xforms:value ref="@value"></xforms:value>
+															</xforms:itemset>
+														</xforms:select1>
+													</xforms:group>
+												</td>
+											</tr>
+										</xforms:repeat>
+									</table>
+									<xforms:trigger bind="validate-trigger">
+										<xforms:label>Validate Spreadsheet</xforms:label>
+										<xforms:action ev:event="DOMActivate">
+											<!-- first delete entries, in the event of changing the mapping -->
+											<xforms:delete nodeset="instance('validation-model')/record"></xforms:delete>
+											<!-- then iterate through all Atom entries -->
+											<xforms:action xxforms:iterate="instance('feed')//atom:entry">
+												<!-- create record in the validation model -->
+												<xforms:var name="title" select="atom:title"></xforms:var>
+												<xforms:insert context="instance('validation-model')" nodeset="./child::node()[last()]"
+													origin="xforms:element('record', (xforms:attribute('title', $title), ''))"></xforms:insert>
+												<!-- ensure that nomisma ids are unique -->
+												<xforms:insert
+													if="count(instance('feed')//atom:entry/*[name()=instance('mappings')/mapping[@to='id']/@from]) != count(distinct-values(instance('feed')//atom:entry/*[name()=instance('mappings')/mapping[@to='id']/@from]))"
+													context="instance('validation-model')" nodeset="./child::node()[last()]" origin="xforms:element('error', 'Duplicate Nomisma IDs.')"></xforms:insert>
+												<!-- iterate through all gsx elements -->
+												<xforms:action xxforms:iterate="*[namespace-uri()='http://schemas.google.com/spreadsheets/2006/extended']">
+													<xforms:var name="from" select="name()"></xforms:var>
+													<xforms:var name="value" select="normalize-space(context())"></xforms:var>
+													<!-- only process those fields which have been mapped in the user interface -->
+													<xforms:action if="string(instance('mappings')/mapping[@from=$from]/@to)">
+														<xforms:var name="mapping" select="instance('mappings')/mapping[@from=$from]/@to"></xforms:var>
+														<!-- id -->
+														<xforms:action if="$mapping = 'id'">
+															<!-- only allow certain characters as the Nomisma ID -->
+															<xforms:var name="isValid" select="matches($value, &quot;^([a-z0-9\-\._\(\)\[\]&#x0027;]*)?$&quot;)"></xforms:var>
+															<xforms:insert if="not(string($value)) or $isValid = false()" context="instance('validation-model')/record[last()]"
+																nodeset="./child::node()[last()]" origin="xforms:element('error', 'Invalid or blank ID')"></xforms:insert>
+														</xforms:action>
+														<!-- check for the existence of an English prefLabel or definition -->
+														<xforms:action if="$mapping = 'skos:prefLabel'">
+															<xforms:var name="lang" select="instance('mappings')/mapping[@from=$from]/@lang"></xforms:var>
+															<xforms:insert if="$lang = 'en' and not(string($value))" context="instance('validation-model')/record[last()]"
+																nodeset="./child::node()[last()]" origin="xforms:element('error', 'English preferred label must contain a value.')"></xforms:insert>
+														</xforms:action>
+														<xforms:action if="$mapping = 'skos:definition'">
+															<xforms:var name="lang" select="instance('mappings')/mapping[@from=$from]/@lang"></xforms:var>
+															<xforms:insert if="$lang = 'en' and not(string($value))" context="instance('validation-model')/record[last()]"
+																nodeset="./child::node()[last()]" origin="xforms:element('error', 'English definition must contain a value.')"></xforms:insert>
+														</xforms:action>
+														<!-- validate coordinates -->
+														<xforms:action if="$mapping = 'geo:lat'">
+															<xforms:insert if="string-length($value) &gt; 0 and not($value castable as xs:decimal)"
+																context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
+																origin="xforms:element('error', concat('Latitude is invalid: ', $value))"></xforms:insert>
+															<xforms:insert if="string-length($value) &gt; 0 and (number($value) &gt; 180 or number($value) &lt; -180)"
+																context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
+																origin="xforms:element('error', concat('Latitude is beyond the -180 to 180 extent: ', $value))"> </xforms:insert>
+															<!-- if lat is valid, but there is no long -->
+															<xforms:insert
+																if="$value castable as xs:decimal and string-length(normalize-space(instance('feed')//atom:entry[atom:title=$title]/*[name()=instance('mappings')/mapping[@to='geo:long']/@from])) = 0"
+																context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
+																origin="xforms:element('error', 'No longitude for corresponding latitude.')"></xforms:insert>
+														</xforms:action>
+														<xforms:action if="$mapping = 'geo:long'">
+															<xforms:insert if="string-length($value) &gt; 0 and not($value castable as xs:decimal)"
+																context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
+																origin="xforms:element('error', concat('Longitude is invalid: ', $value))"></xforms:insert>
+															<xforms:insert if="string-length($value) &gt; 0 and (number($value) &gt; 180 or number($value) &lt; -180)"
+																context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
+																origin="xforms:element('error', concat('Longitude is beyond the -180 to 180 extent: ', $value))"></xforms:insert>
+															<!-- if long is valid, but there is no lat -->
+															<xforms:insert
+																if="$value castable as xs:decimal and string-length(normalize-space(instance('feed')//atom:entry[atom:title=$title]/*[name()=instance('mappings')/mapping[@to='geo:lat']/@from])) = 0"
+																context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
+																origin="xforms:element('error', 'No latitude for corresponding longitude.')"></xforms:insert>
+														</xforms:action>
+														<!-- validate start and end dates -->
+														<xforms:action if="$mapping = 'nmo:hasStartDate' and string-length($value) &gt; 0">
+															<xforms:insert if="not($value castable as xs:integer)" context="instance('validation-model')/record[last()]"
+																nodeset="./child::node()[last()]" origin="xforms:element('error', concat('Start Date is not a number: ', $value))"></xforms:insert>
+															<!-- if the start date and end date are both numbers, ensure that the start date is before the end date -->
+															<xforms:action if="instance('mappings')/mapping[@to='nmo:hasEndDate'] and $value castable as xs:integer">
+																<xforms:var name="endDate"
+																	select="normalize-space(instance('feed')//atom:entry[atom:title=$title]/*[name()=instance('mappings')/mapping[@to='nmo:hasEndDate']/@from])"></xforms:var>
+																<xforms:action if="string-length($endDate) &gt; 0 and $endDate castable as xs:integer">
+																	<xforms:insert if="number($value) &gt; number($endDate)" context="instance('validation-model')/record[last()]"
+																		nodeset="./child::node()[last()]" origin="xforms:element('error', 'Start date post-dates end date.')"></xforms:insert>
+																</xforms:action>
+															</xforms:action>
+														</xforms:action>
+														<xforms:action if="$mapping = 'nmo:hasEndDate' and string-length($value) &gt; 0">
+															<xforms:insert if="not($value castable as xs:integer)" context="instance('validation-model')/record[last()]"
+																nodeset="./child::node()[last()]" origin="xforms:element('error', concat('End Date is not a number: ', $value))"></xforms:insert>
+														</xforms:action>
+														<!-- URI validation -->
+														<xforms:action if="$mapping='skos:exactMatch' or $mapping='skos:closeMatch' or $mapping='dcterms:source'">
+															<xforms:var name="isValid" select="matches($value, 'https?://.+')"></xforms:var>
+															<xforms:insert if="string-length($value) &gt; 0 and (not($value castable as xs:anyURI) or $isValid = false())"
+																context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
+																origin="xforms:element('error', concat('URI is invalid: ', $value))"> </xforms:insert>
+															<xforms:insert if="contains($value, 'wikipedia.org') and contains($value, '#')" context="instance('validation-model')/record[last()]"
+																nodeset="./child::node()[last()]"
+																origin="xforms:element('warning', concat($value, ' does not map to a precise concept. It will be mapped to rdfs:seeAlso instead.'))"
+															> </xforms:insert>
+														</xforms:action>
+														<xforms:action
+															if="$mapping='skos:broader' or $mapping='org:role' or $mapping='org:organization' or $mapping='org:memberOf' or $mapping='dcterms:isPartOf'">
+															<xforms:action if="string-length($value) &gt; 0">
+																<!-- these are properties that must be linked internally to other Nomisma IDs -->
+																<xforms:insert if="not(contains($value, 'http://nomisma.org/id/'))" context="instance('validation-model')/record[last()]"
+																	nodeset="./child::node()[last()]" origin="xforms:element('error', concat($mapping, ' does not link to a Nomisma URI: ', $value))"></xforms:insert>
+																<xforms:action if="contains($value, 'http://nomisma.org/id/')">
+																	<!-- if the URI space is nm:, then test whether the URI has already been validated via SPARQL. If not, then submit a SPARQL query -->
+																	<xforms:action if="instance('nomisma-ids')/id[@uri=$value and @mapping=$mapping] = false()"
+																		context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
+																		origin="xforms:element('error', concat($mapping, ' links to a non-existent Nomisma URI or the URI is a different class: ', $value))"></xforms:action>
+																	<xforms:action if="not(instance('nomisma-ids')/id[@uri=$value and @mapping=$mapping])">
+																		<!-- if the $mapping is dcterms:isPartOf, then the target will be an nmo:Field of Numismatics;
+																	else if the $mapping is skos:broader and the class is an nmo:Mint, then the skos:broader will be nmo:Region;
+																	if the $mapping is org:memberOf and the class is foaf:Person, then the target entity must be a dynasty (rdac:Family);
+																	if the $mapping is an org:organization and class is a foaf:Person, then the target entity must be an organization (foaf:Organization);
+																	if the $mapping is an org:role, the class must be either a foaf:Person or foaf:Organization, and the target must be a foaf:Organization;
+																	otherwise, it will be assumed the mapping is skos:broader and the target class is the same as the source class.
+																	-->
+																		<xforms:var name="class"
+																			select="if($mapping = 'dcterms:isPartOf') then 'nmo:FieldOfNumismatics' else if($mapping = 'skos:broader' and instance('control-instance')/type = 'nmo:Mint') then 'nmo:Region' else if (instance('control-instance')/type = 'foaf:Person' and $mapping='org:memberOf') then 'rdac:Family' else if (instance('control-instance')/type = 'foaf:Person' and $mapping='org:organization') then 'foaf:Organization' else if ((instance('control-instance')/type = 'foaf:Person' or instance('control-instance')/type = 'foaf:Organization') and $mapping='org:role') then 'org:Role' else instance('control-instance')/type"></xforms:var>
+																		<xforms:setvalue ref="instance('sparqlQuery')"
+																			value="concat(instance('sparql-templates')/prefix, ' ', replace(replace(instance('sparql-templates')/query[@id='ask'], 'URI', $value), 'CLASS', $class))"></xforms:setvalue>
+																		<xforms:send submission="submit-sparqlQuery"></xforms:send>
+																		<!-- if the SPARQL query concludes successfully, then create an entry in nomisma-ids and display an error if the ASK if false -->
+																		<xforms:action ev:event="xforms-submit-done">
+																			<xforms:insert context="instance('nomisma-ids')" nodeset="./child::node()[last()]"
+																				origin="xforms:element('id', (xforms:attribute('uri', $value), xforms:attribute('mapping', $mapping), data(instance('sparqlResponse')/descendant::res:boolean)))"></xforms:insert>
+																			<xforms:insert if="instance('sparqlResponse')/descendant::res:boolean = 'false'"
+																				context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
+																				origin="xforms:element('error', concat($mapping, ' links to a non-existent Nomisma URI or the URI is a different class: ', $value))"
+																			></xforms:insert>
+																		</xforms:action>
+																	</xforms:action>
+																</xforms:action>
+															</xforms:action>
+														</xforms:action>
+													</xforms:action>
+												</xforms:action>
+											</xforms:action>
+											<!-- after validation, change the import-trigger button value, if necessary, and switch the case -->
+											<xforms:setvalue ref="instance('control-instance')/import-trigger" value="true()" if="count(instance('validation-model')//error) = 0"></xforms:setvalue>
+											<xforms:toggle case="validation-interface"></xforms:toggle>
+										</xforms:action>
+									</xforms:trigger>
+								</xforms:group>
+							</div>
+						</xforms:case>
+						<xforms:case id="mapping-error-interface">
+							<h3>Mapping Error</h3>
+							<p>The Atom representation of the Google Spreadsheet has successfully loaded, but it does not appear to contain content.</p>
+						</xforms:case>
+						<xforms:case id="validation-interface">
+							<xforms:group ref="instance('validation-model')">
+								<h3>Validation</h3>
+								<xforms:group ref=".[count(descendant::error) = 0]">
+									<div class="bg-success alert-box">
+										<span class="glyphicon glyphicon-ok"></span>
+										<strong>Success: </strong><xforms:output value="count(record)"></xforms:output> records successfully validated.</div>
+								</xforms:group>
+								<xforms:group ref=".[count(descendant::error) &gt; 0]">
+									<div class="bg-danger alert-box">
+										<span class="glyphicon glyphicon-exclamation-sign"></span>
+										<strong>Alert:</strong> The spreadsheet is invalid. Please fix errors and import again.</div>
+								</xforms:group>
+								<!-- if the error is on the top level -->
+								<xforms:group ref=".[error]">
+									<div class="bg-danger alert-box">
+										<span class="glyphicon glyphicon-exclamation-sign"></span>
+										<strong>Alert:</strong>
+										<xforms:output ref="error"></xforms:output></div>
+								</xforms:group>
+								<!-- if there are errors or warnings, then display the table -->
+								<xforms:group ref=".[count(record[warning]) &gt; 0  or count(record[error]) &gt; 0]">
+									<p><b><xforms:output value="count(record[error])"></xforms:output></b> of <b><xforms:output value="count(record)"></xforms:output></b> total records contain errors.
+												<b><xforms:output value="count(record[warning])"></xforms:output></b> contain warnings. See below.</p>
+									<table class="table">
+										<thead>
+											<th width="25%">ID</th>
+											<th>Messages</th>
+										</thead>
+										<tbody>
+											<xforms:repeat nodeset="record[warning or error]">
+												<tr>
+													<td><xforms:output ref="@title"></xforms:output></td>
+													<td>
+														<xforms:repeat nodeset="error">
+															<div>
+																<xforms:output ref=".">
+																	<xforms:label>Error</xforms:label>
+																</xforms:output>
+															</div>
+														</xforms:repeat>
+														<xforms:repeat nodeset="warning">
+															<div>
+																<xforms:output ref=".">
+																	<xforms:label>Warning</xforms:label>
+																</xforms:output>
+															</div>
+														</xforms:repeat>
+													</td>
+												</tr>
+											</xforms:repeat>
+										</tbody>
+									</table>
+								</xforms:group>
+								<!-- if there are no errors, then allow the validation button -->
+								<xforms:trigger bind="import-trigger">
+									<xforms:label>Import Data</xforms:label>
+									<xforms:action ev:event="DOMActivate">
+										<!-- set the count for the progress dialog -->
+										<xforms:setvalue ref="instance('control-instance')/count" value="count(instance('feed')//atom:entry)"></xforms:setvalue>
+										<xxforms:show dialog="progress-dialog"></xxforms:show>
+									</xforms:action>
+								</xforms:trigger>
+							</xforms:group>
+						</xforms:case>
+						<xforms:case id="process-complete">
+							<p>The process has been completed successfully.</p>
+						</xforms:case>
+					</xforms:switch>
+					<!--<fr:xforms-inspector></fr:xforms-inspector>-->
+				</div>
+			</div>
+		</div>
+
+		<!-- *********** DIALOGS *********** -->
+		<xxforms:dialog id="progress-dialog" appearance="full" level="modal" close="false" draggable="true" visible="false">
+			<xforms:label>Import Progress</xforms:label>
+			<div style="width:400px">Processing record <xforms:output ref="instance('control-instance')/position"></xforms:output> of <xforms:output ref="instance('control-instance')/count"></xforms:output>:
+					<xforms:output ref="instance('control-instance')/id"></xforms:output>.</div>
+			<!-- begin processing the spreadsheet into RDF -->
+			<xforms:action xxforms:iterate="instance('feed')//atom:entry" ev:event="xxforms-dialog-open">
+				<!-- set position for progress dialog -->
+				<xforms:setvalue ref="instance('control-instance')/position" value="position()"></xforms:setvalue>
+
+				<xforms:var name="id" select="normalize-space(data(*[namespace-uri()='http://schemas.google.com/spreadsheets/2006/extended'][name()=instance('mappings')/mapping[@to='id']/@from]))"></xforms:var>
+				<xforms:var name="uri" select="concat('http://nomisma.org/id/', $id)"></xforms:var>
+				<!-- set the id in the control-instance and then attempt to load the RDF/XML from disc. If it fails to load, this means the ID does not exist, and a new one will be created. If the ID does exist and the RDF is loaded, then add supplementary information. -->
+				<xforms:setvalue ref="instance('control-instance')/id" value="$id"></xforms:setvalue>
+				<!-- set the control instance title in the event that the Nomisma ID is not in the first column -->
+				<xforms:setvalue ref="instance('control-instance')/title" value="data(context()/atom:title)"></xforms:setvalue>
+				<!-- clear data from RDF instance before loading-->
+				<xforms:delete nodeset="instance('rdf')/*"></xforms:delete>
+				<xforms:send submission="load-rdf"></xforms:send>
+				<!-- *** BEGIN ATOM TO RDF IMPORT *** -->
+				<xforms:action xxforms:iterate="instance('feed')//atom:entry[atom:title=instance('control-instance')/title]/*[namespace-uri()='http://schemas.google.com/spreadsheets/2006/extended']">
+					<xforms:var name="from" select="name()"></xforms:var>
+					<xforms:var name="value" select="normalize-space(context())"></xforms:var>
+					<!-- only process those fields which have been mapped in the user interface -->
+					<xforms:action if="string(instance('mappings')/mapping[@from=$from]/@to) and string-length($value) &gt; 0">
+						<xforms:var name="mapping" select="instance('mappings')/mapping[@from=$from]/@to"></xforms:var>
+						<!-- handle labels, definitions, scopenNote -->
+						<xforms:action if="$mapping = 'skos:prefLabel' or $mapping='skos:definition' or $mapping='skos:altLabel' or $mapping='skos:scopeNote'">
+							<xforms:var name="lang" select="instance('mappings')/mapping[@from=$from]/@lang"></xforms:var>
+							<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]" origin="xforms:element($mapping, (xforms:attribute('xml:lang', $lang), $value))"
+								if="not(instance('rdf')/*[1]/*[name()=$mapping][@xml:lang=$lang])"></xforms:insert>
+						</xforms:action>
+						<!-- create URIs for the following simple mappings that go into the skos:Concept object -->
+						<xforms:action
+							if="$mapping = 'skos:exactMatch' or $mapping='skos:closeMatch' or $mapping='foaf:homepage' or $mapping='dcterms:isPartOf' or $mapping='dcterms:source' or $mapping='org:memberOf' or $mapping='skos:broader'">
+							<!-- handle the parsing of dbpedia/wikipedia articles in wikidata, if activated -->
+							<xforms:action if="(contains($value, 'dbpedia.org') or contains($value, 'wikipedia.org')) and ($mapping='skos:exactMatch' or $mapping='skos:closeMatch')">
+								<xforms:action if="contains($value, 'dbpedia.org')">
+									<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
+										origin="xforms:element('skos:exactMatch', (xforms:attribute('rdf:resource', $value), ''))"
+										if="not(instance('rdf')/*[1]/skos:exactMatch[@rdf:resource = $value])"></xforms:insert>
+									<!-- Harvest data from wikidata if applicable -->
+									<xforms:action if="instance('control-instance')/parse-wikipedia = true()">
+										<xforms:var name="title" select="tokenize($value, '/')[last()]"></xforms:var>
+										<xforms:action if="string($title)">
+											<xforms:setvalue ref="instance('control-instance')/wiki-title" value="$title"></xforms:setvalue>
+											<xforms:setvalue ref="instance('control-instance')/wiki-lang">en</xforms:setvalue>
+											<xforms:send submission="get-wikidata"></xforms:send>
+										</xforms:action>
+									</xforms:action>
+								</xforms:action>
+								<!-- if the URL contains a hash character, force mapping to rdfs:seeAlso -->
+								<xforms:action if="contains($value, 'wikipedia.org') and contains($value, '#')">
+									<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
+										origin="xforms:element('rdfs:seeAlso', (xforms:attribute('rdf:resource', $value), ''))" if="not(instance('rdf')/*[1]/rdfs:seeAlso[@rdf:resource = $value])"
+									></xforms:insert>
+								</xforms:action>
+								<!-- parse wikipedia URIs -->
+								<xforms:action if="contains($value, 'wikipedia.org') and not(contains($value, '#'))">
+									<!-- get the title and lang-->
+									<xforms:var name="title" select="tokenize($value, '/')[last()]"></xforms:var>
+									<xforms:var name="lang" select="if(contains($value, 'wikipedia.org')) then substring-before(tokenize($value, '/')[3], '.') else 'en'"></xforms:var>
+									<!-- if the wikipedia article language is 'en' insert the dbpedia link -->
+									<xforms:action if="substring-before(tokenize($value, '/')[3], '.') = 'en'">
+										<xforms:var name="dbpedia-uri" select="concat('http://dbpedia.org/resource/', $title)"></xforms:var>
+										<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
+											origin="xforms:element('skos:exactMatch', (xforms:attribute('rdf:resource', $dbpedia-uri), ''))"
+											if="not(instance('rdf')/*[1]/skos:exactMatch[@rdf:resource = $dbpedia-uri])"></xforms:insert>
+									</xforms:action>
+									<!-- Harvest data from wikidata if applicable -->
+									<xforms:action if="instance('control-instance')/parse-wikipedia = true()">
+										<xforms:action if="string($title) and string($lang)">
+											<xforms:setvalue ref="instance('control-instance')/wiki-title" value="$title"></xforms:setvalue>
+											<xforms:setvalue ref="instance('control-instance')/wiki-lang" value="$lang"></xforms:setvalue>
+											<xforms:send submission="get-wikidata"></xforms:send>
+										</xforms:action>
+									</xforms:action>
+								</xforms:action>
+							</xforms:action>
+							<!-- otherwise write the URI as its mapping -->
+							<xforms:action if="not(contains($value, 'dbpedia.org')) and not(contains($value, 'wikipedia.org'))">
+								<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]" origin="xforms:element($mapping, (xforms:attribute('rdf:resource', $value), ''))"
+									if="not(instance('rdf')/*[1]/*[name()=$mapping][@rdf:resource = $value])"></xforms:insert>
+								<!-- if the type is nmo:Mint or nmo:Region and the $mapping is skos:broader, then insert dcterms:isPartOf within the geo:SpatialThing, if applicable -->
+								<xforms:action if="(instance('control-instance')/type='nmo:Mint' or instance('control-instance')/type='nmo:Region') and $mapping='skos:broader'">
+									<xforms:var name="locationUri" select="concat($uri, '#this')"></xforms:var>
+									<!-- if there is a valid latitude number and no geo:SpatialThing (the geo:lat and geo:long have not yet been processed), insert geo:SpatialThing -->
+									<xforms:insert context="instance('rdf')" nodeset="./child::node()[last()]"
+										origin="xforms:element('geo:SpatialThing', (xforms:attribute('rdf:about', $locationUri), ''))"
+										if="number(instance('feed')//atom:entry[atom:title=instance('control-instance')/title]/*[name()=instance('mappings')/mapping[@to='geo:lat']/@from]) and not(instance('rdf')/geo:SpatialThing)"></xforms:insert>
+									<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
+										origin="xforms:element('geo:location', (xforms:attribute('rdf:resource', $locationUri), ''))"
+										if="number(instance('feed')//atom:entry[atom:title=instance('control-instance')/title]/*[name()=instance('mappings')/mapping[@to='geo:lat']/@from]) and not(instance('rdf')/geo:SpatialThing)"></xforms:insert>
+									<xforms:insert context="instance('rdf')/geo:SpatialThing" nodeset="./child::node()[last()]"
+										origin="xforms:element('dcterms:isPartOf', (xforms:attribute('rdf:resource', concat($value, '#this')), ''))"
+										if="not(instance('rdf')/geo:SpatialThing/*[name()='dcterms:isPartOf'])"></xforms:insert>
+								</xforms:action>
+							</xforms:action>
+						</xforms:action>
+						<!-- create geo:location and geo:SpatialThing if there a geo:lat -->
+						<xforms:action if="$mapping = 'geo:lat' or $mapping='geo:long'">
+							<xforms:var name="locationUri" select="concat($uri, '#this')"></xforms:var>
+							<!-- if there is no existing SpatialThing, then create one and insert the updated latitude and longitude. Do no overwrite existing values -->
+							<xforms:action if="not(instance('rdf')/geo:SpatialThing)">
+								<xforms:insert context="instance('rdf')" nodeset="./child::node()[last()]"
+									origin="xforms:element('geo:SpatialThing', (xforms:attribute('rdf:about', $locationUri), ''))"></xforms:insert>
+								<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
+									origin="xforms:element('geo:location', (xforms:attribute('rdf:resource', $locationUri), ''))"></xforms:insert>
+							</xforms:action>
+							<xforms:insert context="instance('rdf')/geo:SpatialThing" nodeset="./child::node()[last()]"
+								origin="xforms:element($mapping, (xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#decimal'), $value))"
+								if="not(instance('rdf')/geo:SpatialThing/*[name()=$mapping])"></xforms:insert>
+							<xforms:insert context="instance('rdf')/geo:SpatialThing" nodeset="./child::node()[last()]"
+								origin="xforms:element($mapping, (xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#decimal'), $value))"
+								if="not(instance('rdf')/geo:SpatialThing/*[name()=$mapping])"></xforms:insert>
+						</xforms:action>
+						<!-- validate start and end dates -->
+						<xforms:action if="$mapping = 'nmo:hasStartDate' or $mapping='nmo:hasEndDate'">
+							<xforms:var name="membershipUri"
+								select="concat($uri, '#', substring-after(data(instance('feed')//atom:entry[atom:title=instance('control-instance')/title]/*[name()=instance('mappings')/mapping[@to='org:role']/@from]), 'id/'))"></xforms:var>
+							<!-- if the type is a Person or Organization, insert the date into the org:Membership -->
+							<xforms:action if="instance('control-instance')/type = 'foaf:Person' or instance('control-instance')/type = 'foaf:Organization'">
+								<xforms:action if="not(instance('rdf')/org:Membership[@rdf:about=$membershipUri])">
+									<xforms:insert context="instance('rdf')" nodeset="./child::node()[last()]"
+										origin="xforms:element('org:Membership', (xforms:attribute('rdf:about', $membershipUri), ''))"></xforms:insert>
+									<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
+										origin="xforms:element('org:hasMembership', (xforms:attribute('rdf:resource', $membershipUri), ''))"></xforms:insert>
+								</xforms:action>
+								<!-- insert the date -->
+								<xforms:insert context="instance('rdf')/org:Membership[@rdf:about=$membershipUri]" nodeset="./child::node()[last()]"
+									origin="xforms:element($mapping, (xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#gYear'), format-number(number($value), '0000')))"
+									if="not(instance('rdf')/org:Membership[@rdf:about=$membershipUri]/*[name()=$mapping])"></xforms:insert>
+							</xforms:action>
+							<!-- if the type is not a Person or Organization, insert into the skos:Concept object -->
+							<xforms:action if="not(instance('control-instance')/type = 'foaf:Person') and not(instance('control-instance')/type = 'foaf:Organization')">
+								<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
+									origin="xforms:element($mapping, (xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#gYear'), format-number(number($value), '0000')))"
+									if="not(instance('rdf')/*[1]/*[name()=$mapping])"></xforms:insert>
+							</xforms:action>
+						</xforms:action>
+						<!-- write org ontology properties into the org:Membership -->
+						<xforms:action if="$mapping='org:role' or $mapping='org:organization'">
+							<xforms:var name="membershipUri"
+								select="concat($uri, '#', substring-after(data(instance('feed')//atom:entry[atom:title=instance('control-instance')/title]/*[name()=instance('mappings')/mapping[@to='org:role']/@from]), 'id/'))"></xforms:var>
+							<!-- create the org:Membership, if necessary -->
+							<xforms:action if="not(instance('rdf')/org:Membership[@rdf:about=$membershipUri])">
+								<xforms:insert context="instance('rdf')" nodeset="./child::node()[last()]"
+									origin="xforms:element('org:Membership', (xforms:attribute('rdf:about', $membershipUri), ''))"></xforms:insert>
+								<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
+									origin="xforms:element('org:hasMembership', (xforms:attribute('rdf:resource', $membershipUri), ''))"></xforms:insert>
+							</xforms:action>
+							<!-- insert the role or organization -->
+							<xforms:insert context="instance('rdf')/org:Membership[@rdf:about=$membershipUri]" nodeset="./child::node()[last()]"
+								origin="xforms:element($mapping, (xforms:attribute('rdf:resource', $value), ''))" if="not(instance('rdf')/org:Membership[@rdf:about=$membershipUri]/*[name()=$mapping])"
+							></xforms:insert>
+						</xforms:action>
+					</xforms:action>
+				</xforms:action>
+				<!-- *** BEGIN CRUD OPERATIONS *** -->
+				<!-- save file back to disk -->
+				<xforms:setvalue ref="instance('save-config')/url" value="concat('file://', instance('config')/id_path, '/',  $id, '.rdf')"></xforms:setvalue>
+				<xforms:insert nodeset="instance('dump')"
+					origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('rdf'), instance('save-config')), 'data')"></xforms:insert>
+
+				<!-- delete graphs from triplestore, then repost updates -->
+				<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-template'), 'URI', $uri)"></xforms:setvalue>
+				<xforms:send submission="delete-graph"></xforms:send>
+				<xforms:send submission="post-new"></xforms:send>
+
+				<!-- post to Solr -->
+				<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/views/serializations/rdf/solr.xpl', 'data', instance('rdf'), 'data')"></xforms:insert>
+				<xforms:send submission="post-solr-doc"></xforms:send>
+
+				<!-- hide dailog after the process has completed -->
+				<xforms:action if="position()=last()">
+					<xxforms:hide dialog="progress-dialog"></xxforms:hide>
+					<xforms:toggle case="process-complete"></xforms:toggle>
+				</xforms:action>
+			</xforms:action>
+		</xxforms:dialog>
+	</body>
+</html>

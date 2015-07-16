@@ -53,7 +53,7 @@
 			</field>
 
 			<!-- associated URIs -->
-			<xsl:for-each select="skos:exactMatch|skos:relatedMatch">
+			<xsl:for-each select="skos:exactMatch|skos:closeMatch">
 				<field name="{local-name()}_uri">
 					<xsl:value-of select="@rdf:resource"/>
 				</field>

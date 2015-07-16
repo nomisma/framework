@@ -60,8 +60,9 @@
 								<xforms:trigger>
 									<xforms:label>Add Selected</xforms:label>
 									<xforms:action ev:event="DOMActivate">
-										<xforms:insert context="$binding" nodeset="./child::node()[last()]" origin="xforms:element('skos:exactMatch', xforms:attribute('rdf:resource',
-											instance('control-instance')/uri))"/>
+										<xforms:var name="property" select="if ($binding/name()='nmo:Mint') then 'skos:closeMatch' else 'skos:exactMatch'"/>
+										<xforms:insert context="$binding" nodeset="./child::node()[last()]" origin="xforms:element($property, xforms:attribute('rdf:resource',
+											instance('control-instance')/uri))" if="not($binding/*[name()=$property][@rdf:resource=instance('control-instance')/uri])"/>
 										<xxforms:hide dialog="bm-dialog"/>
 									</xforms:action>
 								</xforms:trigger>
@@ -143,7 +144,7 @@ FILTER regex(?label, "^SEARCH_QUERY", "i" )} LIMIT 25]]>
 								<xforms:var name="link" select="context()/res:binding[@name='c']/res:uri"/>
 								<xforms:var name="title" select="context()/res:binding[@name='label']/res:literal"/>
 								<xforms:insert context="instance('bm-options')" nodeset="./child::node()[last()]" origin="xforms:element('option', (xforms:attribute('select', false()),
-									xforms:attribute('link', $link), xforms:attribute('type', 'skos:exactMatch'), $title))"/>
+									xforms:attribute('link', $link), $title))"/>
 							</xforms:action>
 						</xforms:submission>
 					</xforms:model>

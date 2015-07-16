@@ -74,7 +74,7 @@
 					<meta itemprop="description" content="{.}" lang="{@xml:lang}"/>
 				</xsl:for-each>
 				<meta itemprop="url" content="{concat(/content/config/url, 'id/', $id)}"/>
-				<xsl:for-each select="descendant::skos:exactMatch|descendant::skos:relatedMatch">
+				<xsl:for-each select="descendant::skos:exactMatch|descendant::skos:closeMatch">
 					<meta itemprop="sameAs" content="{@rdf:resource}"/>
 				</xsl:for-each>
 				<xsl:if test="$type='nmo:Mint' and descendant::geo:lat">

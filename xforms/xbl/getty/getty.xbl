@@ -105,7 +105,6 @@
 											<th>Name</th>
 											<th>Id</th>
 											<th style="width:20em">Description</th>
-											<th>Type</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -126,18 +125,6 @@
 													<xforms:output ref="substring(@description, 1, 100)"/>
 													<xforms:group ref=".[string-length(@description) &gt; 100]">...</xforms:group>
 												</td>
-												<td>
-													<xforms:select1 ref="@type" class="short-input">
-														<xforms:item>
-															<xforms:label>Exact Match</xforms:label>
-															<xforms:value>skos:exactMatch</xforms:value>
-														</xforms:item>
-														<xforms:item>
-															<xforms:label>Related Match</xforms:label>
-															<xforms:value>skos:relatedMatch</xforms:value>
-														</xforms:item>
-													</xforms:select1>
-												</td>
 											</tr>
 										</xforms:repeat>
 									</tbody>
@@ -147,9 +134,9 @@
 									<xforms:action ev:event="DOMActivate">
 										<xforms:action xxforms:iterate="instance('getty-options')/option[@select=true()]">
 											<xforms:var name="resource" select="context()/@link"/>
-											<xforms:var name="type" select="context()/@type"/>
-											<xforms:action if="not($binding/skos:exactMatch[@rdf:resource=$resource])">
-												<xforms:insert context="$binding" nodeset="./child::node()[last()]" origin="xforms:element($type, xforms:attribute('rdf:resource', $resource))"/>
+											<xforms:var name="property" select="if ($binding/name()='nmo:Mint') then 'skos:closeMatch' else 'skos:exactMatch'"/>
+											<xforms:action if="not($binding/*[name()=$property][@rdf:resource=$resource])">
+												<xforms:insert context="$binding" nodeset="./child::node()[last()]" origin="xforms:element($property, xforms:attribute('rdf:resource', $resource))"/>
 											</xforms:action>
 										</xforms:action>
 										<xxforms:hide dialog="getty-results-dialog"/>
@@ -262,7 +249,7 @@ luc:term "SEARCH_QUERY"} LIMIT 25]]>
 								<xforms:var name="title" select="context()/res:binding[@name='label']/res:literal"/>
 								<xforms:var name="scopeNote" select="context()/res:binding[@name='scopeNote']/res:literal"/>
 								<xforms:insert context="instance('getty-options')" nodeset="./child::node()[last()]" origin="xforms:element('option', (xforms:attribute('select', false()),
-									xforms:attribute('link', $link), xforms:attribute('type', 'skos:exactMatch'), xforms:attribute('description', $scopeNote), $title))"/>
+									xforms:attribute('link', $link), xforms:attribute('description', $scopeNote), $title))"/>
 							</xforms:action>
 						</xforms:submission>
 					</xforms:model>

@@ -44,9 +44,9 @@
 							<xforms:trigger>
 								<xforms:label>Select</xforms:label>
 								<xforms:action ev:event="DOMActivate">
-									<!-- create skos:relatedMatch, set resource -->
+									<!-- create skos:closeMatch, set resource -->
 									<xforms:insert context="$binding" nodeset="./child::node()[last()]"
-										origin="xforms:element('skos:relatedMatch', xforms:attribute('rdf:resource', instance('control-instance')/uri))"/>
+										origin="xforms:element('skos:closeMatch', xforms:attribute('rdf:resource', instance('control-instance')/uri))"/>
 									<!-- if there aren't already coordinates, then get the coordinates from the Pleiades RDF -->
 									<xforms:action if="not($binding//geo:lat) and not($binding//geo:long)">
 										<xforms:send submission="get-pleiades-rdf"/>
