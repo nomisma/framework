@@ -2,15 +2,15 @@
 <p:pipeline xmlns:p="http://www.orbeon.com/oxf/pipeline"
 	xmlns:oxf="http://www.orbeon.com/oxf/processors">
 	
-	<p:param type="input" name="file"/>
+	<p:param type="input" name="configuration"/>
 	<p:param type="output" name="data"/>
 	
 	<p:processor name="oxf:file">
-		<p:input name="config" href="#file"/>
+		<p:input name="config" href="#configuration"/>
 	</p:processor>
 	
 	<p:processor name="oxf:xml-serializer">
-		<p:input name="data" href="#file"/>
+		<p:input name="data" href="#configuration"/>
 		<p:input name="config">
 			<config>
 				<content-type>application/xml</content-type>

@@ -68,28 +68,41 @@ DELETE {?s ?p ?o} WHERE {
 			</xforms:instance>
 
 			<!-- Solr instances -->
-			<xforms:instance id="addIndex">
+			<xforms:instance id="addIndex" xxforms:exclude-result-prefixes="#all">
 				<add xmlns=""></add>
 			</xforms:instance>
-			<xforms:instance id="sendCommit">
+			<xforms:instance id="sendCommit" xxforms:exclude-result-prefixes="#all">
 				<commit></commit>
 			</xforms:instance>
-			<xforms:instance id="deleteId">
+			<xforms:instance id="deleteId" xxforms:exclude-result-prefixes="#all">
 				<delete xmlns="">
 					<id></id>
 				</delete>
 			</xforms:instance>
-			<xforms:instance id="deleteAll">
+			<xforms:instance id="deleteAll" xxforms:exclude-result-prefixes="#all">
 				<delete xmlns="">
 					<query>*:*</query>
 				</delete>
 			</xforms:instance>
-			<xforms:instance id="optimizeIndex">
+			<xforms:instance id="optimizeIndex" xxforms:exclude-result-prefixes="#all">
 				<optimize></optimize>
 			</xforms:instance>
 
 			<xforms:instance id="solr-response">
 				<response></response>
+			</xforms:instance>
+			
+			<!-- for deleting an RDF file from the filesystem -->
+			<xforms:instance id="delete-config">
+				<config xmlns="">
+					<delete>
+						<url></url>
+					</delete>
+				</config>
+			</xforms:instance>
+			
+			<xforms:instance id="dump">
+				<dump xmlns=""></dump>
 			</xforms:instance>
 
 			<!-- ************* SPARQL SUBMISSIONS **********************-->
@@ -115,7 +128,7 @@ DELETE {?s ?p ?o} WHERE {
 				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"></xforms:send>
 			</xforms:submission>
 
-			<xforms:submission id="delete-id-from-solr" action="{instance('control-instance')/solr-core}update" ref="instance('deleteId')" instance="deleteId" replace="instance" method="post">
+			<xforms:submission id="delete-id-from-solr" action="{instance('control-instance')/solr-core}update" ref="instance('deleteId')" instance="deleteId" replace="none" method="post">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
 				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"></xforms:send>
 			</xforms:submission>
@@ -351,7 +364,11 @@ DELETE {?s ?p ?o} WHERE {
 															<xforms:label>
 																<span class="glyphicon glyphicon-remove"></span>
 															</xforms:label>
-															<xforms:dispatch target="delete" name="fr-show" ev:event="DOMActivate"></xforms:dispatch>
+															<xforms:action ev:event="DOMActivate">
+																<xforms:setvalue ref="instance('control-instance')/id" value="$id"></xforms:setvalue>
+																<xforms:dispatch target="delete-id" name="fr-show"></xforms:dispatch>
+															</xforms:action>
+															
 														</xforms:trigger>
 													</td>
 												</tr>
@@ -381,7 +398,7 @@ DELETE {?s ?p ?o} WHERE {
 							</xforms:group>
 						</xforms:group>
 					</xforms:group>
-					<fr:xforms-inspector></fr:xforms-inspector>
+					<!--<fr:xforms-inspector></fr:xforms-inspector>-->
 				</div>
 				<div class="col-md-3">
 					<h2>Actions</h2>
@@ -465,6 +482,39 @@ DELETE {?s ?p ?o} WHERE {
 						<xforms:send submission="load-rdfxml"></xforms:send>
 						<xforms:send submission="post-new" ev:event="xforms-submit-done"></xforms:send>
 					</xforms:action>
+				</xforms:action>
+			</fr:positive-choice>
+			<fr:negative-choice>
+				<fr:label>No</fr:label>
+			</fr:negative-choice>
+		</fr:alert-dialog>
+		<fr:alert-dialog id="delete-id">
+			<fr:label>Delete Nomisma ID</fr:label>
+			<fr:message>Are you sure you want to continue with the deletion of this ID?</fr:message>
+			<fr:positive-choice>
+				<fr:label>Yes</fr:label>
+				<xforms:action ev:event="DOMActivate">
+					<xforms:setvalue ref="instance('control-instance')/solr-core" value="instance('config')/solr_published"></xforms:setvalue>
+					
+					<!-- purge from the triplestore -->
+					<xforms:setvalue ref="instance('sparqlUpdate')"
+						value="replace(instance('sparqlUpdate-templates')/query[@id='delete-id'], 'URI', concat('http://nomisma.org/id/', instance('control-instance')/id))"></xforms:setvalue>
+					<xforms:send submission="delete-graph"></xforms:send>
+					
+					<!-- delete from Solr -->
+					<xforms:setvalue ref="instance('deleteId')/id" value="instance('control-instance')/id"></xforms:setvalue>
+					<xforms:send submission="delete-id-from-solr"></xforms:send>
+					
+					<!-- delete the RDF file from the disk -->
+					<xforms:setvalue ref="instance('delete-config')/delete/url" value="concat('file://', instance('config')/id_path, '/',  instance('control-instance')/id, '.rdf')"></xforms:setvalue>
+					<xforms:insert nodeset="instance('dump')"
+						origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/delete-id.xpl', 'configuration', instance('delete-config'), 'data')"></xforms:insert>
+					
+					<xforms:setvalue ref="instance('control-instance')/status">ID successfully deleted from system.</xforms:setvalue>
+					
+					<!-- reset the search -->
+					<xforms:setvalue ref="instance('control-instance')/page">1</xforms:setvalue>
+					<xforms:send submission="query-solr"></xforms:send>
 				</xforms:action>
 			</fr:positive-choice>
 			<fr:negative-choice>
