@@ -382,7 +382,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 						<xforms:action
 							xxforms:iterate="instance('wikidata')//entity[1]/claims/property[@id='P214' or @id='P227' or @id='P213' or @id='P268' or @id='P269' or @id='P646' or @id='P245' or @id='P1566' or @id='P1900']">
 							<xforms:var name="property" select="data(context()/@id)"></xforms:var>
-							<xforms:var name="id" select="replace(data(context()/descendant::mainsnak/datavalue/@value), ' ', '')"></xforms:var>
+							<xforms:var name="id" select="replace(data(context()/descendant::mainsnak[1]/datavalue/@value), ' ', '')"></xforms:var>
 							<xforms:var name="uri" select="concat(instance('wikidata-properties')/property[@id=$property], $id)"></xforms:var>
 
 							<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]" if="not(instance('rdf')/*[1]/*[name()=$mapping][@rdf:resource=$uri])"
@@ -407,8 +407,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL query failed.</xforms:message>
 			</xforms:submission>
 
-			<xforms:submission id="post-new" action="{instance('config')/sparql_store}?default" ref="instance('rdf')" replace="none" method="post" mediatype="application/rdf+xml">
-				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Successfully posted to endpoint.</xforms:setvalue>
+			<xforms:submission id="post-rdf" action="{instance('config')/sparql_store}?default" ref="instance('rdf')" replace="none" method="post" mediatype="application/rdf+xml">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Post to endpoint failed.</xforms:message>
 			</xforms:submission>
 			
@@ -417,7 +416,6 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 			<xforms:submission id="post-solr-doc" action="{instance('config')/solr_published}update" ref="instance('addIndex')" instance="addIndex" replace="instance" method="post">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
 				<xforms:action ev:event="xforms-submit-done">
-					<xforms:setvalue ref="instance('control-instance')/status">Document successfully saved to Solr.</xforms:setvalue>
 					<xforms:send submission="submit-commit"></xforms:send>
 				</xforms:action>				
 			</xforms:submission>
@@ -425,12 +423,6 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 			<!-- send commit -->
 			<xforms:submission id="submit-commit" action="{instance('config')/solr_published}update" ref="instance('sendCommit')" instance="sendCommit" replace="none" method="post">
 				<xforms:message level="modal" ev:event="xforms-submit-error">Failed to commit to Solr index.</xforms:message>				
-			</xforms:submission>
-
-			<!-- ************************* POST RDF/XML ************************** -->
-			<xforms:submission id="post-rdf" action="{instance('config')/sparql_store}?default" ref="instance('rdf')" replace="none" method="post" mediatype="application/rdf+xml">
-				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Successfully posted to endpoint.</xforms:setvalue>
-				<xforms:message ev:event="xforms-submit-error" level="modal">Post to endpoint failed.</xforms:message>
 			</xforms:submission>
 
 			<!-- ************************* LOAD RDF/XML ************************** -->
@@ -1044,7 +1036,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											<!-- delete graphs from triplestore, then repost updates -->
 											<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-template'), 'URI', $uri)"></xforms:setvalue>
 											<xforms:send submission="delete-graph"></xforms:send>
-											<xforms:send submission="post-new"></xforms:send>
+											<xforms:send submission="post-rdf"></xforms:send>
 											
 											<!-- post to Solr -->
 											<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/views/serializations/rdf/solr.xpl', 'data', instance('rdf'), 'data')"></xforms:insert>
