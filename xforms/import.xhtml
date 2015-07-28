@@ -763,8 +763,10 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 														</xforms:action>
 														<xforms:action if="$mapping='prov:alternateOf'">
 															<!-- verify that the prov:alternateOf is a Nomisma URI, but not validate its existence (as this ID may be in the same spreadsheet -->
-															<xforms:insert if="not(contains($value, 'http://nomisma.org/id/'))" context="instance('validation-model')/record[last()]"
-																nodeset="./child::node()[last()]" origin="xforms:element('error', concat($mapping, ' does not link to a Nomisma URI: ', $value))"></xforms:insert>
+															<xforms:action if="string-length($value) &gt; 0">
+																<xforms:insert if="not(contains($value, 'http://nomisma.org/id/'))" context="instance('validation-model')/record[last()]"
+																	nodeset="./child::node()[last()]" origin="xforms:element('error', concat($mapping, ' does not link to a Nomisma URI: ', $value))"></xforms:insert>
+															</xforms:action>
 														</xforms:action>
 														<xforms:action
 															if="$mapping='skos:broader' or $mapping='org:role' or $mapping='org:organization' or $mapping='org:memberOf' or $mapping='dcterms:isPartOf'">
