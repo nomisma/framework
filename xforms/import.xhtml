@@ -913,10 +913,11 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 														if="$mapping = 'skos:exactMatch' or $mapping='skos:closeMatch' or $mapping='foaf:homepage' or $mapping='dcterms:isPartOf' or $mapping='dcterms:source' or $mapping='org:memberOf' or $mapping='skos:broader' or $mapping='prov:alternateOf'">
 														<!-- handle the parsing of dbpedia/wikipedia articles in wikidata, if activated -->
 														<xforms:action if="(contains($value, 'dbpedia.org') or contains($value, 'wikipedia.org')) and ($mapping='skos:exactMatch' or $mapping='skos:closeMatch')">
+															<xforms:var name="mapping" select="if (instance('control-instance')/type = 'nmo:Mint') then 'skos:closeMatch' else 'skos:exactMatch'"></xforms:var>
 															<xforms:action if="contains($value, 'dbpedia.org')">
 																<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
-																	origin="xforms:element('skos:exactMatch', (xforms:attribute('rdf:resource', $value), ''))"
-																	if="not(instance('rdf')/*[1]/skos:exactMatch[@rdf:resource = $value])"></xforms:insert>
+																	origin="xforms:element($mapping, (xforms:attribute('rdf:resource', $value), ''))"
+																	if="not(instance('rdf')/*[1]/*[name()=$mapping][@rdf:resource = $value])"></xforms:insert>
 																<!-- Harvest data from wikidata if applicable -->
 																<xforms:action if="instance('control-instance')/parse-wikipedia = true()">
 																	<xforms:var name="title" select="tokenize($value, '/')[last()]"></xforms:var>
@@ -942,8 +943,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 																<xforms:action if="substring-before(tokenize($value, '/')[3], '.') = 'en'">
 																	<xforms:var name="dbpedia-uri" select="concat('http://dbpedia.org/resource/', $title)"></xforms:var>
 																	<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
-																		origin="xforms:element('skos:exactMatch', (xforms:attribute('rdf:resource', $dbpedia-uri), ''))"
-																		if="not(instance('rdf')/*[1]/skos:exactMatch[@rdf:resource = $dbpedia-uri])"></xforms:insert>
+																		origin="xforms:element($mapping, (xforms:attribute('rdf:resource', $dbpedia-uri), ''))"
+																		if="not(instance('rdf')/*[1]/*[name()=$mapping][@rdf:resource = $dbpedia-uri])"></xforms:insert>
 																</xforms:action>
 																<!-- Harvest data from wikidata if applicable -->
 																<xforms:action if="instance('control-instance')/parse-wikipedia = true()">
