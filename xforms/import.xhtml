@@ -142,6 +142,7 @@
 					<property label="Nomisma ID">id</property>
 					<property label="Preferred Label">skos:prefLabel</property>
 					<property label="Definition">skos:definition</property>
+					<property label="Alternate Concept" constraint="nmo:Mint">prov:alternateOf</property>
 					<property label="Alternative Label">skos:altLabel</property>
 					<property label="Broader Concept" exclude="foaf:Person">skos:broader</property>
 					<property label="Close Match" constraint="nmo:Mint">skos:closeMatch</property>
@@ -760,6 +761,11 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 																origin="xforms:element('warning', concat($value, ' does not map to a precise concept. It will be mapped to rdfs:seeAlso instead.'))"
 															> </xforms:insert>
 														</xforms:action>
+														<xforms:action if="$mapping='prov:alternateOf'">
+															<!-- verify that the prov:alternateOf is a Nomisma URI, but not validate its existence (as this ID may be in the same spreadsheet -->
+															<xforms:insert if="not(contains($value, 'http://nomisma.org/id/'))" context="instance('validation-model')/record[last()]"
+																nodeset="./child::node()[last()]" origin="xforms:element('error', concat($mapping, ' does not link to a Nomisma URI: ', $value))"></xforms:insert>
+														</xforms:action>
 														<xforms:action
 															if="$mapping='skos:broader' or $mapping='org:role' or $mapping='org:organization' or $mapping='org:memberOf' or $mapping='dcterms:isPartOf'">
 															<xforms:action if="string-length($value) &gt; 0">
@@ -902,7 +908,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 													</xforms:action>
 													<!-- create URIs for the following simple mappings that go into the skos:Concept object -->
 													<xforms:action
-														if="$mapping = 'skos:exactMatch' or $mapping='skos:closeMatch' or $mapping='foaf:homepage' or $mapping='dcterms:isPartOf' or $mapping='dcterms:source' or $mapping='org:memberOf' or $mapping='skos:broader'">
+														if="$mapping = 'skos:exactMatch' or $mapping='skos:closeMatch' or $mapping='foaf:homepage' or $mapping='dcterms:isPartOf' or $mapping='dcterms:source' or $mapping='org:memberOf' or $mapping='skos:broader' or $mapping='prov:alternateOf'">
 														<!-- handle the parsing of dbpedia/wikipedia articles in wikidata, if activated -->
 														<xforms:action if="(contains($value, 'dbpedia.org') or contains($value, 'wikipedia.org')) and ($mapping='skos:exactMatch' or $mapping='skos:closeMatch')">
 															<xforms:action if="contains($value, 'dbpedia.org')">
