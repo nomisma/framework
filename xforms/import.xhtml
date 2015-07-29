@@ -1054,7 +1054,30 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 							</xforms:group>
 						</xforms:case>
 						<xforms:case id="process-complete">
-							<p>The process has been completed successfully.</p>
+							<p>The process has been completed successfully. The following IDs have been created or updated:</p>
+							<table class="table">
+								<thead>
+									<tr>
+										<th>URI</th>
+										<th>Preferred Label</th>
+									</tr>
+								</thead>
+								<tbody>
+									<xforms:repeat nodeset="instance('feed')//atom:entry">
+										<xforms:var name="id" select="*[namespace-uri()='http://schemas.google.com/spreadsheets/2006/extended'][name()=instance('mappings')/mapping[@to='id']/@from]"/>
+										<tr>
+											<td>
+												<a href="{concat(instance('config')/url, 'id/', $id)}">
+													<xforms:output value="concat(instance('config')/url, 'id/', $id)"/>
+												</a>
+											</td>
+											<td>
+												<xforms:output ref="*[namespace-uri()='http://schemas.google.com/spreadsheets/2006/extended'][name()=instance('mappings')/mapping[@to='skos:prefLabel' and @lang='en']/@from]"/>
+											</td>
+										</tr>
+									</xforms:repeat>
+								</tbody>
+							</table>
 						</xforms:case>
 					</xforms:switch>
 					<!--<fr:xforms-inspector></fr:xforms-inspector>-->
