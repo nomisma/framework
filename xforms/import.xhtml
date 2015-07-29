@@ -398,7 +398,6 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 			<!-- ************* SPARQL **********************-->
 			<xforms:submission id="delete-graph" action="{instance('config')/sparql_update}" ref="instance('sparqlUpdate')" serialization="text/plain" replace="none" method="post"
 				mediatype="application/sparql-update">
-				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Graph successfully deleted from endpoint.</xforms:setvalue>
 				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL update failed.</xforms:message>
 			</xforms:submission>
 
