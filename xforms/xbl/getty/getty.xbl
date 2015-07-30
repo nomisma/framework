@@ -19,7 +19,7 @@
 								<xforms:setvalue ref="instance('control-instance')/getty-search" value="$binding/skos:prefLabel[@xml:lang='en']"/>
 								<xforms:var name="search_text" select="string-join(tokenize(instance('control-instance')/getty-search, ' '), ' AND ')"/>
 								<xforms:var name="type" select="$binding/name()"/>
-								<xforms:var name="scheme" select="if ($type='nmo:Mint' or $type='nmo:Region') then 'tgn' else if ($type='foaf:Person') then 'ulan' else 'aat'"/>
+								<xforms:var name="scheme" select="if ($type='nmo:Mint' or $type='nmo:Region') then 'tgn' else if ($type='foaf:Person' or $type='foaf:Organization') then 'ulan' else 'aat'"/>
 								<xforms:action if="$scheme = 'aat'">
 									<xforms:setvalue ref="instance('sparqlQuery')" value="normalize-space(replace(replace(instance('getty-aat-template'), 'SEARCH_QUERY', $search_text), 'FACET',
 										instance('getty-facets')//facet[@type=$type]/text()))"/>
@@ -51,7 +51,7 @@
 									<xxforms:hide dialog="getty-search-dialog"/>
 									<xforms:var name="search_text" select="string-join(tokenize(instance('control-instance')/getty-search, ' '), ' AND ')"/>
 									<xforms:var name="type" select="$binding/name()"/>
-									<xforms:var name="scheme" select="if ($type='nmo:Mint' or $type='nmo:Region') then 'tgn' else if ($type='foaf:Person') then 'ulan' else 'aat'"/>
+									<xforms:var name="scheme" select="if ($type='nmo:Mint' or $type='nmo:Region') then 'tgn' else if ($type='foaf:Person' or $type='foaf:Organization') then 'ulan' else 'aat'"/>
 									<xforms:action if="$scheme = 'aat'">
 										<xforms:setvalue ref="instance('sparqlQuery')" value="normalize-space(replace(replace(instance('getty-aat-template'), 'SEARCH_QUERY', $search_text), 'FACET',
 											instance('getty-facets')//facet[@type=$type]/text()))"/>
@@ -79,7 +79,7 @@
 								<xforms:action ev:event="DOMActivate">
 									<xforms:var name="search_text" select="string-join(tokenize(instance('control-instance')/getty-search, ' '), ' AND ')"/>
 									<xforms:var name="type" select="$binding/name()"/>
-									<xforms:var name="scheme" select="if ($type='nmo:Mint' or $type='nmo:Region') then 'tgn' else if ($type='foaf:Person') then 'ulan' else 'aat'"/>
+									<xforms:var name="scheme" select="if ($type='nmo:Mint' or $type='nmo:Region') then 'tgn' else if ($type='foaf:Person' or $type='foaf:Organization') then 'ulan' else 'aat'"/>
 									<xforms:action if="$scheme = 'aat'">
 										<xforms:setvalue ref="instance('sparqlQuery')" value="normalize-space(replace(replace(instance('getty-aat-template'), 'SEARCH_QUERY', $search_text), 'FACET',
 											instance('getty-facets')//facet[@type=$type]/text()))"/>
@@ -163,7 +163,8 @@
 								<facet type="nmo:FieldOfNumismatics">300015646</facet>
 								<facet type="nmo:Manufacture">300264090</facet>
 								<facet type="nmo:Material">300264091</facet>								
-								<facet type="nmo:ObjectType">300264092</facet>								
+								<facet type="nmo:ObjectType">300264092</facet>
+								<facet type="org:Role">300024978</facet>								
 								<facet type="ecrm:E4_Period">300264088</facet>
 							</facets>
 						</xforms:instance>

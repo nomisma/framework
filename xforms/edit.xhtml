@@ -827,7 +827,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											</xforms:itemset>
 											<xforms:alert>Required; English label most occur once.</xforms:alert>
 										</xforms:select1>
-										<xforms:group ref=".[count(.) &gt; 1]">
+										<xforms:group ref=".[instance('doc')/*[1]/skos:prefLabel &gt; 1]">
 											<xforms:trigger appearance="minimal">
 												<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
 												<xforms:label>
@@ -1332,6 +1332,10 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 						<!-- import skos:prefLabels from dbpedia for those languages that are not already in the RDF -->
 						<xforms:group ref=".[skos:exactMatch[contains(@rdf:resource, 'dbpedia')]]">
 							<nomisma:dbpedia></nomisma:dbpedia>
+						</xforms:group>
+						<!-- link roles to person facet in the Getty AAT -->
+						<xforms:group ref=".[$type='org:Role']">
+							<nomisma:getty></nomisma:getty>
 						</xforms:group>
 						<!-- import AAT/TGN/ULAN URIs from Getty -->
 						<xforms:group ref=".[$type='nmo:Denomination' or $type='nmo:Material' or $type='nmo:ObjectType']">
