@@ -1242,7 +1242,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 													<span class="glyphicon glyphicon-plus"></span>Dynasty/Organization</xforms:label>
 												<xforms:action ev:event="DOMActivate">
 													<xforms:setvalue ref="instance('control-instance')/membership-position" value="$position"></xforms:setvalue>
-													<xforms:setvalue ref="instance('control-instance')/atom-type">(&#x022;foaf:Organization&#x022; OR &#x022;rdac:Family&#x022;)</xforms:setvalue>
+													<xforms:setvalue ref="instance('control-instance')/atom-type">&#x022;foaf:Organization&#x022;</xforms:setvalue>
 													<xxforms:show dialog="organization-dialog"></xxforms:show>
 												</xforms:action>
 											</xforms:trigger>
@@ -1415,6 +1415,22 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 				</xxforms:dialog>
 				<xxforms:dialog id="organization-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
 					<xforms:label>Parent Dynasty/Organization</xforms:label>
+					<div>
+						<xforms:select1 ref="instance('control-instance')/atom-type" appearance="full">
+							<xforms:item>
+								<xforms:label>Organization</xforms:label>
+								<xforms:value>&#x022;foaf:Organization&#x022;</xforms:value>
+							</xforms:item>
+							<xforms:item>
+								<xforms:label>Family</xforms:label>
+								<xforms:value>&#x022;rdac:Family&#x022;</xforms:value>
+							</xforms:item>
+							<xforms:item>
+								<xforms:label>Mint</xforms:label>
+								<xforms:value>&#x022;nmo:Mint&#x022;</xforms:value>
+							</xforms:item>
+						</xforms:select1>
+					</div>
 					<div>
 						<xforms:input ref="instance('control-instance')/atom-search" />
 						<xforms:trigger>

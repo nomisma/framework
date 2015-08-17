@@ -244,6 +244,7 @@ PREFIX org:	<http://www.w3.org/ns/org#>
 PREFIX rdac:	<http://www.rdaregistry.info/Elements/c/>
 PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 					<query id="ask">ASK {&lt;URI&gt; rdf:type CLASS}</query>
+					<query id="ask-person">ASK {&lt;URI&gt; rdf:type ?type . FILTER (?type = nmo:Mint || ?type = foaf:Organization)} </query>
 				</templates>
 			</xforms:instance>
 
@@ -778,14 +779,17 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 																		<!-- if the $mapping is dcterms:isPartOf, then the target will be an nmo:Field of Numismatics;
 																	else if the $mapping is skos:broader and the class is an nmo:Mint, then the skos:broader will be nmo:Region;
 																	if the $mapping is org:memberOf and the class is foaf:Person, then the target entity must be a dynasty (rdac:Family);
-																	if the $mapping is an org:organization and class is a foaf:Person, then the target entity must be an organization (foaf:Organization);
+																	if the $mapping is an org:organization and class is a foaf:Person, then the target entity must be an organization (foaf:Organization) or mint (nmo:Mint), set by separate SPARQL query template;
 																	if the $mapping is an org:role, the class must be either a foaf:Person or foaf:Organization, and the target must be a foaf:Organization;
 																	otherwise, it will be assumed the mapping is skos:broader and the target class is the same as the source class.
 																	-->
 																		<xforms:var name="class"
-																			select="if($mapping = 'dcterms:isPartOf') then 'nmo:FieldOfNumismatics' else if($mapping = 'skos:broader' and instance('control-instance')/type = 'nmo:Mint') then 'nmo:Region' else if (instance('control-instance')/type = 'foaf:Person' and $mapping='org:memberOf') then 'rdac:Family' else if (instance('control-instance')/type = 'foaf:Person' and $mapping='org:organization') then 'foaf:Organization' else if ((instance('control-instance')/type = 'foaf:Person' or instance('control-instance')/type = 'foaf:Organization') and $mapping='org:role') then 'org:Role' else instance('control-instance')/type"></xforms:var>
-																		<xforms:setvalue ref="instance('sparqlQuery')"
+																			select="if($mapping = 'dcterms:isPartOf') then 'nmo:FieldOfNumismatics' else if($mapping = 'skos:broader' and instance('control-instance')/type = 'nmo:Mint') then 'nmo:Region' else if (instance('control-instance')/type = 'foaf:Person' and $mapping='org:memberOf') then 'rdac:Family' else if ((instance('control-instance')/type = 'foaf:Person' or instance('control-instance')/type = 'foaf:Organization') and $mapping='org:role') then 'org:Role' else instance('control-instance')/type"></xforms:var>
+																		<xforms:setvalue ref="instance('sparqlQuery')" if="not(instance('control-instance')/type = 'foaf:Person' and $mapping='org:organization')"
 																			value="concat(instance('sparql-templates')/prefix, ' ', replace(replace(instance('sparql-templates')/query[@id='ask'], 'URI', $value), 'CLASS', $class))"></xforms:setvalue>
+																		<!-- for linking People to foaf:Organization/nmo:Mint -->
+																		<xforms:setvalue ref="instance('sparqlQuery')" if="instance('control-instance')/type = 'foaf:Person' and $mapping='org:organization'"
+																			value="concat(instance('sparql-templates')/prefix, ' ', replace(instance('sparql-templates')/query[@id='ask-person'], 'URI', $value))"></xforms:setvalue>
 																		<xforms:send submission="submit-sparqlQuery"></xforms:send>
 																		<!-- if the SPARQL query concludes successfully, then create an entry in nomisma-ids and display an error if the ASK if false -->
 																		<xforms:action ev:event="xforms-submit-done">
