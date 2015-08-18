@@ -367,16 +367,16 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to get data from Wikidata.</xforms:message>
 				<xforms:action ev:event="xforms-submit-done">
 					<!-- process wikidata XML if the entity has an @id -->
-					<xforms:action if="string(instance('wikidata')//entities/*[1]/@id)">
+					<xforms:action if="string(instance('wikidata')//entity/@id)">
 						<!-- create mapping based on the type: skos:closeMatch for mints, skos:exactMatch for all else -->
 						<xforms:var name="mapping" select="if (instance('control-instance')/type = 'nmo:Mint') then 'skos:closeMatch' else 'skos:exactMatch'"></xforms:var>
 						<!-- insert the wikidata URI -->
-						<xforms:var name="wikidata-uri" select="concat('http://www.wikidata.org/entity/', instance('wikidata')//entities/*[1]/@id)"></xforms:var>
+						<xforms:var name="wikidata-uri" select="concat('http://www.wikidata.org/entity/', instance('wikidata')//entity/@id)"></xforms:var>
 						<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]" if="not(instance('rdf')/*[1]/*[name()=$mapping][@rdf:resource=$wikidata-uri])"
 							origin="xforms:element($mapping, (xforms:attribute('rdf:resource', $wikidata-uri), ''))"></xforms:insert>
 
 						<!-- import new labels, but only ones that follow the two-digit ISO standard -->
-						<xforms:action xxforms:iterate="instance('wikidata')//entities/*[1]/labels/label[string-length(@language) = 2]">
+						<xforms:action xxforms:iterate="instance('wikidata')//entity/labels/label[string-length(@language) = 2]">
 							<xforms:var name="lang" select="data(context()/@language)"></xforms:var>
 							<xforms:var name="label" select="data(context()/@value)"></xforms:var>
 							<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]" if="not(instance('rdf')/*[1]/skos:prefLabel[@xml:lang=$lang])"
@@ -385,7 +385,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 
 						<!-- iterate through claims with matching properties to link to external vocabulary systems -->
 						<xforms:action
-							xxforms:iterate="instance('wikidata')//entities/*[1]/claims/property[@id='P214' or @id='P227' or @id='P213' or @id='P268' or @id='P269' or @id='P646' or @id='P245' or @id='P1566' or @id='P1900']">
+							xxforms:iterate="instance('wikidata')//entity/claims/property[@id='P214' or @id='P227' or @id='P213' or @id='P268' or @id='P269' or @id='P646' or @id='P245' or @id='P1566' or @id='P1900']">
 							<xforms:var name="property" select="data(context()/@id)"></xforms:var>
 							<xforms:var name="id" select="replace(data(context()/descendant::mainsnak[1]/datavalue/@value), ' ', '')"></xforms:var>
 							<xforms:var name="uri" select="concat(instance('wikidata-properties')/property[@id=$property], $id)"></xforms:var>
