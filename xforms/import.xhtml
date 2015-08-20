@@ -670,6 +670,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											<xforms:action xxforms:iterate="instance('feed')//atom:entry">
 												<!-- create record in the validation model -->
 												<xforms:var name="title" select="atom:title"></xforms:var>
+												<xforms:var name="position" select="position()"></xforms:var>
 												<xforms:insert context="instance('validation-model')" nodeset="./child::node()[last()]"
 													origin="xforms:element('record', (xforms:attribute('title', $title), ''))"></xforms:insert>
 												<!-- ensure that nomisma ids are unique -->
@@ -711,7 +712,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 																origin="xforms:element('error', concat('Latitude is beyond the -180 to 180 extent: ', $value))"> </xforms:insert>
 															<!-- if lat is valid, but there is no long -->
 															<xforms:insert
-																if="$value castable as xs:decimal and string-length(normalize-space(instance('feed')//atom:entry[atom:title=$title]/*[name()=instance('mappings')/mapping[@to='geo:long']/@from])) = 0"
+																if="$value castable as xs:decimal and string-length(normalize-space(instance('feed')//atom:entry[position()=$position]/*[name()=instance('mappings')/mapping[@to='geo:long']/@from])) = 0"
 																context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
 																origin="xforms:element('error', 'No longitude for corresponding latitude.')"></xforms:insert>
 														</xforms:action>
@@ -724,7 +725,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 																origin="xforms:element('error', concat('Longitude is beyond the -180 to 180 extent: ', $value))"></xforms:insert>
 															<!-- if long is valid, but there is no lat -->
 															<xforms:insert
-																if="$value castable as xs:decimal and string-length(normalize-space(instance('feed')//atom:entry[atom:title=$title]/*[name()=instance('mappings')/mapping[@to='geo:lat']/@from])) = 0"
+																if="$value castable as xs:decimal and string-length(normalize-space(instance('feed')//atom:entry[position()=$position]/*[name()=instance('mappings')/mapping[@to='geo:lat']/@from])) = 0"
 																context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
 																origin="xforms:element('error', 'No latitude for corresponding longitude.')"></xforms:insert>
 														</xforms:action>
@@ -735,7 +736,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 															<!-- if the start date and end date are both numbers, ensure that the start date is before the end date -->
 															<xforms:action if="instance('mappings')/mapping[@to='nmo:hasEndDate'] and $value castable as xs:integer">
 																<xforms:var name="endDate"
-																	select="normalize-space(instance('feed')//atom:entry[atom:title=$title]/*[name()=instance('mappings')/mapping[@to='nmo:hasEndDate']/@from])"></xforms:var>
+																	select="normalize-space(instance('feed')//atom:entry[position()=$position]/*[name()=instance('mappings')/mapping[@to='nmo:hasEndDate']/@from])"></xforms:var>
 																<xforms:action if="string-length($endDate) &gt; 0 and $endDate castable as xs:integer">
 																	<xforms:insert if="number($value) &gt; number($endDate)" context="instance('validation-model')/record[last()]"
 																		nodeset="./child::node()[last()]" origin="xforms:element('error', 'Start date post-dates end date.')"></xforms:insert>
