@@ -888,6 +888,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											
 											<xforms:var name="id" select="normalize-space(data(*[namespace-uri()='http://schemas.google.com/spreadsheets/2006/extended'][name()=instance('mappings')/mapping[@to='id']/@from]))"></xforms:var>
 											<xforms:var name="uri" select="concat('http://nomisma.org/id/', $id)"></xforms:var>
+											<xforms:var name="position" select="position()"/>
 											<!-- set the id in the control-instance and then attempt to load the RDF/XML from disc. If it fails to load, this means the ID does not exist, and a new one will be created. If the ID does exist and the RDF is loaded, then add supplementary information. -->
 											<xforms:setvalue ref="instance('control-instance')/id" value="$id"></xforms:setvalue>
 											<!-- set the control instance title in the event that the Nomisma ID is not in the first column -->
@@ -896,7 +897,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											<xforms:delete nodeset="instance('rdf')/*"></xforms:delete>
 											<xforms:send submission="load-rdf"></xforms:send>
 											<!-- *** BEGIN ATOM TO RDF IMPORT *** -->
-											<xforms:action xxforms:iterate="instance('feed')//atom:entry[atom:title=instance('control-instance')/title]/*[namespace-uri()='http://schemas.google.com/spreadsheets/2006/extended']">
+											<xforms:action xxforms:iterate="instance('feed')//atom:entry[position()=$position]/*[namespace-uri()='http://schemas.google.com/spreadsheets/2006/extended']">
 												<xforms:var name="from" select="name()"></xforms:var>
 												<xforms:var name="value" select="normalize-space(context())"></xforms:var>
 												<!-- only process those fields which have been mapped in the user interface -->
@@ -966,10 +967,10 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 																<!-- if there is a valid latitude number and no geo:SpatialThing (the geo:lat and geo:long have not yet been processed), insert geo:SpatialThing -->
 																<xforms:insert context="instance('rdf')" nodeset="./child::node()[last()]"
 																	origin="xforms:element('geo:SpatialThing', (xforms:attribute('rdf:about', $locationUri), ''))"
-																	if="number(instance('feed')//atom:entry[atom:title=instance('control-instance')/title]/*[name()=instance('mappings')/mapping[@to='geo:lat']/@from]) and not(instance('rdf')/geo:SpatialThing)"></xforms:insert>
+																	if="number(instance('feed')//atom:entry[position()=$position]/*[name()=instance('mappings')/mapping[@to='geo:lat']/@from]) and not(instance('rdf')/geo:SpatialThing)"></xforms:insert>
 																<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
 																	origin="xforms:element('geo:location', (xforms:attribute('rdf:resource', $locationUri), ''))"
-																	if="number(instance('feed')//atom:entry[atom:title=instance('control-instance')/title]/*[name()=instance('mappings')/mapping[@to='geo:lat']/@from]) and not(instance('rdf')/geo:SpatialThing)"></xforms:insert>
+																	if="number(instance('feed')//atom:entry[position()=$position]/*[name()=instance('mappings')/mapping[@to='geo:lat']/@from]) and not(instance('rdf')/geo:SpatialThing)"></xforms:insert>
 																<xforms:insert context="instance('rdf')/geo:SpatialThing" nodeset="./child::node()[last()]"
 																	origin="xforms:element('dcterms:isPartOf', (xforms:attribute('rdf:resource', concat($value, '#this')), ''))"
 																	if="not(instance('rdf')/geo:SpatialThing/*[name()='dcterms:isPartOf'])"></xforms:insert>
@@ -996,7 +997,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 													<!-- validate start and end dates -->
 													<xforms:action if="$mapping = 'nmo:hasStartDate' or $mapping='nmo:hasEndDate'">
 														<xforms:var name="membershipUri"
-															select="concat($uri, '#', substring-after(data(instance('feed')//atom:entry[atom:title=instance('control-instance')/title]/*[name()=instance('mappings')/mapping[@to='org:role']/@from]), 'id/'))"></xforms:var>
+															select="concat($uri, '#', substring-after(data(instance('feed')//atom:entry[position()=$position]/*[name()=instance('mappings')/mapping[@to='org:role']/@from]), 'id/'))"></xforms:var>
 														<!-- if the type is a Person or Organization, insert the date into the org:Membership -->
 														<xforms:action if="instance('control-instance')/type = 'foaf:Person' or instance('control-instance')/type = 'foaf:Organization'">
 															<xforms:action if="not(instance('rdf')/org:Membership[@rdf:about=$membershipUri])">
@@ -1020,7 +1021,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 													<!-- write org ontology properties into the org:Membership -->
 													<xforms:action if="$mapping='org:role' or $mapping='org:organization'">
 														<xforms:var name="membershipUri"
-															select="concat($uri, '#', substring-after(data(instance('feed')//atom:entry[atom:title=instance('control-instance')/title]/*[name()=instance('mappings')/mapping[@to='org:role']/@from]), 'id/'))"></xforms:var>
+															select="concat($uri, '#', substring-after(data(instance('feed')//atom:entry[position()=$position]/*[name()=instance('mappings')/mapping[@to='org:role']/@from]), 'id/'))"></xforms:var>
 														<!-- create the org:Membership, if necessary -->
 														<xforms:action if="not(instance('rdf')/org:Membership[@rdf:about=$membershipUri])">
 															<xforms:insert context="instance('rdf')" nodeset="./child::node()[last()]"
