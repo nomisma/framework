@@ -35,7 +35,6 @@
 					<spreadsheet_key></spreadsheet_key>
 					<worksheet_id></worksheet_id>
 					<id></id>
-					<title></title>
 					<type></type>
 					<load-trigger>false</load-trigger>
 					<validate-trigger>false</validate-trigger>
@@ -891,8 +890,6 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											<xforms:var name="position" select="position()"/>
 											<!-- set the id in the control-instance and then attempt to load the RDF/XML from disc. If it fails to load, this means the ID does not exist, and a new one will be created. If the ID does exist and the RDF is loaded, then add supplementary information. -->
 											<xforms:setvalue ref="instance('control-instance')/id" value="$id"></xforms:setvalue>
-											<!-- set the control instance title in the event that the Nomisma ID is not in the first column -->
-											<xforms:setvalue ref="instance('control-instance')/title" value="data(context()/atom:title)"></xforms:setvalue>
 											<!-- clear data from RDF instance before loading-->
 											<xforms:delete nodeset="instance('rdf')/*"></xforms:delete>
 											<xforms:send submission="load-rdf"></xforms:send>
