@@ -233,7 +233,7 @@ nm:%ID% skos:broader+ ?uri .
 %lang%}]]>
 		</xsl:variable>
 
-		<xsl:variable name="lang-template">?uri skos:prefLabel ?lang . FILTER(langMatches(lang(?lang), "LANG"))</xsl:variable>
+		<xsl:variable name="lang-template">OPTIONAL {?uri skos:prefLabel ?lang . FILTER(langMatches(lang(?lang), "LANG"))}</xsl:variable>
 
 		<response>
 			<xsl:for-each select="tokenize($identifiers, '\|')">
