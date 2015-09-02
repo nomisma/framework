@@ -39,6 +39,9 @@
 			<xsl:when test="$template = 'numishareResults'">
 				<xsl:call-template name="numishareResults"/>
 			</xsl:when>
+			<xsl:when test="$template = 'regionHierarchy'">
+				<xsl:call-template name="regionHierarchy"/>
+			</xsl:when>
 		</xsl:choose>
 	</xsl:template>
 </xsl:stylesheet>
