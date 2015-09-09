@@ -13,7 +13,9 @@
 
 	<xsl:template match="doc">
 		<lawd:Place rdf:about="http://nomisma.org/id/{str[@name='id']}">
-			<rdfs:label>Apollonia Salbace</rdfs:label>
+			<rdfs:label>
+				<xsl:value-of select="str[@name='prefLabel']"/>
+			</rdfs:label>
 			<xsl:for-each select="distinct-values(arr[@name='pleiades_uri']/str)">
 				<skos:closeMatch rdf:resource="{.}#this"/>
 			</xsl:for-each>
