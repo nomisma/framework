@@ -51,8 +51,8 @@
 					<geo>
 						<type></type>
 						<hasFeature></hasFeature>
-						<lat></lat>
-						<long></long>
+						<lat>0</lat>
+						<long>0</long>
 						<geoJSON></geoJSON>
 					</geo>
 					<fons></fons>
@@ -1142,16 +1142,18 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										</xforms:select1>
 										<xforms:group ref="geo:lat">
 											<div>
-												<xforms:output ref=".">
+												<xforms:input ref=".">
 													<xforms:label>Latitude</xforms:label>
-												</xforms:output>
+													<xforms:alert>Must be -180 to 180</xforms:alert>
+												</xforms:input>
 											</div>
 										</xforms:group>
 										<xforms:group ref="geo:long">
 											<div>
-												<xforms:output ref=".">
+												<xforms:input ref=".">
 													<xforms:label>Longitude</xforms:label>
-												</xforms:output>
+													<xforms:alert>Must be -180 to 180</xforms:alert>
+												</xforms:input>
 											</div>
 										</xforms:group>
 										<xforms:group ref="osgeo:asGeoJSON">
