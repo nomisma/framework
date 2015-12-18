@@ -49,14 +49,12 @@
 							<xsl:when test="position() = 1">
 								<xsl:text>{&lt;</xsl:text>
 								<xsl:value-of select="."/>
-								<xsl:text>&gt; nmo:hasClosingDate ?timeSpan .
-							?timeSpan nmo:hasEndDate ?date }</xsl:text>
+								<xsl:text>&gt; nmo:hasEndDate ?date }</xsl:text>
 							</xsl:when>
 							<xsl:otherwise>
 								<xsl:text>UNION {&lt;</xsl:text>
 								<xsl:value-of select="."/>
-								<xsl:text>&gt; nmo:hasClosingDate ?timeSpan .
-							?timeSpan nmo:hasEndDate ?date }</xsl:text>
+								<xsl:text>&gt; nmo:hasEndDate ?date }</xsl:text>
 							</xsl:otherwise>
 						</xsl:choose>
 					</xsl:for-each>
