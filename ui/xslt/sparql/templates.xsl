@@ -103,60 +103,7 @@ UNION { ?coinType nmo:hasMint <URI> ;
 			<xsl:apply-templates select="document($service)/res:sparql" mode="heatmap"/>
 		</xsl:if>
 	</xsl:template>
-
-	<xsl:template name="closingDate">
-		<xsl:variable name="query">
-			<![CDATA[ 
-			PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-			PREFIX dcterms:  <http://purl.org/dc/terms/>
-			PREFIX nm:       <http://nomisma.org/id/>
-			PREFIX nmo:	<http://nomisma.org/ontology#>
-			PREFIX owl:      <http://www.w3.org/2002/07/owl#>
-			PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
-			SELECT (MAX(xsd:int(?date)) AS ?year)
-			WHERE {
-			<IDENTIFIERS>
-			}
-			]]>
-		</xsl:variable>
-
-		<xsl:variable name="replace">
-			<xsl:for-each select="tokenize($identifiers, '\|')">
-				<xsl:choose>
-					<xsl:when test="position() = 1">
-						<xsl:text>{&lt;</xsl:text>
-						<xsl:value-of select="."/>
-						<xsl:text>&gt; nmo:hasClosingDate ?timeSpan .
-							?timeSpan nmo:hasEndDate ?date }</xsl:text>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:text>UNION {&lt;</xsl:text>
-						<xsl:value-of select="."/>
-						<xsl:text>&gt; nmo:hasClosingDate ?timeSpan .
-							?timeSpan nmo:hasEndDate ?date }</xsl:text>
-					</xsl:otherwise>
-				</xsl:choose>
-			</xsl:for-each>
-		</xsl:variable>
-
-		<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, '&lt;IDENTIFIERS&gt;', $replace))), '&amp;output=xml')"/>
-
-		<!-- no need to call template, create XML-RPC response here:-->
-
-		<xsl:choose>
-			<xsl:when test="$format='json'">
-				<xsl:text>{"nmo:hasClosingDate":</xsl:text>
-				<xsl:value-of select="number(document($service)/descendant::res:binding[@name='year']/res:literal)"/>
-				<xsl:text>}</xsl:text>
-			</xsl:when>
-			<xsl:otherwise>
-				<response>
-					<xsl:value-of select="number(document($service)/descendant::res:binding[@name='year']/res:literal)"/>
-				</response>
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:template>
-
+	
 	<xsl:template name="avgMeasurement">
 		<xsl:param name="measurement"/>
 		<xsl:variable name="query">

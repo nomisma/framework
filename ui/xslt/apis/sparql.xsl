@@ -20,10 +20,7 @@
 		<xsl:choose>
 			<!--<xsl:when test="$template = 'kml'">
 				<xsl:call-template name="kml"/>
-			</xsl:when>-->
-			<xsl:when test="$template = 'closingDate'">
-				<xsl:call-template name="closingDate"/>
-			</xsl:when>
+			</xsl:when>-->			
 			<xsl:when test="$template = 'avgMeasurement'">
 				<xsl:call-template name="avgMeasurement">
 					<xsl:with-param name="measurement"
@@ -35,10 +32,7 @@
 			</xsl:when>
 			<xsl:when test="$template = 'heatmap'">
 				<xsl:call-template name="heatmap"/>
-			</xsl:when>
-			<xsl:when test="$template = 'numishareResults'">
-				<xsl:call-template name="numishareResults"/>
-			</xsl:when>
+			</xsl:when>			
 			<xsl:when test="$template = 'regionHierarchy'">
 				<xsl:call-template name="regionHierarchy"/>
 			</xsl:when>
