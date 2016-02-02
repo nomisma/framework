@@ -10,8 +10,8 @@
 		<link rel="stylesheet" href="/fr/style/bootstrap/css/bootstrap.css" type="text/css" />
 		<link rel="stylesheet" href="/fr/style/form-runner-bootstrap-override.css" type="text/css" />
 
-		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
-		<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+		<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		<link rel="shortcut icon" href="/ops/images/orbeon-icon-16.ico" />
 		<link rel="icon" href="/ops/images/orbeon-icon-16.png" type="image/png" />
 		<link rel="stylesheet" href="/apps/nomisma/xforms/css/style.css" />
@@ -19,6 +19,7 @@
 		<!-- mapping -->
 		<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"></script>
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.9&amp;sensor=false"></script>
+		<script type="text/javascript" src="/apps/nomisma/xforms/javascript/edit_functions.js"></script>
 		<script type="text/javascript" src="/apps/nomisma/xforms/javascript/georeference.js"></script>
 
 		<!-- model -->
@@ -520,10 +521,10 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 
 		<!-- XBL components -->
 		<xi:include href="xbl/bm/bm.xbl" xi:omit-xml-base="true"></xi:include>
-		<xi:include href="xbl/dbpedia/dbpedia.xbl" xi:omit-xml-base="true"></xi:include>
 		<xi:include href="xbl/getty/getty.xbl" xi:omit-xml-base="true"></xi:include>
 		<xi:include href="xbl/pleiades/pleiades.xbl" xi:omit-xml-base="true"></xi:include>
 		<xi:include href="xbl/viaf/viaf.xbl" xi:omit-xml-base="true"></xi:include>
+		<xi:include href="xbl/wikidata/wikidata.xbl" xi:omit-xml-base="true"></xi:include>
 	</head>
 
 	<body>
@@ -810,7 +811,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 							</h3>
 							<div class="subsection">
 								<h4>Labels and Definitions</h4>
-								<xforms:repeat nodeset="skos:prefLabel">
+								<xforms:repeat nodeset="skos:prefLabel[position() &lt;= 10]">
 									<div>
 										<xforms:input ref=".">
 											<xforms:label>Preferred Label</xforms:label>
@@ -837,6 +838,41 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										</xforms:group>
 									</div>
 								</xforms:repeat>
+								
+								<!-- more than 10 labels, put into div -->
+								<xforms:group ref=".[count(skos:prefLabel) &gt; 10]">
+									<h5>Additional Preferred Labels <small><a href="#" id="toggle-prefLabel" class="toggle-button"><span class="glyphicon glyphicon-triangle-right"/></a></small></h5>
+									<div id="prefLabel-div" style="display:none">
+										<xforms:repeat nodeset="skos:prefLabel[position() &gt; 10]">
+											<div>
+												<xforms:input ref=".">
+													<xforms:label>Preferred Label</xforms:label>
+													<xforms:alert>Required</xforms:alert>
+												</xforms:input>
+												<xforms:select1 ref="@xml:lang">
+													<xforms:item>
+														<xforms:label>Select...</xforms:label>
+														<xforms:value></xforms:value>
+													</xforms:item>
+													<xforms:itemset nodeset="instance('languages')/language">
+														<xforms:label ref="."></xforms:label>
+														<xforms:value ref="@value"></xforms:value>
+													</xforms:itemset>
+													<xforms:alert>Required; English label most occur once.</xforms:alert>
+												</xforms:select1>
+												<xforms:group ref=".[count(instance('doc')/*[1]/skos:prefLabel) &gt; 1]">
+													<xforms:trigger appearance="minimal">
+														<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
+														<xforms:label>
+															<span class="glyphicon glyphicon-remove"></span>
+														</xforms:label>
+													</xforms:trigger>
+												</xforms:group>
+											</div>
+										</xforms:repeat>
+									</div>									
+								</xforms:group>
+								
 								<xforms:repeat nodeset="skos:altLabel">
 									<div>
 										<xforms:input ref=".">
@@ -1331,9 +1367,9 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 					<xforms:group ref="instance('doc')/*[1][not(dcterms:isReplacedBy)]">
 						<xforms:var name="type" select="name()"></xforms:var>
 						<h3>Import</h3>
-						<!-- import skos:prefLabels from dbpedia for those languages that are not already in the RDF -->
-						<xforms:group ref=".[skos:exactMatch[contains(@rdf:resource, 'dbpedia')]]">
-							<nomisma:dbpedia></nomisma:dbpedia>
+						<!-- import skos:prefLabels from wikidata for those languages that are not already in the RDF -->
+						<xforms:group ref=".[not(skos:*[contains(@rdf:resource, 'wikidata')])]">
+							<nomisma:wikidata></nomisma:wikidata>
 						</xforms:group>
 						<!-- link roles to person facet in the Getty AAT -->
 						<xforms:group ref=".[$type='org:Role']">

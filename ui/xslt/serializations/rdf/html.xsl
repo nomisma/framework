@@ -51,8 +51,8 @@
 				<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"/>
 				<!-- bootstrap -->
 				<link rel="stylesheet"
-					href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
-				<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"/>
+					href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+				<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
 
 				<xsl:if test="$type='nmo:Mint' or $type='nmo:Hoard' or $type='nmo:Region'">
 					<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
