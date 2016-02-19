@@ -25,6 +25,20 @@
 			</xsl:for-each>
 		</roles>		
 	</xsl:variable>
+	
+	<xsl:variable name="fields" as="element()*">
+		<fields>
+			<xsl:for-each select="distinct-values(descendant::dcterms:isPartOf[matches(@rdf:resource, 'nomisma\.org/id/.*_numismatics')]/@rdf:resource)">
+				<xsl:variable name="rdf" as="node()">
+					<xsl:copy-of select="document(concat('file://', $id_path, '/', substring-after(., 'id/'), '.rdf'))"/>
+				</xsl:variable>
+				
+				<field uri="{.}">
+					<xsl:value-of select="$rdf//skos:prefLabel[@xml:lang='en']"/>
+				</field>
+			</xsl:for-each>
+		</fields>		
+	</xsl:variable>
 
 	<xsl:template match="/">
 		<add>

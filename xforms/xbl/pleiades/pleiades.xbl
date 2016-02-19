@@ -104,11 +104,11 @@
 						</xforms:instance>
 
 						<xforms:instance id="lat-template" xxforms:exclude-result-prefixes="#all">
-							<geo:lat rdf:datatype="xsd:float"/>
+							<geo:lat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal"/>
 						</xforms:instance>
 
 						<xforms:instance id="long-template" xxforms:exclude-result-prefixes="#all">
-							<geo:long rdf:datatype="xsd:float"/>
+							<geo:long rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal"/>
 						</xforms:instance>
 
 						<!-- ********* SUBMISSIONS ***********-->

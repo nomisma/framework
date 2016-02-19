@@ -1,7 +1,6 @@
-<xbl:xbl xmlns="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events"
-	xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:xxbl="http://orbeon.org/oxf/xml/xbl"
-	xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-	xmlns:nomisma="https://github.com/nomisma">
+<xbl:xbl xmlns="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:xxbl="http://orbeon.org/oxf/xml/xbl" xmlns:owl="http://www.w3.org/2002/07/owl#"
+	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:nomisma="https://github.com/nomisma">
 	<xbl:binding id="nomisma-viaf" element="nomisma|viaf">
 		<xbl:template>
 			<xforms:group xbl:attr="model context ref bind" xxbl:scope="outer">
@@ -14,8 +13,7 @@
 					<xforms:trigger appearance="minimal">
 						<xforms:label><span class="glyphicon glyphicon-search"/>VIAF URIs</xforms:label>
 						<xforms:action ev:event="DOMActivate">
-							<xforms:setvalue ref="instance('control-instance')/viaf-field"
-								value="if ($type='foaf:Person') then 'local.personalNames' else 'local.corporateNames'"/>
+							<xforms:setvalue ref="instance('control-instance')/viaf-field" value="if ($type='foaf:Person') then 'local.personalNames' else 'local.corporateNames'"/>
 							<xxforms:show dialog="viaf-dialog"/>
 						</xforms:action>
 					</xforms:trigger>
@@ -63,17 +61,16 @@
 										<xforms:var name="resource" select="context()/@link"/>
 										<xforms:setvalue ref="instance('control-instance')/viaf-id" value="$resource"/>
 										<xforms:action if="not($binding/skos:exactMatch[@rdf:resource=$resource])">
-											<xforms:insert context="$binding" nodeset="./child::node()[last()]"
-												origin="xforms:element('skos:exactMatch', xforms:attribute('rdf:resource', $resource))"/>
+											<xforms:insert context="$binding" nodeset="./child::node()[last()]" origin="xforms:element('skos:exactMatch', xforms:attribute('rdf:resource', $resource))"
+											/>
 										</xforms:action>
 										<xforms:send submission="get-viaf-rdf"/>
 										<!-- process owl:sameAs links provided by VIAF -->
-										<xforms:action ev:event="xforms-submit-done"
-											xxforms:iterate="instance('viaf-rdf')/rdf:Description[@rdf:about=instance('control-instance')/viaf-id]/owl:sameAs">
+										<xforms:action ev:event="xforms-submit-done" xxforms:iterate="instance('viaf-rdf')/rdf:Description[@rdf:about=instance('control-instance')/viaf-id]/owl:sameAs">
 											<xforms:var name="resource" select="context()/@rdf:resource"/>
 											<xforms:action if="not($binding/skos:exactMatch[@rdf:resource=$resource])">
-												<xforms:insert context="$binding" nodeset="./child::node()[last()]"
-													origin="xforms:element('skos:exactMatch', xforms:attribute('rdf:resource', $resource))"/>
+												<xforms:insert context="$binding" nodeset="./child::node()[last()]" origin="xforms:element('skos:exactMatch', xforms:attribute('rdf:resource',
+													$resource))"/>
 											</xforms:action>
 										</xforms:action>
 									</xforms:action>
@@ -104,7 +101,7 @@
 						<xforms:instance id="viaf-options">
 							<options xmlns=""/>
 						</xforms:instance>
-						
+
 						<xforms:instance id="relations">
 							<relations xmlns=""/>
 						</xforms:instance>
@@ -124,13 +121,12 @@
 							<xforms:action xxforms:iterate="instance('viaf-response')//item" ev:event="xforms-submit-done">
 								<xforms:var name="link" select="context()/link"/>
 								<xforms:var name="title" select="context()/title"/>
-								<xforms:insert context="instance('viaf-options')" nodeset="./child::node()[last()]"
-									origin="xforms:element('option', (xforms:attribute('select', false()), xforms:attribute('link', $link), $title))"/>
+								<xforms:insert context="instance('viaf-options')" nodeset="./child::node()[last()]" origin="xforms:element('option', (xforms:attribute('select', false()),
+									xforms:attribute('link', $link), $title))"/>
 							</xforms:action>
 						</xforms:submission>
 
-						<xforms:submission id="get-viaf-rdf" serialization="none" method="get" action="{instance('control-instance')/viaf-id}/rdf.xml"
-							instance="viaf-rdf" replace="instance">
+						<xforms:submission id="get-viaf-rdf" serialization="none" method="get" action="{instance('control-instance')/viaf-id}/rdf.xml" instance="viaf-rdf" replace="instance">
 							<xforms:message ev:event="xforms-submit-error" level="modal">Failed to get VIAF RDF.</xforms:message>
 						</xforms:submission>
 					</xforms:model>

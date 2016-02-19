@@ -66,6 +66,9 @@
 
 			<!-- geo -->
 			<xsl:apply-templates select="geo:location"/>
+			
+			<!-- fields of numismatics -->
+			<xsl:apply-templates select="dcterms:isPartOf[matches(@rdf:resource, 'nomisma\.org/id/.*_numismatics')]" mode="field"/>
 
 			<field name="timestamp">
 				<xsl:variable name="timestamp" select="string(current-dateTime())"/>
@@ -145,6 +148,12 @@
 		</field>
 		<field name="role_facet">
 			<xsl:value-of select="$roles/role[@uri=$uri]"/>
+		</field>
+	</xsl:template>
+	
+	<xsl:template match="dcterms:isPartOf" mode="field">
+		<field name="field_uri">
+			<xsl:value-of select="@rdf:resource"/>
 		</field>
 	</xsl:template>
 
