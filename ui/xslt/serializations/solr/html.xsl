@@ -82,14 +82,7 @@
 		<div class="container-fluid content">
 			<div class="row">
 				<div class="col-md-12">
-					<h1>
-						<xsl:text>Results</xsl:text>
-						<xsl:if test="string($q)">
-							<form action="browse" method="get" class="filter-form">
-								<button class="btn btn-default" style="margin-left:10px;">Clear</button>
-							</form>
-						</xsl:if>
-					</h1>
+					<h1>Browse Nomisma IDs</h1>
 
 					<xsl:call-template name="filter"/>
 					<xsl:choose>
@@ -144,75 +137,116 @@
 	</xsl:template>
 
 	<xsl:template name="filter">
-		<form action="browse" class="filter-form" method="get">
-			<span>
-				<b>Filter: </b>
-			</span>
-			<select id="type_filter" class="form-control">
-				<option value="">Select Type...</option>
-				<xsl:for-each select="descendant::lst[@name='type']/int[not(@name='skos:Concept')]">					
-					<xsl:variable name="value" select="concat('type:&#x022;', @name, '&#x022;')"/>
-					<option value="{$value}">
-						<xsl:if test="contains($q, $value)">
-							<xsl:attribute name="selected">selected</xsl:attribute>
-						</xsl:if>
-						<xsl:value-of select="@name"/>
-					</option>
-				</xsl:for-each>
-			</select>
-			<div class="role_div">
-				<xsl:attribute name="style" select="if (contains($q, 'foaf:')) then 'display:inline' else 'display:none'"/>
-
-				<span>
-					<b>Role: </b>
-				</span>
-				<select id="role_filter" class="form-control">
-					<xsl:if test="not(contains($q, 'foaf:'))">
-						<xsl:attribute name="disabled">disabled</xsl:attribute>
-					</xsl:if>
-
-					<option value="">Select Role...</option>
-					<xsl:for-each select="descendant::lst[@name='role_facet']/int">
-						<xsl:variable name="value" select="concat('role_facet:&#x022;', @name, '&#x022;')"/>
-						<option value="{$value}">
-							<xsl:if test="contains($q, $value)">
-								<xsl:attribute name="selected">selected</xsl:attribute>
-							</xsl:if>
-							<xsl:value-of select="@name"/>
-						</option>
-					</xsl:for-each>
-				</select>
+		<form action="browse" class="form-horizontal" id="filter-form" method="get">			
+			<div class="form-group">
+				<label for="search_text" class="col-sm-2 control-label">Keyword</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="search_text" placeholder="Keyword"/>
+					<a href="#" id="toggle-filters" class="toggle-button" title="More Filters" style="margin-left:10px;">
+						<xsl:text>Filters</xsl:text>
+						<span class="glyphicon glyphicon-triangle-{if (not(contains($q, 'type:')) and not(contains($q, '_facet:')) and not(string($sort))) then 'right' else 'bottom'}"/>
+					</a>
+				</div>				
 			</div>
-			<span>
-				<b>Keyword: </b>
-			</span>
-			<input type="text" id="search_text" class="form-control" placeholder="Search">
-				<xsl:if test="$tokenized_q[not(contains(., 'type') or contains(., 'role_facet'))]">
-					<xsl:attribute name="value" select="$tokenized_q[not(contains(., 'type') or contains(., 'role_facet'))]"/>
+			
+			<!-- additional filters -->
+			<div id="filters-div">
+				<xsl:if test="not(contains($q, 'type:')) and not(contains($q, '_facet:')) and not(string($sort))">
+					<xsl:attribute name="style">display:none</xsl:attribute>
 				</xsl:if>
-			</input>
-			<button id="search_button" class="btn btn-default">
-				<span class="glyphicon glyphicon-search"/>
-			</button>			
-			<div style="margin-top:10px">
-				<span>
-					<b>Sort: </b>
-				</span>
-				<select id="sort_results" class="form-control">
-					<option value="">Relevance</option>
-					<option value="prefLabel asc">
-						<xsl:if test="contains($sort, 'asc')">
-							<xsl:attribute name="selected">selected</xsl:attribute>
-						</xsl:if>
-						<xsl:text>Alphabetical A↓Z</xsl:text>
-					</option>
-					<option value="prefLabel desc">
-						<xsl:if test="contains($sort, 'desc')">
-							<xsl:attribute name="selected">selected</xsl:attribute>
-						</xsl:if>
-						<xsl:text>Alphabetical Z↓A</xsl:text>
-					</option>
-				</select>
+				<div class="form-group">
+					<label for="filter_type" class="col-sm-2 control-label">Concept Type</label>
+					<div class="col-sm-10">
+						<select id="type_filter" class="form-control">
+							<option value="">Select Type...</option>
+							<xsl:for-each select="descendant::lst[@name='type']/int[not(@name='skos:Concept')]">					
+								<xsl:variable name="value" select="concat('type:&#x022;', @name, '&#x022;')"/>
+								<option value="{$value}">
+									<xsl:if test="contains($q, $value)">
+										<xsl:attribute name="selected">selected</xsl:attribute>
+									</xsl:if>
+									<xsl:value-of select="@name"/>
+								</option>
+							</xsl:for-each>
+						</select>
+					</div>
+				</div>
+				<div class="form-group role_div">
+					<xsl:if test="not(contains($q, 'foaf:'))">
+						<xsl:attribute name="style">display:none</xsl:attribute>
+					</xsl:if>
+					<label for="role_filter" class="col-sm-2 control-label">Role</label>
+					<div class="col-sm-10">
+						<select id="role_filter" class="form-control">
+							<xsl:if test="not(contains($q, 'foaf:'))">
+								<xsl:attribute name="disabled">disabled</xsl:attribute>
+							</xsl:if>
+							<option value="">Select Role...</option>
+							<xsl:for-each select="descendant::lst[@name='role_facet']/int">
+								<xsl:variable name="value" select="concat('role_facet:&#x022;', @name, '&#x022;')"/>
+								<option value="{$value}">
+									<xsl:if test="contains($q, $value)">
+										<xsl:attribute name="selected">selected</xsl:attribute>
+									</xsl:if>
+									<xsl:value-of select="substring-before(@name, '|')"/>
+								</option>
+							</xsl:for-each>
+						</select>
+					</div>
+				</div>
+				
+				<div class="form-group">					
+					<label for="field_filter" class="col-sm-2 control-label">Field of Numismatics</label>
+					<div class="col-sm-10">
+						<select id="field_filter" class="form-control">							
+							<option value="">Select Field...</option>
+							<xsl:for-each select="descendant::lst[@name='field_facet']/int">
+								<xsl:variable name="value" select="concat('field_facet:&#x022;', @name, '&#x022;')"/>
+								<option value="{$value}">
+									<xsl:if test="contains($q, $value)">
+										<xsl:attribute name="selected">selected</xsl:attribute>
+									</xsl:if>
+									<xsl:value-of select="substring-before(@name, '|')"/>
+								</option>
+							</xsl:for-each>
+						</select>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="sort_results" class="col-sm-2 control-label">Sort</label>
+					<div class="col-sm-10">
+						<select id="sort_results" class="form-control">
+							<option value="">Relevance</option>
+							<option value="prefLabel asc">
+								<xsl:if test="contains($sort, 'asc')">
+									<xsl:attribute name="selected">selected</xsl:attribute>
+								</xsl:if>
+								<xsl:text>Alphabetical A↓Z</xsl:text>
+							</option>
+							<option value="prefLabel desc">
+								<xsl:if test="contains($sort, 'desc')">
+									<xsl:attribute name="selected">selected</xsl:attribute>
+								</xsl:if>
+								<xsl:text>Alphabetical Z↓A</xsl:text>
+							</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button id="search_button" class="btn btn-default">
+						<span class="glyphicon glyphicon-search"/>
+						<xsl:text> Search</xsl:text>
+					</button>
+					<xsl:if test="string($q)">
+						<form action="browse" method="get" class="filter-form">
+							<button class="btn btn-default" style="margin-left:10px;">Clear</button>
+						</form>
+					</xsl:if>
+				</div>
 			</div>
 			
 			<input name="q" type="hidden"/>

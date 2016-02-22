@@ -81,13 +81,9 @@ body{
 .page-nos{
 	text-align:right;
 }
-.filter-form{
+#filter-form .form-control{
+	width:20em;
 	display:inline;
-}
-.filter-form .form-control{
-	width:200px;
-	display:inline;
-	margin-right:10px;
 }
 /*
   ***************************************
