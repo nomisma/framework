@@ -242,15 +242,17 @@
 						<xsl:text> Search</xsl:text>
 					</button>
 					<xsl:if test="string($q)">
-						<form action="browse" method="get" class="filter-form">
-							<button class="btn btn-default" style="margin-left:10px;">Clear</button>
-						</form>
+						<button class="btn btn-default" id="clear-query" style="margin-left:10px;">Clear</button>
 					</xsl:if>
 				</div>
 			</div>
 			
 			<input name="q" type="hidden"/>
-			<input name="sort" type="hidden"/>
+			<input name="sort" type="hidden">
+				<xsl:if test="not(string($sort))">
+					<xsl:attribute name="disabled">disabled</xsl:attribute>
+				</xsl:if>
+			</input>
 		</form>
 	</xsl:template>
 

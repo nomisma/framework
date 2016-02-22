@@ -18,8 +18,21 @@ $(document).ready(function () {
 		if (role.length > 0 &&  $('#role_filter').prop('disabled') == false) {
 			query.push(role);
 		}
-		$('#filter-form').children('input[name=q]').attr('value', query.join(' AND '));		
-		$('#filter-form').children('input[name=sort]').attr('value', $('#sort_results').val());
+		
+		if (query.length > 0) {
+			$('#filter-form').children('input[name=q]').attr('value', query.join(' AND '));	
+		}			
+		
+		if ($('#sort_results').val().length > 0) {
+			$('#filter-form').children('input[name=sort]').prop('disabled', false);
+			$('#filter-form').children('input[name=sort]').attr('value', $('#sort_results').val());
+		}		
+	});
+	
+	//disable inputs, reset form
+	$('#clear-query').click(function(){
+		$('#filter-form').children('input[name=sort]').prop('disabled', true);
+		$('#filter-form').children('input[name=q]').prop('disabled', true);
 	});
 	
 	$('.toggle-button').click(function () {
