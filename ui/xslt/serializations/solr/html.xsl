@@ -5,11 +5,7 @@
 	<!-- request params -->
 	<xsl:param name="q" select="doc('input:request')/request/parameters/parameter[name='q']/value"/>
 	<xsl:param name="rows">100</xsl:param>
-	<xsl:param name="sort">
-		<xsl:if test="string(doc('input:request')/request/parameters/parameter[name='sort']/value)">
-			<xsl:value-of select="doc('input:request')/request/parameters/parameter[name='sort']/value"/>
-		</xsl:if>
-	</xsl:param>
+	<xsl:param name="sort" select="doc('input:request')/request/parameters/parameter[name='sort']/value"/>
 	<xsl:param name="start">
 		<xsl:choose>
 			<xsl:when test="string(doc('input:request')/request/parameters/parameter[name='start']/value)">
@@ -27,8 +23,16 @@
 			<xsl:otherwise>0</xsl:otherwise>
 		</xsl:choose>
 	</xsl:variable>
+
+	<!-- variables -->
 	<xsl:variable name="tokenized_q" select="tokenize($q, ' AND ')"/>
 	<xsl:variable name="numFound" select="//result[@name='response']/@numFound" as="xs:integer"/>
+	<xsl:variable name="feed_url">
+		<xsl:text>feed/</xsl:text>
+		<xsl:if test="string($q) or string($sort)">?</xsl:if>
+		<xsl:if test="string($q)">q=<xsl:value-of select="$q"/><xsl:if test="string($sort)">&amp;</xsl:if></xsl:if>
+		<xsl:if test="string($sort)">sort=<xsl:value-of select="$sort"/></xsl:if>
+	</xsl:variable>
 	<xsl:variable name="display_path"/>
 
 	<!-- definition of namespaces for turning in solr type field URIs into abbreviations -->
@@ -62,7 +66,7 @@
 				<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 				<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
 				<link rel="stylesheet" href="{$display_path}ui/css/style.css"/>
-				<link rel="alternate" type="application/atom+xml" href="feed/{if ($q = '*:*') then '' else concat('?q=', $q)}"/>
+				<link rel="alternate" type="application/atom+xml" href="{$feed_url}"/>
 				<!-- opensearch compliance -->
 				<link rel="search" type="application/opensearchdescription+xml" href="http://nomisma.org/opensearch.xml" title="Example Search"/>
 				<meta name="totalResults" content="{$numFound}"/>
@@ -87,6 +91,7 @@
 					<xsl:call-template name="filter"/>
 					<xsl:choose>
 						<xsl:when test="$numFound &gt; 0">
+							<xsl:call-template name="export"/>
 							<xsl:call-template name="paging"/>
 							<xsl:apply-templates select="descendant::doc"/>
 							<xsl:call-template name="paging"/>
@@ -101,7 +106,7 @@
 	</xsl:template>
 
 	<xsl:template match="doc">
-		<div class="result-doc row">
+		<div class="result-doc">
 			<h4>
 				<a href="id/{str[@name='id']}" title="{if(string(str[@name='prefLabel'])) then str[@name='prefLabel'] else str[@name='id']}">
 					<xsl:value-of select="if(string(str[@name='prefLabel'])) then str[@name='prefLabel'] else str[@name='id']"/>
@@ -121,8 +126,7 @@
 							<xsl:for-each select="arr[@name='type']/str">
 								<xsl:variable name="name" select="."/>
 
-								<a
-									href="{concat($namespaces//namespace[@prefix=substring-before($name, ':')]/@uri, substring-after($name, ':'))}">
+								<a href="{concat($namespaces//namespace[@prefix=substring-before($name, ':')]/@uri, substring-after($name, ':'))}">
 									<xsl:value-of select="$name"/>
 								</a>
 								<xsl:if test="not(position()=last())">
@@ -137,7 +141,7 @@
 	</xsl:template>
 
 	<xsl:template name="filter">
-		<form action="browse" class="form-horizontal" id="filter-form" method="get">			
+		<form action="browse" class="form-horizontal" id="filter-form" method="get">
 			<div class="form-group">
 				<label for="search_text" class="col-sm-2 control-label">Keyword</label>
 				<div class="col-sm-10">
@@ -146,9 +150,9 @@
 						<xsl:text>Filters</xsl:text>
 						<span class="glyphicon glyphicon-triangle-{if (not(contains($q, 'type:')) and not(contains($q, '_facet:')) and not(string($sort))) then 'right' else 'bottom'}"/>
 					</a>
-				</div>				
+				</div>
 			</div>
-			
+
 			<!-- additional filters -->
 			<div id="filters-div">
 				<xsl:if test="not(contains($q, 'type:')) and not(contains($q, '_facet:')) and not(string($sort))">
@@ -159,7 +163,7 @@
 					<div class="col-sm-10">
 						<select id="type_filter" class="form-control">
 							<option value="">Select Type...</option>
-							<xsl:for-each select="descendant::lst[@name='type']/int[not(@name='skos:Concept')]">					
+							<xsl:for-each select="descendant::lst[@name='type']/int[not(@name='skos:Concept')]">
 								<xsl:variable name="value" select="concat('type:&#x022;', @name, '&#x022;')"/>
 								<option value="{$value}">
 									<xsl:if test="contains($q, $value)">
@@ -194,11 +198,11 @@
 						</select>
 					</div>
 				</div>
-				
-				<div class="form-group">					
+
+				<div class="form-group">
 					<label for="field_filter" class="col-sm-2 control-label">Field of Numismatics</label>
 					<div class="col-sm-10">
-						<select id="field_filter" class="form-control">							
+						<select id="field_filter" class="form-control">
 							<option value="">Select Field...</option>
 							<xsl:for-each select="descendant::lst[@name='field_facet']/int">
 								<xsl:variable name="value" select="concat('field_facet:&#x022;', @name, '&#x022;')"/>
@@ -212,29 +216,41 @@
 						</select>
 					</div>
 				</div>
-				
+
 				<div class="form-group">
 					<label for="sort_results" class="col-sm-2 control-label">Sort</label>
 					<div class="col-sm-10">
 						<select id="sort_results" class="form-control">
 							<option value="">Relevance</option>
 							<option value="prefLabel asc">
-								<xsl:if test="contains($sort, 'asc')">
+								<xsl:if test="$sort = 'prefLabel asc'">
 									<xsl:attribute name="selected">selected</xsl:attribute>
 								</xsl:if>
 								<xsl:text>Alphabetical A↓Z</xsl:text>
 							</option>
 							<option value="prefLabel desc">
-								<xsl:if test="contains($sort, 'desc')">
+								<xsl:if test="$sort = 'prefLabel desc'">
 									<xsl:attribute name="selected">selected</xsl:attribute>
 								</xsl:if>
 								<xsl:text>Alphabetical Z↓A</xsl:text>
+							</option>
+							<option value="timestamp desc">
+								<xsl:if test="$sort = 'timestamp desc'">
+									<xsl:attribute name="selected">selected</xsl:attribute>
+								</xsl:if>
+								<xsl:text>Modification Date (newest first)</xsl:text>
+							</option>
+							<option value="timestamp asc">
+								<xsl:if test="$sort = 'timestamp asc'">
+									<xsl:attribute name="selected">selected</xsl:attribute>
+								</xsl:if>
+								<xsl:text>Modification Date (oldest first)</xsl:text>
 							</option>
 						</select>
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<button id="search_button" class="btn btn-default">
@@ -246,13 +262,14 @@
 					</xsl:if>
 				</div>
 			</div>
-			
+
 			<input name="q" type="hidden"/>
 			<input name="sort" type="hidden">
 				<xsl:if test="not(string($sort))">
 					<xsl:attribute name="disabled">disabled</xsl:attribute>
 				</xsl:if>
 			</input>
+			<hr/>
 		</form>
 	</xsl:template>
 
@@ -310,9 +327,6 @@
 					<xsl:text> total results.</xsl:text>
 				</span>
 			</div>
-
-
-
 			<!-- paging functionality -->
 			<div class="col-md-6 page-nos">
 				<div class="btn-toolbar" role="toolbar">
@@ -330,7 +344,8 @@
 								<a class="btn btn-default disabled" title="First" href="browse?q={encode-for-uri($q)}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
 									<span class="glyphicon glyphicon-fast-backward"/>
 								</a>
-								<a class="btn btn-default disabled" title="Previous" href="browse?q={encode-for-uri($q)}&amp;start={$previous}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+								<a class="btn btn-default disabled" title="Previous" href="browse?q={encode-for-uri($q)}&amp;start={$previous}{if (string($sort)) then concat('&amp;sort=', $sort) else
+									''}">
 									<span class="glyphicon glyphicon-backward"/>
 								</a>
 							</xsl:otherwise>
@@ -355,7 +370,8 @@
 								<a class="btn btn-default disabled" title="Next" href="browse?q={encode-for-uri($q)}&amp;start={$next}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
 									<span class="glyphicon glyphicon-forward"/>
 								</a>
-								<a class="btn btn-default disabled" href="browse?q={encode-for-uri($q)}&amp;start={($total * $rows) - $rows}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+								<a class="btn btn-default disabled" href="browse?q={encode-for-uri($q)}&amp;start={($total * $rows) - $rows}{if (string($sort)) then concat('&amp;sort=', $sort) else
+									''}">
 									<span class="glyphicon glyphicon-fast-forward"/>
 								</a>
 							</xsl:otherwise>
@@ -363,6 +379,77 @@
 					</div>
 				</div>
 			</div>
+		</div>
+	</xsl:template>
+
+	<xsl:template name="export">
+		<xsl:variable name="query">
+			<xsl:variable name="frags" select="tokenize($q, ' AND ')"/>
+
+			<xsl:for-each select="$namespaces//namespace">
+				<xsl:value-of select="concat('PREFIX ', @prefix, ': &lt;', @uri, '&gt;&#x000a;')"/>
+			</xsl:for-each>
+
+			<xsl:text>SELECT ?uri ?label ?definition</xsl:text>
+			<xsl:if test="not($frags[contains(., 'type:')])">
+				<xsl:text> ?type</xsl:text>
+			</xsl:if>
+			<!-- display lat and long if applicable -->
+			<xsl:if test="$frags[. = 'type:&#x022;nmo:Mint&#x022;']">
+				<xsl:text> ?lat ?long</xsl:text>
+			</xsl:if>
+
+			<xsl:text> WHERE {&#x000a;</xsl:text>
+			<xsl:text>?uri skos:prefLabel ?label FILTER langMatches(lang(?label), "en") .&#x000a;</xsl:text>
+			<xsl:text>OPTIONAL {?uri skos:definition ?definition FILTER langMatches(lang(?definition), "en")}&#x000a;</xsl:text>
+			<!-- display the type of concept if the type isn't in the query -->
+			<xsl:if test="not($frags[contains(., 'type:')])">
+				<xsl:text>?uri rdf:type ?type FILTER regex(str(?type), "^((?!Concept).)*$")&#x000a;</xsl:text>
+			</xsl:if>
+
+			<xsl:if test="count($frags) &gt; 0">
+				<xsl:text>?uri </xsl:text>
+				<xsl:for-each select="$frags">
+					<xsl:variable name="field" select="substring-before(., ':')"/>
+					<xsl:variable name="value" select="replace(substring-after(., ':'), '&#x022;', '')"/>
+
+					<xsl:choose>
+						<xsl:when test="$field = 'type'">
+							<xsl:value-of select="concat('rdf:type ', $value)"/>
+						</xsl:when>
+						<xsl:when test="$field = 'role_facet'"><![CDATA[org:hasMembership ?membership . 
+	?membership org:role <]]><xsl:value-of select="substring-after($value, '|')"/><![CDATA[>]]></xsl:when>
+						<xsl:when test="$field = 'field_facet'"><![CDATA[dcterms:isPartOf <]]><xsl:value-of select="substring-after($value, '|')"/><![CDATA[>]]></xsl:when>
+					</xsl:choose>
+					<xsl:if test="not(position()=last())"> ;&#x000a;</xsl:if>
+				</xsl:for-each>
+			</xsl:if>
+
+			<!-- get lat and long when filtering for mints -->
+			<xsl:if test="$frags[. = 'type:&#x022;nmo:Mint&#x022;']"> .&#x000a;<![CDATA[OPTIONAL {?uri geo:location ?loc . 
+	?loc geo:lat ?lat ; geo:long ?long}]]></xsl:if>
+
+			<xsl:text>&#x000a;} ORDER BY ASC(?label)</xsl:text>
+		</xsl:variable>
+
+
+
+		<div class="row">
+			<div class="col-md-12 text-right">
+				<a href="{$display_path}query?query={encode-for-uri($query)}&amp;output=csv" title="Download CSV" class="btn btn-primary" style="margin-bottom:10px">
+					<span class="glyphicon glyphicon-download"/>Download CSV</a>
+				<a href="{$feed_url}" class="btn btn-primary" style="margin:0 0 10px 10px">Atom Feed</a>
+				<button class="btn btn-primary toggle-button" id="toggle-sparql" style="margin:0 0 10px 10px">Toggle SPARQL Query</button>
+			</div>
+
+			<div id="sparql-div" class="col-md-12" style="display:none">
+				<p class="bg-warning" style="padding:15px"><span class="glyphicon glyphicon-alert"/>
+					<strong>Note:</strong> Keyword searching is not yet supported in the SPARQL endpoint.</p>
+				<pre>
+					<xsl:value-of select="$query"/>
+				</pre>
+			</div>
+
 		</div>
 	</xsl:template>
 

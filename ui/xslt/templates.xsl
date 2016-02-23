@@ -45,9 +45,9 @@
 						<li>
 							<a href="{$display_path}datasets">Datasets</a>
 						</li>
-						<li>
+						<!--<li>
 							<a href="{$display_path}project/">Project Namespaces</a>
-						</li>
+						</li>-->
 						<!--<li>
 							<a href="{$display_path}flickr">Flickr Machine Tags</a>
 						</li>-->

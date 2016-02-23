@@ -83,10 +83,10 @@
 	<page path="/nomisma/apis/numishareResults" model="xpl/models/sparql/numishareResults.xpl" view="xpl/views/serializations/sparql/numishareResults.xpl"/>
 
 	<!-- **** PROJECT NAMESPACES **** -->
-	<page path="/nomisma/project" model="xpl/controllers/page-redirect.xpl"/>
+	<!--<page path="/nomisma/project" model="xpl/controllers/page-redirect.xpl"/>
 	<page path="/nomisma/project/" model="xpl/models/sparql/project.xpl" view="xpl/views/serializations/sparql/project.xpl"/>
 	<page path="/nomisma/project/(.*)\/" model="xpl/models/sparql/project.xpl" view="xpl/views/serializations/sparql/project.xpl"/>
-	<page path="/nomisma/project/(.*)\/(.*)" model="xpl/controllers/project-redirect.xpl"/>
+	<page path="/nomisma/project/(.*)\/(.*)" model="xpl/controllers/project-redirect.xpl"/>-->
 	
 	<!-- **** DATA DUMPS **** -->	
 	<page path="/nomisma/pelagios.void.rdf" view="dump/pelagios.void.rdf"/>
