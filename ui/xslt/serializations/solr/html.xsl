@@ -400,11 +400,13 @@
 			</xsl:if>
 
 			<xsl:text> WHERE {&#x000a;</xsl:text>
+			<!-- ensure that only Nomisma IDs are returned -->
+			<xsl:text>FILTER strStarts(str(?uri), "http://nomisma.org/id/") .&#x000a;</xsl:text>
 			<xsl:text>?uri skos:prefLabel ?label FILTER langMatches(lang(?label), "en") .&#x000a;</xsl:text>
 			<xsl:text>OPTIONAL {?uri skos:definition ?definition FILTER langMatches(lang(?definition), "en")}&#x000a;</xsl:text>
 			<!-- display the type of concept if the type isn't in the query -->
 			<xsl:if test="not($frags[contains(., 'type:')])">
-				<xsl:text>?uri rdf:type ?type FILTER regex(str(?type), "^((?!Concept).)*$")&#x000a;</xsl:text>
+				<xsl:text>?uri rdf:type ?type FILTER (str(?type) != "http://www.w3.org/2004/02/skos/core#Concept")&#x000a;</xsl:text>
 			</xsl:if>
 
 			<xsl:if test="count($frags) &gt; 0">
@@ -428,7 +430,8 @@
 			<!-- get lat and long when filtering for mints -->
 			<xsl:if test="$frags[. = 'type:&#x022;nmo:Mint&#x022;']"> .&#x000a;<![CDATA[OPTIONAL {?uri geo:location ?loc . 
 	?loc geo:lat ?lat ; geo:long ?long}]]></xsl:if>
-
+			<!-- suppress deprecated IDs -->
+			<xsl:text>&#x000a;FILTER NOT EXISTS {?uri dcterms:isReplacedBy ?replaced}</xsl:text>
 			<xsl:text>&#x000a;} ORDER BY ASC(?label)</xsl:text>
 		</xsl:variable>
 
