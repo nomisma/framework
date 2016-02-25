@@ -74,8 +74,6 @@
 				<xsl:if test="$classes//class[text()=$type]/@map=true()">
 					<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css"/>
 					<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"/>
-					<!--<script type="text/javascript" src="{$display_path}ui/javascript/leaflet-omnivore.min.js"/>-->
-					<!--<script type="text/javascript" src="{$display_path}ui/javascript/KML.js"/>-->
 					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet.ajax.min.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/heatmap.min.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet-heatmap.js"/>
@@ -117,7 +115,7 @@
 		<div class="container-fluid content">
 			<div class="row">
 				<div class="col-md-{if ($classes//class[text()=$type]/@map=true()) then '6' else '9'}">
-					<xsl:apply-templates select="/content/rdf:RDF/*" mode="type"/>					
+					<xsl:apply-templates select="/content/rdf:RDF/*" mode="type"/>
 				</div>
 				<div class="col-md-{if ($classes//class[text()=$type]/@map=true()) then '6' else '3'}">
 					<div>
@@ -150,9 +148,21 @@
 						<div id="mapcontainer" class="map">
 							<div id="info"/>
 						</div>
+						<div style="margin:10px 0">
+							<table>
+								<tbody>
+									<tr>
+										<td style="background-color:#6992fd;border:2px solid black;width:50px;"/>
+										<td style="width:100px">Mints</td>
+										<td style="background-color:#d86458;border:2px solid black;width:50px;"/>
+										<td style="width:100px">Findspots</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</xsl:if>
-				</div>				
-			</div>			
+				</div>
+			</div>
 			<!-- list of associated coin types and example coins -->
 			<xsl:if test="$classes//class[text()=$type]/@types=true()">
 				<div class="row">
@@ -160,7 +170,13 @@
 						<xsl:call-template name="nomisma:listTypes"/>
 					</div>
 				</div>
-			</xsl:if>			
+			</xsl:if>
+
+			<div class="hidden">
+				<span id="type">
+					<xsl:value-of select="$type"/>
+				</span>
+			</div>
 		</div>
 
 		<!-- variables retrieved from the config and used in javascript -->
@@ -364,8 +380,8 @@ SELECT * WHERE {
 }]]></xsl:variable>
 
 	<!-- list up to 10 associate types for a authority or issuer -->
-	<xsl:template name="nomisma:listTypes">		
-		<xsl:variable name="prop" select="$classes//class[text()=$type]/@prop"/>		
+	<xsl:template name="nomisma:listTypes">
+		<xsl:variable name="prop" select="$classes//class[text()=$type]/@prop"/>
 
 		<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(concat(replace(replace($listTypes-query, 'ID', $id), 'PROP', $prop), ' LIMIT 10')), '&amp;output=xml')"/>
 		<xsl:if test="doc-available($service)">

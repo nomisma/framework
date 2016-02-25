@@ -1,6 +1,5 @@
 $(document).ready(function () {
 	var id = $('title').attr('id');
-	//$('a.thumbImage').fancybox();
 	
 	$('.toggle-geoJSON').click(function () {
 		$('#geoJSON-fragment').toggle();
@@ -13,6 +12,7 @@ $(document).ready(function () {
 
 function initialize_map(id) {
 	var prefLabel = $('span[property="skos:prefLabel"]:lang(en)').text();
+	var type = $('#type').text();
 	var mapboxKey = $('#mapboxKey').text();
 	
 	//baselayers
@@ -67,6 +67,16 @@ function initialize_map(id) {
 				str = '<a href="' + feature.properties.uri + '">' + feature.properties.name + '</a>';
 			}
 			layer.bindPopup(str);
+		},
+		pointToLayer: function (feature, latlng) {
+			return new L.CircleMarker(latlng, {
+				radius: 5,
+				fillColor: "#6992fd",
+				color: "#000",
+				weight: 1,
+				opacity: 1,
+				fillOpacity: 0.6
+			});
 		}
 	}).addTo(map);
 	
@@ -80,9 +90,23 @@ function initialize_map(id) {
 				str = '<a href="' + feature.properties.uri + '">' + feature.properties.name + '</a>';
 			}
 			layer.bindPopup(str);
+		},
+		pointToLayer: function (feature, latlng) {
+			return new L.CircleMarker(latlng, {
+				radius: 5,
+				fillColor: "#d86458",
+				color: "#000",
+				weight: 1,
+				opacity: 1,
+				fillOpacity: 0.6
+			});
 		}
-	})
+	});
 	
+	//load heatmapLayer after JSON loading concludes
+	$.getJSON('../apis/heatmap?id=' + id, function (data) {
+		heatmapLayer.setData(data);
+	});
 	
 	//add controls
 	var baseMaps = {
@@ -93,20 +117,33 @@ function initialize_map(id) {
 	};
 	
 	var overlayMaps = {
-		"Mints": mintLayer,
-		"Findspots": findspotLayer,
-		"Heatmap": heatmapLayer
 	};
+	
+	//add baselayers
+	if (type == 'nmo:Mint' || type == 'nmo:Region') {
+		overlayMaps[prefLabel] = mintLayer;
+	} else {
+		overlayMaps[ 'Mints'] = mintLayer;
+	}
+	
+	if (type == 'nmo:Hoard') {
+		overlayMaps[prefLabel] = findspotLayer;
+		findspotLayer.addTo(map);
+	} else {
+		overlayMaps[ 'Findspots'] = findspotLayer;
+		overlayMaps[ 'Heatmap'] = heatmapLayer;
+	}
 	
 	L.control.layers(baseMaps, overlayMaps).addTo(map);
 	
-	//load heatmapLayer after JSON loading concludes
-	$.getJSON('../apis/heatmap?id=' + id, function (data) {
-		heatmapLayer.setData(data);
-	});
-	
+	//zoom to groups on AJAX complete
 	mintLayer.on('data:loaded', function () {
-		//var group = new L.featureGroup([heatmapLayer, mintLayer]);
-		map.fitBounds(mintLayer.getBounds());
+		var group = new L.featureGroup([findspotLayer, mintLayer]);
+		map.fitBounds(group.getBounds());
+	}.bind(this));
+	
+	findspotLayer.on('data:loaded', function () {
+		var group = new L.featureGroup([findspotLayer, mintLayer]);
+		map.fitBounds(group.getBounds());
 	}.bind(this));
 }
