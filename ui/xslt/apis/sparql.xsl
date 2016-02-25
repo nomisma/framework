@@ -29,10 +29,7 @@
 			</xsl:when>
 			<xsl:when test="$template = 'getLabel'">
 				<xsl:call-template name="getLabel"/>
-			</xsl:when>
-			<xsl:when test="$template = 'heatmap'">
-				<xsl:call-template name="heatmap"/>
-			</xsl:when>			
+			</xsl:when>						
 			<xsl:when test="$template = 'regionHierarchy'">
 				<xsl:call-template name="regionHierarchy"/>
 			</xsl:when>

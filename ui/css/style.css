@@ -132,3 +132,10 @@ div#mapcontainer{
 .ol-control button, .ol-attribution, .ol-scale-line-inner {
   font-family: 'Lucida Grande',Verdana,Geneva,Lucida,Arial,Helvetica,sans-serif;
 }
+.thumbImage,
+.flickrthumb{
+	margin:5px;
+}
+.thumbImage > img{
+	max-width:120px;
+}

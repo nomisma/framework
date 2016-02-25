@@ -62,47 +62,6 @@ OPTIONAL { ?findspot rdfs:label ?name }
 			</kml>
 		</xsl:if>
 	</xsl:template>
-
-	<xsl:template name="heatmap">
-		<xsl:variable name="query">
-			<![CDATA[PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX dcterms:  <http://purl.org/dc/terms/>
-PREFIX dcmitype:	<http://purl.org/dc/dcmitype/>
-PREFIX nm:       <http://nomisma.org/id/>
-PREFIX nmo:	<http://nomisma.org/ontology#>
-PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
-PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
-SELECT DISTINCT ?findspot ?lat ?long ?count WHERE {
-{ ?coinType nmo:hasMint <URI> ;
-  a nmo:TypeSeriesItem . 
- ?object nmo:hasTypeSeriesItem ?coinType ;
-  rdf:type nmo:NumismaticObject ;
-  nmo:hasFindspot ?findspot }
-UNION { ?coinType nmo:hasMint <URI> ;
-  a nmo:TypeSeriesItem .
-  ?object nmo:hasTypeSeriesItem ?coinType ;
-  rdf:type nmo:NumismaticObject ;
-  dcterms:isPartOf ?hoard .
-  ?hoard nmo:hasFindspot ?findspot }
-UNION { ?coinType nmo:hasMint <URI> ;
-  a nmo:TypeSeriesItem .
-?contents nmo:hasTypeSeriesItem ?coinType ;
-                  a dcmitype:Collection .
-  ?object dcterms:tableOfContents ?contents ;
-    nmo:hasFindspot ?findspot }
- UNION { ?contents nmo:hasMint <URI> ;
-                  a dcmitype:Collection .
-  ?object dcterms:tableOfContents ?contents ;
-    nmo:hasFindspot ?findspot }
-?findspot geo:lat ?lat ; geo:long ?long}]]>
-		</xsl:variable>
-
-		<xsl:if test="string($query)">
-			<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'URI', $uri))), '&amp;output=xml')"/>
-
-			<xsl:apply-templates select="document($service)/res:sparql" mode="heatmap"/>
-		</xsl:if>
-	</xsl:template>
 	
 	<xsl:template name="avgMeasurement">
 		<xsl:param name="measurement"/>
@@ -258,65 +217,7 @@ nm:%ID% skos:broader+ ?uri .
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
-
-	<xsl:template name="numishareResults">
-		<xsl:variable name="query">
-			<![CDATA[PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX dcmitype:	<http://purl.org/dc/dcmitype/>
-PREFIX dcterms: <http://purl.org/dc/terms/>
-PREFIX nm: <http://nomisma.org/id/>
-PREFIX nmo:	<http://nomisma.org/ontology#>
-PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-SELECT ?object ?type ?identifier ?collection ?obvThumb ?revThumb ?obvRef ?revRef ?comThumb ?comRef ?type WHERE {
-{ ?object a nmo:NumismaticObject ;
- nmo:hasTypeSeriesItem <typeUri>}
-UNION { ?broader skos:broader+ <typeUri> .
-?object nmo:hasTypeSeriesItem ?broader ;
-  a nmo:NumismaticObject }
-UNION { ?contents a dcmitype:Collection ; 
-  nmo:hasTypeSeriesItem <typeUri> .
-?object dcterms:tableOfContents ?contents }
-?object rdf:type ?type .
-OPTIONAL { ?object dcterms:identifier ?identifier }
-OPTIONAL { ?object nmo:hasCollection ?colUri .
-?colUri skos:prefLabel ?collection
-FILTER(langMatches(lang(?collection), "EN"))}
-OPTIONAL { ?object foaf:thumbnail ?comThumb }
-OPTIONAL { ?object foaf:depiction ?comRef }
-OPTIONAL { ?object nmo:hasObverse ?obverse .
-?obverse foaf:thumbnail ?obvThumb }
-OPTIONAL { ?object nmo:hasObverse ?obverse .
-?obverse foaf:depiction ?obvRef }
-OPTIONAL { ?object nmo:hasReverse ?reverse .
-?reverse foaf:thumbnail ?revThumb }
-OPTIONAL { ?object nmo:hasReverse ?reverse .
-?reverse foaf:depiction ?revRef }
-}]]>
-		</xsl:variable>
-
-		<!-- process identifiers, executing a SPARQL query internally for each one, restructuring data into a response to return to numishare -->
-		<response>
-			<xsl:choose>
-				<xsl:when test="not(string($identifiers))">
-					<error>identifiers are required.</error>
-				</xsl:when>
-				<xsl:when test="not(string($baseUri))">
-					<error>baseUri parameter is required.</error>
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:for-each select="tokenize($identifiers, '\|')">
-						<xsl:variable name="uri" select="concat($baseUri, .)"/>
-						<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'typeUri', $uri))), '&amp;output=xml')"/>
-						<xsl:apply-templates select="document($service)/res:sparql" mode="numishareResults">
-							<xsl:with-param name="id" select="."/>
-						</xsl:apply-templates>
-					</xsl:for-each>
-				</xsl:otherwise>
-			</xsl:choose>
-		</response>
-	</xsl:template>
-
+	
 	<xsl:template match="res:sparql" mode="kml">
 		<xsl:apply-templates select="descendant::res:result" mode="kml"/>
 	</xsl:template>
@@ -352,69 +253,7 @@ OPTIONAL { ?object nmo:hasReverse ?reverse .
 		</Placemark>
 	</xsl:template>
 
-	<!-- results to generate JSON for leaflet heatmap -->
-	<xsl:template match="res:sparql" mode="heatmap">
-		<xsl:text>{"max":1</xsl:text>
-		<xsl:text>,"data":[</xsl:text>
-		<xsl:apply-templates select="descendant::res:result" mode="heatmap"/>
-		<xsl:text>]}</xsl:text>
-	</xsl:template>
 
-	<xsl:template match="res:result" mode="heatmap">
-		<xsl:value-of select="concat('{&#x022;lat&#x022;:', res:binding[@name='lat']/res:literal, ', &#x022;lng&#x022;:', res:binding[@name='long']/res:literal, ', &#x022;count&#x022;:',1, '}')"/>
-		<xsl:if test="not(position()=last())">
-			<xsl:text>,</xsl:text>
-		</xsl:if>
-	</xsl:template>
-
-	<!-- format SPARQL results into a manageable chunk for manipulation in Numishare results pages -->
-	<xsl:template match="res:sparql" mode="numishareResults">
-		<xsl:param name="id"/>
-		<group id="{$id}">
-			<object-count>
-				<xsl:value-of select="count(descendant::res:result[contains(res:binding[@name='type']/res:uri, 'NumismaticObject')])"/>
-			</object-count>
-			<hoard-count>
-				<xsl:value-of select="count(descendant::res:result[contains(res:binding[@name='type']/res:uri, 'Hoard')])"/>
-			</hoard-count>
-			<objects>
-				<xsl:for-each select="descendant::res:result[res:binding[contains(@name, 'rev') or contains(@name, 'obv') or contains(@name,'com')]][position() &lt;=5]">
-					<object collection="{res:binding[@name='collection']/res:literal}" identifier="{res:binding[@name='identifier']/res:literal}" uri="{res:binding[@name='object']/res:uri}">
-						<xsl:if test="string(res:binding[@name='obvRef']/res:uri)">
-							<obvRef>
-								<xsl:value-of select="res:binding[@name='obvRef']/res:uri"/>
-							</obvRef>
-						</xsl:if>
-						<xsl:if test="string(res:binding[@name='obvThumb']/res:uri)">
-							<obvThumb>
-								<xsl:value-of select="res:binding[@name='obvThumb']/res:uri"/>
-							</obvThumb>
-						</xsl:if>
-						<xsl:if test="string(res:binding[@name='revRef']/res:uri)">
-							<revRef>
-								<xsl:value-of select="res:binding[@name='revRef']/res:uri"/>
-							</revRef>
-						</xsl:if>
-						<xsl:if test="string(res:binding[@name='revThumb']/res:uri)">
-							<revThumb>
-								<xsl:value-of select="res:binding[@name='revThumb']/res:uri"/>
-							</revThumb>
-						</xsl:if>
-						<xsl:if test="string(res:binding[@name='comRef']/res:uri)">
-							<comRef>
-								<xsl:value-of select="res:binding[@name='comRef']/res:uri"/>
-							</comRef>
-						</xsl:if>
-						<xsl:if test="string(res:binding[@name='comThumb']/res:uri)">
-							<comThumb>
-								<xsl:value-of select="res:binding[@name='comThumb']/res:uri"/>
-							</comThumb>
-						</xsl:if>
-					</object>
-				</xsl:for-each>
-			</objects>
-		</group>
-	</xsl:template>
 
 	<xsl:function name="nm:normalizeYear">
 		<xsl:param name="gYear"/>

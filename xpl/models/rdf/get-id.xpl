@@ -23,25 +23,32 @@
 				<xsl:template match="/">
 					<xsl:variable name="doc">
 						<xsl:choose>
-							<xsl:when test="contains(substring-after(doc('input:request')/request/request-url, 'id/'), '.rdf')">
-								<xsl:value-of select="substring-before(substring-after(doc('input:request')/request/request-url, 'id/'), '.rdf')"/>
-							</xsl:when>
-							<xsl:when test="contains(substring-after(doc('input:request')/request/request-url, 'id/'), '.kml')">
-								<xsl:value-of select="substring-before(substring-after(doc('input:request')/request/request-url, 'id/'), '.kml')"/>
-							</xsl:when>							
-							<xsl:when test="contains(substring-after(doc('input:request')/request/request-url, 'id/'), '.solr')">
-								<xsl:value-of select="substring-before(substring-after(doc('input:request')/request/request-url, 'id/'), '.solr')"/>
-							</xsl:when>
-							<xsl:when test="contains(substring-after(doc('input:request')/request/request-url, 'id/'), '.ttl')">
-								<xsl:value-of select="substring-before(substring-after(doc('input:request')/request/request-url, 'id/'), '.ttl')"/>
-							</xsl:when>
-							<xsl:when test="contains(substring-after(doc('input:request')/request/request-url, 'id/'), '.jsonld')">
-								<xsl:value-of select="substring-before(substring-after(doc('input:request')/request/request-url, 'id/'), '.jsonld')"/>
+							<xsl:when test="string(doc('input:request')/request/parameters/parameter[name='id']/value)">
+								<xsl:value-of select="doc('input:request')/request/parameters/parameter[name='id']/value"/>
 							</xsl:when>
 							<xsl:otherwise>
-								<xsl:value-of select="substring-after(doc('input:request')/request/request-url, 'id/')"/>
+								<xsl:choose>
+									<xsl:when test="contains(substring-after(doc('input:request')/request/request-url, 'id/'), '.rdf')">
+										<xsl:value-of select="substring-before(substring-after(doc('input:request')/request/request-url, 'id/'), '.rdf')"/>
+									</xsl:when>
+									<xsl:when test="contains(substring-after(doc('input:request')/request/request-url, 'id/'), '.kml')">
+										<xsl:value-of select="substring-before(substring-after(doc('input:request')/request/request-url, 'id/'), '.kml')"/>
+									</xsl:when>							
+									<xsl:when test="contains(substring-after(doc('input:request')/request/request-url, 'id/'), '.solr')">
+										<xsl:value-of select="substring-before(substring-after(doc('input:request')/request/request-url, 'id/'), '.solr')"/>
+									</xsl:when>
+									<xsl:when test="contains(substring-after(doc('input:request')/request/request-url, 'id/'), '.ttl')">
+										<xsl:value-of select="substring-before(substring-after(doc('input:request')/request/request-url, 'id/'), '.ttl')"/>
+									</xsl:when>
+									<xsl:when test="contains(substring-after(doc('input:request')/request/request-url, 'id/'), '.jsonld')">
+										<xsl:value-of select="substring-before(substring-after(doc('input:request')/request/request-url, 'id/'), '.jsonld')"/>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:value-of select="substring-after(doc('input:request')/request/request-url, 'id/')"/>
+									</xsl:otherwise>
+								</xsl:choose>
 							</xsl:otherwise>
-						</xsl:choose>
+						</xsl:choose>						
 					</xsl:variable>					
 					
 					<config>

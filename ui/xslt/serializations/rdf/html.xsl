@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/"
-	xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-	xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/"
-	xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:org="http://www.w3.org/ns/org#"
-	xmlns:nomisma="http://nomisma.org/" xmlns:nmo="http://nomisma.org/ontology#"
-	exclude-result-prefixes="#all" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:org="http://www.w3.org/ns/org#"
+	xmlns:nomisma="http://nomisma.org/" xmlns:nmo="http://nomisma.org/ontology#" exclude-result-prefixes="#all" version="2.0">
 	<xsl:include href="../../templates.xsl"/>
 
 	<xsl:variable name="display_path">../</xsl:variable>
@@ -32,6 +27,30 @@
 		</namespaces>
 	</xsl:variable>
 
+	<xsl:variable name="classes" as="item()*">
+		<classes>
+			<class map="false" types="false">nmo:Collection</class>
+			<class map="true" types="true" prop="nmo:hasDenomination">nmo:Denomination</class>
+			<class map="true" types="true" prop="?prop">rdac:Family</class>
+			<class map="true" types="false">nmo:Ethnic</class>
+			<class map="false" types="false">nmo:FieldOfNumismatics</class>
+			<class map="true" types="false">nmo:Hoard</class>
+			<class map="true" types="true" prop="nmo:hasManufacture">nmo:Manufacture</class>
+			<class map="true" types="true" prop="nmo:hasMaterial">nmo:Material</class>
+			<class map="true" types="true" prop="nmo:hasMint">nmo:Mint</class>
+			<class map="false" types="false">nmo:NumismaticTerm</class>
+			<class map="true" types="false">nmo:ObjectType</class>
+			<class map="true" types="true" prop="?prop">foaf:Organization</class>
+			<class map="true" types="true" prop="?prop">foaf:Person</class>
+			<class>nmo:ReferenceWork</class>
+			<class map="true" types="true" prop="nmo:hasRegion">nmo:Region</class>
+			<class map="false" types="false">org:Role</class>
+			<class map="false" types="false">nmo:TypeSeries</class>
+			<class map="false" types="false">un:Uncertainty</class>
+			<class map="false" types="false">nmo:CoinWear</class>
+		</classes>
+	</xsl:variable>
+
 	<xsl:variable name="prefix">
 		<xsl:for-each select="$namespaces/namespace">
 			<xsl:value-of select="concat(@prefix, ': ', @uri)"/>
@@ -42,27 +61,28 @@
 	</xsl:variable>
 
 	<xsl:template match="/">
-		<html lang="en" prefix="{$prefix}" itemscope=""
-			itemtype="http://schema.org/{if (contains($type, 'foaf:')) then substring-after($type, 'foaf:') else if ($type='nmo:Mint' or $type='nmo:Region')
+		<html lang="en" prefix="{$prefix}" itemscope="" itemtype="http://schema.org/{if (contains($type, 'foaf:')) then substring-after($type, 'foaf:') else if ($type='nmo:Mint' or $type='nmo:Region')
 			then 'Place' else 'Thing'}">
 			<head>
 				<title id="{$id}">nomisma.org: <xsl:value-of select="$id"/></title>
 				<meta name="viewport" content="width=device-width, initial-scale=1"/>
 				<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"/>
 				<!-- bootstrap -->
-				<link rel="stylesheet"
-					href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+				<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 				<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
 
-				<xsl:if test="$type='nmo:Mint' or $type='nmo:Hoard' or $type='nmo:Region'">
-					<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
-					<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"/>
+				<xsl:if test="$classes//class[text()=$type]/@map=true()">
+					<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css"/>
+					<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"/>
 					<!--<script type="text/javascript" src="{$display_path}ui/javascript/leaflet-omnivore.min.js"/>-->
-					<script type="text/javascript" src="{$display_path}ui/javascript/KML.js"/>
-					<script type="text/javascript" src="{$display_path}ui/javascript/heatmap.min.js"/>	
+					<!--<script type="text/javascript" src="{$display_path}ui/javascript/KML.js"/>-->
+					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet.ajax.min.js"/>
+					<script type="text/javascript" src="{$display_path}ui/javascript/heatmap.min.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet-heatmap.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/display_map_functions.js"/>
 				</xsl:if>
+				<link rel="stylesheet" href="{$display_path}ui//css/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen"/>
+				<script type="text/javascript" src="{$display_path}ui//javascript/jquery.fancybox.pack.js?v=2.1.5"/>
 				<script type="text/javascript" src="{$display_path}ui/javascript/display_functions.js"/>
 				<link rel="stylesheet" href="{$display_path}ui/css/style.css"/>
 
@@ -82,8 +102,7 @@
 					<meta itemprop="longitude" content="{descendant::geo:long}"/>
 				</xsl:if>
 				<xsl:if test="descendant::geo:SpatialThing/dcterms:isPartOf">
-					<meta itemprop="containedIn"
-						content="{descendant::geo:SpatialThing/dcterms:isPartOf/@rdf:resource}"/>
+					<meta itemprop="containedIn" content="{descendant::geo:SpatialThing/dcterms:isPartOf/@rdf:resource}"/>
 				</xsl:if>
 			</head>
 			<body>
@@ -97,23 +116,15 @@
 	<xsl:template name="body">
 		<div class="container-fluid content">
 			<div class="row">
-				<div
-					class="col-md-{if ($type='nmo:Mint' or $type='nmo:Hoard' or $type='nmo:Region') then '6' else '9'}">
-					<xsl:apply-templates select="/content/rdf:RDF/*" mode="type"/>
-
-					<!-- further context -->
-					<xsl:if test="descendant::org:role/@rdf:resource">
-						<xsl:call-template name="nomisma:listTypes"/>
-					</xsl:if>
+				<div class="col-md-{if ($classes//class[text()=$type]/@map=true()) then '6' else '9'}">
+					<xsl:apply-templates select="/content/rdf:RDF/*" mode="type"/>					
 				</div>
-				<div
-					class="col-md-{if ($type='nmo:Mint' or $type='nmo:Hoard' or $type='nmo:Region') then '6' else '3'}">
+				<div class="col-md-{if ($classes//class[text()=$type]/@map=true()) then '6' else '3'}">
 					<div>
 						<h3>Export</h3>
 						<ul class="list-inline">
 							<li>
-								<a href="https://github.com/nomisma/data/blob/master/id/{$id}.rdf"
-									>GitHub File</a>
+								<a href="https://github.com/nomisma/data/blob/master/id/{$id}.rdf">GitHub File</a>
 							</li>
 							<li>
 								<a href="{$id}.rdf">RDF/XML</a>
@@ -127,27 +138,36 @@
 							<!--<li>
 								<a href="{$id}.pelagios.rdf">Pelagios RDF/XML</a>
 								</li>-->
-							<xsl:if
-								test="$type='nmo:Mint' or $type='nmo:Hoard' or $type='nmo:Region'">
+							<xsl:if test="$classes//class[text()=$type]/@map=true()">
 								<li>
 									<a href="{$id}.kml">KML</a>
 								</li>
 							</xsl:if>
 						</ul>
 					</div>
-					<xsl:if test="$type='nmo:Mint' or $type='nmo:Hoard' or $type='nmo:Region'">
+					<xsl:if test="$classes//class[text()=$type]/@map=true()">
 						<!--<div id="mapcontainer"/>-->
 						<div id="mapcontainer" class="map">
 							<div id="info"/>
 						</div>
 					</xsl:if>
+				</div>				
+			</div>			
+			<!-- list of associated coin types and example coins -->
+			<xsl:if test="$classes//class[text()=$type]/@types=true()">
+				<div class="row">
+					<div class="col-md-12">
+						<xsl:call-template name="nomisma:listTypes"/>
+					</div>
 				</div>
-			</div>
+			</xsl:if>			
 		</div>
-		
+
 		<!-- variables retrieved from the config and used in javascript -->
 		<div class="hidden">
-			<span id="mapboxKey"><xsl:value-of select="/content/config/mapboxKey"/></span>
+			<span id="mapboxKey">
+				<xsl:value-of select="/content/config/mapboxKey"/>
+			</span>
 		</div>
 	</xsl:template>
 
@@ -181,8 +201,7 @@
 			<dl class="dl-horizontal">
 				<xsl:if test="skos:prefLabel">
 					<dt>
-						<a href="{concat($namespaces//namespace[@prefix='skos']/@uri, 'prefLabel')}"
-							>skos:prefLabel</a>
+						<a href="{concat($namespaces//namespace[@prefix='skos']/@uri, 'prefLabel')}">skos:prefLabel</a>
 					</dt>
 					<dd>
 						<xsl:apply-templates select="skos:prefLabel" mode="prefLabel">
@@ -193,9 +212,7 @@
 				<xsl:apply-templates select="skos:definition" mode="list-item">
 					<xsl:sort select="@xml:lang"/>
 				</xsl:apply-templates>
-				<xsl:apply-templates
-					select="*[not(name()='skos:prefLabel') and not(name()='skos:definition')][not(child::*)]"
-					mode="list-item">
+				<xsl:apply-templates select="*[not(name()='skos:prefLabel') and not(name()='skos:definition')][not(child::*)]" mode="list-item">
 					<xsl:sort select="name()"/>
 					<xsl:sort select="@rdf:resource"/>
 				</xsl:apply-templates>
@@ -224,8 +241,7 @@
 	<xsl:template match="*" mode="list-item">
 		<xsl:variable name="name" select="name()"/>
 		<dt>
-			<a
-				href="{concat($namespaces//namespace[@prefix=substring-before($name, ':')]/@uri, substring-after($name, ':'))}">
+			<a href="{concat($namespaces//namespace[@prefix=substring-before($name, ':')]/@uri, substring-after($name, ':'))}">
 				<xsl:value-of select="name()"/>
 			</a>
 		</dt>
@@ -278,9 +294,7 @@
 							<xsl:choose>
 								<xsl:when test="name()='rdf:type'">
 									<xsl:variable name="uri" select="@rdf:resource"/>
-									<xsl:value-of
-										select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"
-									/>
+									<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/>
 								</xsl:when>
 								<xsl:otherwise>
 									<xsl:value-of select="@rdf:resource"/>
@@ -294,8 +308,7 @@
 	</xsl:template>
 
 	<xsl:template match="*" mode="suburi">
-		<xsl:variable name="about"
-			select="if(@rdf:about) then @rdf:about else rdf:Description/@rdf:about"/>
+		<xsl:variable name="about" select="if(@rdf:about) then @rdf:about else rdf:Description/@rdf:about"/>
 
 		<div rel="{name()}">
 			<xsl:if test="string($about)">
@@ -320,9 +333,7 @@
 				<xsl:apply-templates select="descendant::skos:definition" mode="list-item">
 					<xsl:sort select="@xml:lang"/>
 				</xsl:apply-templates>
-				<xsl:apply-templates
-					select="descendant::*[not(name()='skos:prefLabel') and not(name()='skos:definition')][not(child::*)]"
-					mode="list-item">
+				<xsl:apply-templates select="descendant::*[not(name()='skos:prefLabel') and not(name()='skos:definition')][not(child::*)]" mode="list-item">
 					<xsl:sort select="name()"/>
 					<xsl:sort select="@rdf:resource"/>
 				</xsl:apply-templates>
@@ -335,74 +346,217 @@
 PREFIX nm:	<http://nomisma.org/id/>
 PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
+PREFIX dcterms:	<http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
 SELECT * WHERE {
- ?type ?role nm:ID ;
+ ?type PROP nm:ID ;
    a nmo:TypeSeriesItem ;
-   skos:prefLabel ?label
+   skos:prefLabel ?label FILTER(langMatches(lang(?label), "en")) .
+   ?type dcterms:source ?source . 
+   	?source skos:prefLabel ?sourceLabel FILTER(langMatches(lang(?sourceLabel), "en"))
    OPTIONAL {?type nmo:hasStartDate ?startDate}
    OPTIONAL {?type nmo:hasEndDate ?endDate}
-   FILTER(langMatches(lang(?label), "en"))
-} ORDER BY ?label LIMIT 10]]></xsl:variable>
+   OPTIONAL {?type nmo:hasMint ?mint . 
+   	?mint skos:prefLabel ?mintLabel FILTER(langMatches(lang(?mintLabel), "en"))}
+   OPTIONAL {?type nmo:hasDenomination ?den . 
+   	?den skos:prefLabel ?denLabel FILTER(langMatches(lang(?denLabel), "en"))}
+}]]></xsl:variable>
 
 	<!-- list up to 10 associate types for a authority or issuer -->
-	<xsl:template name="nomisma:listTypes">
-		<xsl:variable name="service"
-			select="concat($sparql_endpoint, '?query=', encode-for-uri(replace($listTypes-query, 'ID', $id)), '&amp;output=xml')"/>
+	<xsl:template name="nomisma:listTypes">		
+		<xsl:variable name="prop" select="$classes//class[text()=$type]/@prop"/>		
+
+		<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(concat(replace(replace($listTypes-query, 'ID', $id), 'PROP', $prop), ' LIMIT 10')), '&amp;output=xml')"/>
 		<xsl:if test="doc-available($service)">
 			<xsl:apply-templates select="document($service)/res:sparql" mode="listTypes"/>
 		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="res:sparql[count(descendant::res:result) &gt; 0]" mode="listTypes">
+		<!-- aggregate ids and get URI space -->
+		<xsl:variable name="frags" select="tokenize(descendant::res:result[1]/res:binding[@name='type']/res:uri, '/')"/>
+		<xsl:variable name="uri_space">
+			<xsl:for-each select="$frags">
+				<xsl:if test="not(position() = last())">
+					<xsl:value-of select="."/>
+					<xsl:text>/</xsl:text>
+				</xsl:if>
+			</xsl:for-each>
+		</xsl:variable>
+		<xsl:variable name="ids" select="replace(string-join(descendant::res:result/res:binding[@name='type']/res:uri, '|'), $uri_space, '')"/>
+		<!-- use the Numishare Results API to display example coins -->
+		<xsl:variable name="sparqlResult" as="element()*">
+			<xsl:variable name="service" select="concat('http://localhost:8080/orbeon/nomisma/apis/numishareResults?identifiers=', encode-for-uri($ids), '&amp;baseUri=',
+				encode-for-uri($uri_space))"/>
+			<xsl:copy-of select="document($service)/response"/>
+		</xsl:variable>
+		<xsl:variable name="prop" select="$classes//class[text()=$type]/@prop"/>
+
+		<!-- HTML output -->
 		<h3>Associated Types <small>(max 10)</small></h3>
-		<a href="#" class="toggle-button" id="toggle-listTypes"><span
-				class="glyphicon glyphicon-plus"/> View SPARQL for full query</a>
+		<div style="margin-bottom:10px;">
+			<a href="#" class="toggle-button btn btn-primary" id="toggle-listTypes"><span class="glyphicon glyphicon-plus"/> View SPARQL for full query</a>
+			<a href="{$display_path}query?query={encode-for-uri(replace($listTypes-query, 'ID', $id))}&amp;output=csv" title="Download CSV" class="btn btn-primary" style="margin-left:10px">
+				<span class="glyphicon glyphicon-download"/>Download CSV</a>
+		</div>
 		<div id="listTypes" style="display:none">
 			<pre>
-				<xsl:value-of select="replace(replace($listTypes-query, 'ID', $id), ' LIMIT 10', '')"/>
+				<xsl:value-of select="replace(replace($listTypes-query, 'ID', $id), 'PROP', $prop)"/>
 			</pre>
 		</div>
+
 		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>Type</th>
-					<th>From Date</th>
-					<th>To Date</th>
-					<th>Role</th>
+					<th>Type Series</th>
+					<xsl:if test="$type='foaf:Person' or $type='foaf:Organization' or $type='rdac:Family'">
+						<th>Role</th>
+					</xsl:if>
+					<th style="width:280px">Example</th>
 				</tr>
 			</thead>
 			<tbody>
 				<xsl:for-each select="descendant::res:result">
+					<xsl:variable name="type_id" select="replace(res:binding[@name='type']/res:uri, $uri_space, '')"/>
+
 					<tr>
 						<td>
 							<a href="{res:binding[@name='type']/res:uri}">
 								<xsl:value-of select="res:binding[@name='label']/res:literal"/>
 							</a>
+							<dl class="dl-horizontal">
+								<xsl:if test="res:binding[@name='mint']/res:uri">
+									<dt>Mint</dt>
+									<dd>
+										<a href="{res:binding[@name='mint']/res:uri}">
+											<xsl:value-of select="res:binding[@name='mintLabel']/res:literal"/>
+										</a>
+									</dd>
+								</xsl:if>
+								<xsl:if test="res:binding[@name='den']/res:uri">
+									<dt>Denomination</dt>
+									<dd>
+										<a href="{res:binding[@name='den']/res:uri}">
+											<xsl:value-of select="res:binding[@name='denLabel']/res:literal"/>
+										</a>
+									</dd>
+								</xsl:if>
+								<xsl:if test="res:binding[@name='startDate']/res:literal or res:binding[@name='endDate']/res:literal">
+									<dt>Date</dt>
+									<dd>
+										<xsl:value-of select="nomisma:normalizeDate(res:binding[@name='startDate']/res:literal)"/>
+										<xsl:if test="res:binding[@name='startDate']/res:literal and res:binding[@name='startDate']/res:literal"> - </xsl:if>
+										<xsl:value-of select="nomisma:normalizeDate(res:binding[@name='endDate']/res:literal)"/>
+									</dd>
+								</xsl:if>
+							</dl>
 						</td>
 						<td>
-							<xsl:value-of
-								select="nomisma:normalizeDate(res:binding[@name='startDate']/res:literal)"
-							/>
-						</td>
-						<td>
-							<xsl:value-of
-								select="nomisma:normalizeDate(res:binding[@name='endDate']/res:literal)"
-							/>
-						</td>
-						<td>
-							<xsl:variable name="uri" select="res:binding[@name='role']/res:uri"/>
-							<a href="{$uri}">
-								<xsl:value-of
-									select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"
-								/>
+							<a href="{res:binding[@name='source']/res:uri}">
+								<xsl:value-of select="res:binding[@name='sourceLabel']/res:literal"/>
 							</a>
+						</td>
+						<xsl:if test="$type='foaf:Person' or $type='foaf:Organization' or $type='rdac:Family'">
+							<td>
+								<xsl:variable name="uri" select="res:binding[@name='prop']/res:uri"/>
+								<a href="{$uri}">
+									<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/>
+								</a>
 
+							</td>
+						</xsl:if>
+						<td class="text-right">
+							<xsl:apply-templates select="$sparqlResult//group[@id=$type_id]/descendant::object" mode="results"/>
 						</td>
 					</tr>
 				</xsl:for-each>
 			</tbody>
 		</table>
+	</xsl:template>
+
+
+	<xsl:template match="object" mode="results">
+		<xsl:variable name="position" select="position()"/>
+		<!-- obverse -->
+		<xsl:choose>
+			<xsl:when test="string(obvRef) and string(obvThumb)">
+				<a class="thumbImage" rel="gallery" href="{obvRef}" title="Obverse of {@identifier}: {@collection}" id="{@uri}">
+					<xsl:if test="$position &gt; 1">
+						<xsl:attribute name="style">display:none</xsl:attribute>
+					</xsl:if>
+					<img src="{obvThumb}"/>
+				</a>
+			</xsl:when>
+			<xsl:when test="not(string(obvRef)) and string(obvThumb)">
+				<img src="{obvThumb}">
+					<xsl:if test="$position &gt; 1">
+						<xsl:attribute name="style">display:none</xsl:attribute>
+					</xsl:if>
+				</img>
+			</xsl:when>
+			<xsl:when test="string(obvRef) and not(string(obvThumb))">
+				<a class="thumbImage" rel="gallery" href="{obvRef}" title="Obverse of {@identifier}: {@collection}" id="{@uri}">
+					<xsl:if test="$position &gt; 1">
+						<xsl:attribute name="style">display:none</xsl:attribute>
+					</xsl:if>
+					<img src="{obvRef}" style="max-width:120px"/>
+				</a>
+			</xsl:when>
+		</xsl:choose>
+		<!-- reverse-->
+		<xsl:choose>
+			<xsl:when test="string(revRef) and string(revThumb)">
+				<a class="thumbImage" rel="gallery" href="{revRef}" title="Reverse of {@identifier}: {@collection}" id="{@uri}">
+					<xsl:if test="$position &gt; 1">
+						<xsl:attribute name="style">display:none</xsl:attribute>
+					</xsl:if>
+					<img src="{revThumb}"/>
+				</a>
+			</xsl:when>
+			<xsl:when test="not(string(revRef)) and string(revThumb)">
+				<img src="{revThumb}">
+					<xsl:if test="$position &gt; 1">
+						<xsl:attribute name="style">display:none</xsl:attribute>
+					</xsl:if>
+				</img>
+			</xsl:when>
+			<xsl:when test="string(revRef) and not(string(revThumb))">
+				<a class="thumbImage" rel="gallery" href="{revRef}" title="Obverse of {@identifier}: {@collection}" id="{@uri}">
+					<xsl:if test="$position &gt; 1">
+						<xsl:attribute name="style">display:none</xsl:attribute>
+					</xsl:if>
+					<img src="{revRef}" style="max-width:120px"/>
+				</a>
+			</xsl:when>
+		</xsl:choose>
+		<!-- combined -->
+		<xsl:choose>
+			<xsl:when test="string(comRef) and string(comThumb)">
+				<a class="thumbImage" rel="gallery" href="{comRef}" title="Reverse of {@identifier}: {@collection}" id="{@uri}">
+					<xsl:if test="$position &gt; 1">
+						<xsl:attribute name="style">display:none</xsl:attribute>
+					</xsl:if>
+					<img src="{comThumb}"/>
+				</a>
+			</xsl:when>
+			<xsl:when test="not(string(comRef)) and string(comThumb)">
+				<img src="{comThumb}">
+					<xsl:if test="$position &gt; 1">
+						<xsl:attribute name="style">display:none</xsl:attribute>
+					</xsl:if>
+				</img>
+			</xsl:when>
+			<xsl:when test="string(comRef) and not(string(comThumb))">
+				<a class="thumbImage" rel="gallery" href="{comRef}" title="Obverse of {@identifier}: {@collection}" id="{@uri}">
+					<xsl:if test="$position &gt; 1">
+						<xsl:attribute name="style">display:none</xsl:attribute>
+					</xsl:if>
+					<img src="{comRef}" style="max-width:240px"/>
+				</a>
+			</xsl:when>
+		</xsl:choose>
 	</xsl:template>
 
 	<!-- ***** FUNCTIONS ***** -->

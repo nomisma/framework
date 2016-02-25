@@ -4,9 +4,32 @@
 	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" exclude-result-prefixes="#all"
 	xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:nmo="http://nomisma.org/ontology#" xmlns:kml="http://earth.google.com/kml/2.0" version="2.0">
 
-
 	<xsl:variable name="id" select="substring-after(//rdf:RDF/*[1]/@rdf:about, 'id/')"/>
+	<xsl:variable name="type" select="/content/rdf:RDF/*[1]/name()"/>
 	<xsl:variable name="sparql_endpoint" select="/content/config/sparql_query"/>
+
+	<xsl:variable name="classes" as="item()*">
+		<classes>
+			<class map="false" types="false">nmo:Collection</class>
+			<class map="true" types="true" prop="nmo:hasDenomination">nmo:Denomination</class>
+			<class map="true" types="true" prop="?prop">rdac:Family</class>
+			<class map="true" types="false">nmo:Ethnic</class>
+			<class map="false" types="false">nmo:FieldOfNumismatics</class>
+			<class map="true" types="true" prop="nmo:hasManufacture">nmo:Manufacture</class>
+			<class map="true" types="true" prop="nmo:hasMaterial">nmo:Material</class>
+			<class map="true" types="true" prop="nmo:hasMint">nmo:Mint</class>
+			<class map="false" types="false">nmo:NumismaticTerm</class>
+			<class map="true" types="false">nmo:ObjectType</class>
+			<class map="true" types="true" prop="?prop">foaf:Organization</class>
+			<class map="true" types="true" prop="?prop">foaf:Person</class>
+			<class>nmo:ReferenceWork</class>
+			<class map="true" types="true" prop="nmo:hasRegion">nmo:Region</class>
+			<class map="false" types="false">org:Role</class>
+			<class map="false" types="false">nmo:TypeSeries</class>
+			<class map="false" types="false">un:Uncertainty</class>
+			<class map="false" types="false">nmo:CoinWear</class>
+		</classes>
+	</xsl:variable>
 
 	<xsl:template match="/">
 		<xsl:apply-templates select="/content/rdf:RDF"/>
@@ -52,20 +75,11 @@
 					</xsl:with-param>
 				</xsl:apply-templates>
 
-				<!-- if it's a mint, then call the SPARQL kml template -->
-				<xsl:choose>
-					<xsl:when test="child::nmo:Mint">
-						<xsl:call-template name="kml">
-							<xsl:with-param name="uri" select="nmo:Mint/@rdf:about"/>
-						</xsl:call-template>
-					</xsl:when>
-					<xsl:when test="child::nmo:Region">
-						<xsl:call-template name="kml">
-							<xsl:with-param name="uri" select="nmo:Region/@rdf:about"/>
-						</xsl:call-template>
-					</xsl:when>
-				</xsl:choose>
-				
+				<xsl:if test="$classes//class[text()=$type]/@map=true()">
+					<xsl:call-template name="kml">
+						<xsl:with-param name="uri" select="*[1]/@rdf:about"/>
+					</xsl:call-template>
+				</xsl:if>
 			</Document>
 		</kml>
 	</xsl:template>
@@ -140,24 +154,24 @@ PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 PREFIX rdfs:	<http://www.w3.org/2000/01/rdf-schema#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 SELECT DISTINCT ?findspot ?lat ?long ?name WHERE {
-{ ?coinType nmo:hasMint <URI> ;
+{ ?coinType PROP <URI> ;
   a nmo:TypeSeriesItem . 
  ?object nmo:hasTypeSeriesItem ?coinType ;
   rdf:type nmo:NumismaticObject ;
   nmo:hasFindspot ?findspot }
-UNION { ?coinType nmo:hasMint <URI> ;
+UNION { ?coinType PROP <URI> ;
   a nmo:TypeSeriesItem .
   ?object nmo:hasTypeSeriesItem ?coinType ;
   rdf:type nmo:NumismaticObject ;
   dcterms:isPartOf ?hoard .
   ?hoard nmo:hasFindspot ?findspot }
-UNION { ?coinType nmo:hasMint <URI> ;
+UNION { ?coinType PROP <URI> ;
   a nmo:TypeSeriesItem .
 ?contents nmo:hasTypeSeriesItem ?coinType ;
                   a dcmitype:Collection .
   ?object dcterms:tableOfContents ?contents ;
     nmo:hasFindspot ?findspot }
- UNION { ?contents nmo:hasMint <URI> ;
+ UNION { ?contents PROP <URI> ;
                   a dcmitype:Collection .
   ?object dcterms:tableOfContents ?contents ;
     nmo:hasFindspot ?findspot }
@@ -169,7 +183,7 @@ OPTIONAL { ?findspot rdfs:label ?name }
 		</xsl:variable>
 		
 		<xsl:if test="string($query)">
-			<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'URI', $uri))), '&amp;output=xml')"/>
+			<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace(replace($query, 'URI', $uri), 'PROP', $classes//class[text()=$type]/@prop))), '&amp;output=xml')"/>
 			
 			<xsl:apply-templates select="document($service)//res:result" mode="kml"/>
 		</xsl:if>
