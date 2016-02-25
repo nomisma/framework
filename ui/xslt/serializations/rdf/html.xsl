@@ -365,7 +365,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
 PREFIX dcterms:	<http://purl.org/dc/terms/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
-SELECT * WHERE {
+SELECT DISTINCT ?type ?label ?source ?sourceLabel ?startDate ?endDate ?mint ?mintLabel ?den ?denLabel WHERE {
  ?type PROP nm:ID ;
    a nmo:TypeSeriesItem ;
    skos:prefLabel ?label FILTER(langMatches(lang(?label), "en")) .
