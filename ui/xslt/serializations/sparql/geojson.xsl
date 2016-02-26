@@ -89,16 +89,19 @@
 				<xsl:text>, </xsl:text>
 				<xsl:value-of select="res:binding[@name='lat']/res:literal"/>
 				<xsl:text>]},"properties": {"name": "</xsl:text>
-				<xsl:value-of select="res:binding[@name='hoardLabel']/res:literal"/>
+				<xsl:value-of select="if (res:binding[@name='hoardLabel']/res:literal) then res:binding[@name='hoardLabel']/res:literal else res:binding[@name='label']/res:literal"/>
 				<xsl:text>", "uri": "</xsl:text>
-				<xsl:value-of select="res:binding[@name='hoard']/res:uri"/>
+				<xsl:value-of select="if (res:binding[@name='hoard']/res:uri) then res:binding[@name='hoard']/res:uri else res:binding[@name='place']/res:uri"/>
 				<xsl:text>","type": "</xsl:text>
 				<xsl:value-of select="if ($api = 'getMints') then 'mint' else $findType"/>
-				<xsl:text>","place":"</xsl:text>
-				<xsl:value-of select="res:binding[@name='label']/res:literal"/>
-				<xsl:text>","placeUri":"</xsl:text>
-				<xsl:value-of select="res:binding[@name='place']/res:uri"/>
 				<xsl:text>"</xsl:text>
+				<xsl:if test="$findType = 'hoard'">
+					<xsl:text>,"place":"</xsl:text>
+					<xsl:value-of select="res:binding[@name='label']/res:literal"/>
+					<xsl:text>","placeUri":"</xsl:text>
+					<xsl:value-of select="res:binding[@name='place']/res:uri"/>
+					<xsl:text>"</xsl:text>
+				</xsl:if>				
 				<xsl:text>}}</xsl:text>
 				<xsl:if test="not(position()=last())">
 					<xsl:text>,</xsl:text>

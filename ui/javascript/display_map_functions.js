@@ -158,6 +158,9 @@ function initialize_map(id) {
 			str = feature.properties.name;
 		} else {
 			str = '<a href="' + feature.properties.uri + '">' + feature.properties.name + '</a>';
+			if (feature.properties.hasOwnProperty('placeUri') == true) {
+				str += '<br/><span><b>Findspot: </b><a href="' + feature.properties.placeUri + '">' + feature.properties.place + '</a></span>'
+			}
 		}
 		layer.bindPopup(str);
 	}
