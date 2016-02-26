@@ -21,30 +21,32 @@
 			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 				<xsl:output indent="yes"/>
 				<xsl:template match="/">
-					<xsl:variable name="doc">
+					<xsl:variable name="id">
 						<xsl:choose>
 							<xsl:when test="string(doc('input:request')/request/parameters/parameter[name='id']/value)">
 								<xsl:value-of select="doc('input:request')/request/parameters/parameter[name='id']/value"/>
 							</xsl:when>
 							<xsl:otherwise>
+								<xsl:variable name="doc" select="tokenize(doc('input:request')/request/request-url, '/')[last()]"/>
+								
 								<xsl:choose>
-									<xsl:when test="contains(substring-after(doc('input:request')/request/request-url, 'id/'), '.rdf')">
-										<xsl:value-of select="substring-before(substring-after(doc('input:request')/request/request-url, 'id/'), '.rdf')"/>
+									<xsl:when test="contains($doc, '.rdf')">
+										<xsl:value-of select="substring-before($doc, '.rdf')"/>
 									</xsl:when>
-									<xsl:when test="contains(substring-after(doc('input:request')/request/request-url, 'id/'), '.kml')">
-										<xsl:value-of select="substring-before(substring-after(doc('input:request')/request/request-url, 'id/'), '.kml')"/>
+									<xsl:when test="contains($doc, '.kml')">
+										<xsl:value-of select="substring-before($doc, '.kml')"/>
 									</xsl:when>							
-									<xsl:when test="contains(substring-after(doc('input:request')/request/request-url, 'id/'), '.solr')">
-										<xsl:value-of select="substring-before(substring-after(doc('input:request')/request/request-url, 'id/'), '.solr')"/>
+									<xsl:when test="contains($doc, '.solr')">
+										<xsl:value-of select="substring-before($doc, '.solr')"/>
 									</xsl:when>
-									<xsl:when test="contains(substring-after(doc('input:request')/request/request-url, 'id/'), '.ttl')">
-										<xsl:value-of select="substring-before(substring-after(doc('input:request')/request/request-url, 'id/'), '.ttl')"/>
+									<xsl:when test="contains($doc, '.ttl')">
+										<xsl:value-of select="substring-before($doc, '.ttl')"/>
 									</xsl:when>
-									<xsl:when test="contains(substring-after(doc('input:request')/request/request-url, 'id/'), '.jsonld')">
-										<xsl:value-of select="substring-before(substring-after(doc('input:request')/request/request-url, 'id/'), '.jsonld')"/>
+									<xsl:when test="contains($doc, '.jsonld')">
+										<xsl:value-of select="substring-before($doc, '.jsonld')"/>
 									</xsl:when>
 									<xsl:otherwise>
-										<xsl:value-of select="substring-after(doc('input:request')/request/request-url, 'id/')"/>
+										<xsl:value-of select="$doc"/>
 									</xsl:otherwise>
 								</xsl:choose>
 							</xsl:otherwise>
@@ -53,7 +55,7 @@
 					
 					<config>
 						<url>
-							<xsl:value-of select="concat('file://', /config/id_path, '/', $doc, '.rdf')"/>
+							<xsl:value-of select="concat('file://', /config/id_path, '/', $id, '.rdf')"/>
 						</url>						
 						<mode>xml</mode>
 						<content-type>application/xml</content-type>

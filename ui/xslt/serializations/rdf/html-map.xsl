@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:org="http://www.w3.org/ns/org#"
+	xmlns:nomisma="http://nomisma.org/" xmlns:nmo="http://nomisma.org/ontology#" exclude-result-prefixes="#all" version="2.0">
+
+	<xsl:variable name="display_path">../</xsl:variable>
+	<xsl:variable name="id" select="substring-after(/content/rdf:RDF/*[1]/@rdf:about, 'id/')"/>
+	<xsl:variable name="html-uri" select="concat(/content/config/url, 'id/', $id, '.html')"/>
+	<xsl:variable name="type" select="/content/rdf:RDF/*[1]/name()"/>
+	<xsl:variable name="title" select="/content/rdf:RDF/*[1]/skos:prefLabel[@xml:lang='en']"/>
+
+	<!-- flickr -->
+	<xsl:variable name="flickr_api_key" select="/content/config/flickr_api_key"/>
+	<!--<xsl:variable name="service" select="concat('http://api.flickr.com/services/rest/?api_key=', $flickr_api_key)"/>-->
+
+	<!-- sparql -->
+	<xsl:variable name="sparql_endpoint" select="/content/config/sparql_query"/>
+
+	<!-- definition of namespaces for turning in solr type field URIs into abbreviations -->
+	<xsl:variable name="namespaces" as="item()*">
+		<namespaces>
+			<xsl:for-each select="//rdf:RDF/namespace::*[not(name()='xml')]">
+				<namespace prefix="{name()}" uri="{.}"/>
+			</xsl:for-each>
+		</namespaces>
+	</xsl:variable>
+
+	<xsl:variable name="classes" as="item()*">
+		<classes>
+			<class map="false" types="false">nmo:Collection</class>
+			<class map="true" types="true" prop="nmo:hasDenomination">nmo:Denomination</class>
+			<class map="true" types="true" prop="?prop">rdac:Family</class>
+			<class map="true" types="false">nmo:Ethnic</class>
+			<class map="false" types="false">nmo:FieldOfNumismatics</class>
+			<class map="true" types="false">nmo:Hoard</class>
+			<class map="true" types="true" prop="nmo:hasManufacture">nmo:Manufacture</class>
+			<class map="true" types="true" prop="nmo:hasMaterial">nmo:Material</class>
+			<class map="true" types="true" prop="nmo:hasMint">nmo:Mint</class>
+			<class map="false" types="false">nmo:NumismaticTerm</class>
+			<class map="true" types="false">nmo:ObjectType</class>
+			<class map="true" types="true" prop="?prop">foaf:Group</class>
+			<class map="true" types="true" prop="?prop">foaf:Organization</class>
+			<class map="true" types="true" prop="?prop">foaf:Person</class>
+			<class>nmo:ReferenceWork</class>
+			<class map="true" types="true" prop="nmo:hasRegion">nmo:Region</class>
+			<class map="false" types="false">org:Role</class>
+			<class map="false" types="false">nmo:TypeSeries</class>
+			<class map="false" types="false">un:Uncertainty</class>
+			<class map="false" types="false">nmo:CoinWear</class>
+		</classes>
+	</xsl:variable>
+
+	<xsl:template match="/">
+		<html>
+			<head>
+				<title id="{$id}">nomisma.org: <xsl:value-of select="$id"/> (map)</title>
+				<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+				<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"/>
+
+				<xsl:if test="$classes//class[text()=$type]/@map=true()">
+					<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css"/>
+					<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"/>
+					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet.ajax.min.js"/>
+					<script type="text/javascript" src="{$display_path}ui/javascript/heatmap.min.js"/>
+					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet-heatmap.js"/>
+					<script type="text/javascript" src="{$display_path}ui/javascript/display_map_functions.js"/>
+					<style type="text/css">
+						body {
+							padding: 0;
+							margin:0;
+						}
+						html,
+						body,
+						.map-fullscreen{
+							height:100%;
+						}</style>
+				</xsl:if>
+				<!--<link rel="stylesheet" href="{$display_path}ui//css/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen"/>
+				<script type="text/javascript" src="{$display_path}ui//javascript/jquery.fancybox.pack.js?v=2.1.5"/>
+				<script type="text/javascript" src="{$display_path}ui/javascript/display_functions.js"/>-->
+				<!--<link rel="stylesheet" href="{$display_path}ui/css/style.css"/>-->
+
+			</head>
+			<body>
+				<xsl:call-template name="body"/>
+			</body>
+		</html>
+	</xsl:template>
+
+	<xsl:template name="body">
+		<div id="mapcontainer" class="map-fullscreen">
+			<div id="info"/>
+		</div>
+
+		<!-- variables retrieved from the config and used in javascript -->
+		<div style="display:none">
+			<span id="mapboxKey">
+				<xsl:value-of select="/content/config/mapboxKey"/>
+			</span>
+			<span id="type">
+				<xsl:value-of select="$type"/>
+			</span>
+			<span id="mode">fullscreen</span>
+		</div>
+	</xsl:template>
+</xsl:stylesheet>

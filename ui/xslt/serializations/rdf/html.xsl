@@ -74,11 +74,12 @@
 
 				<xsl:if test="$classes//class[text()=$type]/@map=true()">
 					<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css"/>
-					<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"/>
+					<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"/>					
 					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet.ajax.min.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/heatmap.min.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet-heatmap.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/display_map_functions.js"/>
+					
 				</xsl:if>
 				<link rel="stylesheet" href="{$display_path}ui//css/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen"/>
 				<script type="text/javascript" src="{$display_path}ui//javascript/jquery.fancybox.pack.js?v=2.1.5"/>
@@ -160,7 +161,7 @@
 					</div>
 					<xsl:if test="$classes//class[text()=$type]/@map=true()">
 						<!--<div id="mapcontainer"/>-->
-						<div id="mapcontainer" class="map">
+						<div id="mapcontainer" class="map-normal">
 							<div id="info"/>
 						</div>
 						<div style="margin:10px 0">
@@ -173,6 +174,7 @@
 										<td style="width:100px">Hoards</td>
 										<td style="background-color:#a1d490;border:2px solid black;width:50px;"/>
 										<td style="width:100px">Finds</td>
+										<td><a href="{$display_path}map/{$id}">View fullscreen</a></td>
 									</tr>
 								</tbody>
 							</table>
@@ -188,12 +190,6 @@
 					</div>
 				</div>
 			</xsl:if>
-
-			<div class="hidden">
-				<span id="type">
-					<xsl:value-of select="$type"/>
-				</span>
-			</div>
 		</div>
 
 		<!-- variables retrieved from the config and used in javascript -->
@@ -201,6 +197,10 @@
 			<span id="mapboxKey">
 				<xsl:value-of select="/content/config/mapboxKey"/>
 			</span>
+			<span id="type">
+				<xsl:value-of select="$type"/>
+			</span>
+			<span id="mode">normal</span>
 		</div>
 	</xsl:template>
 
