@@ -40,7 +40,8 @@
 			<class map="true" types="true" prop="nmo:hasMint">nmo:Mint</class>
 			<class map="false" types="false">nmo:NumismaticTerm</class>
 			<class map="true" types="false">nmo:ObjectType</class>
-			<class map="true" types="true" prop="?prop">foaf:Organization</class>
+			<class map="true" types="true" prop="?prop">foaf:Group</class>
+			<class map="true" types="true" prop="?prop">foaf:Organization</class>			
 			<class map="true" types="true" prop="?prop">foaf:Person</class>
 			<class>nmo:ReferenceWork</class>
 			<class map="true" types="true" prop="nmo:hasRegion">nmo:Region</class>
@@ -121,6 +122,7 @@
 					<div>
 						<h3>Export</h3>
 						<ul class="list-inline">
+							<li><strong>Linked Data</strong></li>
 							<li>
 								<a href="https://github.com/nomisma/data/blob/master/id/{$id}.rdf">GitHub File</a>
 							</li>
@@ -136,12 +138,22 @@
 							<!--<li>
 								<a href="{$id}.pelagios.rdf">Pelagios RDF/XML</a>
 								</li>-->
-							<xsl:if test="$classes//class[text()=$type]/@map=true()">
+							
+						</ul>
+						<xsl:if test="$classes//class[text()=$type]/@map=true()">
+							<ul class="list-inline">
+								<li><strong>Geographic Data</strong></li>
 								<li>
 									<a href="{$id}.kml">KML</a>
 								</li>
-							</xsl:if>
-						</ul>
+								<li>
+									<a href="{$display_path}apis/getMints?id={$id}">geoJSON (mints)</a>
+								</li>
+								<li>
+									<a href="{$display_path}apis/getFindspots?id={$id}">geoJSON (finds)</a>
+								</li>
+							</ul>							
+						</xsl:if>
 					</div>
 					<xsl:if test="$classes//class[text()=$type]/@map=true()">
 						<!--<div id="mapcontainer"/>-->
@@ -365,10 +377,11 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
 PREFIX dcterms:	<http://purl.org/dc/terms/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
-SELECT DISTINCT ?type ?label ?source ?sourceLabel ?startDate ?endDate ?mint ?mintLabel ?den ?denLabel WHERE {
+SELECT * WHERE {
  ?type PROP nm:ID ;
    a nmo:TypeSeriesItem ;
    skos:prefLabel ?label FILTER(langMatches(lang(?label), "en")) .
+   MINUS {?type dcterms:isReplacedBy ?replaced}
    ?type dcterms:source ?source . 
    	?source skos:prefLabel ?sourceLabel FILTER(langMatches(lang(?sourceLabel), "en"))
    OPTIONAL {?type nmo:hasStartDate ?startDate}
@@ -474,11 +487,12 @@ SELECT DISTINCT ?type ?label ?source ?sourceLabel ?startDate ?endDate ?mint ?min
 								<xsl:value-of select="res:binding[@name='sourceLabel']/res:literal"/>
 							</a>
 						</td>
-						<xsl:if test="$type='foaf:Person' or $type='foaf:Organization' or $type='rdac:Family'">
+						<xsl:if test="$type = 'foaf:Group' or $type='foaf:Person' or $type='foaf:Organization' or $type='rdac:Family'">
 							<td>
 								<xsl:variable name="uri" select="res:binding[@name='prop']/res:uri"/>
 								<a href="{$uri}">
-									<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/>
+									<!--<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/>-->
+									<xsl:value-of select="$uri"/>
 								</a>
 
 							</td>

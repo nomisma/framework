@@ -104,13 +104,15 @@ PREFIX osgeo:	<http://data.ordnancesurvey.co.uk/ontology/geometry/>]]>
 }]]>
 	</xsl:when>
 	<xsl:otherwise><![CDATA[SELECT DISTINCT ?place ?label ?lat ?long ?poly WHERE {
-{?obj PROP nm:ID ;
-          nmo:hasMint ?place .
+{?obj PROP nm:ID .
+	MINUS {?obj dcterms:isReplacedBy ?replaced}
+          ?obj nmo:hasMint ?place .
   ?place geo:location ?loc .
   ?loc geo:lat ?lat ;
        geo:long ?long }
-UNION { ?obj PROP nm:ID ;
-          nmo:hasMint ?place .
+UNION { ?obj PROP nm:ID .
+	MINUS {?obj dcterms:isReplacedBy ?replaced}
+          ?obj nmo:hasMint ?place .
   ?place geo:location ?loc .
   ?loc osgeo:asGeoJSON ?poly }
     ?place skos:prefLabel ?label . FILTER langMatches(lang(?label), "en")
