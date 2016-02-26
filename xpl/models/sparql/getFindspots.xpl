@@ -131,7 +131,8 @@ UNION { ?coinType PROP nm:ID ;
                   a dcmitype:Collection .
   ?hoard dcterms:tableOfContents ?contents ;
     nmo:hasFindspot ?place }
-?hoard skos:prefLabel ?hoardLabel FILTER langMatches(lang(?hoardLabel), "en")
+OPTIONAL {?hoard skos:prefLabel ?hoardLabel FILTER langMatches(lang(?hoardLabel), "en")}
+OPTIONAL {?hoard dcterms:title ?hoardLabel FILTER langMatches(lang(?hoardLabel), "en")}
 ?place geo:lat ?lat ; geo:long ?long; foaf:name ?label}]]>
 	</xsl:when>
 </xsl:choose>
