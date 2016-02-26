@@ -140,6 +140,11 @@
 								<img src="ui/images/goethe.png" alt="http://www2.uni-frankfurt.de/"/>
 							</a>
 						</div>
+						<div class="media">
+							<a href="https://www.humboldt-foundation.de/" title="https://www.humboldt-foundation.de/" rel="nofollow">
+								<img src="ui/images/AvH_Logo_n7_Word_rgb2.jpg" alt="https://www.humboldt-foundation.de/"/>
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
