@@ -59,48 +59,20 @@ function initialize_map(id) {
 	
 	//add mintLayer from AJAX
 	var mintLayer = L.geoJson.ajax('../apis/getMints?id=' + id, {
-		onEachFeature: function (feature, layer) {
-			var str;
-			if (feature.properties.hasOwnProperty('uri') == false) {
-				str = feature.properties.name;
-			} else {
-				str = '<a href="' + feature.properties.uri + '">' + feature.properties.name + '</a>';
-			}
-			layer.bindPopup(str);
-		},
-		pointToLayer: function (feature, latlng) {
-			return new L.CircleMarker(latlng, {
-				radius: 5,
-				fillColor: "#6992fd",
-				color: "#000",
-				weight: 1,
-				opacity: 1,
-				fillOpacity: 0.6
-			});
-		}
+		onEachFeature: onEachFeature,
+		pointToLayer: renderPoints
 	}).addTo(map);
 	
-	//add findspot layer, but don't make visible
-	var findspotLayer = L.geoJson.ajax('../apis/getFindspots?id=' + id, {
-		onEachFeature: function (feature, layer) {
-			var str;
-			if (feature.properties.hasOwnProperty('uri') == false) {
-				str = feature.properties.name;
-			} else {
-				str = '<a href="' + feature.properties.uri + '">' + feature.properties.name + '</a>';
-			}
-			layer.bindPopup(str);
-		},
-		pointToLayer: function (feature, latlng) {
-			return new L.CircleMarker(latlng, {
-				radius: 5,
-				fillColor: "#d86458",
-				color: "#000",
-				weight: 1,
-				opacity: 1,
-				fillOpacity: 0.6
-			});
-		}
+	//add hoards, but don't make visible by default
+	var hoardLayer = L.geoJson.ajax('../apis/getHoards?id=' + id, {
+		onEachFeature: onEachFeature,
+		pointToLayer: renderPoints
+	});
+	
+	//add individual finds layer, but don't make visible
+	var findLayer = L.geoJson.ajax('../apis/getFindspots?id=' + id, {
+		onEachFeature: onEachFeature,
+		pointToLayer: renderPoints
 	});
 	
 	//load heatmapLayer after JSON loading concludes
@@ -123,14 +95,15 @@ function initialize_map(id) {
 	if (type == 'nmo:Mint' || type == 'nmo:Region') {
 		overlayMaps[prefLabel] = mintLayer;
 	} else {
-		overlayMaps[ 'Mints'] = mintLayer;
+		overlayMaps['Mints'] = mintLayer;
 	}
 	
 	if (type == 'nmo:Hoard') {
-		overlayMaps[prefLabel] = findspotLayer;
-		findspotLayer.addTo(map);
+		overlayMaps[prefLabel] = hoardLayer;
+		hoardLayer.addTo(map);
 	} else {
-		overlayMaps[ 'Findspots'] = findspotLayer;
+		overlayMaps[ 'Hoards'] = hoardLayer;
+		overlayMaps[ 'Finds'] = findLayer;
 		overlayMaps[ 'Heatmap'] = heatmapLayer;
 	}
 	
@@ -138,12 +111,54 @@ function initialize_map(id) {
 	
 	//zoom to groups on AJAX complete
 	mintLayer.on('data:loaded', function () {
-		var group = new L.featureGroup([findspotLayer, mintLayer]);
+		var group = new L.featureGroup([findLayer, mintLayer, hoardLayer]);
 		map.fitBounds(group.getBounds());
 	}.bind(this));
 	
-	findspotLayer.on('data:loaded', function () {
-		var group = new L.featureGroup([findspotLayer, mintLayer]);
+	hoardLayer.on('data:loaded', function () {
+		var group = new L.featureGroup([findLayer, mintLayer, hoardLayer]);
 		map.fitBounds(group.getBounds());
 	}.bind(this));
+	
+	findLayer.on('data:loaded', function () {
+		var group = new L.featureGroup([findLayer, mintLayer, hoardLayer]);
+		map.fitBounds(group.getBounds());
+	}.bind(this));
+	
+	
+	/*****
+	 * Features for manipulating layers
+	 *****/
+	function renderPoints(feature, latlng) {
+		var fillColor;
+		switch (feature.properties.type) {
+			case 'mint':
+			fillColor = '#6992fd';
+			break;
+			case 'hoard':
+			fillColor = '#d86458';
+			break;
+			case 'find':
+			fillColor = '#a1d490';
+		}
+		
+		return new L.CircleMarker(latlng, {
+			radius: 5,
+			fillColor: fillColor,
+			color: "#000",
+			weight: 1,
+			opacity: 1,
+			fillOpacity: 0.6
+		});
+	}
+	
+	function onEachFeature (feature, layer) {
+		var str;
+		if (feature.properties.hasOwnProperty('uri') == false) {
+			str = feature.properties.name;
+		} else {
+			str = '<a href="' + feature.properties.uri + '">' + feature.properties.name + '</a>';
+		}
+		layer.bindPopup(str);
+	}
 }

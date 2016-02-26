@@ -150,6 +150,9 @@
 									<a href="{$display_path}apis/getMints?id={$id}">geoJSON (mints)</a>
 								</li>
 								<li>
+									<a href="{$display_path}apis/getHoards?id={$id}">geoJSON (hoards)</a>
+								</li>
+								<li>
 									<a href="{$display_path}apis/getFindspots?id={$id}">geoJSON (finds)</a>
 								</li>
 							</ul>							

@@ -4,6 +4,7 @@
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" exclude-result-prefixes="#all" version="2.0">
 
 	<xsl:param name="api" select="tokenize(doc('input:request')/request/request-url, '/')[last()]"/>
+	<xsl:param name="findType" select="if ($api = 'getFindspots') then 'find' else if ($api='getHoards') then 'hoard' else ''"/>
 
 	<xsl:template match="/*[1]">
 		<xsl:choose>
@@ -75,7 +76,7 @@
 				<xsl:text>", "uri": "</xsl:text>
 				<xsl:value-of select="res:binding[@name='place']/res:uri"/>
 				<xsl:text>","type": "</xsl:text>
-				<xsl:value-of select="if ($api = 'getMints') then 'region' else 'findspot'"/>
+				<xsl:value-of select="if ($api = 'getMints') then 'region' else $findType"/>
 				<xsl:text>"</xsl:text>
 				<xsl:text>}}</xsl:text>
 				<xsl:if test="not(position()=last())">
@@ -88,11 +89,15 @@
 				<xsl:text>, </xsl:text>
 				<xsl:value-of select="res:binding[@name='lat']/res:literal"/>
 				<xsl:text>]},"properties": {"name": "</xsl:text>
-				<xsl:value-of select="res:binding[@name='label']/res:literal"/>
+				<xsl:value-of select="res:binding[@name='hoardLabel']/res:literal"/>
 				<xsl:text>", "uri": "</xsl:text>
-				<xsl:value-of select="res:binding[@name='place']/res:uri"/>
+				<xsl:value-of select="res:binding[@name='hoard']/res:uri"/>
 				<xsl:text>","type": "</xsl:text>
-				<xsl:value-of select="if ($api = 'getMints') then 'mint' else 'findspot'"/>
+				<xsl:value-of select="if ($api = 'getMints') then 'mint' else $findType"/>
+				<xsl:text>","place":"</xsl:text>
+				<xsl:value-of select="res:binding[@name='label']/res:literal"/>
+				<xsl:text>","placeUri":"</xsl:text>
+				<xsl:value-of select="res:binding[@name='place']/res:uri"/>
 				<xsl:text>"</xsl:text>
 				<xsl:text>}}</xsl:text>
 				<xsl:if test="not(position()=last())">
