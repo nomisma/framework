@@ -58,7 +58,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
 DELETE {?s ?p ?o} WHERE {
  {?place rdf:type skos:Concept ; geo:location ?s . ?s ?p ?o }
  UNION {?person rdf:type skos:Concept ; org:hasMembership ?s . ?s ?p ?o }
- UNION {?s rdf:type skos:Concept FILTER regex(str(?s), "nomisma", "i") . ?s ?p ?o}}]]>
+ UNION {?s rdf:type skos:Concept FILTER strStarts(str(?s), "http://nomisma.org/id/") . ?s ?p ?o}}]]>
 					</query>
 				</queries>
 

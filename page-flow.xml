@@ -66,7 +66,7 @@
 	<page path="/nomisma/id/(.*)\.jsonld" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/json-ld.xpl"/>
 	<page path="/nomisma/id/(.*)\.solr" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/solr.xpl"/>
 	<!--<page path="/nomisma/id/(.*)\.geojson" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/geojson.xpl"/>-->
-	<page path="/nomisma/id/(.*)" model="xpl/models/rdf/get-id.xpl" view="xpl/controllers/conneg-id.xpl"/>
+	<page path="/nomisma/id/(.*)" model="xpl/models/rdf/get-id.xpl" view="xpl/controllers/conneg-id.xpl"/>	
 	
 	<!-- map page -->
 	<page path="/nomisma/map/(.*)" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/html-map.xpl"/>

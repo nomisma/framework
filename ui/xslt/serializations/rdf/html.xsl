@@ -26,6 +26,10 @@
 			</xsl:for-each>
 		</namespaces>
 	</xsl:variable>
+	
+	<!-- variables to determine whether the map should show when mints or findspots exist -->
+	<xsl:variable name="hasMints" as="xs:boolean" select="if (/content/res:sparql[1]/res:boolean = 'true') then true() else false()"/>
+	<xsl:variable name="hasFindspots" as="xs:boolean" select="if (/content/res:sparql[2]/res:boolean = 'true') then true() else false()"/>
 
 	<xsl:variable name="classes" as="item()*">
 		<classes>
@@ -72,7 +76,7 @@
 				<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 				<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
 
-				<xsl:if test="$classes//class[text()=$type]/@map=true()">
+				<xsl:if test="$hasMints = true() or $hasFindspots = true()">
 					<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css"/>
 					<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"/>					
 					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet.ajax.min.js"/>
@@ -116,10 +120,10 @@
 	<xsl:template name="body">
 		<div class="container-fluid content">
 			<div class="row">
-				<div class="col-md-{if ($classes//class[text()=$type]/@map=true()) then '6' else '9'}">
+				<div class="col-md-{if ($hasMints = true() or $hasFindspots = true()) then '6' else '9'}">
 					<xsl:apply-templates select="/content/rdf:RDF/*" mode="type"/>
 				</div>
-				<div class="col-md-{if ($classes//class[text()=$type]/@map=true()) then '6' else '3'}">
+				<div class="col-md-{if ($hasMints = true() or $hasFindspots = true()) then '6' else '3'}">
 					<div>
 						<h3>Export</h3>
 						<ul class="list-inline">
@@ -141,7 +145,7 @@
 								</li>-->
 							
 						</ul>
-						<xsl:if test="$classes//class[text()=$type]/@map=true()">
+						<xsl:if test="$hasMints = true() or $hasFindspots = true()">
 							<ul class="list-inline">
 								<li><strong>Geographic Data</strong></li>
 								<li>
@@ -159,7 +163,7 @@
 							</ul>							
 						</xsl:if>
 					</div>
-					<xsl:if test="$classes//class[text()=$type]/@map=true()">
+					<xsl:if test="$hasMints = true() or $hasFindspots = true()">
 						<!--<div id="mapcontainer"/>-->
 						<div id="mapcontainer" class="map-normal">
 							<div id="info"/>

@@ -77,7 +77,8 @@ PREFIX nm:       <http://nomisma.org/id/>
 PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
 PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
-PREFIX osgeo:	<http://data.ordnancesurvey.co.uk/ontology/geometry/>]]>
+PREFIX osgeo:	<http://data.ordnancesurvey.co.uk/ontology/geometry/>
+PREFIX org: <http://www.w3.org/ns/org#>]]>
 <xsl:choose>
 	<xsl:when test="$type='nmo:Hoard'"><![CDATA[SELECT DISTINCT ?place ?label ?lat ?long ?poly WHERE {
   ?coin dcterms:isPartOf nm:ID ;
@@ -101,6 +102,27 @@ PREFIX osgeo:	<http://data.ordnancesurvey.co.uk/ontology/geometry/>]]>
   {?loc geo:lat ?lat ;
        geo:long ?long}
   UNION {?loc osgeo:asGeoJSON ?poly}
+}]]>
+	</xsl:when>
+	<xsl:when test="$type='foaf:Person'"><![CDATA[SELECT DISTINCT ?place ?label ?lat ?long ?poly WHERE {
+{?obj PROP nm:ID .
+	MINUS {?obj dcterms:isReplacedBy ?replaced}
+          ?obj nmo:hasMint ?place .
+  ?place geo:location ?loc .
+  ?loc geo:lat ?lat ;
+       geo:long ?long }
+UNION { ?obj PROP nm:ID .
+	MINUS {?obj dcterms:isReplacedBy ?replaced}
+          ?obj nmo:hasMint ?place .
+  ?place geo:location ?loc .
+  ?loc osgeo:asGeoJSON ?poly }
+UNION { nm:ID org:hasMembership ?membership .
+ ?membership org:organization ?place .
+ ?place rdf:type nmo:Mint .
+ ?place geo:location ?loc .
+  ?loc geo:lat ?lat ;
+       geo:long ?long}
+    ?place skos:prefLabel ?label . FILTER langMatches(lang(?label), "en")
 }]]>
 	</xsl:when>
 	<xsl:otherwise><![CDATA[SELECT DISTINCT ?place ?label ?lat ?long ?poly WHERE {
