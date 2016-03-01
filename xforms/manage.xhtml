@@ -257,19 +257,27 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 											<xforms:alert>Required</xforms:alert>
 										</xforms:output>
 									</div>
-									<div>
-										<xforms:output ref="dcterms:title">
-											<xforms:label>Title</xforms:label>
-										</xforms:output>
-									</div>
-									<xforms:group ref="dcterms:description">
+									<xforms:repeat nodeset="dcterms:title">
+										<div>
+											<xforms:output ref=".">
+												<xforms:label>Title</xforms:label>
+											</xforms:output>
+											<xforms:group ref="@lang">
+												<xforms:output value="concat('(', ., ')')"/>
+											</xforms:group>
+										</div>
+									</xforms:repeat>
+									<xforms:repeat nodeset="dcterms:description">
 										<div>
 											<xforms:output value="if (@rdf:resource) then @rdf:resource else .">
 												<xforms:label>Description</xforms:label>
 												<xforms:alert>test</xforms:alert>
 											</xforms:output>
+											<xforms:group ref="@lang">
+												<xforms:output value="concat('(', ., ')')"/>
+											</xforms:group>
 										</div>
-									</xforms:group>
+									</xforms:repeat>									
 									<xforms:group ref="dcterms:publisher">
 										<div>
 											<xforms:output value="if (@rdf:resource) then @rdf:resource else .">
