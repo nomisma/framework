@@ -231,20 +231,20 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 							<xforms:group ref="instance('void-rdf')">
 								<xforms:group ref="void:Dataset[@rdf:about]">
 									<!-- display error messages for missing fields -->
-									<xforms:group ref=".[not(string(dcterms:title))]">
+									<!--<xforms:group ref=".[not(string(dcterms:title))]">
 										<div class="bg-danger alert-box">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> Title is required. </div>
-									</xforms:group>
-									<xforms:group ref=".[not(string(dcterms:description)) and not(dcterms:description[@rdf:resource castable as xs:anyURI])]">
+									</xforms:group>-->
+									<!--<xforms:group ref=".[not(string(dcterms:description)) and not(dcterms:description[@rdf:resource castable as xs:anyURI])]">
 										<div class="bg-danger alert-box">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> Description is required. </div>
-									</xforms:group>
+									</xforms:group>-->
 									<xforms:group ref=".[not(string(dcterms:publisher)) and not(dcterms:publisher[@rdf:resource castable as xs:anyURI])]">
 										<div class="bg-danger alert-box">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
-											<strong>Alert:</strong> Description is required. </div>
+											<strong>Alert:</strong> Publisher is required. </div>
 									</xforms:group>
 									<xforms:group ref=".[not(string(dcterms:license)) and not(dcterms:license[@rdf:resource castable as xs:anyURI])]">
 										<div class="bg-danger alert-box">
