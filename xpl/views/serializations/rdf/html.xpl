@@ -196,8 +196,12 @@ PREFIX nm:       <http://nomisma.org/id/>
 PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
 PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
-PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
-ASK {
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>]]>
+
+<xsl:choose>
+	<xsl:when test="$type='nmo:Hoard'"><![CDATA[ASK {nm:ID nmo:hasFindspot ?loc}]]></xsl:when>
+	<xsl:otherwise>
+		<![CDATA[ASK {
 { ?coinType PROP nm:ID ;
   a nmo:TypeSeriesItem . 
  ?object nmo:hasTypeSeriesItem ?coinType ;
@@ -221,13 +225,25 @@ UNION { ?coinType PROP nm:ID ;
  UNION { ?contents PROP nm:ID ;
                   a dcmitype:Collection .
   ?object dcterms:tableOfContents ?contents ;
-    nmo:hasFindspot ?place }}]]></xsl:variable>
+    nmo:hasFindspot ?place }}]]>
+	</xsl:otherwise>
+</xsl:choose>
+</xsl:variable>
 
 
 
 						<xsl:template match="/">
-							<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace(replace($query, 'ID', $id), 'PROP',
-								$classes//class[text()=$type]/@prop))), '&amp;output=xml')"/>
+							<xsl:variable name="service">
+								<xsl:choose>
+									<xsl:when test="$type='nmo:Hoard'">
+										<xsl:value-of select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'ID', $id))), '&amp;output=xml')"/>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:value-of select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace(replace($query, 'ID', $id), 'PROP',
+											$classes//class[text()=$type]/@prop))), '&amp;output=xml')"/>
+									</xsl:otherwise>
+								</xsl:choose>
+							</xsl:variable>							
 
 							<config>
 								<url>
