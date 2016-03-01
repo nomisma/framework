@@ -74,6 +74,7 @@ PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
 PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
 PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX rdfs:	<http://www.w3.org/2000/01/rdf-schema#>
 ]]>
 <xsl:choose>
 	<xsl:when test="$api = 'heatmap'"><![CDATA[SELECT DISTINCT ?place ?label ?lat ?long WHERE {
@@ -101,7 +102,12 @@ UNION { ?coinType PROP nm:ID ;
                   a dcmitype:Collection .
   ?object dcterms:tableOfContents ?contents ;
     nmo:hasFindspot ?place }
-?place geo:lat ?lat ; geo:long ?long; foaf:name ?label}]]>		
+?place geo:lat ?lat ; geo:long ?long .
+  OPTIONAL {?place foaf:name ?label}
+  OPTIONAL {?place rdfs:label ?label}
+  OPTIONAL {?nomismaURI geo:location ?place .
+    ?nomismaURI skos:prefLabel ?label FILTER langMatches(lang(?label), "en")}
+}]]>		
 	</xsl:when>
 	<xsl:when test="$api = 'getFindspots'"><![CDATA[SELECT DISTINCT ?place ?label ?lat ?long WHERE {
 { ?coinType PROP nm:ID ;
@@ -112,7 +118,12 @@ UNION { ?coinType PROP nm:ID ;
   UNION { ?object PROP nm:ID ;
   	rdf:type nmo:NumismaticObject ;
   	nmo:hasFindspot ?place}
-  ?place geo:lat ?lat ; geo:long ?long; foaf:name ?label}]]>
+  ?place geo:lat ?lat ; geo:long ?long .
+  OPTIONAL {?place foaf:name ?label}
+  OPTIONAL {?place rdfs:label ?label}
+  OPTIONAL {?nomismaURI geo:location ?place .
+    ?nomismaURI skos:prefLabel ?label FILTER langMatches(lang(?label), "en")}
+  }]]>
 	</xsl:when>
 	<xsl:when test="$api = 'getHoards'"><![CDATA[SELECT DISTINCT ?hoard ?hoardLabel ?place ?label ?lat ?long WHERE {
 {?coinType PROP nm:ID ;
