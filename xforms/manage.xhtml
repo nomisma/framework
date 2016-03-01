@@ -79,7 +79,7 @@ UNION { ?s void:inDataset <DATASET> . ?s ?p ?o}
 					<prefix><![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:	<http://purl.org/dc/terms/>
 PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
-					<query id="get-datasets">SELECT * WHERE {?uri a void:Dataset ; dcterms:title ?title ; dcterms:publisher ?publisher ; void:dataDump ?dump } ORDER BY ASC(?publisher) ASC(?title)</query>
+					<query id="get-datasets">SELECT * WHERE {?uri a void:Dataset ; dcterms:publisher ?publisher ; void:dataDump ?dump; dcterms:title ?title FILTER (lang(?title) = "" || langMatches(lang(?title), "en")) } ORDER BY ASC(?publisher) ASC(?title)</query>
 				</templates>
 			</xforms:instance>
 
