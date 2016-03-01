@@ -33,11 +33,11 @@ PREFIX void:	<http://rdfs.org/ns/void#>
 
 SELECT ?dataset ?title ?description ?publisher ?license ?dump ?count WHERE {
 ?dataset a void:Dataset ; 
- dcterms:title ?title ; 
- dcterms:description ?description ; 
- dcterms:publisher ?publisher ; 
+ dcterms:title ?title FILTER (lang(?title) = "" || langMatches(lang(?title), "en")) .
+ ?dataset dcterms:publisher ?publisher ; 
  dcterms:license ?license ; 
- void:dataDump ?dump 
+ void:dataDump ?dump ;
+ dcterms:description ?description FILTER (lang(?description) = "" || langMatches(lang(?description), "en")) .
  { SELECT ?dataset ( count(?object) as ?count ) { ?object void:inDataset ?dataset } GROUP BY ?dataset }
  } ORDER BY ASC(?publisher) ASC(?title)]]>
 				</xsl:variable>
