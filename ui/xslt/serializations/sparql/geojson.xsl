@@ -95,7 +95,7 @@
 				<xsl:text>","type": "</xsl:text>
 				<xsl:value-of select="if ($api = 'getMints') then 'mint' else $findType"/>
 				<xsl:text>"</xsl:text>
-				<xsl:if test="$findType = 'hoard'">
+				<xsl:if test="$findType = 'hoard' and res:binding[@name='place']/res:uri">
 					<xsl:text>,"place":"</xsl:text>
 					<xsl:value-of select="res:binding[@name='label']/res:literal"/>
 					<xsl:text>","placeUri":"</xsl:text>
