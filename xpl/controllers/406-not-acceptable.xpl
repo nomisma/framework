@@ -21,15 +21,17 @@
 				<xsl:template match="/">
 					<xsl:variable name="content-type" select="//header[name[.='content-type']]/value"/>
 
-					<html xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-						<head>
-							<title>406 Not Acceptable</title>
-						</head>
-						<body>
-							<h1>406 Not Acceptable</h1>
-							<p><xsl:value-of select="$content-type"/> is not acceptable.</p>
-						</body>
-					</html>
+					<xml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" content-type="text/html">
+<![CDATA[<html>
+	<head>
+		<title>406 Not Acceptable</title>
+	</head>
+	<body>
+		<h1>406 Not Acceptable</h1>
+		<p><xsl:value-of select="]]>	<xsl:value-of select="$content-type"/><![CDATA["/> is not acceptable.</p>
+	</body>
+</html>]]>	
+					</xml>
 				</xsl:template>
 			</xsl:stylesheet>
 		</p:input>
@@ -46,7 +48,7 @@
 					<xsl:variable name="content-type" select="//header[name[.='content-type']]/value"/>
 					<config>
 						<status-code>406</status-code>
-						<content-type>text/plain</content-type>
+						<content-type>text/html</content-type>
 						<xsl:choose>
 							<xsl:when test="string-length(substring-after(/request/request-url, 'id/')) &gt; 0">
 								<header>
