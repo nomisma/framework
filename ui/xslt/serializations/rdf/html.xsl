@@ -430,17 +430,19 @@ SELECT * WHERE {
 			<xsl:copy-of select="document($service)/response"/>
 		</xsl:variable>
 		<xsl:variable name="prop" select="$classes//class[text()=$type]/@prop"/>
+		<xsl:variable name="query" select="replace(replace($listTypes-query, 'ID', $id), 'PROP', $prop)"/>
 
 		<!-- HTML output -->
 		<h3>Associated Types <small>(max 10)</small></h3>
+		<xsl:value-of select="$prop"/>
 		<div style="margin-bottom:10px;">
 			<a href="#" class="toggle-button btn btn-primary" id="toggle-listTypes"><span class="glyphicon glyphicon-plus"/> View SPARQL for full query</a>
-			<a href="{$display_path}query?query={encode-for-uri(replace($listTypes-query, 'ID', $id))}&amp;output=csv" title="Download CSV" class="btn btn-primary" style="margin-left:10px">
+			<a href="{$display_path}query?query={encode-for-uri($query)}&amp;output=csv" title="Download CSV" class="btn btn-primary" style="margin-left:10px">
 				<span class="glyphicon glyphicon-download"/>Download CSV</a>
 		</div>
 		<div id="listTypes" style="display:none">
 			<pre>
-				<xsl:value-of select="replace(replace($listTypes-query, 'ID', $id), 'PROP', $prop)"/>
+				<xsl:value-of select="$query"/>
 			</pre>
 		</div>
 
