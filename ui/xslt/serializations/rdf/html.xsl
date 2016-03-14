@@ -433,8 +433,7 @@ SELECT * WHERE {
 		<xsl:variable name="query" select="replace(replace($listTypes-query, 'ID', $id), 'PROP', $prop)"/>
 
 		<!-- HTML output -->
-		<h3>Associated Types <small>(max 10)</small></h3>
-		<xsl:value-of select="$prop"/>
+		<h3>Associated Types <small>(max 10)</small></h3>		
 		<div style="margin-bottom:10px;">
 			<a href="#" class="toggle-button btn btn-primary" id="toggle-listTypes"><span class="glyphicon glyphicon-plus"/> View SPARQL for full query</a>
 			<a href="{$display_path}query?query={encode-for-uri($query)}&amp;output=csv" title="Download CSV" class="btn btn-primary" style="margin-left:10px">
