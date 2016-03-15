@@ -411,24 +411,47 @@ SELECT * WHERE {
 		</xsl:if>
 	</xsl:template>
 
-	<xsl:template match="res:sparql[count(descendant::res:result) &gt; 0]" mode="listTypes">
+	<xsl:template match="res:sparql[count(descendant::res:result) &gt; 0]" mode="listTypes">		
 		<!-- aggregate ids and get URI space -->
-		<xsl:variable name="frags" select="tokenize(descendant::res:result[1]/res:binding[@name='type']/res:uri, '/')"/>
-		<xsl:variable name="uri_space">
-			<xsl:for-each select="$frags">
-				<xsl:if test="not(position() = last())">
-					<xsl:value-of select="."/>
-					<xsl:text>/</xsl:text>
-				</xsl:if>
-			</xsl:for-each>
+		<xsl:variable name="type_series_items" as="element()*">
+			<type_series_items>
+				<xsl:for-each select="descendant::res:result/res:binding[@name='type']/res:uri">
+					<item>
+						<xsl:value-of select="."/>
+					</item>
+				</xsl:for-each>
+			</type_series_items>
 		</xsl:variable>
-		<xsl:variable name="ids" select="replace(string-join(descendant::res:result/res:binding[@name='type']/res:uri, '|'), $uri_space, '')"/>
+		
+		<xsl:variable name="type_series" as="element()*">
+			<list>
+				<xsl:for-each select="distinct-values(descendant::res:result/res:binding[@name='type']/substring-before(res:uri, 'id/'))">
+					<xsl:variable name="uri" select="."/>
+					<type_series uri="{$uri}">
+						<xsl:for-each select="$type_series_items//item[starts-with(., $uri)]">
+							<item>
+								<xsl:value-of select="substring-after(., 'id/')"/>
+							</item>
+						</xsl:for-each>
+					</type_series>
+				</xsl:for-each>
+			</list>
+		</xsl:variable>
+		
 		<!-- use the Numishare Results API to display example coins -->
 		<xsl:variable name="sparqlResult" as="element()*">
-			<xsl:variable name="service" select="concat('http://localhost:8080/orbeon/nomisma/apis/numishareResults?identifiers=', encode-for-uri($ids), '&amp;baseUri=',
-				encode-for-uri($uri_space))"/>
-			<xsl:copy-of select="document($service)/response"/>
+			<response>
+				<xsl:for-each select="$type_series//type_series">
+					<xsl:variable name="baseUri" select="concat(@uri, 'id/')"/>
+					<xsl:variable name="ids" select="string-join(item, '|')"/>
+					
+					<xsl:variable name="service" select="concat('http://localhost:8080/orbeon/nomisma/apis/numishareResults?identifiers=', encode-for-uri($ids), '&amp;baseUri=',
+						encode-for-uri($baseUri))"/>
+					<xsl:copy-of select="document($service)/response/*"/>
+				</xsl:for-each>
+			</response>
 		</xsl:variable>
+		
 		<xsl:variable name="prop" select="$classes//class[text()=$type]/@prop"/>
 		<xsl:variable name="query" select="replace(replace($listTypes-query, 'ID', $id), 'PROP', $prop)"/>
 
@@ -458,7 +481,7 @@ SELECT * WHERE {
 			</thead>
 			<tbody>
 				<xsl:for-each select="descendant::res:result">
-					<xsl:variable name="type_id" select="replace(res:binding[@name='type']/res:uri, $uri_space, '')"/>
+					<xsl:variable name="type_id" select="substring-after(res:binding[@name='type']/res:uri, 'id/')"/>
 
 					<tr>
 						<td>
