@@ -38,6 +38,7 @@
 	<!-- definition of namespaces for turning in solr type field URIs into abbreviations -->
 	<xsl:variable name="namespaces" as="item()*">
 		<namespaces>
+			<namespace prefix="bio" uri="http://purl.org/vocab/bio/0.1/"/>
 			<namespace prefix="ecrm" uri="http://erlangen-crm.org/current/"/>
 			<namespace prefix="dcterms" uri="http://purl.org/dc/terms/"/>
 			<namespace prefix="foaf" uri="http://xmlns.com/foaf/0.1/"/>
