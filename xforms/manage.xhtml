@@ -195,7 +195,10 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 														<xforms:trigger appearance="minimal">
 															<xforms:label><span class="glyphicon glyphicon-refresh"></span></xforms:label>
 															<xforms:action ev:event="DOMActivate">
+																<xforms:var name="dataset" select="res:binding[@name='uri']/res:uri"></xforms:var>
 																<xforms:var name="dump" select="res:binding[@name='dump']/res:uri"></xforms:var>
+																
+																<xforms:setvalue ref="instance('control-instance')/dataset" value="$dataset"></xforms:setvalue>
 																<xforms:setvalue ref="instance('control-instance')/dump_uri" value="$dump"></xforms:setvalue>
 																<xforms:dispatch target="refresh-dataset-dialog" name="fr-show"></xforms:dispatch>
 															</xforms:action>
@@ -391,13 +394,15 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 					<xforms:send submission="delete-graph"/>
 					
 					<!-- then fetch the new data dump -->
-					<xforms:send submission="load-dump"></xforms:send>
 					<xforms:action ev:event="xforms-submit-done">
-						<xforms:send submission="post-dump"/>
-						<!-- resubmit SPARQL query for void:Datasets to reset the table -->
-						<xforms:setvalue ref="instance('sparqlQuery')" value="concat(instance('sparql-templates')/prefix, ' ', instance('sparql-templates')/query[@id='get-datasets'])"></xforms:setvalue>
-						<xforms:send submission="submit-sparqlQuery"></xforms:send>
-					</xforms:action>
+						<xforms:send submission="load-dump"></xforms:send>
+						<xforms:action ev:event="xforms-submit-done">
+							<xforms:send submission="post-dump"/>
+							<!-- resubmit SPARQL query for void:Datasets to reset the table -->
+							<xforms:setvalue ref="instance('sparqlQuery')" value="concat(instance('sparql-templates')/prefix, ' ', instance('sparql-templates')/query[@id='get-datasets'])"></xforms:setvalue>
+							<xforms:send submission="submit-sparqlQuery"></xforms:send>
+						</xforms:action>
+					</xforms:action>					
 				</xforms:action>
 			</fr:positive-choice>
 			<fr:negative-choice>
