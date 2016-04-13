@@ -23,7 +23,7 @@
 	<p:choose href="#data">
 		<!-- suppress any class of object for which we do not want to render a map -->
 		<p:when test="/rdf:RDF/*[1]/name() = 'nmo:ReferenceWork' or /rdf:RDF/*[1]/name() = 'nmo:TypeSeries' or /rdf:RDF/*[1]/name() = 'nmo:FieldOfNumismatics' or /rdf:RDF/*[1]/name() =
-			'nmo:NumismaticTerm' or  /rdf:RDF/*[1]/name() = 'org:Role' or  /rdf:RDF/*[1]/name() = 'nmo:Uncertainty' or  /rdf:RDF/*[1]/name() = 'nmo:CoinWear'">
+			'nmo:NumismaticTerm' or  /rdf:RDF/*[1]/name() = 'org:Role' or  /rdf:RDF/*[1]/name() = 'nmo:Uncertainty' or  /rdf:RDF/*[1]/name() = 'nmo:CoinWear' or /rdf:RDF/*[1]/name() = 'crm:E4_Period'">
 			<p:processor name="oxf:identity">
 				<p:input name="data">
 					<sparql xmlns="http://www.w3.org/2005/sparql-results#">
@@ -150,7 +150,7 @@ UNION { ?obj PROP nm:ID .
 	<p:choose href="#data">
 		<!-- suppress any class of object for which we do not want to render a map -->
 		<p:when test="/rdf:RDF/*[1]/name() = 'nmo:ReferenceWork' or /rdf:RDF/*[1]/name() = 'nmo:TypeSeries' or /rdf:RDF/*[1]/name() = 'nmo:FieldOfNumismatics' or /rdf:RDF/*[1]/name() =
-			'nmo:NumismaticTerm' or  /rdf:RDF/*[1]/name() = 'org:Role' or  /rdf:RDF/*[1]/name() = 'nmo:Uncertainty' or /rdf:RDF/*[1]/name() = 'nmo:CoinWear' or /rdf:RDF/*[1]/name() = 'nmo:Collection'">
+			'nmo:NumismaticTerm' or  /rdf:RDF/*[1]/name() = 'org:Role' or  /rdf:RDF/*[1]/name() = 'nmo:Uncertainty' or /rdf:RDF/*[1]/name() = 'nmo:CoinWear' or /rdf:RDF/*[1]/name() = 'nmo:Collection' or /rdf:RDF/*[1]/name() = 'crm:E4_Period'">
 			<p:processor name="oxf:identity">
 				<p:input name="data">
 					<sparql xmlns="http://www.w3.org/2005/sparql-results#">

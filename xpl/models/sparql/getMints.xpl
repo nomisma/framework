@@ -31,7 +31,7 @@
 			</p:processor>
 		</p:when>
 		<!-- suppress any class of object for which we do not want to render a map -->
-		<p:when test="/rdf:RDF/*[1]/name() = 'nmo:ReferenceWork' or /rdf:RDF/*[1]/name() = 'nmo:FieldOfNumismatics' or /rdf:RDF/*[1]/name() = 'nmo:NumismaticTerm' or  /rdf:RDF/*[1]/name() = 'org:Role' or  /rdf:RDF/*[1]/name() = 'nmo:Uncertainty' or  /rdf:RDF/*[1]/name() = 'nmo:CoinWear'">
+		<p:when test="/rdf:RDF/*[1]/name() = 'nmo:ReferenceWork' or /rdf:RDF/*[1]/name() = 'nmo:FieldOfNumismatics' or /rdf:RDF/*[1]/name() = 'nmo:NumismaticTerm' or  /rdf:RDF/*[1]/name() = 'org:Role' or  /rdf:RDF/*[1]/name() = 'nmo:Uncertainty' or  /rdf:RDF/*[1]/name() = 'nmo:CoinWear' or /rdf:RDF/*[1]/name() = 'crm:E4_Period'">
 			<p:processor name="oxf:identity">
 				<p:input name="data">
 					<null/>
