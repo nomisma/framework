@@ -170,7 +170,7 @@
 								<facet type="nmo:Material">300264091</facet>
 								<facet type="nmo:ObjectType">300264092</facet>
 								<facet type="org:Role">300024978</facet>
-								<facet type="ecrm:E4_Period">300264088</facet>
+								<facet type="crm:E4_Period">300264088</facet>
 							</facets>
 						</xforms:instance>
 

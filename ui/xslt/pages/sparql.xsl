@@ -32,6 +32,7 @@
 	<xsl:template name="body">
 		<xsl:variable name="default-query"><![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX bio:	<http://purl.org/vocab/bio/0.1/>
+PREFIX crm:	<http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX dcmitype:	<http://purl.org/dc/dcmitype/>
 PREFIX dcterms:	<http://purl.org/dc/terms/>
 PREFIX foaf:	<http://xmlns.com/foaf/0.1/>

@@ -5,7 +5,8 @@
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:un="http://www.owl-ontologies.com/Ontology1181490123.owl#"
 	xmlns:atom="http://www.w3.org/2005/Atom" xmlns:nomisma="https://github.com/nomisma" xmlns:rdac="http://www.rdaregistry.info/Elements/c/" xmlns:prov="http://www.w3.org/ns/prov#"
-	xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:nmo="http://nomisma.org/ontology#" xmlns:org="http://www.w3.org/ns/org#" xmlns:bio="http://purl.org/vocab/bio/0.1/">
+	xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:nmo="http://nomisma.org/ontology#" xmlns:org="http://www.w3.org/ns/org#" xmlns:bio="http://purl.org/vocab/bio/0.1/"
+	xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/">
 	<head>
 		<title>nomisma.org: manage datasets</title>
 		<link rel="stylesheet" href="/fr/style/bootstrap/css/bootstrap.css" type="text/css" />
@@ -22,7 +23,7 @@
 					xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 					xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:un="http://www.owl-ontologies.com/Ontology1181490123.owl#"
 					xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:org="http://www.w3.org/ns/org#" xmlns:rdac="http://www.rdaregistry.info/Elements/c/"
-					xmlns:bio="http://purl.org/vocab/bio/0.1/" xmlns:prov="http://www.w3.org/ns/prov#"></rdf:RDF>
+					xmlns:bio="http://purl.org/vocab/bio/0.1/" xmlns:prov="http://www.w3.org/ns/prov#" xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/"></rdf:RDF>
 			</xforms:instance>
 
 			<xforms:instance id="config" xxforms:exclude-result-prefixes="#all">
@@ -108,6 +109,10 @@
 					<class>
 						<label>Organization</label>
 						<type>foaf:Organization</type>
+					</class>
+					<class>
+						<label>Period</label>
+						<type>crm:E4_Period</type>
 					</class>
 					<class>
 						<label>Person</label>
@@ -580,7 +585,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										<div class="bg-danger alert-box">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> There can not be more than one birth date.</div>
-									</xforms:group>									
+									</xforms:group>
 									<xforms:group ref=".[count(mapping[@to='bio:death']) &gt; 1]">
 										<div class="bg-danger alert-box">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
@@ -758,42 +763,46 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 															<xforms:insert if="not($value castable as xs:integer)" context="instance('validation-model')/record[last()]"
 																nodeset="./child::node()[last()]" origin="xforms:element('error', concat('End Date is not a number: ', $value))"></xforms:insert>
 														</xforms:action>
-														
 														<!-- validate birth and death dates -->
 														<xforms:action if="$mapping = 'bio:birth' and string-length($value) &gt; 0">
-															<xforms:insert if="not($value castable as xs:date) and not($value castable as xs:gYear) and not($value castable as xs:gYearMonth)" context="instance('validation-model')/record[last()]"
-																nodeset="./child::node()[last()]" origin="xforms:element('error', concat('Birth Date is not a number: ', $value))"></xforms:insert>
+															<xforms:insert if="not($value castable as xs:date) and not($value castable as xs:gYear) and not($value castable as xs:gYearMonth)"
+																context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
+																origin="xforms:element('error', concat('Birth Date is not a number: ', $value))"></xforms:insert>
 															<!-- if the start date and end date are both numbers, ensure that the start date is before the end date -->
-															<xforms:action if="instance('mappings')/mapping[@to='bio:birth'] and ($value castable as xs:date or $value castable as xs:gYear or $value castable as xs:gYearMonth)">
+															<xforms:action
+																if="instance('mappings')/mapping[@to='bio:birth'] and ($value castable as xs:date or $value castable as xs:gYear or $value castable as xs:gYearMonth)">
 																<xforms:var name="deathDate"
 																	select="normalize-space(instance('feed')//atom:entry[position()=$position]/*[name()=instance('mappings')/mapping[@to='bio:death']/@from])"></xforms:var>
-																<xforms:action if="string-length($deathDate) &gt; 0 and ($deathDate castable as xs:date or $deathDate castable as xs:gYear or $deathDate castable as xs:gYearMonth)">
-																	<xforms:var name="normal-start" select="if ($value castable as xs:date) then xs:date($value) else if ($value castable as xs:gYearMonth) then xs:date(concat($value, '-01')) else xs:date(concat($value, '-01-01'))"/>
-																	<xforms:var name="normal-end" select="if ($deathDate castable as xs:date) then xs:date($deathDate) else if ($deathDate castable as xs:gYearMonth) then xs:date(concat($deathDate, '-01')) else xs:date(concat($deathDate, '-01-01'))"/>
-																	
-																	<xforms:insert if="$normal-start &gt; $normal-end" context="instance('validation-model')/record[last()]"
+																<xforms:action
+																	if="string-length($deathDate) &gt; 0 and ($deathDate castable as xs:date or $deathDate castable as xs:gYear or $deathDate castable as xs:gYearMonth)">
+																	<xforms:var name="normal-start"
+																		select="if ($value castable as xs:date) then xs:date($value) else if ($value castable as xs:gYearMonth) then xs:date(concat($value, '-01')) else xs:date(concat($value, '-01-01'))"></xforms:var>
+																	<xforms:var name="normal-end"
+																		select="if ($deathDate castable as xs:date) then xs:date($deathDate) else if ($deathDate castable as xs:gYearMonth) then xs:date(concat($deathDate, '-01')) else xs:date(concat($deathDate, '-01-01'))"
+																	></xforms:var> <xforms:insert if="$normal-start &gt; $normal-end" context="instance('validation-model')/record[last()]"
 																		nodeset="./child::node()[last()]" origin="xforms:element('error', 'Birth date postdates death date.')"></xforms:insert>
 																</xforms:action>
 															</xforms:action>
-														</xforms:action>
-														
-														<xforms:action if="$mapping = 'bio:death' and string-length($value) &gt; 0">
-															<xforms:insert if="not($value castable as xs:date) and not($value castable as xs:gYear) and not($value castable as xs:gYearMonth)" context="instance('validation-model')/record[last()]"
-																nodeset="./child::node()[last()]" origin="xforms:element('error', concat('Death Date is not a number: ', $value))"></xforms:insert>
+														</xforms:action> <xforms:action if="$mapping = 'bio:death' and string-length($value) &gt; 0">
+															<xforms:insert if="not($value castable as xs:date) and not($value castable as xs:gYear) and not($value castable as xs:gYearMonth)"
+																context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
+																origin="xforms:element('error', concat('Death Date is not a number: ', $value))"></xforms:insert>
 															<!-- if the start date and end date are both numbers, ensure that the start date is before the end date -->
-															<xforms:action if="instance('mappings')/mapping[@to='bio:birth'] and ($value castable as xs:date or $value castable as xs:gYear or $value castable as xs:gYearMonth)">
+															<xforms:action
+																if="instance('mappings')/mapping[@to='bio:birth'] and ($value castable as xs:date or $value castable as xs:gYear or $value castable as xs:gYearMonth)">
 																<xforms:var name="birthDate"
 																	select="normalize-space(instance('feed')//atom:entry[position()=$position]/*[name()=instance('mappings')/mapping[@to='bio:birth']/@from])"></xforms:var>
-																<xforms:action if="string-length($birthDate) &gt; 0 and ($birthDate castable as xs:date or $birthDate castable as xs:gYear or $birthDate castable as xs:gYearMonth)">
-																	<xforms:var name="normal-start" select="if ($birthDate castable as xs:date) then xs:date($birthDate) else if ($birthDate castable as xs:gYearMonth) then xs:date(concat($birthDate, '-01')) else xs:date(concat($birthDate, '-01-01'))"/>
-																	<xforms:var name="normal-end" select="if ($value castable as xs:date) then xs:date($value) else if ($value castable as xs:gYearMonth) then xs:date(concat($value, '-01')) else xs:date(concat($value, '-01-01'))"/>
-																	
-																	<xforms:insert if="$normal-start &gt; $normal-end" context="instance('validation-model')/record[last()]"
+																<xforms:action
+																	if="string-length($birthDate) &gt; 0 and ($birthDate castable as xs:date or $birthDate castable as xs:gYear or $birthDate castable as xs:gYearMonth)">
+																	<xforms:var name="normal-start"
+																		select="if ($birthDate castable as xs:date) then xs:date($birthDate) else if ($birthDate castable as xs:gYearMonth) then xs:date(concat($birthDate, '-01')) else xs:date(concat($birthDate, '-01-01'))"></xforms:var>
+																	<xforms:var name="normal-end"
+																		select="if ($value castable as xs:date) then xs:date($value) else if ($value castable as xs:gYearMonth) then xs:date(concat($value, '-01')) else xs:date(concat($value, '-01-01'))"
+																	></xforms:var> <xforms:insert if="$normal-start &gt; $normal-end" context="instance('validation-model')/record[last()]"
 																		nodeset="./child::node()[last()]" origin="xforms:element('error', 'Death date predates birth date.')"></xforms:insert>
 																</xforms:action>
 															</xforms:action>
 														</xforms:action>
-														
 														<!-- URI validation -->
 														<xforms:action if="$mapping='skos:exactMatch' or $mapping='skos:closeMatch' or $mapping='dcterms:source'">
 															<xforms:var name="isValid" select="matches($value, 'https?://.+')"></xforms:var>
@@ -934,7 +943,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										<!-- begin processing the spreadsheet into RDF -->
 										<xforms:action xxforms:iterate="instance('feed')//atom:entry">
 											<!-- set position for progress dialog -->
-											<!--<xforms:setvalue ref="instance('control-instance')/position" value="context()/position()"></xforms:setvalue>--> <xforms:var name="id"
+											<!--<xforms:setvalue ref="instance('control-instance')/position" value="context()/position()"></xforms:setvalue>-->
+											<xforms:var name="id"
 												select="normalize-space(data(*[namespace-uri()='http://schemas.google.com/spreadsheets/2006/extended'][name()=instance('mappings')/mapping[@to='id']/@from]))"></xforms:var>
 											<xforms:var name="uri" select="concat('http://nomisma.org/id/', $id)"></xforms:var>
 											<xforms:var name="position" select="position()"></xforms:var>
@@ -1046,13 +1056,12 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 															origin="xforms:element($mapping, (xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#decimal'), $value))"
 															if="not(instance('rdf')/geo:SpatialThing/*[name()=$mapping])"></xforms:insert>
 													</xforms:action>
-													
 													<!-- create bio:birth or bio:death property and associated bio:Birth and bio:Death object -->
 													<xforms:action if="$mapping = 'bio:birth' or $mapping='bio:death'">
 														<xforms:var name="fragmentUri" select="concat($uri, '#', substring-after($mapping, ':'))"></xforms:var>
-														<xforms:var name="class" select="concat('bio:', translate(substring-after($mapping, ':'), 'bd', 'BD'))"/>
-														<xforms:var name="datatype" select="if ($value castable as xs:date) then 'date' else if ($value castable as xs:gYearMonth) then 'gYearMonth' else 'gYear'"/>
-															
+														<xforms:var name="class" select="concat('bio:', translate(substring-after($mapping, ':'), 'bd', 'BD'))"></xforms:var>
+														<xforms:var name="datatype"
+															select="if ($value castable as xs:date) then 'date' else if ($value castable as xs:gYearMonth) then 'gYearMonth' else 'gYear'"></xforms:var>
 														<!-- if there is no existing SpatialThing, then create one and insert the updated latitude and longitude. Do no overwrite existing values -->
 														<xforms:action if="not(instance('rdf')/*[name()=$class])">
 															<xforms:insert context="instance('rdf')" nodeset="./child::node()[last()]"
@@ -1062,9 +1071,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 														</xforms:action>
 														<xforms:insert context="instance('rdf')/*[name()=$class]" nodeset="./child::node()[last()]"
 															origin="xforms:element('dcterms:date', (xforms:attribute('rdf:datatype', concat('http://www.w3.org/2001/XMLSchema#', $datatype)), $value))"
-															if="not(instance('rdf')/*[name()=$class]/dcterms:date)"></xforms:insert>														
+															if="not(instance('rdf')/*[name()=$class]/dcterms:date)"></xforms:insert>
 													</xforms:action>
-													
 													<!-- validate start and end dates -->
 													<xforms:action if="$mapping = 'nmo:hasStartDate' or $mapping='nmo:hasEndDate'">
 														<xforms:var name="membershipUri"
@@ -1111,8 +1119,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											<!-- save file back to disk -->
 											<xforms:setvalue ref="instance('save-config')/url" value="concat('file://', instance('config')/id_path, '/',  $id, '.rdf')"></xforms:setvalue>
 											<xforms:insert nodeset="instance('dump')"
-												origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('rdf'), instance('save-config')), 'data')"
-											></xforms:insert>
+												origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('rdf'), instance('save-config')), 'data')"></xforms:insert>
 											<!-- delete graphs from triplestore, then repost updates -->
 											<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-template'), 'URI', $uri)"></xforms:setvalue>
 											<xforms:send submission="delete-graph"></xforms:send>
