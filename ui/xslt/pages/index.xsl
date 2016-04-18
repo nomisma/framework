@@ -52,15 +52,15 @@
 								<tr>
 									<td>
 										<a href="http://pelagios-project.blogspot.com/">
-											<img src="{$display_path}ui/images/pelagios_icon.png"/>
+											<img src="{$display_path}ui/images/pelagios.png"/>
 										</a>
 									</td>
 									<td>
-										<strong>VoID (RDF): </strong>
-										<a href="pelagios.void.rdf">XML</a>
+										<strong>VoID for Concepts: </strong>
+										<a href="pelagios.void.rdf">RDF/XML</a>
 										<br/>
-										<strong>Dump (RDF): </strong>
-										<a href="pelagios.rdf">XML</a>
+										<strong>VoID for Partner Objects: </strong>
+										<a href="pelagios-objects.void.rdf">RDF/XML</a>
 									</td>
 								</tr>
 							</table>

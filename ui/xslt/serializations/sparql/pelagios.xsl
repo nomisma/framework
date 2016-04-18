@@ -4,12 +4,19 @@
 	xmlns:dcterms="http://purl.org/dc/terms/" xmlns:oa="http://www.w3.org/ns/oa#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:foaf="http://xmlns.com/foaf/0.1/" exclude-result-prefixes="#all"
 	version="2.0">
 
+	<xsl:param name="offset" select="if (doc('input:request')/request/parameters/parameter[name='offset']/value castable as xs:integer) then
+		xs:integer(doc('input:request')/request/parameters/parameter[name='offset']/value) else 0"/>
+
 	<xsl:template match="/">
 		<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:oa="http://www.w3.org/ns/oa#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
 			xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:void="http://rdfs.org/ns/void#">
-			<foaf:Organization rdf:about="http://nomisma.org/pelagios-objects.rdf#agents/me">
-				<foaf:name>Nomisma.org</foaf:name>
-			</foaf:Organization>
+
+			<!-- suppress agent from any page but the first -->
+			<xsl:if test="$offset = 0">
+				<foaf:Organization rdf:about="http://nomisma.org/pelagios-objects.rdf#agents/me">
+					<foaf:name>Nomisma.org</foaf:name>
+				</foaf:Organization>
+			</xsl:if>
 
 			<xsl:apply-templates select="descendant::res:result"/>
 		</rdf:RDF>
@@ -35,7 +42,7 @@
 			<void:inDataset rdf:resource="{res:binding[@name='dataset']/res:uri}"/>
 		</pelagios:AnnotatedThing>
 
-		<oa:Annotation rdf:about="http://nomisma.org/pelagios-objects.rdf#{encode-for-uri($uri)}/annotations/{format-number(position(), '00')}">
+		<oa:Annotation rdf:about="http://nomisma.org/pelagios-objects.rdf#{encode-for-uri($uri)}/annotations/01">
 			<oa:hasBody rdf:resource="{res:binding[@name='match']/res:uri}#this"/>
 			<oa:hasTarget rdf:resource="http://nomisma.org/pelagios-objects.rdf#{encode-for-uri($uri)}"/>
 			<pelagios:relation rdf:resource="http://pelagios.github.io/vocab/relations#attestsTo"/>

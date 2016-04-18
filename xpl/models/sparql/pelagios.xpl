@@ -23,6 +23,7 @@
 		<p:input name="config">
 			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 				<xsl:param name="offset" select="if (doc('input:request')/request/parameters/parameter[name='offset']/value castable as xs:integer) then doc('input:request')/request/parameters/parameter[name='offset']/value else '0'"/>
+				<xsl:variable name="limit">100</xsl:variable>
 
 				<!-- config variables -->
 				<xsl:variable name="sparql_endpoint" select="/config/sparql_query"/>
@@ -49,10 +50,10 @@ OPTIONAL {?coin nmo:hasReverse ?reverse . ?reverse foaf:depiction ?revRef}
   OPTIONAL {?type nmo:hasEndDate ?endDate}
   ?type nmo:hasMint ?mint .
   ?mint skos:closeMatch ?match FILTER strStarts(str(?match), "http://pleiades")
-} LIMIT 100 OFFSET %OFFSET%]]></xsl:variable>
+} LIMIT %LIMIT% OFFSET %OFFSET%]]></xsl:variable>
 
 				<xsl:variable name="service">
-					<xsl:value-of select="concat($sparql_endpoint, '?query=', encode-for-uri(replace($query, '%OFFSET%', $offset)), '&amp;output=xml')"/>
+					<xsl:value-of select="concat($sparql_endpoint, '?query=', encode-for-uri(replace(replace($query, '%LIMIT%', $limit), '%OFFSET%', $offset)), '&amp;output=xml')"/>
 				</xsl:variable>
 
 				<xsl:template match="/">
