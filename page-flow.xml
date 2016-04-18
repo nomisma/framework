@@ -88,6 +88,8 @@
 	<page path="/nomisma/nomisma.org.rdf" view="xpl/controllers/serialize-dump.xpl"/>
 	<page path="/nomisma/nomisma.org.jsonld" view="xpl/controllers/serialize-dump.xpl"/>
 	<page path="/nomisma/nomisma.org.ttl" view="xpl/controllers/serialize-dump.xpl"/>
+	<page path="/nomisma/pelagios-objects.void.rdf" model="xpl/models/sparql/pelagios-objects.void.xpl" view="xpl/views/serializations/sparql/pelagios-objects.void.xpl"/>
+	<page path="/nomisma/pelagios-objects.rdf" model="xpl/models/sparql/pelagios.xpl" view="xpl/views/serializations/sparql/pelagios.xpl"/>
 	
 	<!-- **** ONTOLOGY **** -->
 	<page path="/nomisma/ontology.rdf" view="xpl/models/rdf/get-rdf-ontology-current.xpl"/>

@@ -182,6 +182,7 @@ UNION { ?obj PROP nm:ID .
 								<class prop="nmo:hasManufacture">nmo:Manufacture</class>
 								<class prop="nmo:hasMaterial">nmo:Material</class>
 								<class prop="nmo:hasMint">nmo:Mint</class>
+								<class prop="nmo:representsObjectType">nmo:ObjectType</class>								
 								<class prop="?prop">foaf:Organization</class>
 								<class prop="?prop">foaf:Person</class>
 								<class prop="nmo:hasRegion">nmo:Region</class>

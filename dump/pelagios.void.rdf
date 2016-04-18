@@ -3,7 +3,7 @@
 	xmlns:dcterms="http://purl.org/dc/terms/" xmlns:void="http://rdfs.org/ns/void#" xmlns:foaf="http://xmlns.com/foaf/0.1/"
 	xmlns:oac="http://www.openannotation.org/ns/" xmlns:owl="http://www.w3.org/2002/07/owl#">
 	<void:Dataset rdf:about="http://nomisma.org/">
-		<dcterms:title>Nomisma.org</dcterms:title>
+		<dcterms:title>Nomisma.org Concept Thesaurus</dcterms:title>
 		<dcterms:description>Pleiades annotations for numismatic concepts defined by Nomisma.org</dcterms:description>
 		<dcterms:license rdf:resource="http://creativecommons.org/licenses/by/3.0/"/>
 		<dcterms:subject rdf:resource="http://dbpedia.org/resource/Annotation"/>
