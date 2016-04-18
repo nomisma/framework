@@ -45,14 +45,11 @@ OPTIONAL {?coin nmo:hasObverse ?obverse . ?obverse foaf:thumbnail ?obvThumb}
 OPTIONAL {?coin nmo:hasObverse ?obverse . ?obverse foaf:depiction ?obvRef}
 OPTIONAL {?coin nmo:hasReverse ?reverse . ?reverse foaf:thumbnail ?revThumb}
 OPTIONAL {?coin nmo:hasReverse ?reverse . ?reverse foaf:depiction ?revRef}
-{?coin nmo:hasTypeSeriesItem ?type .
+?coin nmo:hasTypeSeriesItem ?type .
   OPTIONAL {?type nmo:hasStartDate ?startDate}
   OPTIONAL {?type nmo:hasEndDate ?endDate}
-  ?type nmo:hasMint ?mint }
-UNION { ?coin nmo:hasMint ?mint
-  OPTIONAL {?coin nmo:hasStartDate ?startDate}
-  OPTIONAL {?coin nmo:hasEndDate ?endDate}}
-  ?mint skos:closeMatch ?match FILTER strStarts(str(?match), "http://pleiades")
+?type nmo:hasMint ?mint .
+?mint skos:closeMatch ?match FILTER strStarts(str(?match), "http://pleiades")
 } LIMIT %LIMIT% OFFSET %OFFSET%]]></xsl:variable>
 
 				<xsl:variable name="service">
