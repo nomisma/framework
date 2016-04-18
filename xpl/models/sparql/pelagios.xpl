@@ -23,7 +23,7 @@
 		<p:input name="config">
 			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 				<xsl:param name="offset" select="if (doc('input:request')/request/parameters/parameter[name='offset']/value castable as xs:integer) then doc('input:request')/request/parameters/parameter[name='offset']/value else '0'"/>
-				<xsl:variable name="limit">100</xsl:variable>
+				<xsl:variable name="limit">5000</xsl:variable>
 
 				<!-- config variables -->
 				<xsl:variable name="sparql_endpoint" select="/config/sparql_query"/>
