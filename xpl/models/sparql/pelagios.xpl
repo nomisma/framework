@@ -49,7 +49,9 @@ OPTIONAL {?coin nmo:hasReverse ?reverse . ?reverse foaf:depiction ?revRef}
   OPTIONAL {?type nmo:hasStartDate ?startDate}
   OPTIONAL {?type nmo:hasEndDate ?endDate}
   ?type nmo:hasMint ?mint }
-UNION { ?coin nmo:hasMint ?mint}
+UNION { ?coin nmo:hasMint ?mint
+  OPTIONAL {?coin nmo:hasStartDate ?startDate}
+  OPTIONAL {?coin nmo:hasEndDate ?endDate}}
   ?mint skos:closeMatch ?match FILTER strStarts(str(?match), "http://pleiades")
 } LIMIT %LIMIT% OFFSET %OFFSET%]]></xsl:variable>
 
