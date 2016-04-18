@@ -22,8 +22,7 @@
 				
 				<xsl:call-template name="dumps">
 					<xsl:with-param name="count" select="/content/res:sparql[2]//res:binding[@name='count']/res:literal"/>
-				</xsl:call-template>
-				
+				</xsl:call-template>				
 			</void:Dataset>
 
 			<xsl:apply-templates select="/content/res:sparql[1]/descendant::res:result" mode="void:Dataset"/>
@@ -59,7 +58,7 @@
 		
 		<void:documents><xsl:value-of select="$count"/></void:documents>
 		<xsl:for-each select="0 to $max">
-			<void:dataDump rdf:resource="http://nomisma.org/pelagios-objects.rdf{if (. &gt; 0) then concat('?offset=', xs:string(. * $perPage)) else ''}"/>
+			<void:dataDump rdf:resource="http://nomisma.org/pelagios-objects.{.}.rdf"/>
 		</xsl:for-each>
 	</xsl:template>
 
