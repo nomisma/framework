@@ -18,12 +18,78 @@
 		</p:input>
 		<p:output name="data" id="request"/>
 	</p:processor>
+	
+	<p:processor name="oxf:unsafe-xslt">		
+		<p:input name="data" href="#data"/>		
+		<p:input name="config">
+			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+				
+				<xsl:variable name="hasMints" as="item()*">
+					<classes>
+						<class>nmo:Collection</class>
+						<class>nmo:Denomination</class>
+						<!--<class>rdac:Family</class>
+						<class>nmo:Ethnic</class>
+						<class>foaf:Group</class>-->
+						<class>nmo:Hoard</class>
+						<class>nmo:Manufacture</class>
+						<class>nmo:Material</class>
+						<class>nmo:Mint</class>
+						<class>nmo:ObjectType</class>
+						<!--<class>foaf:Organization</class>-->
+						<class>foaf:Person</class>
+						<class>nmo:Region</class>
+						<class>nmo:TypeSeries</class>
+					</classes>
+				</xsl:variable>
+				
+				<xsl:variable name="hasFindspots" as="item()*">
+					<classes>
+						<class>nmo:Denomination</class>
+						<!--<class>rdac:Family</class>
+						<class>nmo:Ethnic</class>
+						<class>foaf:Group</class>-->
+						<class>nmo:Manufacture</class>
+						<class>nmo:Material</class>
+						<class>nmo:Mint</class>
+						<class>nmo:ObjectType</class>								
+						<!--<class>foaf:Organization</class>-->
+						<class>foaf:Person</class>
+						<class>nmo:Region</class>
+					</classes>
+				</xsl:variable>
+				
+				<xsl:variable name="type" select="/rdf:RDF/*[1]/name()"/>
+				
+				
+				<xsl:template match="/">
+					<type>
+						<xsl:attribute name="hasMints">
+							<xsl:choose>
+								<xsl:when test="$hasMints//class[text()=$type]">true</xsl:when>
+								<xsl:otherwise>false</xsl:otherwise>
+							</xsl:choose>
+						</xsl:attribute>
+						<xsl:attribute name="hasFindspots">
+							<xsl:choose>
+								<xsl:when test="$hasFindspots//class[text()=$type]">true</xsl:when>
+								<xsl:otherwise>false</xsl:otherwise>
+							</xsl:choose>
+						</xsl:attribute>
+						
+						<xsl:value-of select="$type"/>
+					</type>
+				</xsl:template>
+				
+			</xsl:stylesheet>
+		</p:input>
+		<p:output name="data" id="type"/>
+	</p:processor>
 
 	<!-- ASK whether there are geographic coordinates for mints or findspots in order to generate a conditional for the map -->
-	<p:choose href="#data">
+	<p:choose href="#type">
 		<!-- suppress any class of object for which we do not want to render a map -->
-		<p:when test="/rdf:RDF/*[1]/name() = 'nmo:ReferenceWork' or /rdf:RDF/*[1]/name() = 'nmo:TypeSeries' or /rdf:RDF/*[1]/name() = 'nmo:FieldOfNumismatics' or /rdf:RDF/*[1]/name() =
-			'nmo:NumismaticTerm' or  /rdf:RDF/*[1]/name() = 'org:Role' or  /rdf:RDF/*[1]/name() = 'nmo:Uncertainty' or  /rdf:RDF/*[1]/name() = 'nmo:CoinWear' or /rdf:RDF/*[1]/name() = 'crm:E4_Period'">
+		<p:when test="type/@hasMints = 'false'">
 			<p:processor name="oxf:identity">
 				<p:input name="data">
 					<sparql xmlns="http://www.w3.org/2005/sparql-results#">
@@ -33,18 +99,18 @@
 				</p:input>
 				<p:output name="data" id="hasMints"/>
 			</p:processor>
-		</p:when>
+		</p:when>		
 		<!-- apply alternate SPARQL query to get mints associated with a Hoard -->
 		<p:otherwise>
 			<p:processor name="oxf:unsafe-xslt">
 				<p:input name="request" href="#request"/>
-				<p:input name="data" href="#data"/>
+				<p:input name="data" href="#type"/>
 				<p:input name="config-xml" href=" ../../../../config.xml"/>
 				<p:input name="config">
 					<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 						<xsl:variable name="id" select="tokenize(doc('input:request')/request/request-url, '/')[last()]"/>
 						<xsl:variable name="sparql_endpoint" select="doc('input:config-xml')/config/sparql_query"/>
-						<xsl:variable name="type" select="/rdf:RDF/*[1]/name()"/>
+						<xsl:variable name="type" select="/type"/>
 
 						<xsl:variable name="classes" as="item()*">
 							<classes>
@@ -147,10 +213,9 @@ UNION { ?obj PROP nm:ID .
 		</p:otherwise>
 	</p:choose>
 
-	<p:choose href="#data">
+	<p:choose href="#type">
 		<!-- suppress any class of object for which we do not want to render a map -->
-		<p:when test="/rdf:RDF/*[1]/name() = 'nmo:ReferenceWork' or /rdf:RDF/*[1]/name() = 'nmo:TypeSeries' or /rdf:RDF/*[1]/name() = 'nmo:FieldOfNumismatics' or /rdf:RDF/*[1]/name() =
-			'nmo:NumismaticTerm' or  /rdf:RDF/*[1]/name() = 'org:Role' or  /rdf:RDF/*[1]/name() = 'nmo:Uncertainty' or /rdf:RDF/*[1]/name() = 'nmo:CoinWear' or /rdf:RDF/*[1]/name() = 'nmo:Collection' or /rdf:RDF/*[1]/name() = 'crm:E4_Period'">
+		<p:when test="type/@hasFindspots = 'false'">
 			<p:processor name="oxf:identity">
 				<p:input name="data">
 					<sparql xmlns="http://www.w3.org/2005/sparql-results#">
@@ -165,13 +230,13 @@ UNION { ?obj PROP nm:ID .
 		<p:otherwise>
 			<p:processor name="oxf:unsafe-xslt">
 				<p:input name="request" href="#request"/>
-				<p:input name="data" href="#data"/>
+				<p:input name="data" href="#type"/>
 				<p:input name="config-xml" href=" ../../../../config.xml"/>
 				<p:input name="config">
 					<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 						<xsl:variable name="id" select="tokenize(doc('input:request')/request/request-url, '/')[last()]"/>
 						<xsl:variable name="sparql_endpoint" select="doc('input:config-xml')/config/sparql_query"/>
-						<xsl:variable name="type" select="/rdf:RDF/*[1]/name()"/>
+						<xsl:variable name="type" select="/type"/>
 
 						<xsl:variable name="classes" as="item()*">
 							<classes>
