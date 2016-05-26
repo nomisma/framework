@@ -51,7 +51,7 @@
 							<table class="table-dl">
 								<tr>
 									<td>
-										<a href="http://pelagios-project.blogspot.com/">
+										<a href="http://commons.pelagios.org/">
 											<img src="{$display_path}ui/images/pelagios.png"/>
 										</a>
 									</td>
