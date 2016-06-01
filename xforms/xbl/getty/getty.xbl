@@ -10,8 +10,7 @@
 						<xxforms:sequence select="." xxbl:scope="outer"/>
 					</xforms:var>
 					<xforms:trigger appearance="minimal">
-						<xforms:label>
-							<span class="glyphicon glyphicon-search"/>
+						<xforms:label><span class="glyphicon glyphicon-search"/>
 							<xforms:output value="if ($binding/name() = 'nmo:Mint' or $binding/name() = 'nmo:Region') then 'Getty TGN' else if ($binding/name()='foaf:Person') then 'Getty ULAN' else
 								'Getty AAT'"/>
 						</xforms:label>
