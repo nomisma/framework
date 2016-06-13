@@ -26,9 +26,9 @@
 			<xsl:when test="namespace-uri() = 'http://www.w3.org/2005/sparql-results#'">
 				<xsl:choose>
 					<xsl:when test="count(descendant::res:result) &gt; 0">
-						<xsl:text>[</xsl:text>
+						<xsl:text>{"type": "FeatureCollection","features": [</xsl:text>
 						<xsl:apply-templates select="descendant::res:result"/>
-						<xsl:text>]</xsl:text>
+						<xsl:text>]}</xsl:text>
 					</xsl:when>
 					<xsl:otherwise>{}</xsl:otherwise>
 				</xsl:choose>
