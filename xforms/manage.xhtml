@@ -79,7 +79,7 @@ UNION { ?s void:inDataset <DATASET> . ?s ?p ?o}
 					<prefix><![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:	<http://purl.org/dc/terms/>
 PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
-					<query id="get-datasets">SELECT * WHERE {?uri a void:Dataset ; dcterms:publisher ?publisher ; void:dataDump ?dump; dcterms:title ?title FILTER (lang(?title) = "" || langMatches(lang(?title), "en")) } ORDER BY ASC(?publisher) ASC(?title)</query>
+					<query id="get-datasets">CONSTRUCT {?uri rdf:type void:Dataset ; dcterms:publisher ?publisher; dcterms:title ?title ; void:dataDump ?dump} WHERE {?uri a void:Dataset ; dcterms:publisher ?publisher ; void:dataDump ?dump; dcterms:title ?title FILTER (lang(?title) = "" || langMatches(lang(?title), "en")) } ORDER BY ASC(?publisher) ASC(?title)</query>
 				</templates>
 			</xforms:instance>
 
@@ -175,7 +175,7 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 					<xforms:switch>
 						<xforms:case id="default">
 							<xforms:group ref="instance('sparqlResponse')">
-								<xforms:group ref=".[count(descendant::res:result) &gt; 0]">
+								<xforms:group ref=".[count(void:Dataset) &gt; 0]">
 									<table class="table">
 										<thead>
 											<tr>
@@ -186,20 +186,17 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 											</tr>
 										</thead>
 										<tbody>
-											<xforms:repeat nodeset="descendant::res:result">
+											<xforms:repeat nodeset="descendant::void:Dataset">
 												<tr>
-													<td><a href="{res:binding[@name='uri']/res:uri}" target="_blank"><xforms:output ref="res:binding[@name='title']/res:literal"
+													<td><a href="{@rdf:about}" target="_blank"><xforms:output ref="dcterms:title"
 														></xforms:output></a></td>
-													<td><xforms:output ref="res:binding[@name='publisher']/res:literal"></xforms:output></td>
+													<td><xforms:output ref="dcterms:publisher"></xforms:output></td>
 													<td class="text-center">
 														<xforms:trigger appearance="minimal">
 															<xforms:label><span class="glyphicon glyphicon-refresh"></span></xforms:label>
 															<xforms:action ev:event="DOMActivate">
-																<xforms:var name="dataset" select="res:binding[@name='uri']/res:uri"></xforms:var>
-																<xforms:var name="dump" select="res:binding[@name='dump']/res:uri"></xforms:var>
-																
+																<xforms:var name="dataset" select="@rdf:about"></xforms:var>
 																<xforms:setvalue ref="instance('control-instance')/dataset" value="$dataset"></xforms:setvalue>
-																<xforms:setvalue ref="instance('control-instance')/dump_uri" value="$dump"></xforms:setvalue>
 																<xforms:dispatch target="refresh-dataset-dialog" name="fr-show"></xforms:dispatch>
 															</xforms:action>
 														</xforms:trigger>
@@ -208,7 +205,7 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 														<xforms:trigger appearance="minimal">
 															<xforms:label><span class="glyphicon glyphicon-remove"></span></xforms:label>
 															<xforms:action ev:event="DOMActivate">
-																<xforms:var name="dataset" select="res:binding[@name='uri']/res:uri"></xforms:var>
+																<xforms:var name="dataset" select="@rdf:about"></xforms:var>
 																<xforms:setvalue ref="instance('control-instance')/dataset" value="$dataset"></xforms:setvalue>
 																<xforms:dispatch target="delete-dataset-dialog" name="fr-show"></xforms:dispatch>
 															</xforms:action>
@@ -305,12 +302,18 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 									<xforms:trigger>
 										<xforms:label><span class="glyphicon glyphicon-upload"></span> Import</xforms:label>
 										<xforms:action ev:event="DOMActivate">
-											<xforms:setvalue ref="instance('control-instance')/dump_uri" value="instance('void-rdf')/void:Dataset/void:dataDump/@rdf:resource"></xforms:setvalue>
-											<xforms:send submission="load-dump"></xforms:send>
 											<!-- push VoID RDF into triplestore -->
+											<xforms:send submission="post-void"></xforms:send>
 											<xforms:action ev:event="xforms-submit-done">
-												<xforms:send submission="post-void"></xforms:send>
-												<xforms:send submission="post-dump"></xforms:send>
+												<xforms:action xxforms:iterate="instance('void-rdf')/void:Dataset/void:dataDump">
+													<xforms:setvalue ref="instance('control-instance')/dump_uri" value="context()/@rdf:resource"></xforms:setvalue>
+													<xforms:send submission="load-dump"></xforms:send>
+													<xforms:action ev:event="xforms-submit-done">														
+														<xforms:send submission="post-dump"></xforms:send>														
+													</xforms:action>
+												</xforms:action>
+												
+												<!-- refresh page after dumps have been posted -->
 												<xforms:send submission="submit-sparqlQuery"></xforms:send>
 												<xforms:toggle case="default"></xforms:toggle>
 											</xforms:action>
@@ -395,13 +398,14 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 					
 					<!-- then fetch the new data dump -->
 					<xforms:action ev:event="xforms-submit-done">
-						<xforms:send submission="load-dump"></xforms:send>
-						<xforms:action ev:event="xforms-submit-done">
-							<xforms:send submission="post-dump"/>
-							<!-- resubmit SPARQL query for void:Datasets to reset the table -->
-							<xforms:setvalue ref="instance('sparqlQuery')" value="concat(instance('sparql-templates')/prefix, ' ', instance('sparql-templates')/query[@id='get-datasets'])"></xforms:setvalue>
-							<xforms:send submission="submit-sparqlQuery"></xforms:send>
+						<xforms:action xxforms:iterate="instance('sparqlResponse')//void:Dataset[@rdf:about=instance('control-instance')/dataset]/void:dataDump">
+							<xforms:setvalue ref="instance('control-instance')/dump_uri" value="context()/@rdf:resource"></xforms:setvalue>
+							<xforms:send submission="load-dump"></xforms:send>
+							<xforms:send submission="post-dump" ev:event="xforms-submit-done"/>
 						</xforms:action>
+						<!-- resubmit SPARQL query for void:Datasets to reset the table -->
+						<xforms:setvalue ref="instance('sparqlQuery')" value="concat(instance('sparql-templates')/prefix, ' ', instance('sparql-templates')/query[@id='get-datasets'])"></xforms:setvalue>
+						<xforms:send submission="submit-sparqlQuery"></xforms:send>
 					</xforms:action>					
 				</xforms:action>
 			</fr:positive-choice>
