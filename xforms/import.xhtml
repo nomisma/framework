@@ -372,8 +372,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 				instance="wikidata" replace="instance">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to get data from Wikidata.</xforms:message>
 				<xforms:action ev:event="xforms-submit-done">
-					<!-- process wikidata XML if the entity has an @id -->
-					<xforms:action if="string(instance('wikidata')//entity/@id)">
+					<!-- process wikidata XML if the entity has an @id and it starts with Q -->
+					<xforms:action if="starts-with(instance('wikidata')//entity/@id, 'Q')">
 						<!-- create mapping based on the type: skos:closeMatch for mints, skos:exactMatch for all else -->
 						<xforms:var name="mapping" select="if (instance('control-instance')/type = 'nmo:Mint') then 'skos:closeMatch' else 'skos:exactMatch'"></xforms:var>
 						<!-- insert the wikidata URI -->
