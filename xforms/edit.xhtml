@@ -411,6 +411,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 					</xforms:bind>
 					<!-- nomisma properties -->
 					<xforms:bind nodeset="nmo:hasDate" type="xs:gYear" required="true()"></xforms:bind>
+					<xforms:bind nodeset="nmo:hasStartDate" type="xs:gYear" required="true()"></xforms:bind>
+					<xforms:bind nodeset="nmo:hasEndDate" type="xs:gYear" required="true()"></xforms:bind>
 					<!-- @rdf:resource -->
 					<xforms:bind nodeset="//@rdf:resource" required="true()" type="xs:anyURI"></xforms:bind>
 				</xforms:bind>
@@ -746,18 +748,22 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 							</li>
 							<xforms:group ref=".[$type='rdac:Family' or $type='nmo:Mint']">
 								<xforms:group ref=".[count(nmo:hasStartDate) = 0]">
-									<xforms:trigger appearance="minimal">
-										<xforms:label>
-											<span class="glyphicon glyphicon-plus"></span>Start Date</xforms:label>
-										<xforms:insert ev:event="DOMActivate" origin="instance('hasStartDate-template')" context="." nodeset="./child::node()[last()]"></xforms:insert>
-									</xforms:trigger>
+									<li>
+										<xforms:trigger appearance="minimal">
+											<xforms:label>
+												<span class="glyphicon glyphicon-plus"></span>Start Date</xforms:label>
+											<xforms:insert ev:event="DOMActivate" origin="instance('hasStartDate-template')" context="." nodeset="./child::node()[last()]"></xforms:insert>
+										</xforms:trigger>
+									</li>
 								</xforms:group>
 								<xforms:group ref=".[count(nmo:hasEndDate) = 0]">
-									<xforms:trigger appearance="minimal">
-										<xforms:label>
-											<span class="glyphicon glyphicon-plus"></span>End Date</xforms:label>
-										<xforms:insert ev:event="DOMActivate" origin="instance('hasEndDate-template')" context="." nodeset="./child::node()[last()]"></xforms:insert>
-									</xforms:trigger>
+									<li>
+										<xforms:trigger appearance="minimal">
+											<xforms:label>
+												<span class="glyphicon glyphicon-plus"></span>End Date</xforms:label>
+											<xforms:insert ev:event="DOMActivate" origin="instance('hasEndDate-template')" context="." nodeset="./child::node()[last()]"></xforms:insert>
+										</xforms:trigger>
+									</li>
 								</xforms:group>
 							</xforms:group>
 							<xforms:group ref=".[$type='nmo:Collection']">
@@ -1145,6 +1151,38 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 							</div>
 							<div class="subsection">
 								<h4>Miscellaneous Fields</h4>
+								<xforms:group ref="nmo:hasStartDate">
+									<xforms:var name="year" select="abs(number(.))"></xforms:var>
+									<div>
+										<xforms:input ref=".">
+											<xforms:label>Start Date</xforms:label>
+											<xforms:alert>Must conform to xsd:gYear</xforms:alert>
+										</xforms:input>
+										<xforms:output value="if (number(.) &lt; 0) then concat($year, ' B.C.') else concat('A.D. ', $year)"></xforms:output>
+										<xforms:trigger appearance="minimal">
+											<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
+											<xforms:label>
+												<span class="glyphicon glyphicon-remove"></span>
+											</xforms:label>
+										</xforms:trigger>
+									</div>
+								</xforms:group>
+								<xforms:group ref="nmo:hasEndDate">
+									<xforms:var name="year" select="abs(number(.))"></xforms:var>
+									<div>
+										<xforms:input ref=".">
+											<xforms:label>End Date</xforms:label>
+											<xforms:alert>Must conform to xsd:gYear</xforms:alert>
+										</xforms:input>
+										<xforms:output value="if (number(.) &lt; 0) then concat($year, ' B.C.') else concat('A.D. ', $year)"></xforms:output>
+										<xforms:trigger appearance="minimal">
+											<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
+											<xforms:label>
+												<span class="glyphicon glyphicon-remove"></span>
+											</xforms:label>
+										</xforms:trigger>
+									</div>
+								</xforms:group>
 								<xforms:group ref="foaf:homepage">
 									<div>
 										<xforms:input ref="@rdf:resource">
@@ -1321,7 +1359,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 									</div>
 								</div>
 							</div>
-						</xforms:group> <xforms:group ref="bio:Birth">
+						</xforms:group>
+						<xforms:group ref="bio:Birth">
 							<xforms:var name="uri" select="@rdf:about"></xforms:var>
 							<div class="subsection row">
 								<div class="col-md-12">
@@ -1393,7 +1432,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 									</xforms:group>
 								</div>
 							</div>
-						</xforms:group> <xforms:group ref="bio:Death">
+						</xforms:group>
+						<xforms:group ref="bio:Death">
 							<xforms:var name="uri" select="@rdf:about"></xforms:var>
 							<div class="subsection row">
 								<div class="col-md-12">
