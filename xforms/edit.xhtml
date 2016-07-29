@@ -222,6 +222,10 @@
 			<xforms:instance id="seeAlso-template" xxforms:exclude-result-prefixes="#all">
 				<rdfs:seeAlso rdf:resource=""></rdfs:seeAlso>
 			</xforms:instance>
+			
+			<xforms:instance id="memberOf-template" xxforms:exclude-result-prefixes="#all">
+				<org:memberOf rdf:resource=""></org:memberOf>
+			</xforms:instance>
 
 			<xforms:instance id="date-template" xxforms:exclude-result-prefixes="#all">
 				<nmo:hasDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear"></nmo:hasDate>
@@ -699,6 +703,15 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 									</xforms:trigger>
 								</li>
 							</xforms:group>
+							<xforms:group ref=".[$type='nmo:Collection']">
+								<li>
+									<xforms:trigger appearance="minimal">
+										<xforms:label>
+											<span class="glyphicon glyphicon-plus"></span>Parent Organization</xforms:label>
+										<xforms:insert ev:event="DOMActivate" origin="instance('memberOf-template')" context="." nodeset="./child::node()[last()]"></xforms:insert>
+									</xforms:trigger>
+								</li>
+							</xforms:group>
 							<li>
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
@@ -1094,6 +1107,20 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 									<div>
 										<xforms:input ref="@rdf:resource">
 											<xforms:label>See Also</xforms:label>
+											<xforms:alert>Required, must be URL</xforms:alert>
+										</xforms:input>
+										<xforms:trigger appearance="minimal">
+											<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
+											<xforms:label>
+												<span class="glyphicon glyphicon-remove"></span>
+											</xforms:label>
+										</xforms:trigger>
+									</div>
+								</xforms:repeat>								
+								<xforms:repeat nodeset="org:memberOf">
+									<div>
+										<xforms:input ref="@rdf:resource">
+											<xforms:label>Parent Organization</xforms:label>
 											<xforms:alert>Required, must be URL</xforms:alert>
 										</xforms:input>
 										<xforms:trigger appearance="minimal">
