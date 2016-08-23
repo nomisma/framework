@@ -128,13 +128,13 @@ PREFIX rdfs:	<http://www.w3.org/2000/01/rdf-schema#>
  ?object nmo:hasTypeSeriesItem ?coinType ;
   rdf:type nmo:NumismaticObject ;
   nmo:hasFindspot ?place }
-UNION {?obv PROP nm:ID .
+UNION {?obv nmo:hasPortrait nm:ID .
 ?coinType nmo:hasObverse ?obv ;
   a nmo:TypeSeriesItem .
 ?object nmo:hasTypeSeriesItem ?coinType ;
   rdf:type nmo:NumismaticObject ;
   nmo:hasFindspot ?place }
-UNION {?rev PROP nm:ID .
+UNION {?rev nmo:hasPortrait nm:ID .
 ?coinType nmo:hasReverse ?rev ;
   a nmo:TypeSeriesItem .
 ?object nmo:hasTypeSeriesItem ?coinType ;
@@ -211,13 +211,13 @@ UNION { ?coinType PROP nm:ID ;
  ?object nmo:hasTypeSeriesItem ?coinType ;
   rdf:type nmo:NumismaticObject ;
   nmo:hasFindspot ?place }
-UNION {?obv PROP nm:ID .
+UNION {?obv nmo:hasPortrait nm:ID .
 ?coinType nmo:hasObverse ?obv ;
   a nmo:TypeSeriesItem .
 ?object nmo:hasTypeSeriesItem ?coinType ;
   rdf:type nmo:NumismaticObject ;
   nmo:hasFindspot ?place }
-UNION {?rev PROP nm:ID .
+UNION {?rev nmo:hasPortrait nm:ID .
 ?coinType nmo:hasReverse ?rev ;
   a nmo:TypeSeriesItem .
 ?object nmo:hasTypeSeriesItem ?coinType ;
@@ -262,14 +262,14 @@ UNION {?rev PROP nm:ID .
   rdf:type nmo:NumismaticObject ;
   dcterms:isPartOf ?hoard .
   ?hoard nmo:hasFindspot ?place }
-UNION {?obv PROP nm:ID .
+UNION {?obv nmo:hasPortrait nm:ID .
 ?coinType nmo:hasObverse ?obv ;
   a nmo:TypeSeriesItem .
   ?object nmo:hasTypeSeriesItem ?coinType ;
   rdf:type nmo:NumismaticObject ;
   dcterms:isPartOf ?hoard .
   ?hoard nmo:hasFindspot ?place }
-UNION {?rev PROP nm:ID .
+UNION {?rev nmo:hasPortrait nm:ID .
 ?coinType nmo:hasReverse ?rev ;
   a nmo:TypeSeriesItem .
   ?object nmo:hasTypeSeriesItem ?coinType ;
