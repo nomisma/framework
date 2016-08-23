@@ -75,6 +75,9 @@
 	<page path="/nomisma/apis/getRdf" model="xpl/models/rdf/aggregate-ids.xpl" view="xpl/views/serializations/apis/getRdf.xpl"/>
 	<page path="/nomisma/apis/regionHierarchy" view="xpl/views/serializations/sparql/apis.xpl"/>
 	<page path="/nomisma/apis/numishareResults" model="xpl/models/sparql/numishareResults.xpl" view="xpl/views/serializations/sparql/numishareResults.xpl"/>
+	
+	<!-- **** AJAX **** -->
+	<page path="/nomisma/ajax/listTypes" model="xpl/models/sparql/listTypes.xpl" view="xpl/views/serializations/sparql/listTypes.xpl"/>
 
 	<!-- **** PROJECT NAMESPACES **** -->
 	<!--<page path="/nomisma/project" model="xpl/controllers/page-redirect.xpl"/>

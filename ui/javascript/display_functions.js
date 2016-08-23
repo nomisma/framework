@@ -3,12 +3,12 @@ DISPLAY FUNCTIONS
 Modified: March 2015
 Function: These are javascript functions responsible for minor features on the HTML page for IDs,
 e.g., showing and hiding SPARQL query divs
-*******/
+ *******/
 
-$(document).ready(function(){
-	$('.toggle-button').click(function(){
+$(document).ready(function () {
+	$(' #listTypes') .on('click', '.control-row .toggle-button', function () {
 		var div = $(this).attr('id').split('-')[1];
-		$('#' + div).toggle();
+		$('#' + div + '-div').toggle();
 		
 		//replace minus with plus and vice versa
 		var span = $(this).children('span');
@@ -21,6 +21,19 @@ $(document).ready(function(){
 		}
 		return false;
 	});
+	
+	//if there is a div with a id=listTypes, then initiate ajax call
+	if ($('#listTypes') .length > 0) {	
+		var id = $('title').attr('id');
+		var type = $('#type').text();
+		
+		$.get('../ajax/listTypes', {
+			id: id, type: type
+		},
+		function (data) {
+			$('#listTypes').html(data);
+		});
+	}
 	
 	$('a.thumbImage').fancybox({
 		type: 'image',
