@@ -152,11 +152,11 @@ PREFIX org: <http://www.w3.org/ns/org#>]]>
 {?obj PROP nm:ID .
 	MINUS {?obj dcterms:isReplacedBy ?replaced}
           ?obj nmo:hasMint ?place }
-UNION {?obj PROP nm:ID .
+UNION {?obj nmo:hasPortrait nm:ID .
 	?obj nmo:hasObverse ?obv .
 	MINUS {?obj dcterms:isReplacedBy ?replaced}
           ?obj nmo:hasMint ?place }
-UNION {?rev PROP nm:ID .
+UNION {?rev nmo:hasPortrait nm:ID .
 	?obj nmo:hasReverse ?rev .
 	MINUS {?obj dcterms:isReplacedBy ?replaced}
           ?obj nmo:hasMint ?place }

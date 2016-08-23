@@ -274,9 +274,9 @@ PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>]]>
 	<xsl:when test="$type='foaf:Person'"><![CDATA[ASK {
 {{ ?s PROP nm:ID }
 UNION {?s nmo:hasObverse ?obv .
-       ?obv PROP nm:ID }
+       ?obv nmo:hasPortrait nm:ID }
 UNION {?s nmo:hasReverse ?rev .
-       ?rev PROP nm:ID }
+       ?rev nmo:hasPortrait nm:ID }
   }
   
 {?object nmo:hasTypeSeriesItem ?s ;
