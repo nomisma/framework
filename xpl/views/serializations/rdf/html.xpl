@@ -159,7 +159,12 @@ PREFIX org: <http://www.w3.org/ns/org#>]]>
 								</xsl:when>
 								<xsl:when test="$type='foaf:Person'"><![CDATA[ASK {
 {?obj PROP nm:ID .
-	MINUS {?obj dcterms:isReplacedBy ?replaced}
+          ?obj nmo:hasMint ?place }
+UNION {?obj PROP nm:ID .
+	?obj nmo:hasObverse ?obv .
+          ?obj nmo:hasMint ?place }
+UNION {?rev PROP nm:ID .
+	?obj nmo:hasReverse ?rev .
           ?obj nmo:hasMint ?place }
 UNION { nm:ID org:hasMembership ?membership .
  ?membership org:organization ?place .
@@ -266,6 +271,31 @@ PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>]]>
 
 <xsl:choose>
 	<xsl:when test="$type='nmo:Hoard'"><![CDATA[ASK {nm:ID nmo:hasFindspot ?loc}]]></xsl:when>
+	<xsl:when test="$type='foaf:Person'"><![CDATA[ASK {
+{{ ?s PROP nm:ID }
+UNION {?s nmo:hasObverse ?obv .
+       ?obv PROP nm:ID }
+UNION {?s nmo:hasReverse ?rev .
+       ?rev PROP nm:ID }
+  }
+  
+{?object nmo:hasTypeSeriesItem ?s ;
+	a nmo:NumismaticObject ;
+  nmo:hasFindspot ?place }
+UNION { ?object a nmo:NumismaticObject ;
+	nmo:hasFindspot ?place }
+UNION { ?object dcterms:isPartOf ?hoard .
+  ?hoard a nmo:Hoard ;
+           nmo:hasFindspot ?place }
+UNION {?contents nmo:hasTypeSeriesItem ?s ;
+                  a dcmitype:Collection .
+  ?object dcterms:tableOfContents ?contents ;
+    nmo:hasFindspot ?place }
+UNION { ?contents PROP nm:ID ;
+                  a dcmitype:Collection .
+  ?object dcterms:tableOfContents ?contents ;
+    nmo:hasFindspot ?place }
+}]]></xsl:when>
 	<xsl:otherwise>
 		<![CDATA[ASK {
 { ?coinType PROP nm:ID ;

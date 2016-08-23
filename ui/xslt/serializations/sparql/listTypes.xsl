@@ -34,7 +34,35 @@
 		</classes>
 	</xsl:variable>
 
-	<xsl:variable name="listTypes-query"><![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+	<xsl:variable name="listTypes-query">
+		<xsl:choose>
+			<xsl:when test="$type='foaf:Person'">
+				<![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX nm:	<http://nomisma.org/id/>
+PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
+PREFIX dcterms:	<http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT * WHERE {
+ { ?type PROP nm:ID }
+ UNION { ?type nmo:hasObverse ?obv . ?obv PROP nm:ID }
+ UNION { ?type nmo:hasReverse ?rev . ?rev PROP nm:ID }
+   ?type a nmo:TypeSeriesItem ;
+   skos:prefLabel ?label FILTER(langMatches(lang(?label), "en")) .
+   MINUS {?type dcterms:isReplacedBy ?replaced}
+   ?type dcterms:source ?source . 
+   	?source skos:prefLabel ?sourceLabel FILTER(langMatches(lang(?sourceLabel), "en"))
+   OPTIONAL {?type nmo:hasStartDate ?startDate}
+   OPTIONAL {?type nmo:hasEndDate ?endDate}
+   OPTIONAL {?type nmo:hasMint ?mint . 
+   	?mint skos:prefLabel ?mintLabel FILTER(langMatches(lang(?mintLabel), "en"))}
+   OPTIONAL {?type nmo:hasDenomination ?den . 
+   	?den skos:prefLabel ?denLabel FILTER(langMatches(lang(?denLabel), "en"))}
+}]]>
+			</xsl:when>
+			<xsl:otherwise>
+				<![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX nm:	<http://nomisma.org/id/>
 PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
@@ -54,7 +82,10 @@ SELECT * WHERE {
    	?mint skos:prefLabel ?mintLabel FILTER(langMatches(lang(?mintLabel), "en"))}
    OPTIONAL {?type nmo:hasDenomination ?den . 
    	?den skos:prefLabel ?denLabel FILTER(langMatches(lang(?denLabel), "en"))}
-}]]></xsl:variable>
+}]]>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
 
 	<xsl:template match="/">
 		<xsl:apply-templates select="/res:sparql"/>

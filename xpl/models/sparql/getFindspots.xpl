@@ -119,7 +119,54 @@ PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 PREFIX rdfs:	<http://www.w3.org/2000/01/rdf-schema#>
 ]]>
 <xsl:choose>
-	<xsl:when test="$api = 'heatmap'"><![CDATA[SELECT DISTINCT ?place ?label ?lat ?long WHERE {
+	<xsl:when test="$api = 'heatmap'">
+		<xsl:choose>
+			<xsl:when test="$type='foaf:Person'">
+				<![CDATA[SELECT DISTINCT ?place ?label ?lat ?long WHERE {
+{ ?coinType PROP nm:ID ;
+  a nmo:TypeSeriesItem . 
+ ?object nmo:hasTypeSeriesItem ?coinType ;
+  rdf:type nmo:NumismaticObject ;
+  nmo:hasFindspot ?place }
+UNION {?obv PROP nm:ID .
+?coinType nmo:hasObverse ?obv ;
+  a nmo:TypeSeriesItem .
+?object nmo:hasTypeSeriesItem ?coinType ;
+  rdf:type nmo:NumismaticObject ;
+  nmo:hasFindspot ?place }
+UNION {?rev PROP nm:ID .
+?coinType nmo:hasReverse ?rev ;
+  a nmo:TypeSeriesItem .
+?object nmo:hasTypeSeriesItem ?coinType ;
+  rdf:type nmo:NumismaticObject ;
+  nmo:hasFindspot ?place }
+  UNION { ?object PROP nm:ID ;
+  	rdf:type nmo:NumismaticObject ;
+  	nmo:hasFindspot ?place}
+  UNION{ ?coinType PROP nm:ID ;
+  a nmo:TypeSeriesItem .
+  ?object nmo:hasTypeSeriesItem ?coinType ;
+  rdf:type nmo:NumismaticObject ;
+  dcterms:isPartOf ?hoard .
+  ?hoard nmo:hasFindspot ?place }
+UNION { ?coinType PROP nm:ID ;
+  a nmo:TypeSeriesItem .
+?contents nmo:hasTypeSeriesItem ?coinType ;
+                  a dcmitype:Collection .
+  ?object dcterms:tableOfContents ?contents ;
+    nmo:hasFindspot ?place }
+ UNION { ?contents PROP nm:ID ;
+                  a dcmitype:Collection .
+  ?object dcterms:tableOfContents ?contents ;
+    nmo:hasFindspot ?place }
+?place geo:lat ?lat ; geo:long ?long .
+  OPTIONAL {?place foaf:name ?label}
+  OPTIONAL {?place rdfs:label ?label}
+  OPTIONAL {?nomismaURI geo:location ?place .
+    ?nomismaURI skos:prefLabel ?label FILTER langMatches(lang(?label), "en")}
+}]]>
+			</xsl:when>
+			<xsl:otherwise><![CDATA[SELECT DISTINCT ?place ?label ?lat ?long WHERE {
 { ?coinType PROP nm:ID ;
   a nmo:TypeSeriesItem . 
  ?object nmo:hasTypeSeriesItem ?coinType ;
@@ -149,9 +196,45 @@ UNION { ?coinType PROP nm:ID ;
   OPTIONAL {?place rdfs:label ?label}
   OPTIONAL {?nomismaURI geo:location ?place .
     ?nomismaURI skos:prefLabel ?label FILTER langMatches(lang(?label), "en")}
-}]]>		
+}]]>	
+			</xsl:otherwise>
+		</xsl:choose>
+		
+		
 	</xsl:when>
-	<xsl:when test="$api = 'getFindspots'"><![CDATA[SELECT DISTINCT ?place ?label ?lat ?long WHERE {
+	<xsl:when test="$api = 'getFindspots'">
+		<xsl:choose>
+			<xsl:when test="$type='foaf:Person'">
+				<![CDATA[SELECT DISTINCT ?place ?label ?lat ?long WHERE {
+{ ?coinType PROP nm:ID ;
+  a nmo:TypeSeriesItem . 
+ ?object nmo:hasTypeSeriesItem ?coinType ;
+  rdf:type nmo:NumismaticObject ;
+  nmo:hasFindspot ?place }
+UNION {?obv PROP nm:ID .
+?coinType nmo:hasObverse ?obv ;
+  a nmo:TypeSeriesItem .
+?object nmo:hasTypeSeriesItem ?coinType ;
+  rdf:type nmo:NumismaticObject ;
+  nmo:hasFindspot ?place }
+UNION {?rev PROP nm:ID .
+?coinType nmo:hasReverse ?rev ;
+  a nmo:TypeSeriesItem .
+?object nmo:hasTypeSeriesItem ?coinType ;
+  rdf:type nmo:NumismaticObject ;
+  nmo:hasFindspot ?place }
+  UNION { ?object PROP nm:ID ;
+  	rdf:type nmo:NumismaticObject ;
+  	nmo:hasFindspot ?place}
+  ?place geo:lat ?lat ; geo:long ?long .
+  OPTIONAL {?place foaf:name ?label}
+  OPTIONAL {?place rdfs:label ?label}
+  OPTIONAL {?nomismaURI geo:location ?place .
+    ?nomismaURI skos:prefLabel ?label FILTER langMatches(lang(?label), "en")}
+  }]]>
+			</xsl:when>
+			<xsl:otherwise>
+				<![CDATA[SELECT DISTINCT ?place ?label ?lat ?long WHERE {
 { ?coinType PROP nm:ID ;
   a nmo:TypeSeriesItem . 
  ?object nmo:hasTypeSeriesItem ?coinType ;
@@ -166,8 +249,50 @@ UNION { ?coinType PROP nm:ID ;
   OPTIONAL {?nomismaURI geo:location ?place .
     ?nomismaURI skos:prefLabel ?label FILTER langMatches(lang(?label), "en")}
   }]]>
+			</xsl:otherwise>
+		</xsl:choose>		
 	</xsl:when>
-	<xsl:when test="$api = 'getHoards'"><![CDATA[SELECT DISTINCT ?hoard ?hoardLabel ?place ?label ?lat ?long WHERE {
+	<xsl:when test="$api = 'getHoards'">
+		<xsl:choose>
+			<xsl:when test="$type='foaf:Person'">
+				<![CDATA[SELECT DISTINCT ?hoard ?hoardLabel ?place ?label ?lat ?long WHERE {
+{?coinType PROP nm:ID ;
+  a nmo:TypeSeriesItem .
+  ?object nmo:hasTypeSeriesItem ?coinType ;
+  rdf:type nmo:NumismaticObject ;
+  dcterms:isPartOf ?hoard .
+  ?hoard nmo:hasFindspot ?place }
+UNION {?obv PROP nm:ID .
+?coinType nmo:hasObverse ?obv ;
+  a nmo:TypeSeriesItem .
+  ?object nmo:hasTypeSeriesItem ?coinType ;
+  rdf:type nmo:NumismaticObject ;
+  dcterms:isPartOf ?hoard .
+  ?hoard nmo:hasFindspot ?place }
+UNION {?rev PROP nm:ID .
+?coinType nmo:hasReverse ?rev ;
+  a nmo:TypeSeriesItem .
+  ?object nmo:hasTypeSeriesItem ?coinType ;
+  rdf:type nmo:NumismaticObject ;
+  dcterms:isPartOf ?hoard .
+  ?hoard nmo:hasFindspot ?place }
+UNION { ?coinType PROP nm:ID ;
+  a nmo:TypeSeriesItem .
+?contents nmo:hasTypeSeriesItem ?coinType ;
+                  a dcmitype:Collection .
+  ?hoard dcterms:tableOfContents ?contents ;
+    nmo:hasFindspot ?place }
+ UNION { ?contents PROP nm:ID ;
+                  a dcmitype:Collection .
+  ?hoard dcterms:tableOfContents ?contents ;
+    nmo:hasFindspot ?place }
+OPTIONAL {?hoard skos:prefLabel ?hoardLabel FILTER langMatches(lang(?hoardLabel), "en")}
+OPTIONAL {?hoard dcterms:title ?hoardLabel FILTER langMatches(lang(?hoardLabel), "en")}
+?place geo:lat ?lat ; geo:long ?long .
+    OPTIONAL {?place foaf:name ?label}}]]>
+			</xsl:when>
+			<xsl:otherwise>
+				<![CDATA[SELECT DISTINCT ?hoard ?hoardLabel ?place ?label ?lat ?long WHERE {
 {?coinType PROP nm:ID ;
   a nmo:TypeSeriesItem .
   ?object nmo:hasTypeSeriesItem ?coinType ;
@@ -188,6 +313,9 @@ OPTIONAL {?hoard skos:prefLabel ?hoardLabel FILTER langMatches(lang(?hoardLabel)
 OPTIONAL {?hoard dcterms:title ?hoardLabel FILTER langMatches(lang(?hoardLabel), "en")}
 ?place geo:lat ?lat ; geo:long ?long .
     OPTIONAL {?place foaf:name ?label}}]]>
+			</xsl:otherwise>
+		</xsl:choose>
+		
 	</xsl:when>
 </xsl:choose>
 							</xsl:variable>

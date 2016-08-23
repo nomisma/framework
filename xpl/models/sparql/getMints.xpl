@@ -151,21 +151,21 @@ PREFIX org: <http://www.w3.org/ns/org#>]]>
 	<xsl:when test="$type='foaf:Person'"><![CDATA[SELECT DISTINCT ?place ?label ?lat ?long ?poly WHERE {
 {?obj PROP nm:ID .
 	MINUS {?obj dcterms:isReplacedBy ?replaced}
-          ?obj nmo:hasMint ?place .
-  ?place geo:location ?loc .
-  ?loc geo:lat ?lat ;
-       geo:long ?long }
-UNION { ?obj PROP nm:ID .
+          ?obj nmo:hasMint ?place }
+UNION {?obj PROP nm:ID .
+	?obj nmo:hasObverse ?obv .
 	MINUS {?obj dcterms:isReplacedBy ?replaced}
-          ?obj nmo:hasMint ?place .
-  ?place geo:location ?loc .
-  ?loc osgeo:asGeoJSON ?poly }
+          ?obj nmo:hasMint ?place }
+UNION {?rev PROP nm:ID .
+	?obj nmo:hasReverse ?rev .
+	MINUS {?obj dcterms:isReplacedBy ?replaced}
+          ?obj nmo:hasMint ?place }
 UNION { nm:ID org:hasMembership ?membership .
  ?membership org:organization ?place .
- ?place rdf:type nmo:Mint .
+ ?place rdf:type nmo:Mint }
  ?place geo:location ?loc .
-  ?loc geo:lat ?lat ;
-       geo:long ?long}
+  OPTIONAL {?loc geo:lat ?lat ; geo:long ?long }
+  OPTIONAL {?loc osgeo:asGeoJSON ?poly }
     ?place skos:prefLabel ?label . FILTER langMatches(lang(?label), "en")
 }]]>
 	</xsl:when>
