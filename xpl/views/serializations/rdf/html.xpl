@@ -210,11 +210,39 @@ UNION { ?obj PROP nm:ID .
 				</p:input>
 				<p:output name="data" id="hasMints-url-generator-config"/>
 			</p:processor>
-
+			
 			<p:processor name="oxf:url-generator">
 				<p:input name="config" href="#hasMints-url-generator-config"/>
-				<p:output name="data" id="hasMints"/>
+				<p:output name="data" id="mint-url-data"/>
 			</p:processor>
+			
+			<p:processor name="oxf:exception-catcher">
+				<p:input name="data" href="#mint-url-data"/>
+				<p:output name="data" id="mint-url-data-checked"/>
+			</p:processor>
+			
+			<!-- Check whether we had an exception -->
+			<p:choose href="#mint-url-data-checked">
+				<p:when test="/exceptions">
+					<!-- Extract the message -->
+					<p:processor name="oxf:identity">
+						<p:input name="data">
+							<sparql xmlns="http://www.w3.org/2005/sparql-results#">
+								<head/>
+								<boolean>false</boolean>
+							</sparql>
+						</p:input>
+						<p:output name="data" id="hasMints"/>
+					</p:processor>
+				</p:when>
+				<p:otherwise>
+					<!-- Just return the document -->
+					<p:processor name="oxf:identity">
+						<p:input name="data" href="#mint-url-data-checked"/>
+						<p:output name="data" id="hasMints"/>
+					</p:processor>
+				</p:otherwise>
+			</p:choose>
 		</p:otherwise>
 	</p:choose>
 
@@ -357,8 +385,36 @@ UNION { ?coinType PROP nm:ID ;
 
 			<p:processor name="oxf:url-generator">
 				<p:input name="config" href="#hasFindspots-url-generator-config"/>
-				<p:output name="data" id="hasFindspots"/>
+				<p:output name="data" id="findspot-url-data"/>
 			</p:processor>
+			
+			<p:processor name="oxf:exception-catcher">
+				<p:input name="data" href="#findspot-url-data"/>
+				<p:output name="data" id="findspot-url-data-checked"/>
+			</p:processor>
+			
+			<!-- Check whether we had an exception -->
+			<p:choose href="#findspot-url-data-checked">
+				<p:when test="/exceptions">
+					<!-- Extract the message -->
+					<p:processor name="oxf:identity">
+						<p:input name="data">
+							<sparql xmlns="http://www.w3.org/2005/sparql-results#">
+								<head/>
+								<boolean>false</boolean>
+							</sparql>
+						</p:input>
+						<p:output name="data" id="hasFindspots"/>
+					</p:processor>
+				</p:when>
+				<p:otherwise>
+					<!-- Just return the document -->
+					<p:processor name="oxf:identity">
+						<p:input name="data" href="#findspot-url-data-checked"/>
+						<p:output name="data" id="hasFindspots"/>
+					</p:processor>
+				</p:otherwise>
+			</p:choose>
 		</p:otherwise>
 	</p:choose>
 

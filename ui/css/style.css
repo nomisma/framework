@@ -94,7 +94,7 @@ body{
 	margin:20px 0;
 }
 #sparqlForm select{
-	width:200px;
+	width:20em;
 }
 .CodeMirror{
 	background-color:#fff;
@@ -142,4 +142,7 @@ body{
 }
 .thumbImage > img{
 	max-width:120px;
+}
+#calculateForm input[type=text], #calculateForm select {
+	width:20em;
 }

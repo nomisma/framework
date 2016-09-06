@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="http://www.w3.org/2005/sparql-results#" exclude-result-prefixes="#all"
-	version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="http://www.w3.org/2005/sparql-results#"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" exclude-result-prefixes="#all" version="2.0">
 	<xsl:include href="../../templates.xsl"/>
+	<xsl:include href="../../functions.xsl"/>
+	<xsl:include href="../rdf/html-templates.xsl"/>
+
 	<xsl:variable name="display_path"/>
 
 	<xsl:variable name="namespaces" as="item()*">
@@ -52,10 +55,41 @@
 		<div class="container-fluid content">
 			<div class="row">
 				<div class="col-md-12">
-					<xsl:apply-templates select="descendant::res:sparql"/>
+					<xsl:choose>
+						<xsl:when test="descendant::res:sparql">
+							<xsl:apply-templates select="descendant::res:sparql"/>
+						</xsl:when>
+						<xsl:when test="descendant::rdf:RDF">
+							<xsl:apply-templates select="descendant::rdf:RDF"/>
+						</xsl:when>
+					</xsl:choose>
+
 				</div>
 			</div>
 		</div>
+	</xsl:template>
+
+	<xsl:template match="rdf:RDF">
+		<h1>Results</h1>
+		<xsl:choose>
+			<xsl:when test="count(*) &gt; 0">
+				<table class="table table-striped">
+					<tbody>
+						<xsl:for-each select="*">
+							<tr>
+								<td>
+									<xsl:apply-templates select="." mode="suburi"/>
+								</td>
+							</tr>
+						</xsl:for-each>
+						
+					</tbody>
+				</table>
+			</xsl:when>
+			<xsl:otherwise>
+				<p>Your query did not yield results.</p>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 
 	<xsl:template match="res:sparql">
@@ -142,11 +176,12 @@
 					</xsl:if>
 					<xsl:if test="res:literal/@datatype">
 						<xsl:variable name="datatype" select="res:literal/@datatype"/>
-						<xsl:variable name="uri" select="if (contains($datatype, 'xs:')) then replace($datatype, 'xs:', 'http://www.w3.org/2001/XMLSchema#') else if (contains($datatype, 'xsd:')) then replace($datatype, 'xsd:', 'http://www.w3.org/2001/XMLSchema#') else $datatype"/>
-						
+						<xsl:variable name="uri" select="if (contains($datatype, 'xs:')) then replace($datatype, 'xs:', 'http://www.w3.org/2001/XMLSchema#') else if (contains($datatype, 'xsd:')) then
+							replace($datatype, 'xsd:', 'http://www.w3.org/2001/XMLSchema#') else $datatype"/>
+
 						<i> (<a href="{$uri}">
-							<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/></a>)</i>
-						
+								<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/></a>)</i>
+
 					</xsl:if>
 				</xsl:otherwise>
 			</xsl:choose>

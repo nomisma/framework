@@ -5,6 +5,11 @@
 	xmlns:nomisma="http://nomisma.org/" xmlns:nmo="http://nomisma.org/ontology#" xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" exclude-result-prefixes="#all" version="2.0">
 	<xsl:include href="../../templates.xsl"/>
 	<xsl:include href="../../functions.xsl"/>
+	<xsl:include href="html-templates.xsl"/>
+
+	<!-- request params -->
+	<xsl:param name="filter" select="doc('input:request')/request/parameters/parameter[name='filter']/value"/>
+	<xsl:param name="dist" select="doc('input:request')/request/parameters/parameter[name='dist']/value"/>
 
 	<xsl:variable name="display_path">../</xsl:variable>
 	<xsl:variable name="id" select="substring-after(/content/rdf:RDF/*[1]/@rdf:about, 'id/')"/>
@@ -34,27 +39,29 @@
 
 	<xsl:variable name="classes" as="item()*">
 		<classes>
-			<class map="false" types="false">nmo:Collection</class>
-			<class map="true" types="true" prop="nmo:hasDenomination">nmo:Denomination</class>
+			<class map="false" types="false" prop="nmo:hasCollection">nmo:Collection</class>
+			<class map="true" types="true" prop="nmo:hasDenomination" dist="true">nmo:Denomination</class>
 			<class map="true" types="true" prop="?prop">rdac:Family</class>
 			<class map="true" types="false">nmo:Ethnic</class>
 			<class map="false" types="false">nmo:FieldOfNumismatics</class>
 			<class map="true" types="false">nmo:Hoard</class>
-			<class map="true" types="true" prop="nmo:hasManufacture">nmo:Manufacture</class>
-			<class map="true" types="true" prop="nmo:hasMaterial">nmo:Material</class>
-			<class map="true" types="true" prop="nmo:hasMint">nmo:Mint</class>
+			<class map="true" types="true" prop="nmo:hasManufacture" dist="true">nmo:Manufacture</class>
+			<class map="true" types="true" prop="nmo:hasMaterial" dist="true">nmo:Material</class>
+			<class map="true" types="true" prop="nmo:hasMint" dist="true">nmo:Mint</class>
 			<class map="false" types="false">nmo:NumismaticTerm</class>
 			<class map="true" types="false">nmo:ObjectType</class>
 			<class map="true" types="true" prop="?prop">foaf:Group</class>
-			<class map="true" types="true" prop="?prop">foaf:Organization</class>			
-			<class map="true" types="true" prop="?prop">foaf:Person</class>
+			<class map="true" types="true" prop="?prop" dist="true">foaf:Organization</class>			
+			<class map="true" types="true" prop="?prop" dist="true">foaf:Person</class>
 			<class map="false" types="false">crm:E4_Period</class>
 			<class>nmo:ReferenceWork</class>
-			<class map="true" types="true" prop="nmo:hasRegion">nmo:Region</class>
+			<class map="true" types="true" prop="nmo:hasRegion" dist="true">nmo:Region</class>
 			<class map="false" types="false">org:Role</class>
 			<class map="false" types="false">nmo:TypeSeries</class>
 			<class map="false" types="false">un:Uncertainty</class>
 			<class map="false" types="false">nmo:CoinWear</class>
+			<prop>nmo:hasAuthority</prop>
+			<prop>nmo:hasIssuer</prop>
 		</classes>
 	</xsl:variable>
 
@@ -78,15 +85,22 @@
 				<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 				<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
 
+				<!-- include geographic js if there are mints or findspots to render -->
 				<xsl:if test="$hasMints = true() or $hasFindspots = true()">
 					<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css"/>
 					<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"/>					
 					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet.ajax.min.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/heatmap.min.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet-heatmap.js"/>
-					<script type="text/javascript" src="{$display_path}ui/javascript/display_map_functions.js"/>
-					
+					<script type="text/javascript" src="{$display_path}ui/javascript/display_map_functions.js"/>					
 				</xsl:if>
+				
+				<!-- add d3 if it is a graph-enabled class -->
+				<xsl:if test="$classes//class[text()=$type]/@dist=true()">
+					<script src="//d3plus.org/js/d3.js"></script>
+					<script src="//d3plus.org/js/d3plus.js"></script>
+				</xsl:if>
+				
 				<link rel="stylesheet" href="{$display_path}ui//css/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen"/>
 				<script type="text/javascript" src="{$display_path}ui//javascript/jquery.fancybox.pack.js?v=2.1.5"/>
 				<script type="text/javascript" src="{$display_path}ui/javascript/display_functions.js"/>
@@ -190,8 +204,84 @@
 			</div>
 			<!-- list of associated coin types and example coins -->
 			<xsl:if test="$classes//class[text()=$type]/@types=true()">
-				<div class="row">
-					<div class="col-md-12" id="listTypes"/>
+				<!--<div class="row">
+					<div class="col-md-12 page-section" id="listTypes"/>
+				</div>-->
+			</xsl:if>
+			<xsl:if test="$classes//class[text()=$type]/@dist=true()">
+				<xsl:variable name="options" as="element()*">
+					<options>
+						<xsl:for-each select="$classes//class[@dist=true()][not(text()=$type)]">
+							<xsl:choose>
+								<xsl:when test="@prop = '?prop'">
+									<xsl:for-each select="$classes/prop">
+										<option value="{.}">
+											<xsl:if test=". = $dist">
+												<xsl:attribute name="selected">selected</xsl:attribute>
+											</xsl:if>
+											<xsl:value-of select="substring-after(., 'has')"/>
+										</option>
+									</xsl:for-each>
+								</xsl:when>
+								<xsl:otherwise>
+									<!-- suppress authority/issuer properties from agent distribution -->
+									<xsl:if test="$classes//class[text()=$type]/@prop != '?prop'">
+										<option value="{@prop}">	
+											<xsl:if test=". = $dist">
+												<xsl:attribute name="selected">selected</xsl:attribute>
+											</xsl:if>
+											<xsl:value-of select="substring-after(., ':')"/>
+										</option>
+									</xsl:if>									
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:for-each>
+					</options>
+				</xsl:variable>
+				
+				<div class="row" id="quant">
+					<div class="col-md-12 page-section">
+						<h3>Quantitative Analysis</h3>
+						<!-- display chart div when applicable, with additional filtering options -->
+						<xsl:if test="string($dist) and string($filter)">
+							<xsl:variable name="distribution-query" select="replace(replace(unparsed-text('file:/usr/local/projects/nomisma/ui/sparql/typological_distribution.sparql','UTF-8'), '%FILTERS%', $filter), '%DIST%', $dist)"/>
+							<div id="chart"/>
+							<p>Result is limited to 100.</p>
+							<div style="margin-bottom:10px;" class="control-row">
+								<a href="#" class="toggle-button btn btn-primary" id="toggle-quant"><span class="glyphicon glyphicon-plus"/> View SPARQL for full query</a>
+								<a href="{$display_path}query?query={encode-for-uri($distribution-query)}&amp;output=csv" title="Download CSV" class="btn btn-primary" style="margin-left:10px">
+									<span class="glyphicon glyphicon-download"/>Download CSV</a>
+							</div>
+							<div id="quant-div" style="display:none">
+								<pre>
+									<xsl:value-of select="$distribution-query"/>
+								</pre>
+							</div>
+						</xsl:if>
+						
+						<h4>Typological Distribution</h4>
+						<p>Select a category below to generate a graph showing the quantitative distribution for this typology. The distribution is based on coin type data aggregated into Nomisma.</p>						
+						<form role="form" id="calculateForm" action="{$display_path}id/{$id}#quant" method="get">							
+							<div class="form-group">
+								<label for="categorySelect">Category</label>
+								<select name="dist" class="form-control" id="categorySelect">
+									<option value="">Select...</option>
+									<xsl:for-each select="$options/option[not(preceding-sibling::option/text() = text())]">
+										<xsl:sort select="." order="ascending"/>
+										<option value="{@value}">
+											<xsl:if test="@value = $dist">
+												<xsl:attribute name="selected">selected</xsl:attribute>
+											</xsl:if>
+											<xsl:value-of select="."/>
+										</option>												
+									</xsl:for-each>
+								</select>
+								
+								<input type="hidden" name="filter" value="{$classes//class[text()=$type]/@prop} nm:{$id}"/>
+							</div>
+							<input type="submit" value="Generate" class="btn btn-default" id="visualize-submit"/>
+						</form>
+					</div>
 				</div>
 			</xsl:if>
 		</div>
@@ -273,114 +363,5 @@
 		<xsl:if test="not(position()=last())">
 			<xsl:text>, </xsl:text>
 		</xsl:if>
-	</xsl:template>
-
-	<xsl:template match="*" mode="list-item">
-		<xsl:variable name="name" select="name()"/>
-		<dt>
-			<a href="{concat($namespaces//namespace[@prefix=substring-before($name, ':')]/@uri, substring-after($name, ':'))}">
-				<xsl:value-of select="name()"/>
-			</a>
-		</dt>
-		<dd>
-			<xsl:choose>
-				<xsl:when test="string(.)">
-					<xsl:choose>
-						<xsl:when test="name()= 'osgeo:asGeoJSON' and string-length(.) &gt; 100">
-							<div id="geoJSON-fragment">
-								<xsl:value-of select="substring(., 1, 100)"/>
-								<xsl:text>...</xsl:text>
-								<a href="#" class="toggle-geoJSON">[more]</a>
-							</div>
-							<div id="geoJSON-full" style="display:none">
-								<span property="{name()}" xml:lang="{@xml:lang}">
-									<xsl:value-of select="."/>
-								</span>
-								<a href="#" class="toggle-geoJSON">[less]</a>
-							</div>
-						</xsl:when>
-						<xsl:otherwise>
-							<span property="{name()}">
-								<xsl:if test="@xml:lang">
-									<xsl:attribute name="xml:lang" select="@xml:lang"/>
-								</xsl:if>
-								<xsl:if test="@rdf:datatype">
-									<xsl:attribute name="datatype" select="@rdf:datatype"/>
-								</xsl:if>
-
-								<xsl:choose>
-									<xsl:when test="contains(@rdf:datatype, '#gYear')">
-										<xsl:value-of select="nomisma:normalizeDate(.)"/>
-									</xsl:when>
-									<xsl:when test="contains(@rdf:datatype, '#gYearMonth')">
-										<xsl:value-of select="nomisma:normalizeDate(.)"/>
-									</xsl:when>
-									<xsl:when test="contains(@rdf:datatype, '#date')">
-										<xsl:value-of select="nomisma:normalizeDate(.)"/>
-									</xsl:when>
-									<xsl:otherwise>
-										<xsl:value-of select="."/>
-									</xsl:otherwise>
-								</xsl:choose>
-							</span>
-							<xsl:if test="string(@xml:lang)">
-								<span class="lang">
-									<xsl:value-of select="concat(' (', @xml:lang, ')')"/>
-								</span>
-							</xsl:if>
-						</xsl:otherwise>
-					</xsl:choose>
-				</xsl:when>
-				<xsl:when test="string(@rdf:resource)">
-					<span>
-						<a href="{@rdf:resource}" rel="{name()}" title="{@rdf:resource}">
-							<xsl:choose>
-								<xsl:when test="name()='rdf:type'">
-									<xsl:variable name="uri" select="@rdf:resource"/>
-									<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/>
-								</xsl:when>
-								<xsl:otherwise>
-									<xsl:value-of select="@rdf:resource"/>
-								</xsl:otherwise>
-							</xsl:choose>
-						</a>
-					</span>
-				</xsl:when>
-			</xsl:choose>
-		</dd>
-	</xsl:template>
-
-	<xsl:template match="*" mode="suburi">
-		<xsl:variable name="about" select="if(@rdf:about) then @rdf:about else rdf:Description/@rdf:about"/>
-
-		<div rel="{name()}">
-			<xsl:if test="string($about)">
-				<xsl:attribute name="resource" select="$about"/>
-			</xsl:if>
-			<h3>
-				<xsl:value-of select="name()"/>
-				<xsl:if test="string($about)">
-					<small>
-						<xsl:text> (</xsl:text>
-						<a href="{$about}">
-							<xsl:value-of select="$about"/>
-						</a>
-						<xsl:text>)</xsl:text>
-					</small>
-				</xsl:if>
-			</h3>
-			<dl class="dl-horizontal">
-				<xsl:apply-templates select="descendant::skos:prefLabel" mode="list-item">
-					<xsl:sort select="@xml:lang"/>
-				</xsl:apply-templates>
-				<xsl:apply-templates select="descendant::skos:definition" mode="list-item">
-					<xsl:sort select="@xml:lang"/>
-				</xsl:apply-templates>
-				<xsl:apply-templates select="descendant::*[not(name()='skos:prefLabel') and not(name()='skos:definition')][not(child::*)]" mode="list-item">
-					<xsl:sort select="name()"/>
-					<xsl:sort select="@rdf:resource"/>
-				</xsl:apply-templates>
-			</dl>
-		</div>
 	</xsl:template>
 </xsl:stylesheet>
