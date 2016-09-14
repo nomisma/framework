@@ -10,6 +10,7 @@
 	<!-- request params -->
 	<xsl:param name="filter" select="doc('input:request')/request/parameters/parameter[name='filter']/value"/>
 	<xsl:param name="dist" select="doc('input:request')/request/parameters/parameter[name='dist']/value"/>
+	<xsl:param name="compare" select="doc('input:request')/request/parameters/parameter[name='compare']/value"/>
 
 	<xsl:variable name="display_path">../</xsl:variable>
 	<xsl:variable name="id" select="substring-after(/content/rdf:RDF/*[1]/@rdf:about, 'id/')"/>
@@ -260,7 +261,12 @@
 						</xsl:if>
 						
 						<h4>Typological Distribution</h4>
-						<p>Select a category below to generate a graph showing the quantitative distribution for this typology. The distribution is based on coin type data aggregated into Nomisma.</p>						
+						<p>Select a category below to generate a graph showing the quantitative distribution for this typology. The distribution is based on coin type data aggregated into Nomisma.</p>	
+						
+						<!--<p><xsl:for-each select="$compare"><xsl:value-of select="."/>-\-</xsl:for-each></p>-->
+							
+						
+						
 						<form role="form" id="calculateForm" action="{$display_path}id/{$id}#quant" method="get">							
 							<div class="form-group">
 								<label for="categorySelect">Category</label>

@@ -3,8 +3,7 @@
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="#all">
 	<xsl:include href="../sparql/templates.xsl"/>
 	<!-- url params -->
-	<xsl:param name="api"
-		select="substring-after(doc('input:request')/request/request-url, 'apis/')"/>
+	<xsl:param name="api" select="substring-after(doc('input:request')/request/request-url, 'apis/')"/>
 	<xsl:param name="template">
 		<xsl:choose>
 			<xsl:when test="$api='avgAxis' or $api='avgDiameter' or $api='avgWeight'"

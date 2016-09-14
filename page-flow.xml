@@ -62,11 +62,11 @@
 	<page path="/nomisma/query" view="xpl/controllers/conneg-sparql.xpl"/>
 	
 	<!-- **** APIs **** -->
-	<page path="/nomisma/apis/avgAxis" view="xpl/views/serializations/sparql/apis.xpl"/>
-	<page path="/nomisma/apis/avgDiameter" view="xpl/views/serializations/sparql/apis.xpl"/>
-	<page path="/nomisma/apis/avgWeight" view="xpl/views/serializations/sparql/apis.xpl"/>
+	<page path="/nomisma/apis/avgAxis" model="xpl/models/sparql/avgMeasurement.xpl" view="xpl/views/serializations/sparql/avgMeasurement.xpl"/>
+	<page path="/nomisma/apis/avgDiameter" model="xpl/models/sparql/avgMeasurement.xpl" view="xpl/views/serializations/sparql/avgMeasurement.xpl"/>
+	<page path="/nomisma/apis/avgWeight" model="xpl/models/sparql/avgMeasurement.xpl" view="xpl/views/serializations/sparql/avgMeasurement.xpl"/>
 	<page path="/nomisma/apis/closingDate" model="xpl/models/sparql/closingDate.xpl" view="xpl/views/serializations/sparql/closingDate.xpl"/>	
-	<page path="/nomisma/apis/getLabel" view="xpl/views/serializations/sparql/apis.xpl"/>
+	<page path="/nomisma/apis/getLabel" model="xpl/models/sparql/getLabel.xpl" view="xpl/views/serializations/sparql/getLabel.xpl"/>
 	<page path="/nomisma/apis/getCount" model="xpl/models/sparql/getCount.xpl" view="xpl/views/serializations/sparql/d3plus-json.xpl"/>
 	<!--<page path="/nomisma/apis/getCoins" view="xpl/models/sparql/getCoins.xpl"/>-->
 	<page path="/nomisma/apis/getMints" model="xpl/models/sparql/getMints.xpl" view="xpl/views/serializations/sparql/geojson.xpl"/>
@@ -74,7 +74,7 @@
 	<page path="/nomisma/apis/getHoards" model="xpl/models/sparql/getFindspots.xpl" view="xpl/views/serializations/sparql/geojson.xpl"/>
 	<page path="/nomisma/apis/heatmap" model="xpl/models/sparql/getFindspots.xpl" view="xpl/views/serializations/sparql/heatmap.xpl"/>	
 	<page path="/nomisma/apis/getRdf" model="xpl/models/rdf/aggregate-ids.xpl" view="xpl/views/serializations/apis/getRdf.xpl"/>
-	<page path="/nomisma/apis/regionHierarchy" view="xpl/views/serializations/sparql/apis.xpl"/>
+	<page path="/nomisma/apis/regionHierarchy" model="xpl/models/sparql/regionHierarchy.xpl"  view="xpl/views/serializations/sparql/regionHierarchy.xpl"/>
 	<page path="/nomisma/apis/numishareResults" model="xpl/models/sparql/numishareResults.xpl" view="xpl/views/serializations/sparql/numishareResults.xpl"/>
 	
 	<!-- **** AJAX **** -->
