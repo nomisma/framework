@@ -11,7 +11,9 @@
 	<xsl:param name="filter" select="doc('input:request')/request/parameters/parameter[name='filter']/value"/>
 	<xsl:param name="dist" select="doc('input:request')/request/parameters/parameter[name='dist']/value"/>
 	<xsl:param name="compare" select="doc('input:request')/request/parameters/parameter[name='compare']/value"/>
+	<xsl:param name="numericType" select="doc('input:request')/request/parameters/parameter[name='type']/value"/>
 
+	<!-- config or other variables -->
 	<xsl:variable name="display_path">../</xsl:variable>
 	<xsl:variable name="id" select="substring-after(/content/rdf:RDF/*[1]/@rdf:about, 'id/')"/>
 	<xsl:variable name="html-uri" select="concat(/content/config/url, 'id/', $id, '.html')"/>
@@ -209,31 +211,25 @@
 					<div class="col-md-12 page-section" id="listTypes"/>
 				</div>-->
 			</xsl:if>
-			<xsl:if test="$classes//class[text()=$type]/@dist=true()">
+			<xsl:if test="$classes//class[text()=$type]/@dist=true()">				
 				<xsl:variable name="options" as="element()*">
 					<options>
-						<xsl:for-each select="$classes//class[@dist=true()][not(text()=$type)]">
+						<xsl:for-each select="$classes//class[@dist=true()][not(text()=$type)]">							
 							<xsl:choose>
 								<xsl:when test="@prop = '?prop'">
-									<xsl:for-each select="$classes/prop">
-										<option value="{.}">
-											<xsl:if test=". = $dist">
-												<xsl:attribute name="selected">selected</xsl:attribute>
-											</xsl:if>
-											<xsl:value-of select="substring-after(., 'has')"/>
-										</option>
-									</xsl:for-each>
+									<!-- ignore foaf classes -->
+									<xsl:if test="not($classes//class[text()=$type]/@prop = '?prop')">
+										<xsl:for-each select="$classes/prop">
+											<option value="{.}">											
+												<xsl:value-of select="substring-after(., 'has')"/>
+											</option>
+										</xsl:for-each>
+									</xsl:if>									
 								</xsl:when>
 								<xsl:otherwise>
-									<!-- suppress authority/issuer properties from agent distribution -->
-									<xsl:if test="$classes//class[text()=$type]/@prop != '?prop'">
-										<option value="{@prop}">	
-											<xsl:if test=". = $dist">
-												<xsl:attribute name="selected">selected</xsl:attribute>
-											</xsl:if>
-											<xsl:value-of select="substring-after(., ':')"/>
-										</option>
-									</xsl:if>									
+									<option value="{@prop}">												
+										<xsl:value-of select="substring-after(., ':')"/>
+									</option>								
 								</xsl:otherwise>
 							</xsl:choose>
 						</xsl:for-each>
@@ -245,19 +241,19 @@
 						<h3>Quantitative Analysis</h3>
 						<!-- display chart div when applicable, with additional filtering options -->
 						<xsl:if test="string($dist) and string($filter)">
-							<xsl:variable name="distribution-query" select="replace(replace(unparsed-text('file:/usr/local/projects/nomisma/ui/sparql/typological_distribution.sparql','UTF-8'), '%FILTERS%', $filter), '%DIST%', $dist)"/>
+							<!--<xsl:variable name="distribution-query" select="replace(replace(unparsed-text('file:/usr/local/projects/nomisma/ui/sparql/typological_distribution.sparql','UTF-8'), '%FILTERS%', $filter), '%DIST%', $dist)"/>-->
 							<div id="chart"/>
 							<p>Result is limited to 100.</p>
-							<div style="margin-bottom:10px;" class="control-row">
+							<!--<div style="margin-bottom:10px;" class="control-row">
 								<a href="#" class="toggle-button btn btn-primary" id="toggle-quant"><span class="glyphicon glyphicon-plus"/> View SPARQL for full query</a>
 								<a href="{$display_path}query?query={encode-for-uri($distribution-query)}&amp;output=csv" title="Download CSV" class="btn btn-primary" style="margin-left:10px">
 									<span class="glyphicon glyphicon-download"/>Download CSV</a>
-							</div>
-							<div id="quant-div" style="display:none">
+							</div>-->
+							<!--<div id="quant-div" style="display:none">
 								<pre>
 									<xsl:value-of select="$distribution-query"/>
 								</pre>
-							</div>
+							</div>-->
 						</xsl:if>
 						
 						<h4>Typological Distribution</h4>
@@ -284,6 +280,21 @@
 								</select>
 								
 								<input type="hidden" name="filter" value="{$classes//class[text()=$type]/@prop} nm:{$id}"/>
+							</div>
+							<div class="form-group">
+								<input type="radio" name="type" value="percentage">
+									<xsl:if test="not(string($numericType)) or $numericType = 'percentage'">
+										<xsl:attribute name="checked">checked</xsl:attribute>
+									</xsl:if>
+									<xsl:text>Percentage</xsl:text>
+								</input>
+								<br/>
+								<input type="radio" name="type" value="count">
+									<xsl:if test="$numericType = 'count'">
+										<xsl:attribute name="checked">checked</xsl:attribute>
+									</xsl:if>
+									<xsl:text>Count</xsl:text>
+								</input>								
 							</div>
 							<input type="submit" value="Generate" class="btn btn-default" id="visualize-submit"/>
 						</form>
