@@ -79,6 +79,7 @@
 	
 	<!-- **** AJAX **** -->
 	<page path="/nomisma/ajax/listTypes" model="xpl/models/sparql/listTypes.xpl" view="xpl/views/serializations/sparql/listTypes.xpl"/>
+	<page path="/nomisma/ajax/getSparqlFacets" model="xpl/models/sparql/getSparqlFacets.xpl" view="xpl/views/serializations/sparql/getSparqlFacets.xpl"/>
 
 	<!-- **** PROJECT NAMESPACES **** -->
 	<!--<page path="/nomisma/project" model="xpl/controllers/page-redirect.xpl"/>

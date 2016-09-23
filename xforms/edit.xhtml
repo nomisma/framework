@@ -1325,7 +1325,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 													</xforms:action>
 												</xforms:action>
 												<!-- initialize openlayers -->
-												<xxforms:script>init();</xxforms:script>
+												<!--<xxforms:script>init();</xxforms:script>-->
 											</xforms:action>
 										</xforms:select1>
 										<xforms:group ref="geo:lat">
@@ -1333,7 +1333,9 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 												<xforms:input ref=".">
 													<xforms:label>Latitude</xforms:label>
 													<xforms:alert>Must be -180 to 180</xforms:alert>
-												</xforms:input>
+													<!-- if the value has changed from an XBL component -->
+													<!--<xforms:setvalue ref="instance('control-instance')/geo/type" ev:event="xforms-value-changed" if="not(string(instance('control-instance')/geo/type))">point</xforms:setvalue>-->
+												</xforms:input>												
 											</div>
 										</xforms:group>
 										<xforms:group ref="geo:long">
@@ -1341,6 +1343,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 												<xforms:input ref=".">
 													<xforms:label>Longitude</xforms:label>
 													<xforms:alert>Must be -180 to 180</xforms:alert>
+													<!-- if the value has changed from an XBL component -->
+													<!--<xforms:setvalue ref="instance('control-instance')/geo/type" ev:event="xforms-value-changed" if="not(string(instance('control-instance')/geo/type))">point</xforms:setvalue>-->
 												</xforms:input>
 											</div>
 										</xforms:group>

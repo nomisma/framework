@@ -35,7 +35,7 @@
 			</xsl:for-each>
 		</namespaces>
 	</xsl:variable>
-	
+
 	<!-- variables to determine whether the map should show when mints or findspots exist -->
 	<xsl:variable name="hasMints" as="xs:boolean" select="if (/content/res:sparql[1]/res:boolean = 'true') then true() else false()"/>
 	<xsl:variable name="hasFindspots" as="xs:boolean" select="if (/content/res:sparql[2]/res:boolean = 'true') then true() else false()"/>
@@ -54,7 +54,7 @@
 			<class map="false" types="false">nmo:NumismaticTerm</class>
 			<class map="true" types="false">nmo:ObjectType</class>
 			<class map="true" types="true" prop="?prop">foaf:Group</class>
-			<class map="true" types="true" prop="?prop" dist="true">foaf:Organization</class>			
+			<class map="true" types="true" prop="?prop" dist="true">foaf:Organization</class>
 			<class map="true" types="true" prop="?prop" dist="true">foaf:Person</class>
 			<class map="false" types="false">crm:E4_Period</class>
 			<class>nmo:ReferenceWork</class>
@@ -77,6 +77,8 @@
 		</xsl:for-each>
 	</xsl:variable>
 
+	<xsl:variable name="base-query" select="concat($classes//class[text()=$type]/@prop,  ' nm:', $id)"/>
+
 	<xsl:template match="/">
 		<html lang="en" prefix="{$prefix}" itemscope="" itemtype="http://schema.org/{if (contains($type, 'foaf:')) then substring-after($type, 'foaf:') else if ($type='nmo:Mint' or $type='nmo:Region')
 			then 'Place' else 'Thing'}">
@@ -91,19 +93,19 @@
 				<!-- include geographic js if there are mints or findspots to render -->
 				<xsl:if test="$hasMints = true() or $hasFindspots = true()">
 					<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css"/>
-					<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"/>					
+					<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet.ajax.min.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/heatmap.min.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet-heatmap.js"/>
-					<script type="text/javascript" src="{$display_path}ui/javascript/display_map_functions.js"/>					
+					<script type="text/javascript" src="{$display_path}ui/javascript/display_map_functions.js"/>
 				</xsl:if>
-				
+
 				<!-- add d3 if it is a graph-enabled class -->
 				<xsl:if test="$classes//class[text()=$type]/@dist=true()">
-					<script src="//d3plus.org/js/d3.js"></script>
-					<script src="//d3plus.org/js/d3plus.js"></script>
+					<script src="//d3plus.org/js/d3.js"/>
+					<script src="//d3plus.org/js/d3plus.js"/>
 				</xsl:if>
-				
+
 				<link rel="stylesheet" href="{$display_path}ui//css/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen"/>
 				<script type="text/javascript" src="{$display_path}ui//javascript/jquery.fancybox.pack.js?v=2.1.5"/>
 				<script type="text/javascript" src="{$display_path}ui/javascript/display_functions.js"/>
@@ -146,7 +148,9 @@
 					<div>
 						<h3>Export</h3>
 						<ul class="list-inline">
-							<li><strong>Linked Data</strong></li>
+							<li>
+								<strong>Linked Data</strong>
+							</li>
 							<li>
 								<a href="https://github.com/nomisma/data/blob/master/id/{$id}.rdf">GitHub File</a>
 							</li>
@@ -162,11 +166,13 @@
 							<!--<li>
 								<a href="{$id}.pelagios.rdf">Pelagios RDF/XML</a>
 								</li>-->
-							
+
 						</ul>
 						<xsl:if test="$hasMints = true() or $hasFindspots = true()">
 							<ul class="list-inline">
-								<li><strong>Geographic Data</strong></li>
+								<li>
+									<strong>Geographic Data</strong>
+								</li>
 								<li>
 									<a href="{$id}.kml">KML</a>
 								</li>
@@ -179,7 +185,7 @@
 								<li>
 									<a href="{$display_path}apis/getFindspots?id={$id}">geoJSON (finds)</a>
 								</li>
-							</ul>							
+							</ul>
 						</xsl:if>
 					</div>
 					<xsl:if test="$hasMints = true() or $hasFindspots = true()">
@@ -197,7 +203,9 @@
 										<td style="width:100px">Hoards</td>
 										<td style="background-color:#a1d490;border:2px solid black;width:50px;"/>
 										<td style="width:100px">Finds</td>
-										<td><a href="{$display_path}map/{$id}">View fullscreen</a></td>
+										<td>
+											<a href="{$display_path}map/{$id}">View fullscreen</a>
+										</td>
 									</tr>
 								</tbody>
 							</table>
@@ -208,37 +216,42 @@
 			<!-- list of associated coin types and example coins -->
 			<xsl:if test="$classes//class[text()=$type]/@types=true()">
 				<!--<div class="row">
-					<div class="col-md-12 page-section" id="listTypes"/>
+					<div class="col-md-12 page-section">
+						<hr/>
+						<div id="listTypes"/>
+					</div>
 				</div>-->
 			</xsl:if>
-			<xsl:if test="$classes//class[text()=$type]/@dist=true()">				
+			<xsl:if test="$classes//class[text()=$type]/@dist=true()">
+
 				<xsl:variable name="options" as="element()*">
 					<options>
-						<xsl:for-each select="$classes//class[@dist=true()][not(text()=$type)]">							
+						<xsl:for-each select="$classes//class[@dist=true()][not(text()=$type)]">
 							<xsl:choose>
 								<xsl:when test="@prop = '?prop'">
 									<!-- ignore foaf classes -->
 									<xsl:if test="not($classes//class[text()=$type]/@prop = '?prop')">
 										<xsl:for-each select="$classes/prop">
-											<option value="{.}">											
+											<option value="{.}">
 												<xsl:value-of select="substring-after(., 'has')"/>
 											</option>
 										</xsl:for-each>
-									</xsl:if>									
+									</xsl:if>
 								</xsl:when>
 								<xsl:otherwise>
-									<option value="{@prop}">												
+									<option value="{@prop}">
 										<xsl:value-of select="substring-after(., ':')"/>
-									</option>								
+									</option>
 								</xsl:otherwise>
 							</xsl:choose>
 						</xsl:for-each>
 					</options>
 				</xsl:variable>
-				
+
 				<div class="row" id="quant">
 					<div class="col-md-12 page-section">
-						<h3>Quantitative Analysis</h3>
+						<hr/>
+						<h2>Quantitative Analysis</h2>
 						<!-- display chart div when applicable, with additional filtering options -->
 						<xsl:if test="string($dist) and string($filter)">
 							<!--<xsl:variable name="distribution-query" select="replace(replace(unparsed-text('file:/usr/local/projects/nomisma/ui/sparql/typological_distribution.sparql','UTF-8'), '%FILTERS%', $filter), '%DIST%', $dist)"/>-->
@@ -255,17 +268,13 @@
 								</pre>
 							</div>-->
 						</xsl:if>
-						
-						<h4>Typological Distribution</h4>
-						<p>Select a category below to generate a graph showing the quantitative distribution for this typology. The distribution is based on coin type data aggregated into Nomisma.</p>	
-						
-						<!--<p><xsl:for-each select="$compare"><xsl:value-of select="."/>-\-</xsl:for-each></p>-->
-							
-						
-						
-						<form role="form" id="calculateForm" action="{$display_path}id/{$id}#quant" method="get">							
+
+						<h3>Typological Distribution</h3>
+						<form role="form" id="calculateForm" action="{$display_path}id/{$id}#quant" method="get">
 							<div class="form-group">
-								<label for="categorySelect">Category</label>
+								<h4>Category</h4>
+								<p>Select a category below to generate a graph showing the quantitative distribution for this typology. The distribution is based on coin type data aggregated into
+									Nomisma.</p>
 								<select name="dist" class="form-control" id="categorySelect">
 									<option value="">Select...</option>
 									<xsl:for-each select="$options/option[not(preceding-sibling::option/text() = text())]">
@@ -275,13 +284,18 @@
 												<xsl:attribute name="selected">selected</xsl:attribute>
 											</xsl:if>
 											<xsl:value-of select="."/>
-										</option>												
+										</option>
 									</xsl:for-each>
 								</select>
-								
-								<input type="hidden" name="filter" value="{$classes//class[text()=$type]/@prop} nm:{$id}"/>
+
+								<input type="hidden" name="filter">
+									<xsl:if test="string($filter)">
+										<xsl:attribute name="class" select="$filter"/>
+									</xsl:if>
+								</input>
 							</div>
 							<div class="form-group">
+								<h4>Numeric response type</h4>
 								<input type="radio" name="type" value="percentage">
 									<xsl:if test="not(string($numericType)) or $numericType = 'percentage'">
 										<xsl:attribute name="checked">checked</xsl:attribute>
@@ -294,9 +308,24 @@
 										<xsl:attribute name="checked">checked</xsl:attribute>
 									</xsl:if>
 									<xsl:text>Count</xsl:text>
-								</input>								
+								</input>
 							</div>
-							<input type="submit" value="Generate" class="btn btn-default" id="visualize-submit"/>
+							<div class="form-inline">
+								<h4>Additional Filters</h4>
+								<p>Include additional filters to the basic distribution query for this concept. <a href="#" id="add-filter"><span class="glyphicon glyphicon-plus"/>Add one</a></p>
+								<div id="filter-container">
+									<!-- if there's a dist and filter, then break the filter query and insert preset filter templates -->
+									<xsl:if test="$dist and $filter">
+										<xsl:variable name="filterPieces" select="tokenize($filter, ';')"/>
+											
+										<xsl:for-each select="$filterPieces[not(normalize-space(.) = $base-query)]">
+											<xsl:call-template name="filter-template"/>
+										</xsl:for-each>
+									</xsl:if>
+								</div>
+							</div>
+
+							<input type="submit" value="Generate" class="btn btn-default" id="visualize-submit" disabled="disabled"/>
 						</form>
 					</div>
 				</div>
@@ -312,7 +341,48 @@
 				<xsl:value-of select="$type"/>
 			</span>
 			<span id="mode">normal</span>
+			<span id="base-query">
+				<xsl:value-of select="$base-query"/>
+			</span>
+
+			<xsl:call-template name="filter-template">
+				<xsl:with-param name="template" as="xs:boolean">true</xsl:with-param>
+			</xsl:call-template>
+			
+			<xsl:call-template name="ajax-loader-template"/>
 		</div>
+	</xsl:template>
+
+	<xsl:template name="filter-template">
+		<xsl:param name="template"/>
+		
+		<div class="form-group filter" style="display:block; margin-bottom:15px;">
+			<xsl:if test="$template = true()">
+				<xsl:attribute name="id">filter-template</xsl:attribute>
+			</xsl:if>
+			<select class="form-control add-filter-prop">
+				<xsl:call-template name="property-list"/>
+			</select>
+			
+			<div class="prop-container"/>
+			
+			<div class="control-container">
+				<span class="glyphicon glyphicon-exclamation-sign hidden" title="A selection is required"/>
+				<a href="#" title="Remove Filter" class="remove-query">
+					<span class="glyphicon glyphicon-remove"/>
+				</a>
+			</div>
+		</div>
+	</xsl:template>
+
+	<xsl:template name="ajax-loader-template">
+		<span id="ajax-loader-template"><img src="{$display_path}ui/images/ajax-loader.gif" alt="loading"/> Loading</span>
+	</xsl:template>
+
+	<xsl:template name="property-list">
+		<option>Select...</option>
+		<option value="nmo:hasMaterial" type="nmo:Material">Material</option>
+		<option value="nmo:hasMint" type="nmo:Mint">Mint</option>
 	</xsl:template>
 
 	<xsl:template match="*" mode="type">

@@ -22,14 +22,14 @@ $(document).ready(function () {
 		compare = new Array();
 		while (match = search.exec(query)) {
 			if (decode(match[1]) == 'compare') {
-				if (decode(match[2]).length > 0){
+				if (decode(match[2]).length > 0) {
 					compare.push(decode(match[2]));
-				}				
+				}
 			} else {
 				urlParams[decode(match[1])] = decode(match[2]);
 			}
 		}
-		urlParams['compare'] = compare;
+		urlParams[ 'compare'] = compare;
 	})();
 	
 	var path = '../';
@@ -76,21 +76,117 @@ $(document).ready(function () {
 	});
 	
 	//render chart if parameters are provided
-	if (urlParams['dist'] != null && urlParams['filter'] != null) {
-		renderChart(path,urlParams);
+	if (urlParams[ 'dist'] != null && urlParams[ 'filter'] != null) {
+		renderChart(path, urlParams);
 	}
+	
+	//when clicking the add-filter link, insert a new filter template into the filter container
+	$('#add-filter').click(function(){
+		$('#filter-template').clone().appendTo('#filter-container');
+		$('#filter-container').children('.form-group').removeAttr('id');
+		validate();
+		return false;
+	});
+	
+	//observe changes in drop down menus for validation
+	$('#categorySelect').change(function() {
+		validate();	
+	});
+	
+	//monitor changes from quantitative analysis drop down menus to execute ajax calls
+	$(' #filter-container') .on('change', '.filter .add-filter-prop', function () {
+		validate();
+		var prop = $(this).val();
+		var type = $(this).children('option:selected').attr('type');
+		var next = $(this).next('.prop-container');
+		
+		if (type != null) {
+			//set ajax loader
+			loader = $('#ajax-loader-template').clone().removeAttr('id');
+			next.html(loader);
+			//next.children('span').removeAttr('id');
+		
+			var filter = $('#base-query').text();
+			$.get(path + 'ajax/getSparqlFacets', {
+				filter: filter, facet: prop
+			},
+			function (data) {
+				next.html(data);
+			});
+		} else {
+			next.children('.add-filter-object').remove();
+		}
+	});
+	
+	$(' #filter-container') .on('change', '.filter .prop-container .add-filter-object', function () {
+		validate();
+	});
+	
+	//delete the compare/filter query pair
+	$(' #filter-container') .on('click', '.filter .control-container .remove-query', function () {
+		$(this).closest('.filter').remove();
+		validate();
+		return false;
+	});
 });
+
+function validate() {
+	var valid = false;
+	
+	if ($('#categorySelect').length > 0) {
+		if ($('#categorySelect').val()) {
+			valid = true;
+			$('#filter-container .filter').each(function(){
+				if ($(this).children('.add-filter-prop').val() && $(this).children('.prop-container').children('.add-filter-object').val()) {
+					valid = true;
+				} else {
+					valid = false;
+				}
+			});
+		}
+	}
+	
+	//enable/disable button
+	if (valid == true) {
+		$('#visualize-submit').prop("disabled", false);
+		
+		//generate the filter query and assign the value to the hidden input
+		q = generateFilter();
+		$('input[name=filter]').val(q);
+	} else {
+		$('#visualize-submit').prop("disabled", true);
+	}
+}
+
+function generateFilter(){
+	var q = new Array($('#base-query').text());
+	
+	//iterate through additional features
+	$('#filter-container .filter').each(function(){
+		if ($(this).children('.add-filter-prop').val() && $(this).children('.prop-container').children('.add-filter-object').val()) {
+			q.push($(this).children('.add-filter-prop').val() + ' ' + $(this).children('.prop-container').children('.add-filter-object').val());
+		}
+	});
+	
+	query = q.join('; ');
+	
+	return query;
+}
 
 function renderChart(path, urlParams) {
 	var distLabel = $('select[name=dist] option:selected').text().toLowerCase();
 	var y = 'percentage';
-	if (urlParams['type'] == 'count') {
+	if (urlParams[ 'type'] == 'count') {
 		var y = 'count';
 	}
 	
 	$.get(path + 'apis/getCount', $.param(urlParams, true),
 	function (data) {
 		$('#chart').height(600);
-		var visualization = d3plus.viz().container("#chart").data(data).type("bar").id('subset').x(distLabel).y(y).draw();
+		var visualization = d3plus.viz().container("#chart").data(data).type("bar").id('subset').x(distLabel).y(y).legend({
+			"value": true, "size": 50
+		}).color({
+			"value": "subset"
+		}).draw();
 	});
 }

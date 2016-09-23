@@ -146,3 +146,16 @@ body{
 #calculateForm input[type=text], #calculateForm select {
 	width:20em;
 }
+.control-container {
+	display:inline;
+	width:20px;
+}
+.query-pair {
+	display:block;
+	margin-bottom:15px;
+}
+.prop-container {
+	display:inline;
+	margin-left:10px;
+	margin-right:10px;
+}
