@@ -48,7 +48,7 @@
 									<xforms:insert context="$binding" nodeset="./child::node()[last()]"
 										origin="xforms:element('skos:closeMatch', xforms:attribute('rdf:resource', instance('control-instance')/uri))"/>
 									<!-- if there aren't already coordinates, then get the coordinates from the Pleiades RDF -->
-									<xforms:action if="not($binding//geo:lat) and not($binding//geo:long)">
+									<!--<xforms:action if="not($binding//geo:lat) and not($binding//geo:long)">
 										<xforms:send submission="get-pleiades-rdf"/>
 										<xforms:action ev:event="xforms-submit-done">
 											<xforms:action if="instance('rdf')//geo:lat and instance('rdf')//geo:long">
@@ -61,7 +61,7 @@
 												<xforms:message level="modal">Coordinates are not available.</xforms:message>
 											</xforms:action>
 										</xforms:action>
-									</xforms:action>
+									</xforms:action>-->
 
 									<!-- close dialog -->
 									<xxforms:hide dialog="pleiades-dialog"/>
@@ -113,7 +113,7 @@
 
 						<!-- ********* SUBMISSIONS ***********-->
 						<xforms:submission id="query-pleiades" serialization="none" method="get"
-							action="http://pleiades.stoa.org/search_rss?Title={instance('control-instance')/query}&amp;portal_type=Place" instance="feed" replace="instance">
+							action="https://pleiades.stoa.org/search_rss?Title={instance('control-instance')/query}&amp;portal_type=Place" instance="feed" replace="instance">
 							<xforms:header>
 								<xforms:name>User-Agent</xforms:name>
 								<xforms:value>XForms/Nomisma.org</xforms:value>

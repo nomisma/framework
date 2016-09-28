@@ -52,7 +52,15 @@
 				<xsl:variable name="query" select="doc('input:query')"/>
 
 				<xsl:variable name="service">
-					<xsl:value-of select="concat($sparql_endpoint, '?query=', encode-for-uri(replace(replace($query, '%FILTERS%', $filter), '%FACET%', $facet)), '&amp;output=xml')"/>
+					<xsl:choose>
+						<xsl:when test="string($filter)">
+							<xsl:value-of select="concat($sparql_endpoint, '?query=', encode-for-uri(replace(replace($query, '%FILTERS%', $filter), '%FACET%', $facet)), '&amp;output=xml')"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="concat($sparql_endpoint, '?query=', encode-for-uri(replace(replace($query, '%FILTERS%;', ''), '%FACET%', $facet)), '&amp;output=xml')"/>
+						</xsl:otherwise>
+					</xsl:choose>
+					
 				</xsl:variable>
 
 				<xsl:template match="/">

@@ -6,6 +6,7 @@
 	<xsl:include href="../../templates.xsl"/>
 	<xsl:include href="../../functions.xsl"/>
 	<xsl:include href="html-templates.xsl"/>
+	<xsl:include href="../../vis-templates.xsl"/>
 
 	<!-- request params -->
 	<xsl:param name="filter" select="doc('input:request')/request/parameters/parameter[name='filter']/value"/>
@@ -36,9 +37,10 @@
 		</namespaces>
 	</xsl:variable>
 
-	<!-- variables to determine whether the map should show when mints or findspots exist -->
+	<!-- variables to determine whether the map should show when mints or findspots exist or whether the quantitative analysis functions should be included -->
 	<xsl:variable name="hasMints" as="xs:boolean" select="if (/content/res:sparql[1]/res:boolean = 'true') then true() else false()"/>
 	<xsl:variable name="hasFindspots" as="xs:boolean" select="if (/content/res:sparql[2]/res:boolean = 'true') then true() else false()"/>
+	<xsl:variable name="hasTypes" as="xs:boolean" select="if (/content/res:sparql[3]/res:boolean = 'true') then true() else false()"/>
 
 	<xsl:variable name="classes" as="item()*">
 		<classes>
@@ -214,121 +216,18 @@
 				</div>
 			</div>
 			<!-- list of associated coin types and example coins -->
-			<xsl:if test="$classes//class[text()=$type]/@types=true()">
-				<!--<div class="row">
+			<!--<xsl:if test="$hasTypes=true()">
+				<div class="row">
 					<div class="col-md-12 page-section">
 						<hr/>
 						<div id="listTypes"/>
 					</div>
-				</div>-->
-			</xsl:if>
-			<xsl:if test="$classes//class[text()=$type]/@dist=true()">
-
-				<xsl:variable name="options" as="element()*">
-					<options>
-						<xsl:for-each select="$classes//class[@dist=true()][not(text()=$type)]">
-							<xsl:choose>
-								<xsl:when test="@prop = '?prop'">
-									<!-- ignore foaf classes -->
-									<xsl:if test="not($classes//class[text()=$type]/@prop = '?prop')">
-										<xsl:for-each select="$classes/prop">
-											<option value="{.}">
-												<xsl:value-of select="substring-after(., 'has')"/>
-											</option>
-										</xsl:for-each>
-									</xsl:if>
-								</xsl:when>
-								<xsl:otherwise>
-									<option value="{@prop}">
-										<xsl:value-of select="substring-after(., ':')"/>
-									</option>
-								</xsl:otherwise>
-							</xsl:choose>
-						</xsl:for-each>
-					</options>
-				</xsl:variable>
-
-				<div class="row" id="quant">
-					<div class="col-md-12 page-section">
-						<hr/>
-						<h2>Quantitative Analysis</h2>
-						<!-- display chart div when applicable, with additional filtering options -->
-						<xsl:if test="string($dist) and string($filter)">
-							<!--<xsl:variable name="distribution-query" select="replace(replace(unparsed-text('file:/usr/local/projects/nomisma/ui/sparql/typological_distribution.sparql','UTF-8'), '%FILTERS%', $filter), '%DIST%', $dist)"/>-->
-							<div id="chart"/>
-							<p>Result is limited to 100.</p>
-							<!--<div style="margin-bottom:10px;" class="control-row">
-								<a href="#" class="toggle-button btn btn-primary" id="toggle-quant"><span class="glyphicon glyphicon-plus"/> View SPARQL for full query</a>
-								<a href="{$display_path}query?query={encode-for-uri($distribution-query)}&amp;output=csv" title="Download CSV" class="btn btn-primary" style="margin-left:10px">
-									<span class="glyphicon glyphicon-download"/>Download CSV</a>
-							</div>-->
-							<!--<div id="quant-div" style="display:none">
-								<pre>
-									<xsl:value-of select="$distribution-query"/>
-								</pre>
-							</div>-->
-						</xsl:if>
-
-						<h3>Typological Distribution</h3>
-						<form role="form" id="calculateForm" action="{$display_path}id/{$id}#quant" method="get">
-							<div class="form-group">
-								<h4>Category</h4>
-								<p>Select a category below to generate a graph showing the quantitative distribution for this typology. The distribution is based on coin type data aggregated into
-									Nomisma.</p>
-								<select name="dist" class="form-control" id="categorySelect">
-									<option value="">Select...</option>
-									<xsl:for-each select="$options/option[not(preceding-sibling::option/text() = text())]">
-										<xsl:sort select="." order="ascending"/>
-										<option value="{@value}">
-											<xsl:if test="@value = $dist">
-												<xsl:attribute name="selected">selected</xsl:attribute>
-											</xsl:if>
-											<xsl:value-of select="."/>
-										</option>
-									</xsl:for-each>
-								</select>
-
-								<input type="hidden" name="filter">
-									<xsl:if test="string($filter)">
-										<xsl:attribute name="class" select="$filter"/>
-									</xsl:if>
-								</input>
-							</div>
-							<div class="form-group">
-								<h4>Numeric response type</h4>
-								<input type="radio" name="type" value="percentage">
-									<xsl:if test="not(string($numericType)) or $numericType = 'percentage'">
-										<xsl:attribute name="checked">checked</xsl:attribute>
-									</xsl:if>
-									<xsl:text>Percentage</xsl:text>
-								</input>
-								<br/>
-								<input type="radio" name="type" value="count">
-									<xsl:if test="$numericType = 'count'">
-										<xsl:attribute name="checked">checked</xsl:attribute>
-									</xsl:if>
-									<xsl:text>Count</xsl:text>
-								</input>
-							</div>
-							<div class="form-inline">
-								<h4>Additional Filters</h4>
-								<p>Include additional filters to the basic distribution query for this concept. <a href="#" id="add-filter"><span class="glyphicon glyphicon-plus"/>Add one</a></p>
-								<div id="filter-container">
-									<!-- if there's a dist and filter, then break the filter query and insert preset filter templates -->
-									<xsl:if test="$dist and $filter">
-										<xsl:variable name="filterPieces" select="tokenize($filter, ';')"/>
-											
-										<xsl:for-each select="$filterPieces[not(normalize-space(.) = $base-query)]">
-											<xsl:call-template name="filter-template"/>
-										</xsl:for-each>
-									</xsl:if>
-								</div>
-							</div>
-
-							<input type="submit" value="Generate" class="btn btn-default" id="visualize-submit" disabled="disabled"/>
-						</form>
-					</div>
 				</div>
+			</xsl:if>-->
+			
+			<!-- display quantitative analysis template if there are coin types associated with the concept -->
+			<xsl:if test="$hasTypes=true()">
+				<xsl:call-template name="distribution-form"/>
 			</xsl:if>
 		</div>
 
@@ -345,44 +244,16 @@
 				<xsl:value-of select="$base-query"/>
 			</span>
 
-			<xsl:call-template name="filter-template">
+			<xsl:call-template name="field-template">
 				<xsl:with-param name="template" as="xs:boolean">true</xsl:with-param>
 			</xsl:call-template>
 			
+			<xsl:call-template name="compare-container-template">
+				<xsl:with-param name="template" as="xs:boolean">true</xsl:with-param>
+			</xsl:call-template>
+
 			<xsl:call-template name="ajax-loader-template"/>
 		</div>
-	</xsl:template>
-
-	<xsl:template name="filter-template">
-		<xsl:param name="template"/>
-		
-		<div class="form-group filter" style="display:block; margin-bottom:15px;">
-			<xsl:if test="$template = true()">
-				<xsl:attribute name="id">filter-template</xsl:attribute>
-			</xsl:if>
-			<select class="form-control add-filter-prop">
-				<xsl:call-template name="property-list"/>
-			</select>
-			
-			<div class="prop-container"/>
-			
-			<div class="control-container">
-				<span class="glyphicon glyphicon-exclamation-sign hidden" title="A selection is required"/>
-				<a href="#" title="Remove Filter" class="remove-query">
-					<span class="glyphicon glyphicon-remove"/>
-				</a>
-			</div>
-		</div>
-	</xsl:template>
-
-	<xsl:template name="ajax-loader-template">
-		<span id="ajax-loader-template"><img src="{$display_path}ui/images/ajax-loader.gif" alt="loading"/> Loading</span>
-	</xsl:template>
-
-	<xsl:template name="property-list">
-		<option>Select...</option>
-		<option value="nmo:hasMaterial" type="nmo:Material">Material</option>
-		<option value="nmo:hasMint" type="nmo:Mint">Mint</option>
 	</xsl:template>
 
 	<xsl:template match="*" mode="type">

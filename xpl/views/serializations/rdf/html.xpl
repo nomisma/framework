@@ -59,8 +59,22 @@
 					</classes>
 				</xsl:variable>
 				
-				<xsl:variable name="type" select="/rdf:RDF/*[1]/name()"/>
+				<xsl:variable name="hasTypes" as="item()*">
+					<classes>						
+						<class>nmo:Denomination</class>
+						<class>rdac:Family</class>
+						<class>nmo:Ethnic</class>
+						<class>foaf:Group</class>
+						<class>nmo:Material</class>
+						<class>nmo:Mint</class>
+						<class>nmo:ObjectType</class>
+						<class>foaf:Organization</class>
+						<class>foaf:Person</class>
+						<class>nmo:Region</class>						
+					</classes>
+				</xsl:variable>
 				
+				<xsl:variable name="type" select="/rdf:RDF/*[1]/name()"/>				
 				
 				<xsl:template match="/">
 					<type>
@@ -76,7 +90,12 @@
 								<xsl:otherwise>false</xsl:otherwise>
 							</xsl:choose>
 						</xsl:attribute>
-						
+						<xsl:attribute name="hasFindspots">
+							<xsl:choose>
+								<xsl:when test="$hasTypes//class[text()=$type]">true</xsl:when>
+								<xsl:otherwise>false</xsl:otherwise>
+							</xsl:choose>
+						</xsl:attribute>
 						<xsl:value-of select="$type"/>
 					</type>
 				</xsl:template>
@@ -417,10 +436,120 @@ UNION { ?coinType PROP nm:ID ;
 			</p:choose>
 		</p:otherwise>
 	</p:choose>
+	
+	<!-- ASK whether there are coin types associated with the concept -->
+	<p:choose href="#type">
+		<!-- suppress any class of object for which we do not want to render a map -->
+		<p:when test="type/@hasTypes = 'false'">
+			<p:processor name="oxf:identity">
+				<p:input name="data">
+					<sparql xmlns="http://www.w3.org/2005/sparql-results#">
+						<head/> 
+						<boolean>false</boolean>
+					</sparql>
+				</p:input>
+				<p:output name="data" id="hasTypes"/>
+			</p:processor>
+		</p:when>
+		<!-- execute SPARQL query for other classes of object -->
+		<p:otherwise>
+			<p:processor name="oxf:unsafe-xslt">
+				<p:input name="request" href="#request"/>
+				<p:input name="data" href="#type"/>
+				<p:input name="config-xml" href=" ../../../../config.xml"/>
+				<p:input name="config">
+					<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+						<xsl:variable name="id" select="tokenize(doc('input:request')/request/request-url, '/')[last()]"/>
+						<xsl:variable name="sparql_endpoint" select="doc('input:config-xml')/config/sparql_query"/>
+						<xsl:variable name="type" select="/type"/>
+						
+						<xsl:variable name="classes" as="item()*">
+							<classes>
+								<class prop="nmo:hasDenomination">nmo:Denomination</class>
+								<class prop="?prop">rdac:Family</class>
+								<class prop="?prop">nmo:Ethnic</class>
+								<class prop="?prop">foaf:Group</class>
+								<class prop="nmo:hasManufacture">nmo:Manufacture</class>
+								<class prop="nmo:hasMaterial">nmo:Material</class>
+								<class prop="nmo:hasMint">nmo:Mint</class>
+								<class prop="nmo:representsObjectType">nmo:ObjectType</class>								
+								<class prop="?prop">foaf:Organization</class>
+								<class prop="?prop">foaf:Person</class>
+								<class prop="nmo:hasRegion">nmo:Region</class>
+							</classes>
+						</xsl:variable>
+						
+						<!-- construct different queries for individual finds, hoards, and combined for heatmap -->
+						<xsl:variable name="query"><![CDATA[PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:  <http://purl.org/dc/terms/>
+PREFIX dcmitype:	<http://purl.org/dc/dcmitype/>
+PREFIX nm:       <http://nomisma.org/id/>
+PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
+PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+ASK {?s PROP nm:ID ; a nmo:TypeSeriesItem }]]></xsl:variable>
+						
+						
+						
+						<xsl:template match="/">
+							
+							<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace(replace($query, 'ID', $id), 'PROP',
+								$classes//class[text()=$type]/@prop))), '&amp;output=xml')"/>
+							
+							<config>
+								<url>
+									<xsl:value-of select="$service"/>
+								</url>
+								<content-type>application/xml</content-type>
+								<encoding>utf-8</encoding>
+							</config>
+						</xsl:template>
+						
+					</xsl:stylesheet>
+				</p:input>
+				<p:output name="data" id="hasTypes-url-generator-config"/>
+			</p:processor>
+			
+			<p:processor name="oxf:url-generator">
+				<p:input name="config" href="#hasTypes-url-generator-config"/>
+				<p:output name="data" id="type-url-data"/>
+			</p:processor>
+			
+			<p:processor name="oxf:exception-catcher">
+				<p:input name="data" href="#type-url-data"/>
+				<p:output name="data" id="type-url-data-checked"/>
+			</p:processor>
+			
+			<!-- Check whether we had an exception -->
+			<p:choose href="#type-url-data-checked">
+				<p:when test="/exceptions">
+					<!-- Extract the message -->
+					<p:processor name="oxf:identity">
+						<p:input name="data">
+							<sparql xmlns="http://www.w3.org/2005/sparql-results#">
+								<head/>
+								<boolean>false</boolean>
+							</sparql>
+						</p:input>
+						<p:output name="data" id="hasTypes"/>
+					</p:processor>
+				</p:when>
+				<p:otherwise>
+					<!-- Just return the document -->
+					<p:processor name="oxf:identity">
+						<p:input name="data" href="#type-url-data-checked"/>
+						<p:output name="data" id="hasTypes"/>
+					</p:processor>
+				</p:otherwise>
+			</p:choose>
+		</p:otherwise>
+	</p:choose>
 
+	<!-- aggregate models and serialize into HTML -->
 	<p:processor name="oxf:unsafe-xslt">
 		<p:input name="request" href="#request"/>
-		<p:input name="data" href="aggregate('content', #data, ../../../../config.xml, #hasMints, #hasFindspots)"/>
+		<p:input name="data" href="aggregate('content', #data, ../../../../config.xml, #hasMints, #hasFindspots, #hasTypes)"/>
 		<p:input name="config" href="../../../../ui/xslt/serializations/rdf/html.xsl"/>
 		<p:output name="data" id="model"/>
 	</p:processor>
