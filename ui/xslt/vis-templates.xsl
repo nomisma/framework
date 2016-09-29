@@ -3,7 +3,7 @@
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:org="http://www.w3.org/ns/org#"
 	xmlns:nomisma="http://nomisma.org/" xmlns:nmo="http://nomisma.org/ontology#" xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" exclude-result-prefixes="#all" version="2.0">
-	
+
 	<!-- ********** VISUALIZATION TEMPLATES *********** -->
 	<xsl:template name="distribution-form">
 		<xsl:variable name="options" as="element()*">
@@ -29,28 +29,43 @@
 				</xsl:for-each>
 			</options>
 		</xsl:variable>
-		
+
 		<div class="row" id="quant">
 			<div class="col-md-12 page-section">
 				<hr/>
 				<h2>Quantitative Analysis</h2>
 				<!-- display chart div when applicable, with additional filtering options -->
 				<xsl:if test="string($dist) and string($filter)">
-					<!--<xsl:variable name="distribution-query" select="replace(replace(unparsed-text('file:/usr/local/projects/nomisma/ui/sparql/typological_distribution.sparql','UTF-8'), '%FILTERS%', $filter), '%DIST%', $dist)"/>-->
-					<div id="chart"/>
-					<p>Result is limited to 100.</p>
-					<!--<div style="margin-bottom:10px;" class="control-row">
-								<a href="#" class="toggle-button btn btn-primary" id="toggle-quant"><span class="glyphicon glyphicon-plus"/> View SPARQL for full query</a>
-								<a href="{$display_path}query?query={encode-for-uri($distribution-query)}&amp;output=csv" title="Download CSV" class="btn btn-primary" style="margin-left:10px">
-									<span class="glyphicon glyphicon-download"/>Download CSV</a>
-							</div>-->
-					<!--<div id="quant-div" style="display:none">
-								<pre>
-									<xsl:value-of select="$distribution-query"/>
-								</pre>
-							</div>-->
+					<div id="chart"/>					
+					<div style="margin-bottom:10px;" class="control-row text-center">
+						<p>Result is limited to 100</p>
+						<xsl:variable name="queryParams" as="element()*">
+							<params>
+								<param>
+									<xsl:value-of select="concat('dist=', $dist)"/>
+								</param>
+								<xsl:if test="string($numericType)">
+									<param>
+										<xsl:value-of select="concat('type=', $numericType)"/>
+									</param>
+								</xsl:if>								
+								<param>
+									<xsl:value-of select="concat('filter=', $filter)"/>
+								</param>
+								<xsl:for-each select="$compare">
+									<param>
+										<xsl:value-of select="concat('compare=', normalize-space(.))"/>
+									</param>
+								</xsl:for-each>
+								<param>format=csv</param>
+							</params>
+						</xsl:variable>
+
+						<a href="{$display_path}apis/getCount?{string-join($queryParams/*, '&amp;')}" title="Download CSV" class="btn btn-primary">
+							<span class="glyphicon glyphicon-download"/>Download CSV</a>
+					</div>
 				</xsl:if>
-				
+
 				<h3>Typological Distribution</h3>
 				<form role="form" id="calculateForm" action="{$display_path}id/{$id}#quant" method="get">
 					<div class="form-group">
@@ -68,7 +83,7 @@
 								</option>
 							</xsl:for-each>
 						</select>
-						
+
 						<input type="hidden" name="filter">
 							<xsl:if test="string($filter)">
 								<xsl:attribute name="class" select="$filter"/>
@@ -98,7 +113,7 @@
 							<!-- if there's a dist and filter, then break the filter query and insert preset filter templates -->
 							<xsl:if test="$dist and $filter">
 								<xsl:variable name="filterPieces" select="tokenize($filter, ';')"/>
-								
+
 								<xsl:for-each select="$filterPieces[not(normalize-space(.) = $base-query)]">
 									<xsl:call-template name="field-template">
 										<xsl:with-param name="query" select="normalize-space(.)"/>
@@ -110,7 +125,7 @@
 					<div class="form-inline">
 						<h4>Compare to Other Queries</h4>
 						<p>You can compare mutiple queries to generate a more complex chart depicting the distribution for the Category selected above. <a href="#" id="add-compare"><span
-							class="glyphicon glyphicon-plus"/>Add query</a></p>
+									class="glyphicon glyphicon-plus"/>Add query</a></p>
 						<div id="compare-master-container">
 							<xsl:for-each select="$compare">
 								<xsl:call-template name="compare-container-template">
@@ -119,20 +134,20 @@
 								</xsl:call-template>
 							</xsl:for-each>
 						</div>
-						
-						
+
+
 					</div>
-					
+
 					<input type="submit" value="Generate" class="btn btn-default" id="visualize-submit" disabled="disabled"/>
 				</form>
 			</div>
 		</div>
 	</xsl:template>
-	
+
 	<xsl:template name="compare-container-template">
 		<xsl:param name="template"/>
 		<xsl:param name="query"/>
-		
+
 		<div class="compare-container" style="padding-left:20px;margin-left:20px;border-left:1px solid gray">
 			<xsl:if test="$template = true()">
 				<xsl:attribute name="id">compare-container-template</xsl:attribute>
@@ -147,7 +162,7 @@
 				</small>
 			</h4>
 			<div class="bg-danger alert-box hidden">
-				<span class="glyphicon glyphicon-exclamation-sign"></span>
+				<span class="glyphicon glyphicon-exclamation-sign"/>
 				<strong>Alert:</strong> There must be at least one field in the dataset query.</div>
 			<!-- if this xsl:template isn't an HTML template used by Javascript (generated in DOM from the compare request parameter), then pre-populate the query fields -->
 			<xsl:if test="$template = false()">
@@ -158,17 +173,17 @@
 						<xsl:with-param name="query" select="normalize-space(.)"/>
 					</xsl:call-template>
 				</xsl:for-each>
-				
-				
+
+
 			</xsl:if>
 		</div>
 	</xsl:template>
-	
+
 	<xsl:template name="field-template">
 		<xsl:param name="template"/>
 		<xsl:param name="query"/>
 		<xsl:param name="mode"/>
-		
+
 		<div class="form-group filter" style="display:block; margin-bottom:15px;">
 			<xsl:if test="$template = true()">
 				<xsl:attribute name="id">field-template</xsl:attribute>
@@ -180,7 +195,7 @@
 					<xsl:with-param name="mode" select="$mode"/>
 				</xsl:call-template>
 			</select>
-			
+
 			<div class="prop-container">
 				<xsl:if test="string($query)">
 					<span class="hidden">
@@ -188,7 +203,7 @@
 					</span>
 				</xsl:if>
 			</div>
-			
+
 			<div class="control-container">
 				<span class="glyphicon glyphicon-exclamation-sign hidden" title="A selection is required"/>
 				<a href="#" title="Remove Property-Object Pair" class="remove-query">
@@ -197,25 +212,29 @@
 			</div>
 		</div>
 	</xsl:template>
-	
+
 	<xsl:template name="ajax-loader-template">
 		<span id="ajax-loader-template"><img src="{$display_path}ui/images/ajax-loader.gif" alt="loading"/> Loading</span>
 	</xsl:template>
-	
+
 	<xsl:template name="property-list">
 		<xsl:param name="query"/>
 		<xsl:param name="mode"/>
 		<xsl:param name="template"/>
-		
+
 		<xsl:variable name="properties" as="element()*">
 			<properties>
 				<prop value="nmo:hasAuthority" class="foaf:Person|foaf:Organization">Authority</prop>
+				<prop value="nmo:hasDenomination" class="nmo:Denomination">Denomination</prop>
 				<prop value="nmo:hasIssuer" class="foaf:Person|foaf:Organization">Issuer</prop>
+				<prop value="nmo:hasManufacture" class="nmo:Manufacture">Manufacture</prop>
 				<prop value="nmo:hasMaterial" class="nmo:Material">Material</prop>
 				<prop value="nmo:hasMint" class="nmo:Mint">Mint</prop>
+				<prop value="nmo:representsObjectType" class="nmo:ObjectType">ObjectType</prop>
+				<prop value="nmo:hasRegion" class="nmo:Region">Region</prop>
 			</properties>
 		</xsl:variable>
-		
+
 		<option>Select...</option>
 		<xsl:choose>
 			<xsl:when test="$mode = 'compare' or $template = true()">
@@ -230,11 +249,11 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
-	
+
 	<xsl:template match="prop">
 		<xsl:param name="query"/>
 		<xsl:variable name="value" select="@value"/>
-		
+
 		<option value="{$value}" type="{@class}">
 			<xsl:if test="substring-before($query, ' ') = $value">
 				<xsl:attribute name="selected">selected</xsl:attribute>
@@ -242,5 +261,5 @@
 			<xsl:value-of select="."/>
 		</option>
 	</xsl:template>
-	
+
 </xsl:stylesheet>
