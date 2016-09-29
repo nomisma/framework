@@ -30,7 +30,6 @@
 					<solr-query>*:*</solr-query>
 					<page>1</page>
 					<dump></dump>
-					<solr-core></solr-core>
 				</controls>
 			</xforms:instance>
 
@@ -118,27 +117,27 @@ DELETE {?s ?p ?o} WHERE {
 
 			<!-- ************************* SOLR SUBMISSIONS ************************** -->
 			<!-- post instance to Solr -->
-			<xforms:submission id="delete-all" action="{instance('control-instance')/solr-core}update" ref="instance('deleteAll')" instance="deleteAll" replace="none" method="post">
+			<xforms:submission id="delete-all" action="{instance('config')/solr_published}update" ref="instance('deleteAll')" instance="deleteAll" replace="none" method="post">
 				<xforms:send ev:event="xforms-submit-done" submission="submit-commit"></xforms:send>
 				<xforms:message ev:event="xforms-submit-error" level="modal">Failed to delete all Solr docs.</xforms:message>
 			</xforms:submission>
 
-			<xforms:submission id="post-to-solr" action="{instance('control-instance')/solr-core}update" ref="instance('addIndex')" instance="addIndex" replace="instance" method="post">
+			<xforms:submission id="post-to-solr" action="{instance('config')/solr_published}update" ref="instance('addIndex')" instance="addIndex" replace="instance" method="post">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
 				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"></xforms:send>
 			</xforms:submission>
 
-			<xforms:submission id="delete-id-from-solr" action="{instance('control-instance')/solr-core}update" ref="instance('deleteId')" instance="deleteId" replace="none" method="post">
+			<xforms:submission id="delete-id-from-solr" action="{instance('config')/solr_published}update" ref="instance('deleteId')" instance="deleteId" replace="none" method="post">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
 				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"></xforms:send>
 			</xforms:submission>
 
 			<!-- send commit -->
-			<xforms:submission id="submit-commit" action="{instance('control-instance')/solr-core}update" ref="instance('sendCommit')" instance="sendCommit" replace="none" method="post">
+			<xforms:submission id="submit-commit" action="{instance('config')/solr_published}update" ref="instance('sendCommit')" instance="sendCommit" replace="none" method="post">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Failed to commit to Solr index.</xforms:message>
 			</xforms:submission>
 
-			<xforms:submission id="optimize" action="{instance('control-instance')/solr-core}update" ref="instance('optimizeIndex')" instance="optimizeIndex" replace="none" method="post">
+			<xforms:submission id="optimize" action="{instance('config')/solr_published}update" ref="instance('optimizeIndex')" instance="optimizeIndex" replace="none" method="post">
 				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Solr index flushed and reloaded.</xforms:setvalue>
 				<xforms:message ev:event="xforms-submit-error" level="modal">Solr optimize failed.</xforms:message>
 			</xforms:submission>
@@ -156,6 +155,9 @@ DELETE {?s ?p ?o} WHERE {
 				<xforms:action ev:event="xforms-submit-error">
 					<xforms:message level="modal">RDF/XML generation failed.</xforms:message>
 				</xforms:action>
+				<xforms:action ev:event="xforms-submit-done">
+					<xforms:send submission="post-to-solr"></xforms:send>
+				</xforms:action>				
 			</xforms:submission>
 
 			<!-- ************************* LOAD RDF/XML ************************** -->
@@ -480,10 +482,6 @@ DELETE {?s ?p ?o} WHERE {
 					<!-- then get the current RDF/XML and post it -->
 					<xforms:action ev:event="xforms-submit-done">
 						<xforms:send submission="rdfdump-to-solr"></xforms:send>
-						<xforms:action ev:event="xforms-submit-done">
-							<xforms:send submission="post-to-solr"></xforms:send>
-							<xforms:send submission="optimize" ev:event="xforms-submit-done"></xforms:send>
-						</xforms:action>
 					</xforms:action>
 				</xforms:action>
 			</fr:positive-choice>
@@ -497,8 +495,6 @@ DELETE {?s ?p ?o} WHERE {
 			<fr:positive-choice>
 				<fr:label>Yes</fr:label>
 				<xforms:action ev:event="DOMActivate">
-					<xforms:setvalue ref="instance('control-instance')/solr-core" value="instance('config')/solr_published"></xforms:setvalue>
-					
 					<!-- purge from the triplestore -->
 					<xforms:setvalue ref="instance('sparqlUpdate')"
 						value="replace(instance('sparqlUpdate-templates')/query[@id='delete-id'], 'URI', concat('http://nomisma.org/id/', instance('control-instance')/id))"></xforms:setvalue>
@@ -530,11 +526,8 @@ DELETE {?s ?p ?o} WHERE {
 			<fr:positive-choice>
 				<fr:label>Yes</fr:label>
 				<xforms:action ev:event="DOMActivate">
-					<xforms:send submission="rdfdump-to-solr"></xforms:send>
-					<xforms:action ev:event="xforms-submit-done">
-						<xforms:send submission="post-to-solr"></xforms:send>
-						<xforms:send submission="optimize" ev:event="xforms-submit-done"></xforms:send>
-					</xforms:action>
+					<xforms:send submission="delete-all"/>
+					<xforms:send submission="rdfdump-to-solr" ev:event="xforms-submit-done"/>					
 				</xforms:action>
 			</fr:positive-choice>
 			<fr:negative-choice>
