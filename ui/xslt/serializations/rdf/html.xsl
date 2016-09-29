@@ -216,14 +216,14 @@
 				</div>
 			</div>
 			<!-- list of associated coin types and example coins -->
-			<!--<xsl:if test="$hasTypes=true()">
+			<xsl:if test="$hasTypes=true()">
 				<div class="row">
 					<div class="col-md-12 page-section">
 						<hr/>
 						<div id="listTypes"/>
 					</div>
 				</div>
-			</xsl:if>-->
+			</xsl:if>
 			
 			<!-- display quantitative analysis template if there are coin types associated with the concept -->
 			<xsl:if test="$hasTypes=true()">
