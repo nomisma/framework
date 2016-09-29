@@ -28,7 +28,7 @@
 	<!-- pass the repository request parameter to the pipeline to load the RDF/XML and execute the transformation and serialization (into a file) of RDF/XML, TTL, or JSON-LD 
 	The XForms Submissions are GET, but have no output (seralization='none'). The process is much more efficient handled in the XPL workflow than through XForms controls in the web interface -->
 	<page path="/nomisma/admin/generateXML" model="xpl/controllers/generate-rdfxml.xpl"/>
-	<page path="/nomisma/admin/rdfdump-to-solr" model="dump/nomisma.org.rdf" view="xpl/views/serializations/rdf/solr.xpl"/>
+	<page path="/nomisma/admin/rdfdump-to-solr" model="xpl/controllers/rdfdump-to-solr.xpl" view="xpl/views/serializations/rdf/solr.xpl"/>
 	
 	<!-- ****************
 	* PUBLIC INTERFACE *
