@@ -159,7 +159,7 @@ DELETE {?s ?p ?o} WHERE {
 			</xforms:submission>
 
 			<!-- ************************* LOAD RDF/XML ************************** -->
-			<xforms:submission id="load-rdfxml" serialization="none" method="get" action="/nomisma/nomisma.org.rdf" replace="instance" instance="rdf">
+			<xforms:submission id="rdfdump-to-solr" serialization="none" method="get" action="/nomisma/admin/rdfdump-to-solr" replace="instance" instance="addIndex">
 				<xforms:action ev:event="xforms-submit-error">
 					<xforms:message level="modal">Unable to load RDF/XML from oxf:/apps/nomisma/dump/nomisma.org.rdf</xforms:message>
 				</xforms:action>
@@ -479,8 +479,11 @@ DELETE {?s ?p ?o} WHERE {
 					<xforms:send submission="delete-graph"></xforms:send>
 					<!-- then get the current RDF/XML and post it -->
 					<xforms:action ev:event="xforms-submit-done">
-						<xforms:send submission="load-rdfxml"></xforms:send>
-						<xforms:send submission="post-new" ev:event="xforms-submit-done"></xforms:send>
+						<xforms:send submission="rdfdump-to-solr"></xforms:send>
+						<xforms:action ev:event="xforms-submit-done">
+							<xforms:send submission="post-to-solr"></xforms:send>
+							<xforms:send submission="optimize" ev:event="xforms-submit-done"></xforms:send>
+						</xforms:action>
 					</xforms:action>
 				</xforms:action>
 			</fr:positive-choice>
@@ -523,17 +526,12 @@ DELETE {?s ?p ?o} WHERE {
 		</fr:alert-dialog>
 		<fr:alert-dialog id="solr-dialog">
 			<fr:label>Flush and Reload Solr Index</fr:label>
-			<fr:message>This will flush the Solr main and fuseki indices and reload all nomisma ids. It may take several minutes. Continue?</fr:message>
+			<fr:message>This will flush the Solr index and reload all nomisma ids. It may take several minutes. Continue?</fr:message>
 			<fr:positive-choice>
 				<fr:label>Yes</fr:label>
 				<xforms:action ev:event="DOMActivate">
-					<xforms:send submission="load-rdfxml"></xforms:send>
+					<xforms:send submission="rdfdump-to-solr"></xforms:send>
 					<xforms:action ev:event="xforms-submit-done">
-						<!-- transform into main solr model and post into solr/nomisma -->
-						<xforms:setvalue ref="instance('control-instance')/solr-core" value="instance('config')/solr_published"></xforms:setvalue>
-						<!-- delete all objects -->
-						<xforms:send submission="delete-all"></xforms:send>
-						<xforms:insert nodeset="instance('addIndex')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/views/serializations/rdf/solr.xpl', 'data', instance('rdf'), 'data')"></xforms:insert>
 						<xforms:send submission="post-to-solr"></xforms:send>
 						<xforms:send submission="optimize" ev:event="xforms-submit-done"></xforms:send>
 					</xforms:action>
