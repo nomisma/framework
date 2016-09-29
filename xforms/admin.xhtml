@@ -154,14 +154,22 @@ DELETE {?s ?p ?o} WHERE {
 			<xforms:submission id="generate-rdf-xml" serialization="none" method="get" action="/nomisma/admin/generateXML" replace="none">
 				<xforms:action ev:event="xforms-submit-error">
 					<xforms:message level="modal">RDF/XML generation failed.</xforms:message>
-				</xforms:action>
-				<xforms:action ev:event="xforms-submit-done">
-					<xforms:send submission="post-to-solr"></xforms:send>
-				</xforms:action>				
+				</xforms:action>								
 			</xforms:submission>
 
 			<!-- ************************* LOAD RDF/XML ************************** -->
 			<xforms:submission id="rdfdump-to-solr" serialization="none" method="get" action="/nomisma/admin/rdfdump-to-solr" replace="instance" instance="addIndex">
+				<xforms:action ev:event="xforms-submit-error">
+					<xforms:message level="modal">Unable to load RDF/XML from oxf:/apps/nomisma/dump/nomisma.org.rdf</xforms:message>
+				</xforms:action>
+				<xforms:action ev:event="xforms-submit-done">
+					<xforms:send submission="post-to-solr"/>
+					<!-- reload the list of IDs -->
+					<xforms:send submission="query-solr" ev:event="xforms-submit-done"/>
+				</xforms:action>
+			</xforms:submission>
+			
+			<xforms:submission id="load-rdfxml" serialization="none" method="get" action="/nomisma/nomisma.org.rdf" replace="instance" instance="rdf">
 				<xforms:action ev:event="xforms-submit-error">
 					<xforms:message level="modal">Unable to load RDF/XML from oxf:/apps/nomisma/dump/nomisma.org.rdf</xforms:message>
 				</xforms:action>
@@ -481,7 +489,8 @@ DELETE {?s ?p ?o} WHERE {
 					<xforms:send submission="delete-graph"></xforms:send>
 					<!-- then get the current RDF/XML and post it -->
 					<xforms:action ev:event="xforms-submit-done">
-						<xforms:send submission="rdfdump-to-solr"></xforms:send>
+						<xforms:send submission="load-rdfxml"></xforms:send>
+						<xforms:send submission="post-new" ev:event="xforms-submit-done"></xforms:send>
 					</xforms:action>
 				</xforms:action>
 			</fr:positive-choice>
@@ -527,7 +536,7 @@ DELETE {?s ?p ?o} WHERE {
 				<fr:label>Yes</fr:label>
 				<xforms:action ev:event="DOMActivate">
 					<xforms:send submission="delete-all"/>
-					<xforms:send submission="rdfdump-to-solr" ev:event="xforms-submit-done"/>					
+					<xforms:send submission="rdfdump-to-solr" ev:event="xforms-submit-done"/>				
 				</xforms:action>
 			</fr:positive-choice>
 			<fr:negative-choice>

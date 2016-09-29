@@ -12,11 +12,6 @@
 				<encoding>utf-8</encoding>
 			</config>
 		</p:input>
-		<p:output name="data" id="rdf"/>
-	</p:processor>
-	
-	<p:processor name="oxf:identity">
-		<p:input name="data" href="aggregate('content', #rdf, ../../config.xml)"/>		
 		<p:output name="data" ref="data"/>
 	</p:processor>
 </p:pipeline>
