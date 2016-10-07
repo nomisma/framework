@@ -6,106 +6,77 @@
 
 	<!-- ********** VISUALIZATION TEMPLATES *********** -->
 	<xsl:template name="distribution-form">
-		<xsl:variable name="options" as="element()*">
-			<options>
-				<xsl:for-each select="$classes//class[@dist=true()][not(text()=$type)]">
-					<xsl:choose>
-						<xsl:when test="@prop = '?prop'">
-							<!-- ignore foaf classes -->
-							<xsl:if test="not($classes//class[text()=$type]/@prop = '?prop')">
-								<xsl:for-each select="$classes/prop">
-									<option value="{.}">
-										<xsl:value-of select="substring-after(., 'has')"/>
-									</option>
-								</xsl:for-each>
-							</xsl:if>
-						</xsl:when>
-						<xsl:otherwise>
-							<option value="{@prop}">
-								<xsl:value-of select="substring-after(., ':')"/>
-							</option>
-						</xsl:otherwise>
-					</xsl:choose>
-				</xsl:for-each>
-			</options>
-		</xsl:variable>
-
-		<div class="row" id="quant">
-			<div class="col-md-12 page-section">
+		<xsl:param name="mode"/>
+		<div>
+			<xsl:if test="$mode='record'">
+				<xsl:attribute name="id">quant</xsl:attribute>
 				<hr/>
-				<h2>Quantitative Analysis</h2>
-				<!-- display chart div when applicable, with additional filtering options -->
-				<xsl:if test="string($dist) and string($filter)">
-					<div id="chart"/>					
-					<div style="margin-bottom:10px;" class="control-row text-center">
-						<p>Result is limited to 100</p>
-						<xsl:variable name="queryParams" as="element()*">
-							<params>
-								<param>
-									<xsl:value-of select="concat('dist=', $dist)"/>
-								</param>
-								<xsl:if test="string($numericType)">
-									<param>
-										<xsl:value-of select="concat('type=', $numericType)"/>
-									</param>
-								</xsl:if>								
-								<param>
-									<xsl:value-of select="concat('filter=', $filter)"/>
-								</param>
-								<xsl:for-each select="$compare">
-									<param>
-										<xsl:value-of select="concat('compare=', normalize-space(.))"/>
-									</param>
-								</xsl:for-each>
-								<param>format=csv</param>
-							</params>
-						</xsl:variable>
-
-						<a href="{$display_path}apis/getCount?{string-join($queryParams/*, '&amp;')}" title="Download CSV" class="btn btn-primary">
-							<span class="glyphicon glyphicon-download"/>Download CSV</a>
-					</div>
+			</xsl:if>
+			
+			<!-- display chart div when applicable, with additional filtering options -->
+			<xsl:choose>
+				<xsl:when test="$mode='page'">
+					<xsl:if test="string($dist) and count($compare) &gt; 0">
+						<xsl:call-template name="dist-chart"/>
+					</xsl:if>
+				</xsl:when>
+				<xsl:when test="$mode='record'">
+					<xsl:if test="string($dist) and string($filter)">
+						<xsl:call-template name="dist-chart"/>
+					</xsl:if>
+				</xsl:when>
+			</xsl:choose>			
+			
+			<h3>Typological Distribution</h3>
+			<form role="form" id="calculateForm" method="get">
+				<xsl:attribute name="action">
+					<xsl:choose>
+						<xsl:when test="$mode='page'">
+							<xsl:value-of select="concat($display_path, 'research/distribution')"/>
+						</xsl:when>
+						<xsl:when test="$mode='record'">
+							<xsl:value-of select="concat($display_path, 'id/', $id, '#quant')"/>
+						</xsl:when>
+					</xsl:choose>
+				</xsl:attribute>
+				
+				<!-- only include filter in the ID page -->
+				<xsl:if test="$mode='record'">
+					<input type="hidden" name="filter">
+						<xsl:if test="string($filter)">
+							<xsl:attribute name="class" select="$filter"/>
+						</xsl:if>
+					</input>
 				</xsl:if>
-
-				<h3>Typological Distribution</h3>
-				<form role="form" id="calculateForm" action="{$display_path}id/{$id}#quant" method="get">
-					<div class="form-group">
-						<h4>Category</h4>
-						<p>Select a category below to generate a graph showing the quantitative distribution for this typology. The distribution is based on coin type data aggregated into Nomisma.</p>
-						<select name="dist" class="form-control" id="categorySelect">
-							<option value="">Select...</option>
-							<xsl:for-each select="$options/option[not(preceding-sibling::option/text() = text())]">
-								<xsl:sort select="." order="ascending"/>
-								<option value="{@value}">
-									<xsl:if test="@value = $dist">
-										<xsl:attribute name="selected">selected</xsl:attribute>
-									</xsl:if>
-									<xsl:value-of select="."/>
-								</option>
-							</xsl:for-each>
-						</select>
-
-						<input type="hidden" name="filter">
-							<xsl:if test="string($filter)">
-								<xsl:attribute name="class" select="$filter"/>
-							</xsl:if>
-						</input>
-					</div>
-					<div class="form-group">
-						<h4>Numeric response type</h4>
-						<input type="radio" name="type" value="percentage">
-							<xsl:if test="not(string($numericType)) or $numericType = 'percentage'">
-								<xsl:attribute name="checked">checked</xsl:attribute>
-							</xsl:if>
-							<xsl:text>Percentage</xsl:text>
-						</input>
-						<br/>
-						<input type="radio" name="type" value="count">
-							<xsl:if test="$numericType = 'count'">
-								<xsl:attribute name="checked">checked</xsl:attribute>
-							</xsl:if>
-							<xsl:text>Count</xsl:text>
-						</input>
-					</div>
+				
+				<xsl:call-template name="dist-categories">
+					<xsl:with-param name="mode" select="$mode"/>
+				</xsl:call-template>
+				
+				<div class="form-group">
+					<h4>Numeric response type</h4>
+					<input type="radio" name="type" value="percentage">
+						<xsl:if test="not(string($numericType)) or $numericType = 'percentage'">
+							<xsl:attribute name="checked">checked</xsl:attribute>
+						</xsl:if>
+						<xsl:text>Percentage</xsl:text>
+					</input>
+					<br/>
+					<input type="radio" name="type" value="count">
+						<xsl:if test="$numericType = 'count'">
+							<xsl:attribute name="checked">checked</xsl:attribute>
+						</xsl:if>
+						<xsl:text>Count</xsl:text>
+					</input>
+				</div>
+				
+				<xsl:if test="$mode='page'">
+					<xsl:call-template name="dist-compare-template">
+						<xsl:with-param name="mode" select="$mode"/>
+					</xsl:call-template>
+				</xsl:if>
+				
+				<xsl:if test="$mode='record'">
 					<div class="form-inline">
 						<h4>Additional Filters</h4>
 						<p>Include additional filters to the basic distribution query for this concept. <a href="#" id="add-filter"><span class="glyphicon glyphicon-plus"/>Add one</a></p>
@@ -113,7 +84,7 @@
 							<!-- if there's a dist and filter, then break the filter query and insert preset filter templates -->
 							<xsl:if test="$dist and $filter">
 								<xsl:variable name="filterPieces" select="tokenize($filter, ';')"/>
-
+								
 								<xsl:for-each select="$filterPieces[not(normalize-space(.) = $base-query)]">
 									<xsl:call-template name="field-template">
 										<xsl:with-param name="query" select="normalize-space(.)"/>
@@ -122,24 +93,145 @@
 							</xsl:if>
 						</div>
 					</div>
-					<div class="form-inline">
-						<h4>Compare to Other Queries</h4>
-						<p>You can compare mutiple queries to generate a more complex chart depicting the distribution for the Category selected above. <a href="#" id="add-compare"><span
-									class="glyphicon glyphicon-plus"/>Add query</a></p>
-						<div id="compare-master-container">
-							<xsl:for-each select="$compare">
-								<xsl:call-template name="compare-container-template">
-									<xsl:with-param name="template" as="xs:boolean">false</xsl:with-param>
-									<xsl:with-param name="query" select="normalize-space(.)"/>
-								</xsl:call-template>
+				</xsl:if>				
+				
+				<xsl:if test="$mode='record'">
+					<xsl:call-template name="dist-compare-template">
+						<xsl:with-param name="mode" select="$mode"/>
+					</xsl:call-template>
+				</xsl:if>
+				
+				<input type="submit" value="Generate" class="btn btn-default" id="visualize-submit" disabled="disabled"/>
+			</form>
+		</div>
+	</xsl:template>
+	
+	<xsl:template name="dist-chart">
+		<div id="chart"/>					
+		<div style="margin-bottom:10px;" class="control-row text-center">
+			<p>Result is limited to 100</p>
+			<xsl:variable name="queryParams" as="element()*">
+				<params>
+					<param>
+						<xsl:value-of select="concat('dist=', $dist)"/>
+					</param>
+					<xsl:if test="string($numericType)">
+						<param>
+							<xsl:value-of select="concat('type=', $numericType)"/>
+						</param>
+					</xsl:if>								
+					<param>
+						<xsl:value-of select="concat('filter=', $filter)"/>
+					</param>
+					<xsl:for-each select="$compare">
+						<param>
+							<xsl:value-of select="concat('compare=', normalize-space(.))"/>
+						</param>
+					</xsl:for-each>
+					<param>format=csv</param>
+				</params>
+			</xsl:variable>
+			
+			<a href="{$display_path}apis/getCount?{string-join($queryParams/*, '&amp;')}" title="Download CSV" class="btn btn-primary">
+				<span class="glyphicon glyphicon-download"/>Download CSV</a>
+		</div>
+	</xsl:template>
+	
+	<xsl:template name="dist-categories">
+		<xsl:param name="mode"/>
+		
+		<div class="form-group">					
+			<h4>Category</h4>
+			
+			<xsl:choose>
+				<xsl:when test="$mode='record'">
+					<xsl:variable name="options" as="element()*">
+						<options>
+							<xsl:for-each select="$classes//class[@dist=true()][not(text()=$type)]">
+								<xsl:choose>
+									<xsl:when test="@prop = '?prop'">
+										<!-- ignore foaf classes -->
+										<xsl:if test="not($classes//class[text()=$type]/@prop = '?prop')">
+											<xsl:for-each select="$classes/prop">
+												<option value="{.}">
+													<xsl:value-of select="substring-after(., 'has')"/>
+												</option>
+											</xsl:for-each>
+										</xsl:if>
+									</xsl:when>
+									<xsl:otherwise>
+										<option value="{@prop}">
+											<xsl:value-of select="substring-after(., ':')"/>
+										</option>
+									</xsl:otherwise>
+								</xsl:choose>
 							</xsl:for-each>
-						</div>
-
-
-					</div>
-
-					<input type="submit" value="Generate" class="btn btn-default" id="visualize-submit" disabled="disabled"/>
-				</form>
+						</options>
+					</xsl:variable>
+					
+					<p>Select a category below to generate a graph showing the quantitative distribution for this typology. The distribution is based on coin type data aggregated into Nomisma.</p>
+					<select name="dist" class="form-control" id="categorySelect">
+						<option value="">Select...</option>
+						<xsl:for-each select="$options/option[not(preceding-sibling::option/text() = text())]">
+							<xsl:sort select="." order="ascending"/>
+							<option value="{@value}">
+								<xsl:if test="@value = $dist">
+									<xsl:attribute name="selected">selected</xsl:attribute>
+								</xsl:if>
+								<xsl:value-of select="."/>
+							</option>
+						</xsl:for-each>
+					</select>
+				</xsl:when>
+				<xsl:when test="$mode='page'">
+					<xsl:variable name="options" as="element()*">
+						<options>
+							<option value="nmo:hasAuthority">Authority</option>
+							<option value="nmo:hasDenomination">Denomination</option>
+							<option value="nmo:hasIssuer">Issuer</option>
+							<option value="nmo:hasManufacture">Manufacture</option>
+							<option value="nmo:hasMaterial">Material</option>
+							<option value="nmo:hasMint">Mint</option>
+							<option value="nmo:representsObjectType">Object Type</option>
+							<option value="nmo:hasRegipm">Region</option>
+						</options>
+					</xsl:variable>
+					
+					<p>Select a category below to generate a graph showing the quantitative distribution for the following queries. The distribution is based on coin type data aggregated into Nomisma.</p>
+					<select name="dist" class="form-control" id="categorySelect">
+						<option value="">Select...</option>
+						<xsl:for-each select="$options/option">
+							<option value="{@value}">
+								<xsl:if test="$dist = @value">
+									<xsl:attribute name="selected">selected</xsl:attribute>
+								</xsl:if>
+								<xsl:value-of select="."/>
+							</option>
+						</xsl:for-each>
+					</select>
+				</xsl:when>
+			</xsl:choose>
+		</div>
+	</xsl:template>
+	
+	<xsl:template name="dist-compare-template">
+		<xsl:param name="mode"/>
+		<div class="form-inline">
+			<h4>
+				<xsl:choose>
+					<xsl:when test="$mode='record'">Compare to Other Queries</xsl:when>
+					<xsl:when test="$mode='page'">Compare Queries</xsl:when>
+				</xsl:choose>
+			</h4>
+			<p>You can compare mutiple queries to generate a more complex chart depicting the distribution for the Category selected above. <a href="#" id="add-compare"><span
+				class="glyphicon glyphicon-plus"/>Add query</a></p>
+			<div id="compare-master-container">
+				<xsl:for-each select="$compare">
+					<xsl:call-template name="compare-container-template">
+						<xsl:with-param name="template" as="xs:boolean">false</xsl:with-param>
+						<xsl:with-param name="query" select="normalize-space(.)"/>
+					</xsl:call-template>
+				</xsl:for-each>
 			</div>
 		</div>
 	</xsl:template>

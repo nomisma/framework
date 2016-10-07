@@ -36,6 +36,7 @@
 	<!-- **** PAGES **** -->			
 	<page path="/nomisma/id/" view="xpl/views/pages/id.xpl"/>
 	<page path="/nomisma/sparql" view="xpl/views/pages/sparql.xpl"/>
+	<page path="/nomisma/research/distribution" view="xpl/views/pages/vis.xpl"/>
 	<page path="/nomisma/apis" view="xpl/views/pages/apis.xpl"/>
 	<page path="/nomisma/datasets" model="xpl/models/sparql/datasets.xpl" view="xpl/views/serializations/sparql/datasets.xpl"/>
 	<page path="/nomisma/ontology" model="xpl/models/rdf/get-rdf-ontology-current.xpl" view="xpl/controllers/conneg-ontology.xpl"/>

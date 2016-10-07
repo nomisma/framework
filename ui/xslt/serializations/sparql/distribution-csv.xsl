@@ -6,6 +6,21 @@
 	<xsl:param name="filter" select="doc('input:request')/request/parameters/parameter[name='filter']/value"/>
 	<xsl:param name="type" select="doc('input:request')/request/parameters/parameter[name='type']/value"/>
 
+	<xsl:variable name="queries" as="element()*">
+		<queries>
+			<xsl:if test="string($filter)">
+				<query>
+					<xsl:value-of select="normalize-space($filter)"/>
+				</query>
+			</xsl:if>
+			<xsl:for-each select="$compare">
+				<query>
+					<xsl:value-of select="."/>
+				</query>
+			</xsl:for-each>
+		</queries>
+	</xsl:variable>
+
 	<xsl:template match="/">
 		<xsl:text>"subset","value","</xsl:text>
 		<xsl:value-of select="if ($type='count') then 'count' else 'percentage'"/>
@@ -15,16 +30,9 @@
 	
 	<xsl:template match="res:sparql">
 		<xsl:variable name="position" select="position()"/>
-		<xsl:variable name="query">
-			<xsl:choose>
-				<xsl:when test="$position = 1">
-					<xsl:value-of select="$filter"/>
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:value-of select="$compare[position() = $position - 1]"/>
-				</xsl:otherwise>
-			</xsl:choose>
-		</xsl:variable>
+		<xsl:variable name="query" select="$queries/query[$position]"/>
+			
+		
 		<xsl:variable name="total" select="sum(descendant::res:binding[@name='count']/res:literal)"/>
 		
 		<xsl:apply-templates select="descendant::res:result[res:binding[@name='label']/res:literal]">

@@ -21,6 +21,14 @@
 						<li>
 							<a href="{$display_path}browse">Browse IDs</a>
 						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Research Tools <b class="caret"/></a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="{$display_path}research/distribution">Typological Distribution</a>
+								</li>
+							</ul>
+						</li>
 						<li>
 							<a href="{$display_path}apis">APIs</a>
 						</li>
