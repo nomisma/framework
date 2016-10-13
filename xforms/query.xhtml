@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:nm="http://nomisma.org/id/" xmlns:nmo="http://nomisma.org/ontology#"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2008/05/skos#" xmlns:foaf="http://xmlns.com/foaf/0.1/"
+	xmlns:dcterms="http://purl.org/dc/terms/">
+	<head>
+		<title>nomisma.org: admin</title>
+		<link rel="stylesheet" href="/fr/style/bootstrap/css/bootstrap.css" type="text/css" />
+		<link rel="stylesheet" href="/fr/style/form-runner-bootstrap-override.css" type="text/css" />
+		<link rel="shortcut icon" href="/ops/images/orbeon-icon-16.ico" />
+		<link rel="icon" href="/ops/images/orbeon-icon-16.png" type="image/png" />
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+		<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="/apps/nomisma/xforms/css/style.css" />
+
+		<xforms:model>
+			<xforms:instance id="rdf" xxforms:exclude-result-prefixes="#all">
+				<rdf:RDF/>
+			</xforms:instance>
+
+			<xforms:instance id="config" xxforms:exclude-result-prefixes="#all">
+				<xi:include href="../config.xml"/>
+			</xforms:instance>
+
+			<xforms:instance id="control-instance">
+				<controls xmlns="">
+					<uri></uri>
+					<status></status>
+				</controls>
+			</xforms:instance>
+
+			<!-- sparql update -->
+			<xforms:instance id="sparqlUpdate-templates">
+				<queries xmlns="">
+					<query id="delete-object"><![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX org:	<http://www.w3.org/ns/org#>
+PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
+DELETE {?s ?p ?o} WHERE { 
+{<URI> nmo:hasObverse ?s . ?s ?p ?o }
+UNION {<URI> nmo:hasReverse ?s . ?s ?p ?o }
+UNION {<URI> ?p ?o . ?s ?p ?o . FILTER (?s = <URI>) }}]]></query>
+				</queries>
+			</xforms:instance>
+
+			<xforms:instance id="sparql-templates">
+				<templates xmlns="">
+					<prefix><![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:	<http://purl.org/dc/terms/>
+PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
+PREFIX owl:	<http://www.w3.org/2002/07/owl#>
+PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
+PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX nm:	<http://nomisma.org/id/>
+PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX org:	<http://www.w3.org/ns/org#>
+PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
+PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>
+PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
+					<query id="describe"><![CDATA[DESCRIBE <URI>]]></query>
+				</templates>
+			</xforms:instance>
+
+			<!-- query instances -->
+			<xforms:instance id="sparqlQuery">
+				<query></query>
+			</xforms:instance>
+
+			<xforms:instance id="sparqlUpdate">
+				<query xmlns=""></query>
+			</xforms:instance>
+
+			<xforms:instance id="sparqlResponse">
+				<sparql xmlns="http://www.w3.org/2005/sparql-results#"/>
+			</xforms:instance>
+
+			<!-- ************* SPARQL SUBMISSIONS **********************-->
+			<xforms:submission id="delete-graph" action="{instance('config')/sparql_update}" ref="instance('sparqlUpdate')" serialization="text/plain"
+				replace="none" method="post" mediatype="application/sparql-update">
+				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL update failed.</xforms:message>
+				<!-- after the object is successfully purged from the triplestore, clear relevant instances -->
+				<xforms:action ev:event="xforms-submit-done">
+					<xforms:setvalue ref="instance('control-instance')/status">Record successfully deleted from system.</xforms:setvalue>
+					<xforms:delete nodeset="instance('rdf')/*"/>
+					<xforms:setvalue ref="instance('control-instance')/uri"/>
+				</xforms:action>
+			</xforms:submission>
+
+			<xforms:submission id="submit-sparqlQuery" action="{instance('config')/sparql_query}?query={encode-for-uri(instance('sparqlQuery'))}&amp;output=xml"
+				ref="instance('rdf')" replace="instance" method="get">
+				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL query failed.</xforms:message>
+				<xforms:message ev:event="xforms-submit-done" level="modal" if="not(instance('rdf')/*)">URI not found in SPARQL endpoint.</xforms:message>
+			</xforms:submission>
+
+			<!-- ********** XFORMS-MODEL-CONSTRUCT-DONE ********** -->
+		</xforms:model>
+	</head>
+
+	<body>
+		<xforms:var name="display_path">../</xforms:var>
+		<div class="container-fluid">			
+			<div class="row">
+				<div class="col-md-12">
+					<p><a href="{$display_path}"><span class="glyphicon glyphicon-arrow-left"></span>Return to Admin</a></p>
+					<h1>Nomisma: View Object</h1>
+					<xforms:group ref=".[string-length(instance('control-instance')/status) &gt; 0]">
+						<div class="bg-info alert">
+							<p>
+								<span class="glyphicon glyphicon-info-sign"></span>
+								<strong>Status:</strong>
+								<xforms:output ref="instance('control-instance')/status"/>
+							</p>
+						</div>
+					</xforms:group>
+					<div>
+						<xforms:input ref="instance('control-instance')/uri">
+							<xforms:label>URI</xforms:label>
+						</xforms:input>
+						<xforms:trigger>
+							<xforms:label>Search</xforms:label>
+							<xforms:action ev:event="DOMActivate">
+								<xforms:setvalue ref="instance('sparqlQuery')"
+									value="concat(instance('sparql-templates')/prefix, '&#x0A;', replace(instance('sparql-templates')/query[@id='describe'], 'URI', instance('control-instance')/uri))"/>
+								<xforms:send submission="submit-sparqlQuery"/>
+							</xforms:action>
+						</xforms:trigger>
+					</div>
+					<xforms:group ref="instance('rdf')">
+						<xforms:group ref="*">
+							<h2>
+								<xforms:output ref="if (dcterms:title[1]) then dcterms:title else skos:prefLabel[1]"/>
+							</h2>
+							<xforms:group ref=".[not(starts-with(@rdf:about, 'http://nomisma.org/id/'))]">
+								<div>
+									<strong>Actions: </strong>
+									<xforms:trigger appearance="minimal">
+										<xforms:label><span class="glyphicon glyphicon-remove"></span>Delete</xforms:label>
+										<xforms:action ev:event="DOMActivate">
+											<xforms:dispatch target="delete-record-dialog" name="fr-show"/>
+										</xforms:action>
+									</xforms:trigger>
+									<hr />
+								</div>
+							</xforms:group>
+							<dl class="dl-horizontal">
+								<xforms:repeat nodeset="*[not(self::dcterms:title) and not(self::skos:prefLabel)]">
+									<dt>
+										<xforms:output ref="name()"/>
+									</dt>
+									<dd>
+										<xforms:group ref=".[not(@rdf:resource)]">
+											<xforms:output ref="."/>
+										</xforms:group>
+										<xforms:group ref=".[@rdf:resource]">
+											<xforms:trigger appearance="minimal">
+												<xforms:label value="@rdf:resource"/>
+												<xforms:action ev:event="DOMActivate">
+													<xforms:load show="new" resource="{@rdf:resource}"/>
+												</xforms:action>
+											</xforms:trigger>
+										</xforms:group>
+									</dd>
+								</xforms:repeat>
+							</dl>
+						</xforms:group>
+					</xforms:group>
+
+					<fr:xforms-inspector/>
+				</div>
+			</div>
+		</div>
+		<!-- *********** DIALOGS *********** -->
+		<fr:alert-dialog id="delete-record-dialog">
+			<fr:label>Delete Record</fr:label>
+			<fr:message>Are you sure you want to delete this record from the Nomisma triplestore?</fr:message>
+			<fr:positive-choice>
+				<fr:label>Yes</fr:label>
+				<xforms:action ev:event="DOMActivate">
+					<!-- purge from the triplestore -->
+					<xforms:setvalue ref="instance('sparqlUpdate')"
+						value="replace(instance('sparqlUpdate-templates')/query[@id='delete-object'], 'URI', instance('control-instance')/uri)"/>
+					<xforms:send submission="delete-graph"/>
+				</xforms:action>
+			</fr:positive-choice>
+			<fr:negative-choice>
+				<fr:label>No</fr:label>
+			</fr:negative-choice>
+		</fr:alert-dialog>
+	</body>
+</html>

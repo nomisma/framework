@@ -864,8 +864,12 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 						</xforms:group>
 						<!-- display a clickable link to the concept if it is not a new id -->
 						<xforms:group ref=".[string-length(instance('control-instance')/id) &gt; 0 and instance('control-instance')/new_id = false()]">
-							<a href="http://nomisma.org/id/{instance('control-instance')/id}"> (<xforms:output ref="concat('http://nomisma.org/id/', instance('control-instance')/id)"
-								></xforms:output>)</a>
+							<xforms:trigger appearance="minimal">
+								<xforms:label value="concat('(http://nomisma.org/id/', instance('control-instance')/id, ')')"/>
+								<xforms:action ev:event="DOMActivate">
+									<xforms:load show="new" resource="http://nomisma.org/id/{instance('control-instance')/id}"/>
+								</xforms:action>
+							</xforms:trigger>
 						</xforms:group>
 					</div>
 					<xforms:group ref="instance('doc')/*[1]/dcterms:isReplacedBy">
