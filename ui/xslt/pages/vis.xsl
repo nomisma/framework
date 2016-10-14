@@ -64,7 +64,7 @@
 			<span id="path">
 				<xsl:value-of select="$display_path"/>
 			</span>
-			<span id="mode">
+			<span id="page">
 				<xsl:value-of select="$mode"/>
 			</span>
 			

@@ -17,18 +17,20 @@
 			<xsl:choose>
 				<xsl:when test="$mode='page'">
 					<xsl:if test="string($dist) and count($compare) &gt; 0">
-						<xsl:call-template name="dist-chart"/>
+						<xsl:call-template name="dist-chart">
+							<xsl:with-param name="hidden" select="false()" as="xs:boolean"/>
+						</xsl:call-template>
 					</xsl:if>
 				</xsl:when>
 				<xsl:when test="$mode='record'">
-					<xsl:if test="string($dist) and string($filter)">
-						<xsl:call-template name="dist-chart"/>
-					</xsl:if>
+					<xsl:call-template name="dist-chart">
+						<xsl:with-param name="hidden" select="true()" as="xs:boolean"/>
+					</xsl:call-template>
 				</xsl:when>
 			</xsl:choose>			
 			
 			<h3>Typological Distribution</h3>
-			<form role="form" id="calculateForm" method="get">
+			<form role="form" id="distributionForm" class="quant-form" method="get">
 				<xsl:attribute name="action">
 					<xsl:choose>
 						<xsl:when test="$mode='page'">
@@ -107,34 +109,55 @@
 	</xsl:template>
 	
 	<xsl:template name="dist-chart">
-		<div id="chart"/>					
-		<div style="margin-bottom:10px;" class="control-row text-center">
-			<p>Result is limited to 100</p>
-			<xsl:variable name="queryParams" as="element()*">
-				<params>
-					<param>
-						<xsl:value-of select="concat('dist=', $dist)"/>
-					</param>
-					<xsl:if test="string($numericType)">
-						<param>
-							<xsl:value-of select="concat('type=', $numericType)"/>
-						</param>
-					</xsl:if>								
-					<param>
-						<xsl:value-of select="concat('filter=', $filter)"/>
-					</param>
-					<xsl:for-each select="$compare">
-						<param>
-							<xsl:value-of select="concat('compare=', normalize-space(.))"/>
-						</param>
-					</xsl:for-each>
-					<param>format=csv</param>
-				</params>
-			</xsl:variable>
+		<xsl:param name="hidden"/>
+		
+		<div id="dist-chart-container">
+			<xsl:if test="$hidden = true()">
+				<xsl:attribute name="class">hidden</xsl:attribute>
+			</xsl:if>
+			<div id="chart"/>				
 			
-			<a href="{$display_path}apis/getCount?{string-join($queryParams/*, '&amp;')}" title="Download CSV" class="btn btn-primary">
-				<span class="glyphicon glyphicon-download"/>Download CSV</a>
+			<!-- only display model-generated link when there are URL params (distribution page) -->
+			<div style="margin-bottom:10px;" class="control-row text-center">
+				<p>Result is limited to 100</p>
+				
+				<xsl:choose>
+					<xsl:when test="$hidden = false()">
+						<xsl:variable name="queryParams" as="element()*">
+							<params>
+								<param>
+									<xsl:value-of select="concat('dist=', $dist)"/>
+								</param>
+								<xsl:if test="string($numericType)">
+									<param>
+										<xsl:value-of select="concat('type=', $numericType)"/>
+									</param>
+								</xsl:if>								
+								<param>
+									<xsl:value-of select="concat('filter=', $filter)"/>
+								</param>
+								<xsl:for-each select="$compare">
+									<param>
+										<xsl:value-of select="concat('compare=', normalize-space(.))"/>
+									</param>
+								</xsl:for-each>
+								<param>format=csv</param>
+							</params>
+						</xsl:variable>
+						
+						<a href="{$display_path}apis/getCount?{string-join($queryParams/*, '&amp;')}" title="Download CSV" class="btn btn-primary">
+							<span class="glyphicon glyphicon-download"/>Download CSV</a>
+					</xsl:when>
+					<xsl:otherwise>
+						<a href="#" title="Download" class="btn btn-primary">
+							<span class="glyphicon glyphicon-download"/>Download CSV</a>
+						<a href="#" title="Bookmark" class="btn btn-primary">
+							<span class="glyphicon glyphicon-download"/>View in Separate Page</a>
+					</xsl:otherwise>
+				</xsl:choose>
+			</div>			
 		</div>
+		
 	</xsl:template>
 	
 	<xsl:template name="dist-categories">

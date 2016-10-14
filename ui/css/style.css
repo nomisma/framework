@@ -150,7 +150,7 @@ body{
 .thumbImage > img{
 	max-width:120px;
 }
-#calculateForm input[type=text], #calculateForm select {
+#distributionForm input[type=text], #distributionForm select {
 	width:20em;
 }
 .control-container {
