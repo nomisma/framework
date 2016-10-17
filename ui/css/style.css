@@ -157,6 +157,9 @@ body{
 	display:inline;
 	width:20px;
 }
+.control-row .btn{
+    margin:0 5px;
+}
 .query-pair {
 	display:block;
 	margin-bottom:15px;
