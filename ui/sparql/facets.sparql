@@ -18,6 +18,6 @@ PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
 SELECT DISTINCT ?o ?label  WHERE {
  ?coinType a nmo:TypeSeriesItem;
  	 %FILTERS%;
-            %FACET% ?o           
-           . ?o skos:prefLabel ?label FILTER langMatches(lang(?label), "en")
+     %FACET% ?o .
+ ?o skos:prefLabel ?label FILTER langMatches(lang(?label), "en")
 }  ORDER BY ?label
