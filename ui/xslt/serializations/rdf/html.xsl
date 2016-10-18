@@ -128,6 +128,13 @@
 				<script type="text/javascript" src="{$display_path}ui//javascript/jquery.fancybox.pack.js?v=2.1.5"/>
 				<script type="text/javascript" src="{$display_path}ui/javascript/display_functions.js"/>
 				<link rel="stylesheet" href="{$display_path}ui/css/style.css"/>
+				
+				<!-- google analytics -->
+				<xsl:if test="string(//config/google_analytics)">
+					<script type="text/javascript">
+						<xsl:value-of select="//config/google_analytics"/>
+					</script>
+				</xsl:if>
 
 				<!-- schema.org metadata -->
 				<xsl:for-each select="descendant::skos:prefLabel">

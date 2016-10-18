@@ -19,7 +19,13 @@
 				<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
 				<script type="text/javascript" src="{$display_path}ui/javascript/prism.js"/>
 				<link rel="stylesheet" href="{$display_path}ui/css/style.css"/>
-				<link rel="stylesheet" href="{$display_path}ui/css/prism.css"/>				
+				<link rel="stylesheet" href="{$display_path}ui/css/prism.css"/>		
+				<!-- google analytics -->
+				<xsl:if test="string(//config/google_analytics)">
+					<script type="text/javascript">
+						<xsl:value-of select="//config/google_analytics"/>
+					</script>
+				</xsl:if>
 			</head>
 			<body>
 				<xsl:call-template name="header"/>
