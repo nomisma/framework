@@ -90,9 +90,54 @@
 					<xsl:variable name="sparql_endpoint" select="/config/sparql_query"/>
 					<xsl:variable name="query" select="doc('input:query')"/>
 					
+					<!-- parse query statements into a data object -->
+					<xsl:variable name="statements" as="element()*">
+						<statements>
+							<!-- parse filters -->
+							<xsl:for-each select="tokenize($filter, ';')">
+								<xsl:variable name="property" select="substring-before(normalize-space(.), ' ')"/>
+								<xsl:variable name="object" select="substring-after(normalize-space(.), ' ')"/>
+								
+								<xsl:choose>
+									<xsl:when test="$property = 'portrait'">
+										<triple s="?coinType" p="nmo:hasObverse" o="?obv"/>
+										<triple s="?coinType" p="nmo:hasReverse" o="?rev"/>
+										<union>
+											<triple s="?obv" p="nmo:hasPortrait" o="{$object}"/>
+											<triple s="?rev" p="nmo:hasPortrait" o="{$object}"/>
+										</union>										
+									</xsl:when>
+									<xsl:otherwise>
+										<triple s="?coinType" p="{$property}" o="{$object}"/>
+									</xsl:otherwise>
+								</xsl:choose>							
+							</xsl:for-each>
+							
+							<!-- parse dist -->
+							<xsl:choose>
+								<xsl:when test="$dist='portrait'">
+									<triple s="?coinType" p="nmo:hasObverse" o="?obv"/>
+									<triple s="?coinType" p="nmo:hasReverse" o="?rev"/>
+									<union>
+										<triple s="?obv" p="nmo:hasPortrait" o="?dist"/>
+										<triple s="?rev" p="nmo:hasPortrait" o="?dist"/>
+									</union>
+									<triple s="?dist" p="a" o="foaf:Person"/>
+								</xsl:when>
+								<xsl:otherwise>
+									<triple s="?coinType" p="{$dist}" o="?dist"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</statements>						
+					</xsl:variable>
+					
+					<xsl:variable name="statementsSPARQL">
+						<xsl:apply-templates select="$statements/triple|$statements/union"/>
+					</xsl:variable>
+					
 					<xsl:variable name="service">
 						<xsl:value-of
-							select="concat($sparql_endpoint, '?query=', encode-for-uri(replace(replace($query, '%FILTERS%', $filter), '%DIST%', $dist)), '&amp;output=xml')"
+							select="concat($sparql_endpoint, '?query=', encode-for-uri(replace($query, '%STATEMENTS%', $statementsSPARQL)), '&amp;output=xml')"
 						/>
 					</xsl:variable>
 					
@@ -105,9 +150,28 @@
 							<encoding>utf-8</encoding>
 						</config>
 					</xsl:template>
+					
+					<xsl:template match="triple">
+						<xsl:value-of select="concat(@s, ' ', @p, ' ', @o, '.')"/>
+						<xsl:if test="not(parent::union)">
+							<xsl:text>&#x0A;</xsl:text>
+						</xsl:if>
+					</xsl:template>
+						
+					<xsl:template match="union">
+						<xsl:for-each select="triple">
+							<xsl:if test="position() &gt; 1">
+								<xsl:text>UNION </xsl:text>
+							</xsl:if>
+							<xsl:text>{</xsl:text>
+							<xsl:apply-templates select="self::node()"/>
+							<xsl:text>}&#x0A;</xsl:text>
+						</xsl:for-each>
+					</xsl:template>
+					
 				</xsl:stylesheet>
 			</p:input>
-			<p:output name="data" id="compare-url-generator-config"/>
+			<p:output name="data" id="compare-url-generator-config"/>			
 		</p:processor>
 		
 		<!-- get the data from fuseki -->

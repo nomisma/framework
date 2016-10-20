@@ -81,6 +81,7 @@
 			<class map="false" types="false">nmo:CoinWear</class>
 			<prop>nmo:hasAuthority</prop>
 			<prop>nmo:hasIssuer</prop>
+			<prop>portrait</prop>
 		</classes>
 	</xsl:variable>
 

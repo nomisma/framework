@@ -51,9 +51,7 @@
 					</input>
 				</xsl:if>
 				
-				<xsl:call-template name="dist-categories">
-					<xsl:with-param name="mode" select="$mode"/>
-				</xsl:call-template>
+				<xsl:call-template name="dist-categories"/>
 				
 				<div class="form-group">
 					<h4>Numeric response type</h4>
@@ -161,69 +159,32 @@
 	</xsl:template>
 	
 	<xsl:template name="dist-categories">
-		<xsl:param name="mode"/>
 		
 		<div class="form-group">					
 			<h4>Category</h4>
 			
-			<xsl:choose>
-				<xsl:when test="$mode='record'">
-					<xsl:variable name="options" as="element()*">
-						<options>
-							<xsl:for-each select="$classes//class[@dist=true()][not(text()=$type)]">
-								<xsl:choose>
-									<xsl:when test="@prop = '?prop'">
-										<!-- ignore foaf classes -->
-										<xsl:if test="not($classes//class[text()=$type]/@prop = '?prop')">
-											<xsl:for-each select="$classes/prop">
-												<option value="{.}">
-													<xsl:value-of select="substring-after(., 'has')"/>
-												</option>
-											</xsl:for-each>
-										</xsl:if>
-									</xsl:when>
-									<xsl:otherwise>
-										<option value="{@prop}">
-											<xsl:value-of select="substring-after(., ':')"/>
-										</option>
-									</xsl:otherwise>
-								</xsl:choose>
-							</xsl:for-each>
-						</options>
-					</xsl:variable>
-					
-					<p>Select a category below to generate a graph showing the quantitative distribution for this typology. The distribution is based on coin type data aggregated into Nomisma.</p>
-					<select name="dist" class="form-control" id="categorySelect">
-						<option value="">Select...</option>
-						<xsl:for-each select="$options/option[not(preceding-sibling::option/text() = text())]">
-							<xsl:sort select="." order="ascending"/>
-							<option value="{@value}">
-								<xsl:if test="@value = $dist">
-									<xsl:attribute name="selected">selected</xsl:attribute>
-								</xsl:if>
-								<xsl:value-of select="."/>
-							</option>
-						</xsl:for-each>
-					</select>
-				</xsl:when>
-				<xsl:when test="$mode='page'">
-					<xsl:variable name="options" as="element()*">
-						<options>
-							<option value="nmo:hasAuthority">Authority</option>
-							<option value="nmo:hasDenomination">Denomination</option>
-							<option value="nmo:hasIssuer">Issuer</option>
-							<option value="nmo:hasManufacture">Manufacture</option>
-							<option value="nmo:hasMaterial">Material</option>
-							<option value="nmo:hasMint">Mint</option>
-							<option value="nmo:representsObjectType">Object Type</option>
-							<option value="nmo:hasRegipm">Region</option>
-						</options>
-					</xsl:variable>
-					
-					<p>Select a category below to generate a graph showing the quantitative distribution for the following queries. The distribution is based on coin type data aggregated into Nomisma.</p>
-					<select name="dist" class="form-control" id="categorySelect">
-						<option value="">Select...</option>
-						<xsl:for-each select="$options/option">
+			<xsl:variable name="properties" as="element()*">
+				<properties>
+					<prop value="nmo:hasAuthority" class="foaf:Person|foaf:Organization">Authority</prop>							
+					<prop value="nmo:hasDenomination" class="nmo:Denomination">Denomination</prop>
+					<prop value="nmo:hasIssuer" class="foaf:Person|foaf:Organization">Issuer</prop>
+					<prop value="nmo:hasManufacture" class="nmo:Manufacture">Manufacture</prop>
+					<prop value="nmo:hasMaterial" class="nmo:Material">Material</prop>
+					<prop value="nmo:hasMint" class="nmo:Mint">Mint</prop>
+					<prop value="nmo:representsObjectType" class="nmo:ObjectType">ObjectType</prop>
+					<prop value="portrait" class="">Portrait</prop>
+					<prop value="nmo:hasRegion" class="nmo:Region">Region</prop>
+				</properties>
+			</xsl:variable>
+			
+			<p>Select a category below to generate a graph showing the quantitative distribution for the following queries. The distribution is based on coin type data aggregated into Nomisma.</p>
+			<select name="dist" class="form-control" id="categorySelect">
+				<option value="">Select...</option>
+				<xsl:choose>
+					<xsl:when test="string($type)">
+						<!-- when there is a RDF Class (ID page), exclude the distribution option from the class of the ID
+						note: portrait and deity are always available -->
+						<xsl:for-each select="$properties/prop[not(contains(@class, $type))]">
 							<option value="{@value}">
 								<xsl:if test="$dist = @value">
 									<xsl:attribute name="selected">selected</xsl:attribute>
@@ -231,9 +192,19 @@
 								<xsl:value-of select="."/>
 							</option>
 						</xsl:for-each>
-					</select>
-				</xsl:when>
-			</xsl:choose>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:for-each select="$properties/prop">
+							<option value="{@value}">
+								<xsl:if test="$dist = @value">
+									<xsl:attribute name="selected">selected</xsl:attribute>
+								</xsl:if>
+								<xsl:value-of select="."/>
+							</option>
+						</xsl:for-each>
+					</xsl:otherwise>
+				</xsl:choose>						
+			</select>
 		</div>
 	</xsl:template>
 	
@@ -349,6 +320,7 @@
 				<prop value="nmo:hasMaterial" class="nmo:Material">Material</prop>
 				<prop value="nmo:hasMint" class="nmo:Mint">Mint</prop>
 				<prop value="nmo:representsObjectType" class="nmo:ObjectType">ObjectType</prop>
+				<prop value="portrait" class="">Portrait</prop>
 				<prop value="nmo:hasRegion" class="nmo:Region">Region</prop>
 			</properties>
 		</xsl:variable>

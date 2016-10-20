@@ -54,13 +54,37 @@
 				<xsl:variable name="service">
 					<xsl:choose>
 						<xsl:when test="string($filter)">
-							<xsl:value-of select="concat($sparql_endpoint, '?query=', encode-for-uri(replace(replace($query, '%FILTERS%', $filter), '%FACET%', $facet)), '&amp;output=xml')"/>
+							<xsl:choose>
+								<xsl:when test="$facet = 'portrait'">
+									<!-- expand portrait query into obverse and reverse of the coin types -->
+									<xsl:variable name="portrait-graph"><![CDATA[nmo:hasObverse ?obv ;
+nmo:hasReverse ?rev .
+{?obv nmo:hasPortrait ?o }
+UNION {?rev nmo:hasPortrait ?o}
+?o a foaf:Person .]]></xsl:variable>
+									
+									<xsl:value-of select="concat($sparql_endpoint, '?query=', encode-for-uri(replace(replace($query, '%FILTERS%', $filter), '%FACET% \?o \.', $portrait-graph)), '&amp;output=xml')"/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="concat($sparql_endpoint, '?query=', encode-for-uri(replace(replace($query, '%FILTERS%', $filter), '%FACET%', $facet)), '&amp;output=xml')"/>
+								</xsl:otherwise>
+							</xsl:choose>							
 						</xsl:when>
 						<xsl:otherwise>
 							<xsl:choose>
 								<xsl:when test="$facet = '?prop'">
 									<!-- when the facet is the ?prop, add a filter to restrict to foaf:Person or foaf:Organization -->
 									<xsl:value-of select="concat($sparql_endpoint, '?query=', encode-for-uri(replace(replace($query, '%FILTERS%;', ''), '%FACET% \?o \.', concat($facet, ' ?o . ?o rdf:type ?type FILTER strStarts(str(?type), &#x022;http://xmlns.com/foaf/0.1/&#x022;) .'))), '&amp;output=xml')"/>
+								</xsl:when>
+								<xsl:when test="$facet = 'portrait'">
+									<!-- expand portrait query into obverse and reverse of the coin types -->
+									<xsl:variable name="portrait-graph"><![CDATA[nmo:hasObverse ?obv ;
+nmo:hasReverse ?rev .
+{?obv nmo:hasPortrait ?o }
+UNION {?rev nmo:hasPortrait ?o}
+?o a foaf:Person .]]></xsl:variable>
+									
+									<xsl:value-of select="concat($sparql_endpoint, '?query=', encode-for-uri(replace(replace($query, '%FILTERS%;', ''), '%FACET% \?o \.', $portrait-graph)), '&amp;output=xml')"/>
 								</xsl:when>
 								<xsl:otherwise>
 									<xsl:value-of select="concat($sparql_endpoint, '?query=', encode-for-uri(replace(replace($query, '%FILTERS%;', ''), '%FACET%', $facet)), '&amp;output=xml')"/>

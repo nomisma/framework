@@ -54,7 +54,7 @@
 				<xsl:element name="subset">
 					<xsl:value-of select="nomisma:parseFilter($query)"/>
 				</xsl:element>
-				<xsl:element name="{lower-case(substring-after($dist, 'has'))}">
+				<xsl:element name="{if (starts-with($dist, 'nmo:')) then lower-case(substring-after($dist, 'has')) else $dist}">
 					<xsl:value-of select="res:binding[@name='label']/res:literal"/>
 				</xsl:element>
 				<xsl:element name="{if ($type='count') then 'count' else 'percentage'}">
@@ -97,6 +97,14 @@
 				<xsl:when test="contains(., '?prop')">
 					<xsl:analyze-string select="."
 						regex="\?prop\snm:(.*)">				
+						<xsl:matching-substring>
+							<xsl:value-of select="regex-group(1)"/>
+						</xsl:matching-substring>				
+					</xsl:analyze-string>
+				</xsl:when>
+				<xsl:when test="contains(., 'portrait')">
+					<xsl:analyze-string select="."
+						regex="portrait\snm:(.*)">				
 						<xsl:matching-substring>
 							<xsl:value-of select="regex-group(1)"/>
 						</xsl:matching-substring>				

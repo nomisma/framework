@@ -15,9 +15,7 @@ PREFIX spatial: <http://jena.apache.org/spatial#>
 PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>
 PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
 
-SELECT ?o ?label (count(?o) as ?count) WHERE {
- ?coinType %FILTERS% ;
-           a nmo:TypeSeriesItem;
-            %DIST% ?o;
-           . ?o skos:prefLabel ?label FILTER langMatches(lang(?label), "en")
-} GROUP BY ?o ?label ORDER BY ?label
+SELECT ?dist ?label (count(?dist) as ?count) WHERE {
+ %STATEMENTS%
+ ?dist skos:prefLabel ?label FILTER langMatches(lang(?label), "en")
+} GROUP BY ?dist ?label ORDER BY ?label
