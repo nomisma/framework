@@ -109,7 +109,7 @@
 							<xsl:value-of select="regex-group(1)"/>
 						</xsl:matching-substring>				
 					</xsl:analyze-string>
-				</xsl:when>
+				</xsl:when>				
 				<xsl:otherwise>
 					<xsl:analyze-string select="."
 						regex="nmo:has([A-Za-z]+)\snm:(.*)">				

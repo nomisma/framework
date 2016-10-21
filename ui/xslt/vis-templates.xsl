@@ -165,7 +165,8 @@
 			
 			<xsl:variable name="properties" as="element()*">
 				<properties>
-					<prop value="nmo:hasAuthority" class="foaf:Person|foaf:Organization">Authority</prop>							
+					<prop value="nmo:hasAuthority" class="foaf:Person|foaf:Organization">Authority</prop>					
+					<prop value="deity" class="">Deity</prop>
 					<prop value="nmo:hasDenomination" class="nmo:Denomination">Denomination</prop>
 					<prop value="nmo:hasIssuer" class="foaf:Person|foaf:Organization">Issuer</prop>
 					<prop value="nmo:hasManufacture" class="nmo:Manufacture">Manufacture</prop>
@@ -315,6 +316,7 @@
 					<prop value="?prop" class="foaf:Person|foaf:Organization">Authority or Issuer</prop>
 				</xsl:if>
 				<prop value="nmo:hasDenomination" class="nmo:Denomination">Denomination</prop>
+				<!--<prop value="deity" class="">Deity</prop>-->
 				<prop value="nmo:hasIssuer" class="foaf:Person|foaf:Organization">Issuer</prop>
 				<prop value="nmo:hasManufacture" class="nmo:Manufacture">Manufacture</prop>
 				<prop value="nmo:hasMaterial" class="nmo:Material">Material</prop>

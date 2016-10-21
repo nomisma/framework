@@ -99,7 +99,7 @@
 								<xsl:variable name="object" select="substring-after(normalize-space(.), ' ')"/>
 								
 								<xsl:choose>
-									<xsl:when test="$property = 'portrait'">
+									<xsl:when test="$property = 'portrait' or $property='deity'">
 										<triple s="?coinType" p="nmo:hasObverse" o="?obv"/>
 										<triple s="?coinType" p="nmo:hasReverse" o="?rev"/>
 										<union>
@@ -115,14 +115,16 @@
 							
 							<!-- parse dist -->
 							<xsl:choose>
-								<xsl:when test="$dist='portrait'">
+								<xsl:when test="$dist='portrait' or $dist='deity'">
+									<xsl:variable name="distClass" select="if ($dist='portrait') then 'foaf:Person' else 'wordnet:Deity'"/>
+									
 									<triple s="?coinType" p="nmo:hasObverse" o="?obv"/>
 									<triple s="?coinType" p="nmo:hasReverse" o="?rev"/>
 									<union>
 										<triple s="?obv" p="nmo:hasPortrait" o="?dist"/>
 										<triple s="?rev" p="nmo:hasPortrait" o="?dist"/>
 									</union>
-									<triple s="?dist" p="a" o="foaf:Person"/>
+									<triple s="?dist" p="a" o="{$distClass}"/>
 								</xsl:when>
 								<xsl:otherwise>
 									<triple s="?coinType" p="{$dist}" o="?dist"/>
