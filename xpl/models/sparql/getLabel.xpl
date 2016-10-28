@@ -29,19 +29,30 @@
 
 				<!-- config variables -->
 				<xsl:variable name="sparql_endpoint" select="/config/sparql_query"/>
-				
+
 				<xsl:variable name="query"><![CDATA[
 PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX nm:       <http://nomisma.org/id/>
 PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>						
-SELECT DISTINCT ?label WHERE {
-<URI> skos:prefLabel ?label
-FILTER(langMatches(lang(?label), "LANG"))} 
-ORDER BY asc(?label)]]></xsl:variable>
-				
-				<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace(replace($query, 'LANG', $langStr), 'URI', $uri))), '&amp;output=xml')"/>
-				
+SELECT ?label WHERE {
+%URI% skos:prefLabel ?label FILTER(langMatches(lang(?label), "LANG"))}]]></xsl:variable>
+
+				<xsl:variable name="service">
+					<xsl:choose>
+						<xsl:when test="matches($uri, 'https?://')">
+							<xsl:value-of
+								select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace(replace($query, 'LANG', $langStr), '%URI%', concat('&lt;', $uri, '&gt;')))), '&amp;output=xml')"
+							/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of
+								select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace(replace($query, 'LANG', $langStr), '%URI%', $uri))), '&amp;output=xml')"
+							/>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:variable>
+
 				<xsl:template match="/">
 					<config>
 						<url>

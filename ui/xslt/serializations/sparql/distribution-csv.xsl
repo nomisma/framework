@@ -10,11 +10,13 @@
 		<queries>
 			<xsl:if test="string($filter)">
 				<query>
+					<xsl:attribute name="label" select="nomisma:parseFilter(normalize-space($filter))"/>
 					<xsl:value-of select="normalize-space($filter)"/>
 				</query>
 			</xsl:if>
 			<xsl:for-each select="$compare">
 				<query>
+					<xsl:attribute name="label" select="nomisma:parseFilter(normalize-space(.))"/>
 					<xsl:value-of select="."/>
 				</query>
 			</xsl:for-each>
@@ -22,7 +24,11 @@
 	</xsl:variable>
 
 	<xsl:template match="/">
-		<xsl:text>"subset","value","</xsl:text>
+		<xsl:text>"subset","value","uri",</xsl:text>
+		<xsl:if test="$dist='nmo:hasMint'">
+			<xsl:text>"lat","long",</xsl:text>
+		</xsl:if>
+		<xsl:text>"</xsl:text>
 		<xsl:value-of select="if ($type='count') then 'count' else 'percentage'"/>
 		<xsl:text>"&#x0A;</xsl:text>
 		<xsl:apply-templates select="descendant::res:sparql"/>
@@ -57,6 +63,17 @@
 				<xsl:element name="{if (starts-with($dist, 'nmo:')) then lower-case(substring-after($dist, 'has')) else $dist}">
 					<xsl:value-of select="res:binding[@name='label']/res:literal"/>
 				</xsl:element>
+				<xsl:element name="uri">
+					<xsl:value-of select="res:binding[@name='dist']/res:uri"/>
+				</xsl:element>
+				<xsl:if test="$dist='nmo:hasMint'">
+					<xsl:element name="lat">
+						<xsl:value-of select="res:binding[@name='lat']/res:literal"/>
+					</xsl:element>
+					<xsl:element name="long">
+						<xsl:value-of select="res:binding[@name='long']/res:literal"/>
+					</xsl:element>
+				</xsl:if>
 				<xsl:element name="{if ($type='count') then 'count' else 'percentage'}">
 					<xsl:choose>
 						<xsl:when test="$type='count'">
@@ -75,12 +92,13 @@
 				<xsl:when test=". castable as xs:integer or . castable as xs:decimal">
 					<xsl:value-of select="."/>
 				</xsl:when>
+				<xsl:when test="string-length(.) = 0"/>
 				<xsl:otherwise>
 					<xsl:value-of select="concat('&#x022;', ., '&#x022;')"/>
 				</xsl:otherwise>
 			</xsl:choose>
 			<xsl:if test="not(position()=last())">
-				<xsl:text>, </xsl:text>
+				<xsl:text>,</xsl:text>
 			</xsl:if>
 		</xsl:for-each>		
 		<xsl:if test="not(position()=last())">
@@ -96,27 +114,38 @@
 			<xsl:choose>
 				<xsl:when test="contains(., '?prop')">
 					<xsl:analyze-string select="."
-						regex="\?prop\snm:(.*)">				
+						regex="\?prop\s(nm:.*)">				
 						<xsl:matching-substring>
-							<xsl:value-of select="regex-group(1)"/>
+							<xsl:text>Authority/Issuer: </xsl:text>
+							<xsl:value-of select="nomisma:getLabel(regex-group(1))"/>
 						</xsl:matching-substring>				
 					</xsl:analyze-string>
 				</xsl:when>
 				<xsl:when test="contains(., 'portrait')">
 					<xsl:analyze-string select="."
-						regex="portrait\snm:(.*)">				
+						regex="portrait\s(nm:.*)">						
 						<xsl:matching-substring>
-							<xsl:value-of select="regex-group(1)"/>
+							<xsl:text>Portrait: </xsl:text>
+							<xsl:value-of select="nomisma:getLabel(regex-group(1))"/>
 						</xsl:matching-substring>				
 					</xsl:analyze-string>
-				</xsl:when>				
+				</xsl:when>
+				<xsl:when test="contains(., 'deity')">
+					<xsl:analyze-string select="."
+						regex="deity\s&lt;(.*)&gt;">						
+						<xsl:matching-substring>
+							<xsl:text>Deity: </xsl:text>
+							<xsl:value-of select="nomisma:getLabel(regex-group(1))"/>
+						</xsl:matching-substring>				
+					</xsl:analyze-string>
+				</xsl:when>
 				<xsl:otherwise>
 					<xsl:analyze-string select="."
-						regex="nmo:has([A-Za-z]+)\snm:(.*)">				
+						regex="nmo:has([A-Za-z]+)\s(nm:.*)">				
 						<xsl:matching-substring>
 							<xsl:value-of select="regex-group(1)"/>
-							<xsl:text>-</xsl:text>
-							<xsl:value-of select="regex-group(2)"/>
+							<xsl:text>: </xsl:text>
+							<xsl:value-of select="nomisma:getLabel(regex-group(2))"/>
 						</xsl:matching-substring>				
 					</xsl:analyze-string>
 				</xsl:otherwise>
@@ -125,5 +154,13 @@
 				<xsl:text> &amp; </xsl:text>
 			</xsl:if>
 		</xsl:for-each>
+	</xsl:function>
+	
+	<xsl:function name="nomisma:getLabel">
+		<xsl:param name="uri"/>
+		
+		<xsl:variable name="service" select="concat('http://localhost:8080/orbeon/nomisma/apis/getLabel?uri=', $uri)"/>
+		
+		<xsl:value-of select="document($service)/response"/>		
 	</xsl:function>
 </xsl:stylesheet>

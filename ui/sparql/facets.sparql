@@ -13,11 +13,10 @@ PREFIX rdac:	<http://www.rdaregistry.info/Elements/c/>
 PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
 PREFIX spatial: <http://jena.apache.org/spatial#>
 PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>
+PREFIX wordnet: <http://ontologi.es/WordNet/class/>
 PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
 
-SELECT DISTINCT ?o ?label  WHERE {
- ?coinType a nmo:TypeSeriesItem;
- 	 %FILTERS%;
-     %FACET% ?o .
- ?o skos:prefLabel ?label FILTER langMatches(lang(?label), "en")
+SELECT DISTINCT ?facet ?label  WHERE {
+ %STATEMENTS%
+ ?facet skos:prefLabel ?label FILTER langMatches(lang(?label), "en")
 }  ORDER BY ?label

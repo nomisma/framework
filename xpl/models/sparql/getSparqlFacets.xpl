@@ -51,59 +51,92 @@
 				<xsl:variable name="sparql_endpoint" select="/config/sparql_query"/>
 				<xsl:variable name="query" select="doc('input:query')"/>
 
-				<xsl:variable name="service">
-					<xsl:choose>
-						<xsl:when test="string($filter)">
+				<xsl:variable name="statements" as="element()*">
+					<statements>
+						<triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
+						
+						<!-- parse filters -->
+						<xsl:for-each select="tokenize($filter, ';')">
+							<xsl:variable name="property" select="substring-before(normalize-space(.), ' ')"/>
+							<xsl:variable name="object" select="substring-after(normalize-space(.), ' ')"/>
+							
+							<!-- process filters -->
 							<xsl:choose>
-								<xsl:when test="$facet = 'portrait'">
-									<!-- expand portrait query into obverse and reverse of the coin types -->
-									<xsl:variable name="portrait-graph"><![CDATA[nmo:hasObverse ?obv ;
-nmo:hasReverse ?rev .
-{?obv nmo:hasPortrait ?o }
-UNION {?rev nmo:hasPortrait ?o}
-?o a foaf:Person .]]></xsl:variable>
-									
-									<xsl:value-of select="concat($sparql_endpoint, '?query=', encode-for-uri(replace(replace($query, '%FILTERS%', $filter), '%FACET% \?o \.', $portrait-graph)), '&amp;output=xml')"/>
+								<xsl:when test="$property = 'portrait' or $property='deity'">
+									<xsl:variable name="distClass" select="if ($facet='portrait') then 'foaf:Person' else 'wordnet:Deity'"/>									
+									<triple s="?coinType" p="nmo:hasObverse" o="?obv"/>
+									<triple s="?coinType" p="nmo:hasReverse" o="?rev"/>
+									<union>
+										<triple s="?obv" p="nmo:hasPortrait" o="{$object}"/>
+										<triple s="?rev" p="nmo:hasPortrait" o="{$object}"/>
+									</union>																		
 								</xsl:when>
 								<xsl:otherwise>
-									<xsl:value-of select="concat($sparql_endpoint, '?query=', encode-for-uri(replace(replace($query, '%FILTERS%', $filter), '%FACET%', $facet)), '&amp;output=xml')"/>
+									<triple s="?coinType" p="{$property}" o="{$object}"/>
 								</xsl:otherwise>
 							</xsl:choose>							
-						</xsl:when>
-						<xsl:otherwise>
-							<xsl:choose>
-								<xsl:when test="$facet = '?prop'">
-									<!-- when the facet is the ?prop, add a filter to restrict to foaf:Person or foaf:Organization -->
-									<xsl:value-of select="concat($sparql_endpoint, '?query=', encode-for-uri(replace(replace($query, '%FILTERS%;', ''), '%FACET% \?o \.', concat($facet, ' ?o . ?o rdf:type ?type FILTER strStarts(str(?type), &#x022;http://xmlns.com/foaf/0.1/&#x022;) .'))), '&amp;output=xml')"/>
-								</xsl:when>
-								<xsl:when test="$facet = 'portrait'">
-									<!-- expand portrait query into obverse and reverse of the coin types -->
-									<xsl:variable name="portrait-graph"><![CDATA[nmo:hasObverse ?obv ;
-nmo:hasReverse ?rev .
-{?obv nmo:hasPortrait ?o }
-UNION {?rev nmo:hasPortrait ?o}
-?o a foaf:Person .]]></xsl:variable>
-									
-									<xsl:value-of select="concat($sparql_endpoint, '?query=', encode-for-uri(replace(replace($query, '%FILTERS%;', ''), '%FACET% \?o \.', $portrait-graph)), '&amp;output=xml')"/>
-								</xsl:when>
-								<xsl:otherwise>
-									<xsl:value-of select="concat($sparql_endpoint, '?query=', encode-for-uri(replace(replace($query, '%FILTERS%;', ''), '%FACET%', $facet)), '&amp;output=xml')"/>
-								</xsl:otherwise>
-							</xsl:choose>
-							
-						</xsl:otherwise>
-					</xsl:choose>
-					
+						</xsl:for-each>
+						
+						<!-- facet -->
+						<xsl:choose>
+							<xsl:when test="$facet='?prop'">
+								<triple s="?coinType" p="?prop" o="?facet"></triple>
+								<triple s="?facet" p="rdf:type" o="?type FILTER strStarts(str(?type), &#x022;http://xmlns.com/foaf/0.1/&#x022;)"></triple>
+							</xsl:when>
+							<xsl:when test="$facet='portrait' or $facet='deity'">
+								<xsl:variable name="distClass" select="if ($facet='portrait') then 'foaf:Person' else 'wordnet:Deity'"/>									
+								<triple s="?coinType" p="nmo:hasObverse" o="?obv"/>
+								<triple s="?coinType" p="nmo:hasReverse" o="?rev"/>
+								<union>
+									<triple s="?obv" p="nmo:hasPortrait" o="?facet"/>
+									<triple s="?rev" p="nmo:hasPortrait" o="?facet"/>
+								</union>	
+								<triple s="?facet" p="a" o="{$distClass}"/>				
+							</xsl:when>
+							<xsl:otherwise>
+								<triple s="?coinType" p="{$facet}" o="?facet"/>
+							</xsl:otherwise>
+						</xsl:choose>						
+					</statements>
+				</xsl:variable>
+				
+				<xsl:variable name="statementsSPARQL">
+					<xsl:apply-templates select="$statements/triple|$statements/union"/>
+				</xsl:variable>
+
+				<xsl:variable name="service">
+					<xsl:value-of
+						select="concat($sparql_endpoint, '?query=', encode-for-uri(replace($query, '%STATEMENTS%', $statementsSPARQL)), '&amp;output=xml')"
+					/>
 				</xsl:variable>
 
 				<xsl:template match="/">
 					<config>
 						<url>
+							<!--<xsl:copy-of select="$statementsSPARQL"/>-->
 							<xsl:value-of select="$service"/>
 						</url>
 						<content-type>application/xml</content-type>
 						<encoding>utf-8</encoding>
 					</config>
+				</xsl:template>
+				
+				<xsl:template match="triple">
+					<xsl:value-of select="concat(@s, ' ', @p, ' ', @o, '.')"/>
+					<xsl:if test="not(parent::union)">
+						<xsl:text>&#x0A;</xsl:text>
+					</xsl:if>
+				</xsl:template>
+				
+				<xsl:template match="union">
+					<xsl:for-each select="triple">
+						<xsl:if test="position() &gt; 1">
+							<xsl:text>UNION </xsl:text>
+						</xsl:if>
+						<xsl:text>{</xsl:text>
+						<xsl:apply-templates select="self::node()"/>
+						<xsl:text>}&#x0A;</xsl:text>
+					</xsl:for-each>
 				</xsl:template>
 			</xsl:stylesheet>
 		</p:input>

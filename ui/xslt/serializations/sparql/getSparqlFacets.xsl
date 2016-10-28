@@ -11,8 +11,18 @@
 	</xsl:template>
 
 	<xsl:template match="res:result">		
-		<xsl:variable name="curie" select="replace(res:binding[@name='o']/res:uri, 'http://nomisma.org/id/', 'nm:')"/>
-		<xsl:variable name="regex" select="concat('([a-z]+:[a-zA-Z]+)\s', $curie)"/>
+		<xsl:variable name="curie">
+			<xsl:choose>
+				<xsl:when test="contains(res:binding[@name='facet']/res:uri, 'http://nomisma.org/id/')">
+					<xsl:value-of select="replace(res:binding[@name='facet']/res:uri, 'http://nomisma.org/id/', 'nm:')"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="concat('&lt;', res:binding[@name='facet']/res:uri, '&gt;')"/>
+				</xsl:otherwise>
+			</xsl:choose>		
+		</xsl:variable>
+		
+		<!--<xsl:variable name="regex" select="concat('([a-z]+:[a-zA-Z]+)\s', $curie)"/>-->
 		
 		<option value="{$curie}">
 			<xsl:if test="substring-after($query, ' ') = $curie">
