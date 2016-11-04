@@ -150,8 +150,21 @@ body{
 .thumbImage > img{
 	max-width:120px;
 }
+
+/*
+  ***************************************
+  VISUALIZATION FORM
+  ***************************************
+*/
 #distributionForm input[type=text], #distributionForm select {
 	width:20em;
+}
+#distributionForm select.era {
+    width:5em;
+    margin-left:10px;
+}
+#distributionForm input.year {
+    width:10em;
 }
 .control-container {
 	display:inline;
@@ -168,4 +181,11 @@ body{
 	display:inline;
 	margin-left:10px;
 	margin-right:10px;
+}
+.duplicate-date-alert-box, .empty-query-alert-box {
+	width:50%;
+	margin:20px auto;
+	padding:5px;
+	border-radius: 4px;
+	border: 1px solid gray;
 }

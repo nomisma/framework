@@ -100,6 +100,32 @@
 											<triple s="?rev" p="nmo:hasPortrait" o="{$object}"/>
 										</union>
 									</xsl:when>
+									<xsl:when test="$property = 'from'">
+										<xsl:if test="$object castable as xs:integer">
+											<xsl:variable name="gYear" select="format-number(number($object), '0000')"/>
+											
+											<triple s="?coinType" p="nmo:hasStartDate" o="?startDate">
+												<xsl:attribute name="filter">
+													<xsl:text>(?startDate >= "</xsl:text>
+													<xsl:value-of select="$gYear"/>
+													<xsl:text>"^^xsd:gYear)</xsl:text>
+												</xsl:attribute>
+											</triple>
+										</xsl:if>
+									</xsl:when>
+									<xsl:when test="$property = 'to'">
+										<xsl:if test="$object castable as xs:integer">
+											<xsl:variable name="gYear" select="format-number(number($object), '0000')"/>
+											
+											<triple s="?coinType" p="nmo:hasEndDate" o="?endDate">
+												<xsl:attribute name="filter">
+													<xsl:text>(?endDate &lt;= "</xsl:text>
+													<xsl:value-of select="$gYear"/>
+													<xsl:text>"^^xsd:gYear)</xsl:text>
+												</xsl:attribute>
+											</triple>
+										</xsl:if>
+									</xsl:when>
 									<xsl:otherwise>
 										<triple s="?coinType" p="{$property}" o="{$object}"/>
 									</xsl:otherwise>
@@ -155,7 +181,7 @@
 					</xsl:template>
 
 					<xsl:template match="triple">
-						<xsl:value-of select="concat(@s, ' ', @p, ' ', @o, '.')"/>
+						<xsl:value-of select="concat(@s, ' ', @p, ' ', @o, if (@filter) then concat(' FILTER ', @filter) else '', '.')"/>						
 						<xsl:if test="not(parent::union)">
 							<xsl:text>&#x0A;</xsl:text>
 						</xsl:if>

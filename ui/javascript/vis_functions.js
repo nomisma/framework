@@ -110,21 +110,52 @@ $(document).ready(function () {
     });
     
     //monitor changes from quantitative analysis drop down menus to execute ajax calls
-    $(' #filter-container').on('change', '.filter .add-filter-prop', function () {
+    $('#filter-container').on('change', '.filter .add-filter-prop', function () {
         var prop = $(this).val();
         var type = $(this).children('option:selected').attr('type');
         var next = $(this).next('.prop-container');
         
-        getFacets(mode = 'filter', prop, type, next, path);
+        //if the prop is a from or do date, insert date entry template, otherwise get facets from SPARQL
+        if (prop == 'from' || prop == 'to') {
+            addDate(mode = 'filter', next);
+        } else {
+            getFacets(mode = 'filter', prop, type, next, path);
+        }
+        
+        //display duplicate property alert if there is more than one from or to date
+        duplicates = countDates($(this).closest('#filter-container'));
+        if (duplicates == true) {
+            $(this).closest('#filter-container').children('.duplicate-date-alert-box').removeClass('hidden');
+        } else {
+            $(this).closest('#filter-container').children('.duplicate-date-alert-box').addClass('hidden');
+        }
     });
     
-    $(' #filter-container').on('change', '.filter .prop-container .add-filter-object', function () {
+    $('#filter-container').on('change', '.filter .prop-container .add-filter-object', function () {
+        validate();
+    });
+    
+    //validate on date change
+    $('#filter-container').on('change', '.filter .prop-container span input.year', function () {
+        validate();
+    });
+    $('#filter-container').on('change', '.filter .prop-container span select.era', function () {
         validate();
     });
     
     //delete the compare/filter query pair
-    $(' #filter-container').on('click', '.filter .control-container .remove-query', function () {
+    $('#filter-container').on('click', '.filter .control-container .remove-query', function () {
+        var container = $(this).closest('#filter-container');
         $(this).closest('.filter').remove();
+        
+        //display duplicate property alert if there is more than one from or to date
+        duplicates = countDates(container);
+        if (duplicates == true) {
+            container.children('.duplicate-date-alert-box').removeClass('hidden');
+        } else {
+            container.children('.duplicate-date-alert-box').addClass('hidden');
+        }
+        
         validate();
         return false;
     });
@@ -136,7 +167,12 @@ $(document).ready(function () {
         var next = $(this).children('.add-filter-prop').next('.prop-container');
         var mode = $(this).parent('div').attr('class') == 'compare-container' ? 'compare': 'filter';
         
-        getFacets(mode, prop, type, next, path);
+        
+        if (prop == 'from' || prop == 'to') {
+            validate();
+        } else {
+            getFacets(mode, prop, type, next, path);
+        }
     });
     
     /***COMPARE***/
@@ -158,21 +194,34 @@ $(document).ready(function () {
         
         //toggle the alert box when there aren't any filters
         if (count > 0) {
-            $(this).closest('.compare-container').children('.alert-box').addClass('hidden');
+            $(this).closest('.compare-container').children('.empty-query-alert-box').addClass('hidden');
         } else {
-            $(this).closest('.compare-container').children('.alert-box').removeClass('hidden');
+            $(this).closest('.compare-container').children('.empty-query-alert-box').removeClass('hidden');
         }
         
         return false;
     });
     
     //get facets on property drop-down list change
-    $(' #compare-master-container').on('change', '.compare-container .filter .add-filter-prop', function () {
+    $('#compare-master-container').on('change', '.compare-container .filter .add-filter-prop', function () {
         var prop = $(this).val();
         var type = $(this).children('option:selected').attr('type');
         var next = $(this).next('.prop-container');
         
-        getFacets(mode = 'compare', prop, type, next, path);
+        //if the prop is a from or do date, insert date entry template, otherwise get facets from SPARQL
+        if (prop == 'from' || prop == 'to') {
+            addDate(mode = 'compare', next);
+        } else {
+            getFacets(mode = 'compare', prop, type, next, path);
+        }
+        
+        //display duplicate property alert if there is more than one from or to date
+        duplicates = countDates($(this).closest('.compare-container'));
+        if (duplicates == true) {
+            $(this).closest('.compare-container').children('.duplicate-date-alert-box').removeClass('hidden');
+        } else {
+            $(this).closest('.compare-container').children('.duplicate-date-alert-box').addClass('hidden');
+        }
     });
     
     //validate on object drop-down list change
@@ -193,20 +242,62 @@ $(document).ready(function () {
         
         //toggle the alert box when there aren't any filters
         if (count == 1) {
-            $(this).closest('.compare-container').children('.alert-box').removeClass('hidden');
+            $(this).closest('.compare-container').children('.empty-query-alert-box').removeClass('hidden');
         } else {
-            $(this).closest('.compare-container').children('.alert-box').addClass('hidden');
+            $(this).closest('.compare-container').children('.empty-query-alert-box').addClass('hidden');
         }
         
+        //store the container object to processing after deletion of filter
+        var container = $(this).closest('.compare-container');
         $(this).closest('.filter').remove();
+        
+        //display duplicate property alert if there is more than one from or to date. must count after deletion of filter
+        duplicates = countDates(container);
+        if (duplicates == true) {
+            container.children('.duplicate-date-alert-box').removeClass('hidden');
+        } else {
+            container.children('.duplicate-date-alert-box').addClass('hidden');
+        }
         validate();
-        
-        
         return false;
+    });
+    
+    //validate on date change
+    $(' #compare-master-container').on('change', '.compare-container .filter .prop-container span input.year', function () {
+        validate();
+    });
+    $(' #compare-master-container').on('change', '.compare-container .filter .prop-container span select.era', function () {
+        validate();
     });
 });
 
+//count occurrences of from and to date query fields to display error warning or negate query validation
+function countDates(self) {
+    var toCount = 0;
+    var fromCount = 0;
+    self.siblings().addBack().children('.filter').children('.add-filter-prop').each(function () {
+        if ($(this).val() == 'to') {
+            toCount++;
+        } else if ($(this).val() == 'from') {
+            fromCount++;
+        }
+    });
+    
+    if (fromCount > 1 || toCount > 1) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
+//insert the from/to date template
+function addDate(mode, next) {
+    template = $('#date-container-template').clone().removeAttr('id');
+    next.html(template);
+    validate();
+}
+
+//get the associated facets from thet getSparqlFacets web service
 function getFacets(mode, prop, type, next, path) {
     if (type != null) {
         //define ajax parameters
@@ -241,56 +332,78 @@ function getFacets(mode, prop, type, next, path) {
 
 function validate() {
     var page = $('#page').text();
-    var valid = false;
+    var elements = new Array();
     
-    if ($('#categorySelect').length > 0) {
-        if ($('#categorySelect').val()) {
-            //only set validation to true if it's a record page
-            if (page == 'record') {
-                valid = true;
-                //iterate through additional filters
-                $('#filter-container .filter').each(function () {
+    //evaluate each portion of the form
+    
+    //ensure category drop down contains a value
+    if ($('#categorySelect').val()) {
+        elements.push(true);
+    } else {
+        elements.push(false);
+    }
+    
+    //evaluate the filter from record page
+    if ($('#filter-container').length > 0) {
+        $('#filter-container .filter').each(function () {
+            if ($(this).children('.add-filter-prop').val() == 'to' || $(this).children('.add-filter-prop').val() == 'from') {
+                var year = $(this).children('.prop-container').children('span').children('input.year').val();
+                if ($.isNumeric(year)) {
+                    elements.push(true);
+                } else {
+                    elements.push(false);
+                }
+            } else {
+                if ($(this).children('.add-filter-prop').val() && $(this).children('.prop-container').children('.add-filter-object').val()) {
+                    elements.push(true);
+                } else {
+                    elements.push(false);
+                }
+            }
+        });
+    }
+    
+    //evaluate every compare query
+    $('#compare-master-container .compare-container').each(function () {
+        //look for duplicate from or to dates
+        duplicates = countDates($(this));
+        if (duplicates == true) {
+            elements.push(false);
+        }
+        
+        //if there are no filters in the compare container, then the compare query is false
+        if ($(this).children('.filter').length > 0) {
+            $(this).children('.filter').each(function () {
+                //if the prop is to for from, then validate the integer
+                if ($(this).children('.add-filter-prop').val() == 'to' || $(this).children('.add-filter-prop').val() == 'from') {
+                    var year = $(this).children('.prop-container').children('span').children('input.year').val();
+                    if ($.isNumeric(year)) {
+                        elements.push(true);
+                    } else {
+                        elements.push(false);
+                    }
+                } else {
+                    //otherwise check for value of the object drop-down menu
                     if ($(this).children('.add-filter-prop').val() && $(this).children('.prop-container').children('.add-filter-object').val()) {
-                        //iterate through compared queries
-                        valid = true;
-                        
-                        //iterate through compare-containers, be sure there is at least one filter
-                        $('#compare-master-container .compare-container').each(function () {
-                            if ($(this).children('.filter').length > 0) {
-                                $(this).children('.filter').each(function () {
-                                    if ($(this).children('.add-filter-prop').val() && $(this).children('.prop-container').children('.add-filter-object').val()) {
-                                        valid = true;
-                                    } else {
-                                        valid = false;
-                                    }
-                                });
-                            } else {
-                                valid = false;
-                            }
-                        });
+                        elements.push(true);
                     } else {
-                        valid = false;
+                        elements.push(false);
                     }
-                });
-            }
-            
-            //if there are not filters, then iterate through compare queries
-            if ($('#filter-container .filter').length <= 0) {
-                //iterate through compare-containers, be sure there is at least one filter
-                $('#compare-master-container .compare-container').each(function () {
-                    if ($(this).children('.filter').length > 0) {
-                        $(this).children('.filter').each(function () {
-                            if ($(this).children('.add-filter-prop').val() && $(this).children('.prop-container').children('.add-filter-object').val()) {
-                                valid = true;
-                            } else {
-                                valid = false;
-                            }
-                        });
-                    } else {
-                        valid = false;
-                    }
-                });
-            }
+                }
+            });
+        } else {
+            elements.push(false);
+        }
+    });
+    
+    //if there is a false element to the form OR if there is only one element (i.e., the category, then the form is invalid
+    if (elements.indexOf(false) !== -1) {
+        var valid = false;
+    } else {
+        if (page == 'page' && elements.length == 1) {
+            var valid = false;
+        } else {
+            var valid = true;
         }
     }
     
@@ -308,7 +421,17 @@ function validate() {
             var formId = $(this).closest('form').attr('id');
             var q = new Array();
             $(this).children('.filter').each(function () {
-                if ($(this).children('.add-filter-prop').val() && $(this).children('.prop-container').children('.add-filter-object').val()) {
+                //evaluate dates vs. facets
+                if ($(this).children('.add-filter-prop').val() == 'to' || $(this).children('.add-filter-prop').val() == 'from') {
+                    var year = $(this).children('.prop-container').children('span').children('input.year').val();
+                    var era = $(this).children('.prop-container').children('span').children('select.era').val();
+                    
+                    if (era == 'bc') {
+                        year = year * -1;
+                    }
+                    
+                    q.push($(this).children('.add-filter-prop').val() + ' ' + year);
+                } else if ($(this).children('.add-filter-prop').val() && $(this).children('.prop-container').children('.add-filter-object').val()) {
                     q.push($(this).children('.add-filter-prop').val() + ' ' + $(this).children('.prop-container').children('.add-filter-object').val());
                 }
             });
@@ -325,7 +448,16 @@ function generateFilter() {
     
     //iterate through additional features
     $('#filter-container .filter').each(function () {
-        if ($(this).children('.add-filter-prop').val() && $(this).children('.prop-container').children('.add-filter-object').val()) {
+        //evaluate dates vs. facets
+        if ($(this).children('.add-filter-prop').val() == 'to' || $(this).children('.add-filter-prop').val() == 'from') {
+            var year = $(this).children('.prop-container').children('span').children('input.year').val();
+            var era = $(this).children('.prop-container').children('span').children('select.era').val();
+            
+            if (era == 'bc') {
+                year = year * -1;
+            }
+            q.push($(this).children('.add-filter-prop').val() + ' ' + year);
+        } else if ($(this).children('.add-filter-prop').val() && $(this).children('.prop-container').children('.add-filter-object').val()) {
             q.push($(this).children('.add-filter-prop').val() + ' ' + $(this).children('.prop-container').children('.add-filter-object').val());
         }
     });

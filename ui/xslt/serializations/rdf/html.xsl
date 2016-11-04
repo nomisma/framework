@@ -284,6 +284,10 @@
 			<xsl:call-template name="compare-container-template">
 				<xsl:with-param name="template" as="xs:boolean">true</xsl:with-param>
 			</xsl:call-template>
+			
+			<xsl:call-template name="date-template">
+				<xsl:with-param name="template" as="xs:boolean">true</xsl:with-param>
+			</xsl:call-template>
 
 			<xsl:call-template name="ajax-loader-template"/>
 		</div>
