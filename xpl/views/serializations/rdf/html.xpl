@@ -90,7 +90,7 @@
 								<xsl:otherwise>false</xsl:otherwise>
 							</xsl:choose>
 						</xsl:attribute>
-						<xsl:attribute name="hasFindspots">
+						<xsl:attribute name="hasTypes">
 							<xsl:choose>
 								<xsl:when test="$hasTypes//class[text()=$type]">true</xsl:when>
 								<xsl:otherwise>false</xsl:otherwise>
