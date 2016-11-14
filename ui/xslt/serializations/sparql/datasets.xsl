@@ -3,6 +3,10 @@
 	version="2.0">
 	<xsl:include href="../../templates.xsl"/>
 	<xsl:variable name="display_path"/>
+	
+	<xsl:variable name="datasets" as="element()*">
+		<xsl:copy-of select="descendant::res:sparql"/>
+	</xsl:variable>
 
 	<xsl:template match="/">
 		<html lang="en">
@@ -58,8 +62,17 @@
 									<th class="text-center">Data Dump</th>									
 								</tr>
 							</thead>
-							<tbody>
-								<xsl:apply-templates select="descendant::res:result"/>
+							<tbody>			
+								<xsl:for-each select="distinct-values(descendant::res:result/res:binding[@name='dataset']/res:uri)">
+									<xsl:variable name="uri" select="."/>
+									<xsl:variable name="result" as="element()*">
+										<xsl:copy-of select="$datasets//res:result[res:binding[@name='dataset']/res:uri = $uri][1]"/>
+									</xsl:variable>
+																		
+									<xsl:apply-templates select="$result">
+										<xsl:with-param name="dumps" select="$datasets//res:result[res:binding[@name='dataset']/res:uri = $uri]/res:binding[@name='dump']/res:uri"/>
+									</xsl:apply-templates>
+								</xsl:for-each>								
 							</tbody>
 						</table>
 					</xsl:when>
@@ -72,10 +85,8 @@
 	</xsl:template>
 
 	<xsl:template match="res:result">
-		<xsl:variable name="result" as="element()*">
-			<xsl:copy-of select="."/>
-		</xsl:variable>
-
+		<xsl:param name="dumps"/>
+		
 		<tr>
 			<td>
 				<a href="{res:binding[@name='dataset']/res:uri}">
@@ -123,9 +134,11 @@
 				<xsl:value-of select="res:binding[@name='count']/res:literal"/>
 			</td>
 			<td class="text-center">
-				<a href="{res:binding[@name='dump']/res:uri}">
-					<span class="glyphicon glyphicon-download-alt"/>
-				</a>
+				<xsl:for-each select="$dumps">
+					<a href="{.}" title="{.}">
+						<span class="glyphicon glyphicon-download-alt"/>
+					</a>
+				</xsl:for-each>
 			</td>
 		</tr>
 	</xsl:template>
