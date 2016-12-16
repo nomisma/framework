@@ -35,6 +35,9 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"/></a>
 							<ul class="dropdown-menu">
+								<li>
+									<a href="{$display_path}nuds">Numismatic Description Schema (NUDS)</a>
+								</li>
 								<xsl:for-each select="//config/documentation/page">
 									<li>
 										<a href="{$display_path}documentation/{@stub}">
