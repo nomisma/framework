@@ -38,13 +38,18 @@
 				<div class="col-md-12">
 					<h1>Numismatic Description Schema</h1>
 					<p>Placeholder for documentation on NUDS XSD</p>
-					<h3>Elements</h3>
-					<xsl:apply-templates select="descendant::xs:element" mode="toc">
-						<xsl:sort select="@name" order="ascending"/>
-					</xsl:apply-templates>
-					<h3>Attributes</h3>
+					<h2>Table of Contents</h2>
+					<div id="toc-elements">
+						<h3>Elements</h3>
+						<xsl:apply-templates select="//xs:schema/xs:element[@name]" mode="toc">
+							<xsl:sort select="@name" order="ascending"/>
+						</xsl:apply-templates>
+					</div>
+					<div id="toc-attributes">
+						<h3>Attributes</h3>
+					</div>
 					<hr/>
-					<xsl:apply-templates select="descendant::xs:element" mode="desc">
+					<xsl:apply-templates select="//xs:schema/xs:element[@name]" mode="desc">
 						<xsl:sort select="@name" order="ascending"/>
 					</xsl:apply-templates>
 				</div>
@@ -52,26 +57,236 @@
 		</div>
 	</xsl:template>
 
-	<xsl:template match="xs:element" mode="toc">
+	<!-- element/attribute Table of Contents template -->
+	<xsl:template match="xs:element|xs:attribute" mode="toc">
 		<a href="#{@name}">
 			<xsl:value-of select="@name"/>
 		</a>
 		<xsl:text> </xsl:text>
 	</xsl:template>
 
-	<xsl:template match="xs:element" mode="desc">
+	<!-- element/attribute definition template -->
+	<xsl:template match="xs:element|xs:attribute" mode="desc">
+		<xsl:variable name="name" select="@name"/>
+
+		<!-- for deriving parent and child elements and attributes -->
+		<xsl:variable name="parents" as="node()*">
+			<parents>
+				<xsl:apply-templates select="//xs:schema/descendant::xs:element[@ref = $name]" mode="parents"/>
+			</parents>
+		</xsl:variable>
+		<xsl:variable name="attributes" as="node()*">
+			<attributes>
+				<xsl:apply-templates select="descendant::xs:attribute | descendant::xs:attributeGroup"/>
+			</attributes>
+		</xsl:variable>
+
 		<div id="{@name}">
 			<h4>
 				<xsl:value-of select="@name"/>
+				<small style="margin-left:1em"><a href="{concat('#toc-', local-name(), 's')}"><span class="glyphicon glyphicon-arrow-up"/>Top</a></small>
 			</h4>
 			<xsl:apply-templates select="xs:annotation/xs:documentation"/>
+			<dl class="dl-horizontal">
+				<dt>May Contain</dt>
+				<dd>
+					<xsl:apply-templates select="xs:complexType"/>
+				</dd>
+				<dt>May Occur Within</dt>
+				<dd>
+					<xsl:choose>
+						<xsl:when test="count($parents/child) &gt; 0">
+							<xsl:call-template name="render-relatives">
+								<xsl:with-param name="relatives" select="$parents"/>
+							</xsl:call-template>
+						</xsl:when>
+						<xsl:otherwise>[root element]</xsl:otherwise>
+					</xsl:choose>
+				</dd>
+				<xsl:if test="count($attributes/child) &gt; 0">
+					<dt>Attributes</dt>
+					<dd>
+						<xsl:call-template name="render-relatives">
+							<xsl:with-param name="relatives" select="$attributes"/>
+						</xsl:call-template>
+					</dd>
+				</xsl:if>
+			</dl>
+			<hr/>
 		</div>
+	</xsl:template>
+
+	<!-- iterate through parent elements -->
+	<xsl:template match="xs:element | xs:group" mode="parents">
+		<xsl:choose>
+			<xsl:when test="ancestor::xs:element">
+				<child>
+					<xsl:value-of select="ancestor::xs:element/@name"/>
+				</child>
+			</xsl:when>
+			<xsl:when test="ancestor::xs:group">
+				<xsl:variable name="name" select="ancestor::xs:group/@name"/>
+
+				<xsl:apply-templates select="ancestor::xs:schema/descendant::xs:group[@ref = $name]" mode="parents"/>
+			</xsl:when>
+		</xsl:choose>
+	</xsl:template>
+
+	<!-- get children elements and content types -->
+	<xsl:template match="xs:complexType">
+		<xsl:choose>
+			<xsl:when test="xs:simpleType or xs:simpleContent or xs:complexContent">
+				<!-- display the content type or restricted lists -->
+				<xsl:apply-templates select="xs:simpleType | xs:simpleContent | xs:complexContent"/>
+			</xsl:when>
+			<xsl:when test="@mixed = true()">
+				<!-- display text or mixed content options -->
+				<xsl:choose>
+					<xsl:when test="xs:sequence or xs:choice">
+						<xsl:text>mixed [text] and/or </xsl:text>
+						<xsl:variable name="children" as="node()*">
+							<elements>
+								<xsl:apply-templates select="descendant::xs:element | descendant::xs:group"/>
+							</elements>
+						</xsl:variable>
+
+						<xsl:call-template name="render-relatives">
+							<xsl:with-param name="relatives" select="$children"/>
+						</xsl:call-template>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:text>[text]</xsl:text>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:when>
+			<xsl:otherwise>
+				<!-- display child elements -->
+				<xsl:variable name="children" as="node()*">
+					<elements>
+						<xsl:apply-templates select="descendant::xs:element | descendant::xs:group"/>
+					</elements>
+				</xsl:variable>
+
+				<xsl:call-template name="render-relatives">
+					<xsl:with-param name="relatives" select="$children"/>
+				</xsl:call-template>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<xsl:template match="xs:complexContent">
+		<xsl:apply-templates select="xs:restriction | xs:extension"/>
+	</xsl:template>
+
+	<xsl:template match="xs:simpleType | xs:simpleContent">
+		<xsl:apply-templates select="xs:restriction | xs:extension"/>
+	</xsl:template>
+
+	<xsl:template match="xs:restriction | xs:extension">
+		<xsl:choose>
+			<xsl:when test="xs:simpleType">
+				<xsl:apply-templates select="xs:simpleType"/>
+			</xsl:when>
+			<xsl:when test="xs:enumeration">
+				<xsl:apply-templates select="xs:enumeration">
+					<xsl:sort select="@value"/>
+				</xsl:apply-templates>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:choose>
+					<xsl:when test="contains(@base, 'tei')">
+						<!-- TEI extensions -->
+						<xsl:variable name="macro" select="substring-after(@base, 'tei_')"/>
+
+						<a href="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-{$macro}.html">TEI <xsl:value-of select="$macro"/></a>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="concat('[', @base, ']')"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<xsl:template match="xs:enumeration">
+		<xsl:value-of select="concat('&#x022;', @value, '&#x022;')"/>
+		<xsl:if test="not(position() = last())">
+			<xsl:text> or </xsl:text>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="xs:documentation">
 		<p>
-			<xsl:value-of select="."/>
+			<xsl:value-of select="normalize-space(.)"/>
 		</p>
 	</xsl:template>
 
+	<!-- for gathering child elements and attributes as variables -->
+	<xsl:template match="xs:group">
+		<xsl:variable name="ref" select="@ref"/>
+
+		<xsl:apply-templates select="//xs:group[@name = $ref]/*"/>
+	</xsl:template>
+
+	<xsl:template match="xs:element">
+		<child>
+			<xsl:value-of select="@ref"/>
+		</child>
+	</xsl:template>
+
+	<xsl:template match="xs:attributeGroup">
+		<xsl:variable name="ref" select="@ref"/>
+
+		<xsl:apply-templates select="//xs:attributeGroup[@name = $ref]/xs:attribute"/>
+	</xsl:template>
+
+	<xsl:template match="xs:attribute">
+		<child>
+			<xsl:if test="@use = 'required'">
+				<xsl:attribute name="required">true</xsl:attribute>
+			</xsl:if>
+			<xsl:value-of select="
+					if (@name) then
+						@name
+					else
+						@ref"/>
+		</child>
+	</xsl:template>
+
+	<!-- *********** CUSTOM TEMPLATES ************ -->
+
+	<!-- render child attributes or elements -->
+	<xsl:template name="render-relatives">
+		<xsl:param name="relatives" as="node()*"/>
+		<xsl:variable name="mode" select="$relatives/name()"/>
+
+		<xsl:for-each select="$relatives//child">
+			<xsl:sort select="."/>
+
+			<xsl:if test="not(. = preceding-sibling::text())">
+				<a href="#{.}">
+					<xsl:value-of select="."/>
+				</a>
+				<xsl:choose>
+					<xsl:when test="$mode = 'attributes'">
+						<xsl:text>: </xsl:text>
+						<xsl:choose>
+							<xsl:when test="@required = 'true'">
+								<strong>required</strong>
+							</xsl:when>
+							<xsl:otherwise>optional</xsl:otherwise>
+						</xsl:choose>
+						<xsl:if test="not(position() = last())">
+							<br/>
+						</xsl:if>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:if test="not(position() = last())">
+							<xsl:text>, </xsl:text>
+						</xsl:if>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:if>
+		</xsl:for-each>
+	</xsl:template>
 </xsl:stylesheet>
