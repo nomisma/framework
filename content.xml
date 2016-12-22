@@ -69,9 +69,12 @@
 			<h3>Resources</h3>
 			<ul>
 				<li>
-					<strong>Schema:</strong>
-					<a href="https://github.com/ewg118/NUDS">https://github.com/ewg118/NUDS</a>. All versions are available through Github.
-				</li>
+					<strong>Schema (stable):</strong>
+					<a href="http://nomisma.org/nuds.xsd">http://nomisma.org/nuds.xsd</a>. The current stable version of the NUDS XSD schema is hosted by
+					Nomisma.org at a permanent URI. It can be linked to from NUDS documents for validation. </li>
+				<li>
+					<strong>Schema (Github):</strong>
+					<a href="https://github.com/ewg118/NUDS">https://github.com/ewg118/NUDS</a>. All versions are available through Github. </li>
 			</ul>
 		</div>
 	</nuds>
