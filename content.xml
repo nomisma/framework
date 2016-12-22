@@ -3,12 +3,13 @@
 	<index>
 		<div>
 			<p>Nomisma.org is a collaborative project to provide stable digital representations of numismatic concepts according to the principles of <a
-					href="http://www.w3.org/DesignIssues/LinkedData.html">Linked Open Data</a>. These take the form of http URIs that also provide access to reusable information about those concepts,
-				along with links to other resources. The canonical format of nomisma.org is RDF/XML, with serializations available in JSON-LD (including geoJSON-LD for complex geographic features),
-				Turtle, KML (when applicable), and HTML5+RDFa 1.1.</p>
+					href="http://www.w3.org/DesignIssues/LinkedData.html">Linked Open Data</a>. These take the form of http URIs that also provide access to
+				reusable information about those concepts, along with links to other resources. The canonical format of nomisma.org is RDF/XML, with
+				serializations available in JSON-LD (including geoJSON-LD for complex geographic features), Turtle, KML (when applicable), and HTML5+RDFa
+				1.1.</p>
 
-			<p>While the URIs provided by nomisma.org are stable, the project is in progress and subject to constant expansion and ongoing correction. This is particularly the case for the information
-				provided about each nomisma.org identifier.</p>
+			<p>While the URIs provided by nomisma.org are stable, the project is in progress and subject to constant expansion and ongoing correction. This is
+				particularly the case for the information provided about each nomisma.org identifier.</p>
 
 			<p>The information provided by nomisma.org has been provided by a wide community of scholars and insitutions.</p>
 
@@ -29,8 +30,9 @@
 
 			<p>Nomisma.org also hosts the <a href="https://github.com/ewg118/NUDS">Numismatic Description XML Schema</a></p>
 
-			<p>There are two Github repositories associated with the project. The application code is available in <a href="https://github.com/nomisma/framework"
-					>https://github.com/nomisma/framework</a>. The RDF/XML data and ontology versions are in <a href="https://github.com/nomisma/data">https://github.com/nomisma/data</a>.</p>
+			<p>There are two Github repositories associated with the project. The application code is available in <a
+					href="https://github.com/nomisma/framework">https://github.com/nomisma/framework</a>. The RDF/XML data and ontology versions are in <a
+					href="https://github.com/nomisma/data">https://github.com/nomisma/data</a>.</p>
 		</div>
 
 		<div>
@@ -38,21 +40,46 @@
 			<p>Nomisma.org focuses on URIs for concepts that are unique to numismatics or which have a distinct meaning within the discipline. Examples are:</p>
 
 			<ol>
-				<li><a href="http://nomisma.org/id/axis">http://nomisma.org/id/axis</a>. The 'axis' is the angular relationship between the obverse and reverse of a coin.</li>
-				<li><a href="http://nomisma.org/id/ephesus">http://nomisma.org/id/ephesus</a>. The 'mint' at Ephesus. Nomisma relates this numismatic concept to other URIs such as <a
-						href="http://dbpedia.org/resource/Ephesus">wikipedia</a>, <a href="http://pleiades.stoa.org/places/599612">Pleiades</a>, <a href="http://vocab.getty.edu/tgn/7002499">Getty
-						thesauri</a>, and the <a href="http://collection.britishmuseum.org/id/place/x107267">British Museum</a>.</li>
-				<li><a href="http://nomisma.org/id/quinarius">http://nomisma.org/id/quinarius</a>. Nomisma.org maintains lists of Roman and other denominations. To indicate that “quinarius” is a
-					concept within Roman numismatics, the Dublin Core property "dcterms:source" relates this URI to <a href="http://nomisma.org/id/roman_numismatics"
-						>http://nomisma.org/id/roman_numismatics</a>.</li>
+				<li><a href="http://nomisma.org/id/axis">http://nomisma.org/id/axis</a>. The 'axis' is the angular relationship between the obverse and reverse
+					of a coin.</li>
+				<li><a href="http://nomisma.org/id/ephesus">http://nomisma.org/id/ephesus</a>. The 'mint' at Ephesus. Nomisma relates this numismatic concept to
+					other URIs such as <a href="http://dbpedia.org/resource/Ephesus">wikipedia</a>, <a href="http://pleiades.stoa.org/places/599612"
+						>Pleiades</a>, <a href="http://vocab.getty.edu/tgn/7002499">Getty thesauri</a>, and the <a
+						href="http://collection.britishmuseum.org/id/place/x107267">British Museum</a>.</li>
+				<li><a href="http://nomisma.org/id/quinarius">http://nomisma.org/id/quinarius</a>. Nomisma.org maintains lists of Roman and other denominations.
+					To indicate that “quinarius” is a concept within Roman numismatics, the Dublin Core property "dcterms:source" relates this URI to <a
+						href="http://nomisma.org/id/roman_numismatics">http://nomisma.org/id/roman_numismatics</a>.</li>
 			</ol>
 		</div>
 	</index>
+	<nuds>
+		<div>
+			<h1>Numismatic Description Schema (NUDS)</h1>
+			<p>The Numismatic Description Schema is a codified XML schema based on numismatic database fields proposed by Sebastian Heath and Andrew Meadows.
+				These fields, called the Numismatic Description Standard, are detailed at <a href="http://www.greekcoinage.org/nuds.html"
+					>http://www.greekcoinage.org/nuds.html</a>, and were originally published on Nomisma.org. The NUDS XML schema is based on this field list
+				and Ethan Gruber's preliminary work mapping coins to Encoded Archival Description, which was detailed in a 2009 Computer Applications in
+				Archaeology paper, <a href="http://proceedings.caaconference.org/paper/14_gruber_caa2009/">"Encoded Archival Description for Numismatic
+					Collections."</a> It is also influenced by the structure of <a href="http://www.tei-c.org/index.xml">TEI</a> and <a
+					href="http://www2.archivists.org/groups/technical-subcommittee-on-eac-cpf/encoded-archival-context-corporate-bodies-persons-and-families-eac-cpf"
+					>EAC-CPF</a>, common standards in the Digital Humanities, library and archival domains. Ideally, a NUDS record should implement XLink
+				attributes to integrate URIs to external controlled Linked Open Data controlled vocabulary systems, such as concepts defined on Nomisma.org
+				itself.</p>
+
+			<h3>Resources</h3>
+			<ul>
+				<li>
+					<strong>Schema:</strong>
+					<a href="https://github.com/ewg118/NUDS">https://github.com/ewg118/NUDS</a>. All versions are available through Github.
+				</li>
+			</ul>
+		</div>
+	</nuds>
 	<documentation>
 		<page stub="sparql" label="SPARQL examples">
 			<h1>SPARQL Examples</h1>
-			<p>This page contains a collection of basic SPARQL examples which can be applied to data in Nomisma.org. It is not intended to be an introduction to SPARQL as a whole, but a good <a
-					href="http://jena.apache.org/tutorials/sparql.html">tutorial</a> can be found on the Jena site.</p>
+			<p>This page contains a collection of basic SPARQL examples which can be applied to data in Nomisma.org. It is not intended to be an introduction to
+				SPARQL as a whole, but a good <a href="http://jena.apache.org/tutorials/sparql.html">tutorial</a> can be found on the Jena site.</p>
 
 			<ul>
 				<li>
@@ -103,8 +130,9 @@ FILTER(langMatches(lang(?label), "EN"))
 </pre>
 			</div>
 			<h2>Spatial Queries</h2>
-			<p>The Apache Fuseki triplestore and SPARQL endpoint has been extended to support spatial queries by interacting with a Solr search index. For further documentation for spatial queries in
-				SPARQL, see <a href="http://jena.apache.org/documentation/query/spatial-query.html">http://jena.apache.org/documentation/query/spatial-query.html</a></p>
+			<p>The Apache Fuseki triplestore and SPARQL endpoint has been extended to support spatial queries by interacting with a Solr search index. For
+				further documentation for spatial queries in SPARQL, see <a href="http://jena.apache.org/documentation/query/spatial-query.html"
+					>http://jena.apache.org/documentation/query/spatial-query.html</a></p>
 			<div id="e2">
 				<h3>All hoards found within 50 km of Goranu, Romania</h3>
 				<p>The format of spatial:nearby is (lat long distance 'unit')</p>
@@ -267,13 +295,15 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 		</page>
 		<page stub="contribute" label="How to Contribute Data">
 			<h1>How to Contribute Data</h1>
-			<p>In the spring of 2013, we took a new approach in establishing links from RIC types in <a href="http://numismatics.org/ocre/">OCRE</a> to physical coins and hoards which reference those
-				types. The model has evolved over time to be compliant to the new Nomisma ontology. The following models are required before contributing data into the Nomisma triplestore for use in
-					<a href="http://numismatics.org/ocre/">OCRE</a>, <a href="http://numismatics.org/crro/">CRRO</a>, and other coin type projects.</p>
-			<p>The first basic prerequisite for participation is that each object you wish to contribute be accessible to the web with a distinct URI. This is the core standard for Linked Open Data.
-				After this, there are essentially two required elements for contributing data to a Nomisma-affiliated project, influenced by the requirements for <a
-					href="https://github.com/pelagios/pelagios-cookbook/wiki/Joining-Pelagios">joining</a> the <a href="http://pelagios-project.blogspot.com/">Pelagios Project</a>: an RDF data dump
-				(which also much be accessible by URL) and some metadata about this dump, in <a href="http://www.w3.org/TR/void/">Vocabulary of Interlinked Datasets (VoID)</a> RDF.</p>
+			<p>In the spring of 2013, we took a new approach in establishing links from RIC types in <a href="http://numismatics.org/ocre/">OCRE</a> to physical
+				coins and hoards which reference those types. The model has evolved over time to be compliant to the new Nomisma ontology. The following models
+				are required before contributing data into the Nomisma triplestore for use in <a href="http://numismatics.org/ocre/">OCRE</a>, <a
+					href="http://numismatics.org/crro/">CRRO</a>, and other coin type projects.</p>
+			<p>The first basic prerequisite for participation is that each object you wish to contribute be accessible to the web with a distinct URI. This is
+				the core standard for Linked Open Data. After this, there are essentially two required elements for contributing data to a Nomisma-affiliated
+				project, influenced by the requirements for <a href="https://github.com/pelagios/pelagios-cookbook/wiki/Joining-Pelagios">joining</a> the <a
+					href="http://pelagios-project.blogspot.com/">Pelagios Project</a>: an RDF data dump (which also much be accessible by URL) and some metadata
+				about this dump, in <a href="http://www.w3.org/TR/void/">Vocabulary of Interlinked Datasets (VoID)</a> RDF.</p>
 
 			<h2>VoID RDF</h2>
 			<pre>
@@ -292,10 +322,11 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 	</void:Dataset>
 </rdf:RDF>]]></code>
 			</pre>
-			<p>The void:Dataset should include the URI for your project, and this URI should be linked from each individual object (physical coin, coin type, or hoard) within the data dump using the
-				void:inDataset property (see examples, below). The dcterms:title, dcterms:description, dcterms:publisher, and dcterms:license are all required. The title and description must be textual
-				strings, but the publisher and license may be URIs. In fact, the license <i>should</i> be a URI designating the dataset under an open license, such as those published by <a
-					href="https://creativecommons.org/">Creative Commons</a> or <a href="http://opendatacommons.org/">Open Data Commons</a>.</p>
+			<p>The void:Dataset should include the URI for your project, and this URI should be linked from each individual object (physical coin, coin type, or
+				hoard) within the data dump using the void:inDataset property (see examples, below). The dcterms:title, dcterms:description, dcterms:publisher,
+				and dcterms:license are all required. The title and description must be textual strings, but the publisher and license may be URIs. In fact, the
+				license <i>should</i> be a URI designating the dataset under an open license, such as those published by <a href="https://creativecommons.org/"
+					>Creative Commons</a> or <a href="http://opendatacommons.org/">Open Data Commons</a>.</p>
 			<h2>Data Dump Model</h2>
 			<p>The data dump model should conform to the standards established by Nomisma.org, including the use of the Nomisma ontology where applicable.</p>
 			<h3>Physical Coins</h3>
@@ -332,14 +363,17 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 	</rdf:Description>
 </rdf:RDF>]]></code>
 			</pre>
-			<p>The title, publisher, and identifier are required, as is nmo:hasTypeSeriesItem. nmo:hasCollection is recommended for physical specimens. Before submitting your data to nomisma, please
-				contact the administrators to create a URI for your collection. A physical specimen must be carry the nmo:NumismaticObject class. Finally, each object must contain a void:inDataset
-				property linking to the URI of the void:Dataset in the VoID metadata RDF.</p>
-			<p>There are several fields which are particular to physical objects (and not hoards): nmo:hasAxis, nmo:hasDiameter, nmo:hasWeight, and obverse/reverse thumbnail and references images (to
-				be added as necessary). Thumbnails and reference images that represent sides of coins should be contained in the data objects linked with the nmo:hasObverse and nmo:hasReverse
-				properties. If they are not contained in the nmo:hasObverse or nmo:hasReverse, it is assumed that the images include both the obverse and reverse sides of the coin. None of these
-				fields is required, though the measurements can be used for quantitative analyses. The measurements should be associated with xsd:decimal for weights and diameters, xsd:integer for
-				axis (unless the source data uses fractional numbers for axes). The dcterms:isPartOf property is used to link a coin to a coin hoard that has a published URI.</p>
+			<p>The title, publisher, and identifier are required, as is nmo:hasTypeSeriesItem. nmo:hasCollection is recommended for physical specimens. Before
+				submitting your data to nomisma, please contact the administrators to create a URI for your collection. A physical specimen must be carry the
+				nmo:NumismaticObject class. Finally, each object must contain a void:inDataset property linking to the URI of the void:Dataset in the VoID
+				metadata RDF.</p>
+			<p>There are several fields which are particular to physical objects (and not hoards): nmo:hasAxis, nmo:hasDiameter, nmo:hasWeight, and
+				obverse/reverse thumbnail and references images (to be added as necessary). Thumbnails and reference images that represent sides of coins should
+				be contained in the data objects linked with the nmo:hasObverse and nmo:hasReverse properties. If they are not contained in the nmo:hasObverse
+				or nmo:hasReverse, it is assumed that the images include both the obverse and reverse sides of the coin. None of these fields is required,
+				though the measurements can be used for quantitative analyses. The measurements should be associated with xsd:decimal for weights and diameters,
+				xsd:integer for axis (unless the source data uses fractional numbers for axes). The dcterms:isPartOf property is used to link a coin to a coin
+				hoard that has a published URI.</p>
 			<p>Findspots can expressed with nmo:hasFindspot in the following way:</p>
 			<pre>
 				<code class="language-markup">
@@ -393,21 +427,23 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 				</code>
 			</pre>
 
-			<p>Like physical coins, the dcterms:title, and dcterms:identifier are required, and the resource must carry the nmo:Hoard class. Similarly, the void:inDataset property is required in the
-				nmo:Hoard object to link to the void:Dataset URI.</p>
-			<p>Presently, the hoard model is very simple and does not contain all the information stored in the database or NUDS XML record. The nmo:Hoard object should link to a dcmitype:Collection,
-				which merely contains a list of associated TypeSeriesItems (linked with the nmo:hasTypeSeriesItem property). These records are meant to facilitate basic mapping and timelines in OCRE
-				and CRRO. We anticipate enhancing the hoard model over the coming year.</p>
-			<p>The nmo:hasClosingDate is optional, but if it is a year, it should conform to the rdf:datatype, xsd:gYear (four digit number, padded with zeroes. Negative numbers represent B.C.
-				dates).</p>
-			<p>The nmo:hasFindspot may be expressed, as with physical coins above, with an rdf:resource or the W3C geo ontology. The nmo:hasFindspot is not explicitly required, but without it, the
-				hoard will not appear in maps in OCRE and CRRO. However, if a findspot is absent, and the nmo:hasClosingDate is present, the hoard will still appear in the timeline in the OCRE coin
-				type record page. </p>
+			<p>Like physical coins, the dcterms:title, and dcterms:identifier are required, and the resource must carry the nmo:Hoard class. Similarly, the
+				void:inDataset property is required in the nmo:Hoard object to link to the void:Dataset URI.</p>
+			<p>Presently, the hoard model is very simple and does not contain all the information stored in the database or NUDS XML record. The nmo:Hoard
+				object should link to a dcmitype:Collection, which merely contains a list of associated TypeSeriesItems (linked with the nmo:hasTypeSeriesItem
+				property). These records are meant to facilitate basic mapping and timelines in OCRE and CRRO. We anticipate enhancing the hoard model over the
+				coming year.</p>
+			<p>The nmo:hasClosingDate is optional, but if it is a year, it should conform to the rdf:datatype, xsd:gYear (four digit number, padded with zeroes.
+				Negative numbers represent B.C. dates).</p>
+			<p>The nmo:hasFindspot may be expressed, as with physical coins above, with an rdf:resource or the W3C geo ontology. The nmo:hasFindspot is not
+				explicitly required, but without it, the hoard will not appear in maps in OCRE and CRRO. However, if a findspot is absent, and the
+				nmo:hasClosingDate is present, the hoard will still appear in the timeline in the OCRE coin type record page. </p>
 		</page>
 	</documentation>
 	<apis>
 		<h1>Documentation</h1>
-		<p>This page contains documentation for using web services provided by Nomisma and how to access machine readable serializations through REST and content negotiation.</p>
+		<p>This page contains documentation for using web services provided by Nomisma and how to access machine readable serializations through REST and
+			content negotiation.</p>
 		<ul>
 			<li>
 				<a href="#apis">APIs</a>
@@ -436,7 +472,8 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 							<a href="apis/avgAxis?constraints=nmo:hasTypeSeriesItem &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;">XML</a>
 						</td>
 						<td>
-							<a href="apis/avgAxis?constraints=nmo:hasTypeSeriesItem &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;&amp;format=json">JSON</a>
+							<a href="apis/avgAxis?constraints=nmo:hasTypeSeriesItem &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;&amp;format=json"
+								>JSON</a>
 						</td>
 						<td/>
 					</tr>
@@ -448,7 +485,8 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 							<a href="apis/avgDiameter?constraints=nmo:hasTypeSeriesItem &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;">XML</a>
 						</td>
 						<td>
-							<a href="apis/avgDiameter?constraints=nmo:hasTypeSeriesItem &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;&amp;format=json">JSON</a>
+							<a href="apis/avgDiameter?constraints=nmo:hasTypeSeriesItem &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;&amp;format=json"
+								>JSON</a>
 						</td>
 						<td/>
 					</tr>
@@ -460,7 +498,8 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 							<a href="apis/avgWeight?constraints=nmo:hasTypeSeriesItem &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;">XML</a>
 						</td>
 						<td>
-							<a href="apis/avgWeight?constraints=nmo:hasTypeSeriesItem &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;&amp;format=json">JSON</a>
+							<a href="apis/avgWeight?constraints=nmo:hasTypeSeriesItem &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;&amp;format=json"
+								>JSON</a>
 						</td>
 						<td/>
 					</tr>
@@ -469,7 +508,8 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 							<a href="#closingDate">closingDate</a>
 						</td>
 						<td>
-							<a href="apis/closingDate?identifiers=http://numismatics.org/crro/id/rrc-385.4|http://numismatics.org/crro/id/rrc-409.2|http://numismatics.org/ocre/id/ric.1(2).aug.1A"
+							<a
+								href="apis/closingDate?identifiers=http://numismatics.org/crro/id/rrc-385.4|http://numismatics.org/crro/id/rrc-409.2|http://numismatics.org/ocre/id/ric.1(2).aug.1A"
 								>XML</a>
 						</td>
 						<td>
@@ -543,13 +583,14 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 				<p>Get average axis for given SPARQL query.<br/>
 					<b>Webservice Type</b> : REST<br/>
 					<b>Url</b> : nomisma.org/avgAxis?<br/>
-					<b>Parameters</b> : constraints (following predicate - object format. multiple contraints separated by ' AND '. See examples below), format ('json' or 'xml', default 'xml')<br/>
+					<b>Parameters</b> : constraints (following predicate - object format. multiple contraints separated by ' AND '. See examples below), format
+					('json' or 'xml', default 'xml')<br/>
 					<b>Result</b> : returns a decimal number in a response wrapper.<br/>
 					<b>Examples</b>: <a href="apis/avgAxis?constraints=dcterms:source nm:ric AND nmo:hasMint nm:rome AND nmo:hasDenomination       nm:denarius"
 						>http://nomisma.org/apis/avgAxis?constraints=dcterms:source nm:ric AND nmo:hasMint nm:rome AND nmo:hasDenomination nm:denarius</a>
 					<br/>
-					<a href="apis/avgAxis?constraints=nmo:hasTypeSeriesItem &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;">http://nomisma.org/apis/avgWeight?constraints=nmo:hasTypeSeriesItem
-						&lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;</a>
+					<a href="apis/avgAxis?constraints=nmo:hasTypeSeriesItem &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;"
+						>http://nomisma.org/apis/avgWeight?constraints=nmo:hasTypeSeriesItem &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;</a>
 				</p>
 			</div>
 			<div class="highlight">
@@ -558,9 +599,11 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 				<p>Get average diameter for given SPARQL query.<br/>
 					<b>Webservice Type</b> : REST<br/>
 					<b>Url</b> : nomisma.org/avgDiameter?<br/>
-					<b>Parameters</b> : constraints (following predicate - object format. multiple contraints separated by ' AND '. See examples below), format ('json' or 'xml', default 'xml')<br/>
+					<b>Parameters</b> : constraints (following predicate - object format. multiple contraints separated by ' AND '. See examples below), format
+					('json' or 'xml', default 'xml')<br/>
 					<b>Result</b> : returns a decimal number in a response wrapper.<br/>
-					<b>Examples</b>: <a href="apis/avgDiameter?constraints=dcterms:source nm:ric AND nmo:hasMint nm:rome AND nmo:hasDenomination       nm:denarius"
+					<b>Examples</b>: <a
+						href="apis/avgDiameter?constraints=dcterms:source nm:ric AND nmo:hasMint nm:rome AND nmo:hasDenomination       nm:denarius"
 						>http://nomisma.org/apis/avgDiameter?constraints=dcterms:source nm:ric AND nmo:hasMint nm:rome AND nmo:hasDenomination nm:denarius</a>
 					<br/>
 					<a href="apis/avgDiameter?constraints=nmo:hasTypeSeriesItem &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;"
@@ -573,9 +616,11 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 				<p>Get average weight for given SPARQL query.<br/>
 					<b>Webservice Type</b> : REST<br/>
 					<b>Url</b> : nomisma.org/avgWeight?<br/>
-					<b>Parameters</b> : constraints (following predicate - object format. multiple contraints separated by ' AND '. See examples below), format ('json' or 'xml', default 'xml')<br/>
+					<b>Parameters</b> : constraints (following predicate - object format. multiple contraints separated by ' AND '. See examples below), format
+					('json' or 'xml', default 'xml')<br/>
 					<b>Result</b> : returns a decimal number in a response wrapper.<br/>
-					<b>Examples</b>: <a href="apis/avgWeight?constraints=dcterms:source nm:ric AND nmo:hasMint nm:rome AND nmo:hasDenomination       nm:denarius"
+					<b>Examples</b>: <a
+						href="apis/avgWeight?constraints=dcterms:source nm:ric AND nmo:hasMint nm:rome AND nmo:hasDenomination       nm:denarius"
 						>http://nomisma.org/apis/avgWeight?constraints=dcterms:source nm:ric AND nmo:hasMint nm:rome AND nmo:hasDenomination nm:denarius</a>
 					<br/>
 					<a href="apis/avgWeight?constraints=nmo:hasTypeSeriesItem &lt;http://numismatics.org/ocre/id/ric.1(2).aug.1A&gt;"
@@ -620,7 +665,8 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 			<div class="highlight">
 				<a name="getMints"/>
 				<h2>Get Mints</h2>
-				<p>Get all minting locations (may be nmo:Mint or nmo:Region) associated with a given skos:Concept defined by the id parameter.  If the skos:Concept is a mint or region, then only one point or polygon is returned.<br/>
+				<p>Get all minting locations (may be nmo:Mint or nmo:Region) associated with a given skos:Concept defined by the id parameter. If the
+					skos:Concept is a mint or region, then only one point or polygon is returned.<br/>
 					<b>Webservice Type</b> : REST<br/>
 					<b>Url</b> : nomisma.org/getMints?<br/>
 					<b>Parameters</b> : id (of Nomisma ID)<br/>
@@ -655,8 +701,9 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 			<h2>Accessing Data</h2>
 			<div>
 				<h3>Individual Records</h3>
-				<p>Numishare supports delivery of individual records in a variety of models and serializations through both REST and content negotiation. Content negotiation (with the accept header)
-					requests should be sent to the URI space http://nomisma/id/. Requesting an unsupported content type will result in an HTTP 406: Not Acceptable error.</p>
+				<p>Numishare supports delivery of individual records in a variety of models and serializations through both REST and content negotiation.
+					Content negotiation (with the accept header) requests should be sent to the URI space http://nomisma/id/. Requesting an unsupported content
+					type will result in an HTTP 406: Not Acceptable error.</p>
 				<table class="table">
 					<thead>
 						<tr>
@@ -708,9 +755,9 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 
 			<div>
 				<h3>Search Results</h3>
-				<p>Search results (the browse page) are returned in HTML5, but Numishare supports Atom and RSS via REST, as well as Atom and raw Solr XML via content negotiation of the browse page
-					URL, http://nomisma.org/browse. The REST-based Atom feed sorts by the Lucene syntax 'timestamp desc' by default, but the sort parameter may be provided manually to alter the
-					default field and order.</p>
+				<p>Search results (the browse page) are returned in HTML5, but Numishare supports Atom and RSS via REST, as well as Atom and raw Solr XML via
+					content negotiation of the browse page URL, http://nomisma.org/browse. The REST-based Atom feed sorts by the Lucene syntax 'timestamp desc'
+					by default, but the sort parameter may be provided manually to alter the default field and order.</p>
 				<table class="table">
 					<thead>
 						<tr>
@@ -751,8 +798,8 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 			</div>
 			<div>
 				<h3>Pelagios RDF Dump</h3>
-				<p>Data dumps conforming to the <a href="http://pelagios-project.blogspot.com/">Pelagios 3</a> model are linked on the index page. At present, these files are only available in
-					RDF/XML.</p>
+				<p>Data dumps conforming to the <a href="http://pelagios-project.blogspot.com/">Pelagios 3</a> model are linked on the index page. At present,
+					these files are only available in RDF/XML.</p>
 				<ul>
 					<li>
 						<a href="pelagios.void.rdf">VoID RDF</a>

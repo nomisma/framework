@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<examples>
+    <example name="agencyCode" ref="#maintenanceAgency"/>
+    <example name="agencyName" ref="#maintenanceAgency"/>
+    <example name="agent" ref="#maintenanceHistory"/>
+    <example name="agentType" ref="#maintenanceHistory"/>  
+    <example name="copyrightHolder" ref="#rightsStmt"/>
+    <example name="eventDateTime" ref="#maintenanceHistory"/>
+    <example name="eventDescription" ref="#maintenanceHistory"/>
+    <example name="eventType" ref="#maintenanceHistory"/>
+    <example name="license" ref="#rightsStmt"/>
+    <example name="maintenanceAgency"><![CDATA[<maintenanceAgency>
+    <agencyName>American Numismatic Society</agencyName>
+    <agencyCode>US-nnan</agencyCode>
+</maintenanceAgency>]]></example>
+    <example name="maintenanceEvent" ref="#maintenanceHistory"/>
+    <example name="maintenanceHistory"><![CDATA[<maintenanceHistory>
+    <maintenanceEvent>
+        <eventType>new</eventType>
+        <eventDateTime standardDateTime="2012-09-12T12:13:50-04:00Z">2012-09-12T12:13:50-04:00Z</eventDateTime>
+        <agentType>human</agentType>
+        <agent>Ethan Gruber</agent>
+        <eventDescription>Generated from OCRE spreadsheet</eventDescription>
+    </maintenanceEvent>
+</maintenanceHistory>]]></example>
+    <example name="maintenanceStatus"><![CDATA[<maintenanceStatus>cancelledReplaced</maintenanceStatus>]]></example>
+    <example name="namespace" ref="#semanticDeclaration"/>
+    <example name="otherRecordId"><![CDATA[<control>
+    <recordId>ric.1(2).aug.1a</recordId>
+    <otherRecordId semantic="dcterms:isReplacedBy">ric.1(2).aug.1A</otherRecordId>
+</control>]]></example>
+    <example name="preferCite" ref="#rightsStmt"/>
+    <example name="prefix" ref="#semanticDeclaration"/>
+    <example name="publicationStatus"><![CDATA[<publicationStatus>approved</publicationStatus>]]></example>
+    <example name="rights" ref="#rightsStmt"/>
+    <example name="rightsStmt"><![CDATA[<rightsStmt>
+    <copyrightHolder>American Numismatic Society</copyrightHolder>
+    <license xlink:type="simple" xlink:href="http://opendatacommons.org/licenses/odbl/"/>
+    <rights xlink:type="simple" xlink:href="http://rightsstatements.org/vocab/InC/1.0/"/>
+    <preferCite>RIC I, Second Edition, Augustus 1A. http://numismatics.org/ocre/id/ric.1(2).aug.1A. 
+        Online Coins of the Roman Empire (http://numismatics.org/ocre)</preferCite>
+</rightsStmt>]]></example>
+    <example name="semanticDeclaration"><![CDATA[<semanticDeclaration>
+    <prefix>dcterms</prefix>
+    <namespace>http://purl.org/dc/terms/</namespace>
+</semanticDeclaration>]]></example>
+    
+</examples>

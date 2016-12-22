@@ -17,6 +17,10 @@
 				<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
 				<link rel="stylesheet" href="{$display_path}ui/css/style.css"/>
 
+				<!-- syntax highlighting -->
+				<script type="text/javascript" src="{$display_path}ui/javascript/prism.js"/>
+				<link rel="stylesheet" href="{$display_path}ui/css/prism.css"/>
+
 				<!-- google analytics -->
 				<xsl:if test="string(//config/google_analytics)">
 					<script type="text/javascript">
@@ -36,8 +40,12 @@
 		<div class="container-fluid content">
 			<div class="row">
 				<div class="col-md-12">
-					<h1>Numismatic Description Schema</h1>
-					<p>Placeholder for documentation on NUDS XSD</p>
+					<!-- render the description from the content.xml file -->
+					<xsl:copy-of select="/content/content/nuds/*"/>
+
+					<h3>Current Version: <xsl:value-of select="/content/xs:schema/@version"/></h3>
+
+					<!-- process the XSD to develop the table of contents and tag library -->
 					<h2>Table of Contents</h2>
 					<div id="toc-elements">
 						<h3>Elements</h3>
@@ -58,7 +66,7 @@
 	</xsl:template>
 
 	<!-- element/attribute Table of Contents template -->
-	<xsl:template match="xs:element|xs:attribute" mode="toc">
+	<xsl:template match="xs:element | xs:attribute" mode="toc">
 		<a href="#{@name}">
 			<xsl:value-of select="@name"/>
 		</a>
@@ -66,7 +74,7 @@
 	</xsl:template>
 
 	<!-- element/attribute definition template -->
-	<xsl:template match="xs:element|xs:attribute" mode="desc">
+	<xsl:template match="xs:element | xs:attribute" mode="desc">
 		<xsl:variable name="name" select="@name"/>
 
 		<!-- for deriving parent and child elements and attributes -->
@@ -82,10 +90,12 @@
 		</xsl:variable>
 
 		<div id="{@name}">
-			<h4>
+			<h3>
 				<xsl:value-of select="@name"/>
-				<small style="margin-left:1em"><a href="{concat('#toc-', local-name(), 's')}"><span class="glyphicon glyphicon-arrow-up"/>Top</a></small>
-			</h4>
+				<small style="margin-left:1em">
+					<a href="{concat('#toc-', local-name(), 's')}"><span class="glyphicon glyphicon-arrow-up"/>Top</a>
+				</small>
+			</h3>
 			<xsl:apply-templates select="xs:annotation/xs:documentation"/>
 			<dl class="dl-horizontal">
 				<dt>May Contain</dt>
@@ -112,6 +122,8 @@
 					</dd>
 				</xsl:if>
 			</dl>
+
+			<xsl:apply-templates select="/content/examples/example[@name = $name]"/>
 			<hr/>
 		</div>
 	</xsl:template>
@@ -251,6 +263,21 @@
 					else
 						@ref"/>
 		</child>
+	</xsl:template>
+
+	<!-- *********** RENDERING EXAMPLES ************ -->
+	<xsl:template match="example">
+		<h4>Example</h4>
+		<xsl:choose>
+			<xsl:when test="@ref">
+				<p>See <a href="{@ref}"><xsl:value-of select="substring-after(@ref, '#')"/></a></p>
+			</xsl:when>
+			<xsl:otherwise>
+				<pre>
+					<code class="language-markup"><xsl:value-of select="."/></code>
+				</pre>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 
 	<!-- *********** CUSTOM TEMPLATES ************ -->
