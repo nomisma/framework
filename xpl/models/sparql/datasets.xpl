@@ -31,13 +31,14 @@ PREFIX dcterms:	<http://purl.org/dc/terms/>
 PREFIX rdfs:	<http://www.w3.org/2000/01/rdf-schema#>
 PREFIX void:	<http://rdfs.org/ns/void#>
 
-SELECT ?dataset ?title ?description ?publisher ?license ?dump ?count WHERE {
+SELECT ?dataset ?title ?description ?publisher ?license ?rights ?dump ?count WHERE {
 ?dataset a void:Dataset ; 
  dcterms:title ?title FILTER (lang(?title) = "" || langMatches(lang(?title), "en")) .
  ?dataset dcterms:publisher ?publisher ; 
- dcterms:license ?license ; 
  void:dataDump ?dump ;
  dcterms:description ?description FILTER (lang(?description) = "" || langMatches(lang(?description), "en")) .
+ OPTIONAL {?dataset dcterms:rights ?rights }
+ OPTIONAL {?dataset dcterms:license ?license }
  { SELECT ?dataset ( count(?object) as ?count ) { ?object void:inDataset ?dataset } GROUP BY ?dataset }
  } ORDER BY ASC(?publisher) ASC(?title)]]>
 				</xsl:variable>

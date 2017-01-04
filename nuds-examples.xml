@@ -3,8 +3,24 @@
     <example name="agencyCode" ref="#maintenanceAgency"/>
     <example name="agencyName" ref="#maintenanceAgency"/>
     <example name="agent" ref="#maintenanceHistory"/>
-    <example name="agentType" ref="#maintenanceHistory"/>  
+    <example name="agentType" ref="#maintenanceHistory"/>
+    <example name="axis"><![CDATA[<axis>6</axis>]]></example>
     <example name="copyrightHolder" ref="#rightsStmt"/>
+    <example name="department"><![CDATA[<department>Roman</department>]]></example>
+    <example name="descMeta"><![CDATA[<descMeta>
+    <typeDesc>
+        <objectType xlink:type="simple" xlink:href="http://nomisma.org/id/coin">Coin</objectType>
+    </typeDesc>
+    <physDesc>
+        <axis>6</axis>
+        <measurementsSet>
+            <weight units="g">4.55</weight>
+        </measurementsSet>
+    </physDesc>
+</descMeta>]]></example>
+    <example name="descriptionSet"><![CDATA[<descriptionSet>
+        <description xml:lang="en">This is description about a coin.</description>
+</descriptionSet>]]></example>
     <example name="eventDateTime" ref="#maintenanceHistory"/>
     <example name="eventDescription" ref="#maintenanceHistory"/>
     <example name="eventType" ref="#maintenanceHistory"/>
@@ -25,10 +41,15 @@
 </maintenanceHistory>]]></example>
     <example name="maintenanceStatus"><![CDATA[<maintenanceStatus>cancelledReplaced</maintenanceStatus>]]></example>
     <example name="namespace" ref="#semanticDeclaration"/>
+    <example name="note" ref="#noteSet"/>
+    <example name="noteSet"><![CDATA[<noteSet>
+    <note>A note about an object.</note>
+</noteSet>]]></example>
     <example name="otherRecordId"><![CDATA[<control>
     <recordId>ric.1(2).aug.1a</recordId>
     <otherRecordId semantic="dcterms:isReplacedBy">ric.1(2).aug.1A</otherRecordId>
 </control>]]></example>
+    <example name="physDesc" ref="#descMeta"/>
     <example name="preferCite" ref="#rightsStmt"/>
     <example name="prefix" ref="#semanticDeclaration"/>
     <example name="publicationStatus"><![CDATA[<publicationStatus>approved</publicationStatus>]]></example>
@@ -44,5 +65,9 @@
     <prefix>dcterms</prefix>
     <namespace>http://purl.org/dc/terms/</namespace>
 </semanticDeclaration>]]></example>
-    
+    <example name="subject" ref="#subjectSet"/>
+    <example name="subjectSet"><![CDATA[<subjectSet>
+    <subject xlink:type="simple" xlink:href="https://www.wikidata.org/wiki/Q2184"
+        localType="subjectEvent">Soviet Russia</subject>
+</subjectSet>]]></example>
 </examples>

@@ -48,24 +48,29 @@
 			<!-- sparql update -->
 			<xforms:instance id="sparqlUpdate-template">
 				<templates xmlns="">
-					<query id="delete-metadata">
-						<![CDATA[PREFIX void:	<http://rdfs.org/ns/void#> 
-DELETE {?s ?p ?o} WHERE { <DATASET> ?p ?o . ?s ?p ?o . FILTER (?s = <DATASET>)}]]>
-					</query>
-					<query id="delete-dump">
-						<![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
+					<query id="delete-metadata"><![CDATA[PREFIX void:	<http://rdfs.org/ns/void#> 
+DELETE {?s ?p ?o} WHERE { <DATASET> ?p ?o . ?s ?p ?o . FILTER (?s = <DATASET>)}]]></query>
+					<query id="delete-dump"><![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX void:	<http://rdfs.org/ns/void#>
 PREFIX dcterms:	<http://purl.org/dc/terms/>
-DELETE {?s ?p ?o} WHERE { 
-{ ?object void:inDataset <DATASET> ;
-  nmo:hasObverse ?s . ?s ?p ?o }
-UNION { ?object void:inDataset <DATASET> ;
-  nmo:hasReverse ?s . ?s ?p ?o }
-UNION { ?object void:inDataset <DATASET> ;
-  dcterms:tableOfContents ?s . ?s ?p ?o }
-UNION { ?s void:inDataset <DATASET> . ?s ?p ?o}
-  }]]>
-					</query>
+PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
+PREFIX svcs:	<http://rdfs.org/sioc/services#>
+DELETE {?s ?p ?o} WHERE {
+  {
+     SELECT ?object WHERE {?object void:inDataset <DATASET>}  
+  }
+{ ?object nmo:hasObverse/foaf:depiction ?image .
+  ?image svcs:has_service ?s . ?s ?p ?o}
+UNION { ?object nmo:hasObverse/foaf:depiction ?s . ?s ?p ?o}
+UNION { ?object nmo:hasObverse ?s . ?s ?p ?o}
+UNION { ?object nmo:hasReverse/foaf:depiction ?image .
+  ?image svcs:has_service ?s . ?s ?p ?o}
+UNION { ?object nmo:hasReverse/foaf:depiction ?s . ?s ?p ?o}
+UNION { ?object nmo:hasReverse ?s . ?s ?p ?o}
+UNION { ?object dcterms:tableOfContents ?s . ?s ?p ?o}
+UNION { BIND (?object as ?s)
+        ?s ?p ?o }
+}]]></query>
 				</templates>
 			</xforms:instance>
 
@@ -181,6 +186,22 @@ ORDER BY ASC(?publisher) ASC(?title)]]></query>
 						<xforms:case id="default">
 							<xforms:group ref="instance('sparqlResponse')">
 								<xforms:group ref=".[count(void:Dataset) &gt; 0]">
+									
+									<!-- test control for deleting dumps -->
+									<!--<div>
+										<xforms:input ref="instance('control-instance')/dataset">
+											<xforms:label>Dataset URL</xforms:label>
+										</xforms:input>
+										<xforms:trigger>
+											<xforms:label>Delete</xforms:label>
+											<xforms:action ev:event="DOMActivate">
+												<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-template')/query[@id='delete-dump'], 'DATASET', instance('control-instance')/dataset)"
+													></xforms:setvalue>
+												<xforms:send submission="delete-graph"/>
+											</xforms:action>
+										</xforms:trigger>
+									</div>-->
+									
 									<table class="table">
 										<thead>
 											<tr>
@@ -373,16 +394,18 @@ ORDER BY ASC(?publisher) ASC(?title)]]></query>
 				<xforms:action ev:event="DOMActivate">
 					<!-- first delete the objects associated with the dataset, linked by void:inDataset -->
 					<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-template')/query[@id='delete-dump'], 'DATASET', instance('control-instance')/dataset)"
-					></xforms:setvalue>
-					<xforms:send submission="delete-graph"/>
-					<!-- then delete the void:Dataset object -->
-					<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-template')/query[@id='delete-metadata'], 'DATASET', instance('control-instance')/dataset)"
-						></xforms:setvalue>
-					<xforms:send submission="delete-graph"/>
-					
-					<!-- resubmit SPARQL query for void:Datasets to reset the table -->
-					<xforms:setvalue ref="instance('sparqlQuery')" value="concat(instance('sparql-templates')/prefix, ' ', instance('sparql-templates')/query[@id='get-datasets'])"></xforms:setvalue>
-					<xforms:send submission="submit-sparqlQuery"></xforms:send>
+					></xforms:setvalue>					
+					<xforms:send submission="delete-graph"/>					
+					<xforms:action if="xforms-submit-done">
+						<!-- then delete the void:Dataset object -->
+						<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-template')/query[@id='delete-metadata'], 'DATASET', instance('control-instance')/dataset)"
+							></xforms:setvalue>
+						<xforms:send submission="delete-graph"/>						
+						
+						<!-- resubmit SPARQL query for void:Datasets to reset the table -->
+						<xforms:setvalue ref="instance('sparqlQuery')" value="concat(instance('sparql-templates')/prefix, ' ', instance('sparql-templates')/query[@id='get-datasets'])"></xforms:setvalue>
+						<xforms:send submission="submit-sparqlQuery"></xforms:send>
+					</xforms:action>
 				</xforms:action>
 			</fr:positive-choice>
 			<fr:negative-choice>
