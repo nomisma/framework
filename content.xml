@@ -307,12 +307,10 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 				project, influenced by the requirements for <a href="https://github.com/pelagios/pelagios-cookbook/wiki/Joining-Pelagios">joining</a> the <a
 					href="http://pelagios-project.blogspot.com/">Pelagios Project</a>: an RDF data dump (which also much be accessible by URL) and some metadata
 				about this dump, in <a href="http://www.w3.org/TR/void/">Vocabulary of Interlinked Datasets (VoID)</a> RDF.</p>
-
 			<h2>VoID RDF</h2>
 			<pre>
 				<code class="language-markup">
-<![CDATA[
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+<![CDATA[<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
 	xmlns:dcterms="http://purl.org/dc/terms/"
 	xmlns:void="http://rdfs.org/ns/void#">
 	<void:Dataset rdf:about="http://coins.lib.virginia.edu/">
@@ -329,14 +327,12 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 				hoard) within the data dump using the void:inDataset property (see examples, below). The dcterms:title, dcterms:description, dcterms:publisher,
 				and dcterms:license are all required. The title and description must be textual strings, but the publisher and license may be URIs. In fact, the
 				license <i>should</i> be a URI designating the dataset under an open license, such as those published by <a href="https://creativecommons.org/"
-					>Creative Commons</a> or <a href="http://opendatacommons.org/">Open Data Commons</a>.</p>
+					>Creative Commons</a> or <a href="http://opendatacommons.org/">Open Data Commons</a>. A literal rights statement (dcterms:rights) may be
+				made instead of a dcterms:license link.</p>
 			<h2>Data Dump Model</h2>
 			<p>The data dump model should conform to the standards established by Nomisma.org, including the use of the Nomisma ontology where applicable.</p>
 			<h3>Physical Coins</h3>
-			<pre>
-				<code class="language-markup">
-<![CDATA[
-<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/"       
+			<pre><code class="language-markup"><![CDATA[<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/"       
 	xmlns:void="http://rdfs.org/ns/void#"
 	xmlns:nmo="http://nomisma.org/ontology#"					
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -364,8 +360,8 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 		<foaf:depiction rdf:resource="http://coins.lib.virginia.edu/images/coins/screen/n1991_17_140_rev.jpg"/>
 		<foaf:thumbnail rdf:resource="http://coins.lib.virginia.edu/images/coins/thumb/n1991_17_140_rev.jpg"/>
 	</rdf:Description>
-</rdf:RDF>]]></code>
-			</pre>
+</rdf:RDF>]]></code></pre>
+
 			<p>The title, publisher, and identifier are required, as is nmo:hasTypeSeriesItem. nmo:hasCollection is recommended for physical specimens. Before
 				submitting your data to nomisma, please contact the administrators to create a URI for your collection. A physical specimen must be carry the
 				nmo:NumismaticObject class. Finally, each object must contain a void:inDataset property linking to the URI of the void:Dataset in the VoID
@@ -377,22 +373,45 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 				though the measurements can be used for quantitative analyses. The measurements should be associated with xsd:decimal for weights and diameters,
 				xsd:integer for axis (unless the source data uses fractional numbers for axes). The dcterms:isPartOf property is used to link a coin to a coin
 				hoard that has a published URI.</p>
+			<h4 id="iiif">IIIF Integration</h4>
+			<p>The Nomisma RDF model has been extended to follow the Europeana Data Model <a
+					href="http://pro.europeana.eu/files/Europeana_Professional/Share_your_data/Technical_requirements/EDM_profiles/IIIFtoEDM_profile_042016.pdf"
+					>specifications</a> for defining IIIF images and services. Essentially, this requires additional triples about the reference image
+				(foaf:depiction), which should be defined as an edm:WebResource. This edm:WebResource should link to a JSON-LD IIIF manifest or information
+				object and the URI for the service (with the svcs:has_service property). The service should include several triples that defines it as a IIIF
+				image service.</p>
+			<p><strong>Note:</strong> The JSON-LD IIIF link in the edm:WebResource should be either:</p>
+			<ul>
+				<li>If the image represents either the obverse or reverse, the link should point to the info.json for the image</li>
+				<li>If the image depicts both the obverse and reverse simultaneously (as is the standard for British Museum and Harvard Art Museums
+					photographs), the link should be the full IIIF manifest.</li>
+			</ul>
+			<pre><code class="language-markup"><![CDATA[
+<edm:WebResource rdf:about="https://rucore.libraries.rutgers.edu/api/iiif/image/2.0/rutgers-lib:45878;PTIF-1/full/600,/0/default.jpg">
+    <svcs:has_service rdf:resource="https://rucore.libraries.rutgers.edu/api/iiif/image/2.0/rutgers-lib:45878;PTIF-1"/>
+    <dcterms:isReferencedBy rdf:resource="https://rucore.libraries.rutgers.edu/api/iiif/image/2.0/rutgers-lib:45878;PTIF-1/info.json"/>
+</edm:WebResource>
+<svcs:Service rdf:about="https://rucore.libraries.rutgers.edu/api/iiif/image/2.0/rutgers-lib:45878;PTIF-1">
+    <dcterms:conformsTo rdf:resource="http://iiif.io/api/image"/>
+    <doap:implements rdf:resource="http://iiif.io/api/image/2/level1.json"/>
+</svcs:Service>]]></code></pre>
+
+			<p>Be sure to include the following XML namespaces/prefixes in your RDF:</p>
+			<kbd>PREFIX svcs: &lt;http://rdfs.org/sioc/services#&gt;</kbd>
+			<br/>
+			<kbd>PREFIX edm: &lt;http://www.europeana.eu/schemas/edm/&gt;</kbd>
+
+			<h4>Findspots for individual finds (not hoards)</h4>
 			<p>Findspots can expressed with nmo:hasFindspot in the following way:</p>
-			<pre>
-				<code class="language-markup">
-<![CDATA[
-<nmo:hasFindspot>
+			<pre><code class="language-markup"><![CDATA[<nmo:hasFindspot>
 	<rdf:Description xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" rdf:about="http://www.geonames.org/670093">
 		<geo:lat>37.689444</geo:lat>
 		<geo:long>26.943056</geo:long>
 	</rdf:Description>
-</nmo:hasFindspot>]]></code>
-			</pre>
+</nmo:hasFindspot>]]></code></pre>
+
 			<h3>Hoards</h3>
-			<pre>
-				<code class="language-markup">
-<![CDATA[
-<rdf:RDF xmlns:nmo="http://nomisma.org/ontology#" 
+			<pre><code class="language-markup"><![CDATA[<rdf:RDF xmlns:nmo="http://nomisma.org/ontology#" 
          xmlns:dcterms="http://purl.org/dc/terms/"
          xmlns:void="http://rdfs.org/ns/void#"
          xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
@@ -426,10 +445,7 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
         <geo:long>26.19728</geo:long>
         <foaf:name>Valea Scurtă (Romania)</foaf:name>
     </geo:SpatialThing>
-</rdf:RDF>]]>
-				</code>
-			</pre>
-
+</rdf:RDF>]]></code></pre>
 			<p>Like physical coins, the dcterms:title, and dcterms:identifier are required, and the resource must carry the nmo:Hoard class. Similarly, the
 				void:inDataset property is required in the nmo:Hoard object to link to the void:Dataset URI.</p>
 			<p>Presently, the hoard model is very simple and does not contain all the information stored in the database or NUDS XML record. The nmo:Hoard
