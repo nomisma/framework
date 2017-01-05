@@ -315,7 +315,8 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 	xmlns:void="http://rdfs.org/ns/void#">
 	<void:Dataset rdf:about="http://coins.lib.virginia.edu/">
 		<dcterms:title>The Fralin | UVa Art Museum Numismatic Collection</dcterms:title>
-		<dcterms:description>The Fralin Museum of Art at the University of Virginia numismatic collection contains about 600 coins of mainly Greco-Roman origin.</dcterms:description>
+		<dcterms:description>The Fralin Museum of Art at the University of Virginia numismatic 
+			collection contains about 600 coins of mainly Greco-Roman origin.</dcterms:description>
 		<dcterms:publisher>University of Virginia Library</dcterms:publisher>
 		<dcterms:license rdf:resource="http://opendatacommons.org/licenses/odbl/"/>
 		<void:uriSpace>http://coins.lib.virginia.edu/id/</void:uriSpace>
