@@ -398,9 +398,12 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 </svcs:Service>]]></code></pre>
 
 			<p>Be sure to include the following XML namespaces/prefixes in your RDF:</p>
+			
+			<kbd>PREFIX edm: &lt;http://www.europeana.eu/schemas/edm/&gt;</kbd>
+			<br/>
 			<kbd>PREFIX svcs: &lt;http://rdfs.org/sioc/services#&gt;</kbd>
 			<br/>
-			<kbd>PREFIX edm: &lt;http://www.europeana.eu/schemas/edm/&gt;</kbd>
+			<kbd>PREFIX doap: &lt;http://usefulinc.com/ns/doap#&gt;</kbd>
 
 			<h4>Findspots for individual finds (not hoards)</h4>
 			<p>Findspots can expressed with nmo:hasFindspot in the following way:</p>
