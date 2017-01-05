@@ -379,7 +379,7 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 					href="http://pro.europeana.eu/files/Europeana_Professional/Share_your_data/Technical_requirements/EDM_profiles/IIIFtoEDM_profile_042016.pdf"
 					>specifications</a> for defining IIIF images and services. Essentially, this requires additional triples about the reference image
 				(foaf:depiction), which should be defined as an edm:WebResource. This edm:WebResource should link to a JSON-LD IIIF manifest or information
-				object and the URI for the service (with the svcs:has_service property). The service should include several triples that defines it as a IIIF
+				object (dcterms:isReferencedBy) and the URI for the service (with the svcs:has_service property). The service should include several triples that defines it as a IIIF
 				image service.</p>
 			<p><strong>Note:</strong> The JSON-LD IIIF link in the edm:WebResource should be either:</p>
 			<ul>
