@@ -55,11 +55,23 @@
 					</div>
 					<div id="toc-attributes">
 						<h3>Attributes</h3>
+						<xsl:apply-templates select="//xs:attribute[@name]" mode="toc">
+							<xsl:sort select="@name" order="ascending"/>
+						</xsl:apply-templates>
 					</div>
 					<hr/>
-					<xsl:apply-templates select="//xs:schema/xs:element[@name]" mode="desc">
-						<xsl:sort select="@name" order="ascending"/>
-					</xsl:apply-templates>
+					<div>
+						<h3>Element List</h3>
+						<xsl:apply-templates select="//xs:schema/xs:element[@name]" mode="desc">
+							<xsl:sort select="@name" order="ascending"/>
+						</xsl:apply-templates>
+					</div>
+					<div>
+						<h3>Attribute List</h3>
+						<xsl:apply-templates select="//xs:attribute[@name]" mode="desc">
+							<xsl:sort select="@name" order="ascending"/>
+						</xsl:apply-templates>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -72,22 +84,10 @@
 		</a>
 		<xsl:text> </xsl:text>
 	</xsl:template>
-
+	
 	<!-- element/attribute definition template -->
-	<xsl:template match="xs:element | xs:attribute" mode="desc">
+	<xsl:template match="xs:element|xs:attribute" mode="desc">
 		<xsl:variable name="name" select="@name"/>
-
-		<!-- for deriving parent and child elements and attributes -->
-		<xsl:variable name="parents" as="node()*">
-			<parents>
-				<xsl:apply-templates select="//xs:schema/descendant::xs:element[@ref = $name]" mode="parents"/>
-			</parents>
-		</xsl:variable>
-		<xsl:variable name="attributes" as="node()*">
-			<attributes>
-				<xsl:apply-templates select="descendant::xs:attribute | descendant::xs:attributeGroup"/>
-			</attributes>
-		</xsl:variable>
 
 		<div id="{@name}">
 			<h3>
@@ -100,27 +100,55 @@
 			<dl class="dl-horizontal">
 				<dt>May Contain</dt>
 				<dd>
-					<xsl:apply-templates select="xs:complexType"/>
-				</dd>
-				<dt>May Occur Within</dt>
-				<dd>
 					<xsl:choose>
-						<xsl:when test="count($parents/child) &gt; 0">
-							<xsl:call-template name="render-relatives">
-								<xsl:with-param name="relatives" select="$parents"/>
-							</xsl:call-template>
+						<xsl:when test="xs:complexType">
+							<xsl:apply-templates select="xs:complexType"/>
 						</xsl:when>
-						<xsl:otherwise>[root element]</xsl:otherwise>
+						<xsl:when test="xs:simpleType">
+							<xsl:apply-templates select="xs:simpleType"/>
+						</xsl:when>
+						<xsl:when test="@type">
+							<xsl:variable name="type" select="@type"/>
+							
+							<xsl:apply-templates select="//xs:schema/xs:simpleType[@name=$type]"/>
+						</xsl:when>
 					</xsl:choose>
 				</dd>
-				<xsl:if test="count($attributes/child) &gt; 0">
-					<dt>Attributes</dt>
+				
+				<xsl:if test="local-name() = 'element'">
+					<!-- for deriving parent and child elements and attributes -->
+					<xsl:variable name="parents" as="node()*">
+						<parents>
+							<xsl:apply-templates select="//xs:schema/descendant::xs:element[@ref = $name]" mode="parents"/>
+						</parents>
+					</xsl:variable>
+					<xsl:variable name="attributes" as="node()*">
+						<attributes>
+							<xsl:apply-templates select="descendant::xs:attribute | descendant::xs:attributeGroup"/>
+						</attributes>
+					</xsl:variable>
+					
+					<dt>May Occur Within</dt>
 					<dd>
-						<xsl:call-template name="render-relatives">
-							<xsl:with-param name="relatives" select="$attributes"/>
-						</xsl:call-template>
+						<xsl:choose>
+							<xsl:when test="count($parents/child) &gt; 0">
+								<xsl:call-template name="render-relatives">
+									<xsl:with-param name="relatives" select="$parents"/>
+								</xsl:call-template>
+							</xsl:when>
+							<xsl:otherwise>[root element]</xsl:otherwise>
+						</xsl:choose>
 					</dd>
+					<xsl:if test="count($attributes/child) &gt; 0">
+						<dt>Attributes</dt>
+						<dd>
+							<xsl:call-template name="render-relatives">
+								<xsl:with-param name="relatives" select="$attributes"/>
+							</xsl:call-template>
+						</dd>
+					</xsl:if>
 				</xsl:if>
+				
 			</dl>
 
 			<xsl:apply-templates select="/content/examples/example[@name = $name]"/>
@@ -191,7 +219,25 @@
 	</xsl:template>
 
 	<xsl:template match="xs:simpleType | xs:simpleContent">
-		<xsl:apply-templates select="xs:restriction | xs:extension"/>
+		<xsl:apply-templates select="xs:restriction | xs:extension | xs:union"/>
+	</xsl:template>
+
+	<xsl:template match="xs:union">
+		<xsl:choose>
+			<xsl:when test="descendant::xs:enumeration or descendant::xs:pattern">
+				<xsl:apply-templates select="descendant::xs:enumeration|descendant::xs:pattern">
+					<xsl:sort select="@value"/>
+				</xsl:apply-templates>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:for-each select="xs:simpleType">
+					<xsl:apply-templates select="self::node()"/>
+					<xsl:if test="not(position()=last())">
+						<xsl:text> or </xsl:text>
+					</xsl:if>
+				</xsl:for-each>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 
 	<xsl:template match="xs:restriction | xs:extension">
@@ -220,8 +266,14 @@
 		</xsl:choose>
 	</xsl:template>
 
-	<xsl:template match="xs:enumeration">
+	<xsl:template match="xs:enumeration|xs:pattern">
+		<xsl:if test="local-name()='pattern'">
+			<xsl:text>regex(</xsl:text>
+		</xsl:if>
 		<xsl:value-of select="concat('&#x022;', @value, '&#x022;')"/>
+		<xsl:if test="local-name()='pattern'">
+			<xsl:text>)</xsl:text>
+		</xsl:if>
 		<xsl:if test="not(position() = last())">
 			<xsl:text> or </xsl:text>
 		</xsl:if>

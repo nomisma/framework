@@ -4,7 +4,8 @@
     <example name="agencyName" ref="#maintenanceAgency"/>
     <example name="agent" ref="#maintenanceHistory"/>
     <example name="agentType" ref="#maintenanceHistory"/>
-    <example name="axis"><![CDATA[<axis>6</axis>]]></example>
+    <example name="axis"><![CDATA[<axis clock="o'clock">6</axis>]]></example>
+    <example name="clock" ref="#axis"/>
     <example name="copyrightHolder" ref="#rightsStmt"/>
     <example name="department"><![CDATA[<department>Roman</department>]]></example>
     <example name="descMeta"><![CDATA[<descMeta>
@@ -50,6 +51,7 @@
     <otherRecordId semantic="dcterms:isReplacedBy">ric.1(2).aug.1A</otherRecordId>
 </control>]]></example>
     <example name="physDesc" ref="#descMeta"/>
+    <example name="position" ref="#symbol"/>
     <example name="preferCite" ref="#rightsStmt"/>
     <example name="prefix" ref="#semanticDeclaration"/>
     <example name="publicationStatus"><![CDATA[<publicationStatus>approved</publicationStatus>]]></example>
@@ -70,4 +72,5 @@
     <subject xlink:type="simple" xlink:href="https://www.wikidata.org/wiki/Q2184"
         localType="subjectEvent">Soviet Russia</subject>
 </subjectSet>]]></example>
+    <example name="symbol"><![CDATA[<symbol position="leftField">EPY</symbol>]]></example>
 </examples>
