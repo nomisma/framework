@@ -137,7 +137,8 @@ PREFIX nm: <http://nomisma.org/id/>
 PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-SELECT ?object ?identifier ?collection ?obvThumb ?revThumb ?obvRef ?revRef ?comThumb ?comRef WHERE {
+PREFIX void:	<http://rdfs.org/ns/void#>
+SELECT ?object ?identifier ?collection ?datasetTitle ?obvThumb ?revThumb ?obvRef ?revRef ?comThumb ?comRef WHERE {
 { ?object a nmo:NumismaticObject ;
  nmo:hasTypeSeriesItem <typeUri>}
 UNION { ?broader skos:broader+ <typeUri> .
@@ -145,8 +146,9 @@ UNION { ?broader skos:broader+ <typeUri> .
   a nmo:NumismaticObject }
 OPTIONAL { ?object dcterms:identifier ?identifier }
 OPTIONAL { ?object nmo:hasCollection ?colUri .
-?colUri skos:prefLabel ?collection
-FILTER(langMatches(lang(?collection), "EN"))}
+?colUri skos:prefLabel ?collection FILTER(langMatches(lang(?collection), "EN"))}
+?object void:inDataset ?dataset .
+?dataset dcterms:title ?datasetTitle FILTER (lang(?datasetTitle) = "" || langMatches(lang(?datasetTitle), "en")) .
 OPTIONAL { ?object foaf:thumbnail ?comThumb }
 OPTIONAL { ?object foaf:depiction ?comRef }
 OPTIONAL { ?object nmo:hasObverse ?obverse .
