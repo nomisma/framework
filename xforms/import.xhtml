@@ -30,7 +30,7 @@
 				<xi:include href="../config.xml"></xi:include>
 			</xforms:instance>
 
-			<xforms:instance id="control-instance">
+			<xforms:instance id="control-instance" xxforms:exclude-result-prefixes="#all">
 				<controls xmlns="">
 					<status></status>
 					<spreadsheet_key></spreadsheet_key>
@@ -41,6 +41,7 @@
 					<validate-trigger>false</validate-trigger>
 					<import-trigger>false</import-trigger>
 					<parse-wikipedia>true</parse-wikipedia>
+					<wiki-id></wiki-id>
 					<wiki-title></wiki-title>
 					<wiki-lang></wiki-lang>
 					<position></position>
@@ -49,7 +50,7 @@
 			</xforms:instance>
 
 			<!-- XPL configurations for saving RDF/XML to the filesystem -->
-			<xforms:instance id="save-config">
+			<xforms:instance id="save-config" xxforms:exclude-result-prefixes="#all">
 				<config xmlns="">
 					<url></url>
 					<content-type>text/plain</content-type>
@@ -368,7 +369,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 
 			<!-- ************* WIKIDATA **********************-->
 			<xforms:submission id="get-wikidata" serialization="none" method="get"
-				action="https://www.wikidata.org/w/api.php?action=wbgetentities&amp;titles={instance('control-instance')/wiki-title}&amp;sites={instance('control-instance')/wiki-lang}wiki&amp;format=xml"
+				action="https://www.wikidata.org/w/api.php?action=wbgetentities&amp;ids={instance('control-instance')/wiki-id}&amp;titles={instance('control-instance')/wiki-title}&amp;sites={instance('control-instance')/wiki-lang}wiki&amp;format=xml"
 				instance="wikidata" replace="instance">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to get data from Wikidata.</xforms:message>
 				<xforms:action ev:event="xforms-submit-done">
@@ -834,7 +835,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 																		context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
 																		origin="xforms:element('error', concat($mapping, ' links to a non-existent Nomisma URI or the URI is a different class: ', $value))"></xforms:action>
 																	<xforms:action if="not(instance('nomisma-ids')/id[@uri=$value and @mapping=$mapping])">
-																		<!-- if the $mapping is dcterms:isPartOf, then the target will be an nmo:Field of Numismatics;
+																		<!-- if the $mapping is dcterms:isPartOf, then the target will be an nmo:FieldOfNumismatics;
 																	else if the $mapping is skos:broader and the class is an nmo:Mint, then the skos:broader will be nmo:Region;
 																	if the $mapping is org:memberOf and the class is foaf:Person, then the target entity must be a dynasty (rdac:Family);
 																	if the $mapping is an org:organization and class is a foaf:Person, then the target entity must be an organization (foaf:Organization) or mint (nmo:Mint), set by separate SPARQL query template;
@@ -945,7 +946,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											<!-- set position for progress dialog -->
 											<!--<xforms:setvalue ref="instance('control-instance')/position" value="context()/position()"></xforms:setvalue>-->
 											<xforms:var name="id"
-												select="normalize-space(data(*[namespace-uri()='http://schemas.google.com/spreadsheets/2006/extended'][name()=instance('mappings')/mapping[@to='id']/@from]))"></xforms:var>
+												select="normalize-space(data(context()/*[namespace-uri()='http://schemas.google.com/spreadsheets/2006/extended'][name()=instance('mappings')/mapping[@to='id']/@from]))"></xforms:var>
 											<xforms:var name="uri" select="concat('http://nomisma.org/id/', $id)"></xforms:var>
 											<xforms:var name="position" select="position()"></xforms:var>
 											<!-- set the id in the control-instance and then attempt to load the RDF/XML from disc. If it fails to load, this means the ID does not exist, and a new one will be created. If the ID does exist and the RDF is loaded, then add supplementary information. -->
@@ -953,11 +954,12 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											<!-- clear data from RDF instance before loading-->
 											<xforms:delete nodeset="instance('rdf')/*"></xforms:delete>
 											<xforms:send submission="load-rdf"></xforms:send>
+											
 											<!-- *** BEGIN ATOM TO RDF IMPORT *** -->
 											<xforms:action
 												xxforms:iterate="instance('feed')//atom:entry[position()=$position]/*[namespace-uri()='http://schemas.google.com/spreadsheets/2006/extended']">
 												<xforms:var name="from" select="name()"></xforms:var>
-												<xforms:var name="value" select="normalize-space(context())"></xforms:var>
+												<xforms:var name="value" select="normalize-space(data(context()))"></xforms:var>
 												<!-- only process those fields which have been mapped in the user interface -->
 												<xforms:action if="string(instance('mappings')/mapping[@from=$from]/@to) and string-length($value) &gt; 0">
 													<xforms:var name="mapping" select="instance('mappings')/mapping[@from=$from]/@to"></xforms:var>
@@ -971,6 +973,11 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 													<!-- create URIs for the following simple mappings that go into the skos:Concept object -->
 													<xforms:action
 														if="$mapping = 'skos:exactMatch' or $mapping='skos:closeMatch' or $mapping='foaf:homepage' or $mapping='dcterms:isPartOf' or $mapping='dcterms:source' or $mapping='org:memberOf' or $mapping='skos:broader' or $mapping='prov:alternateOf'">
+														<!-- clear wiki control instance values -->					
+														<xforms:setvalue ref="instance('control-instance')/wiki-id"/>
+														<xforms:setvalue ref="instance('control-instance')/wiki-title"/>
+														<xforms:setvalue ref="instance('control-instance')/wiki-lang"/>
+														
 														<!-- handle the parsing of dbpedia/wikipedia articles in wikidata, if activated -->
 														<xforms:action
 															if="(contains($value, 'dbpedia.org') or contains($value, 'wikipedia.org')) and ($mapping='skos:exactMatch' or $mapping='skos:closeMatch')">
@@ -1017,8 +1024,25 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 																</xforms:action>
 															</xforms:action>
 														</xforms:action>
+														
+														<!-- parse wikidata matches specifically -->
+														<xforms:action if="contains($value, 'wikidata.org') and ($mapping='skos:exactMatch' or $mapping='skos:closeMatch')">
+															<xforms:var name="property" select="if (instance('control-instance')/type = 'nmo:Mint') then 'skos:closeMatch' else 'skos:exactMatch'"></xforms:var>
+															
+															<!-- parse wikidata entity ID -->
+															<xforms:var name="wiki-id" select="tokenize($value, '/')[last()]"/>
+															
+															<!-- Harvest data from wikidata if applicable -->
+															<xforms:action if="instance('control-instance')/parse-wikipedia = true()">
+																<xforms:action if="string($wiki-id)">
+																	<xforms:setvalue ref="instance('control-instance')/wiki-id" value="$wiki-id"></xforms:setvalue>																	
+																	<xforms:send submission="get-wikidata"></xforms:send>
+																</xforms:action>
+															</xforms:action>
+														</xforms:action>
+														
 														<!-- otherwise write the URI as its mapping -->
-														<xforms:action if="not(contains($value, 'dbpedia.org')) and not(contains($value, 'wikipedia.org'))">
+														<xforms:action if="not(contains($value, 'dbpedia.org')) and not(contains($value, 'wikipedia.org')) and not(contains($value, 'wikidata.org'))">
 															<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
 																origin="xforms:element($mapping, (xforms:attribute('rdf:resource', $value), ''))"
 																if="not(instance('rdf')/*[1]/*[name()=$mapping][@rdf:resource = $value])"></xforms:insert>
@@ -1117,7 +1141,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											</xforms:action>
 											<!-- *** BEGIN CRUD OPERATIONS *** -->
 											<!-- save file back to disk -->
-											<xforms:setvalue ref="instance('save-config')/url" value="concat('file://', instance('config')/id_path, '/',  $id, '.rdf')"></xforms:setvalue>
+											<xforms:setvalue ref="instance('save-config')/url" value="concat('file://', instance('config')/id_path, '/',  instance('control-instance')/id, '.rdf')"></xforms:setvalue>
 											<xforms:insert nodeset="instance('dump')"
 												origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('rdf'), instance('save-config')), 'data')"></xforms:insert>
 											<!-- delete graphs from triplestore, then repost updates -->
@@ -1153,9 +1177,12 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										<xforms:var name="id" select="*[namespace-uri()='http://schemas.google.com/spreadsheets/2006/extended'][name()=instance('mappings')/mapping[@to='id']/@from]"></xforms:var>
 										<tr>
 											<td>
-												<a href="{concat(instance('config')/url, 'id/', $id)}">
-													<xforms:output value="concat(instance('config')/url, 'id/', $id)"></xforms:output>
-												</a>
+												<xforms:trigger appearance="minimal">
+													<xforms:label value="concat(instance('config')/url, 'id/', $id)"/>
+													<xforms:action ev:event="DOMActivate">
+														<xforms:load show="replace" resource="{concat(instance('config')/url, 'id/', $id)}"/>
+													</xforms:action>
+												</xforms:trigger> 													
 											</td>
 											<td>
 												<xforms:output
