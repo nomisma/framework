@@ -59,7 +59,10 @@ DELETE {?s ?p ?o} WHERE {
   {
      SELECT ?object WHERE {?object void:inDataset <DATASET>}  
   }
-{ ?object nmo:hasObverse/foaf:depiction ?image .
+{ ?object foaf:depiction ?image .
+  ?image svcs:has_service ?s . ?s ?p ?o}
+UNION { ?object foaf:depiction ?s . ?s ?p ?o}
+UNION { ?object nmo:hasObverse/foaf:depiction ?image .
   ?image svcs:has_service ?s . ?s ?p ?o}
 UNION { ?object nmo:hasObverse/foaf:depiction ?s . ?s ?p ?o}
 UNION { ?object nmo:hasObverse ?s . ?s ?p ?o}
