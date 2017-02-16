@@ -55,6 +55,7 @@
     <example name="preferCite" ref="#rightsStmt"/>
     <example name="prefix" ref="#semanticDeclaration"/>
     <example name="publicationStatus"><![CDATA[<publicationStatus>approved</publicationStatus>]]></example>
+    <example name="recordId"><![CDATA[<recordId>ric.1(2).aug.1a</recordId></control>]]></example>
     <example name="rights" ref="#rightsStmt"/>
     <example name="rightsStmt"><![CDATA[<rightsStmt>
     <copyrightHolder>American Numismatic Society</copyrightHolder>
@@ -67,6 +68,7 @@
     <prefix>dcterms</prefix>
     <namespace>http://purl.org/dc/terms/</namespace>
 </semanticDeclaration>]]></example>
+    <example name="semantic" ref="#otherRecordId"/>
     <example name="subject" ref="#subjectSet"/>
     <example name="subjectSet"><![CDATA[<subjectSet>
     <subject xlink:type="simple" xlink:href="https://www.wikidata.org/wiki/Q2184"
