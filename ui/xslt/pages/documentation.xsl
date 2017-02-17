@@ -11,7 +11,7 @@
 	<xsl:template match="page">
 		<html lang="en">
 			<head>
-				<title>nomisma.org</title>
+				<title>nomisma.org: <xsl:value-of select="@label"/></title>
 				<meta name="viewport" content="width=device-width, initial-scale=1"/>
 				<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"/>
 				<!-- bootstrap -->
