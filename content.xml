@@ -63,7 +63,7 @@
 					Collections."</a> It is also influenced by the structure of <a href="http://www.tei-c.org/index.xml">TEI</a> and <a
 					href="http://www2.archivists.org/groups/technical-subcommittee-on-eac-cpf/encoded-archival-context-corporate-bodies-persons-and-families-eac-cpf"
 					>EAC-CPF</a>, common standards in the Digital Humanities, library and archival domains. Ideally, a NUDS record should implement XLink
-				attributes to integrate URIs to external controlled Linked Open Data controlled vocabulary systems, such as concepts defined on Nomisma.org
+				attributes to integrate URIs from external Linked Open Data vocabulary systems, such as concepts defined on Nomisma.org
 				itself.</p>
 
 			<h3>Resources</h3>
