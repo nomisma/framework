@@ -120,7 +120,9 @@
 						</url>
 						<content-type>
 							<xsl:choose>
-								<xsl:when test="contains($content-type, 'text') or contains($content-type, 'csv')">text/plain</xsl:when>
+								<xsl:when test="$content-type='text/turtle'">text/turtle</xsl:when>
+								<xsl:when test="$content-type='text/csv'">text/csv</xsl:when>
+								<xsl:when test="$content-type='text/plain'">text/plain</xsl:when>
 								<xsl:when test="contains($content-type, 'json')">application/json</xsl:when>
 								<xsl:otherwise>application/xml</xsl:otherwise>
 							</xsl:choose>
