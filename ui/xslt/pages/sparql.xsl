@@ -73,8 +73,8 @@ SELECT * WHERE {
 								<label for="output">Output</label>
 								<select name="output" class="form-control">
 									<option value="html">HTML</option>
-									<option value="xml">SPARQL/XML</option>
-									<option value="json">SPARQL/JSON</option>
+									<option value="xml">XML</option>
+									<option value="json">JSON</option>
 									<option value="text">Text</option>
 									<option value="csv">CSV</option>
 								</select>
