@@ -63,8 +63,9 @@
 					Collections."</a> It is also influenced by the structure of <a href="http://www.tei-c.org/index.xml">TEI</a> and <a
 					href="http://www2.archivists.org/groups/technical-subcommittee-on-eac-cpf/encoded-archival-context-corporate-bodies-persons-and-families-eac-cpf"
 					>EAC-CPF</a>, common standards in the Digital Humanities, library and archival domains. Ideally, a NUDS record should implement XLink
-				attributes to integrate URIs to external controlled Linked Open Data controlled vocabulary systems, such as concepts defined on Nomisma.org
-				itself.</p>
+				attributes to integrate URIs from external Linked Open Data vocabulary systems, such as concepts defined on Nomisma.org itself. It allows for
+				the optional namespacing of <a href="https://sourceforge.net/p/epidoc/wiki/Home/">EpiDoc TEI</a> elements for legends and descriptions for more
+				complex tagging of inscriptions and prose.</p>
 
 			<h3>Resources</h3>
 			<ul>
@@ -309,8 +310,7 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 				about this dump, in <a href="http://www.w3.org/TR/void/">Vocabulary of Interlinked Datasets (VoID)</a> RDF.</p>
 			<h2>VoID RDF</h2>
 			<pre>
-				<code class="language-markup">
-<![CDATA[<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+				<code class="language-markup"><![CDATA[<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
 	xmlns:dcterms="http://purl.org/dc/terms/"
 	xmlns:void="http://rdfs.org/ns/void#">
 	<void:Dataset rdf:about="http://coins.lib.virginia.edu/">
@@ -379,8 +379,8 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 					href="http://pro.europeana.eu/files/Europeana_Professional/Share_your_data/Technical_requirements/EDM_profiles/IIIFtoEDM_profile_042016.pdf"
 					>specifications</a> for defining IIIF images and services. Essentially, this requires additional triples about the reference image
 				(foaf:depiction), which should be defined as an edm:WebResource. This edm:WebResource should link to a JSON-LD IIIF manifest or information
-				object (dcterms:isReferencedBy) and the URI for the service (with the svcs:has_service property). The service should include several triples that defines it as a IIIF
-				image service.</p>
+				object (dcterms:isReferencedBy) and the URI for the service (with the svcs:has_service property). The service should include several triples
+				that defines it as a IIIF image service.</p>
 			<p><strong>Note:</strong> The JSON-LD IIIF link in the edm:WebResource should be either:</p>
 			<ul>
 				<li>If the image represents either the obverse or reverse, the link should point to the info.json for the image</li>
@@ -398,7 +398,7 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 </svcs:Service>]]></code></pre>
 
 			<p>Be sure to include the following XML namespaces/prefixes in your RDF:</p>
-			
+
 			<kbd>PREFIX edm: &lt;http://www.europeana.eu/schemas/edm/&gt;</kbd>
 			<br/>
 			<kbd>PREFIX svcs: &lt;http://rdfs.org/sioc/services#&gt;</kbd>
