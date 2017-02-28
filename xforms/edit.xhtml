@@ -497,7 +497,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 			<!-- ************* QUERY ATOM **********************-->
 			<!-- query local atom feed to power skos:broader -->
 			<xforms:submission id="query-feed" serialization="none" method="get"
-				action="/nomisma/feed/?q=type:{encode-for-uri(normalize-space(instance('control-instance')/atom-type))};+{instance('control-instance')/atom-search}&amp;sort=prefLabel+asc"
+				action="/nomisma/feed/?q=type:{encode-for-uri(normalize-space(instance('control-instance')/atom-type))}+{instance('control-instance')/atom-search}&amp;sort=prefLabel+asc"
 				instance="feed" replace="instance">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to communicate with nomisma.org Atom feed.</xforms:message>
 			</xforms:submission>
