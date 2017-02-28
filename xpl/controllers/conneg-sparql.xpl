@@ -100,7 +100,7 @@
 				<xsl:variable name="output">
 					<xsl:choose>
 						<xsl:when test="$content-type='text/csv'">csv</xsl:when>
-						<xsl:when test="$content-type='text/plain'">text</xsl:when>
+						<xsl:when test="$content-type='text/plain' or $content-type='text/turtle'">text</xsl:when>
 						<xsl:when test="contains($content-type, 'json')">json</xsl:when>
 						<xsl:otherwise>xml</xsl:otherwise>
 					</xsl:choose>
@@ -127,7 +127,7 @@
 								<xsl:otherwise>application/xml</xsl:otherwise>
 							</xsl:choose>
 						</content-type>
-						<xsl:if test="contains($content-type, 'json')">
+						<xsl:if test="contains($content-type, 'json') or $content-type='text/turtle'">
 							<mode>text</mode>
 						</xsl:if>
 						<encoding>utf-8</encoding>
