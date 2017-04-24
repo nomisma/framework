@@ -170,7 +170,7 @@
 				<div class="col-md-{if ($hasMints = true() or $hasFindspots = true()) then '6' else '9'}">
 					<xsl:apply-templates select="/content/rdf:RDF/*" mode="type"/>
 				</div>
-				<div class="col-md-{if ($hasMints = true() or $hasFindspots = true()) then '6' else '3'}">
+				<div class="col-md-{if ($hasMints = true() or $hasFindspots = true()) then '6' else '3'}">					
 					<div>
 						<h3>Export</h3>
 						<ul class="list-inline">
@@ -344,6 +344,27 @@
 				<xsl:sort select="@rdf:resource"/>
 			</xsl:apply-templates>
 		</div>
+	</xsl:template>
+	
+	<xsl:template match="foaf:thumbnail" mode="list-item">
+		<xsl:variable name="name" select="name()"/>
+		<dt>
+			<a href="{concat($namespaces//namespace[@prefix=substring-before($name, ':')]/@uri, substring-after($name, ':'))}">
+				<xsl:value-of select="name()"/>
+			</a>
+		</dt>
+		<dd>			
+			<xsl:choose>
+				<xsl:when test="../foaf:homepage">
+					<a href="{../foaf:homepage/@rdf:resource}">
+						<img src="{@rdf:resource}" rel="{name()}" alt="Logo" style="max-width:100%"/>
+					</a>
+				</xsl:when>
+				<xsl:otherwise>
+					<img src="{@rdf:resource}" rel="{name()}" alt="Logo" style="max-width:100%"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</dd>		
 	</xsl:template>
 
 	<xsl:template match="skos:prefLabel" mode="prefLabel">

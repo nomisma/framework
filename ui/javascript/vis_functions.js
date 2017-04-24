@@ -1,10 +1,11 @@
 /*******
-VISUALIZATION FUNCTIONS
+DISTRIBUTION VISUALIZATION FUNCTIONS
 Modified: October 2016
 Function: These are the functions for generating charts and graphs with d3js
  *******/
 
 $(document).ready(function () {
+    
     //get URL parameters, from http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
     var urlParams;
     (window.onpopstate = function () {
@@ -33,12 +34,17 @@ $(document).ready(function () {
     
     var path = '../';
     var page = $('#page').text();
+    var interfaceType = $('#interface').text();
     
     /**** RENDER CHART ****/
     //render the chart from request parameters on the distribution page
-    if (page == 'page') {
+    if (interfaceType == 'distribution' && page == 'page') {
         if (urlParams[ 'dist'] != null && (urlParams[ 'filter'] || urlParams[ 'compare'] != null)) {
-            renderChart(path, urlParams);
+            renderDistChart(path, urlParams);
+        }
+    } else if (interfaceType = 'metrical' && page == 'page') {
+        if (urlParams[ 'measurement'] != null && (urlParams[ 'filter'] || urlParams[ 'compare'] != null)) {
+            renderMetricalChart(path, urlParams);
         }
     }
     
@@ -48,9 +54,16 @@ $(document).ready(function () {
             //construct the params
             urlParams = {
             };
-            urlParams[ 'dist'] = $('select[name=dist]').val();
+            if ($('select[name=dist]').length > 0) {
+                urlParams[ 'dist'] = $('select[name=dist]').val();
+            }
+            if ($('input[name=measurement]').length > 0) {
+                urlParams[ 'measurement'] = $('input[name=measurement]').val();
+            }
+            if ($('input[name=type]').length > 0) {
+                urlParams[ 'type'] = $('input[name=type]').val();
+            }
             urlParams[ 'filter'] = $('input[name=filter]').val();
-            urlParams[ 'type'] = $('input[name=type]').val();
             //if there are compare queries
             if ($('input[name=compare]').length > 0) {
                 compare = new Array();
@@ -76,15 +89,15 @@ $(document).ready(function () {
             
             //set bookmarkable page URL
             var href = path + 'research/distribution?' + params.join('&');
-            $('#dist-chart-container').children('div.control-row').children('a[title=Bookmark]').attr('href', href);
+            $('#chart-container').children('div.control-row').children('a[title=Bookmark]').attr('href', href);
             
             //set CSV download URL
             params.push('format=csv');
             href = path + 'apis/getCount?' + params.join('&');
-            $('#dist-chart-container').children('div.control-row').children('a[title=Download]').attr('href', href);
+            $('#chart-container').children('div.control-row').children('a[title=Download]').attr('href', href);
             
             //render the chart
-            renderChart(path, urlParams);
+            renderDistChart(path, urlParams);
             
             return false;
         }
@@ -106,6 +119,9 @@ $(document).ready(function () {
     
     //observe changes in drop down menus for validation
     $('#categorySelect').change(function () {
+        validate();
+    });
+    $('#measurementSelect').change(function () {
         validate();
     });
     
@@ -143,6 +159,23 @@ $(document).ready(function () {
         validate();
     });
     
+    //validate on measurement analysis date range changes
+    $('#fromYear').change(function () {
+        validate();
+    });
+    $('#fromEra').change(function () {
+        validate();
+    });
+    $('#toYear').change(function () {
+        validate();
+    });
+    $('#toEra').change(function () {
+        validate();
+    });
+    $('#interval').change(function () {
+        validate();
+    });
+    
     //delete the compare/filter query pair
     $('#filter-container').on('click', '.filter .control-container .remove-query', function () {
         var container = $(this).closest('#filter-container');
@@ -161,7 +194,7 @@ $(document).ready(function () {
     });
     
     //on page load, populate the SPARQL-based query filters
-    $('#distributionForm').find('.filter').each(function () {
+    $('.quant-form').find('.filter').each(function () {
         var prop = $(this).children('.add-filter-prop').val();
         var type = $(this).children('.add-filter-prop').children('option:selected').attr('type');
         var next = $(this).children('.add-filter-prop').next('.prop-container');
@@ -332,15 +365,24 @@ function getFacets(mode, prop, type, next, path) {
 
 function validate() {
     var page = $('#page').text();
+    var interfaceType = $('#interface').text();
     var elements = new Array();
     
     //evaluate each portion of the form
     
-    //ensure category drop down contains a value
-    if ($('#categorySelect').val()) {
-        elements.push(true);
-    } else {
-        elements.push(false);
+    //ensure category drop down contains a value, but only for the distribution page
+    if (interfaceType == 'distribution') {
+        if ($('#categorySelect').val()) {
+            elements.push(true);
+        } else {
+            elements.push(false);
+        }
+    } else if (interfaceType == 'metrical') {
+        if ($('#measurementSelect').val()) {
+            elements.push(true);
+        } else {
+            elements.push(false);
+        }
     }
     
     //evaluate the filter from record page
@@ -396,12 +438,51 @@ function validate() {
         }
     });
     
+    //validate date range query for measurement analysis, only validate if there is a value in one or more relevant elements
+    if ($('#measurementRange-container').length > 0) {
+        var fromYear = $('#fromYear').val();
+        var toYear = $('#toYear').val();
+        var interval = $('#interval').val();
+        
+        //check to see if any values have been set
+        if ($.isNumeric(fromYear) || $.isNumeric(toYear) || $.isNumeric(interval)) {
+            //if they are all numeric values, then the controls are valid
+            if ($.isNumeric(fromYear) && $.isNumeric(toYear) && $.isNumeric(interval)) {
+                if (fromYear > 0 && toYear > 0) {
+                    //be sure that fromYear is less than toYear
+                    if ($('#fromEra').val() == 'bc') {
+                        fromYear = fromYear * -1;
+                    }
+                    if ($('#toEra').val() == 'bc') {
+                        toYear = toYear * -1;
+                    }
+                    if (fromYear >= toYear) {
+                        elements.push(false);
+                    } else {
+                        elements.push(true);
+                        //when all possibilities are valid, then create
+                    }
+                } else {
+                    elements.push(false);
+                }
+            } else {
+                elements.push(false);
+            }
+        }
+    }
+    
     //if there is a false element to the form OR if there is only one element (i.e., the category, then the form is invalid
+    
     if (elements.indexOf(false) !== -1) {
         var valid = false;
     } else {
-        if (page == 'page' && elements.length == 1) {
-            var valid = false;
+        if (page == 'page') {
+            //there must be at least one compare container on the analsyis page
+            if ($('#compare-master-container .compare-container').length >= 1) {
+                var valid = true;
+            } else {
+                var valid = false;
+            }
         } else {
             var valid = true;
         }
@@ -410,7 +491,6 @@ function validate() {
     //enable/disable button
     if (valid == true) {
         $('#visualize-submit').prop("disabled", false);
-        
         //generate the filter query and assign the value to the hidden input
         q = generateFilter();
         $('input[name=filter]').val(q);
@@ -438,6 +518,34 @@ function validate() {
             query = q.join('; ');
             $('#' + formId).append('<input name="compare" type="hidden" value="' + query + '">');
         });
+        
+        //insert inputs for measurementRange query
+        if ($.isNumeric($('#fromYear').val()) && $.isNumeric($('#toYear').val()) && $.isNumeric($('#interval').val())) {
+            var formId = $('.quant-form').attr('id');
+            var fromYear = $('#fromYear').val();
+            var toYear = $('#toYear').val();
+            var interval = $('#interval').val();
+            
+            if ($('#fromEra').val() == 'bc') {
+                fromYear = fromYear * -1;
+            }
+            if ($('#toEra').val() == 'bc') {
+                toYear = toYear * -1;
+            }
+            //delete existing inputs
+            $('input[name=from]').remove();
+            $('input[name=to]').remove();
+            $('input[name=interval]').remove();
+            
+            //insert new inputs
+            $('#' + formId).append('<input name="from" type="hidden" value="' + fromYear + '">');
+            $('#' + formId).append('<input name="to" type="hidden" value="' + toYear + '">');
+            $('#' + formId).append('<input name="interval" type="hidden" value="' + interval + '">');
+        } else {
+            $('input[name=from]').remove();
+            $('input[name=to]').remove();
+            $('input[name=interval]').remove();
+        }
     } else {
         $('#visualize-submit').prop("disabled", true);
     }
@@ -467,7 +575,7 @@ function generateFilter() {
     return query;
 }
 
-function renderChart(path, urlParams) {
+function renderDistChart(path, urlParams) {
     var distLabel = $('select[name=dist] option:selected').text().toLowerCase();
     if (urlParams[ 'type'] == 'count') {
         var y = 'count';
@@ -477,7 +585,7 @@ function renderChart(path, urlParams) {
     
     $.get(path + 'apis/getCount', $.param(urlParams, true),
     function (data) {
-        $('#dist-chart-container').removeClass('hidden');
+        $('#chart-container').removeClass('hidden');
         $('#chart').html('');
         $('#chart').height(600);
         var visualization = d3plus.viz().container("#chart").data(data).type("bar").id('subset').x(distLabel).y(y).legend({
@@ -486,4 +594,38 @@ function renderChart(path, urlParams) {
             "value": "subset"
         }).draw();
     });
+}
+
+function renderMetricalChart(path, urlParams) {
+    $('#chart-container').removeClass('hidden');
+    $('#chart').html('');
+    $('#chart').height(600);
+    
+    if ($.isNumeric(urlParams[ 'interval'])) {
+        $.get(path + 'apis/getQuant', $.param(urlParams, true),
+        function (data) {
+            
+            $('#chart-container').removeClass('hidden');
+            $('#chart').html('');
+            $('#chart').height(600);
+            var visualization = d3plus.viz().container("#chart").data(data).type('line').id('subset').y({
+                'value': 'average'
+            }).x({
+                'value': 'value', 'label': 'Date Range'
+            }).tooltip([ "label", "average"]).legend({
+                "size": [20, 50], 'data': false
+            }).size(5).color({
+                "value": "subset"
+            }).draw();
+        });
+    } else {
+        $.get(path + 'apis/getQuant', $.param(urlParams, true),
+        function (data) {
+            var visualization = d3plus.viz().container("#chart").data(data).type('bar').id('subset').y('average').x('value').legend({
+                "size": 50
+            }).color({
+                "value": "subset"
+            }).draw();
+        });
+    }
 }

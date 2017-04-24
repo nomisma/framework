@@ -38,6 +38,7 @@
 	<page path="/nomisma/id/" view="xpl/views/pages/id.xpl"/>
 	<page path="/nomisma/sparql" view="xpl/views/pages/sparql.xpl"/>
 	<page path="/nomisma/research/distribution" view="xpl/views/pages/vis.xpl"/>
+	<page path="/nomisma/research/metrical" view="xpl/views/pages/vis.xpl"/>
 	<page path="/nomisma/apis" view="xpl/views/pages/apis.xpl"/>
 	<page path="/nomisma/datasets" model="xpl/models/sparql/datasets.xpl" view="xpl/views/serializations/sparql/datasets.xpl"/>
 	<page path="/nomisma/nuds" model="xpl/models/xsd/nuds.xpl" view="xpl/views/serializations/nuds-xsd/html.xpl"/>
@@ -75,6 +76,7 @@
 	<page path="/nomisma/apis/closingDate" model="xpl/models/sparql/closingDate.xpl" view="xpl/views/serializations/sparql/closingDate.xpl"/>	
 	<page path="/nomisma/apis/getLabel" model="xpl/models/sparql/getLabel.xpl" view="xpl/views/serializations/sparql/getLabel.xpl"/>
 	<page path="/nomisma/apis/getCount" model="xpl/models/sparql/getCount.xpl" view="xpl/views/serializations/sparql/getCount.xpl"/>
+	<page path="/nomisma/apis/getQuant" model="xpl/models/sparql/getQuant.xpl" view="xpl/views/serializations/sparql/getCount.xpl"/>
 	<!--<page path="/nomisma/apis/getCoins" view="xpl/models/sparql/getCoins.xpl"/>-->
 	<page path="/nomisma/apis/getMints" model="xpl/models/sparql/getMints.xpl" view="xpl/views/serializations/sparql/geojson.xpl"/>
 	<page path="/nomisma/apis/getFindspots" model="xpl/models/sparql/getFindspots.xpl" view="xpl/views/serializations/sparql/geojson.xpl"/>

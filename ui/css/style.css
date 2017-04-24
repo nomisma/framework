@@ -156,14 +156,14 @@ body{
   VISUALIZATION FORM
   ***************************************
 */
-#distributionForm input[type=text], #distributionForm select {
+.quant-form input[type=text], .quant-form select {
 	width:20em;
 }
-#distributionForm select.era {
+.quant-form select.era {
     width:5em;
     margin-left:10px;
 }
-#distributionForm input.year {
+.quant-form input.year, .quant-form select.interval {
     width:10em;
 }
 .control-container {

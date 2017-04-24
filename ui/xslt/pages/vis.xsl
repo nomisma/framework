@@ -4,11 +4,22 @@
 	<xsl:include href="../functions.xsl"/>
 	<xsl:include href="../vis-templates.xsl"/>
 
-	<!-- request params -->
-	<xsl:param name="filter" select="doc('input:request')/request/parameters/parameter[name='filter']/value"/>
-	<xsl:param name="dist" select="doc('input:request')/request/parameters/parameter[name='dist']/value"/>
-	<xsl:param name="compare" select="doc('input:request')/request/parameters/parameter[name='compare']/value"/>
-	<xsl:param name="numericType" select="doc('input:request')/request/parameters/parameter[name='type']/value"/>
+	<!-- request params -->	
+	<!-- distribution params -->
+	<xsl:param name="dist" select="doc('input:request')/request/parameters/parameter[name = 'dist']/value"/>
+	<xsl:param name="numericType" select="doc('input:request')/request/parameters/parameter[name = 'type']/value"/>
+	<!-- query params -->
+	<xsl:param name="compare" select="doc('input:request')/request/parameters/parameter[name = 'compare']/value"/>
+	<xsl:param name="filter" select="doc('input:request')/request/parameters/parameter[name = 'filter']/value"/>
+	<!-- metrical analysis params -->
+	<xsl:param name="measurement" select="doc('input:request')/request/parameters/parameter[name = 'measurement']/value"/>	
+	<xsl:param name="from" select="doc('input:request')/request/parameters/parameter[name = 'from']/value"/>
+	<xsl:param name="to" select="doc('input:request')/request/parameters/parameter[name = 'to']/value"/>
+	<xsl:param name="interval" select="doc('input:request')/request/parameters/parameter[name = 'interval']/value"/>
+	<xsl:param name="analysisType" select="doc('input:request')/request/parameters/parameter[name='analysisType']/value"/>
+	
+	<!-- interface -->
+	<xsl:param name="interface" select="tokenize(doc('input:request')/request/request-uri, '/')[last()]"/>	
 
 	<!-- empty variables to account for vis templates -->
 	<xsl:variable name="base-query"/>
@@ -25,7 +36,13 @@
 	<xsl:template match="/">
 		<html lang="en">
 			<head>
-				<title>nomisma.org: Typological Distribution</title>
+				<title>
+					<xsl:text>nomisma.org: </xsl:text>
+					<xsl:choose>
+						<xsl:when test="$interface = 'distribution'">Typological Distribution</xsl:when>
+						<xsl:when test="$interface = 'metrical'">Metrical Analysis</xsl:when>
+					</xsl:choose>
+				</title>
 				<meta name="viewport" content="width=device-width, initial-scale=1"/>
 				<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"/>
 				<!-- bootstrap -->
@@ -34,7 +51,9 @@
 				<script type="text/javascript" src="https://d3plus.org/js/d3.js"/>
 				<script type="text/javascript" src="https://d3plus.org/js/d3plus.js"/>
 				<script type="text/javascript" src="{$display_path}ui/javascript/vis_functions.js"/>
-				<link rel="stylesheet" href="{$display_path}ui/css/style.css"/>
+				
+				<link rel="stylesheet" type="text/css" href="{$display_path}ui/css/style.css"/>
+				
 				<!-- google analytics -->
 				<xsl:if test="string(//config/google_analytics)">
 					<script type="text/javascript">
@@ -54,10 +73,20 @@
 		<div class="container-fluid content">
 			<div class="row">
 				<div class="col-md-12 page-section">
-					<h2>Quantitative Analysis</h2>					
-					<xsl:call-template name="distribution-form">
-						<xsl:with-param name="mode" select="$mode"/>
-					</xsl:call-template>
+					<h2>Quantitative Analysis</h2>			
+					<xsl:choose>
+						<xsl:when test="$interface = 'distribution'">
+							<xsl:call-template name="distribution-form">
+								<xsl:with-param name="mode" select="$mode"/>
+							</xsl:call-template>
+						</xsl:when>
+						<xsl:when test="$interface = 'metrical'">
+							<xsl:call-template name="metrical-form">
+								<xsl:with-param name="mode" select="$mode"/>
+							</xsl:call-template>
+						</xsl:when>
+					</xsl:choose>
+					
 				</div>
 			</div>
 		
@@ -71,7 +100,9 @@
 			<span id="page">
 				<xsl:value-of select="$mode"/>
 			</span>
-			
+			<span id="interface">
+				<xsl:value-of select="$interface"/>
+			</span>
 			<xsl:call-template name="field-template">
 				<xsl:with-param name="template" as="xs:boolean">true</xsl:with-param>
 			</xsl:call-template>

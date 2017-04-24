@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ev="http://www.w3.org/2001/xml-events"
-	xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-	xmlns:void="http://rdfs.org/ns/void#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:res="http://www.w3.org/2005/sparql-results#">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:void="http://rdfs.org/ns/void#"
+	xmlns:dcterms="http://purl.org/dc/terms/" xmlns:res="http://www.w3.org/2005/sparql-results#">
 	<head>
 		<title>nomisma.org: manage datasets</title>
 		<link rel="stylesheet" href="/fr/style/bootstrap/css/bootstrap.css" type="text/css" />
@@ -14,24 +15,27 @@
 
 		<xforms:model>
 			<xforms:instance id="void-rdf" xxforms:exclude-result-prefixes="#all">
-				<rdf:RDF></rdf:RDF>
+				<rdf:RDF/>
 			</xforms:instance>
 
 			<xforms:instance id="void-dump" xxforms:exclude-result-prefixes="#all">
-				<rdf:RDF></rdf:RDF>
+				<rdf:RDF/>
 			</xforms:instance>
 
 			<xforms:instance id="config" xxforms:exclude-result-prefixes="#all">
-				<xi:include href="../config.xml"></xi:include>
+				<xi:include href="../config.xml"/>
 			</xforms:instance>
 
 			<xforms:instance id="control-instance">
 				<controls xmlns="">
 					<status></status>
+					<action></action>
 					<void_uri></void_uri>
 					<dump_uri></dump_uri>
 					<dataset></dataset>
 					<validate-trigger>false</validate-trigger>
+					<new_findspot_uri></new_findspot_uri>
+					<concept_type/>
 				</controls>
 			</xforms:instance>
 
@@ -42,7 +46,7 @@
 
 			<!-- preloaded instances -->
 			<xforms:instance id="sparqlResponse">
-				<sparql xmlns="http://www.w3.org/2005/sparql-results#"></sparql>
+				<sparql xmlns="http://www.w3.org/2005/sparql-results#"/>
 			</xforms:instance>
 
 			<!-- sparql update -->
@@ -50,7 +54,7 @@
 				<templates xmlns="">
 					<query id="delete-metadata"><![CDATA[PREFIX void:	<http://rdfs.org/ns/void#> 
 DELETE {?s ?p ?o} WHERE { <DATASET> ?p ?o . ?s ?p ?o . FILTER (?s = <DATASET>)}]]></query>
-					<query id="delete-dump"><![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
+					<!--<query id="delete-dump"><![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX void:	<http://rdfs.org/ns/void#>
 PREFIX dcterms:	<http://purl.org/dc/terms/>
 PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
@@ -73,6 +77,89 @@ UNION { ?object nmo:hasReverse ?s . ?s ?p ?o}
 UNION { ?object dcterms:tableOfContents ?s . ?s ?p ?o}
 UNION { BIND (?object as ?s)
         ?s ?p ?o }
+}]]></query>-->
+					<query id="delete-NumismaticObject"><![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX void:	<http://rdfs.org/ns/void#>
+PREFIX dcterms:	<http://purl.org/dc/terms/>
+PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
+PREFIX svcs:	<http://rdfs.org/sioc/services#>
+DELETE {?s ?p ?o} WHERE {
+  {
+     SELECT ?object WHERE {?object void:inDataset <DATASET>}  
+  }
+{ ?object foaf:depiction ?image .
+  ?image svcs:has_service ?s . ?s ?p ?o}
+UNION { ?object foaf:depiction ?s . ?s ?p ?o}
+UNION { ?object nmo:hasObverse/foaf:depiction ?image .
+  ?image svcs:has_service ?s . ?s ?p ?o}
+UNION { ?object nmo:hasObverse/foaf:depiction ?s . ?s ?p ?o}
+UNION { ?object nmo:hasObverse ?s . ?s ?p ?o}
+UNION { ?object nmo:hasReverse/foaf:depiction ?image .
+  ?image svcs:has_service ?s . ?s ?p ?o}
+UNION { ?object nmo:hasReverse/foaf:depiction ?s . ?s ?p ?o}
+UNION { ?object nmo:hasReverse ?s . ?s ?p ?o}
+UNION { BIND (?object as ?s)
+        ?s ?p ?o }
+}]]></query>
+					<query id="delete-TypeSeriesItem"><![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX void:	<http://rdfs.org/ns/void#>
+PREFIX dcterms:	<http://purl.org/dc/terms/>
+PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
+PREFIX svcs:	<http://rdfs.org/sioc/services#>
+DELETE {?s ?p ?o} WHERE {
+{ ?object void:inDataset <DATASET> ;
+  nmo:hasObverse ?s . ?s ?p ?o }
+UNION { ?object void:inDataset <DATASET> ;
+  nmo:hasReverse ?s . ?s ?p ?o }
+UNION { ?s void:inDataset <DATASET> . ?s ?p ?o}
+}]]></query>
+					<query id="delete-Hoard"><![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX void:	<http://rdfs.org/ns/void#>
+PREFIX dcterms:	<http://purl.org/dc/terms/>
+PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
+PREFIX svcs:	<http://rdfs.org/sioc/services#>
+DELETE {?s ?p ?o} WHERE {
+{ ?object void:inDataset <DATASET> ;
+  dcterms:tableOfContents ?s . ?s ?p ?o }
+UNION { ?s void:inDataset <DATASET> . ?s ?p ?o}
+}]]></query>
+					<query id="replace-findspot"><![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX dcterms:	<http://purl.org/dc/terms/>
+PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
+PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
+DELETE DATA { 
+  <URI> nmo:hasFindspot <OLDFINDSPOT>
+} ;
+INSERT DATA {
+  <URI> nmo:hasFindspot <NEWFINDSPOT> .
+  <NEWFINDSPOT> geo:lat "LAT"^^xsd:decimal; 
+  		geo:long "LONG"^^xsd:decimal;
+  		foaf:name "NAME";
+  		dcterms:isPartOf <OLDFINDSPOT>
+}]]></query>
+					<query id="revert-findspot"><![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX dcterms:	<http://purl.org/dc/terms/>
+PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
+PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
+DELETE DATA { 
+  <URI> nmo:hasFindspot <OLDFINDSPOT>
+} ;
+INSERT DATA {
+  <URI> nmo:hasFindspot <NEWFINDSPOT> 
+}]]></query>
+					<query id="insert-test-findspot"><![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX dcterms:	<http://purl.org/dc/terms/>
+PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
+PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
+INSERT DATA
+{
+  <URI> nmo:hasFindspot <FINDSPOT> .
+  <FINDSPOT> geo:lat "LAT"^^xsd:decimal; 
+  		geo:long "LONG"^^xsd:decimal;
+  		foaf:name "NAME"
 }]]></query>
 				</templates>
 			</xforms:instance>
@@ -86,62 +173,157 @@ UNION { BIND (?object as ?s)
 				<templates xmlns="">
 					<prefix><![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:	<http://purl.org/dc/terms/>
+PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
 PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
-					<query id="get-datasets"><![CDATA[CONSTRUCT {?uri rdf:type void:Dataset ; dcterms:publisher ?publisher; dcterms:title ?title ; void:dataDump ?dump}
-WHERE {?uri a void:Dataset ; 
+					<query id="get-datasets"><![CDATA[CONSTRUCT {
+?uri rdf:type void:Dataset ; 
+  dcterms:publisher ?publisher; 
+  dcterms:title ?title ; 
+  void:dataDump ?dump ;
+  dcterms:type ?type
+} WHERE {   
+  ?uri a void:Dataset ; 
   dcterms:publisher ?publisher ; 
   void:dataDump ?dump; 
-  dcterms:title ?title FILTER (lang(?title) = "" || langMatches(lang(?title), "en")) }
-ORDER BY ASC(?publisher) ASC(?title)]]></query>
+  dcterms:title ?title FILTER (lang(?title) = "" || langMatches(lang(?title), "en")).
+  { SELECT DISTINCT ?uri ?type WHERE {
+      ?coins void:inDataset ?uri ;
+             rdf:type ?type
+    } GROUP BY ?uri ?type
+  }
+} ORDER BY ASC(?publisher) ASC(?title)]]></query>
+					<query id="get-findspot"><![CDATA[SELECT ?findspot ?name ?lat ?long WHERE {
+  <URI> nmo:hasFindspot ?findspot .
+  ?findspot geo:lat ?lat;
+            geo:long ?long ;
+            foaf:name ?name
+}]]></query>
 				</templates>
+			</xforms:instance>
+
+			<xforms:instance id="datasets" xxforms:exclude-result-prefixes="#all">
+				<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/" xmlns:nmo="http://nomisma.org/ontology#"
+					xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/"
+					xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+					xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+					xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:un="http://www.owl-ontologies.com/Ontology1181490123.owl#"
+					xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:org="http://www.w3.org/ns/org#"
+					xmlns:rdac="http://www.rdaregistry.info/Elements/c/" xmlns:bio="http://purl.org/vocab/bio/0.1/"/>
+			</xforms:instance>
+
+			<!-- test instance for updating private coordinates -->
+			<xforms:instance id="private-coordinates" xxforms:exclude-result-prefixes="#all">
+				<records xmlns="">
+					<record uri="https://finds.org.uk/database/artefacts/record/id/624175">
+						<lat>50.89</lat>
+						<long>0.07</long>
+					</record>
+				</records>
+			</xforms:instance>
+
+			<!-- Solr instances -->
+			<xforms:instance id="addIndex" xxforms:exclude-result-prefixes="#all">
+				<add xmlns=""></add>
+			</xforms:instance>
+
+			<xforms:instance id="doc-template" xxforms:exclude-result-prefixes="#all">
+				<doc xmlns="">
+					<field name="uri"></field>
+					<field name="geo" update="set"></field>
+				</doc>
+			</xforms:instance>
+
+			<xforms:instance id="sendCommit" xxforms:exclude-result-prefixes="#all">
+				<commit xmlns=""></commit>
+			</xforms:instance>
+
+			<!-- test -->
+			<xforms:instance id="insert-test">
+				<record xmlns="">
+					<uri>https://finds.org.uk/database/artefacts/record/id/624175</uri>
+					<findspot>http://data.ordnancesurvey.co.uk/doc/7000000000002687</findspot>
+					<name>Ringmer</name>
+					<lat>50.9005123971</lat>
+					<long>0.0664567241337</long>
+				</record>
 			</xforms:instance>
 
 			<!-- ************* BINDINGS **********************-->
 			<xforms:bind nodeset="instance('void-rdf')">
 				<xforms:bind nodeset="void:Dataset">
-					<xforms:bind nodeset="rdf:about" required="true()" type="xs:anyURI"></xforms:bind>
-					<xforms:bind nodeset="dcterms:title" required="true()"></xforms:bind>
-					<xforms:bind nodeset="dcterms:description" constraint="if (not(@rdf:resource)) then string-length(normalize-space(.)) &gt; 0 else string-length(normalize-space(.)) = 0"></xforms:bind>
-					<xforms:bind nodeset="dcterms:publisher" constraint="if (not(@rdf:resource)) then string-length(normalize-space(.)) &gt; 0 else string-length(normalize-space(.)) = 0"></xforms:bind>
-					<xforms:bind nodeset="dcterms:license" constraint="if (not(@rdf:resource)) then string-length(normalize-space(.)) &gt; 0 else string-length(normalize-space(.)) = 0"></xforms:bind>
-					<xforms:bind nodeset="//@rdf:resource" type="xs:anyURI" required="true()"></xforms:bind>
+					<xforms:bind nodeset="rdf:about" required="true()" type="xs:anyURI"/>
+					<xforms:bind nodeset="dcterms:title" required="true()"/>
+					<xforms:bind nodeset="dcterms:description"
+						constraint="if (not(@rdf:resource)) then string-length(normalize-space(.)) &gt; 0 else string-length(normalize-space(.)) = 0"/>
+					<xforms:bind nodeset="dcterms:publisher"
+						constraint="if (not(@rdf:resource)) then string-length(normalize-space(.)) &gt; 0 else string-length(normalize-space(.)) = 0"/>
+					<xforms:bind nodeset="dcterms:license"
+						constraint="if (not(@rdf:resource)) then string-length(normalize-space(.)) &gt; 0 else string-length(normalize-space(.)) = 0"/>
+					<xforms:bind nodeset="//@rdf:resource" type="xs:anyURI" required="true()"/>
 				</xforms:bind>
 			</xforms:bind>
 
 			<xforms:bind nodeset="instance('control-instance')">
-				<xforms:bind id="validate-trigger" nodeset="validate-trigger" type="xs:boolean" readonly=". != true()"></xforms:bind>
+				<xforms:bind id="validate-trigger" nodeset="validate-trigger" type="xs:boolean" readonly=". != true()"/>
 			</xforms:bind>
 
 			<!-- ************* SPARQL SUBMISSIONS **********************-->
-			<xforms:submission id="submit-sparqlQuery" action="{instance('config')/sparql_query}?query={encode-for-uri(instance('sparqlQuery'))}&amp;output=xml" ref="instance('sparqlResponse')"
-				replace="instance" method="get">
+			<xforms:submission id="submit-sparqlQuery" action="{instance('config')/sparql_query}?query={encode-for-uri(instance('sparqlQuery'))}&amp;output=xml"
+				ref="instance('sparqlResponse')" replace="instance" method="get">
 				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL query failed.</xforms:message>
+				<xforms:action ev:event="xforms-submit-done">
+					<!-- if the action is get-datasets, then move the SPARQL response into the datasets instance -->
+					<xforms:action if="instance('control-instance')/action = 'get-datasets'">
+						<xforms:insert context="instance('datasets')" origin="instance('sparqlResponse')/void:Dataset"/>
+						<xforms:setvalue ref="instance('control-instance')/action"/>
+					</xforms:action>
+				</xforms:action>
 			</xforms:submission>
 
-			<xforms:submission id="delete-graph" action="{instance('config')/sparql_update}" ref="instance('sparqlUpdate')" serialization="text/plain" replace="none" method="post"
-				mediatype="application/sparql-update">
-				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Graph successfully deleted from endpoint.</xforms:setvalue>
+			<xforms:submission id="update-graph" action="{instance('config')/sparql_update}" ref="instance('sparqlUpdate')" serialization="text/plain"
+				replace="none" method="post" mediatype="application/sparql-update">
+				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Graph successfully deleted from
+					endpoint.</xforms:setvalue>
 				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL update failed.</xforms:message>
 			</xforms:submission>
 
-			<xforms:submission id="post-void" action="{instance('config')/sparql_store}?default" ref="instance('void-rdf')" replace="none" method="post" mediatype="application/rdf+xml">
+			<xforms:submission id="post-void" action="{instance('config')/sparql_store}?default" ref="instance('void-rdf')" replace="none" method="post"
+				mediatype="application/rdf+xml">
 				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Successfully posted to endpoint.</xforms:setvalue>
 				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to post VoID metadata.</xforms:message>
 			</xforms:submission>
 
-			<xforms:submission id="post-dump" action="{instance('config')/sparql_store}?default" ref="instance('void-dump')" replace="none" method="post" mediatype="application/rdf+xml">
+			<xforms:submission id="post-dump" action="{instance('config')/sparql_store}?default" ref="instance('void-dump')" replace="none" method="post"
+				mediatype="application/rdf+xml">
 				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Successfully posted to endpoint.</xforms:setvalue>
 				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to post data dump.</xforms:message>
 			</xforms:submission>
 
+			<!-- ************************* SOLR SUBMISSIONS ************************** -->
+			<xforms:submission id="post-solr-doc" action="{instance('config')/solr_fuseki}update" ref="instance('addIndex')" instance="addIndex"
+				replace="none" method="post">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is
+					incorrect.</xforms:message>
+				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"/>
+			</xforms:submission>
+
+			<xforms:submission id="submit-commit" action="{instance('config')/solr_fuseki}update" ref="instance('sendCommit')" instance="sendCommit"
+				replace="none" method="post">
+				<xforms:message level="modal" ev:event="xforms-submit-error">Failed to commit to Solr index.</xforms:message>
+			</xforms:submission>
+
 			<!-- ************************* LOAD RDF/XML ************************** -->
-			<xforms:submission id="load-void" serialization="none" method="get" action="{instance('control-instance')/void_uri}" replace="instance" instance="void-rdf">
+			<xforms:submission id="load-void" serialization="none" method="get" action="{instance('control-instance')/void_uri}" replace="instance"
+				instance="void-rdf">
 				<xforms:action ev:event="xforms-submit-error">
 					<xforms:message level="modal">Unable to load VoID metadata RDF.</xforms:message>
 				</xforms:action>
 			</xforms:submission>
 
-			<xforms:submission id="load-dump" serialization="none" method="get" action="{instance('control-instance')/dump_uri}" replace="instance" instance="void-dump">
+			<xforms:submission id="load-dump" serialization="none" method="get" action="{instance('control-instance')/dump_uri}" replace="instance"
+				instance="void-dump">
 				<xforms:action ev:event="xforms-submit-error">
 					<xforms:message level="modal">Unable to load VoID dump.</xforms:message>
 				</xforms:action>
@@ -149,8 +331,10 @@ ORDER BY ASC(?publisher) ASC(?title)]]></query>
 
 			<!-- ********** XFORMS-MODEL-CONSTRUCT-DONE ********** -->
 			<xforms:action ev:event="xforms-model-construct-done">
-				<xforms:setvalue ref="instance('sparqlQuery')" value="concat(instance('sparql-templates')/prefix, ' ', instance('sparql-templates')/query[@id='get-datasets'])"></xforms:setvalue>
-				<xforms:send submission="submit-sparqlQuery"></xforms:send>
+				<xforms:setvalue ref="instance('control-instance')/action">get-datasets</xforms:setvalue>
+				<xforms:setvalue ref="instance('sparqlQuery')"
+					value="concat(instance('sparql-templates')/prefix, ' ', instance('sparql-templates')/query[@id='get-datasets'])"/>
+				<xforms:send submission="submit-sparqlQuery"/>
 			</xforms:action>
 		</xforms:model>
 	</head>
@@ -172,7 +356,7 @@ ORDER BY ASC(?publisher) ASC(?title)]]></query>
 						<div class="bg-info alert-box">
 							<span class="glyphicon glyphicon-info-sign"></span>
 							<strong>Status:</strong>
-							<xforms:output ref="instance('control-instance')/status"></xforms:output>
+							<xforms:output ref="instance('control-instance')/status"/>
 						</div>
 					</xforms:group>
 					<h1>Manage Datasets</h1>
@@ -181,15 +365,122 @@ ORDER BY ASC(?publisher) ASC(?title)]]></query>
 							<xforms:label><span class="glyphicon glyphicon-plus"></span>Add dataset</xforms:label>
 							<xforms:action ev:event="DOMActivate">
 								<xforms:setvalue ref="instance('control-instance')/void_uri"/>
-								<xxforms:show dialog="lookup-dialog"></xxforms:show>
+								<xxforms:show dialog="lookup-dialog"/>
 							</xforms:action>
 						</xforms:trigger>
 					</div>
+
+					<xforms:group ref="instance('private-coordinates')">
+						<xforms:repeat nodeset="record">
+							<xforms:var name="uri" select="@uri"/>
+
+							<div>
+								<xforms:input ref="@uri">
+									<xforms:label>Object URI</xforms:label>
+								</xforms:input>
+							</div>
+							<div>
+								<xforms:output ref="lat">
+									<xforms:label>Lat</xforms:label>
+								</xforms:output>
+							</div>
+							<div>
+								<xforms:output ref="long">
+									<xforms:label>Long</xforms:label>
+								</xforms:output>
+							</div>
+						</xforms:repeat>
+
+						<xforms:trigger>
+							<xforms:label>Replace Findspot</xforms:label>
+							<xforms:action ev:event="DOMActivate">
+								<!-- delete addIndex/doc -->
+								<xforms:delete nodeset="instance('addIndex')/doc"/>
+								
+								<xforms:action xxforms:iterate="record">
+									<xforms:var name="uri" select="context()/@uri"/>
+
+									<!-- get the coordinates and name for the findspot currently associated with the object URI -->
+									<xforms:setvalue ref="instance('sparqlQuery')"
+										value="concat(instance('sparql-templates')/prefix, ' ', replace(instance('sparql-templates')/query[@id='get-findspot'], 'URI', $uri))"/>
+									<xforms:send submission="submit-sparqlQuery"/>
+
+									<!-- after this completes, generate the SPARQL/Update that deletes the old findspot and inserts the new ones, but only if the old findspot isn't a fragment identifier -->
+									<xforms:action ev:event="xforms-submit-done"
+										if="not(contains(instance('sparqlResponse')//res:binding[@name='findspot']/res:uri, '#'))">
+										<xforms:var name="findspot" select="instance('sparqlResponse')//res:binding[@name='findspot']/res:uri"/>
+										<xforms:var name="lat" select="instance('sparqlResponse')//res:binding[@name='lat']/res:literal"/>
+										<xforms:var name="long" select="instance('sparqlResponse')//res:binding[@name='long']/res:literal"/>
+										<xforms:var name="name" select="instance('sparqlResponse')//res:binding[@name='name']/res:literal"/>
+
+										<!-- hash encode the new lat and long -->
+										<xforms:setvalue ref="instance('control-instance')/new_findspot_uri"
+											value="concat($findspot, '#', digest(concat(normalize-space(context()/lat), ',', normalize-space(context()/long)), 'MD5', 'hex'))"/>
+										<xforms:setvalue ref="instance('sparqlUpdate')"
+											value="replace(replace(replace(replace(replace(replace(instance('sparqlUpdate-template')/query[@id='replace-findspot'], 'URI', $uri), 'OLDFINDSPOT', $findspot), 'LAT', $lat), 'LONG', $long), 'NAME', $name), 'NEWFINDSPOT', instance('control-instance')/new_findspot_uri)"/>
+										<xforms:send submission="update-graph"/>
+
+										<!-- after Solr is automatically updated by the SPARQL/Update, then post updated coordinates directly into Solr -->
+										<xforms:insert context="instance('addIndex')" nodeset="./child::node()[last()]" origin="instance('doc-template')"/>
+										<xforms:setvalue ref="instance('addIndex')/doc[last()]/field[@name='uri']"
+											value="instance('control-instance')/new_findspot_uri"/>
+										<xforms:setvalue ref="instance('addIndex')/doc[last()]/field[@name='geo']"
+											value="concat(normalize-space(context()/long), ' ', normalize-space(context()/lat))"/>
+
+									</xforms:action>
+								</xforms:action>
+								
+								<!-- post-solr-doc -->
+								<xforms:send submission="post-solr-doc"/>
+							</xforms:action>
+						</xforms:trigger>
+
+						<xforms:trigger>
+							<xforms:label>Revert Findspot</xforms:label>
+							<xforms:action ev:event="DOMActivate" xxforms:iterate="record">
+								<xforms:var name="uri" select="context()/@uri"/>
+
+								<!-- get the coordinates and name for the findspot currently associated with the object URI -->
+								<xforms:setvalue ref="instance('sparqlQuery')"
+									value="concat(instance('sparql-templates')/prefix, ' ', replace(instance('sparql-templates')/query[@id='get-findspot'], 'URI', $uri))"/>
+								<xforms:send submission="submit-sparqlQuery"/>
+
+								<!-- after this completes, generate the SPARQL/Update that replaces the fragment identifier with the original -->
+								<xforms:action ev:event="xforms-submit-done"
+									if="contains(instance('sparqlResponse')//res:binding[@name='findspot']/res:uri, '#')">
+									<xforms:var name="findspot" select="instance('sparqlResponse')//res:binding[@name='findspot']/res:uri"/>
+									<xforms:var name="new-findspot" select="substring-before($findspot, '#')"/>
+
+									<xforms:setvalue ref="instance('sparqlUpdate')"
+										value="replace(replace(replace(instance('sparqlUpdate-template')/query[@id='revert-findspot'], 'URI', $uri), 'OLDFINDSPOT', $findspot), 'NEWFINDSPOT', $new-findspot)"/>
+									<xforms:send submission="update-graph"/>
+								</xforms:action>
+							</xforms:action>
+						</xforms:trigger>
+
+						<xforms:trigger>
+							<xforms:label>Insert Findspot</xforms:label>
+							<xforms:action ev:event="DOMActivate">
+
+								<!-- the code below will insert a findspot into an object and the associated lat, long, and name with that OS URI -->
+								<xforms:var name="uri" select="instance('insert-test')/uri"/>
+								<xforms:var name="findspot" select="instance('insert-test')/findspot"/>
+								<xforms:var name="lat" select="instance('insert-test')/lat"/>
+								<xforms:var name="long" select="instance('insert-test')/long"/>
+								<xforms:var name="name" select="instance('insert-test')/name"/>
+
+								<xforms:setvalue ref="instance('sparqlUpdate')"
+									value="replace(replace(replace(replace(replace(instance('sparqlUpdate-template')/query[@id='insert-test-findspot'], 'URI', $uri), 'FINDSPOT', $findspot), 'LAT', $lat), 'LONG', $long), 'NAME', $name)"/>
+								<xforms:send submission="update-graph"/>
+							</xforms:action>
+						</xforms:trigger>
+					</xforms:group>
+
 					<xforms:switch>
 						<xforms:case id="default">
-							<xforms:group ref="instance('sparqlResponse')">
+							<xforms:group ref="instance('datasets')">
 								<xforms:group ref=".[count(void:Dataset) &gt; 0]">
-									
+
 									<!-- test control for deleting dumps -->
 									<!--<div>
 										<xforms:input ref="instance('control-instance')/dataset">
@@ -200,16 +491,17 @@ ORDER BY ASC(?publisher) ASC(?title)]]></query>
 											<xforms:action ev:event="DOMActivate">
 												<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-template')/query[@id='delete-dump'], 'DATASET', instance('control-instance')/dataset)"
 													></xforms:setvalue>
-												<xforms:send submission="delete-graph"/>
+												<xforms:send submission="update-graph"/>
 											</xforms:action>
 										</xforms:trigger>
 									</div>-->
-									
+
 									<table class="table">
 										<thead>
 											<tr>
 												<th>Dataset</th>
 												<th>Publisher</th>
+												<th>Record Types</th>
 												<th>Refresh</th>
 												<th>Delete</th>
 											</tr>
@@ -217,16 +509,36 @@ ORDER BY ASC(?publisher) ASC(?title)]]></query>
 										<tbody>
 											<xforms:repeat nodeset="descendant::void:Dataset">
 												<tr>
-													<td><a href="{@rdf:about}" target="_blank"><xforms:output ref="dcterms:title"
-														></xforms:output></a></td>
-													<td><xforms:output ref="dcterms:publisher"></xforms:output></td>
+													<td>
+														<xforms:trigger appearance="minimal">
+															<xforms:label value="dcterms:title"/>
+															<xforms:action ev:event="DOMActivate">
+																<xforms:load show="new" resource="{@rdf:about}"/>
+															</xforms:action>
+														</xforms:trigger>
+													</td>
+													<td><xforms:output ref="dcterms:publisher"/></td>
+													<td>
+														<xforms:repeat nodeset="dcterms:type">
+															<xforms:trigger appearance="minimal">
+																<xforms:label value="substring-after(@rdf:resource, '#')"/>
+																<xforms:action ev:event="DOMActivate">
+																	<xforms:load show="new" resource="{@rdf:resource}"/>
+																</xforms:action>
+															</xforms:trigger>
+															<br/>
+														</xforms:repeat>
+													</td>
 													<td class="text-center">
 														<xforms:trigger appearance="minimal">
 															<xforms:label><span class="glyphicon glyphicon-refresh"></span></xforms:label>
 															<xforms:action ev:event="DOMActivate">
-																<xforms:var name="dataset" select="@rdf:about"></xforms:var>
-																<xforms:setvalue ref="instance('control-instance')/dataset" value="$dataset"></xforms:setvalue>
-																<xforms:dispatch target="refresh-dataset-dialog" name="fr-show"></xforms:dispatch>
+																<xforms:var name="dataset" select="@rdf:about"/>
+																<xforms:var name="type" select="if (dcterms:type[@rdf:resource='http://nomisma.org/ontology#Hoard']) then 'Hoard' else if (dcterms:type[@rdf:resource='http://nomisma.org/ontology#TypeSeriesItem']) then 'TypeSeriesItem' else 'NumismaticObject'"/>
+																
+																<xforms:setvalue ref="instance('control-instance')/concept_type" select="$type"/>
+																<xforms:setvalue ref="instance('control-instance')/dataset" value="$dataset"/>
+																<xforms:dispatch target="refresh-dataset-dialog" name="fr-show"/>
 															</xforms:action>
 														</xforms:trigger>
 													</td>
@@ -234,9 +546,12 @@ ORDER BY ASC(?publisher) ASC(?title)]]></query>
 														<xforms:trigger appearance="minimal">
 															<xforms:label><span class="glyphicon glyphicon-remove"></span></xforms:label>
 															<xforms:action ev:event="DOMActivate">
-																<xforms:var name="dataset" select="@rdf:about"></xforms:var>
-																<xforms:setvalue ref="instance('control-instance')/dataset" value="$dataset"></xforms:setvalue>
-																<xforms:dispatch target="delete-dataset-dialog" name="fr-show"></xforms:dispatch>
+																<xforms:var name="dataset" select="@rdf:about"/>
+																<xforms:var name="type" select="if (dcterms:type[@rdf:resource='http://nomisma.org/ontology#Hoard']) then 'Hoard' else if (dcterms:type[@rdf:resource='http://nomisma.org/ontology#TypeSeriesItem']) then 'TypeSeriesItem' else 'NumismaticObject'"/>
+																
+																<xforms:setvalue ref="instance('control-instance')/concept_type" value="$type"/>
+																<xforms:setvalue ref="instance('control-instance')/dataset" value="$dataset"/>
+																<xforms:dispatch target="delete-dataset-dialog" name="fr-show"/>
 															</xforms:action>
 														</xforms:trigger>
 													</td>
@@ -250,7 +565,7 @@ ORDER BY ASC(?publisher) ASC(?title)]]></query>
 											<xforms:label>Add a dataset.</xforms:label>
 											<xforms:action ev:event="DOMActivate">
 												<xforms:setvalue ref="instance('control-instance')/void_uri"/>
-												<xxforms:show dialog="lookup-dialog"></xxforms:show>
+												<xxforms:show dialog="lookup-dialog"/>
 											</xforms:action>
 										</xforms:trigger></p>
 								</xforms:group>
@@ -306,7 +621,7 @@ ORDER BY ASC(?publisher) ASC(?title)]]></query>
 												<xforms:output value="concat('(', ., ')')"/>
 											</xforms:group>
 										</div>
-									</xforms:repeat>									
+									</xforms:repeat>
 									<xforms:group ref="dcterms:publisher">
 										<div>
 											<xforms:output value="if (@rdf:resource) then @rdf:resource else .">
@@ -332,19 +647,19 @@ ORDER BY ASC(?publisher) ASC(?title)]]></query>
 										<xforms:label><span class="glyphicon glyphicon-upload"></span> Import</xforms:label>
 										<xforms:action ev:event="DOMActivate">
 											<!-- push VoID RDF into triplestore -->
-											<xforms:send submission="post-void"></xforms:send>
+											<xforms:send submission="post-void"/>
 											<xforms:action ev:event="xforms-submit-done">
 												<xforms:action xxforms:iterate="instance('void-rdf')/void:Dataset/void:dataDump">
-													<xforms:setvalue ref="instance('control-instance')/dump_uri" value="context()/@rdf:resource"></xforms:setvalue>
-													<xforms:send submission="load-dump"></xforms:send>
-													<xforms:action ev:event="xforms-submit-done">														
-														<xforms:send submission="post-dump"></xforms:send>														
+													<xforms:setvalue ref="instance('control-instance')/dump_uri" value="context()/@rdf:resource"/>
+													<xforms:send submission="load-dump"/>
+													<xforms:action ev:event="xforms-submit-done">
+														<xforms:send submission="post-dump"/>
 													</xforms:action>
 												</xforms:action>
-												
+
 												<!-- refresh page after dumps have been posted -->
-												<xforms:send submission="submit-sparqlQuery"></xforms:send>
-												<xforms:toggle case="default"></xforms:toggle>
+												<xforms:send submission="submit-sparqlQuery"/>
+												<xforms:toggle case="default"/>
 											</xforms:action>
 										</xforms:action>
 									</xforms:trigger>
@@ -355,39 +670,38 @@ ORDER BY ASC(?publisher) ASC(?title)]]></query>
 										<strong>Alert:</strong> No void:Dataset object or missing dataset URI.</div>
 									<xforms:trigger>
 										<xforms:label><span class="glyphicon glyphicon-arrow-left"></span> Back</xforms:label>
-										<xforms:toggle case="default" ev:event="DOMActivate"></xforms:toggle>
+										<xforms:toggle case="default" ev:event="DOMActivate"/>
 									</xforms:trigger>
 								</xforms:group>
 							</xforms:group>
 						</xforms:case>
 					</xforms:switch>
-					<!--<fr:xforms-inspector></fr:xforms-inspector>-->
+					<fr:xforms-inspector/>
 				</div>
 			</div>
 		</div>
-
 		<!-- *********** DIALOGS *********** -->
 		<!-- this is the dialog for looking up a VoID RDF metadata object -->
 		<xxforms:dialog id="lookup-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
 			<xforms:label>Load VoID RDF</xforms:label>
 			<p>Insert the URI for VoID metadata RDF.</p>
 			<div>
-				<xforms:input ref="instance('control-instance')/void_uri" />
+				<xforms:input ref="instance('control-instance')/void_uri"/>
 				<xforms:trigger>
 					<xforms:label>Load</xforms:label>
 					<!-- delete current options in the instance and initiate new query -->
 					<xforms:action ev:event="DOMActivate">
-						<xforms:send submission="load-void"></xforms:send>
+						<xforms:send submission="load-void"/>
 						<xforms:action ev:event="xforms-submit-done">
-							<xforms:toggle case="validate-void"></xforms:toggle>
-							<xforms:setvalue ref="instance('control-instance')/validate-trigger" value="true()" if="xxforms:valid(instance('void-rdf'), true())"></xforms:setvalue>
+							<xforms:toggle case="validate-void"/>
+							<xforms:setvalue ref="instance('control-instance')/validate-trigger" value="true()" if="xxforms:valid(instance('void-rdf'), true())"
+							/>
 						</xforms:action>
-						<xxforms:hide dialog="lookup-dialog"></xxforms:hide>
+						<xxforms:hide dialog="lookup-dialog"/>
 					</xforms:action>
 				</xforms:trigger>
 			</div>
 		</xxforms:dialog>
-
 		<!-- dialog to confirm deletion of a void:Dataset and associated objects -->
 		<fr:alert-dialog id="delete-dataset-dialog">
 			<fr:label>Delete Dataset</fr:label>
@@ -396,26 +710,24 @@ ORDER BY ASC(?publisher) ASC(?title)]]></query>
 				<fr:label>Yes</fr:label>
 				<xforms:action ev:event="DOMActivate">
 					<!-- first delete the objects associated with the dataset, linked by void:inDataset -->
-					<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-template')/query[@id='delete-dump'], 'DATASET', instance('control-instance')/dataset)"
-					></xforms:setvalue>					
-					<xforms:send submission="delete-graph"/>					
-					<xforms:action if="xforms-submit-done">
-						<!-- then delete the void:Dataset object -->
-						<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-template')/query[@id='delete-metadata'], 'DATASET', instance('control-instance')/dataset)"
-							></xforms:setvalue>
-						<xforms:send submission="delete-graph"/>						
-						
-						<!-- resubmit SPARQL query for void:Datasets to reset the table -->
-						<xforms:setvalue ref="instance('sparqlQuery')" value="concat(instance('sparql-templates')/prefix, ' ', instance('sparql-templates')/query[@id='get-datasets'])"></xforms:setvalue>
-						<xforms:send submission="submit-sparqlQuery"></xforms:send>
-					</xforms:action>
+					<xforms:setvalue ref="instance('sparqlUpdate')"
+						value="replace(instance('sparqlUpdate-template')/query[@id=concat('delete-', instance('control-instance')/concept_type)], 'DATASET', instance('control-instance')/dataset)"/>
+					<xforms:send submission="update-graph"/>
+					<!-- then delete the void:Dataset object -->
+					<xforms:setvalue ref="instance('sparqlUpdate')"
+						value="replace(instance('sparqlUpdate-template')/query[@id='delete-metadata'], 'DATASET', instance('control-instance')/dataset)"/>
+					<xforms:send submission="update-graph"/>
+					<!-- resubmit SPARQL query for void:Datasets to reset the table -->
+					<xforms:setvalue ref="instance('control-instance')/action">get-datasets</xforms:setvalue>
+					<xforms:setvalue ref="instance('sparqlQuery')"
+						value="concat(instance('sparql-templates')/prefix, ' ', instance('sparql-templates')/query[@id='get-datasets'])"/>
+					<xforms:send submission="submit-sparqlQuery"/>
 				</xforms:action>
 			</fr:positive-choice>
 			<fr:negative-choice>
 				<fr:label>No</fr:label>
 			</fr:negative-choice>
 		</fr:alert-dialog>
-		
 		<fr:alert-dialog id="refresh-dataset-dialog">
 			<fr:label>Refresh Dataset</fr:label>
 			<fr:message>Refreshing the dataset may take several minutes. Continue?</fr:message>
@@ -423,21 +735,22 @@ ORDER BY ASC(?publisher) ASC(?title)]]></query>
 				<fr:label>Yes</fr:label>
 				<xforms:action ev:event="DOMActivate">
 					<!-- first delete the objects associated with the dataset, linked by void:inDataset -->
-					<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-template')/query[@id='delete-dump'], 'DATASET', instance('control-instance')/dataset)"
-						></xforms:setvalue>
-					<xforms:send submission="delete-graph"/>
-					
+					<xforms:setvalue ref="instance('sparqlUpdate')"
+						value="replace(instance('sparqlUpdate-template')/query[@id=concat('delete-', instance('control-instance')/concept_type)], 'DATASET', instance('control-instance')/dataset)"/>
+					<xforms:send submission="update-graph"/>
 					<!-- then fetch the new data dump -->
 					<xforms:action ev:event="xforms-submit-done">
 						<xforms:action xxforms:iterate="instance('sparqlResponse')//void:Dataset[@rdf:about=instance('control-instance')/dataset]/void:dataDump">
-							<xforms:setvalue ref="instance('control-instance')/dump_uri" value="context()/@rdf:resource"></xforms:setvalue>
-							<xforms:send submission="load-dump"></xforms:send>
+							<xforms:setvalue ref="instance('control-instance')/dump_uri" value="context()/@rdf:resource"/>
+							<xforms:send submission="load-dump"/>
 							<xforms:send submission="post-dump" ev:event="xforms-submit-done"/>
 						</xforms:action>
 						<!-- resubmit SPARQL query for void:Datasets to reset the table -->
-						<xforms:setvalue ref="instance('sparqlQuery')" value="concat(instance('sparql-templates')/prefix, ' ', instance('sparql-templates')/query[@id='get-datasets'])"></xforms:setvalue>
-						<xforms:send submission="submit-sparqlQuery"></xforms:send>
-					</xforms:action>					
+						<xforms:setvalue ref="instance('control-instance')/action">get-datasets</xforms:setvalue>
+						<xforms:setvalue ref="instance('sparqlQuery')"
+							value="concat(instance('sparql-templates')/prefix, ' ', instance('sparql-templates')/query[@id='get-datasets'])"/>
+						<xforms:send submission="submit-sparqlQuery"/>
+					</xforms:action>
 				</xforms:action>
 			</fr:positive-choice>
 			<fr:negative-choice>

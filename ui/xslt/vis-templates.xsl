@@ -6,6 +6,191 @@
 	xmlns:nmo="http://nomisma.org/ontology#" xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" exclude-result-prefixes="#all" version="2.0">
 
 	<!-- ********** VISUALIZATION TEMPLATES *********** -->
+	<xsl:template name="metrical-form">
+		<xsl:param name="mode"/>
+		<div>
+			<xsl:if test="$mode = 'record'">
+				<xsl:attribute name="id">metrical</xsl:attribute>
+				<hr/>
+			</xsl:if>
+
+			<!-- display chart div when applicable, with additional filtering options -->
+			<xsl:choose>
+				<xsl:when test="$mode = 'page'">
+					<xsl:if test="string($measurement) and count($compare) &gt; 0">
+						<xsl:call-template name="chart">
+							<xsl:with-param name="hidden" select="false()" as="xs:boolean"/>
+						</xsl:call-template>
+					</xsl:if>
+				</xsl:when>
+				<xsl:when test="$mode = 'record'">
+					<xsl:call-template name="chart">
+						<xsl:with-param name="hidden" select="true()" as="xs:boolean"/>
+					</xsl:call-template>
+				</xsl:when>
+			</xsl:choose>
+
+			<h3>Measurement Analysis</h3>
+			<form role="form" id="metricalForm" class="quant-form" method="get">
+				<xsl:attribute name="action">
+					<xsl:choose>
+						<xsl:when test="$mode = 'page'">
+							<xsl:value-of select="concat($display_path, 'research/metrical')"/>
+						</xsl:when>
+						<xsl:when test="$mode = 'record'">
+							<xsl:value-of select="concat($display_path, 'id/', $id, '#metrical')"/>
+						</xsl:when>
+					</xsl:choose>
+				</xsl:attribute>
+
+				<!-- only include filter in the ID page -->
+				<xsl:if test="$mode = 'record'">
+					<input type="hidden" name="filter">
+						<xsl:if test="string($filter)">
+							<xsl:attribute name="class" select="$filter"/>
+						</xsl:if>
+					</input>
+				</xsl:if>
+
+				<div class="form-group">
+					<h4>Analysis Type</h4>
+					<input type="radio" name="analysisType" value="average">
+						<xsl:if test="not(string($analysisType)) or $analysisType = 'average'">
+							<xsl:attribute name="checked">checked</xsl:attribute>
+						</xsl:if>
+						<xsl:text>Average</xsl:text>
+					</input>
+					<br/>
+					<input type="radio" name="analysisType" value="stdDev" disabled="disabled">
+						<xsl:if test="$analysisType = 'stdDev'">
+							<xsl:attribute name="checked">checked</xsl:attribute>
+						</xsl:if>
+						<xsl:text>Standard Deviation</xsl:text>
+					</input>
+				</div>
+
+				<xsl:call-template name="measurement-categories"/>
+
+				<xsl:if test="$mode = 'page'">
+					<xsl:call-template name="dist-compare-template">
+						<xsl:with-param name="mode" select="$mode"/>
+					</xsl:call-template>
+				</xsl:if>
+
+				<!-- display additional filters for current query associated with source concept -->
+				<xsl:if test="$mode = 'record'">
+					<div class="form-inline">
+						<h4>Additional Filters</h4>
+						<p>Include additional filters to the basic distribution query for this concept. <a href="#" id="add-filter"><span
+									class="glyphicon glyphicon-plus"/>Add one</a></p>
+						<div id="filter-container">
+							<div class="bg-danger duplicate-date-alert-box hidden">
+								<span class="glyphicon glyphicon-exclamation-sign"/>
+								<strong>Alert:</strong> There must not be more than one from or to date.</div>
+							<!-- if there's a dist and filter, then break the filter query and insert preset filter templates -->
+							<xsl:if test="$dist and $filter">
+								<xsl:variable name="filterPieces" select="tokenize($filter, ';')"/>
+
+								<xsl:for-each select="$filterPieces[not(normalize-space(.) = $base-query)]">
+									<xsl:call-template name="field-template">
+										<xsl:with-param name="query" select="normalize-space(.)"/>
+									</xsl:call-template>
+								</xsl:for-each>
+							</xsl:if>
+						</div>
+					</div>
+
+					<!-- display compare template last -->
+					<xsl:call-template name="dist-compare-template">
+						<xsl:with-param name="mode" select="$mode"/>
+					</xsl:call-template>
+				</xsl:if>
+
+				<!-- display optional date range last -->
+				<div>
+					<h4>Date Range</h4>
+					<p>You may select both a start and end date to display change in measurement(s) over time in the form of a line chart. An average will be
+						taken for the selected interval over the entire duration.</p>
+					<div class="bg-danger measurementRange-alert-box hidden">
+						<span class="glyphicon glyphicon-exclamation-sign"/>
+						<strong>Alert:</strong> Inputted date range is invalid and/or interval is not set.</div>
+
+					<div class="form-inline" id="measurementRange-container">
+						<input type="number" class="form-control year" id="fromYear" min="1" step="1" placeholder="Year">
+							<xsl:if test="$from castable as xs:integer">
+								<xsl:attribute name="value" select="abs(xs:integer($from))"/>
+							</xsl:if>
+						</input>
+						<select class="form-control era" id="fromEra">
+							<option value="bc">
+								<xsl:if test="$from castable as xs:integer">
+									<xsl:if test="xs:integer($from) &lt; 0">
+										<xsl:attribute name="selected">selected</xsl:attribute>
+									</xsl:if>
+								</xsl:if>
+								<xsl:text>B.C.</xsl:text>
+							</option>
+							<option value="ad">
+								<xsl:if test="$from castable as xs:integer">
+									<xsl:if test="xs:integer($from) &gt; 0">
+										<xsl:attribute name="selected">selected</xsl:attribute>
+									</xsl:if>
+								</xsl:if>
+								<xsl:text>A.D.</xsl:text>
+							</option>
+						</select>
+						<xsl:text> to </xsl:text>
+						<input type="number" class="form-control year" id="toYear" min="1" step="1" placeholder="Year">
+							<xsl:if test="$to castable as xs:integer">
+								<xsl:attribute name="value" select="abs(xs:integer($to))"/>
+							</xsl:if>
+						</input>
+						<select class="form-control era" id="toEra">
+							<option value="bc">
+								<xsl:if test="$to castable as xs:integer">
+									<xsl:if test="xs:integer($to) &lt; 0">
+										<xsl:attribute name="selected">selected</xsl:attribute>
+									</xsl:if>
+								</xsl:if>
+								<xsl:text>B.C.</xsl:text>
+							</option>
+							<option value="ad">
+								<xsl:if test="$to castable as xs:integer">
+									<xsl:if test="xs:integer($to) &gt; 0">
+										<xsl:attribute name="selected">selected</xsl:attribute>
+									</xsl:if>
+								</xsl:if>
+								<xsl:text>A.D.</xsl:text>
+							</option>
+						</select>
+						<label>Interval</label>
+						<select class="form-control interval" id="interval">
+							<option>Select...</option>
+							<option value="5">
+								<xsl:if test="$interval castable as xs:integer">
+									<xsl:if test="xs:integer($interval) = 5">
+										<xsl:attribute name="selected">selected</xsl:attribute>
+									</xsl:if>
+								</xsl:if>
+								<xsl:text>5 Years</xsl:text>
+							</option>
+							<option value="10">
+								<xsl:if test="$to castable as xs:integer">
+									<xsl:if test="xs:integer($interval) = 10">
+										<xsl:attribute name="selected">selected</xsl:attribute>
+									</xsl:if>
+								</xsl:if>
+								<xsl:text>10 Years</xsl:text>
+							</option>
+						</select>
+					</div>
+				</div>
+
+				<input type="submit" value="Generate" class="btn btn-default" id="visualize-submit" disabled="disabled"/>
+			</form>
+		</div>
+	</xsl:template>
+
 	<xsl:template name="distribution-form">
 		<xsl:param name="mode"/>
 		<div>
@@ -18,13 +203,13 @@
 			<xsl:choose>
 				<xsl:when test="$mode = 'page'">
 					<xsl:if test="string($dist) and count($compare) &gt; 0">
-						<xsl:call-template name="dist-chart">
+						<xsl:call-template name="chart">
 							<xsl:with-param name="hidden" select="false()" as="xs:boolean"/>
 						</xsl:call-template>
 					</xsl:if>
 				</xsl:when>
 				<xsl:when test="$mode = 'record'">
-					<xsl:call-template name="dist-chart">
+					<xsl:call-template name="chart">
 						<xsl:with-param name="hidden" select="true()" as="xs:boolean"/>
 					</xsl:call-template>
 				</xsl:when>
@@ -81,7 +266,7 @@
 					<div class="form-inline">
 						<h4>Additional Filters</h4>
 						<p>Include additional filters to the basic distribution query for this concept. <a href="#" id="add-filter"><span
-									class="glyphicon glyphicon-plus"/>Add one</a></p>						
+									class="glyphicon glyphicon-plus"/>Add one</a></p>
 						<div id="filter-container">
 							<div class="bg-danger duplicate-date-alert-box hidden">
 								<span class="glyphicon glyphicon-exclamation-sign"/>
@@ -111,10 +296,10 @@
 		</div>
 	</xsl:template>
 
-	<xsl:template name="dist-chart">
+	<xsl:template name="chart">
 		<xsl:param name="hidden"/>
 
-		<div id="dist-chart-container">
+		<div id="chart-container">
 			<xsl:if test="$hidden = true()">
 				<xsl:attribute name="class">hidden</xsl:attribute>
 			</xsl:if>
@@ -122,18 +307,38 @@
 
 			<!-- only display model-generated link when there are URL params (distribution page) -->
 			<div style="margin-bottom:10px;" class="control-row text-center">
-				<p>Result is limited to 100</p>
+				<xsl:choose>
+					<xsl:when test="$interface = 'distribution'">
+						<p>The chart is limited to 100 results. For the full distribution, please download the CSV.</p>
+					</xsl:when>
+					<xsl:when test="$interface = 'metrical'">
+						<!--<p>A value of 0 means that there is no measurement data for the given period. It is not necessarily indicative of a gap in
+							production.</p>-->
+					</xsl:when>
+				</xsl:choose>
 
 				<xsl:choose>
 					<xsl:when test="$hidden = false()">
 						<xsl:variable name="queryParams" as="element()*">
 							<params>
-								<param>
-									<xsl:value-of select="concat('dist=', $dist)"/>
-								</param>
+								<xsl:if test="string($dist)">
+									<param>
+										<xsl:value-of select="concat('dist=', $dist)"/>
+									</param>
+								</xsl:if>
+								<xsl:if test="string($measurement)">
+									<param>
+										<xsl:value-of select="concat('measurement=', $measurement)"/>
+									</param>
+								</xsl:if>
 								<xsl:if test="string($numericType)">
 									<param>
 										<xsl:value-of select="concat('type=', $numericType)"/>
+									</param>
+								</xsl:if>
+								<xsl:if test="string($analysisType)">
+									<param>
+										<xsl:value-of select="concat('analysisType=', $analysisType)"/>
 									</param>
 								</xsl:if>
 								<param>
@@ -148,7 +353,7 @@
 							</params>
 						</xsl:variable>
 
-						<a href="{$display_path}apis/getCount?{string-join($queryParams/*, '&amp;')}" title="Download CSV" class="btn btn-primary">
+						<a href="{$display_path}apis/{$interface}?{string-join($queryParams/*, '&amp;')}" title="Download CSV" class="btn btn-primary">
 							<span class="glyphicon glyphicon-download"/>Download CSV</a>
 					</xsl:when>
 					<xsl:otherwise>
@@ -211,6 +416,29 @@
 						</xsl:for-each>
 					</xsl:otherwise>
 				</xsl:choose>
+			</select>
+		</div>
+	</xsl:template>
+
+	<xsl:template name="measurement-categories">
+		<div class="form-group">
+			<h4>Measurement Type</h4>
+			<p>Select the measurement type below for visualization. Measurement queries are executed across all coins harvested in Nomisma.org, regardless
+				connection to coin type URIs.</p>
+			<select name="measurement" class="form-control" id="measurementSelect">
+				<option value="">Select...</option>
+				<option value="nmo:hasWeight">
+					<xsl:if test="$measurement = 'nmo:hasWeight'">
+						<xsl:attribute name="selected">selected</xsl:attribute>
+					</xsl:if>
+					<xsl:text>Weight</xsl:text>
+				</option>
+				<option value="nmo:hasDiameter">
+					<xsl:if test="$measurement = 'nmo:hasDiameter'">
+						<xsl:attribute name="selected">selected</xsl:attribute>
+					</xsl:if>
+					<xsl:text>Diameter</xsl:text>
+				</option>
 			</select>
 		</div>
 	</xsl:template>

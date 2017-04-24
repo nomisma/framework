@@ -27,6 +27,9 @@
 								<li>
 									<a href="{$display_path}research/distribution">Typological Distribution</a>
 								</li>
+								<li>
+									<a href="{$display_path}research/metrical">Measurement Analysis</a>
+								</li>
 							</ul>
 						</li>
 						<li>

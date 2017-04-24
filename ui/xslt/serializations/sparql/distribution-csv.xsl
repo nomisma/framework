@@ -8,6 +8,7 @@
 	<xsl:param name="compare" select="doc('input:request')/request/parameters/parameter[name='compare']/value"/>
 	<xsl:param name="filter" select="doc('input:request')/request/parameters/parameter[name='filter']/value"/>
 	<xsl:param name="type" select="doc('input:request')/request/parameters/parameter[name='type']/value"/>
+	<xsl:param name="interface" select="tokenize(doc('input:request')/request/request-uri, '/')[last()]"/>
 
 	<xsl:variable name="queries" as="element()*">
 		<queries>
