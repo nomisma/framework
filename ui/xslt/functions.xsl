@@ -26,4 +26,75 @@
 			<xsl:text> B.C.</xsl:text>
 		</xsl:if>
 	</xsl:function>
+	
+	<!-- parse the SPARQL query into a human-readable string -->
+	<xsl:function name="nomisma:parseFilter">
+		<xsl:param name="query"/>
+		
+		<xsl:variable name="pieces" select="tokenize(normalize-space($query), ';')"/>
+		<xsl:for-each select="$pieces">
+			<xsl:choose>
+				<xsl:when test="contains(., '?prop')">
+					<xsl:analyze-string select="." regex="\?prop\s(nm:.*)">
+						<xsl:matching-substring>
+							<xsl:text>Authority/Issuer: </xsl:text>
+							<xsl:value-of select="nomisma:getLabel(regex-group(1))"/>
+						</xsl:matching-substring>
+					</xsl:analyze-string>
+				</xsl:when>
+				<xsl:when test="contains(., 'portrait')">
+					<xsl:analyze-string select="." regex="portrait\s(nm:.*)">
+						<xsl:matching-substring>
+							<xsl:text>Portrait: </xsl:text>
+							<xsl:value-of select="nomisma:getLabel(regex-group(1))"/>
+						</xsl:matching-substring>
+					</xsl:analyze-string>
+				</xsl:when>
+				<xsl:when test="contains(., 'deity')">
+					<xsl:analyze-string select="." regex="deity\s&lt;(.*)&gt;">
+						<xsl:matching-substring>
+							<xsl:text>Deity: </xsl:text>
+							<xsl:value-of select="nomisma:getLabel(regex-group(1))"/>
+						</xsl:matching-substring>
+					</xsl:analyze-string>
+				</xsl:when>
+				<xsl:when test="matches(normalize-space(.), '^from\s')">
+					<xsl:analyze-string select="." regex="from\s(.*)">
+						<xsl:matching-substring>
+							<xsl:text>From Date: </xsl:text>
+							<xsl:value-of select="nomisma:normalizeDate(regex-group(1))"/>
+						</xsl:matching-substring>
+					</xsl:analyze-string>
+				</xsl:when>
+				<xsl:when test="matches(normalize-space(.), '^to\s')">
+					<xsl:analyze-string select="." regex="to\s(.*)">
+						<xsl:matching-substring>
+							<xsl:text>To Date: </xsl:text>
+							<xsl:value-of select="nomisma:normalizeDate(regex-group(1))"/>
+						</xsl:matching-substring>
+					</xsl:analyze-string>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:analyze-string select="." regex="nmo:has([A-Za-z]+)\s(nm:.*)">
+						<xsl:matching-substring>
+							<xsl:value-of select="regex-group(1)"/>
+							<xsl:text>: </xsl:text>
+							<xsl:value-of select="nomisma:getLabel(regex-group(2))"/>
+						</xsl:matching-substring>
+					</xsl:analyze-string>
+				</xsl:otherwise>
+			</xsl:choose>
+			<xsl:if test="not(position() = last())">
+				<xsl:text> &amp; </xsl:text>
+			</xsl:if>
+		</xsl:for-each>
+	</xsl:function>
+	
+	<xsl:function name="nomisma:getLabel">
+		<xsl:param name="uri"/>
+		
+		<xsl:variable name="service" select="concat('http://localhost:8080/orbeon/nomisma/apis/getLabel?uri=', $uri)"/>
+		
+		<xsl:value-of select="document($service)/response"/>
+	</xsl:function>
 </xsl:stylesheet>

@@ -32,8 +32,15 @@ body{
 	width:50%;
 	margin:20px auto;
 	padding:5px;
-	border-radius: 4px;
+	border-radius: 10px;
 	border: 1px solid gray;
+}
+.danger-box {
+	width:50%;
+	margin:20px auto;
+	padding:5px;
+	border-radius: 10px;
+	border: 1px solid red;
 }
 .table-dl td{
 	padding:5px;
@@ -181,11 +188,4 @@ body{
 	display:inline;
 	margin-left:10px;
 	margin-right:10px;
-}
-.duplicate-date-alert-box, .empty-query-alert-box {
-	width:50%;
-	margin:20px auto;
-	padding:5px;
-	border-radius: 4px;
-	border: 1px solid gray;
 }

@@ -93,7 +93,7 @@ $(document).ready(function () {
             
             //set CSV download URL
             params.push('format=csv');
-            href = path + 'apis/getCount?' + params.join('&');
+            href = path + 'apis/getDistribution?' + params.join('&');
             $('#chart-container').children('div.control-row').children('a[title=Download]').attr('href', href);
             
             //render the chart
@@ -141,9 +141,9 @@ $(document).ready(function () {
         //display duplicate property alert if there is more than one from or to date
         duplicates = countDates($(this).closest('#filter-container'));
         if (duplicates == true) {
-            $(this).closest('#filter-container').children('.duplicate-date-alert-box').removeClass('hidden');
+            $(this).closest('#filter-container').children('.duplicate-date-alert').removeClass('hidden');
         } else {
-            $(this).closest('#filter-container').children('.duplicate-date-alert-box').addClass('hidden');
+            $(this).closest('#filter-container').children('.duplicate-date-alert').addClass('hidden');
         }
     });
     
@@ -184,9 +184,9 @@ $(document).ready(function () {
         //display duplicate property alert if there is more than one from or to date
         duplicates = countDates(container);
         if (duplicates == true) {
-            container.children('.duplicate-date-alert-box').removeClass('hidden');
+            container.children('.duplicate-date-alert').removeClass('hidden');
         } else {
-            container.children('.duplicate-date-alert-box').addClass('hidden');
+            container.children('.duplicate-date-alert').addClass('hidden');
         }
         
         validate();
@@ -227,9 +227,9 @@ $(document).ready(function () {
         
         //toggle the alert box when there aren't any filters
         if (count > 0) {
-            $(this).closest('.compare-container').children('.empty-query-alert-box').addClass('hidden');
+            $(this).closest('.compare-container').children('.empty-query-alert').addClass('hidden');
         } else {
-            $(this).closest('.compare-container').children('.empty-query-alert-box').removeClass('hidden');
+            $(this).closest('.compare-container').children('.empty-query-alert').removeClass('hidden');
         }
         
         return false;
@@ -251,9 +251,9 @@ $(document).ready(function () {
         //display duplicate property alert if there is more than one from or to date
         duplicates = countDates($(this).closest('.compare-container'));
         if (duplicates == true) {
-            $(this).closest('.compare-container').children('.duplicate-date-alert-box').removeClass('hidden');
+            $(this).closest('.compare-container').children('.duplicate-date-alert').removeClass('hidden');
         } else {
-            $(this).closest('.compare-container').children('.duplicate-date-alert-box').addClass('hidden');
+            $(this).closest('.compare-container').children('.duplicate-date-alert').addClass('hidden');
         }
     });
     
@@ -275,9 +275,9 @@ $(document).ready(function () {
         
         //toggle the alert box when there aren't any filters
         if (count == 1) {
-            $(this).closest('.compare-container').children('.empty-query-alert-box').removeClass('hidden');
+            $(this).closest('.compare-container').children('.empty-query-alert').removeClass('hidden');
         } else {
-            $(this).closest('.compare-container').children('.empty-query-alert-box').addClass('hidden');
+            $(this).closest('.compare-container').children('.empty-query-alert').addClass('hidden');
         }
         
         //store the container object to processing after deletion of filter
@@ -287,9 +287,9 @@ $(document).ready(function () {
         //display duplicate property alert if there is more than one from or to date. must count after deletion of filter
         duplicates = countDates(container);
         if (duplicates == true) {
-            container.children('.duplicate-date-alert-box').removeClass('hidden');
+            container.children('.duplicate-date-alert').removeClass('hidden');
         } else {
-            container.children('.duplicate-date-alert-box').addClass('hidden');
+            container.children('.duplicate-date-alert').addClass('hidden');
         }
         validate();
         return false;
@@ -458,16 +458,22 @@ function validate() {
                     }
                     if (fromYear >= toYear) {
                         elements.push(false);
+                        $('.measurementRange-alert').removeClass('hidden')
                     } else {
                         elements.push(true);
-                        //when all possibilities are valid, then create
+                         $('.measurementRange-alert').addClass('hidden')
                     }
                 } else {
                     elements.push(false);
+                    $('.measurementRange-alert').removeClass('hidden')
                 }
             } else {
                 elements.push(false);
+                $('.measurementRange-alert').removeClass('hidden')
             }
+        } else {
+            //hide the date alert if no values have been set
+            $('.measurementRange-alert').addClass('hidden')
         }
     }
     
@@ -583,7 +589,7 @@ function renderDistChart(path, urlParams) {
         var y = 'percentage';
     }
     
-    $.get(path + 'apis/getCount', $.param(urlParams, true),
+    $.get(path + 'apis/getDistribution', $.param(urlParams, true),
     function (data) {
         $('#chart-container').removeClass('hidden');
         $('#chart').html('');
@@ -602,7 +608,7 @@ function renderMetricalChart(path, urlParams) {
     $('#chart').height(600);
     
     if ($.isNumeric(urlParams[ 'interval'])) {
-        $.get(path + 'apis/getQuant', $.param(urlParams, true),
+        $.get(path + 'apis/getMetrical', $.param(urlParams, true),
         function (data) {
             
             $('#chart-container').removeClass('hidden');
@@ -619,7 +625,7 @@ function renderMetricalChart(path, urlParams) {
             }).draw();
         });
     } else {
-        $.get(path + 'apis/getQuant', $.param(urlParams, true),
+        $.get(path + 'apis/getMetrical', $.param(urlParams, true),
         function (data) {
             var visualization = d3plus.viz().container("#chart").data(data).type('bar').id('subset').y('average').x('value').legend({
                 "size": 50

@@ -84,7 +84,7 @@
 						<p>Include additional filters to the basic distribution query for this concept. <a href="#" id="add-filter"><span
 									class="glyphicon glyphicon-plus"/>Add one</a></p>
 						<div id="filter-container">
-							<div class="bg-danger duplicate-date-alert-box hidden">
+							<div class="bg-danger text-danger duplicate-date-alert danger-box hidden">
 								<span class="glyphicon glyphicon-exclamation-sign"/>
 								<strong>Alert:</strong> There must not be more than one from or to date.</div>
 							<!-- if there's a dist and filter, then break the filter query and insert preset filter templates -->
@@ -111,7 +111,7 @@
 					<h4>Date Range</h4>
 					<p>You may select both a start and end date to display change in measurement(s) over time in the form of a line chart. An average will be
 						taken for the selected interval over the entire duration.</p>
-					<div class="bg-danger measurementRange-alert-box hidden">
+					<div class="bg-danger text-danger measurementRange-alert danger-box hidden">
 						<span class="glyphicon glyphicon-exclamation-sign"/>
 						<strong>Alert:</strong> Inputted date range is invalid and/or interval is not set.</div>
 
@@ -268,7 +268,7 @@
 						<p>Include additional filters to the basic distribution query for this concept. <a href="#" id="add-filter"><span
 									class="glyphicon glyphicon-plus"/>Add one</a></p>
 						<div id="filter-container">
-							<div class="bg-danger duplicate-date-alert-box hidden">
+							<div class="bg-danger text-danger duplicate-date-alert danger-box hidden">
 								<span class="glyphicon glyphicon-exclamation-sign"/>
 								<strong>Alert:</strong> There must not be more than one from or to date.</div>
 							<!-- if there's a dist and filter, then break the filter query and insert preset filter templates -->
@@ -331,6 +331,21 @@
 										<xsl:value-of select="concat('measurement=', $measurement)"/>
 									</param>
 								</xsl:if>
+								<xsl:if test="string($from)">
+									<param>
+										<xsl:value-of select="concat('from=', $from)"/>
+									</param>
+								</xsl:if>
+								<xsl:if test="string($to)">
+									<param>
+										<xsl:value-of select="concat('to=', $to)"/>
+									</param>
+								</xsl:if>
+								<xsl:if test="string($interval)">
+									<param>
+										<xsl:value-of select="concat('interval=', $interval)"/>
+									</param>
+								</xsl:if>
 								<xsl:if test="string($numericType)">
 									<param>
 										<xsl:value-of select="concat('type=', $numericType)"/>
@@ -353,7 +368,7 @@
 							</params>
 						</xsl:variable>
 
-						<a href="{$display_path}apis/{$interface}?{string-join($queryParams/*, '&amp;')}" title="Download CSV" class="btn btn-primary">
+						<a href="{$display_path}apis/{$api}?{string-join($queryParams/*, '&amp;')}" title="Download CSV" class="btn btn-primary">
 							<span class="glyphicon glyphicon-download"/>Download CSV</a>
 					</xsl:when>
 					<xsl:otherwise>
@@ -518,10 +533,10 @@
 					<a href="#" class="add-compare-field" title="Add Query Field"><span class="glyphicon glyphicon-plus"/>Add Query Field</a>
 				</small>
 			</h4>
-			<div class="bg-danger empty-query-alert-box hidden">
+			<div class="bg-danger text-danger empty-query-alert danger-box hidden">
 				<span class="glyphicon glyphicon-exclamation-sign"/>
 				<strong>Alert:</strong> There must be at least one field in the dataset query.</div>
-			<div class="bg-danger duplicate-date-alert-box hidden">
+			<div class="bg-danger text-danger duplicate-date-alert danger-box hidden">
 				<span class="glyphicon glyphicon-exclamation-sign"/>
 				<strong>Alert:</strong> There must not be more than one from or to date.</div>
 			<!-- if this xsl:template isn't an HTML template used by Javascript (generated in DOM from the compare request parameter), then pre-populate the query fields -->

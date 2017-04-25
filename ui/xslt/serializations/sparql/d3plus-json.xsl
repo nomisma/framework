@@ -12,7 +12,8 @@
 	<xsl:param name="compare" select="doc('input:request')/request/parameters/parameter[name = 'compare']/value"/>
 	<xsl:param name="filter" select="doc('input:request')/request/parameters/parameter[name = 'filter']/value"/>
 	<!-- metrical analysis params -->
-	<xsl:param name="measurement" select="doc('input:request')/request/parameters/parameter[name = 'measurement']/value"/>	
+	<xsl:param name="measurement" select="doc('input:request')/request/parameters/parameter[name = 'measurement']/value"/>
+	<xsl:param name="analysisType" select="doc('input:request')/request/parameters/parameter[name = 'analysisType']/value"/>	
 	<xsl:param name="from" select="doc('input:request')/request/parameters/parameter[name = 'from']/value"/>
 	<xsl:param name="to" select="doc('input:request')/request/parameters/parameter[name = 'to']/value"/>
 	<xsl:param name="interval" select="doc('input:request')/request/parameters/parameter[name = 'interval']/value"/>
@@ -37,21 +38,21 @@
 	<xsl:template match="/">
 		<xsl:text>[</xsl:text>
 		<xsl:choose>
-			<xsl:when test="$api='getCount'">
-				<xsl:apply-templates select="descendant::res:sparql" mode="getCount"/>
+			<xsl:when test="$api='getDistribution'">
+				<xsl:apply-templates select="descendant::res:sparql" mode="getDistribution"/>
 			</xsl:when>
-			<xsl:when test="$api='getQuant'">
+			<xsl:when test="$api='getMetrical'">
 				<xsl:choose>
 					<!-- apply templates on the group element if a date range query -->
 					<xsl:when test="number($from) and number($to) and number($interval)">
-						<xsl:apply-templates select="descendant::group" mode="getQuant"/>
+						<xsl:apply-templates select="descendant::group" mode="getMetrical"/>
 					</xsl:when>
 					<xsl:otherwise>
 						<xsl:for-each select="descendant::res:result[res:binding[@name = 'average']/res:literal]">
 							<xsl:variable name="position" select="position()"/>
 							<xsl:variable name="value" select="$queries/query[$position]/@label"/>
 							
-							<xsl:apply-templates select="self::node()" mode="getQuant">
+							<xsl:apply-templates select="self::node()" mode="getMetrical">
 								<xsl:with-param name="value" select="$value"/>
 								<xsl:with-param name="subset" select="substring-after($measurement, 'has')"/>
 								<xsl:with-param name="label"/>
@@ -67,15 +68,15 @@
 		<xsl:text>]</xsl:text>
 	</xsl:template>
 
-	<!-- templates for the getCount API: display numeric counts or percentages for distribution queries -->
-	<xsl:template match="res:sparql" mode="getCount">
+	<!-- templates for the getDistribution API: display numeric counts or percentages for distribution queries -->
+	<xsl:template match="res:sparql" mode="getDistribution">
 		<xsl:variable name="position" select="position()"/>
 		<xsl:variable name="query" select="$queries/query[$position]"/>
 		<xsl:variable name="subset" select="$queries/query[$position]/@label"/>
 
 		<xsl:variable name="total" select="sum(descendant::res:binding[@name = 'count']/res:literal)"/>
 
-		<xsl:apply-templates select="descendant::res:result[res:binding[@name = 'label']/res:literal]" mode="getCount">
+		<xsl:apply-templates select="descendant::res:result[res:binding[@name = 'label']/res:literal]" mode="getDistribution">
 			<xsl:with-param name="query" select="$query"/>
 			<xsl:with-param name="subset" select="$subset"/>
 			<xsl:with-param name="total" select="$total"/>
@@ -86,7 +87,7 @@
 		</xsl:if>
 	</xsl:template>
 
-	<xsl:template match="res:result" mode="getCount">
+	<xsl:template match="res:result" mode="getDistribution">
 		<xsl:param name="query"/>
 		<xsl:param name="subset"/>
 		<xsl:param name="total"/>
@@ -134,15 +135,15 @@
 		</xsl:if>
 	</xsl:template>
 
-	<!-- templates for the getQuant API -->
-	<xsl:template match="group" mode="getQuant">
+	<!-- templates for the getMetrical API -->
+	<xsl:template match="group" mode="getMetrical">
 		<xsl:variable name="position" select="position()"/>
 		<xsl:variable name="subset" select="$queries/query[$position]/@label"/>
 		
 		<xsl:for-each select="descendant::res:result[res:binding[@name = 'average']/res:literal]">
 			<xsl:variable name="value" select="ancestor::value/query/@year"/>
 			<xsl:variable name="label" select="ancestor::value/query/@range"/>
-			<xsl:apply-templates select="self::node()" mode="getQuant">
+			<xsl:apply-templates select="self::node()" mode="getMetrical">
 				<xsl:with-param name="label" select="$label"/>
 				<xsl:with-param name="subset" select="$subset"/>
 				<xsl:with-param name="value" select="$value"/>
@@ -157,7 +158,7 @@
 		</xsl:if>
 	</xsl:template>
 		
-	<xsl:template match="res:result" mode="getQuant">
+	<xsl:template match="res:result" mode="getMetrical">
 		<xsl:param name="label"/>
 		<xsl:param name="subset"/>
 		<xsl:param name="value"/>
@@ -212,77 +213,5 @@
 			</xsl:if>
 		</xsl:for-each>
 		<xsl:text>}</xsl:text>
-		
 	</xsl:template>
-
-	<!-- parse the SPARQL query into a human-readable string -->
-	<xsl:function name="nomisma:parseFilter">
-		<xsl:param name="query"/>
-
-		<xsl:variable name="pieces" select="tokenize(normalize-space($query), ';')"/>
-		<xsl:for-each select="$pieces">
-			<xsl:choose>
-				<xsl:when test="contains(., '?prop')">
-					<xsl:analyze-string select="." regex="\?prop\s(nm:.*)">
-						<xsl:matching-substring>
-							<xsl:text>Authority/Issuer: </xsl:text>
-							<xsl:value-of select="nomisma:getLabel(regex-group(1))"/>
-						</xsl:matching-substring>
-					</xsl:analyze-string>
-				</xsl:when>
-				<xsl:when test="contains(., 'portrait')">
-					<xsl:analyze-string select="." regex="portrait\s(nm:.*)">
-						<xsl:matching-substring>
-							<xsl:text>Portrait: </xsl:text>
-							<xsl:value-of select="nomisma:getLabel(regex-group(1))"/>
-						</xsl:matching-substring>
-					</xsl:analyze-string>
-				</xsl:when>
-				<xsl:when test="contains(., 'deity')">
-					<xsl:analyze-string select="." regex="deity\s&lt;(.*)&gt;">
-						<xsl:matching-substring>
-							<xsl:text>Deity: </xsl:text>
-							<xsl:value-of select="nomisma:getLabel(regex-group(1))"/>
-						</xsl:matching-substring>
-					</xsl:analyze-string>
-				</xsl:when>
-				<xsl:when test="matches(normalize-space(.), '^from\s')">
-					<xsl:analyze-string select="." regex="from\s(.*)">
-						<xsl:matching-substring>
-							<xsl:text>From Date: </xsl:text>
-							<xsl:value-of select="nomisma:normalizeDate(regex-group(1))"/>
-						</xsl:matching-substring>
-					</xsl:analyze-string>
-				</xsl:when>
-				<xsl:when test="matches(normalize-space(.), '^to\s')">
-					<xsl:analyze-string select="." regex="to\s(.*)">
-						<xsl:matching-substring>
-							<xsl:text>To Date: </xsl:text>
-							<xsl:value-of select="nomisma:normalizeDate(regex-group(1))"/>
-						</xsl:matching-substring>
-					</xsl:analyze-string>
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:analyze-string select="." regex="nmo:has([A-Za-z]+)\s(nm:.*)">
-						<xsl:matching-substring>
-							<xsl:value-of select="regex-group(1)"/>
-							<xsl:text>: </xsl:text>
-							<xsl:value-of select="nomisma:getLabel(regex-group(2))"/>
-						</xsl:matching-substring>
-					</xsl:analyze-string>
-				</xsl:otherwise>
-			</xsl:choose>
-			<xsl:if test="not(position() = last())">
-				<xsl:text> &amp; </xsl:text>
-			</xsl:if>
-		</xsl:for-each>
-	</xsl:function>
-
-	<xsl:function name="nomisma:getLabel">
-		<xsl:param name="uri"/>
-
-		<xsl:variable name="service" select="concat('http://localhost:8080/orbeon/nomisma/apis/getLabel?uri=', $uri)"/>
-
-		<xsl:value-of select="document($service)/response"/>
-	</xsl:function>
 </xsl:stylesheet>

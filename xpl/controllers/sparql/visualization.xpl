@@ -38,14 +38,14 @@
 		<p:when test="format='csv'">
 			<p:processor name="oxf:pipeline">
 				<p:input name="data" href="#data"/>
-				<p:input name="config" href="distribution-csv.xpl"/>	
+				<p:input name="config" href="../../views/serializations/sparql/distribution-csv.xpl"/>	
 				<p:output name="data" ref="data"/>
 			</p:processor>
 		</p:when>
 		<p:otherwise>
 			<p:processor name="oxf:pipeline">
 				<p:input name="data" href="#data"/>
-				<p:input name="config" href="d3plus-json.xpl"/>	
+				<p:input name="config" href="../../views/serializations/sparql/d3plus-json.xpl"/>	
 				<p:output name="data" ref="data"/>
 			</p:processor>
 		</p:otherwise>

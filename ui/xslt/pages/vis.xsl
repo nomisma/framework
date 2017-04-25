@@ -20,6 +20,7 @@
 	
 	<!-- interface -->
 	<xsl:param name="interface" select="tokenize(doc('input:request')/request/request-uri, '/')[last()]"/>	
+	<xsl:variable name="api" select="if ($interface = 'metrical') then 'getMetrical' else 'getDistribution'"/>
 
 	<!-- empty variables to account for vis templates -->
 	<xsl:variable name="base-query"/>
