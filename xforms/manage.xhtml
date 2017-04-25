@@ -35,7 +35,7 @@
 					<dataset></dataset>
 					<validate-trigger>false</validate-trigger>
 					<new_findspot_uri></new_findspot_uri>
-					<concept_type/>
+					<concept_type></concept_type>
 				</controls>
 			</xforms:instance>
 
@@ -54,7 +54,7 @@
 				<templates xmlns="">
 					<query id="delete-metadata"><![CDATA[PREFIX void:	<http://rdfs.org/ns/void#> 
 DELETE {?s ?p ?o} WHERE { <DATASET> ?p ?o . ?s ?p ?o . FILTER (?s = <DATASET>)}]]></query>
-					<!--<query id="delete-dump"><![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
+					<query id="delete-dump"><![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX void:	<http://rdfs.org/ns/void#>
 PREFIX dcterms:	<http://purl.org/dc/terms/>
 PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
@@ -77,7 +77,7 @@ UNION { ?object nmo:hasReverse ?s . ?s ?p ?o}
 UNION { ?object dcterms:tableOfContents ?s . ?s ?p ?o}
 UNION { BIND (?object as ?s)
         ?s ?p ?o }
-}]]></query>-->
+}]]></query>
 					<query id="delete-NumismaticObject"><![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX void:	<http://rdfs.org/ns/void#>
 PREFIX dcterms:	<http://purl.org/dc/terms/>
@@ -302,8 +302,8 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 			</xforms:submission>
 
 			<!-- ************************* SOLR SUBMISSIONS ************************** -->
-			<xforms:submission id="post-solr-doc" action="{instance('config')/solr_fuseki}update" ref="instance('addIndex')" instance="addIndex"
-				replace="none" method="post">
+			<xforms:submission id="post-solr-doc" action="{instance('config')/solr_fuseki}update" ref="instance('addIndex')" instance="addIndex" replace="none"
+				method="post">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is
 					incorrect.</xforms:message>
 				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"/>
@@ -370,7 +370,7 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 						</xforms:trigger>
 					</div>
 
-					<xforms:group ref="instance('private-coordinates')">
+					<!--<xforms:group ref="instance('private-coordinates')">
 						<xforms:repeat nodeset="record">
 							<xforms:var name="uri" select="@uri"/>
 
@@ -394,18 +394,18 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 						<xforms:trigger>
 							<xforms:label>Replace Findspot</xforms:label>
 							<xforms:action ev:event="DOMActivate">
-								<!-- delete addIndex/doc -->
+								<!-\- delete addIndex/doc -\->
 								<xforms:delete nodeset="instance('addIndex')/doc"/>
 								
 								<xforms:action xxforms:iterate="record">
 									<xforms:var name="uri" select="context()/@uri"/>
 
-									<!-- get the coordinates and name for the findspot currently associated with the object URI -->
+									<!-\- get the coordinates and name for the findspot currently associated with the object URI -\->
 									<xforms:setvalue ref="instance('sparqlQuery')"
 										value="concat(instance('sparql-templates')/prefix, ' ', replace(instance('sparql-templates')/query[@id='get-findspot'], 'URI', $uri))"/>
 									<xforms:send submission="submit-sparqlQuery"/>
 
-									<!-- after this completes, generate the SPARQL/Update that deletes the old findspot and inserts the new ones, but only if the old findspot isn't a fragment identifier -->
+									<!-\- after this completes, generate the SPARQL/Update that deletes the old findspot and inserts the new ones, but only if the old findspot isn't a fragment identifier -\->
 									<xforms:action ev:event="xforms-submit-done"
 										if="not(contains(instance('sparqlResponse')//res:binding[@name='findspot']/res:uri, '#'))">
 										<xforms:var name="findspot" select="instance('sparqlResponse')//res:binding[@name='findspot']/res:uri"/>
@@ -413,14 +413,14 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 										<xforms:var name="long" select="instance('sparqlResponse')//res:binding[@name='long']/res:literal"/>
 										<xforms:var name="name" select="instance('sparqlResponse')//res:binding[@name='name']/res:literal"/>
 
-										<!-- hash encode the new lat and long -->
+										<!-\- hash encode the new lat and long -\->
 										<xforms:setvalue ref="instance('control-instance')/new_findspot_uri"
 											value="concat($findspot, '#', digest(concat(normalize-space(context()/lat), ',', normalize-space(context()/long)), 'MD5', 'hex'))"/>
 										<xforms:setvalue ref="instance('sparqlUpdate')"
 											value="replace(replace(replace(replace(replace(replace(instance('sparqlUpdate-template')/query[@id='replace-findspot'], 'URI', $uri), 'OLDFINDSPOT', $findspot), 'LAT', $lat), 'LONG', $long), 'NAME', $name), 'NEWFINDSPOT', instance('control-instance')/new_findspot_uri)"/>
 										<xforms:send submission="update-graph"/>
 
-										<!-- after Solr is automatically updated by the SPARQL/Update, then post updated coordinates directly into Solr -->
+										<!-\- after Solr is automatically updated by the SPARQL/Update, then post updated coordinates directly into Solr -\->
 										<xforms:insert context="instance('addIndex')" nodeset="./child::node()[last()]" origin="instance('doc-template')"/>
 										<xforms:setvalue ref="instance('addIndex')/doc[last()]/field[@name='uri']"
 											value="instance('control-instance')/new_findspot_uri"/>
@@ -430,7 +430,7 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 									</xforms:action>
 								</xforms:action>
 								
-								<!-- post-solr-doc -->
+								<!-\- post-solr-doc -\->
 								<xforms:send submission="post-solr-doc"/>
 							</xforms:action>
 						</xforms:trigger>
@@ -440,12 +440,12 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 							<xforms:action ev:event="DOMActivate" xxforms:iterate="record">
 								<xforms:var name="uri" select="context()/@uri"/>
 
-								<!-- get the coordinates and name for the findspot currently associated with the object URI -->
+								<!-\- get the coordinates and name for the findspot currently associated with the object URI -\->
 								<xforms:setvalue ref="instance('sparqlQuery')"
 									value="concat(instance('sparql-templates')/prefix, ' ', replace(instance('sparql-templates')/query[@id='get-findspot'], 'URI', $uri))"/>
 								<xforms:send submission="submit-sparqlQuery"/>
 
-								<!-- after this completes, generate the SPARQL/Update that replaces the fragment identifier with the original -->
+								<!-\- after this completes, generate the SPARQL/Update that replaces the fragment identifier with the original -\->
 								<xforms:action ev:event="xforms-submit-done"
 									if="contains(instance('sparqlResponse')//res:binding[@name='findspot']/res:uri, '#')">
 									<xforms:var name="findspot" select="instance('sparqlResponse')//res:binding[@name='findspot']/res:uri"/>
@@ -462,7 +462,7 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 							<xforms:label>Insert Findspot</xforms:label>
 							<xforms:action ev:event="DOMActivate">
 
-								<!-- the code below will insert a findspot into an object and the associated lat, long, and name with that OS URI -->
+								<!-\- the code below will insert a findspot into an object and the associated lat, long, and name with that OS URI -\->
 								<xforms:var name="uri" select="instance('insert-test')/uri"/>
 								<xforms:var name="findspot" select="instance('insert-test')/findspot"/>
 								<xforms:var name="lat" select="instance('insert-test')/lat"/>
@@ -474,7 +474,7 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 								<xforms:send submission="update-graph"/>
 							</xforms:action>
 						</xforms:trigger>
-					</xforms:group>
+					</xforms:group>-->
 
 					<xforms:switch>
 						<xforms:case id="default">
@@ -526,7 +526,7 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 																	<xforms:load show="new" resource="{@rdf:resource}"/>
 																</xforms:action>
 															</xforms:trigger>
-															<br/>
+															<br />
 														</xforms:repeat>
 													</td>
 													<td class="text-center">
@@ -534,9 +534,9 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 															<xforms:label><span class="glyphicon glyphicon-refresh"></span></xforms:label>
 															<xforms:action ev:event="DOMActivate">
 																<xforms:var name="dataset" select="@rdf:about"/>
-																<xforms:var name="type" select="if (dcterms:type[@rdf:resource='http://nomisma.org/ontology#Hoard']) then 'Hoard' else if (dcterms:type[@rdf:resource='http://nomisma.org/ontology#TypeSeriesItem']) then 'TypeSeriesItem' else 'NumismaticObject'"/>
-																
-																<xforms:setvalue ref="instance('control-instance')/concept_type" select="$type"/>
+																<xforms:var name="type"
+																	select="if (dcterms:type[@rdf:resource='http://nomisma.org/ontology#Hoard']) then 'Hoard' else if (dcterms:type[@rdf:resource='http://nomisma.org/ontology#TypeSeriesItem']) then 'TypeSeriesItem' else 'NumismaticObject'"
+																/> <xforms:setvalue ref="instance('control-instance')/concept_type" select="$type"/>
 																<xforms:setvalue ref="instance('control-instance')/dataset" value="$dataset"/>
 																<xforms:dispatch target="refresh-dataset-dialog" name="fr-show"/>
 															</xforms:action>
@@ -547,9 +547,9 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 															<xforms:label><span class="glyphicon glyphicon-remove"></span></xforms:label>
 															<xforms:action ev:event="DOMActivate">
 																<xforms:var name="dataset" select="@rdf:about"/>
-																<xforms:var name="type" select="if (dcterms:type[@rdf:resource='http://nomisma.org/ontology#Hoard']) then 'Hoard' else if (dcterms:type[@rdf:resource='http://nomisma.org/ontology#TypeSeriesItem']) then 'TypeSeriesItem' else 'NumismaticObject'"/>
-																
-																<xforms:setvalue ref="instance('control-instance')/concept_type" value="$type"/>
+																<xforms:var name="type"
+																	select="if (dcterms:type[@rdf:resource='http://nomisma.org/ontology#Hoard']) then 'Hoard' else if (dcterms:type[@rdf:resource='http://nomisma.org/ontology#TypeSeriesItem']) then 'TypeSeriesItem' else 'NumismaticObject'"
+																/> <xforms:setvalue ref="instance('control-instance')/concept_type" value="$type"/>
 																<xforms:setvalue ref="instance('control-instance')/dataset" value="$dataset"/>
 																<xforms:dispatch target="delete-dataset-dialog" name="fr-show"/>
 															</xforms:action>
