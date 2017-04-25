@@ -391,6 +391,7 @@
 			<xsl:variable name="properties" as="element()*">
 				<properties>
 					<prop value="nmo:hasAuthority" class="foaf:Person|foaf:Organization">Authority</prop>
+					<prop value="nmo:hasStatedAuthority" class="foaf:Person|foaf:Organization">Authority, Stated</prop>
 					<prop value="deity" class="">Deity</prop>
 					<prop value="nmo:hasDenomination" class="nmo:Denomination">Denomination</prop>
 					<prop value="nmo:hasIssuer" class="foaf:Person|foaf:Organization">Issuer</prop>
@@ -608,6 +609,7 @@
 		<xsl:variable name="properties" as="element()*">
 			<properties>
 				<prop value="nmo:hasAuthority" class="foaf:Person|foaf:Organization">Authority</prop>
+				<prop value="nmo:hasStatedAuthority" class="foaf:Person|foaf:Organization">Authority, Stated</prop>
 				<xsl:if test="substring-before($query, ' ') = '?prop'">
 					<prop value="?prop" class="foaf:Person|foaf:Organization">Authority or Issuer</prop>
 				</xsl:if>
