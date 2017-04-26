@@ -10,18 +10,18 @@
 	<xsl:param name="numericType" select="doc('input:request')/request/parameters/parameter[name = 'type']/value"/>
 	<!-- query params -->
 	<xsl:param name="compare" select="doc('input:request')/request/parameters/parameter[name = 'compare']/value"/>
-	<xsl:param name="filter" select="doc('input:request')/request/parameters/parameter[name = 'filter']/value"/>
+	<!--<xsl:param name="filter" select="doc('input:request')/request/parameters/parameter[name = 'filter']/value"/>-->
 	<!-- metrical analysis params -->
-	<xsl:param name="measurement" select="doc('input:request')/request/parameters/parameter[name = 'measurement']/value"/>	
+	<xsl:param name="measurement" select="doc('input:request')/request/parameters/parameter[name = 'measurement']/value"/>
 	<xsl:param name="from" select="doc('input:request')/request/parameters/parameter[name = 'from']/value"/>
 	<xsl:param name="to" select="doc('input:request')/request/parameters/parameter[name = 'to']/value"/>
 	<xsl:param name="interval" select="doc('input:request')/request/parameters/parameter[name = 'interval']/value"/>
-	<xsl:param name="analysisType" select="doc('input:request')/request/parameters/parameter[name='analysisType']/value"/>
+	<xsl:param name="analysisType" select="doc('input:request')/request/parameters/parameter[name = 'analysisType']/value"/>
 
 	<!-- ********** VISUALIZATION TEMPLATES *********** -->
 	<xsl:template name="metrical-form">
 		<xsl:param name="mode"/>
-		
+
 		<div>
 			<xsl:if test="$mode = 'record'">
 				<xsl:attribute name="id">metrical</xsl:attribute>
@@ -62,9 +62,9 @@
 				<!-- only include filter in the ID page -->
 				<xsl:if test="$mode = 'record'">
 					<input type="hidden" name="filter">
-						<xsl:if test="string($filter)">
+						<!--<xsl:if test="string($filter)">
 							<xsl:attribute name="class" select="$filter"/>
-						</xsl:if>
+						</xsl:if>-->
 					</input>
 				</xsl:if>
 
@@ -104,7 +104,7 @@
 								<span class="glyphicon glyphicon-exclamation-sign"/>
 								<strong>Alert:</strong> There must not be more than one from or to date.</div>
 							<!-- if there's a dist and filter, then break the filter query and insert preset filter templates -->
-							<xsl:if test="$dist and $filter">
+							<!--<xsl:if test="$dist and $filter">
 								<xsl:variable name="filterPieces" select="tokenize($filter, ';')"/>
 
 								<xsl:for-each select="$filterPieces[not(normalize-space(.) = $base-query)]">
@@ -112,7 +112,7 @@
 										<xsl:with-param name="query" select="normalize-space(.)"/>
 									</xsl:call-template>
 								</xsl:for-each>
-							</xsl:if>
+							</xsl:if>-->
 						</div>
 					</div>
 
@@ -209,7 +209,7 @@
 
 	<xsl:template name="distribution-form">
 		<xsl:param name="mode"/>
-		
+
 		<div>
 			<xsl:if test="$mode = 'record'">
 				<xsl:attribute name="id">quant</xsl:attribute>
@@ -250,9 +250,9 @@
 				<!-- only include filter in the ID page -->
 				<xsl:if test="$mode = 'record'">
 					<input type="hidden" name="filter">
-						<xsl:if test="string($filter)">
+						<!--<xsl:if test="string($filter)">
 							<xsl:attribute name="class" select="$filter"/>
-						</xsl:if>
+						</xsl:if>-->
 					</input>
 				</xsl:if>
 
@@ -291,7 +291,7 @@
 								<span class="glyphicon glyphicon-exclamation-sign"/>
 								<strong>Alert:</strong> There must not be more than one from or to date.</div>
 							<!-- if there's a dist and filter, then break the filter query and insert preset filter templates -->
-							<xsl:if test="$dist and $filter">
+							<!--<xsl:if test="$dist and $filter">
 								<xsl:variable name="filterPieces" select="tokenize($filter, ';')"/>
 
 								<xsl:for-each select="$filterPieces[not(normalize-space(.) = $base-query)]">
@@ -299,7 +299,7 @@
 										<xsl:with-param name="query" select="normalize-space(.)"/>
 									</xsl:call-template>
 								</xsl:for-each>
-							</xsl:if>
+							</xsl:if>-->
 						</div>
 					</div>
 				</xsl:if>
@@ -318,8 +318,12 @@
 	<xsl:template name="chart">
 		<xsl:param name="hidden"/>
 		<xsl:param name="interface"/>
-		
-		<xsl:variable name="api" select="if ($interface = 'metrical') then 'getMetrical' else 'getDistribution'"/>
+
+		<xsl:variable name="api" select="
+				if ($interface = 'metrical') then
+					'getMetrical'
+				else
+					'getDistribution'"/>
 
 		<div id="chart-container">
 			<xsl:if test="$hidden = true()">
@@ -377,10 +381,7 @@
 									<param>
 										<xsl:value-of select="concat('analysisType=', $analysisType)"/>
 									</param>
-								</xsl:if>
-								<param>
-									<xsl:value-of select="concat('filter=', $filter)"/>
-								</param>
+								</xsl:if>								
 								<xsl:for-each select="$compare">
 									<param>
 										<xsl:value-of select="concat('compare=', normalize-space(.))"/>
@@ -490,8 +491,10 @@
 					<xsl:when test="$mode = 'page'">Compare Queries</xsl:when>
 				</xsl:choose>
 			</h4>
-			<p>You can compare mutiple queries to generate a more complex chart depicting the distribution for the Category selected above. <a href="#"
-					id="add-compare"><span class="glyphicon glyphicon-plus"/>Add query</a></p>
+			<p>You can compare multiple queries to generate a more complex chart. Note that the value for each category for comparison is refined by previous
+				selections in that group. For example, if the first category in a Group is "Denomination: Denarius", and Mint is select as the second category,
+				the drop-down menu will include only those mints that produced denarii. <a href="#" id="add-compare"><span class="glyphicon glyphicon-plus"/>Add
+					query</a></p>
 			<div id="compare-master-container">
 				<xsl:for-each select="$compare">
 					<xsl:call-template name="compare-container-template">
@@ -548,9 +551,9 @@
 				<xsl:attribute name="id">compare-container-template</xsl:attribute>
 			</xsl:if>
 			<h4>
-				<xsl:text>Dataset</xsl:text>
+				<xsl:text>Group</xsl:text>
 				<small>
-					<a href="#" title="Remove Dataset" class="remove-dataset">
+					<a href="#" title="Remove Group" class="remove-dataset">
 						<span class="glyphicon glyphicon-remove"/>
 					</a>
 					<a href="#" class="add-compare-field" title="Add Query Field"><span class="glyphicon glyphicon-plus"/>Add Query Field</a>
@@ -558,17 +561,21 @@
 			</h4>
 			<div class="bg-danger text-danger empty-query-alert danger-box hidden">
 				<span class="glyphicon glyphicon-exclamation-sign"/>
-				<strong>Alert:</strong> There must be at least one field in the dataset query.</div>
+				<strong>Alert:</strong> There must be at least one field in the group query.</div>
 			<div class="bg-danger text-danger duplicate-date-alert danger-box hidden">
 				<span class="glyphicon glyphicon-exclamation-sign"/>
 				<strong>Alert:</strong> There must not be more than one from or to date.</div>
 			<!-- if this xsl:template isn't an HTML template used by Javascript (generated in DOM from the compare request parameter), then pre-populate the query fields -->
 			<xsl:if test="$template = false()">
-				<xsl:for-each select="tokenize($query, ';')">
+				<xsl:variable name="pieces" select="tokenize($query, ';')"/>
+				<xsl:for-each select="$pieces">
+					<xsl:variable name="position" select="position()"/>
+					
 					<xsl:call-template name="field-template">
 						<xsl:with-param name="template" as="xs:boolean">false</xsl:with-param>
 						<xsl:with-param name="mode">compare</xsl:with-param>
 						<xsl:with-param name="query" select="normalize-space(.)"/>
+						<xsl:with-param name="filter" select="string-join($pieces[position() &lt; $position], '; ')"/>
 					</xsl:call-template>
 				</xsl:for-each>
 			</xsl:if>
@@ -579,6 +586,7 @@
 		<xsl:param name="template"/>
 		<xsl:param name="query"/>
 		<xsl:param name="mode"/>
+		<xsl:param name="filter"/>
 
 		<div class="form-group filter" style="display:block; margin-bottom:15px;">
 			<xsl:if test="$template = true()">
@@ -602,9 +610,14 @@
 							</xsl:call-template>
 						</xsl:when>
 						<xsl:otherwise>
-							<span class="hidden">
+							<span class="hidden query">
 								<xsl:value-of select="$query"/>
 							</span>
+							<xsl:if test="string($filter)">
+								<span class="hidden filter">
+									<xsl:value-of select="$filter"/>
+								</span>
+							</xsl:if>							
 						</xsl:otherwise>
 					</xsl:choose>
 				</xsl:if>

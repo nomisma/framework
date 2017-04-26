@@ -131,11 +131,22 @@ $(document).ready(function () {
         var type = $(this).children('option:selected').attr('type');
         var next = $(this).next('.prop-container');
         
+        var q = new Array();
+        q.push($('#base-query').text());
+        //get the filter query from previous parameters
+        $(this).parent('.filter').prevAll('.filter').each(function () {
+            pair = parseFilter($(this));
+            if (pair.length > 0) {
+                q.push(pair);
+            }
+        });
+        filter = q.join('; ');
+        
         //if the prop is a from or do date, insert date entry template, otherwise get facets from SPARQL
         if (prop == 'from' || prop == 'to') {
-            addDate(mode = 'filter', next);
+            addDate(next);
         } else {
-            getFacets(mode = 'filter', prop, type, next, path);
+            getFacets(filter, prop, type, next, path);
         }
         
         //display duplicate property alert if there is more than one from or to date
@@ -198,13 +209,17 @@ $(document).ready(function () {
         var prop = $(this).children('.add-filter-prop').val();
         var type = $(this).children('.add-filter-prop').children('option:selected').attr('type');
         var next = $(this).children('.add-filter-prop').next('.prop-container');
-        var mode = $(this).parent('div').attr('class') == 'compare-container' ? 'compare': 'filter';
         
-        
+        if (next.children('span.filter').text().length > 0) {
+            var filter = next.children('span.filter').text();
+        } else {
+            var filter = '';
+        }
+       
         if (prop == 'from' || prop == 'to') {
             validate();
         } else {
-            getFacets(mode, prop, type, next, path);
+            getFacets(filter, prop, type, next, path);
         }
     });
     
@@ -241,11 +256,21 @@ $(document).ready(function () {
         var type = $(this).children('option:selected').attr('type');
         var next = $(this).next('.prop-container');
         
+        var q = new Array();
+        //get the filter query from previous parameters
+        $(this).parent('.filter').prevAll('.filter').each(function () {
+            pair = parseFilter($(this));
+            if (pair.length > 0) {
+                q.push(pair);
+            }
+        });
+        filter = q.join('; ');
+        
         //if the prop is a from or do date, insert date entry template, otherwise get facets from SPARQL
         if (prop == 'from' || prop == 'to') {
-            addDate(mode = 'compare', next);
+            addDate(next);
         } else {
-            getFacets(mode = 'compare', prop, type, next, path);
+            getFacets(filter, prop, type, next, path);
         }
         
         //display duplicate property alert if there is more than one from or to date
@@ -304,6 +329,53 @@ $(document).ready(function () {
     });
 });
 
+function parseFilter(container) {
+    var pair;
+    
+    //only generate filter if both the property and object have values
+    if (container.children('.add-filter-prop').val().length > 0 && container.children('.prop-container').children('.add-filter-object').val().length > 0) {
+        //evaluate dates vs. facets
+        if (container.children('.add-filter-prop').val() == 'to' || container.children('.add-filter-prop').val() == 'from') {
+            var year = container.children('.prop-container').children('span').children('input.year').val();
+            var era = container.children('.prop-container').children('span').children('select.era').val();
+            
+            if (era == 'bc') {
+                year = year * -1;
+            }
+            
+            pair = container.children('.add-filter-prop').val() + ' ' + year;
+        } else if (container.children('.add-filter-prop').val() && container.children('.prop-container').children('.add-filter-object').val()) {
+            pair = container.children('.add-filter-prop').val() + ' ' + container.children('.prop-container').children('.add-filter-object').val();
+        }
+    }
+    
+    return pair;
+}
+
+function generateFilter() {
+    var q = new Array($('#base-query').text());
+    
+    //iterate through additional features
+    $('#filter-container .filter').each(function () {
+        //evaluate dates vs. facets
+        if ($(this).children('.add-filter-prop').val() == 'to' || $(this).children('.add-filter-prop').val() == 'from') {
+            var year = $(this).children('.prop-container').children('span').children('input.year').val();
+            var era = $(this).children('.prop-container').children('span').children('select.era').val();
+            
+            if (era == 'bc') {
+                year = year * -1;
+            }
+            q.push($(this).children('.add-filter-prop').val() + ' ' + year);
+        } else if ($(this).children('.add-filter-prop').val() && $(this).children('.prop-container').children('.add-filter-object').val()) {
+            q.push($(this).children('.add-filter-prop').val() + ' ' + $(this).children('.prop-container').children('.add-filter-object').val());
+        }
+    });
+    
+    query = q.join('; ');
+    
+    return query;
+}
+
 //count occurrences of from and to date query fields to display error warning or negate query validation
 function countDates(self) {
     var toCount = 0;
@@ -324,28 +396,25 @@ function countDates(self) {
 }
 
 //insert the from/to date template
-function addDate(mode, next) {
+function addDate(next) {
     template = $('#date-container-template').clone().removeAttr('id');
     next.html(template);
     validate();
 }
 
 //get the associated facets from thet getSparqlFacets web service
-function getFacets(mode, prop, type, next, path) {
+function getFacets(filter, prop, type, next, path) {
     if (type != null) {
         //define ajax parameters
         params = {
             "facet": prop
         }
         
-        //add filter if we are filtering against the current Nomisma ID
-        if (mode == 'filter') {
-            params.filter = $('#base-query').text();
-        }
+        params.filter = filter;
         
         //add query, if available (prepopulating facet drop down menus)
-        if (next.children('span').text().length > 0) {
-            params.query = next.children('span').text();
+        if (next.children('span.query').text().length > 0) {
+            params.query = next.children('span.query').text();
         }
         
         //set ajax loader
@@ -461,7 +530,7 @@ function validate() {
                         $('.measurementRange-alert').removeClass('hidden')
                     } else {
                         elements.push(true);
-                         $('.measurementRange-alert').addClass('hidden')
+                        $('.measurementRange-alert').addClass('hidden')
                     }
                 } else {
                     elements.push(false);
@@ -557,30 +626,6 @@ function validate() {
     }
 }
 
-function generateFilter() {
-    var q = new Array($('#base-query').text());
-    
-    //iterate through additional features
-    $('#filter-container .filter').each(function () {
-        //evaluate dates vs. facets
-        if ($(this).children('.add-filter-prop').val() == 'to' || $(this).children('.add-filter-prop').val() == 'from') {
-            var year = $(this).children('.prop-container').children('span').children('input.year').val();
-            var era = $(this).children('.prop-container').children('span').children('select.era').val();
-            
-            if (era == 'bc') {
-                year = year * -1;
-            }
-            q.push($(this).children('.add-filter-prop').val() + ' ' + year);
-        } else if ($(this).children('.add-filter-prop').val() && $(this).children('.prop-container').children('.add-filter-object').val()) {
-            q.push($(this).children('.add-filter-prop').val() + ' ' + $(this).children('.prop-container').children('.add-filter-object').val());
-        }
-    });
-    
-    query = q.join('; ');
-    
-    return query;
-}
-
 function renderDistChart(path, urlParams) {
     var distLabel = $('select[name=dist] option:selected').text().toLowerCase();
     if (urlParams[ 'type'] == 'count') {
@@ -619,7 +664,7 @@ function renderMetricalChart(path, urlParams) {
             }).x({
                 'value': 'value', 'label': 'Date Range'
             }).tooltip([ "label", "average"]).legend({
-                "size": [20, 50], 'data': false
+                "size":[20, 50], 'data': false
             }).size(5).color({
                 "value": "subset"
             }).draw();
