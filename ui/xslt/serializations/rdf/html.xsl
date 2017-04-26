@@ -9,12 +9,6 @@
 	<xsl:include href="html-templates.xsl"/>
 	<xsl:include href="../../vis-templates.xsl"/>
 
-	<!-- request params -->
-	<xsl:param name="filter" select="doc('input:request')/request/parameters/parameter[name = 'filter']/value"/>
-	<xsl:param name="dist" select="doc('input:request')/request/parameters/parameter[name = 'dist']/value"/>
-	<xsl:param name="compare" select="doc('input:request')/request/parameters/parameter[name = 'compare']/value"/>
-	<xsl:param name="numericType" select="doc('input:request')/request/parameters/parameter[name = 'type']/value"/>
-
 	<!-- config or other variables -->
 	<xsl:variable name="display_path">../</xsl:variable>
 	<xsl:variable name="mode">record</xsl:variable>

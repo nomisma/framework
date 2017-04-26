@@ -5,9 +5,23 @@
 	xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:org="http://www.w3.org/ns/org#" xmlns:nomisma="http://nomisma.org/"
 	xmlns:nmo="http://nomisma.org/ontology#" xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" exclude-result-prefixes="#all" version="2.0">
 
+	<!-- distribution params -->
+	<xsl:param name="dist" select="doc('input:request')/request/parameters/parameter[name = 'dist']/value"/>
+	<xsl:param name="numericType" select="doc('input:request')/request/parameters/parameter[name = 'type']/value"/>
+	<!-- query params -->
+	<xsl:param name="compare" select="doc('input:request')/request/parameters/parameter[name = 'compare']/value"/>
+	<xsl:param name="filter" select="doc('input:request')/request/parameters/parameter[name = 'filter']/value"/>
+	<!-- metrical analysis params -->
+	<xsl:param name="measurement" select="doc('input:request')/request/parameters/parameter[name = 'measurement']/value"/>	
+	<xsl:param name="from" select="doc('input:request')/request/parameters/parameter[name = 'from']/value"/>
+	<xsl:param name="to" select="doc('input:request')/request/parameters/parameter[name = 'to']/value"/>
+	<xsl:param name="interval" select="doc('input:request')/request/parameters/parameter[name = 'interval']/value"/>
+	<xsl:param name="analysisType" select="doc('input:request')/request/parameters/parameter[name='analysisType']/value"/>
+
 	<!-- ********** VISUALIZATION TEMPLATES *********** -->
 	<xsl:template name="metrical-form">
 		<xsl:param name="mode"/>
+		
 		<div>
 			<xsl:if test="$mode = 'record'">
 				<xsl:attribute name="id">metrical</xsl:attribute>
@@ -20,12 +34,14 @@
 					<xsl:if test="string($measurement) and count($compare) &gt; 0">
 						<xsl:call-template name="chart">
 							<xsl:with-param name="hidden" select="false()" as="xs:boolean"/>
+							<xsl:with-param name="interface">metrical</xsl:with-param>
 						</xsl:call-template>
 					</xsl:if>
 				</xsl:when>
 				<xsl:when test="$mode = 'record'">
 					<xsl:call-template name="chart">
 						<xsl:with-param name="hidden" select="true()" as="xs:boolean"/>
+						<xsl:with-param name="interface">metrical</xsl:with-param>
 					</xsl:call-template>
 				</xsl:when>
 			</xsl:choose>
@@ -193,6 +209,7 @@
 
 	<xsl:template name="distribution-form">
 		<xsl:param name="mode"/>
+		
 		<div>
 			<xsl:if test="$mode = 'record'">
 				<xsl:attribute name="id">quant</xsl:attribute>
@@ -205,12 +222,14 @@
 					<xsl:if test="string($dist) and count($compare) &gt; 0">
 						<xsl:call-template name="chart">
 							<xsl:with-param name="hidden" select="false()" as="xs:boolean"/>
+							<xsl:with-param name="interface">distribution</xsl:with-param>
 						</xsl:call-template>
 					</xsl:if>
 				</xsl:when>
 				<xsl:when test="$mode = 'record'">
 					<xsl:call-template name="chart">
 						<xsl:with-param name="hidden" select="true()" as="xs:boolean"/>
+						<xsl:with-param name="interface">distribution</xsl:with-param>
 					</xsl:call-template>
 				</xsl:when>
 			</xsl:choose>
@@ -298,6 +317,9 @@
 
 	<xsl:template name="chart">
 		<xsl:param name="hidden"/>
+		<xsl:param name="interface"/>
+		
+		<xsl:variable name="api" select="if ($interface = 'metrical') then 'getMetrical' else 'getDistribution'"/>
 
 		<div id="chart-container">
 			<xsl:if test="$hidden = true()">

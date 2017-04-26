@@ -4,23 +4,7 @@
 	<xsl:include href="../functions.xsl"/>
 	<xsl:include href="../vis-templates.xsl"/>
 
-	<!-- request params -->	
-	<!-- distribution params -->
-	<xsl:param name="dist" select="doc('input:request')/request/parameters/parameter[name = 'dist']/value"/>
-	<xsl:param name="numericType" select="doc('input:request')/request/parameters/parameter[name = 'type']/value"/>
-	<!-- query params -->
-	<xsl:param name="compare" select="doc('input:request')/request/parameters/parameter[name = 'compare']/value"/>
-	<xsl:param name="filter" select="doc('input:request')/request/parameters/parameter[name = 'filter']/value"/>
-	<!-- metrical analysis params -->
-	<xsl:param name="measurement" select="doc('input:request')/request/parameters/parameter[name = 'measurement']/value"/>	
-	<xsl:param name="from" select="doc('input:request')/request/parameters/parameter[name = 'from']/value"/>
-	<xsl:param name="to" select="doc('input:request')/request/parameters/parameter[name = 'to']/value"/>
-	<xsl:param name="interval" select="doc('input:request')/request/parameters/parameter[name = 'interval']/value"/>
-	<xsl:param name="analysisType" select="doc('input:request')/request/parameters/parameter[name='analysisType']/value"/>
-	
-	<!-- interface -->
-	<xsl:param name="interface" select="tokenize(doc('input:request')/request/request-uri, '/')[last()]"/>	
-	<xsl:variable name="api" select="if ($interface = 'metrical') then 'getMetrical' else 'getDistribution'"/>
+	<!-- request params: see vis-templates for parameter declarations -->	
 
 	<!-- empty variables to account for vis templates -->
 	<xsl:variable name="base-query"/>
@@ -35,6 +19,8 @@
 	<xsl:variable name="mode">page</xsl:variable>
 
 	<xsl:template match="/">
+		<xsl:param name="interface" select="tokenize(doc('input:request')/request/request-uri, '/')[last()]"/>
+
 		<html lang="en">
 			<head>
 				<title>
@@ -64,13 +50,17 @@
 			</head>
 			<body>
 				<xsl:call-template name="header"/>
-				<xsl:call-template name="body"/>
+				<xsl:call-template name="body">
+					<xsl:with-param name="interface" select="$interface"/>
+				</xsl:call-template>
 				<xsl:call-template name="footer"/>
 			</body>
 		</html>
 	</xsl:template>
 
 	<xsl:template name="body">
+		<xsl:param name="interface"/>
+		
 		<div class="container-fluid content">
 			<div class="row">
 				<div class="col-md-12 page-section">
