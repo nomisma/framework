@@ -255,7 +255,7 @@ UNION {?rev nmo:hasPortrait nm:ID .
 	<xsl:when test="$api = 'getHoards'">
 		<xsl:choose>
 			<xsl:when test="$type='foaf:Person'">
-				<![CDATA[SELECT DISTINCT ?hoard ?hoardLabel ?place ?label ?lat ?long WHERE {
+				<![CDATA[SELECT DISTINCT ?hoard ?hoardLabel ?closingDate ?place ?label ?lat ?long WHERE {
 {?coinType PROP nm:ID ;
   a nmo:TypeSeriesItem .
   ?object nmo:hasTypeSeriesItem ?coinType ;
@@ -288,11 +288,12 @@ UNION { ?coinType PROP nm:ID ;
     nmo:hasFindspot ?place }
 OPTIONAL {?hoard skos:prefLabel ?hoardLabel FILTER langMatches(lang(?hoardLabel), "en")}
 OPTIONAL {?hoard dcterms:title ?hoardLabel FILTER langMatches(lang(?hoardLabel), "en")}
+OPTIONAL {?hoard nmo:hasClosingDate ?closingDate}
 ?place geo:lat ?lat ; geo:long ?long .
     OPTIONAL {?place foaf:name ?label}}]]>
 			</xsl:when>
 			<xsl:otherwise>
-				<![CDATA[SELECT DISTINCT ?hoard ?hoardLabel ?place ?label ?lat ?long WHERE {
+				<![CDATA[SELECT DISTINCT ?hoard ?hoardLabel ?closingDate ?place ?label ?lat ?long WHERE {
 {?coinType PROP nm:ID ;
   a nmo:TypeSeriesItem .
   ?object nmo:hasTypeSeriesItem ?coinType ;
@@ -311,6 +312,7 @@ UNION { ?coinType PROP nm:ID ;
     nmo:hasFindspot ?place }
 OPTIONAL {?hoard skos:prefLabel ?hoardLabel FILTER langMatches(lang(?hoardLabel), "en")}
 OPTIONAL {?hoard dcterms:title ?hoardLabel FILTER langMatches(lang(?hoardLabel), "en")}
+OPTIONAL {?hoard nmo:hasClosingDate ?closingDate}
 ?place geo:lat ?lat ; geo:long ?long .
     OPTIONAL {?place foaf:name ?label}}]]>
 			</xsl:otherwise>

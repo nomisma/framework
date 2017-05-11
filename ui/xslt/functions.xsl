@@ -2,6 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nomisma="http://nomisma.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0" exclude-result-prefixes="#all">
 
 	<!-- ***** FUNCTIONS ***** -->
+	<!-- create a human readable date -->
 	<xsl:function name="nomisma:normalizeDate">
 		<xsl:param name="date"/>
 
@@ -25,6 +26,26 @@
 		<xsl:if test="substring($date, 1, 1) = '-'">
 			<xsl:text> B.C.</xsl:text>
 		</xsl:if>
+	</xsl:function>
+	
+	<!-- convert XSD compliant date datatypes into ISO 8601 dates (e.g., 1 B.C., "-0001"^^xsd:gYear = "0000" in ISO 8601) -->
+	<xsl:function name="nomisma:xsdToIso">
+		<xsl:param name="date"/>
+			
+		<xsl:variable name="year" select="if (substring($date, 1, 1) = '-') then substring($date, 1, 5) else substring($date, 1, 4)"/>
+		<xsl:choose>
+			<xsl:when test="number($year) &lt; 0">
+				<!-- convert the year to ISO -->
+				<xsl:value-of select="format-number(number($year) + 1, '0000')"/>
+				<!-- include month and/or day when applicable -->
+				<xsl:if test="string-length($date) &gt; 5">
+					<xsl:value-of select="substring($date, 5)"/>
+				</xsl:if>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="$date"/>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:function>
 	
 	<!-- parse the SPARQL query into a human-readable string -->

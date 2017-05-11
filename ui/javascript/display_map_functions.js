@@ -154,12 +154,21 @@ function initialize_map(id) {
 	
 	function onEachFeature (feature, layer) {
 		var str;
-		if (feature.properties.hasOwnProperty('uri') == false) {
-			str = feature.properties.name;
+		//individual finds
+		if (feature.properties.hasOwnProperty('gazetteer_uri') == false) {
+			str = feature.label;
 		} else {
-			str = '<a href="' + feature.properties.uri + '">' + feature.properties.name + '</a>';
-			if (feature.properties.hasOwnProperty('placeUri') == true) {
-				str += '<br/><span><b>Findspot: </b><a href="' + feature.properties.placeUri + '">' + feature.properties.place + '</a></span>'
+			var str = '';
+			//display hoard link and gazetteer link
+			if (feature.hasOwnProperty('id') == true) {
+				str += '<a href="' + feature.id + '">' + feature.label + '</a><br/>';
+			}			
+			if (feature.properties.hasOwnProperty('gazetteer_uri') == true) {
+				str += '<span>';
+				if (feature.properties.type == 'hoard') {
+					str += '<b>Findspot: </b>';
+				}
+				str +='<a href="' + feature.properties.gazetteer_uri + '">' + feature.properties.toponym + '</a></span>'
 			}
 		}
 		layer.bindPopup(str);
