@@ -1,0 +1,47 @@
+PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:  <http://purl.org/dc/terms/>
+PREFIX dcmitype:	<http://purl.org/dc/dcmitype/>
+PREFIX nm:       <http://nomisma.org/id/>
+PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
+PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX rdfs:	<http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?hoard ?hoardLabel ?closingDate ?place ?label ?lat ?long WHERE {
+{?coinType PROP nm:ID ;
+  a nmo:TypeSeriesItem .
+  ?object nmo:hasTypeSeriesItem ?coinType ;
+  rdf:type nmo:NumismaticObject ;
+  dcterms:isPartOf ?hoard .
+  ?hoard nmo:hasFindspot ?place }
+UNION {?obv nmo:hasPortrait nm:ID .
+?coinType nmo:hasObverse ?obv ;
+  a nmo:TypeSeriesItem .
+  ?object nmo:hasTypeSeriesItem ?coinType ;
+  rdf:type nmo:NumismaticObject ;
+  dcterms:isPartOf ?hoard .
+  ?hoard nmo:hasFindspot ?place }
+UNION {?rev nmo:hasPortrait nm:ID .
+?coinType nmo:hasReverse ?rev ;
+  a nmo:TypeSeriesItem .
+  ?object nmo:hasTypeSeriesItem ?coinType ;
+  rdf:type nmo:NumismaticObject ;
+  dcterms:isPartOf ?hoard .
+  ?hoard nmo:hasFindspot ?place }
+UNION { ?coinType PROP nm:ID ;
+  a nmo:TypeSeriesItem .
+?contents nmo:hasTypeSeriesItem ?coinType ;
+                  a dcmitype:Collection .
+  ?hoard dcterms:tableOfContents ?contents ;
+    nmo:hasFindspot ?place }
+ UNION { ?contents PROP nm:ID ;
+                  a dcmitype:Collection .
+  ?hoard dcterms:tableOfContents ?contents ;
+    nmo:hasFindspot ?place }
+OPTIONAL {?hoard skos:prefLabel ?hoardLabel FILTER langMatches(lang(?hoardLabel), "en")}
+OPTIONAL {?hoard dcterms:title ?hoardLabel FILTER langMatches(lang(?hoardLabel), "en")}
+OPTIONAL {?hoard nmo:hasClosingDate ?closingDate}
+?place geo:lat ?lat ; geo:long ?long .
+    OPTIONAL {?place foaf:name ?label}
+}
