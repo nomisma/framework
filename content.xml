@@ -666,23 +666,23 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 			<div class="highlight">
 				<a name="getFindspots"/>
 				<h2>Get Findspots</h2>
-				<p>Get all individual find spots for a given skos:Concept defined by the id parameter.<br/>
+				<p>Get all individual find spots for a given skos:Concept defined by the id parameter or for a given coin type (nmo:TypeSeriesItem) defined by the coinType parameter<br/>
 					<b>Webservice Type</b> : REST<br/>
 					<b>Url</b> : nomisma.org/getFindspots?<br/>
-					<b>Parameters</b> : id (of Nomisma ID)<br/>
+					<b>Parameters</b> : id (of Nomisma ID) OR coinType (full URI for a coin type)<br/>
 					<b>Result</b> : returns geoJSON for features (points or polygons)<br/>
-					<b>Examples</b>: <a href="apis/getFindspots?id=denarius">apis/getFindspots?id=denarius</a>
+					<b>Examples</b>: <a href="apis/getFindspots?id=denarius">apis/getFindspots?id=denarius</a>, <a href="apis/getFindspots?coinType=http://numismatics.org/crro/id/rrc-408.1a">apis/getFindspots?coinType=http://numismatics.org/crro/id/rrc-408.1a</a>
 				</p>
 			</div>
 			<div class="highlight">
 				<a name="getHoards"/>
 				<h2>Get Hoards</h2>
-				<p>Get all hoards associated with a given skos:Concept defined by the id parameter. If the skos:Concept is a hoard, then only one point is returned.<br/>
+				<p>Get all hoards associated with a given skos:Concept defined by the id parameter or for a given coin type (nmo:TypeSeriesItem) defined by the coinType parameter. If the skos:Concept is a hoard, then only one point is returned.<br/>
 					<b>Webservice Type</b> : REST<br/>
 					<b>Url</b> : nomisma.org/getHoards?<br/>
-					<b>Parameters</b> : id (of Nomisma ID)<br/>
+					<b>Parameters</b> : id (of Nomisma ID) OR coinType (full URI for a coin type)<br/>
 					<b>Result</b> : returns geoJSON for features (points or polygons)<br/>
-					<b>Examples</b>: <a href="apis/getHoards?id=denarius">apis/getHoards?id=denarius</a>
+					<b>Examples</b>: <a href="apis/getHoards?id=denarius">apis/getHoards?id=denarius</a>, <a href="apis/getHoards?coinType=http://numismatics.org/crro/id/rrc-408.1a">apis/getHoards?coinType=http://numismatics.org/crro/id/rrc-408.1a</a>
 				</p>
 			</div>
 			<div class="highlight">
