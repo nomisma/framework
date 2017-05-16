@@ -23,13 +23,14 @@ PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX void: <http://rdfs.org/ns/void#>
 PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
 
-SELECT DISTINCT ?dataset ?title ?description ?license ?publisher WHERE {
+SELECT DISTINCT ?dataset ?title ?description ?license ?rights ?publisher WHERE {
 ?coin a nmo:NumismaticObject ;
         void:inDataset ?dataset . FILTER (?dataset != <http://numismatics.org/search/> && ?dataset != <http://coins.lib.virginia.edu/> && ?dataset != <https://finds.org.uk/>) .
 ?dataset dcterms:description ?description FILTER (langMatches(lang(?description), "en") || lang(?description) = "") .
-?dataset dcterms:license ?license ;
-         dcterms:publisher ?publisher ;
+?dataset dcterms:publisher ?publisher ;
          dcterms:title ?title FILTER (langMatches(lang(?title), "en") || lang(?title) = "")
+OPTIONAL {?dataset dcterms:rights ?rights}
+OPTIONAL {?dataset dcterms:license ?license}
 }]]></xsl:variable>
 
 				<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri($query), '&amp;output=xml')"/>
