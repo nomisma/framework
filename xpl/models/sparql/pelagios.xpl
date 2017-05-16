@@ -43,7 +43,7 @@ PREFIX svcs: <http://rdfs.org/sioc/services#>
 SELECT ?coin ?title ?dataset ?startDate ?endDate ?comThumb ?comRef ?comManifest ?comService ?obvThumb ?obvRef ?obvManifest ?obvService ?revThumb ?revRef ?revManifest ?revService ?match WHERE {
 ?coin a nmo:NumismaticObject ;
         dcterms:title ?title ;
-        void:inDataset ?dataset . FILTER (?dataset = <http://www.kenom.de/>) .
+        void:inDataset ?dataset . FILTER (?dataset != <http://numismatics.org/search/> && ?dataset != <http://coins.lib.virginia.edu/> && ?dataset != <https://finds.org.uk/>) .
 OPTIONAL { ?coin foaf:thumbnail ?comThumb }
 OPTIONAL { ?coin foaf:depiction ?comRef 
 	OPTIONAL { ?comRef dcterms:isReferencedBy ?comManifest ;
@@ -51,7 +51,7 @@ OPTIONAL { ?coin foaf:depiction ?comRef
 OPTIONAL { ?coin nmo:hasObverse/foaf:thumbnail ?obvThumb }
 OPTIONAL { ?coin nmo:hasObverse ?obverse .
 ?obverse foaf:depiction ?obvRef
-	OPTIONAL { ?obvRef dcterms:isReferencedBy ?obvManifest; 
+	OPTIONAL { ?obvRef dcterms:isReferencedBy ?obvManifest;
 		svcs:has_service ?obvService}}
 OPTIONAL { ?coin nmo:hasReverse/foaf:thumbnail ?revThumb }
 OPTIONAL { ?coin nmo:hasReverse ?reverse .
@@ -63,7 +63,7 @@ OPTIONAL { ?coin nmo:hasReverse ?reverse .
   OPTIONAL {?type nmo:hasEndDate ?endDate}
 ?type nmo:hasMint ?mint .
 ?mint skos:closeMatch ?match FILTER strStarts(str(?match), "http://pleiades")
-} LIMIT 10 OFFSET %OFFSET%]]></xsl:variable>
+} LIMIT %LIMIT% OFFSET %OFFSET%]]></xsl:variable>
 
 				<xsl:variable name="service">
 					<xsl:value-of select="concat($sparql_endpoint, '?query=', encode-for-uri(replace(replace($query, '%LIMIT%', $limit), '%OFFSET%', $offset)), '&amp;output=xml')"/>
