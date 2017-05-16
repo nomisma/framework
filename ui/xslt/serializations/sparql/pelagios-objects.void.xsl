@@ -40,7 +40,7 @@
 	<xsl:template match="res:result" mode="void:Dataset">
 		<void:Dataset rdf:about="{res:binding[@name='dataset']/res:uri}">
 			<xsl:apply-templates
-				select="res:binding[@name='title']|res:binding[@name='description']|res:binding[@name='publisher']/res:literal|res:binding[@name='license']|res:binding[@name='rights']"
+				select="res:binding[@name='title']|res:binding[@name='description']|res:binding[@name='publisher']|res:binding[@name='license']|res:binding[@name='rights']"
 				mode="dcterms"/>
 			<dcterms:isPartOf rdf:source="{$url}#objects"/>
 		</void:Dataset>
@@ -48,16 +48,16 @@
 
 	<xsl:template match="res:binding" mode="dcterms">
 		<xsl:element name="dcterms:{@name}" namespace="http://purl.org/dc/terms/">
-			<xsl:if test="@xml:lang">
-				<xsl:attribute name="xml:lang" select="@xml:lang"/>
-			</xsl:if>
 			<xsl:choose>
 				<xsl:when test="res:uri">
 					<xsl:attribute name="rdf:resource" select="res:uri"/>
 				</xsl:when>
-				<xsl:otherwise>
+				<xsl:when test="res:literal">
+					<xsl:if test="res:literal/@xml:lang">
+						<xsl:attribute name="xml:lang" select="res:literal/@xml:lang"/>
+					</xsl:if>
 					<xsl:value-of select="res:literal"/>
-				</xsl:otherwise>
+				</xsl:when>
 			</xsl:choose>
 		</xsl:element>
 	</xsl:template>
