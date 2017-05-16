@@ -52,32 +52,22 @@
 			<dcterms:publisher>
 				<xsl:value-of select="res:binding[@name='publisher']/res:literal"/>
 			</dcterms:publisher>
-			<xsl:if test="res:binding[@name='license']">
-				<dcterms:license>
-					<xsl:choose>
-						<xsl:when test="res:uri">
-							<xsl:attribute name="rdf:resource" select="res:uri"/>
-						</xsl:when>
-						<xsl:otherwise>
-							<xsl:value-of select="res:literal"/>
-						</xsl:otherwise>
-					</xsl:choose>
-				</dcterms:license>
-			</xsl:if>
-			<xsl:if test="res:binding[@name='rights']">
-				<dcterms:rights>
-					<xsl:choose>
-						<xsl:when test="res:uri">
-							<xsl:attribute name="rdf:resource" select="res:uri"/>
-						</xsl:when>
-						<xsl:otherwise>
-							<xsl:value-of select="res:literal"/>
-						</xsl:otherwise>
-					</xsl:choose>
-				</dcterms:rights>
-			</xsl:if>
+			<xsl:apply-templates select="res:binding[@name='license']|res:binding[@name='rights']"/>
 			<dcterms:isPartOf rdf:source="{$url}#objects"/>
 		</void:Dataset>
+	</xsl:template>
+	
+	<xsl:template match="res:binding[@name='license']|res:binding[@name='rights']">
+		<xsl:element name="dcterms:{@name}" namespace="http://purl.org/dc/terms/">
+			<xsl:choose>
+				<xsl:when test="res:uri">
+					<xsl:attribute name="rdf:resource" select="res:uri"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="res:literal"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:element>
 	</xsl:template>
 
 	<xsl:template name="dumps">
