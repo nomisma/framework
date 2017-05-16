@@ -58,12 +58,12 @@
 		<xsl:for-each select="res:binding[contains(@name, 'Manifest')]">
 			<xsl:variable name="side" select="substring-before(@name, 'Manifest')"/>
 
-			<edm:WebResource rdf:about="{parent::res:binding[@name = concat($side, 'Ref')]/res:uri}">
+			<edm:WebResource rdf:about="{parent::node()/res:binding[@name = concat($side, 'Ref')]/res:uri}">
 				<dcterms:isReferencedBy rdf:resource="{res:uri}"/>
-				<svcs:has_service rdf:resource="{parent::res:binding[@name = concat($side, 'Service')]/res:uri}"/>
+				<svcs:has_service rdf:resource="{parent::node()/res:binding[@name = concat($side, 'Service')]/res:uri}"/>
 			</edm:WebResource>
 
-			<svcs:Service rdf:about="{parent::res:binding[@name = concat($side, 'Service')]/res:uri}">
+			<svcs:Service rdf:about="{parent::node()/res:binding[@name = concat($side, 'Service')]/res:uri}">
 				<dcterms:conformsTo rdf:resource="http://iiif.io/api/image"/>
 				<doap:implements rdf:resource="http://iiif.io/api/image/2/level1.json"/>
 			</svcs:Service>

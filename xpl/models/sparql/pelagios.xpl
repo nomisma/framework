@@ -63,7 +63,7 @@ OPTIONAL { ?coin nmo:hasReverse ?reverse .
   OPTIONAL {?type nmo:hasEndDate ?endDate}
 ?type nmo:hasMint ?mint .
 ?mint skos:closeMatch ?match FILTER strStarts(str(?match), "http://pleiades")
-} LIMIT %LIMIT% OFFSET %OFFSET%]]></xsl:variable>
+} LIMIT 10 OFFSET %OFFSET%]]></xsl:variable>
 
 				<xsl:variable name="service">
 					<xsl:value-of select="concat($sparql_endpoint, '?query=', encode-for-uri(replace(replace($query, '%LIMIT%', $limit), '%OFFSET%', $offset)), '&amp;output=xml')"/>
