@@ -38,15 +38,44 @@
 	<xsl:template match="res:result" mode="void:Dataset">
 		<void:Dataset rdf:about="{res:binding[@name='dataset']/res:uri}">
 			<dcterms:title>
+				<xsl:if test="@xml:lang">
+					<xsl:attribute name="xml:lang" select="@xml:lang"/>
+				</xsl:if>
 				<xsl:value-of select="res:binding[@name='title']/res:literal"/>
 			</dcterms:title>
 			<dcterms:description>
+				<xsl:if test="@xml:lang">
+					<xsl:attribute name="xml:lang" select="@xml:lang"/>
+				</xsl:if>
 				<xsl:value-of select="res:binding[@name='description']/res:literal"/>
 			</dcterms:description>
 			<dcterms:publisher>
 				<xsl:value-of select="res:binding[@name='publisher']/res:literal"/>
 			</dcterms:publisher>
-			<dcterms:license rdf:resource="{res:binding[@name='license']/res:uri}"/>
+			<xsl:if test="res:binding[@name='license']">
+				<dcterms:license>
+					<xsl:choose>
+						<xsl:when test="res:uri">
+							<xsl:attribute name="rdf:resource" select="res:uri"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="res:literal"/>
+						</xsl:otherwise>
+					</xsl:choose>
+				</dcterms:license>
+			</xsl:if>
+			<xsl:if test="res:binding[@name='rights']">
+				<dcterms:rights>
+					<xsl:choose>
+						<xsl:when test="res:uri">
+							<xsl:attribute name="rdf:resource" select="res:uri"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="res:literal"/>
+						</xsl:otherwise>
+					</xsl:choose>
+				</dcterms:rights>
+			</xsl:if>
 			<dcterms:isPartOf rdf:source="{$url}#objects"/>
 		</void:Dataset>
 	</xsl:template>
