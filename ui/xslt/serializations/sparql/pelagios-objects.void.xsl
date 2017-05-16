@@ -41,7 +41,7 @@
 		<void:Dataset rdf:about="{res:binding[@name='dataset']/res:uri}">
 			<xsl:apply-templates
 				select="res:binding[@name='title']|res:binding[@name='description']|res:binding[@name='publisher']/res:literal|res:binding[@name='license']|res:binding[@name='rights']"
-				mode="metadata"/>
+				mode="dcterms"/>
 			<dcterms:isPartOf rdf:source="{$url}#objects"/>
 		</void:Dataset>
 	</xsl:template>
