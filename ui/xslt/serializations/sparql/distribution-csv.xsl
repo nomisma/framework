@@ -174,6 +174,9 @@
 				<xsl:text>&#x0A;</xsl:text>
 			</xsl:if>
 		</xsl:for-each>
+		<xsl:if test="not(position() = last())">
+			<xsl:text>&#x0A;</xsl:text>
+		</xsl:if>
 	</xsl:template>
 	
 	<xsl:template match="res:result" mode="getMetrical">

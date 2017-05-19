@@ -162,6 +162,10 @@
 		<div class="container-fluid content">
 			<div class="row">
 				<div class="col-md-{if ($hasMints = true() or $hasFindspots = true()) then '6' else '9'}">
+					<xsl:if test="$hasTypes = true()">
+						<a href="#quant">Quantitative Analysis</a>
+					</xsl:if>
+					
 					<xsl:apply-templates select="/content/rdf:RDF/*" mode="type"/>
 				</div>
 				<div class="col-md-{if ($hasMints = true() or $hasFindspots = true()) then '6' else '3'}">					
@@ -246,9 +250,12 @@
 			<!-- display quantitative analysis template if there are coin types associated with the concept -->
 			<xsl:if test="$hasTypes = true()">
 				<div class="row">
-					<div class="col-md-12 page-section">
+					<div class="col-md-12 page-section" id="quant">
 						<h2>Quantitative Analysis</h2>
 						<xsl:call-template name="distribution-form">
+							<xsl:with-param name="mode" select="$mode"/>
+						</xsl:call-template>
+						<xsl:call-template name="metrical-form">
 							<xsl:with-param name="mode" select="$mode"/>
 						</xsl:call-template>
 					</div>

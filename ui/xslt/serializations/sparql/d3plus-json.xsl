@@ -199,7 +199,8 @@
 					<xsl:value-of select="."/>
 				</xsl:when>
 				<xsl:when test=". castable as xs:gYear">
-					<xsl:value-of select="concat('&#x022;', ., '&#x022;')"/>
+					<!--<xsl:value-of select="concat('&#x022;', ., '&#x022;')"/>-->
+					<xsl:value-of select="number(.)"/>
 				</xsl:when>
 				<xsl:when test=". castable as xs:integer or . castable as xs:decimal">
 					<xsl:value-of select="."/>

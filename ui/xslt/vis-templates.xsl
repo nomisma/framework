@@ -2,8 +2,8 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/"
 	xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/"
-	xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:org="http://www.w3.org/ns/org#" xmlns:nomisma="http://nomisma.org/"
-	xmlns:nmo="http://nomisma.org/ontology#" xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" exclude-result-prefixes="#all" version="2.0">
+	xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:org="http://www.w3.org/ns/org#" xmlns:nomisma="http://nomisma.org/" xmlns:nmo="http://nomisma.org/ontology#"
+	xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" exclude-result-prefixes="#all" version="2.0">
 
 	<!-- distribution params -->
 	<xsl:param name="dist" select="doc('input:request')/request/parameters/parameter[name = 'dist']/value"/>
@@ -21,11 +21,23 @@
 	<!-- ********** VISUALIZATION TEMPLATES *********** -->
 	<xsl:template name="metrical-form">
 		<xsl:param name="mode"/>
+		<xsl:if test="$mode = 'record'">
+			<hr/>
+		</xsl:if>
+		
+		<h3>
+			<xsl:text>Measurement Analysis</xsl:text>
+			<xsl:if test="$mode = 'record'">
+				<xsl:call-template name="toggle-button">
+					<xsl:with-param name="form">metrical</xsl:with-param>
+				</xsl:call-template>
+			</xsl:if>
+		</h3>
 
 		<div>
 			<xsl:if test="$mode = 'record'">
 				<xsl:attribute name="id">metrical</xsl:attribute>
-				<hr/>
+				<xsl:attribute name="style">display:none</xsl:attribute>
 			</xsl:if>
 
 			<!-- display chart div when applicable, with additional filtering options -->
@@ -45,8 +57,6 @@
 					</xsl:call-template>
 				</xsl:when>
 			</xsl:choose>
-
-			<h3>Measurement Analysis</h3>
 			<form role="form" id="metricalForm" class="quant-form" method="get">
 				<xsl:attribute name="action">
 					<xsl:choose>
@@ -97,9 +107,9 @@
 				<xsl:if test="$mode = 'record'">
 					<div class="form-inline">
 						<h4>Additional Filters</h4>
-						<p>Include additional filters to the basic distribution query for this concept. <a href="#" id="add-filter"><span
-									class="glyphicon glyphicon-plus"/>Add one</a></p>
-						<div id="filter-container">
+						<p>Include additional filters to the basic distribution query for this concept. <a href="#" class="add-filter"><span class="glyphicon glyphicon-plus"/>Add
+								one</a></p>
+						<div class="filter-container">
 							<div class="bg-danger text-danger duplicate-date-alert danger-box hidden">
 								<span class="glyphicon glyphicon-exclamation-sign"/>
 								<strong>Alert:</strong> There must not be more than one from or to date.</div>
@@ -125,8 +135,8 @@
 				<!-- display optional date range last -->
 				<div>
 					<h4>Date Range</h4>
-					<p>You may select both a start and end date to display change in measurement(s) over time in the form of a line chart. An average will be
-						taken for the selected interval over the entire duration.</p>
+					<p>You may select both a start and end date to display change in measurement(s) over time in the form of a line chart. An average will be taken for the selected
+						interval over the entire duration.</p>
 					<div class="bg-danger text-danger measurementRange-alert danger-box hidden">
 						<span class="glyphicon glyphicon-exclamation-sign"/>
 						<strong>Alert:</strong> Inputted date range is invalid and/or interval is not set.</div>
@@ -202,18 +212,30 @@
 					</div>
 				</div>
 
-				<input type="submit" value="Generate" class="btn btn-default" id="visualize-submit" disabled="disabled"/>
+				<input type="submit" value="Generate" class="btn btn-default visualize-submit" disabled="disabled"/>
 			</form>
 		</div>
 	</xsl:template>
 
 	<xsl:template name="distribution-form">
 		<xsl:param name="mode"/>
+		
+		<!--<xsl:if test="$mode = 'record'">
+			<hr/>
+		</xsl:if>-->
+		<h3>
+			<xsl:text>Typological Distribution</xsl:text>
+			<xsl:if test="$mode = 'record'">
+				<xsl:call-template name="toggle-button">
+					<xsl:with-param name="form">distribution</xsl:with-param>
+				</xsl:call-template>
+			</xsl:if>
+		</h3>
 
 		<div>
 			<xsl:if test="$mode = 'record'">
-				<xsl:attribute name="id">quant</xsl:attribute>
-				<hr/>
+				<xsl:attribute name="id">distribution</xsl:attribute>
+				<xsl:attribute name="style">display:none</xsl:attribute>
 			</xsl:if>
 
 			<!-- display chart div when applicable, with additional filtering options -->
@@ -234,7 +256,6 @@
 				</xsl:when>
 			</xsl:choose>
 
-			<h3>Typological Distribution</h3>
 			<form role="form" id="distributionForm" class="quant-form" method="get">
 				<xsl:attribute name="action">
 					<xsl:choose>
@@ -284,9 +305,9 @@
 				<xsl:if test="$mode = 'record'">
 					<div class="form-inline">
 						<h4>Additional Filters</h4>
-						<p>Include additional filters to the basic distribution query for this concept. <a href="#" id="add-filter"><span
-									class="glyphicon glyphicon-plus"/>Add one</a></p>
-						<div id="filter-container">
+						<p>Include additional filters to the basic distribution query for this concept. <a href="#" class="add-filter"><span class="glyphicon glyphicon-plus"/>Add
+								one</a></p>
+						<div class="filter-container">
 							<div class="bg-danger text-danger duplicate-date-alert danger-box hidden">
 								<span class="glyphicon glyphicon-exclamation-sign"/>
 								<strong>Alert:</strong> There must not be more than one from or to date.</div>
@@ -310,7 +331,7 @@
 					</xsl:call-template>
 				</xsl:if>
 
-				<input type="submit" value="Generate" class="btn btn-default" id="visualize-submit" disabled="disabled"/>
+				<input type="submit" value="Generate" class="btn btn-default visualize-submit" disabled="disabled"/>
 			</form>
 		</div>
 	</xsl:template>
@@ -325,11 +346,17 @@
 				else
 					'getDistribution'"/>
 
-		<div id="chart-container">
-			<xsl:if test="$hidden = true()">
-				<xsl:attribute name="class">hidden</xsl:attribute>
-			</xsl:if>
-			<div id="chart"/>
+		<div>
+			<xsl:choose>
+				<xsl:when test="$hidden = true()">
+					<xsl:attribute name="class">hidden chart-container</xsl:attribute>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:attribute name="class">chart-container</xsl:attribute>
+				</xsl:otherwise>
+			</xsl:choose>
+
+			<div id="{$interface}-chart"/>
 
 			<!-- only display model-generated link when there are URL params (distribution page) -->
 			<div style="margin-bottom:10px;" class="control-row text-center">
@@ -381,7 +408,7 @@
 									<param>
 										<xsl:value-of select="concat('analysisType=', $analysisType)"/>
 									</param>
-								</xsl:if>								
+								</xsl:if>
 								<xsl:for-each select="$compare">
 									<param>
 										<xsl:value-of select="concat('compare=', normalize-space(.))"/>
@@ -427,8 +454,8 @@
 				</properties>
 			</xsl:variable>
 
-			<p>Select a category below to generate a graph showing the quantitative distribution for the following queries. The distribution is based on coin
-				type data aggregated into Nomisma.</p>
+			<p>Select a category below to generate a graph showing the quantitative distribution for the following queries. The distribution is based on coin type data aggregated
+				into Nomisma.</p>
 			<select name="dist" class="form-control" id="categorySelect">
 				<option value="">Select...</option>
 				<xsl:choose>
@@ -462,8 +489,8 @@
 	<xsl:template name="measurement-categories">
 		<div class="form-group">
 			<h4>Measurement Type</h4>
-			<p>Select the measurement type below for visualization. Measurement queries are executed across all coins harvested in Nomisma.org, regardless
-				connection to coin type URIs.</p>
+			<p>Select the measurement type below for visualization. Measurement queries are executed across all coins harvested in Nomisma.org, regardless connection to coin type
+				URIs.</p>
 			<select name="measurement" class="form-control" id="measurementSelect">
 				<option value="">Select...</option>
 				<option value="nmo:hasWeight">
@@ -491,11 +518,10 @@
 					<xsl:when test="$mode = 'page'">Compare Queries</xsl:when>
 				</xsl:choose>
 			</h4>
-			<p>You can compare multiple queries to generate a more complex chart. Note that the value for each category for comparison is refined by previous
-				selections in that group. For example, if the first category in a Group is "Denomination: Denarius", and Mint is select as the second category,
-				the drop-down menu will include only those mints that produced denarii. <a href="#" id="add-compare"><span class="glyphicon glyphicon-plus"/>Add
-					query</a></p>
-			<div id="compare-master-container">
+			<p>You can compare multiple queries to generate a more complex chart. Note that the value for each category for comparison is refined by previous selections in that
+				group. For example, if the first category in a Group is "Denomination: Denarius", and Mint is select as the second category, the drop-down menu will include only
+				those mints that produced denarii. <a href="#" class="add-compare"><span class="glyphicon glyphicon-plus"/>Add query</a></p>
+			<div class="compare-master-container">
 				<xsl:for-each select="$compare">
 					<xsl:call-template name="compare-container-template">
 						<xsl:with-param name="template" as="xs:boolean">false</xsl:with-param>
@@ -570,7 +596,7 @@
 				<xsl:variable name="pieces" select="tokenize($query, ';')"/>
 				<xsl:for-each select="$pieces">
 					<xsl:variable name="position" select="position()"/>
-					
+
 					<xsl:call-template name="field-template">
 						<xsl:with-param name="template" as="xs:boolean">false</xsl:with-param>
 						<xsl:with-param name="mode">compare</xsl:with-param>
@@ -617,7 +643,7 @@
 								<span class="hidden filter">
 									<xsl:value-of select="$filter"/>
 								</span>
-							</xsl:if>							
+							</xsl:if>
 						</xsl:otherwise>
 					</xsl:choose>
 				</xsl:if>
@@ -687,6 +713,16 @@
 			</xsl:if>
 			<xsl:value-of select="."/>
 		</option>
+	</xsl:template>
+
+	<xsl:template name="toggle-button">
+		<xsl:param name="form"/>
+
+		<small>
+			<a href="#" class="toggle-button" id="toggle-{$form}" title="Click to hide or show the analysis form">
+				<span class="glyphicon glyphicon-triangle-right"/>
+			</a>
+		</small>
 	</xsl:template>
 
 </xsl:stylesheet>
