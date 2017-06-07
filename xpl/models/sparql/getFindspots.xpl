@@ -26,6 +26,7 @@
 						<xsl:choose>
 							<xsl:when test="/request/parameters/parameter[name='id']/value">id</xsl:when>
 							<xsl:when test="/request/parameters/parameter[name='coinType']/value">coinType</xsl:when>
+							<xsl:when test="/request/parameters/parameter[name='symbol']/value">symbol</xsl:when>
 						</xsl:choose>
 					</type>
 				</xsl:template>
@@ -337,6 +338,93 @@
 						
 						<xsl:template match="/">
 							<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'COINTYPE', $coinType))), '&amp;output=xml')"/>
+							
+							<config>
+								<url>
+									<xsl:value-of select="$service"/>
+								</url>
+								<content-type>application/xml</content-type>
+								<encoding>utf-8</encoding>
+							</config>
+						</xsl:template>
+						
+					</xsl:stylesheet>
+				</p:input>
+				<p:output name="data" id="url-generator-config"/>
+			</p:processor>
+			
+			<!-- execute SPARQL query -->
+			<p:processor name="oxf:url-generator">
+				<p:input name="config" href="#url-generator-config"/>
+				<p:output name="data" ref="data"/>
+			</p:processor>
+		</p:when>
+		<p:when test="/type = 'symbol'">
+			<!-- execute SPARQL queries for findspots and hoards for coin types with the symbol HTTP request parameter -->
+			<p:choose href="#api">
+				<p:when test="/api = 'heatmap'">
+					<p:processor name="oxf:url-generator">
+						<p:input name="config">
+							<config>
+								<url>oxf:/apps/nomisma/ui/sparql/heatmap_symbol.sparql</url>
+								<content-type>text/plain</content-type>
+								<encoding>utf-8</encoding>
+							</config>
+						</p:input>
+						<p:output name="data" id="sparql-query"/>
+					</p:processor>
+				</p:when>
+				<p:when test="/api = 'getFindspots'">
+					<p:processor name="oxf:url-generator">
+						<p:input name="config">
+							<config>
+								<url>oxf:/apps/nomisma/ui/sparql/getFindspots_symbol.sparql</url>
+								<content-type>text/plain</content-type>
+								<encoding>utf-8</encoding>
+							</config>
+						</p:input>
+						<p:output name="data" id="sparql-query"/>
+					</p:processor>
+				</p:when>
+				<p:when test="/api = 'getHoards'">
+					<p:processor name="oxf:url-generator">
+						<p:input name="config">
+							<config>
+								<url>oxf:/apps/nomisma/ui/sparql/getHoards_symbol.sparql</url>
+								<content-type>text/plain</content-type>
+								<encoding>utf-8</encoding>
+							</config>
+						</p:input>
+						<p:output name="data" id="sparql-query"/>
+					</p:processor>
+				</p:when>
+			</p:choose>
+			
+			<!-- convert text into an XML document for use in XSLT -->
+			<p:processor name="oxf:text-converter">
+				<p:input name="data" href="#sparql-query"/>
+				<p:input name="config">
+					<config/>
+				</p:input>
+				<p:output name="data" id="sparql-query-document"/>
+			</p:processor>
+			
+			<!-- generate the SPARQL query -->
+			<p:processor name="oxf:unsafe-xslt">
+				<p:input name="request" href="#request"/>
+				<p:input name="query" href="#sparql-query-document"/>
+				<p:input name="data" href=" ../../../config.xml"/>
+				<p:input name="config">
+					<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+						<!-- request params -->
+						<xsl:param name="uri" select="doc('input:request')/request/parameters/parameter[name='symbol']/value"/>
+						
+						<!-- config, SPARQL query variables -->
+						<xsl:variable name="sparql_endpoint" select="/config/sparql_query"/>
+						<xsl:variable name="query" select="doc('input:query')"/>
+						
+						<xsl:template match="/">
+							<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, '%URI%', $uri))), '&amp;output=xml')"/>
 							
 							<config>
 								<url>

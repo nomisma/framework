@@ -1,0 +1,25 @@
+PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:  <http://purl.org/dc/terms/>
+PREFIX nm:       <http://nomisma.org/id/>
+PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX osgeo:	<http://data.ordnancesurvey.co.uk/ontology/geometry/>
+
+SELECT DISTINCT ?place ?label ?lat ?long ?poly WHERE {
+   {
+    SELECT ?side WHERE {
+    	?side nmo:hasMonogram <%URI%>
+    }
+  }
+  ?coinType ?prop ?side .
+  MINUS {?coinType dcterms:isReplacedBy ?replaced}
+ {?coinType nmo:hasMint ?place .
+  ?place geo:location ?loc .
+  ?loc geo:lat ?lat ;
+       geo:long ?long }
+UNION {?coinType nmo:hasMint ?place .
+  ?place geo:location ?loc .
+  ?loc osgeo:asGeoJSON ?poly }
+    ?place skos:prefLabel ?label . FILTER langMatches(lang(?label), "en")
+}
