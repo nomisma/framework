@@ -669,9 +669,10 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 				<p>Get all individual find spots for a given skos:Concept defined by the id parameter or for a given coin type (nmo:TypeSeriesItem) defined by the coinType parameter<br/>
 					<b>Webservice Type</b> : REST<br/>
 					<b>Url</b> : nomisma.org/getFindspots?<br/>
-					<b>Parameters</b> : id (of Nomisma ID) OR coinType (full URI for a coin type)<br/>
+					<b>Parameters</b> : id (of Nomisma ID) OR coinType (full URI for a coin type) OR symbol (full URI for a symbol [monogram, mint mark, etc.])<br/>
 					<b>Result</b> : returns geoJSON for features (points or polygons)<br/>
-					<b>Examples</b>: <a href="apis/getFindspots?id=denarius">apis/getFindspots?id=denarius</a>, <a href="apis/getFindspots?coinType=http://numismatics.org/crro/id/rrc-408.1a">apis/getFindspots?coinType=http://numismatics.org/crro/id/rrc-408.1a</a>
+					<b>Examples</b>: <a href="apis/getFindspots?id=denarius">apis/getFindspots?id=denarius</a>, <a href="apis/getFindspots?coinType=http://numismatics.org/crro/id/rrc-408.1a">apis/getFindspots?coinType=http://numismatics.org/crro/id/rrc-408.1a</a>,
+					<a href="apis/getFindspots?symbol=http://numismatics.org/ocre/symbol/monogram.ric.10.marcian.1">apis/getFindspots?symbol=http://numismatics.org/ocre/symbol/monogram.ric.10.marcian.1</a>
 				</p>
 			</div>
 			<div class="highlight">
@@ -680,9 +681,10 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 				<p>Get all hoards associated with a given skos:Concept defined by the id parameter or for a given coin type (nmo:TypeSeriesItem) defined by the coinType parameter. If the skos:Concept is a hoard, then only one point is returned.<br/>
 					<b>Webservice Type</b> : REST<br/>
 					<b>Url</b> : nomisma.org/getHoards?<br/>
-					<b>Parameters</b> : id (of Nomisma ID) OR coinType (full URI for a coin type)<br/>
+					<b>Parameters</b> : id (of Nomisma ID) OR coinType (full URI for a coin type) OR symbol (full URI for a symbol [monogram, mint mark, etc.])<br/>
 					<b>Result</b> : returns geoJSON for features (points or polygons)<br/>
-					<b>Examples</b>: <a href="apis/getHoards?id=denarius">apis/getHoards?id=denarius</a>, <a href="apis/getHoards?coinType=http://numismatics.org/crro/id/rrc-408.1a">apis/getHoards?coinType=http://numismatics.org/crro/id/rrc-408.1a</a>
+					<b>Examples</b>: <a href="apis/getHoards?id=denarius">apis/getHoards?id=denarius</a>, <a href="apis/getHoards?coinType=http://numismatics.org/crro/id/rrc-408.1a">apis/getHoards?coinType=http://numismatics.org/crro/id/rrc-408.1a</a>,
+					<a href="apis/getHoards?symbol=http://numismatics.org/ocre/symbol/monogram.ric.10.marcian.1">apis/getHoards?symbol=http://numismatics.org/ocre/symbol/monogram.ric.10.marcian.1</a>
 				</p>
 			</div>
 			<div class="highlight">
@@ -692,9 +694,9 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 					skos:Concept is a mint or region, then only one point or polygon is returned.<br/>
 					<b>Webservice Type</b> : REST<br/>
 					<b>Url</b> : nomisma.org/getMints?<br/>
-					<b>Parameters</b> : id (of Nomisma ID)<br/>
+					<b>Parameters</b> : id (of Nomisma ID) OR symbol (full URI for a symbol [monogram, mint mark, etc.])<br/>
 					<b>Result</b> : returns geoJSON for features (points or polygons)<br/>
-					<b>Examples</b>: <a href="apis/getMints?id=denarius">apis/getMints?id=denarius</a>
+					<b>Examples</b>: <a href="apis/getMints?id=denarius">apis/getMints?id=denarius</a>, <a href="apis/getMints?symbol=http://numismatics.org/ocre/symbol/monogram.ric.10.marcian.1">apis/getMints?symbol=http://numismatics.org/ocre/symbol/monogram.ric.10.marcian.1</a>
 				</p>
 			</div>
 			<div class="highlight">
