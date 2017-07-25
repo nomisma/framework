@@ -75,6 +75,7 @@
 		</div>
 	</xsl:template>
 
+	<!-- SPARQL DESCRIBE/CONSTRUCT response -->
 	<xsl:template match="rdf:RDF">
 		<h1>Results</h1>
 		<xsl:choose>
@@ -98,6 +99,7 @@
 		</xsl:choose>
 	</xsl:template>
 
+	<!-- SPARQL SELECT response -->
 	<xsl:template match="res:sparql">
 		<!-- evaluate the type of response to handle ASK and SELECT -->
 		<xsl:choose>

@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="http://www.w3.org/2005/sparql-results#"
-	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
-	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:nomisma="http://nomisma.org/" exclude-result-prefixes="#all" version="2.0">
+	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:nomisma="http://nomisma.org/"
+	exclude-result-prefixes="#all" version="2.0">
 	<xsl:include href="../../functions.xsl"/>
 
 	<xsl:param name="api" select="tokenize(doc('input:request')/request/request-url, '/')[last()]"/>
-	<xsl:param name="findType" select="if ($api = 'getFindspots') then 'find' else if ($api='getHoards') then 'hoard' else ''"/>
+	<xsl:param name="findType" select="
+			if ($api = 'getFindspots') then
+				'find'
+			else
+				if ($api = 'getHoards') then
+					'hoard'
+				else
+					''"/>
 
 	<xsl:template match="/*[1]">
 		<xsl:choose>
@@ -14,13 +22,13 @@
 					<xsl:when test="geo:SpatialThing/osgeo:asGeoJSON">
 						<xsl:apply-templates select="geo:SpatialThing" mode="poly">
 							<xsl:with-param name="uri" select="*[1]/@rdf:about"/>
-							<xsl:with-param name="label" select="*[1]/skos:prefLabel[@xml:lang='en']"/>
+							<xsl:with-param name="label" select="*[1]/skos:prefLabel[@xml:lang = 'en']"/>
 						</xsl:apply-templates>
 					</xsl:when>
 					<xsl:when test="geo:SpatialThing/geo:lat and geo:SpatialThing/geo:long">
 						<xsl:apply-templates select="geo:SpatialThing" mode="point">
 							<xsl:with-param name="uri" select="*[1]/@rdf:about"/>
-							<xsl:with-param name="label" select="*[1]/skos:prefLabel[@xml:lang='en']"/>
+							<xsl:with-param name="label" select="*[1]/skos:prefLabel[@xml:lang = 'en']"/>
 						</xsl:apply-templates>
 					</xsl:when>
 					<xsl:otherwise>{}</xsl:otherwise>
@@ -29,9 +37,35 @@
 			<xsl:when test="namespace-uri() = 'http://www.w3.org/2005/sparql-results#'">
 				<xsl:choose>
 					<xsl:when test="count(descendant::res:result) &gt; 0">
-						<xsl:text>{"type": "FeatureCollection","features": [</xsl:text>
-						<xsl:apply-templates select="descendant::res:result"/>
-						<xsl:text>]}</xsl:text>
+						<!-- evaluate API and construct the attributes according to GeoJSON-T -->
+
+						<xsl:choose>
+							<xsl:when test="$api = 'getFindspots'">
+								<xsl:text>{"type": "FeatureCollection","features": [</xsl:text>
+								<xsl:apply-templates select="descendant::res:result"/>
+								<xsl:text>]}</xsl:text>
+							</xsl:when>
+							<xsl:when test="$api = 'getHoards'">
+								<xsl:variable name="coinType" select="doc('input:request')/request/parameters/parameter[name = 'coinType']/value"/>
+								<xsl:variable name="id" select="tokenize($coinType, '/')[last()]"/>
+								<!-- read timespans -->
+								<xsl:variable name="fromDate" select="number(min(descendant::res:binding[@name = 'closingDate']/res:literal))"/>
+								<xsl:variable name="toDate" select="number(max(descendant::res:binding[@name = 'closingDate']/res:literal))"/>
+								<xsl:variable name="attributes">
+									"segmentType": "journey", "description": "Hoard distribution
+									for a coin type", "uri": "<xsl:value-of select="$coinType"/>", "title": "<xsl:value-of select="$coinType"/>", "timespan": "[<xsl:value-of
+										select="$fromDate"/>,,,<xsl:value-of select="$toDate"/>,]", "lp_id": "<xsl:value-of select="$id"/>"
+								</xsl:variable>
+								
+								
+								<xsl:text>{"type": "FeatureCollection","attributes":{</xsl:text>
+								<xsl:value-of select="normalize-space($attributes)"/>
+								<xsl:text>},"features": [</xsl:text>
+								<xsl:apply-templates select="descendant::res:result"/>
+								<xsl:text>]}</xsl:text>
+							</xsl:when>
+						</xsl:choose>
+
 					</xsl:when>
 					<xsl:otherwise>{}</xsl:otherwise>
 				</xsl:choose>
@@ -85,62 +119,75 @@
 
 	<xsl:template match="res:result">
 		<xsl:choose>
-			<xsl:when test="res:binding[@name='poly']">
+			<xsl:when test="res:binding[@name = 'poly']">
 				<xsl:text>{"type": "Feature","geometry":</xsl:text>
-				<xsl:value-of select="res:binding[@name='poly']/res:literal"/>
+				<xsl:value-of select="res:binding[@name = 'poly']/res:literal"/>
 				<xsl:text>,"label": ",</xsl:text>
-				<xsl:value-of select="res:binding[@name='label']/res:literal"/>
+				<xsl:value-of select="res:binding[@name = 'label']/res:literal"/>
 				<xsl:text>", "properties": {"toponym": "</xsl:text>
-				<xsl:value-of select="res:binding[@name='label']/res:literal"/>
+				<xsl:value-of select="res:binding[@name = 'label']/res:literal"/>
 				<xsl:text>", "gazetteer_label": "</xsl:text>
-				<xsl:value-of select="res:binding[@name='label']/res:literal"/>
+				<xsl:value-of select="res:binding[@name = 'label']/res:literal"/>
 				<xsl:text>", "gazetteer_uri": "</xsl:text>
-				<xsl:value-of select="res:binding[@name='place']/res:uri"/>
+				<xsl:value-of select="res:binding[@name = 'place']/res:uri"/>
 				<xsl:text>","type": "</xsl:text>
-				<xsl:value-of select="if ($api = 'getMints') then 'region' else $findType"/>
+				<xsl:value-of select="
+						if ($api = 'getMints') then
+							'region'
+						else
+							$findType"/>
 				<xsl:text>"</xsl:text>
 				<xsl:text>}}</xsl:text>
-				<xsl:if test="not(position()=last())">
+				<xsl:if test="not(position() = last())">
 					<xsl:text>,</xsl:text>
 				</xsl:if>
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:text>{"type": "Feature","label":"</xsl:text>
-				<xsl:value-of select="if (res:binding[@name='hoardLabel']/res:literal) then res:binding[@name='hoardLabel']/res:literal else res:binding[@name='label']/res:literal"/>
+				<xsl:value-of
+					select="
+						if (res:binding[@name = 'hoardLabel']/res:literal) then
+							res:binding[@name = 'hoardLabel']/res:literal
+						else
+							res:binding[@name = 'label']/res:literal"/>
 				<xsl:text>",</xsl:text>
-				<xsl:if test="res:binding[@name='hoard']/res:uri">
+				<xsl:if test="res:binding[@name = 'hoard']/res:uri">
 					<xsl:text>"id":"</xsl:text>
-					<xsl:value-of select="res:binding[@name='hoard']/res:uri"/>
+					<xsl:value-of select="res:binding[@name = 'hoard']/res:uri"/>
 					<xsl:text>",</xsl:text>
 				</xsl:if>
 				<!-- geometry -->
 				<xsl:text>"geometry": {"type": "Point","coordinates": [</xsl:text>
-				<xsl:value-of select="res:binding[@name='long']/res:literal"/>
+				<xsl:value-of select="res:binding[@name = 'long']/res:literal"/>
 				<xsl:text>, </xsl:text>
-				<xsl:value-of select="res:binding[@name='lat']/res:literal"/>
+				<xsl:value-of select="res:binding[@name = 'lat']/res:literal"/>
 				<xsl:text>]},</xsl:text>
 				<!-- when -->
-				<xsl:if test="res:binding[@name='closingDate']">
+				<xsl:if test="res:binding[@name = 'closingDate']">
 					<xsl:text>"when":{"timespans":[{</xsl:text>
 					<xsl:text>"start":"</xsl:text>
-					<xsl:value-of select="nomisma:xsdToIso(res:binding[@name='closingDate']/res:literal)"/>
+					<xsl:value-of select="nomisma:xsdToIso(res:binding[@name = 'closingDate']/res:literal)"/>
 					<xsl:text>","end":"</xsl:text>
-					<xsl:value-of select="nomisma:xsdToIso(res:binding[@name='closingDate']/res:literal)"/>
+					<xsl:value-of select="nomisma:xsdToIso(res:binding[@name = 'closingDate']/res:literal)"/>
 					<xsl:text>"</xsl:text>
 					<xsl:text>}]},</xsl:text>
 				</xsl:if>
 				<!-- properties -->
 				<xsl:text>"properties": {"toponym": "</xsl:text>
-				<xsl:value-of select="res:binding[@name='label']/res:literal"/>
+				<xsl:value-of select="res:binding[@name = 'label']/res:literal"/>
 				<xsl:text>","gazetteer_label": "</xsl:text>
-				<xsl:value-of select="res:binding[@name='label']/res:literal"/>
+				<xsl:value-of select="res:binding[@name = 'label']/res:literal"/>
 				<xsl:text>", "gazetteer_uri": "</xsl:text>
-				<xsl:value-of select="res:binding[@name='place']/res:uri"/>
+				<xsl:value-of select="res:binding[@name = 'place']/res:uri"/>
 				<xsl:text>","type": "</xsl:text>
-				<xsl:value-of select="if ($api = 'getMints') then 'mint' else $findType"/>
+				<xsl:value-of select="
+						if ($api = 'getMints') then
+							'mint'
+						else
+							$findType"/>
 				<xsl:text>"</xsl:text>
 				<xsl:text>}}</xsl:text>
-				<xsl:if test="not(position()=last())">
+				<xsl:if test="not(position() = last())">
 					<xsl:text>,</xsl:text>
 				</xsl:if>
 			</xsl:otherwise>
