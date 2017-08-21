@@ -81,6 +81,7 @@
 	<page path="/nomisma/apis/getMints" model="xpl/models/sparql/getMints.xpl" view="xpl/views/serializations/sparql/geojson.xpl"/>
 	<page path="/nomisma/apis/getFindspots" model="xpl/models/sparql/getFindspots.xpl" view="xpl/views/serializations/sparql/geojson.xpl"/>
 	<page path="/nomisma/apis/getHoards" model="xpl/models/sparql/getFindspots.xpl" view="xpl/views/serializations/sparql/geojson.xpl"/>
+	<page path="/nomisma/apis/getGeoJsonForQuery" model="xpl/models/sparql/query.xpl" view="xpl/views/serializations/sparql/geojson.xpl"/>
 	<page path="/nomisma/apis/heatmap" model="xpl/models/sparql/getFindspots.xpl" view="xpl/views/serializations/sparql/heatmap.xpl"/>	
 	<page path="/nomisma/apis/getRdf" model="xpl/models/rdf/aggregate-ids.xpl" view="xpl/views/serializations/apis/getRdf.xpl"/>
 	<page path="/nomisma/apis/regionHierarchy" model="xpl/models/sparql/regionHierarchy.xpl"  view="xpl/views/serializations/sparql/regionHierarchy.xpl"/>

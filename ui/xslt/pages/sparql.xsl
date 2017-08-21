@@ -50,7 +50,7 @@ PREFIX osgeo:	<http://data.ordnancesurvey.co.uk/ontology/geometry/>
 PREFIX rdac:	<http://www.rdaregistry.info/Elements/c/>
 PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
 PREFIX spatial: <http://jena.apache.org/spatial#>
-PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>
+PREFIX void:	<http://rdfs.org/ns/void#>
 PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
 
 SELECT * WHERE {

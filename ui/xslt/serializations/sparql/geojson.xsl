@@ -64,8 +64,41 @@
 								<xsl:apply-templates select="descendant::res:result"/>
 								<xsl:text>]}</xsl:text>
 							</xsl:when>
+							<xsl:when test="$api = 'getGeoJsonForQuery'">
+								<xsl:variable name="query" select="doc('input:request')/request/parameters/parameter[name='query']/value"/>
+								
+								<xsl:variable name="latParam">
+									<xsl:analyze-string select="$query"
+										regex="geo:lat\s+\?([a-zA-Z0-9_]+)">
+										
+										<xsl:matching-substring>
+											<xsl:value-of select="regex-group(1)"/>
+										</xsl:matching-substring>
+									</xsl:analyze-string>
+								</xsl:variable>
+								<xsl:variable name="longParam">
+									<xsl:analyze-string select="$query"
+										regex="geo:long\s+\?([a-zA-Z0-9_]+)">
+										
+										<xsl:matching-substring>
+											<xsl:value-of select="regex-group(1)"/>
+										</xsl:matching-substring>
+									</xsl:analyze-string>
+								</xsl:variable>
+								
+								
+								<xml>
+									<xsl:text>{"type": "FeatureCollection","features": [</xsl:text>
+									<xsl:apply-templates select="descendant::res:result" mode="query">
+										<xsl:with-param name="lat" select="$latParam"/>
+										<xsl:with-param name="long" select="$longParam"/>										
+									</xsl:apply-templates>
+									<xsl:text>]}</xsl:text>
+								</xml>
+								
+								
+							</xsl:when>
 						</xsl:choose>
-
 					</xsl:when>
 					<xsl:otherwise>{}</xsl:otherwise>
 				</xsl:choose>
@@ -116,7 +149,35 @@
 		<xsl:text>"</xsl:text>
 		<xsl:text>}}</xsl:text>
 	</xsl:template>
+	
+	<!-- GeoJSON result for general SPARQL query lat/long -->
+	<xsl:template match="res:result" mode="query">
+		<xsl:param name="lat"/>
+		<xsl:param name="long"/>
+		
+		<xsl:variable name="label" select="res:binding[1]/res:*"/>
+		
+		<xsl:text>{"type": "Feature","label":"</xsl:text>
+		<xsl:value-of select="$label"/>
+		<xsl:text>"</xsl:text>
+		<xsl:if test="matches($label, 'https?://')">
+			<xsl:text>,"id":"</xsl:text>
+			<xsl:value-of select="$label"/>
+			<xsl:text>"</xsl:text>
+		</xsl:if>
+		<xsl:text>,</xsl:text>
+		<!-- geometry -->
+		<xsl:text>"geometry": {"type": "Point","coordinates": [</xsl:text>
+		<xsl:value-of select="res:binding[@name = $long]/res:literal"/>
+		<xsl:text>, </xsl:text>
+		<xsl:value-of select="res:binding[@name = $lat]/res:literal"/>
+		<xsl:text>]}}</xsl:text>			
+		<xsl:if test="not(position() = last())">
+			<xsl:text>,</xsl:text>
+		</xsl:if>
+	</xsl:template>
 
+	<!-- other GeoJSON API responses -->
 	<xsl:template match="res:result">
 		<xsl:choose>
 			<xsl:when test="res:binding[@name = 'poly']">

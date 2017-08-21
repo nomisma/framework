@@ -5,11 +5,15 @@
 	<xsl:include href="../../functions.xsl"/>
 	<xsl:include href="../rdf/html-templates.xsl"/>
 
+	<xsl:param name="query" select="doc('input:request')/request/parameters/parameter[name='query']/value"/>
+
 	<xsl:variable name="display_path"/>
 
 	<xsl:variable name="namespaces" as="item()*">
 		<namespaces>
-			<namespace prefix="crm" uri="http://www.cidoc-crm.org/cidoc-crm/"/>
+			<namespace prefix="bio" uri="http://purl.org/vocab/bio/0.1/"/>
+			<namespace prefix="crm" uri="http://www.cidoc-crm.org/cidoc-crm/"/>			
+			<namespace prefix="dcmitype" uri="http://purl.org/dc/dcmitype/"/>
 			<namespace prefix="dcterms" uri="http://purl.org/dc/terms/"/>
 			<namespace prefix="foaf" uri="http://xmlns.com/foaf/0.1/"/>
 			<namespace prefix="geo" uri="http://www.w3.org/2003/01/geo/wgs84_pos#"/>
@@ -22,9 +26,18 @@
 			<namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
 			<namespace prefix="skos" uri="http://www.w3.org/2004/02/skos/core#"/>
 			<namespace prefix="spatial" uri="http://jena.apache.org/spatial#"/>
-			<namespace prefix="xsd" uri="http://www.w3.org/2001/XMLSchema#"/>
 			<namespace prefix="un" uri="http://www.owl-ontologies.com/Ontology1181490123.owl#"/>
+			<namespace prefix="void" uri="http://rdfs.org/ns/void#"/>			
+			<namespace prefix="xsd" uri="http://www.w3.org/2001/XMLSchema#"/>
 		</namespaces>
+	</xsl:variable>
+	
+	<xsl:variable name="hasGeo" as="xs:boolean">
+		<xsl:choose>
+			<xsl:when test="contains($query, 'geo:lat') and contains($query, 'geo:long')">true</xsl:when>
+			<xsl:otherwise>false</xsl:otherwise>
+		</xsl:choose>
+		
 	</xsl:variable>
 
 	<xsl:template match="/">
@@ -38,6 +51,16 @@
 				<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 				<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
 				<link rel="stylesheet" href="{$display_path}ui/css/style.css"/>
+				<xsl:if test="$hasGeo = true()">
+					<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css"/>
+					<link rel="stylesheet" href="{$display_path}ui/css/MarkerCluster.css"/>
+					<link rel="stylesheet" href="{$display_path}ui/css/MarkerCluster.Default.css"/>
+					<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"/>
+					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet.markercluster.js"/>
+					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet.ajax.min.js"/>
+					<script type="text/javascript" src="{$display_path}ui/javascript/sparql_map_functions.js"/>
+				</xsl:if>				
+				
 				<!-- google analytics -->
 				<xsl:if test="string(//config/google_analytics)">
 					<script type="text/javascript">
@@ -53,10 +76,6 @@
 		</html>
 	</xsl:template>
 
-	<!--ASK WHERE {
-	?s ?p ?o
-	}-->
-
 	<xsl:template name="body">
 		<div class="container-fluid content">
 			<div class="row">
@@ -69,7 +88,17 @@
 							<xsl:apply-templates select="descendant::rdf:RDF"/>
 						</xsl:when>
 					</xsl:choose>
-
+					
+					<!-- hidden variables -->
+					<div class="hidden">
+						<span id="mapboxKey">
+							<xsl:value-of select="/content/config/mapboxKey"/>
+						</span>
+						<span id="query">
+							<!--<xsl:value-of select="$query"/>-->
+							<xsl:value-of select="encode-for-uri($query)"/>
+						</span>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -105,6 +134,21 @@
 		<xsl:choose>
 			<xsl:when test="res:results">
 				<h1>Results</h1>
+				
+				<!-- display links to download -->
+				<ul class="list-inline">
+					<li><strong>Download: </strong></li>
+					<li><a href="./query?query={encode-for-uri($query)}&amp;output=csv">CSV</a></li>
+					<xsl:if test="$hasGeo = true()">
+						<li><a href="./apis/getGeoJsonForQuery?query={encode-for-uri($query)}">GeoJSON</a></li>
+					</xsl:if>
+				</ul>
+				
+				<!-- include map when applicable -->
+				<xsl:if test="$hasGeo = true()">
+					<div id="mapcontainer" class="map-normal"/>
+				</xsl:if>			
+				
 				<xsl:choose>
 					<xsl:when test="count(descendant::res:result) &gt; 0">
 						<table class="table table-striped">
