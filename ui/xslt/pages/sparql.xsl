@@ -54,7 +54,7 @@ PREFIX void:	<http://rdfs.org/ns/void#>
 PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
 
 SELECT * WHERE {
-?s ?p ?o
+  ?s ?p ?o
 } LIMIT 100]]></xsl:variable>
 
 		<div class="container-fluid content">
@@ -82,8 +82,10 @@ SELECT * WHERE {
 							<button type="submit" class="btn btn-default">Submit</button>
 						</div>
 						<div class="col-md-6">
-							<p class="text-info">This endpoint (<xsl:value-of select="concat(/config/url, 'query')"/>) supports content negotiation for the following content types: <i>text/html</i>,
-									<i>text/csv</i>, <i>text/plain</i>, <i>application/sparql-results+json</i>, and <i>application/sparql-results+xml</i></p>
+							<p class="text-info">This endpoint (<xsl:value-of select="concat(/config/url, 'query')"/>) supports content negotiation for the following content types with SELECT queries: <code>text/html</code>,
+									<code>text/csv</code>, <code>text/plain</code>, <code>application/sparql-results+json</code>, and <code>application/sparql-results+xml</code></p>
+						
+							<p class="text-info">When querying for geo:lat and geo:long properties, a map will be generated, and geographic data may be downloaded as GeoJSON and KML.</p>
 						</div>
 					</form>
 				</div>

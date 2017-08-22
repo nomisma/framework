@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="http://www.w3.org/2005/sparql-results#"
-	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" exclude-result-prefixes="#all" version="2.0">
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" exclude-result-prefixes="#all" version="2.0">
 	<xsl:include href="../../templates.xsl"/>
 	<xsl:include href="../../functions.xsl"/>
 	<xsl:include href="../rdf/html-templates.xsl"/>
 
-	<xsl:param name="query" select="doc('input:request')/request/parameters/parameter[name='query']/value"/>
+	<xsl:param name="query" select="doc('input:request')/request/parameters/parameter[name = 'query']/value"/>
 
 	<xsl:variable name="display_path"/>
 
 	<xsl:variable name="namespaces" as="item()*">
 		<namespaces>
 			<namespace prefix="bio" uri="http://purl.org/vocab/bio/0.1/"/>
-			<namespace prefix="crm" uri="http://www.cidoc-crm.org/cidoc-crm/"/>			
+			<namespace prefix="crm" uri="http://www.cidoc-crm.org/cidoc-crm/"/>
 			<namespace prefix="dcmitype" uri="http://purl.org/dc/dcmitype/"/>
 			<namespace prefix="dcterms" uri="http://purl.org/dc/terms/"/>
 			<namespace prefix="foaf" uri="http://xmlns.com/foaf/0.1/"/>
@@ -27,17 +27,29 @@
 			<namespace prefix="skos" uri="http://www.w3.org/2004/02/skos/core#"/>
 			<namespace prefix="spatial" uri="http://jena.apache.org/spatial#"/>
 			<namespace prefix="un" uri="http://www.owl-ontologies.com/Ontology1181490123.owl#"/>
-			<namespace prefix="void" uri="http://rdfs.org/ns/void#"/>			
+			<namespace prefix="void" uri="http://rdfs.org/ns/void#"/>
 			<namespace prefix="xsd" uri="http://www.w3.org/2001/XMLSchema#"/>
 		</namespaces>
 	</xsl:variable>
-	
+
 	<xsl:variable name="hasGeo" as="xs:boolean">
+		<!-- evaluate response -->
 		<xsl:choose>
-			<xsl:when test="contains($query, 'geo:lat') and contains($query, 'geo:long')">true</xsl:when>
-			<xsl:otherwise>false</xsl:otherwise>
+			<!-- when the response is RDF, this is a CONSTRUCT or DESCRIBE query, so evaluate presense of coordinates in RDF -->
+			<xsl:when test="/content/*[1]/namespace-uri() = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'">
+				<xsl:choose>
+					<xsl:when test="descendant::geo:lat and descendant::geo:long">true</xsl:when>
+					<xsl:otherwise>false</xsl:otherwise>
+				</xsl:choose>
+			</xsl:when>
+			<xsl:otherwise>
+				<!-- otherwise evaluate on whether the query itself contains the geo properties -->
+				<xsl:choose>
+					<xsl:when test="contains($query, 'geo:lat') and contains($query, 'geo:long')">true</xsl:when>
+					<xsl:otherwise>false</xsl:otherwise>
+				</xsl:choose>
+			</xsl:otherwise>
 		</xsl:choose>
-		
 	</xsl:variable>
 
 	<xsl:template match="/">
@@ -59,8 +71,8 @@
 					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet.markercluster.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet.ajax.min.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/sparql_map_functions.js"/>
-				</xsl:if>				
-				
+				</xsl:if>
+
 				<!-- google analytics -->
 				<xsl:if test="string(//config/google_analytics)">
 					<script type="text/javascript">
@@ -88,7 +100,7 @@
 							<xsl:apply-templates select="descendant::rdf:RDF"/>
 						</xsl:when>
 					</xsl:choose>
-					
+
 					<!-- hidden variables -->
 					<div class="hidden">
 						<span id="mapboxKey">
@@ -107,6 +119,36 @@
 	<!-- SPARQL DESCRIBE/CONSTRUCT response -->
 	<xsl:template match="rdf:RDF">
 		<h1>Results</h1>
+
+		<!-- display links to download -->
+		<ul class="list-inline">
+			<li>
+				<strong>Download: </strong>
+			</li>
+			<li>
+				<a href="./query?query={encode-for-uri($query)}&amp;output=xml">RDF/XML</a>
+			</li>
+			<li>
+				<a href="./query?query={encode-for-uri($query)}&amp;output=text">Turtle</a>
+			</li>
+			<li>
+				<a href="./query?query={encode-for-uri($query)}&amp;output=json">JSON-LD</a>
+			</li>
+			<xsl:if test="$hasGeo = true()">
+				<li>
+					<a href="./apis/getGeoJsonForQuery?query={encode-for-uri($query)}">GeoJSON</a>
+				</li>
+				<li>
+					<a href="./apis/getKmlForQuery?query={encode-for-uri($query)}">KML</a>
+				</li>
+			</xsl:if>
+		</ul>
+
+		<!-- include map when applicable -->
+		<xsl:if test="$hasGeo = true()">
+			<div id="mapcontainer" class="map-normal"/>
+		</xsl:if>
+
 		<xsl:choose>
 			<xsl:when test="count(*) &gt; 0">
 				<table class="table table-striped">
@@ -118,7 +160,7 @@
 								</td>
 							</tr>
 						</xsl:for-each>
-						
+
 					</tbody>
 				</table>
 			</xsl:when>
@@ -134,21 +176,30 @@
 		<xsl:choose>
 			<xsl:when test="res:results">
 				<h1>Results</h1>
-				
+
 				<!-- display links to download -->
 				<ul class="list-inline">
-					<li><strong>Download: </strong></li>
-					<li><a href="./query?query={encode-for-uri($query)}&amp;output=csv">CSV</a></li>
+					<li>
+						<strong>Download: </strong>
+					</li>
+					<li>
+						<a href="./query?query={encode-for-uri($query)}&amp;output=csv">CSV</a>
+					</li>
 					<xsl:if test="$hasGeo = true()">
-						<li><a href="./apis/getGeoJsonForQuery?query={encode-for-uri($query)}">GeoJSON</a></li>
+						<li>
+							<a href="./apis/getGeoJsonForQuery?query={encode-for-uri($query)}">GeoJSON</a>
+						</li>
+						<li>
+							<a href="./apis/getKmlForQuery?query={encode-for-uri($query)}">KML</a>
+						</li>
 					</xsl:if>
 				</ul>
-				
+
 				<!-- include map when applicable -->
 				<xsl:if test="$hasGeo = true()">
 					<div id="mapcontainer" class="map-normal"/>
-				</xsl:if>			
-				
+				</xsl:if>
+
 				<xsl:choose>
 					<xsl:when test="count(descendant::res:result) &gt; 0">
 						<table class="table table-striped">
@@ -189,8 +240,8 @@
 				<xsl:variable name="name" select="@name"/>
 
 				<xsl:choose>
-					<xsl:when test="$result/res:binding[@name=$name]">
-						<xsl:apply-templates select="$result/res:binding[@name=$name]"/>
+					<xsl:when test="$result/res:binding[@name = $name]">
+						<xsl:apply-templates select="$result/res:binding[@name = $name]"/>
 					</xsl:when>
 					<xsl:otherwise>
 						<td/>
@@ -210,7 +261,9 @@
 					<a href="{res:uri}">
 						<xsl:choose>
 							<xsl:when test="$namespaces//namespace[contains($uri, @uri)]">
-								<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/>
+								<xsl:value-of
+									select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"
+								/>
 							</xsl:when>
 							<xsl:otherwise>
 								<xsl:value-of select="$uri"/>
@@ -228,11 +281,20 @@
 					</xsl:if>
 					<xsl:if test="res:literal/@datatype">
 						<xsl:variable name="datatype" select="res:literal/@datatype"/>
-						<xsl:variable name="uri" select="if (contains($datatype, 'xs:')) then replace($datatype, 'xs:', 'http://www.w3.org/2001/XMLSchema#') else if (contains($datatype, 'xsd:')) then
-							replace($datatype, 'xsd:', 'http://www.w3.org/2001/XMLSchema#') else $datatype"/>
+						<xsl:variable name="uri"
+							select="
+								if (contains($datatype, 'xs:')) then
+									replace($datatype, 'xs:', 'http://www.w3.org/2001/XMLSchema#')
+								else
+									if (contains($datatype, 'xsd:')) then
+										replace($datatype, 'xsd:', 'http://www.w3.org/2001/XMLSchema#')
+									else
+										$datatype"/>
 
 						<i> (<a href="{$uri}">
-								<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/></a>)</i>
+								<xsl:value-of
+									select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"
+								/></a>)</i>
 
 					</xsl:if>
 				</xsl:otherwise>
