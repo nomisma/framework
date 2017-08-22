@@ -21,7 +21,7 @@
 				<li>Ethan Gruber, <a href="http://numismatics.org">ANS</a></li>
 				<li>Sebastian Heath, <a href="http://isaw.nyu.edu/">NYU ISAW</a></li>
 				<li>Chris Howgego, <a href="http://www.ashmolean.org/">Ashmolean Museum, University of Oxford</a></li>
-				<li>Andrew Meadows, <a href="http://numismatics.org">ANS</a></li>
+				<li>Andrew Meadows, <a href="http://numismatics.org">New College, Oxford University</a></li>
 				<li>Ulrike Peter, <a href="http://www.bbaw.de/en/">Berlin-Brandenburg Academy of Sciences and Humanities</a></li>
 				<li>Daniel Pett, <a href="http://finds.org.uk/">BM PAS</a></li>
 				<li>Karsten Tolle, <a href="http://www.dbis.informatik.uni-frankfurt.de">DBIS, University of Frankfurt</a></li>
@@ -586,6 +586,24 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 					</tr>
 					<tr>
 						<td>
+							<a href="#getGeoJsonForQuery">getGeoJsonForQuery</a>
+						</td>
+						<td/>
+						<td>
+							<a href="apis/getGeoJsonForQuery?query=query=PREFIX+rdf%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23>%0D%0APREFIX+dcterms%3A%09&lt;http%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F>%0D%0APREFIX+geo%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F2003%2F01%2Fgeo%2Fwgs84_pos%23>%0D%0APREFIX+nm%3A%09&lt;http%3A%2F%2Fnomisma.org%2Fid%2F>%0D%0APREFIX+nmo%3A%09&lt;http%3A%2F%2Fnomisma.org%2Fontology%23>%0D%0APREFIX+xsd%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23>%0D%0A%0D%0ASELECT+DISTINCT+%3Fhoard+%3Ffindspot+%3Flat+%3Flong+WHERE+{%0D%0A++%3Ftype+a+nmo%3ATypeSeriesItem+%3B%0D%0A++++++++++nmo%3AhasDenomination+nm%3Atetradrachm+.%0D%0A++%3Fcoin+nmo%3AhasTypeSeriesItem+%3Ftype+%3B%0D%0A++++++++dcterms%3AisPartOf+%3Fhoard+.%0D%0A++%3Fhoard+a+nmo%3AHoard+%3B%0D%0A+++++++++++nmo%3AhasFindspot+%3Ffindspot+.%0D%0A++%3Ffindspot+geo%3Alat+%3Flat+%3B%0D%0A++++++++++++geo%3Along+%3Flong%0D%0A}">geoJSON</a>
+						</td>
+						<td/>
+					</tr>
+					<tr>
+						<td>
+							<a href="#getKmlForQuery">getKmlForQuery</a>
+						</td>
+						<td><a href="apis/getKmlForQuery?query=query=PREFIX+rdf%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23>%0D%0APREFIX+dcterms%3A%09&lt;http%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F>%0D%0APREFIX+geo%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F2003%2F01%2Fgeo%2Fwgs84_pos%23>%0D%0APREFIX+nm%3A%09&lt;http%3A%2F%2Fnomisma.org%2Fid%2F>%0D%0APREFIX+nmo%3A%09&lt;http%3A%2F%2Fnomisma.org%2Fontology%23>%0D%0APREFIX+xsd%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23>%0D%0A%0D%0ASELECT+DISTINCT+%3Fhoard+%3Ffindspot+%3Flat+%3Flong+WHERE+{%0D%0A++%3Ftype+a+nmo%3ATypeSeriesItem+%3B%0D%0A++++++++++nmo%3AhasDenomination+nm%3Atetradrachm+.%0D%0A++%3Fcoin+nmo%3AhasTypeSeriesItem+%3Ftype+%3B%0D%0A++++++++dcterms%3AisPartOf+%3Fhoard+.%0D%0A++%3Fhoard+a+nmo%3AHoard+%3B%0D%0A+++++++++++nmo%3AhasFindspot+%3Ffindspot+.%0D%0A++%3Ffindspot+geo%3Alat+%3Flat+%3B%0D%0A++++++++++++geo%3Along+%3Flong%0D%0A}">KML</a></td>
+						<td/>
+						<td/>
+					</tr>
+					<tr>
+						<td>
 							<a href="#getRdf">getRdf</a>
 						</td>
 						<td>
@@ -708,6 +726,28 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 					<b>Parameters</b> : uri (of Nomisma ID), lang (two-letter ISO language code), format ('json' or 'xml', default 'xml')<br/>
 					<b>Result</b> : returns the label in given language, or English as default.<br/>
 					<b>Examples</b>: <a href="apis/getLabel?uri=http://nomisma.org/id/ar&amp;lang=fr">apis/getLabel?uri=http://nomisma.org/id/ar&amp;lang=fr</a>
+				</p>
+			</div>
+			<div class="highlight">
+				<a name="getGeoJsonForQuery"/>
+				<h2>Get GeoJSON for SPARQL Query</h2>
+				<p>Get a GeoJSON response for a SPARQL query that contains coordinates (SELECT, CONSTRUCT, DESCRIBE)<br/>
+					<b>Webservice Type</b> : REST<br/>
+					<b>Url</b> : nomisma.org/getGeoJsonForQuery?<br/>
+					<b>Parameters</b> : query (URL encoded SPARQL query)<br/>
+					<b>Result</b> : GeoJSON<br/>
+					<b>Examples</b>: <a href="apis/getGeoJsonForQuery?query=PREFIX+rdf%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23>%0D%0APREFIX+dcterms%3A%09&lt;http%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F>%0D%0APREFIX+geo%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F2003%2F01%2Fgeo%2Fwgs84_pos%23>%0D%0APREFIX+nm%3A%09&lt;http%3A%2F%2Fnomisma.org%2Fid%2F>%0D%0APREFIX+nmo%3A%09&lt;http%3A%2F%2Fnomisma.org%2Fontology%23>%0D%0APREFIX+xsd%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23>%0D%0A%0D%0ASELECT+DISTINCT+%3Fhoard+%3Ffindspot+%3Flat+%3Flong+WHERE+{%0D%0A++%3Ftype+a+nmo%3ATypeSeriesItem+%3B%0D%0A++++++++++nmo%3AhasDenomination+nm%3Atetradrachm+.%0D%0A++%3Fcoin+nmo%3AhasTypeSeriesItem+%3Ftype+%3B%0D%0A++++++++dcterms%3AisPartOf+%3Fhoard+.%0D%0A++%3Fhoard+a+nmo%3AHoard+%3B%0D%0A+++++++++++nmo%3AhasFindspot+%3Ffindspot+.%0D%0A++%3Ffindspot+geo%3Alat+%3Flat+%3B%0D%0A++++++++++++geo%3Along+%3Flong%0D%0A}">(click for full URL)</a>
+				</p>
+			</div>
+			<div class="highlight">
+				<a name="getKmlForQuery"/>
+				<h2>Get KML for SPARQL Query</h2>
+				<p>Get a KML response for a SPARQL query that contains coordinates (SELECT, CONSTRUCT, DESCRIBE)<br/>
+					<b>Webservice Type</b> : REST<br/>
+					<b>Url</b> : nomisma.org/getKmlForQuery?<br/>
+					<b>Parameters</b> : query (URL encoded SPARQL query)<br/>
+					<b>Result</b> : GeoJSON<br/>
+					<b>Examples</b>: <a href="apis/getKmlForQuery?query=PREFIX+rdf%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23>%0D%0APREFIX+dcterms%3A%09&lt;http%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F>%0D%0APREFIX+geo%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F2003%2F01%2Fgeo%2Fwgs84_pos%23>%0D%0APREFIX+nm%3A%09&lt;http%3A%2F%2Fnomisma.org%2Fid%2F>%0D%0APREFIX+nmo%3A%09&lt;http%3A%2F%2Fnomisma.org%2Fontology%23>%0D%0APREFIX+xsd%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23>%0D%0A%0D%0ASELECT+DISTINCT+%3Fhoard+%3Ffindspot+%3Flat+%3Flong+WHERE+{%0D%0A++%3Ftype+a+nmo%3ATypeSeriesItem+%3B%0D%0A++++++++++nmo%3AhasDenomination+nm%3Atetradrachm+.%0D%0A++%3Fcoin+nmo%3AhasTypeSeriesItem+%3Ftype+%3B%0D%0A++++++++dcterms%3AisPartOf+%3Fhoard+.%0D%0A++%3Fhoard+a+nmo%3AHoard+%3B%0D%0A+++++++++++nmo%3AhasFindspot+%3Ffindspot+.%0D%0A++%3Ffindspot+geo%3Alat+%3Flat+%3B%0D%0A++++++++++++geo%3Along+%3Flong%0D%0A}">(click for full URL)</a>
 				</p>
 			</div>
 			<div class="highlight">
