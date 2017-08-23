@@ -136,10 +136,10 @@
 			</li>
 			<xsl:if test="$hasGeo = true()">
 				<li>
-					<a href="./apis/getGeoJsonForQuery?query={encode-for-uri($query)}">GeoJSON</a>
+					<a href="./apis/query.json?query={encode-for-uri($query)}">GeoJSON</a>
 				</li>
 				<li>
-					<a href="./apis/getKmlForQuery?query={encode-for-uri($query)}">KML</a>
+					<a href="./apis/query.kml?query={encode-for-uri($query)}">KML</a>
 				</li>
 			</xsl:if>
 		</ul>
@@ -187,10 +187,10 @@
 					</li>
 					<xsl:if test="$hasGeo = true()">
 						<li>
-							<a href="./apis/getGeoJsonForQuery?query={encode-for-uri($query)}">GeoJSON</a>
+							<a href="./apis/query.json?query={encode-for-uri($query)}">GeoJSON</a>
 						</li>
 						<li>
-							<a href="./apis/getKmlForQuery?query={encode-for-uri($query)}">KML</a>
+							<a href="./apis/query.kml?query={encode-for-uri($query)}">KML</a>
 						</li>
 					</xsl:if>
 				</ul>

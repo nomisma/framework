@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config xmlns="http://www.orbeon.com/oxf/controller" xmlns:oxf="http://www.orbeon.com/oxf/processors" matcher="oxf:perl5-matcher">
 
+	<files path="(?!/([^/]+)/service/).+\.(gif|css|pdf|js|coffee|map|png|jpg|xsd|htc|ico|swf|html|htm|txt)"/>
+
 	<!-- ****************
 	* ADMIN INTERFACE *
 	***************** -->
@@ -81,8 +83,8 @@
 	<page path="/nomisma/apis/getMints" model="xpl/models/sparql/getMints.xpl" view="xpl/views/serializations/sparql/geojson.xpl"/>
 	<page path="/nomisma/apis/getFindspots" model="xpl/models/sparql/getFindspots.xpl" view="xpl/views/serializations/sparql/geojson.xpl"/>
 	<page path="/nomisma/apis/getHoards" model="xpl/models/sparql/getFindspots.xpl" view="xpl/views/serializations/sparql/geojson.xpl"/>
-	<page path="/nomisma/apis/getGeoJsonForQuery" model="xpl/models/sparql/query.xpl" view="xpl/views/serializations/sparql/geojson.xpl"/>
-	<page path="/nomisma/apis/getKmlForQuery" model="xpl/models/sparql/query.xpl" view="xpl/views/serializations/sparql/kml.xpl"/>
+	<page path="/nomisma/apis/query\.json" model="xpl/models/sparql/query.xpl" view="xpl/views/serializations/sparql/geojson.xpl"/>
+	<page path="/nomisma/apis/query\.kml" model="xpl/models/sparql/query.xpl" view="xpl/views/serializations/sparql/kml.xpl"/>
 	<page path="/nomisma/apis/heatmap" model="xpl/models/sparql/getFindspots.xpl" view="xpl/views/serializations/sparql/heatmap.xpl"/>	
 	<page path="/nomisma/apis/getRdf" model="xpl/models/rdf/aggregate-ids.xpl" view="xpl/views/serializations/apis/getRdf.xpl"/>
 	<page path="/nomisma/apis/regionHierarchy" model="xpl/models/sparql/regionHierarchy.xpl"  view="xpl/views/serializations/sparql/regionHierarchy.xpl"/>

@@ -586,19 +586,19 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 					</tr>
 					<tr>
 						<td>
-							<a href="#getGeoJsonForQuery">getGeoJsonForQuery</a>
+							<a href="#query.json">query.json</a>
 						</td>
 						<td/>
 						<td>
-							<a href="apis/getGeoJsonForQuery?query=query=PREFIX+rdf%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23>%0D%0APREFIX+dcterms%3A%09&lt;http%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F>%0D%0APREFIX+geo%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F2003%2F01%2Fgeo%2Fwgs84_pos%23>%0D%0APREFIX+nm%3A%09&lt;http%3A%2F%2Fnomisma.org%2Fid%2F>%0D%0APREFIX+nmo%3A%09&lt;http%3A%2F%2Fnomisma.org%2Fontology%23>%0D%0APREFIX+xsd%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23>%0D%0A%0D%0ASELECT+DISTINCT+%3Fhoard+%3Ffindspot+%3Flat+%3Flong+WHERE+{%0D%0A++%3Ftype+a+nmo%3ATypeSeriesItem+%3B%0D%0A++++++++++nmo%3AhasDenomination+nm%3Atetradrachm+.%0D%0A++%3Fcoin+nmo%3AhasTypeSeriesItem+%3Ftype+%3B%0D%0A++++++++dcterms%3AisPartOf+%3Fhoard+.%0D%0A++%3Fhoard+a+nmo%3AHoard+%3B%0D%0A+++++++++++nmo%3AhasFindspot+%3Ffindspot+.%0D%0A++%3Ffindspot+geo%3Alat+%3Flat+%3B%0D%0A++++++++++++geo%3Along+%3Flong%0D%0A}">geoJSON</a>
+							<a href="apis/query.json?query=query=PREFIX+rdf%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23>%0D%0APREFIX+dcterms%3A%09&lt;http%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F>%0D%0APREFIX+geo%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F2003%2F01%2Fgeo%2Fwgs84_pos%23>%0D%0APREFIX+nm%3A%09&lt;http%3A%2F%2Fnomisma.org%2Fid%2F>%0D%0APREFIX+nmo%3A%09&lt;http%3A%2F%2Fnomisma.org%2Fontology%23>%0D%0APREFIX+xsd%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23>%0D%0A%0D%0ASELECT+DISTINCT+%3Fhoard+%3Ffindspot+%3Flat+%3Flong+WHERE+{%0D%0A++%3Ftype+a+nmo%3ATypeSeriesItem+%3B%0D%0A++++++++++nmo%3AhasDenomination+nm%3Atetradrachm+.%0D%0A++%3Fcoin+nmo%3AhasTypeSeriesItem+%3Ftype+%3B%0D%0A++++++++dcterms%3AisPartOf+%3Fhoard+.%0D%0A++%3Fhoard+a+nmo%3AHoard+%3B%0D%0A+++++++++++nmo%3AhasFindspot+%3Ffindspot+.%0D%0A++%3Ffindspot+geo%3Alat+%3Flat+%3B%0D%0A++++++++++++geo%3Along+%3Flong%0D%0A}">geoJSON</a>
 						</td>
 						<td/>
 					</tr>
 					<tr>
 						<td>
-							<a href="#getKmlForQuery">getKmlForQuery</a>
+							<a href="#query.kml">query.kml</a>
 						</td>
-						<td><a href="apis/getKmlForQuery?query=query=PREFIX+rdf%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23>%0D%0APREFIX+dcterms%3A%09&lt;http%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F>%0D%0APREFIX+geo%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F2003%2F01%2Fgeo%2Fwgs84_pos%23>%0D%0APREFIX+nm%3A%09&lt;http%3A%2F%2Fnomisma.org%2Fid%2F>%0D%0APREFIX+nmo%3A%09&lt;http%3A%2F%2Fnomisma.org%2Fontology%23>%0D%0APREFIX+xsd%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23>%0D%0A%0D%0ASELECT+DISTINCT+%3Fhoard+%3Ffindspot+%3Flat+%3Flong+WHERE+{%0D%0A++%3Ftype+a+nmo%3ATypeSeriesItem+%3B%0D%0A++++++++++nmo%3AhasDenomination+nm%3Atetradrachm+.%0D%0A++%3Fcoin+nmo%3AhasTypeSeriesItem+%3Ftype+%3B%0D%0A++++++++dcterms%3AisPartOf+%3Fhoard+.%0D%0A++%3Fhoard+a+nmo%3AHoard+%3B%0D%0A+++++++++++nmo%3AhasFindspot+%3Ffindspot+.%0D%0A++%3Ffindspot+geo%3Alat+%3Flat+%3B%0D%0A++++++++++++geo%3Along+%3Flong%0D%0A}">KML</a></td>
+						<td><a href="apis/query.kml?query=query=PREFIX+rdf%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23>%0D%0APREFIX+dcterms%3A%09&lt;http%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F>%0D%0APREFIX+geo%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F2003%2F01%2Fgeo%2Fwgs84_pos%23>%0D%0APREFIX+nm%3A%09&lt;http%3A%2F%2Fnomisma.org%2Fid%2F>%0D%0APREFIX+nmo%3A%09&lt;http%3A%2F%2Fnomisma.org%2Fontology%23>%0D%0APREFIX+xsd%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23>%0D%0A%0D%0ASELECT+DISTINCT+%3Fhoard+%3Ffindspot+%3Flat+%3Flong+WHERE+{%0D%0A++%3Ftype+a+nmo%3ATypeSeriesItem+%3B%0D%0A++++++++++nmo%3AhasDenomination+nm%3Atetradrachm+.%0D%0A++%3Fcoin+nmo%3AhasTypeSeriesItem+%3Ftype+%3B%0D%0A++++++++dcterms%3AisPartOf+%3Fhoard+.%0D%0A++%3Fhoard+a+nmo%3AHoard+%3B%0D%0A+++++++++++nmo%3AhasFindspot+%3Ffindspot+.%0D%0A++%3Ffindspot+geo%3Alat+%3Flat+%3B%0D%0A++++++++++++geo%3Along+%3Flong%0D%0A}">KML</a></td>
 						<td/>
 						<td/>
 					</tr>
@@ -729,25 +729,25 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 				</p>
 			</div>
 			<div class="highlight">
-				<a name="getGeoJsonForQuery"/>
+				<a name="query.json"/>
 				<h2>Get GeoJSON for SPARQL Query</h2>
 				<p>Get a GeoJSON response for a SPARQL query that contains coordinates (SELECT, CONSTRUCT, DESCRIBE)<br/>
 					<b>Webservice Type</b> : REST<br/>
-					<b>Url</b> : nomisma.org/getGeoJsonForQuery?<br/>
+					<b>Url</b> : nomisma.org/query.json?<br/>
 					<b>Parameters</b> : query (URL encoded SPARQL query)<br/>
 					<b>Result</b> : GeoJSON<br/>
-					<b>Examples</b>: <a href="apis/getGeoJsonForQuery?query=PREFIX+rdf%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23>%0D%0APREFIX+dcterms%3A%09&lt;http%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F>%0D%0APREFIX+geo%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F2003%2F01%2Fgeo%2Fwgs84_pos%23>%0D%0APREFIX+nm%3A%09&lt;http%3A%2F%2Fnomisma.org%2Fid%2F>%0D%0APREFIX+nmo%3A%09&lt;http%3A%2F%2Fnomisma.org%2Fontology%23>%0D%0APREFIX+xsd%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23>%0D%0A%0D%0ASELECT+DISTINCT+%3Fhoard+%3Ffindspot+%3Flat+%3Flong+WHERE+{%0D%0A++%3Ftype+a+nmo%3ATypeSeriesItem+%3B%0D%0A++++++++++nmo%3AhasDenomination+nm%3Atetradrachm+.%0D%0A++%3Fcoin+nmo%3AhasTypeSeriesItem+%3Ftype+%3B%0D%0A++++++++dcterms%3AisPartOf+%3Fhoard+.%0D%0A++%3Fhoard+a+nmo%3AHoard+%3B%0D%0A+++++++++++nmo%3AhasFindspot+%3Ffindspot+.%0D%0A++%3Ffindspot+geo%3Alat+%3Flat+%3B%0D%0A++++++++++++geo%3Along+%3Flong%0D%0A}">(click for full URL)</a>
+					<b>Examples</b>: <a href="apis/query.json?query=PREFIX+rdf%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23>%0D%0APREFIX+dcterms%3A%09&lt;http%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F>%0D%0APREFIX+geo%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F2003%2F01%2Fgeo%2Fwgs84_pos%23>%0D%0APREFIX+nm%3A%09&lt;http%3A%2F%2Fnomisma.org%2Fid%2F>%0D%0APREFIX+nmo%3A%09&lt;http%3A%2F%2Fnomisma.org%2Fontology%23>%0D%0APREFIX+xsd%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23>%0D%0A%0D%0ASELECT+DISTINCT+%3Fhoard+%3Ffindspot+%3Flat+%3Flong+WHERE+{%0D%0A++%3Ftype+a+nmo%3ATypeSeriesItem+%3B%0D%0A++++++++++nmo%3AhasDenomination+nm%3Atetradrachm+.%0D%0A++%3Fcoin+nmo%3AhasTypeSeriesItem+%3Ftype+%3B%0D%0A++++++++dcterms%3AisPartOf+%3Fhoard+.%0D%0A++%3Fhoard+a+nmo%3AHoard+%3B%0D%0A+++++++++++nmo%3AhasFindspot+%3Ffindspot+.%0D%0A++%3Ffindspot+geo%3Alat+%3Flat+%3B%0D%0A++++++++++++geo%3Along+%3Flong%0D%0A}">(click for full URL)</a>
 				</p>
 			</div>
 			<div class="highlight">
-				<a name="getKmlForQuery"/>
+				<a name="query.kml"/>
 				<h2>Get KML for SPARQL Query</h2>
 				<p>Get a KML response for a SPARQL query that contains coordinates (SELECT, CONSTRUCT, DESCRIBE)<br/>
 					<b>Webservice Type</b> : REST<br/>
-					<b>Url</b> : nomisma.org/getKmlForQuery?<br/>
+					<b>Url</b> : nomisma.org/query.kml?<br/>
 					<b>Parameters</b> : query (URL encoded SPARQL query)<br/>
 					<b>Result</b> : GeoJSON<br/>
-					<b>Examples</b>: <a href="apis/getKmlForQuery?query=PREFIX+rdf%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23>%0D%0APREFIX+dcterms%3A%09&lt;http%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F>%0D%0APREFIX+geo%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F2003%2F01%2Fgeo%2Fwgs84_pos%23>%0D%0APREFIX+nm%3A%09&lt;http%3A%2F%2Fnomisma.org%2Fid%2F>%0D%0APREFIX+nmo%3A%09&lt;http%3A%2F%2Fnomisma.org%2Fontology%23>%0D%0APREFIX+xsd%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23>%0D%0A%0D%0ASELECT+DISTINCT+%3Fhoard+%3Ffindspot+%3Flat+%3Flong+WHERE+{%0D%0A++%3Ftype+a+nmo%3ATypeSeriesItem+%3B%0D%0A++++++++++nmo%3AhasDenomination+nm%3Atetradrachm+.%0D%0A++%3Fcoin+nmo%3AhasTypeSeriesItem+%3Ftype+%3B%0D%0A++++++++dcterms%3AisPartOf+%3Fhoard+.%0D%0A++%3Fhoard+a+nmo%3AHoard+%3B%0D%0A+++++++++++nmo%3AhasFindspot+%3Ffindspot+.%0D%0A++%3Ffindspot+geo%3Alat+%3Flat+%3B%0D%0A++++++++++++geo%3Along+%3Flong%0D%0A}">(click for full URL)</a>
+					<b>Examples</b>: <a href="apis/query.kml?query=PREFIX+rdf%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23>%0D%0APREFIX+dcterms%3A%09&lt;http%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F>%0D%0APREFIX+geo%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F2003%2F01%2Fgeo%2Fwgs84_pos%23>%0D%0APREFIX+nm%3A%09&lt;http%3A%2F%2Fnomisma.org%2Fid%2F>%0D%0APREFIX+nmo%3A%09&lt;http%3A%2F%2Fnomisma.org%2Fontology%23>%0D%0APREFIX+xsd%3A%09&lt;http%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23>%0D%0A%0D%0ASELECT+DISTINCT+%3Fhoard+%3Ffindspot+%3Flat+%3Flong+WHERE+{%0D%0A++%3Ftype+a+nmo%3ATypeSeriesItem+%3B%0D%0A++++++++++nmo%3AhasDenomination+nm%3Atetradrachm+.%0D%0A++%3Fcoin+nmo%3AhasTypeSeriesItem+%3Ftype+%3B%0D%0A++++++++dcterms%3AisPartOf+%3Fhoard+.%0D%0A++%3Fhoard+a+nmo%3AHoard+%3B%0D%0A+++++++++++nmo%3AhasFindspot+%3Ffindspot+.%0D%0A++%3Ffindspot+geo%3Alat+%3Flat+%3B%0D%0A++++++++++++geo%3Along+%3Flong%0D%0A}">(click for full URL)</a>
 				</p>
 			</div>
 			<div class="highlight">

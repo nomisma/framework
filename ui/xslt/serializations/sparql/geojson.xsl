@@ -20,7 +20,7 @@
 		<xsl:choose>
 			<xsl:when test="namespace-uri() = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'">
 				<xsl:choose>
-					<xsl:when test="$api = 'getGeoJsonForQuery'">
+					<xsl:when test="$api = 'query.json'">
 						<xsl:choose>
 							<xsl:when test="count(//*[geo:lat and geo:long]) &gt; 0">
 								<!-- apply-templates only on those RDF objects that have coordinates -->
@@ -78,7 +78,7 @@
 								<xsl:apply-templates select="descendant::res:result"/>
 								<xsl:text>]}</xsl:text>
 							</xsl:when>
-							<xsl:when test="$api = 'getGeoJsonForQuery'">
+							<xsl:when test="$api = 'query.json'">
 								<xsl:variable name="query" select="doc('input:request')/request/parameters/parameter[name = 'query']/value"/>
 
 								<!-- parse out the lat and long variables from the SPARQL query -->

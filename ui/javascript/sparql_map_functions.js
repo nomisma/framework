@@ -40,7 +40,7 @@ function initialize_map() {
     
     //add overlay from AJAX
     var markers = L.markerClusterGroup();
-    var overlay = L.geoJson.ajax('apis/getGeoJsonForQuery?query=' + query, {
+    var overlay = L.geoJson.ajax('apis/query.json?query=' + query, {
         onEachFeature: onEachFeature,
         pointToLayer: renderPoints
     });
