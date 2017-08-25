@@ -56,7 +56,7 @@
 						<!-- evaluate API and construct the attributes according to GeoJSON-T -->
 
 						<xsl:choose>
-							<xsl:when test="$api = 'getFindspots'">
+							<xsl:when test="$api = 'getFindspots' or $api = 'getMints'">
 								<xsl:text>{"type": "FeatureCollection","features": [</xsl:text>
 								<xsl:apply-templates select="descendant::res:result"/>
 								<xsl:text>]}</xsl:text>
