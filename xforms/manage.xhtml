@@ -687,6 +687,9 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 												</xforms:action>
 
 												<!-- refresh page after dumps have been posted -->
+												<xforms:setvalue ref="instance('control-instance')/action">get-datasets</xforms:setvalue>
+												<xforms:setvalue ref="instance('sparqlQuery')"
+													value="concat(instance('sparql-templates')/prefix, ' ', instance('sparql-templates')/query[@id='get-datasets'])"/>
 												<xforms:send submission="submit-sparqlQuery"/>
 												<xforms:toggle case="default"/>
 											</xforms:action>
