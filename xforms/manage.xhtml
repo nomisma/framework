@@ -304,6 +304,7 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 				<xforms:action ev:event="xforms-submit-done">
 					<!-- if the action is get-datasets, then move the SPARQL response into the datasets instance -->
 					<xforms:action if="instance('control-instance')/action = 'get-datasets'">
+						<xforms:delete nodeset="instance('datasets')/*"/>
 						<xforms:insert context="instance('datasets')" origin="instance('sparqlResponse')/void:Dataset"/>
 						<xforms:setvalue ref="instance('control-instance')/action"/>
 					</xforms:action>
