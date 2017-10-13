@@ -623,7 +623,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 								<xforms:action ev:event="DOMActivate">
 									<!-- show deprecate window -->
 									<xforms:var name="type" select="instance('doc')/*[1]/name()"></xforms:var>
-									<xforms:setvalue ref="instance('control-instance')/atom-type" value="if ($type='nmo:Mint') then '&#x022;nmo:Region&#x022;' else concat('&#x022;', $type, '&#x022;')"></xforms:setvalue>
+									<xforms:setvalue ref="instance('control-instance')/atom-type" value="concat('&#x022;', $type, '&#x022;')"></xforms:setvalue>
 									<xxforms:show dialog="deprecate-dialog"></xxforms:show>
 								</xforms:action>
 							</xforms:trigger>
@@ -1837,7 +1837,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 							<h4>Results</h4>
 							<div>
 								<xforms:select1 ref="instance('control-instance')/atom-id" appearance="compact">
-									<xforms:itemset nodeset="instance('feed')//atom:entry">
+									<xforms:itemset nodeset="instance('feed')//atom:entry[not(atom:id = instance('control-instance')/id)]">
 										<xforms:label ref="atom:title"></xforms:label>
 										<xforms:value ref="atom:id"></xforms:value>
 									</xforms:itemset>
@@ -1877,11 +1877,19 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 									</xforms:action>
 								</xforms:trigger>
 							</div>
-							<div>
-								<xforms:output ref="instance('control-instance')/atom-summary">
-									<xforms:label>Definition</xforms:label>
-								</xforms:output>
-							</div>
+							<xforms:group ref=".[string-length(instance('control-instance')/atom-summary) &gt; 0]">
+								<div>
+									<xforms:output ref="instance('control-instance')/atom-summary">
+										<xforms:label>Definition</xforms:label>
+									</xforms:output>
+									<xforms:trigger appearance="minimal">
+										<xforms:label><span class="glyphicon glyphicon-new-window"/></xforms:label>
+										<xforms:action ev:event="DOMActivate">
+											<xforms:load show="new" resource="http://nomisma.org/id/{instance('control-instance')/atom-id}"/>
+										</xforms:action>
+									</xforms:trigger>
+								</div>
+							</xforms:group>							
 						</xforms:group>
 						<xforms:group ref=".[count(instance('feed')//atom:entry) = 0 and string(instance('feed')/atom:title)]">
 							<h4>No results found.</h4>
