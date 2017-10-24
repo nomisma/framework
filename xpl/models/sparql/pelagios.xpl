@@ -44,7 +44,7 @@ PREFIX edm:	<http://www.europeana.eu/schemas/edm/>
 SELECT ?coin ?title ?dataset ?startDate ?endDate ?comThumb ?comRef ?comManifest ?comService ?obvThumb ?obvRef ?obvManifest ?obvService ?revThumb ?revRef ?revManifest ?revService ?match ?model ?modelFormat ?modelPublisher WHERE {
 ?coin a nmo:NumismaticObject ;
         dcterms:title ?title ;
-        void:inDataset ?dataset . FILTER (?dataset != <http://numismatics.org/search/> && ?dataset != <http://coins.lib.virginia.edu/> && ?dataset != <https://finds.org.uk/> && ?dataset != <http://gams.uni-graz.at/numis>) .
+        void:inDataset ?dataset . FILTER (?dataset != <http://numismatics.org/search/> && ?dataset != <http://coins.lib.virginia.edu/> && ?dataset != <https://finds.org.uk/>) .
 OPTIONAL { ?coin foaf:thumbnail ?comThumb }
 OPTIONAL { ?coin foaf:depiction ?comRef 
 	OPTIONAL { ?comRef dcterms:isReferencedBy ?comManifest ;
