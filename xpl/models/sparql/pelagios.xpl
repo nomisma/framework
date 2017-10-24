@@ -39,11 +39,12 @@ PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX void: <http://rdfs.org/ns/void#>
 PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
 PREFIX svcs: <http://rdfs.org/sioc/services#>
+PREFIX edm:	<http://www.europeana.eu/schemas/edm/>
 
-SELECT ?coin ?title ?dataset ?startDate ?endDate ?comThumb ?comRef ?comManifest ?comService ?obvThumb ?obvRef ?obvManifest ?obvService ?revThumb ?revRef ?revManifest ?revService ?match WHERE {
+SELECT ?coin ?title ?dataset ?startDate ?endDate ?comThumb ?comRef ?comManifest ?comService ?obvThumb ?obvRef ?obvManifest ?obvService ?revThumb ?revRef ?revManifest ?revService ?match ?model ?modelFormat ?modelPublisher WHERE {
 ?coin a nmo:NumismaticObject ;
         dcterms:title ?title ;
-        void:inDataset ?dataset . FILTER (?dataset != <http://numismatics.org/search/> && ?dataset != <http://coins.lib.virginia.edu/> && ?dataset != <https://finds.org.uk/>) .
+        void:inDataset ?dataset . FILTER (?dataset != <http://numismatics.org/search/> && ?dataset != <http://coins.lib.virginia.edu/> && ?dataset != <https://finds.org.uk/> && ?dataset != <http://gams.uni-graz.at/numis>) .
 OPTIONAL { ?coin foaf:thumbnail ?comThumb }
 OPTIONAL { ?coin foaf:depiction ?comRef 
 	OPTIONAL { ?comRef dcterms:isReferencedBy ?comManifest ;
@@ -58,6 +59,9 @@ OPTIONAL { ?coin nmo:hasReverse ?reverse .
 ?reverse foaf:depiction ?revRef 
 	OPTIONAL { ?revRef dcterms:isReferencedBy ?revManifest;
 		svcs:has_service ?revService}}
+OPTIONAL { ?coin edm:isShownBy ?model .
+?model dcterms:format ?modelFormat ;
+	dcterms:publisher ?modelPublisher}
 ?coin nmo:hasTypeSeriesItem ?type .
   OPTIONAL {?type nmo:hasStartDate ?startDate}
   OPTIONAL {?type nmo:hasEndDate ?endDate}

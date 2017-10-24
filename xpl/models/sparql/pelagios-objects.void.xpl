@@ -25,7 +25,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
 
 SELECT DISTINCT ?dataset ?title ?description ?license ?rights ?publisher WHERE {
 ?coin a nmo:NumismaticObject ;
-        void:inDataset ?dataset . FILTER (?dataset != <http://numismatics.org/search/> && ?dataset != <http://coins.lib.virginia.edu/> && ?dataset != <https://finds.org.uk/>) .
+        void:inDataset ?dataset . FILTER (?dataset != <http://numismatics.org/search/> && ?dataset != <http://coins.lib.virginia.edu/> && ?dataset != <https://finds.org.uk/> && ?dataset != <http://gams.uni-graz.at/numis>) .
 ?dataset dcterms:description ?description FILTER (langMatches(lang(?description), "en") || lang(?description) = "") .
 ?dataset dcterms:publisher ?publisher ;
          dcterms:title ?title FILTER (langMatches(lang(?title), "en") || lang(?title) = "")

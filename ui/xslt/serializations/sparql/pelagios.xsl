@@ -2,8 +2,8 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="http://www.w3.org/2005/sparql-results#"
 	xmlns:void="http://rdfs.org/ns/void#" xmlns:pelagios="http://pelagios.github.io/vocab/terms#" xmlns:relations="http://pelagios.github.io/vocab/relations#"
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:edm="http://www.europeana.eu/schemas/edm/"
-	xmlns:svcs="http://rdfs.org/sioc/services#" xmlns:doap="http://usefulinc.com/ns/doap#" xmlns:oa="http://www.w3.org/ns/oa#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-	xmlns:foaf="http://xmlns.com/foaf/0.1/" exclude-result-prefixes="#all" version="2.0">
+	xmlns:svcs="http://rdfs.org/sioc/services#" xmlns:doap="http://usefulinc.com/ns/doap#" xmlns:oa="http://www.w3.org/ns/oa#"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:foaf="http://xmlns.com/foaf/0.1/" exclude-result-prefixes="#all" version="2.0">
 
 	<xsl:param name="page" select="tokenize(tokenize(doc('input:request')/request/request-url, '/')[last()], '\.')[2]"/>
 
@@ -24,22 +24,25 @@
 	</xsl:template>
 
 	<xsl:template match="res:result">
-		<xsl:variable name="uri" select="res:binding[@name='coin']/res:uri"/>
+		<xsl:variable name="uri" select="res:binding[@name = 'coin']/res:uri"/>
 
 		<pelagios:AnnotatedThing rdf:about="http://nomisma.org/pelagios-objects.rdf#{encode-for-uri($uri)}">
 			<dcterms:title>
-				<xsl:value-of select="res:binding[@name='title']/res:literal"/>
+				<xsl:value-of select="res:binding[@name = 'title']/res:literal"/>
 			</dcterms:title>
 			<foaf:homepage rdf:resource="{$uri}"/>
-			<xsl:if test="res:binding[@name='startDate'] and res:binding[@name='endDate']">
+			<xsl:if test="res:binding[@name = 'startDate'] and res:binding[@name = 'endDate']">
 				<dcterms:temporal>
 					<xsl:text>start=</xsl:text>
-					<xsl:value-of select="number(res:binding[@name='startDate'])"/>
+					<xsl:value-of select="number(res:binding[@name = 'startDate'])"/>
 					<xsl:text>; end=</xsl:text>
-					<xsl:value-of select="number(res:binding[@name='endDate'])"/>
+					<xsl:value-of select="number(res:binding[@name = 'endDate'])"/>
 				</dcterms:temporal>
 			</xsl:if>
-			<xsl:apply-templates select="res:binding[contains(@name, 'Thumb')]|res:binding[contains(@name, 'Ref')]" mode="image"/>
+			<xsl:if test="res:binding[@name = 'model']">
+				<edm:isShownBy rdf:resource="{res:binding[@name='model']/res:uri}"/>
+			</xsl:if>
+			<xsl:apply-templates select="res:binding[contains(@name, 'Thumb')] | res:binding[contains(@name, 'Ref')]" mode="image"/>
 			<void:inDataset rdf:resource="{res:binding[@name='dataset']/res:uri}"/>
 		</pelagios:AnnotatedThing>
 
@@ -68,6 +71,16 @@
 				<doap:implements rdf:resource="http://iiif.io/api/image/2/level1.json"/>
 			</svcs:Service>
 		</xsl:for-each>
+
+		<!-- include 3D model -->
+		<xsl:if test="res:binding[@name = 'model']">
+			<edm:WebResource rdf:about="{res:binding[@name='model']/res:uri}">
+				<dcterms:format rdf:resource="{res:binding[@name='modelFormat']/res:uri}"/>
+				<dcterms:publisher>
+					<xsl:value-of select="res:binding[@name = 'modelPublisher']/res:literal"/>
+				</dcterms:publisher>
+			</edm:WebResource>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="res:binding" mode="image">
