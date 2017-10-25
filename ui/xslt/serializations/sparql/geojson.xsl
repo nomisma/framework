@@ -18,6 +18,9 @@
 
 	<xsl:template match="/*[1]">
 		<xsl:choose>
+			<xsl:when test="/content/rdf:RDF/nmo:Region">
+				<xsl:call-template name="region-features"/>
+			</xsl:when>
 			<xsl:when test="namespace-uri() = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'">
 				<xsl:choose>
 					<xsl:when test="$api = 'query.json'">
@@ -164,6 +167,23 @@
 		<xsl:value-of select="lower-case(parent::node()/*[1]/local-name())"/>
 		<xsl:text>"</xsl:text>
 		<xsl:text>}}</xsl:text>
+	</xsl:template>
+
+	<!-- Combine region polygon and SPARQL mint results into same FeatureCollection -->
+	<xsl:template name="region-features">
+		<xsl:text>{"type": "FeatureCollection","features": [</xsl:text>
+		<xsl:if test="descendant::geo:SpatialThing/osgeo:asGeoJSON">
+			<xsl:apply-templates select="descendant::geo:SpatialThing" mode="poly">
+				<xsl:with-param name="uri" select="rdf:RDF/*[1]/@rdf:about"/>
+				<xsl:with-param name="label" select="rdf:RDF/*[1]/skos:prefLabel[@xml:lang = 'en']"/>
+			</xsl:apply-templates>
+		</xsl:if>
+		<xsl:if test="descendant::geo:SpatialThing/osgeo:asGeoJSON and descendant::res:result">
+			<xsl:text>,</xsl:text>
+		</xsl:if>
+		<xsl:apply-templates select="descendant::res:result"/>
+
+		<xsl:text>]}</xsl:text>
 	</xsl:template>
 
 	<!-- GeoJSON result for general SELECT SPARQL query lat/long -->

@@ -161,7 +161,11 @@ PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 PREFIX osgeo:	<http://data.ordnancesurvey.co.uk/ontology/geometry/>
 PREFIX org: <http://www.w3.org/ns/org#>]]>
 							<xsl:choose>
-								<xsl:when test="$type='nmo:Mint' or $type='nmo:Region'"><![CDATA[ASK {nm:ID geo:location ?loc}]]></xsl:when>
+								<xsl:when test="$type='nmo:Mint'"><![CDATA[ASK {nm:ID geo:location ?loc}]]></xsl:when>
+								<xsl:when test="$type='nmo:Region'"><![CDATA[ASK {
+  {nm:ID geo:location ?loc}
+  UNION {?mint skos:broader+ nm:ID ;
+          geo:location ?loc}}]]></xsl:when>
 								<xsl:when test="$type='nmo:Hoard'"><![CDATA[ASK {?coin dcterms:isPartOf nm:ID ;
   	rdf:type nmo:NumismaticObject
   {?coin nmo:hasTypeSeriesItem ?type .

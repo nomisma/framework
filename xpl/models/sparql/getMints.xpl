@@ -90,9 +90,63 @@
 			
 			<p:choose href="#type">
 				<!-- check to see whether the ID is a mint or region, if so, process the coordinates or geoJSON polygon in the RDF into geoJSON -->
-				<p:when test="type = 'nmo:Mint' or type = 'nmo:Region'">
+				<p:when test="type = 'nmo:Mint'">
 					<p:processor name="oxf:identity">
 						<p:input name="data" href="#rdf"/>
+						<p:output name="data" ref="data"/>
+					</p:processor>
+				</p:when>
+				<!-- when the ID is a region, include the region RDF to display a polygon, if applicable as well as execute a SPARQL query for all mints in the region -->
+				<p:when test="type = 'nmo:Region'">
+					<p:processor name="oxf:unsafe-xslt">
+						<p:input name="request" href="#request"/>
+						<p:input name="data" href="#type"/>
+						<p:input name="config-xml" href=" ../../../config.xml"/>
+						<p:input name="config">
+							<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+								<xsl:param name="id" select="doc('input:request')/request/parameters/parameter[name='id']/value"/>
+								<xsl:variable name="sparql_endpoint" select="doc('input:config-xml')/config/sparql_query"/>
+								
+								<xsl:variable name="query"><![CDATA[PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:  <http://purl.org/dc/terms/>
+PREFIX dcmitype:	<http://purl.org/dc/dcmitype/>
+PREFIX nm:       <http://nomisma.org/id/>
+PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX osgeo:	<http://data.ordnancesurvey.co.uk/ontology/geometry/>
+PREFIX org: <http://www.w3.org/ns/org#>
+SELECT ?place ?label ?lat ?long WHERE {
+  ?place skos:broader+ nm:ID ;
+        geo:location ?loc ;
+        skos:prefLabel ?label FILTER langMatches(lang(?label), "en") .
+  ?loc geo:lat ?lat ;
+       geo:long ?long
+}]]></xsl:variable>
+								<xsl:template match="/">
+									<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'ID', $id))), '&amp;output=xml')"/>
+									
+									<config>
+										<url>
+											<xsl:value-of select="$service"/>
+										</url>
+										<content-type>application/xml</content-type>
+										<encoding>utf-8</encoding>
+									</config>
+								</xsl:template>
+								
+							</xsl:stylesheet>
+						</p:input>
+						<p:output name="data" id="url-generator-config"/>
+					</p:processor>
+					
+					<p:processor name="oxf:url-generator">
+						<p:input name="config" href="#url-generator-config"/>
+						<p:output name="data" id="sparql-results"/>
+					</p:processor>
+					
+					<p:processor name="oxf:identity">
+						<p:input name="data" href="aggregate('content', #rdf, #sparql-results)"/>
 						<p:output name="data" ref="data"/>
 					</p:processor>
 				</p:when>
