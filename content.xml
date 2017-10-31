@@ -799,7 +799,9 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial }}]]>
 				<li>Entity Suggestion API (for autosuggest on matching terms)</li>
 			</ul>
 			<p>All API responses are in JSON. Please see the <a href="https://github.com/OpenRefine/OpenRefine/wiki/Reconciliation-Service-Api">API
-					documentation</a> and <a href="https://github.com/OpenRefine/OpenRefine/wiki/Reconciliation">usage documentation</a> for more details.</p>
+					documentation</a> and <a href="https://github.com/OpenRefine/OpenRefine/wiki/Reconciliation">usage documentation</a> for more details. The
+				blog post, <i><a href="http://numishare.blogspot.com/2017/10/nomisma-launches-openrefine.html">Nomisma launches OpenRefine reconciliation
+						service</a></i>, contains further information about this particular implementation in Nomisma.</p>
 			<hr/>
 		</div>
 		<div id="access">
