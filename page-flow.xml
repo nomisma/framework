@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config xmlns="http://www.orbeon.com/oxf/controller" xmlns:oxf="http://www.orbeon.com/oxf/processors" matcher="oxf:perl5-matcher">
 
-	<files path="(?!/([^/]+)/service/).+\.(gif|css|pdf|js|coffee|map|png|jpg|xsd|htc|ico|swf|html|htm|txt)"/>
+	<files path="(?!/([^/]+)/service/).+\.(gif|css|pdf|js|coffee|map|png|jpg|htc|ico|swf|html|htm|txt)"/>
 
 	<!-- ****************
 	* ADMIN INTERFACE *
@@ -69,7 +69,7 @@
 	<page path="/nomisma/query" view="xpl/controllers/conneg-sparql.xpl"/>
 	
 	<!-- NUDS XSD -->
-	<page path="/nomisma/nuds.xsd" view="xpl/models/xsd/nuds.xpl"/>
+	<page path="/nomisma/nuds\.xsd" view="xpl/models/xsd/nuds.xpl"/>
 	
 	<!-- **** APIs **** -->
 	<page path="/nomisma/apis/avgAxis" model="xpl/models/sparql/avgMeasurement.xpl" view="xpl/views/serializations/sparql/avgMeasurement.xpl"/>
