@@ -49,6 +49,7 @@
 					<atom-search></atom-search>
 					<atom-id></atom-id>
 					<atom-summary></atom-summary>
+					<link-property/>
 					<dump></dump>
 					<membership-position></membership-position>
 					<geo>
@@ -206,6 +207,9 @@
 			<xforms:instance id="isPartOf-template" xxforms:exclude-result-prefixes="#all">
 				<dcterms:isPartOf rdf:resource=""></dcterms:isPartOf>
 			</xforms:instance>
+			<xforms:instance id="source-template" xxforms:exclude-result-prefixes="#all">
+				<dcterms:source rdf:resource=""></dcterms:source>
+			</xforms:instance>			
 
 			<xforms:instance id="lat-template" xxforms:exclude-result-prefixes="#all">
 				<geo:lat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal"></geo:lat>
@@ -495,7 +499,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 			</xforms:action>
 
 			<!-- ************* QUERY ATOM **********************-->
-			<!-- query local atom feed to power skos:broader -->
+			<!-- query local atom feed to power skos:broader, dcterms:source and other internal links -->
 			<xforms:submission id="query-feed" serialization="none" method="get"
 				action="/nomisma/feed/?q=type:{encode-for-uri(normalize-space(instance('control-instance')/atom-type))}+{instance('control-instance')/atom-search}&amp;sort=prefLabel+asc"
 				instance="feed" replace="instance">
@@ -698,7 +702,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										<xforms:action ev:event="DOMActivate">
 											<xforms:setvalue ref="instance('control-instance')/atom-type"
 												value="if ($type='nmo:Mint') then '&#x022;nmo:Region&#x022;' else concat('&#x022;', $type, '&#x022;')"></xforms:setvalue>
-											<xxforms:show dialog="broader-dialog"></xxforms:show>
+											<xforms:setvalue ref="instance('control-instance')/link-property">skos:broader</xforms:setvalue>
+											<xxforms:show dialog="atom-dialog"></xxforms:show>
 										</xforms:action>
 									</xforms:trigger>
 								</li>
@@ -712,6 +717,17 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 									</xforms:trigger>
 								</li>
 							</xforms:group>
+							<li>
+								<xforms:trigger appearance="minimal">
+									<xforms:label>
+										<span class="glyphicon glyphicon-plus"></span>Bibliographic Reference</xforms:label>
+									<xforms:action ev:event="DOMActivate">
+										<xforms:setvalue ref="instance('control-instance')/atom-type">("nmo:TypeSeries" OR "nmo:ReferenceWork")</xforms:setvalue>
+										<xforms:setvalue ref="instance('control-instance')/link-property">dcterms:source</xforms:setvalue>
+										<xxforms:show dialog="atom-dialog"></xxforms:show>
+									</xforms:action>
+								</xforms:trigger>
+							</li>
 							<li>
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
@@ -1101,6 +1117,21 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										</xforms:input>
 										<xforms:trigger appearance="minimal">
 											<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
+											<xforms:label>
+												<span class="glyphicon glyphicon-remove"></span>
+											</xforms:label>
+										</xforms:trigger>
+									</div>
+								</xforms:repeat>
+								<xforms:repeat nodeset="dcterms:source">
+									<div>
+										<xforms:output ref="@rdf:resource">
+											<xforms:label>Reference</xforms:label>
+										</xforms:output>
+										<xforms:trigger appearance="minimal">
+											<xforms:action ev:event="DOMActivate">
+												<xforms:delete context="."></xforms:delete>
+											</xforms:action>
 											<xforms:label>
 												<span class="glyphicon glyphicon-remove"></span>
 											</xforms:label>
@@ -1698,8 +1729,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 						</xforms:group>
 					</xforms:group>
 				</div>
-				<xxforms:dialog id="broader-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
-					<xforms:label>Broader Concept</xforms:label>
+				<xxforms:dialog id="atom-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
+					<xforms:label value="if (instance('control-instance')/link-property = 'skos:broader') then 'Broader Concept' else 'Bibliographic Reference'"></xforms:label>
 					<div>
 						<xforms:input ref="instance('control-instance')/atom-search" />
 						<xforms:trigger>
@@ -1728,17 +1759,24 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 									<xforms:label>Select</xforms:label>
 									<xforms:action ev:event="DOMActivate">
 										<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]"
-											origin="xforms:element('skos:broader', (xforms:attribute('rdf:resource', concat('http://nomisma.org/id/', instance('control-instance')/atom-id)), ''))"></xforms:insert>
-										<!-- insert dcterms:isPartOf into the SpatialThing, if it exists -->
-										<xforms:insert context="instance('doc')/geo:SpatialThing" nodeset="./child::node()[last()]"
-											origin="xforms:element('dcterms:isPartOf', (xforms:attribute('rdf:resource', concat('http://nomisma.org/id/', instance('control-instance')/atom-id, '#this')), ''))"
-											if="instance('doc')/geo:SpatialThing"></xforms:insert>
+											origin="xforms:element(instance('control-instance')/link-property, (xforms:attribute('rdf:resource', concat('http://nomisma.org/id/', instance('control-instance')/atom-id)), ''))"></xforms:insert>
+										
+										
+										<!-- only insert dcterms:isPartOf into geo:SpatialThing for borader queries -->
+										<xforms:action if="instance('control-instance')/link-property = 'skos:broader'">
+											<!-- insert dcterms:isPartOf into the SpatialThing, if it exists -->
+											<xforms:insert context="instance('doc')/geo:SpatialThing" nodeset="./child::node()[last()]"
+												origin="xforms:element('dcterms:isPartOf', (xforms:attribute('rdf:resource', concat('http://nomisma.org/id/', instance('control-instance')/atom-id, '#this')), ''))"
+												if="instance('doc')/geo:SpatialThing"></xforms:insert>
+										</xforms:action>
+										
 										<!-- blank atom search nodes and atom feed -->
 										<xforms:delete nodeset="instance('feed')/*"></xforms:delete>
 										<xforms:setvalue ref="instance('control-instance')/atom-search"></xforms:setvalue>
 										<xforms:setvalue ref="instance('control-instance')/atom-id"></xforms:setvalue>
 										<xforms:setvalue ref="instance('control-instance')/atom-summary"></xforms:setvalue>
-										<xxforms:hide dialog="broader-dialog"></xxforms:hide>
+										<xforms:setvalue ref="instance('control-instance')/link-property"></xforms:setvalue>
+										<xxforms:hide dialog="atom-dialog"></xxforms:hide>
 									</xforms:action>
 								</xforms:trigger>
 							</div>
@@ -1752,7 +1790,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 							<h4>No results found.</h4>
 						</xforms:group>
 					</div>
-				</xxforms:dialog>
+				</xxforms:dialog>				
 				<xxforms:dialog id="organization-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
 					<xforms:label>Parent Dynasty/Organization</xforms:label>
 					<div>
