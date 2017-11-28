@@ -123,6 +123,11 @@
 								<xforms:label>Search</xforms:label>
 							</xforms:trigger>
 						</div>
+						<xforms:group ref=".[string-length(instance('control-instance')/search-results)] &gt; 0">
+							<p class="text-muted">
+								<xforms:output ref="instance('control-instance')/search-results"/>
+							</p>
+						</xforms:group>
 						<div>
 							<xforms:group ref=".[count(instance('getty-options')/option) &gt; 0]">
 								<table class="table">
@@ -182,6 +187,7 @@
 							<controls xmlns="">
 								<getty-search/>
 								<getty-id/>
+								<search-results/>
 							</controls>
 						</xforms:instance>
 
@@ -273,14 +279,24 @@ luc:term "SEARCH_QUERY"} LIMIT 25]]>
 								<!--SPARQL query failed.-->
 								<xforms:output value="event('response-headers')"/>
 							</xforms:message>
-							<xforms:action xxforms:iterate="instance('getty-response')//res:result" ev:event="xforms-submit-done">
-								<xforms:var name="link" select="context()/res:binding[@name='c']/res:uri"/>
-								<xforms:var name="title" select="context()/res:binding[@name='label']/res:literal"/>
-								<xforms:var name="scopeNote" select="context()/res:binding[@name='scopeNote']/res:literal"/>
-								<xforms:insert context="instance('getty-options')" nodeset="./child::node()[last()]"
-									origin="xforms:element('option', (xforms:attribute('select', false()),
-									xforms:attribute('link', $link), xforms:attribute('description', $scopeNote), $title))"
-								/>
+							
+							<xforms:action ev:event="xforms-submit-done">
+								<!-- clear search results first -->
+								<xforms:setvalue ref="instance('control-instance')/search-results"/>
+								<xforms:var name="total" select="count(instance('getty-response')//res:result)"/>
+								<xforms:setvalue if="$total = 0" ref="instance('control-instance')/search-results">No results found for query.</xforms:setvalue>
+								<xforms:setvalue if="$total &gt; 0 and $total &lt;= 25" ref="instance('control-instance')/search-results" value="concat('Displaying ', $total, ' result(s).')"/>
+								<xforms:setvalue if="$total &gt; 25" ref="instance('control-instance')/search-results" value="concat('Displaying first 25 of ', $total, ' result(s).')"/>
+								
+								<xforms:action xxforms:iterate="instance('getty-response')//res:result">
+									<xforms:var name="link" select="context()/res:binding[@name='c']/res:uri"/>
+									<xforms:var name="title" select="context()/res:binding[@name='label']/res:literal"/>
+									<xforms:var name="scopeNote" select="context()/res:binding[@name='scopeNote']/res:literal"/>
+									<xforms:insert context="instance('getty-options')" nodeset="./child::node()[last()]"
+										origin="xforms:element('option', (xforms:attribute('select', false()),
+										xforms:attribute('link', $link), xforms:attribute('description', $scopeNote), $title))"
+									/>
+								</xforms:action>
 							</xforms:action>
 						</xforms:submission>
 					</xforms:model>
