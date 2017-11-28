@@ -44,9 +44,10 @@
 							<xforms:trigger>
 								<xforms:label>Select</xforms:label>
 								<xforms:action ev:event="DOMActivate">
-									<!-- create skos:closeMatch, set resource -->
+									<!-- create skos:closeMatch or skos:exactMatch, depending on class, set resource -->
+									<xforms:var name="property" select="if ($binding/name()='nmo:Mint') then 'skos:closeMatch' else 'skos:exactMatch'"/>
 									<xforms:insert context="$binding" nodeset="./child::node()[last()]"
-										origin="xforms:element('skos:closeMatch', xforms:attribute('rdf:resource', instance('control-instance')/uri))"/>
+										origin="xforms:element($property, xforms:attribute('rdf:resource', instance('control-instance')/uri))"/>
 									<!-- if there aren't already coordinates, then get the coordinates from the Pleiades RDF -->
 									<!--<xforms:action if="not($binding//geo:lat) and not($binding//geo:long)">
 										<xforms:send submission="get-pleiades-rdf"/>
@@ -76,7 +77,7 @@
 								</xforms:output>
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
-										<img src="/ceramics/xforms/images/external.png"/>
+										<span class="glyphicon glyphicon-new-window"/>
 									</xforms:label>
 									<xforms:load ev:event="DOMActivate" show="new" ref="instance('control-instance')/uri"/>
 								</xforms:trigger>

@@ -1,6 +1,8 @@
-<xbl:xbl xmlns="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:xxbl="http://orbeon.org/oxf/xml/xbl" xmlns:owl="http://www.w3.org/2002/07/owl#"
-	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:nomisma="https://github.com/nomisma">
+<xbl:xbl xmlns="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xxbl="http://orbeon.org/oxf/xml/xbl" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:nomisma="https://github.com/nomisma" xmlns:srw="http://www.loc.gov/zing/srw/"
+	xmlns:viaf="http://viaf.org/viaf/terms#">
 	<xbl:binding id="nomisma-viaf" element="nomisma|viaf">
 		<xbl:template>
 			<xforms:group xbl:attr="model context ref bind" xxbl:scope="outer">
@@ -13,7 +15,8 @@
 					<xforms:trigger appearance="minimal">
 						<xforms:label><span class="glyphicon glyphicon-search"/>VIAF URIs</xforms:label>
 						<xforms:action ev:event="DOMActivate">
-							<xforms:setvalue ref="instance('control-instance')/viaf-field" value="if ($type='foaf:Person') then 'local.personalNames' else 'local.corporateNames'"/>
+							<xforms:setvalue ref="instance('control-instance')/viaf-field"
+								value="if ($type='foaf:Person') then 'local.personalNames' else 'local.corporateNames'"/>
 							<xxforms:show dialog="viaf-dialog"/>
 						</xforms:action>
 					</xforms:trigger>
@@ -28,11 +31,17 @@
 								<xforms:label>Search</xforms:label>
 								<!-- delete current options in the instance and initiate new query -->
 								<xforms:action ev:event="DOMActivate">
+									<xforms:setvalue ref="instance('control-instance')/search-results"/>
 									<xforms:delete context="instance('viaf-options')/*"/>
 									<xforms:send submission="query-viaf"/>
 								</xforms:action>
 							</xforms:trigger>
 						</div>
+						<xforms:group ref=".[string-length(instance('control-instance')/search-results)] &gt; 0">
+							<p class="text-muted">
+								<xforms:output ref="instance('control-instance')/search-results"/>
+							</p>
+						</xforms:group>
 						<xforms:group ref=".[count(instance('viaf-options')/option) &gt; 0]">
 							<table style="width:100%">
 								<thead>
@@ -49,6 +58,12 @@
 											</td>
 											<td>
 												<xforms:output ref="."/>
+												<xforms:trigger appearance="minimal">
+													<xforms:label>
+														<span class="glyphicon glyphicon-new-window"/>
+													</xforms:label>
+													<xforms:load ev:event="DOMActivate" show="new" ref="@link"/>
+												</xforms:trigger>
 											</td>
 										</tr>
 									</xforms:repeat>
@@ -61,15 +76,17 @@
 										<xforms:var name="resource" select="context()/@link"/>
 										<xforms:setvalue ref="instance('control-instance')/viaf-id" value="$resource"/>
 										<xforms:action if="not($binding/skos:exactMatch[@rdf:resource=$resource])">
-											<xforms:insert context="$binding" nodeset="./child::node()[last()]" origin="xforms:element('skos:exactMatch', xforms:attribute('rdf:resource', $resource))"
-											/>
+											<xforms:insert context="$binding" nodeset="./child::node()[last()]"
+												origin="xforms:element('skos:exactMatch', xforms:attribute('rdf:resource', $resource))"/>
 										</xforms:action>
 										<xforms:send submission="get-viaf-rdf"/>
 										<!-- process owl:sameAs links provided by VIAF -->
-										<xforms:action ev:event="xforms-submit-done" xxforms:iterate="instance('viaf-rdf')/rdf:Description[@rdf:about=instance('control-instance')/viaf-id]/owl:sameAs">
+										<xforms:action ev:event="xforms-submit-done"
+											xxforms:iterate="instance('viaf-rdf')/rdf:Description[@rdf:about=instance('control-instance')/viaf-id]/owl:sameAs">
 											<xforms:var name="resource" select="context()/@rdf:resource"/>
 											<xforms:action if="not($binding/skos:exactMatch[@rdf:resource=$resource])">
-												<xforms:insert context="$binding" nodeset="./child::node()[last()]" origin="xforms:element('skos:exactMatch', xforms:attribute('rdf:resource',
+												<xforms:insert context="$binding" nodeset="./child::node()[last()]"
+													origin="xforms:element('skos:exactMatch', xforms:attribute('rdf:resource',
 													$resource))"/>
 											</xforms:action>
 										</xforms:action>
@@ -87,11 +104,12 @@
 								<viaf-id/>
 								<viaf-query/>
 								<viaf-field/>
+								<search-results/>
 							</controls>
 						</xforms:instance>
 
 						<xforms:instance id="viaf-response">
-							<rss xmlns=""/>
+							<searchRetrieveResponse xmlns=""/>
 						</xforms:instance>
 
 						<xforms:instance id="viaf-rdf">
@@ -115,18 +133,37 @@
 
 						<!-- submissions -->
 						<xforms:submission id="query-viaf" serialization="none" method="get"
-							action="http://viaf.org/viaf/search?query={instance('control-instance')/viaf-field}+all+%22{instance('control-instance')/viaf-query}%22&amp;sortKeys=holdingscount&amp;maximumRecords=10&amp;httpAccept=application/rss%2bxml"
+							action="http://viaf.org/viaf/search?query={instance('control-instance')/viaf-field}+all+%22{instance('control-instance')/viaf-query}%22+and+local.sources+any+%22lc%22&amp;sortKeys=holdingscount&amp;recordSchema=BriefVIAF&amp;httpAccept=application/xml"
 							instance="viaf-response" replace="instance">
+							<xforms:header>
+								<xforms:name>User-Agent</xforms:name>
+								<xforms:value>XForms/Nomisma.org</xforms:value>
+							</xforms:header>
+							
 							<xforms:message ev:event="xforms-submit-error" level="modal">Error querying VIAF.</xforms:message>
-							<xforms:action xxforms:iterate="instance('viaf-response')//item" ev:event="xforms-submit-done">
-								<xforms:var name="link" select="context()/link"/>
-								<xforms:var name="title" select="context()/title"/>
-								<xforms:insert context="instance('viaf-options')" nodeset="./child::node()[last()]" origin="xforms:element('option', (xforms:attribute('select', false()),
-									xforms:attribute('link', $link), $title))"/>
+
+							<xforms:action ev:event="xforms-submit-done">
+								<xforms:var name="total" select="number(instance('viaf-response')//srw:numberOfRecords)"/>
+								<xforms:setvalue if="$total = 0" ref="instance('control-instance')/search-results">No results found for query.</xforms:setvalue>
+								<xforms:setvalue if="$total &gt; 0 and $total &lt;= 100" ref="instance('control-instance')/search-results"
+									value="concat('Displaying ', $total, ' result(s).')"/>
+								<xforms:setvalue if="$total &gt; 100" ref="instance('control-instance')/search-results"
+									value="concat('Displaying first 100 of ', $total, ' result(s).')"/>
+
+								<xforms:action xxforms:iterate="instance('viaf-response')//srw:record">
+									<xforms:var name="link" select="concat('http://viaf.org/viaf/', descendant::viaf:viafID)"/>
+									<xforms:var name="title" select="descendant::viaf:data[viaf:sources/viaf:s='LC']/viaf:text"/>
+									<xforms:insert context="instance('viaf-options')" nodeset="./child::node()[last()]"
+										origin="xforms:element('option', (xforms:attribute('select', false()),
+										xforms:attribute('link', $link), $title))"
+									/>
+								</xforms:action>
 							</xforms:action>
+
 						</xforms:submission>
 
-						<xforms:submission id="get-viaf-rdf" serialization="none" method="get" action="{instance('control-instance')/viaf-id}/rdf.xml" instance="viaf-rdf" replace="instance">
+						<xforms:submission id="get-viaf-rdf" serialization="none" method="get" action="{instance('control-instance')/viaf-id}/rdf.xml"
+							instance="viaf-rdf" replace="instance">
 							<xforms:message ev:event="xforms-submit-error" level="modal">Failed to get VIAF RDF.</xforms:message>
 						</xforms:submission>
 					</xforms:model>

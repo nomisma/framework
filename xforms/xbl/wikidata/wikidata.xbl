@@ -65,7 +65,7 @@
 													<!-- process wikidata XML if the entity has an @id -->
 													<xforms:action if="string(instance('wikidata')//entity/@id)">
 														<!-- create mapping based on the type: skos:closeMatch for mints, skos:exactMatch for all else -->
-														<xforms:var name="mapping" select="if ($type = 'nmo:Mint' or $type='nmo:Region') then 'skos:closeMatch' else 'skos:exactMatch'"/>
+														<xforms:var name="mapping" select="if ($type = 'nmo:Mint') then 'skos:closeMatch' else 'skos:exactMatch'"/>
 
 														<!-- insert the wikidata, dpbedia URI -->
 														<xforms:var name="wikidata-uri" select="concat('https://www.wikidata.org/entity/', instance('wikidata')//entity/@id)"/>
