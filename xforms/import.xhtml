@@ -1065,14 +1065,15 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 													</xforms:action>
 													<!-- create geo:location and geo:SpatialThing if there a geo:lat -->
 													<xforms:action if="$mapping = 'geo:lat' or $mapping='geo:long'">
-														<xforms:var name="locationUri" select="concat($uri, '#this')"></xforms:var>
-														<!-- if there is no existing SpatialThing, then create one and insert the updated latitude and longitude. Do no overwrite existing values -->
-														<xforms:action if="not(instance('rdf')/geo:SpatialThing)">
-															<xforms:insert context="instance('rdf')" nodeset="./child::node()[last()]"
-																origin="xforms:element('geo:SpatialThing', (xforms:attribute('rdf:about', $locationUri), ''))"></xforms:insert>
-															<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
-																origin="xforms:element('geo:location', (xforms:attribute('rdf:resource', $locationUri), ''))"></xforms:insert>
-														</xforms:action>
+														<xforms:var name="locationUri" select="concat($uri, '#this')"></xforms:var>														
+														<!-- insert geo:location if it doesn't exist -->
+														<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
+															origin="xforms:element('geo:location', (xforms:attribute('rdf:resource', $locationUri), ''))" if="not(instance('rdf')/*[1]/geo:location)"></xforms:insert>
+														
+														<!-- if there is no existing SpatialThing, then create one -->
+														<xforms:insert context="instance('rdf')" nodeset="./child::node()[last()]"
+															origin="xforms:element('geo:SpatialThing', (xforms:attribute('rdf:about', $locationUri), ''))" if="not(instance('rdf')/geo:SpatialThing)"></xforms:insert>
+														<!-- insert coordinates if they don't exist -->
 														<xforms:insert context="instance('rdf')/geo:SpatialThing" nodeset="./child::node()[last()]"
 															origin="xforms:element($mapping, (xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#decimal'), $value))"
 															if="not(instance('rdf')/geo:SpatialThing/*[name()=$mapping])"></xforms:insert>
