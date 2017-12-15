@@ -704,7 +704,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 														<!-- id -->
 														<xforms:action if="$mapping = 'id'">
 															<!-- only allow certain characters as the Nomisma ID -->
-															<xforms:var name="isValid" select="matches($value, &quot;^([a-z0-9\-\._\(\)\[\]&#x0027;]*)?$&quot;)"></xforms:var>
+															<xforms:var name="isValid" select="matches($value, &quot;^([a-zA-Z0-9\-\._\(\)\[\]&#x0027;]*)?$&quot;)"></xforms:var>
 															<xforms:insert if="not(string($value)) or $isValid = false()" context="instance('validation-model')/record[last()]"
 																nodeset="./child::node()[last()]" origin="xforms:element('error', 'Invalid or blank ID')"></xforms:insert>
 														</xforms:action>
