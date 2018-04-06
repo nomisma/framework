@@ -55,7 +55,7 @@
     <example name="preferCite" ref="#rightsStmt"/>
     <example name="prefix" ref="#semanticDeclaration"/>
     <example name="publicationStatus"><![CDATA[<publicationStatus>approved</publicationStatus>]]></example>
-    <example name="recordId"><![CDATA[<recordId>ric.1(2).aug.1a</recordId></control>]]></example>
+    <example name="recordId"><![CDATA[<recordId>ric.1(2).aug.1a</recordId>]]></example>
     <example name="rights" ref="#rightsStmt"/>
     <example name="rightsStmt"><![CDATA[<rightsStmt>
     <copyrightHolder>American Numismatic Society</copyrightHolder>
