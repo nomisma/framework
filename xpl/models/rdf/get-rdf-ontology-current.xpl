@@ -49,7 +49,7 @@
 							<xsl:value-of select="concat('file://', /directory/@path, '/', $doc)"/>
 						</url>						
 						<mode>xml</mode>
-						<content-type>application/xml</content-type>
+						<content-type>application/rdf+xml</content-type>
 						<encoding>utf-8</encoding>
 					</config>			
 				</xsl:template>
