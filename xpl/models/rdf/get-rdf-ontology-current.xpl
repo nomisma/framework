@@ -49,7 +49,7 @@
 							<xsl:value-of select="concat('file://', /directory/@path, '/', $doc)"/>
 						</url>						
 						<mode>xml</mode>
-						<content-type>application/rdf+xml</content-type>
+						<content-type>application/xml</content-type>
 						<encoding>utf-8</encoding>
 					</config>			
 				</xsl:template>
@@ -60,6 +60,18 @@
 	
 	<p:processor name="oxf:url-generator">
 		<p:input name="config" href="#url-generator-config"/>
+		<p:output name="data" id="model"/>
+	</p:processor>
+	
+	<p:processor name="oxf:xml-serializer">
+		<p:input name="data" href="#model"/>
+		<p:input name="config">
+			<config>
+				<content-type>application/rdf+xml</content-type>
+				<indent>true</indent>
+				<indent-amount>4</indent-amount>
+			</config>
+		</p:input>
 		<p:output name="data" ref="data"/>
 	</p:processor>
 </p:pipeline>
