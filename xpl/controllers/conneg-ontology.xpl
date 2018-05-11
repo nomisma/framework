@@ -41,6 +41,18 @@
 		<p:when test="content-type='xml'">
 			<p:processor name="oxf:identity">
 				<p:input name="data" href="#data"/>		
+				<p:output name="data" id="model"/>
+			</p:processor>
+			
+			<p:processor name="oxf:xml-serializer">
+				<p:input name="data" href="#model"/>
+				<p:input name="config">
+					<config>
+						<content-type>application/rdf+xml</content-type>
+						<indent>true</indent>
+						<indent-amount>4</indent-amount>
+					</config>
+				</p:input>
 				<p:output name="data" ref="data"/>
 			</p:processor>
 		</p:when>
@@ -55,8 +67,28 @@
 			<p:processor name="oxf:pipeline">
 				<p:input name="config" href="../views/pages/ontology.xpl"/>
 				<p:input name="data" href="#data"/>		
+				<p:output name="data" id="model"/>
+			</p:processor>
+			
+			<p:processor name="oxf:html-converter">
+				<p:input name="data" href="#model"/>
+				<p:input name="config">
+					<config>
+						<version>5.0</version>
+						<indent>true</indent>
+						<content-type>text/html</content-type>
+						<encoding>utf-8</encoding>
+						<indent-amount>4</indent-amount>
+					</config>
+				</p:input>
 				<p:output name="data" ref="data"/>
 			</p:processor>
+			<!--<p:processor name="oxf:pipeline">
+				<p:input name="data" href="#html"/>
+				<p:input name="config" href="http-accept-headers.xpl"/>		
+				<p:output name="data" ref="data"/>
+			</p:processor>-->			
+			
 		</p:when>
 		<p:otherwise>
 			<p:processor name="oxf:pipeline">

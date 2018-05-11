@@ -116,8 +116,8 @@
 	<page path="/nomisma/pelagios-objects\.([0-9]+)\.rdf" model="xpl/models/sparql/pelagios.xpl" view="xpl/views/serializations/sparql/pelagios.xpl"/>
 	
 	<!-- **** ONTOLOGY **** -->
-	<page path="/nomisma/ontology.rdf" view="xpl/models/rdf/get-rdf-ontology-current.xpl"/>
-	<page path="/nomisma/ontology.(.*).rdf" view="xpl/models/rdf/get-rdf-ontology.xpl"/>
+	<page path="/nomisma/ontology.rdf" model="xpl/models/rdf/get-rdf-ontology-current.xpl" view="xpl/controllers/serialize-rdfxml.xpl"/>
+	<page path="/nomisma/ontology.(.*).rdf" model="xpl/models/rdf/get-rdf-ontology.xpl" view="xpl/controllers/serialize-rdfxml.xpl"/>
 	<page path="/nomisma/ontology.ttl" view="xpl/models/rdf/get-ttl-ontology-current.xpl"/>
 	<page path="/nomisma/ontology.(.*).ttl" view="xpl/models/rdf/get-ttl-ontology.xpl"/>
 

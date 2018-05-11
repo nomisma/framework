@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-	xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xml="http://www.w3.org/XML/1998/namespace"
-	xmlns:skos="http://www.w3.org/2004/02/skos/core#" exclude-result-prefixes="#all" version="2.0">
+	xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:skos="http://www.w3.org/2004/02/skos/core#" exclude-result-prefixes="#all" version="2.0">
 	<xsl:include href="../templates.xsl"/>
 	<xsl:variable name="display_path"/>
 	<xsl:variable name="url" select="/content/config/url"/>
 
-	<xsl:template match="/">
+	<xsl:template match="/">		
 		<html lang="en">
 			<head>
 				<title>nomisma.org: Ontology</title>
@@ -45,7 +45,7 @@
 						<xsl:apply-templates select="descendant::owl:ObjectProperty" mode="toc"/>
 					</ul>
 				</div>
-				<div class="col-md-9">
+				<div class="col-md-9">					
 					<h1>Nomisma Ontology</h1>
 					<div>
 						<h2>Versions</h2>
@@ -85,7 +85,8 @@
 					<xsl:variable name="version" select="."/>
 					<tr>
 						<td>
-							<xsl:variable name="date" select="concat('20', substring($version, 1, 2), '-', substring($version, 3, 2), '-', substring($version, 5, 2))"/>
+							<xsl:variable name="date"
+								select="concat('20', substring($version, 1, 2), '-', substring($version, 3, 2), '-', substring($version, 5, 2))"/>
 							<xsl:value-of select="format-date(xs:date($date), '[D01] [MNn] [Y0001]')"/>
 
 						</td>
@@ -118,15 +119,15 @@
 		</table>
 	</xsl:template>
 
-	<xsl:template match="owl:Class|owl:ObjectProperty" mode="toc">
+	<xsl:template match="owl:Class | owl:ObjectProperty" mode="toc">
 		<li>
 			<a href="#{substring-after(@rdf:about, '#')}">
 				<xsl:value-of select="substring-after(@rdf:about, '#')"/>
 			</a>
 		</li>
 	</xsl:template>
-	
-	<xsl:template match="owl:Class|owl:ObjectProperty" mode="body">
+
+	<xsl:template match="owl:Class | owl:ObjectProperty" mode="body">
 		<div id="{substring-after(@rdf:about, '#')}" class="def">
 			<h4>
 				<xsl:value-of select="substring-after(@rdf:about, '#')"/>
@@ -134,7 +135,9 @@
 			<xsl:if test="string(normalize-space(skos:definition))">
 				<dl class="dl-horizontal">
 					<dt>Definition</dt>
-					<dd><xsl:value-of select="skos:definition"/></dd>
+					<dd>
+						<xsl:value-of select="skos:definition"/>
+					</dd>
 				</dl>
 			</xsl:if>
 		</div>
