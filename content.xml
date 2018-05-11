@@ -232,26 +232,25 @@ PREFIX foaf:		<http://xmlns.com/foaf/0.1/>
 PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
 
 SELECT ?object ?type ?diameter ?weight ?axis ?type ?collection ?obvThumb ?revThumb ?obvRef ?revRef ?comThumb ?comRef WHERE {
-{?object nmo:hasTypeSeriesItem <http://numismatics.org/ocre/id/ric.1(2).aug.1A> }
-UNION { ?object nmo:hasTypeSeriesItem <http://numismatics.org/ocre/id/ric.1(2).aug.1B> }
-OPTIONAL { ?object nmo:hasWeight ?weight }
-OPTIONAL { ?object nmo:hasDiameter ?diameter }
-OPTIONAL { ?object nmo:hasAxis ?axis }
-?object rdf:type ?type .
-OPTIONAL { ?object dcterms:identifier ?identifier }
-OPTIONAL { ?object nmo:hasCollection ?colUri .
-?colUri skos:prefLabel ?collection
-FILTER(langMatches(lang(?collection), "EN"))}
-OPTIONAL { ?object foaf:thumbnail ?comThumb }
-OPTIONAL { ?object foaf:depiction ?comRef }
-OPTIONAL { ?object nmo:hasObverse ?obverse .
-?obverse foaf:thumbnail ?obvThumb }
-OPTIONAL { ?object nmo:hasObverse ?obverse .
-?obverse foaf:depiction ?obvRef }
-OPTIONAL { ?object nmo:hasReverse ?reverse .
-?reverse foaf:thumbnail ?revThumb }
-OPTIONAL { ?object nmo:hasReverse ?reverse .
-?reverse foaf:depiction ?revRef }
+	{?object nmo:hasTypeSeriesItem <http://numismatics.org/ocre/id/ric.1(2).aug.1A> }
+	UNION { ?object nmo:hasTypeSeriesItem <http://numismatics.org/ocre/id/ric.1(2).aug.1B> }
+	?object rdf:type nmo:NumismaticObject .
+	OPTIONAL { ?object nmo:hasWeight ?weight }
+	OPTIONAL { ?object nmo:hasDiameter ?diameter }
+	OPTIONAL { ?object nmo:hasAxis ?axis }
+	OPTIONAL { ?object dcterms:identifier ?identifier }
+	OPTIONAL { ?object nmo:hasCollection ?colUri .
+		?colUri skos:prefLabel ?collection FILTER(langMatches(lang(?collection), "EN"))}
+	OPTIONAL { ?object foaf:thumbnail ?comThumb }
+	OPTIONAL { ?object foaf:depiction ?comRef }
+	OPTIONAL { ?object nmo:hasObverse ?obverse .
+		?obverse foaf:thumbnail ?obvThumb }
+	OPTIONAL { ?object nmo:hasObverse ?obverse .
+		?obverse foaf:depiction ?obvRef }
+	OPTIONAL { ?object nmo:hasReverse ?reverse .
+		?reverse foaf:thumbnail ?revThumb }
+	OPTIONAL { ?object nmo:hasReverse ?reverse .
+		?reverse foaf:depiction ?revRef }
 }]]>
 </pre>
 			</div>
