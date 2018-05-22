@@ -29,7 +29,7 @@
 				</xsl:template>
 			</xsl:stylesheet>
 		</p:input>
-		<p:output name="data" ref="data"/>
+		<p:output name="data" id="query-type"/>
 	</p:processor>
 
 	<p:choose href="#query-type">
