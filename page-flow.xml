@@ -89,9 +89,11 @@
 	<page path="/nomisma/apis/getRdf" model="xpl/models/rdf/aggregate-ids.xpl" view="xpl/views/serializations/apis/getRdf.xpl"/>
 	<page path="/nomisma/apis/regionHierarchy" model="xpl/models/sparql/regionHierarchy.xpl" view="xpl/views/serializations/sparql/regionHierarchy.xpl"/>
 	<page path="/nomisma/apis/numishareResults" model="xpl/models/sparql/numishareResults.xpl" view="xpl/views/serializations/sparql/numishareResults.xpl"/>
+	
 	<!-- OpenRefine reconciliation services -->	
 	<page path="/nomisma/apis/reconcile/preview" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/reconcile-preview-html.xpl"/>
 	<service path="/nomisma/apis/reconcile/suggest/entity" model="xpl/models/solr/reconcile-suggest.xpl" view="xpl/views/serializations/solr/reconcile-json.xpl" public-methods="GET HEAD POST" />
+	<service path="/nomisma/apis/reconcile/suggest/property" view="xpl/views/serializations/solr/reconcile-suggest-json.xpl" public-methods="GET HEAD POST" />
 	<service path="/nomisma/apis/reconcile/flyout" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/reconcile-flyout-json.xpl" public-methods="GET HEAD POST"/>	
 	<service path="/nomisma/apis/reconcile$" model="xpl/models/solr/openrefine-reconcile.xpl" view="xpl/views/serializations/solr/reconcile-json.xpl" public-methods="GET HEAD POST"/>
 	
