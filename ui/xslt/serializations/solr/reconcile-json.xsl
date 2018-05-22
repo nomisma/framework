@@ -41,9 +41,7 @@
 									</_object>
 								</xsl:when>
 								<xsl:otherwise>
-									<_object>
-										<xsl:apply-templates select="descendant::response"/>
-									</_object>
+									<xsl:apply-templates select="descendant::response"/>
 								</xsl:otherwise>
 							</xsl:choose>
 						</xsl:variable>

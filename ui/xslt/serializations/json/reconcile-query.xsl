@@ -7,7 +7,7 @@
         <xsl:variable name="query">
             <xsl:apply-templates select="query"/>
             <xsl:apply-templates select="type"/>
-            <xsl:apply-templates select="properties"/>
+            <!--<xsl:apply-templates select="properties"/>-->
         </xsl:variable>
         
         <xsl:text>q=</xsl:text>
@@ -40,11 +40,11 @@
         <xsl:text>)^5)</xsl:text>
     </xsl:template>
     
-    <xsl:template match="properties">
+    <!--<xsl:template match="properties">
         <xsl:apply-templates select="_" mode="prop"/>
     </xsl:template>
     
-    <!-- try http://localhost:8080/orbeon/nomisma/apis/reconcile/?query={%22query%22:%22rome%22,%22properties%22:[{%22p%22:%22id%22,%22v%22:%22rome%22}]} -->
+    <!-\- try http://localhost:8080/orbeon/nomisma/apis/reconcile/?query={%22query%22:%22rome%22,%22properties%22:[{%22p%22:%22id%22,%22v%22:%22rome%22}]} -\->
     
     <xsl:template match="_" mode="prop">
         <xsl:text> AND </xsl:text>
@@ -81,7 +81,7 @@
                 </xsl:choose>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
+    </xsl:template>-->
     
     <xsl:template match="type">
         <xsl:variable name="operator" select="if (parent::node()/type_strict = 'all') then 'AND' else 'OR'"/>
