@@ -86,13 +86,13 @@
 						xmlns:xxf="http://www.orbeon.com/oxf/pipeline">
 
 						<xsl:template match="/">
-							<xsl:copy-of select="xxf:json-to-xml(doc('input:request')/request/parameters/parameter[name='queries']/value)"/>							
+							<xsl:copy-of select="xxf:json-to-xml(doc('input:request')/request/parameters/parameter[name='queries']/value)"/>
 						</xsl:template>
 					</xsl:stylesheet>
 				</p:input>
 				<p:output name="data" id="queries"/>
 			</p:processor>
-			
+
 			<p:for-each href="#queries" select="/json/*[@type='object']" root="aggregate" id="aggregate">
 				<p:processor name="oxf:unsafe-xslt">
 					<p:input name="request" href="#request"/>
@@ -102,18 +102,18 @@
 						<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
 							xmlns:xxf="http://www.orbeon.com/oxf/pipeline">
 							<xsl:include href="../../../ui/xslt/serializations/json/reconcile-query.xsl"/>
-							
-							
+
+
 							<!-- compile the q parameter -->
-							<xsl:variable name="q">					
+							<xsl:variable name="q">
 								<xsl:apply-templates select="/*[@type='object']"/>
 							</xsl:variable>
-							
+
 							<!-- config variables -->
 							<xsl:variable name="solr-url" select="concat(doc('input:config-xml')/config/solr_published, 'select/')"/>
 							<xsl:variable name="service" select="concat($solr-url, '?', $q)"/>
-							
-							
+
+
 							<xsl:template match="/">
 								<config>
 									<url>
@@ -127,13 +127,13 @@
 					</p:input>
 					<p:output name="data" id="config"/>
 				</p:processor>
-				
+
 				<p:processor name="oxf:url-generator">
 					<p:input name="config" href="#config"/>
 					<p:output name="data" ref="aggregate"/>
 				</p:processor>
 			</p:for-each>
-			
+
 			<p:processor name="oxf:identity">
 				<p:input name="data" href="#aggregate"/>
 				<p:output name="data" ref="data"/>

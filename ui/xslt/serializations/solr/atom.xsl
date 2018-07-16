@@ -61,9 +61,14 @@
 			<id>
 				<xsl:value-of select="str[@name='id']"/>
 			</id>
+			<xsl:apply-templates select="arr[@name='type']/str"/>
 			<updated>
 				<xsl:value-of select="date[@name='timestamp']"/>
 			</updated>
 		</entry>
+	</xsl:template>
+	
+	<xsl:template match="arr[@name='type']/str">
+		<category term="{.}"/>
 	</xsl:template>
 </xsl:stylesheet>
