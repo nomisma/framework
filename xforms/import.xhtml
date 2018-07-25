@@ -394,7 +394,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 
 						<!-- iterate through claims with matching properties to link to external vocabulary systems -->
 						<xforms:action
-							xxforms:iterate="instance('wikidata')//entity/claims/property[@id='P214' or @id='P227' or @id='P213' or @id='P268' or @id='P269' or @id='P646' or @id='P245' or @id='P1566' or @id='P1900']">
+							xxforms:iterate="instance('wikidata')//entity/claims/property[@id='P214' or @id='P227' or @id='P213' or @id='P268' or @id='P269'
+							or @id='P646' or @id='P245' or @id='P1014' or @id='P1566' or @id='P1667' or @id='P1900']">
 							<xforms:var name="property" select="data(context()/@id)"></xforms:var>
 							<xforms:var name="id" select="replace(data(context()/descendant::mainsnak[1]/datavalue/@value), ' ', '')"></xforms:var>
 							<xforms:var name="uri" select="concat(instance('wikidata-properties')/property[@id=$property], $id)"></xforms:var>
