@@ -221,12 +221,12 @@
 							<table>
 								<tbody>
 									<tr>
-										<td style="background-color:#6992fd;border:2px solid black;width:50px;padding-left:6px;"/>
-										<td style="width:100px">Mints</td>
-										<td style="background-color:#d86458;border:2px solid black;width:50px;padding-left:6px;"/>
-										<td style="width:100px">Hoards</td>
-										<td style="background-color:#a1d490;border:2px solid black;width:50px;padding-left:6px;"/>
-										<td style="width:100px">Finds</td>
+										<td style="background-color:#6992fd;border:2px solid black;width:50px;"/>
+										<td style="width:100px;padding-left:6px;">Mints</td>
+										<td style="background-color:#d86458;border:2px solid black;width:50px;"/>
+										<td style="width:100px;padding-left:6px;">Hoards</td>
+										<td style="background-color:#a1d490;border:2px solid black;width:50px;"/>
+										<td style="width:100px;padding-left:6px;">Finds</td>
 										<td>
 											<a href="{$display_path}map/{$id}">View fullscreen</a>
 										</td>
