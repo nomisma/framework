@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-	Copyright (C) 2010 Ethan Gruber
-	EADitor: http://code.google.com/p/eaditor/
-	Apache License 2.0: http://code.google.com/p/eaditor/
-	
+<!-- 
+	Author: Ethan Gruber
+	Date: August 2018
+	Function: Associate the correct content type in the HTTP header for static Nomisma exports stored in the filesystem
 -->
 <p:config xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:oxf="http://www.orbeon.com/oxf/processors">
 
@@ -91,6 +90,12 @@
 			</p:processor>
 		</p:when>
 		<p:when test="mode='rdf'">
+			<!--<p:processor name="oxf:pipeline">
+				<p:input name="data" href="../../config.xml"/>
+				<p:input name="config" href="../models/rdf/aggregate-all.xpl"/>
+				<p:output name="data" id="rdfxml"/>
+			</p:processor>-->
+			
 			<p:processor name="oxf:xml-converter">
 				<p:input name="data" href="../../dump/nomisma.org.rdf"/>
 				<p:input name="config">

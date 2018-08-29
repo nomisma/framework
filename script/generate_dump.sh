@@ -1,7 +1,9 @@
 #Generate dumps
 cd /usr/local/projects/nomisma
 echo "Generating RDF/XML."
-java -jar script/saxon9.jar -s:config.xml -xsl:ui/xslt/apis/aggregate-all.xsl -o:dump/nomisma.org.rdf
+#java -jar script/saxon9.jar -s:config.xml -xsl:ui/xslt/apis/aggregate-all.xsl -o:dump/nomisma.org.rdf
+
+
 echo "Done."
 #use wrapper to generate TTL
 echo "Generating Turtle."

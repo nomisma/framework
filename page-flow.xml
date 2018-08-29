@@ -25,19 +25,9 @@
 	</page>
 	
 	<!-- ****************
-	* DATA DUMP GENERATION*
-	***************** -->
-	
-	<!-- pass the repository request parameter to the pipeline to load the RDF/XML and execute the transformation and serialization (into a file) of RDF/XML, TTL, or JSON-LD 
-	The XForms Submissions are GET, but have no output (seralization='none'). The process is much more efficient handled in the XPL workflow than through XForms controls in the web interface -->
-	<page path="/nomisma/admin/generateXML" model="xpl/controllers/generate-rdfxml.xpl"/>
-	<page path="/nomisma/admin/rdfdump-to-solr" model="xpl/controllers/rdfdump-to-solr.xpl" view="xpl/views/serializations/rdf/solr.xpl"/>
-	
-	<!-- ****************
 	* PUBLIC INTERFACE *
 	***************** -->
 	<!-- **** PAGES **** -->			
-	<page path="/nomisma/id/" view="xpl/views/pages/id.xpl"/>
 	<page path="/nomisma/sparql" view="xpl/views/pages/sparql.xpl"/>
 	<page path="/nomisma/research/distribution" view="xpl/views/pages/vis.xpl"/>
 	<page path="/nomisma/research/metrical" view="xpl/views/pages/vis.xpl"/>
@@ -54,12 +44,12 @@
 	<page path="/nomisma/feed/" model="xpl/models/solr/query.xpl" view="xpl/views/serializations/solr/atom.xpl"/>
 	
 	<!-- ID -->
-	<page path="/nomisma/id/(.*)\.rdf" model="xpl/models/rdf/get-id.xpl" view="xpl/controllers/serialize-rdfxml.xpl"/>	
-	<page path="/nomisma/id/(.*)\.kml" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/kml.xpl"/>
-	<page path="/nomisma/id/(.*)\.ttl" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/ttl.xpl"/>
-	<page path="/nomisma/id/(.*)\.jsonld" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/json-ld.xpl"/>
-	<page path="/nomisma/id/(.*)\.solr" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/solr.xpl"/>
-	<page path="/nomisma/id/(.*)" model="xpl/models/rdf/get-id.xpl" view="xpl/controllers/conneg-id.xpl"/>	
+	<page path="/nomisma/(id|editor)/(.*)\.rdf" model="xpl/models/rdf/get-id.xpl" view="xpl/controllers/serialize-rdfxml.xpl"/>	
+	<page path="/nomisma/(id|editor)/(.*)\.kml" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/kml.xpl"/>
+	<page path="/nomisma/(id|editor)/(.*)\.ttl" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/ttl.xpl"/>
+	<page path="/nomisma/(id|editor)/(.*)\.jsonld" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/json-ld.xpl"/>
+	<page path="/nomisma/(id|editor)/(.*)\.solr" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/solr.xpl"/>
+	<page path="/nomisma/(id|editor)/(.*)" model="xpl/models/rdf/get-id.xpl" view="xpl/controllers/conneg-id.xpl"/>	
 	
 	<!-- map page -->
 	<!--<page path="/nomisma/map" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/html-map.xpl"/>-->
@@ -122,6 +112,9 @@
 	<page path="/nomisma/ontology.(.*).rdf" model="xpl/models/rdf/get-rdf-ontology.xpl" view="xpl/controllers/serialize-rdfxml.xpl"/>
 	<page path="/nomisma/ontology.ttl" view="xpl/models/rdf/get-ttl-ontology-current.xpl"/>
 	<page path="/nomisma/ontology.(.*).ttl" view="xpl/models/rdf/get-ttl-ontology.xpl"/>
+
+	<!-- **** CONCEPT SCHEMES **** -->
+	<page path="/nomisma/(id|editor)/" model="xpl/models/rdf/get-id.xpl" view="xpl/controllers/conneg-id.xpl"/>
 
 	<epilogue url="oxf:/config/epilogue.xpl"/>
 </config>

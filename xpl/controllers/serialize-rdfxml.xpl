@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	Copyright (C) 2010 Ethan Gruber
-	EADitor: http://code.google.com/p/eaditor/
-	Apache License 2.0: http://code.google.com/p/eaditor/
-	
+	Author: Ethan Gruber
+	Date: August 2018
+	Function: Attach the correct HTTP header content type to RDF/XML serialized from Nomisma namespaces or the ontology	
 -->
 <p:config xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:oxf="http://www.orbeon.com/oxf/processors">
 

@@ -8,6 +8,7 @@
 	<solr_published>http://localhost:8080/solr/nomisma/</solr_published>
 	<solr_fuseki>http://localhost:8080/solr/nomisma-fuseki/</solr_fuseki>
 	<id_path>/usr/local/projects/nomisma-data/id</id_path>
+	<data_path>/usr/local/projects/nomisma-data</data_path>
 	<ontology_path>/usr/local/projects/nomisma-data/ontology</ontology_path>
 	<nuds_xsd_path>/usr/local/projects/NUDS/nuds.xsd</nuds_xsd_path>
 	<dump_path>/usr/local/projects/nomisma/dump</dump_path>

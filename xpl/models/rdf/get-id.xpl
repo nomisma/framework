@@ -19,46 +19,62 @@
 		<p:input name="data" href="../../../config.xml"/>
 		<p:input name="config">
 			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-				<xsl:output indent="yes"/>
+				
 				<xsl:template match="/">
-					<xsl:variable name="id">
+					<xsl:variable name="request-url" select="doc('input:request')/request/request-url"/>
+					<xsl:variable name="pieces" select="tokenize($request-url, '/')"/>
+					<xsl:variable name="scheme" select="$pieces[count($pieces) - 1]"/>					
+					
+					<xsl:variable name="doc">
 						<xsl:choose>
 							<xsl:when test="string(doc('input:request')/request/parameters/parameter[name='id']/value)">
 								<xsl:value-of select="doc('input:request')/request/parameters/parameter[name='id']/value"/>
 							</xsl:when>
 							<xsl:otherwise>
-								<xsl:variable name="doc" select="tokenize(doc('input:request')/request/request-url, '/')[last()]"/>
-								
 								<xsl:choose>
-									<xsl:when test="contains($doc, '.rdf')">
-										<xsl:value-of select="substring-before($doc, '.rdf')"/>
-									</xsl:when>
-									<xsl:when test="contains($doc, '.kml')">
-										<xsl:value-of select="substring-before($doc, '.kml')"/>
-									</xsl:when>							
-									<xsl:when test="contains($doc, '.solr')">
-										<xsl:value-of select="substring-before($doc, '.solr')"/>
-									</xsl:when>
-									<xsl:when test="contains($doc, '.ttl')">
-										<xsl:value-of select="substring-before($doc, '.ttl')"/>
-									</xsl:when>
-									<xsl:when test="contains($doc, '.jsonld')">
-										<xsl:value-of select="substring-before($doc, '.jsonld')"/>
-									</xsl:when>
-									<xsl:when test="contains($doc, '.test')">
-										<xsl:value-of select="substring-before($doc, '.test')"/>
+									<xsl:when test="string-length($pieces[last()]) &gt; 0">
+										<xsl:choose>
+											<xsl:when test="contains($pieces[last()], '.rdf')">
+												<xsl:value-of select="substring-before($pieces[last()], '.rdf')"/>
+											</xsl:when>
+											<xsl:when test="contains($pieces[last()], '.kml')">
+												<xsl:value-of select="substring-before($pieces[last()], '.kml')"/>
+											</xsl:when>
+											<xsl:when test="contains($pieces[last()], '.ttl')">
+												<xsl:value-of select="substring-before($pieces[last()], '.ttl')"/>
+											</xsl:when>
+											<xsl:when test="contains($pieces[last()], '.jsonld')">
+												<xsl:value-of select="substring-before($pieces[last()], '.jsonld')"/>
+											</xsl:when>				
+											<xsl:when test="contains($pieces[last()], '.solr')">
+												<xsl:value-of select="substring-before($pieces[last()], '.solr')"/>
+											</xsl:when>
+											<xsl:otherwise>
+												<xsl:value-of select="$pieces[last()]"/>
+											</xsl:otherwise>
+										</xsl:choose>
 									</xsl:when>
 									<xsl:otherwise>
-										<xsl:value-of select="$doc"/>
+										<xsl:value-of select="$scheme"/>
 									</xsl:otherwise>
 								</xsl:choose>
 							</xsl:otherwise>
-						</xsl:choose>						
-					</xsl:variable>					
+						</xsl:choose>
+					</xsl:variable>				
 					
 					<config>
 						<url>
-							<xsl:value-of select="concat('file://', /config/id_path, '/', $id, '.rdf')"/>
+							<xsl:choose>
+								<xsl:when test="string(doc('input:request')/request/parameters/parameter[name='id']/value)">
+									<xsl:value-of select="concat('file://', /config/data_path, '/id/', $doc, '.rdf')"/>
+								</xsl:when>
+								<xsl:when test="string-length($pieces[last()]) &gt; 0">
+									<xsl:value-of select="concat('file://', /config/data_path, '/', $scheme, '/', $doc, '.rdf')"/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="concat('file://', /config/data_path, '/', $doc, '.rdf')"/>
+								</xsl:otherwise>
+							</xsl:choose>
 						</url>						
 						<mode>xml</mode>
 						<content-type>application/xml</content-type>
