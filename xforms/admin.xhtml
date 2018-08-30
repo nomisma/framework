@@ -53,8 +53,7 @@ UNION {?prov foaf:topic <URI> .
 UNION {<URI> skos:changeNote ?s . ?s ?p ?o}
 UNION {<URI> ?p ?o . ?s ?p ?o . FILTER (?s = <URI>) }
 }]]></query>
-					<query id="delete-all-ids">
-						<![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+					<query id="delete-all-ids"><![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:	<http://purl.org/dc/terms/>
 PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
 PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
@@ -67,7 +66,8 @@ DELETE {?s ?p ?o} WHERE {
 UNION {?person rdf:type skos:Concept ; org:hasMembership ?s . ?s ?p ?o }
 UNION {?s rdf:type prov:Activity . ?s ?p ?o}
 UNION {?s rdf:type dcterms:ProvenanceStatement . ?s ?p ?o}
-UNION {?s rdf:type skos:Concept FILTER strStarts(str(?s), "http://nomisma.org/id/") . ?s ?p ?o}}]]>
+UNION {?s rdf:type skos:Concept FILTER strStarts(str(?s), "http://nomisma.org/id/") . ?s ?p ?o}
+UNION {?s rdf:type skos:Concept FILTER strStarts(str(?s), "http://kerameikos.org/editor/") . ?s ?p ?o}}]]>
 					</query>
 				</queries>
 
