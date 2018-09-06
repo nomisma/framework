@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/"
-	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:nmo="http://nomisma.org/ontology#" xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/"
-	xmlns:org="http://www.w3.org/ns/org#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:nomisma="http://nomisma.org/" xmlns:res="http://www.w3.org/2005/sparql-results#" exclude-result-prefixes="#all"
-	version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:nmo="http://nomisma.org/ontology#"
+	xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:org="http://www.w3.org/ns/org#" xmlns:foaf="http://xmlns.com/foaf/0.1/"
+	xmlns:nomisma="http://nomisma.org/" xmlns:res="http://www.w3.org/2005/sparql-results#" exclude-result-prefixes="#all" xmlns:prov="http://www.w3.org/ns/prov#" version="2.0">
 
 	<!-- process any object except those which have been deprecated -->
 	<xsl:template match="*[not(dcterms:isReplacedBy)]" mode="generateDoc">
 		<doc>
-			<xsl:variable name="id" select="substring-after(@rdf:about, 'id/')"/>
+			<xsl:variable name="uri" select="@rdf:about"/>
+			<xsl:variable name="id" select="tokenize(@rdf:about, '/')[last()]"/>
+
 			<field name="id">
 				<xsl:value-of select="$id"/>
 			</field>
@@ -46,6 +48,10 @@
 				</field>
 			</xsl:for-each>
 
+			<field name="conceptScheme">
+				<xsl:value-of select="skos:inScheme/@rdf:resource"/>
+			</field>
+
 			<!-- definition -->
 			<field name="definition">
 				<xsl:value-of select="skos:definition[@xml:lang='en']"/>
@@ -69,7 +75,8 @@
 			<!-- fields of numismatics -->
 			<xsl:apply-templates select="dcterms:isPartOf[matches(@rdf:resource, 'nomisma\.org/id/.*_numismatics')]" mode="field"/>
 
-			<field name="timestamp">
+			<!-- provenance -->
+			<field name="indexed_timestamp">
 				<xsl:variable name="timestamp" select="string(current-dateTime())"/>
 				<xsl:choose>
 					<xsl:when test="contains($timestamp, 'Z')">
@@ -80,6 +87,33 @@
 					</xsl:otherwise>
 				</xsl:choose>
 			</field>
+
+			<xsl:if test="//dcterms:ProvenanceStatement[foaf:topic/@rdf:resource = $uri]">
+				<xsl:variable name="timestamps" select="//dcterms:ProvenanceStatement[foaf:topic/@rdf:resource = $uri]/descendant::prov:atTime"/>
+
+				<field name="created_timestamp">
+					<xsl:choose>
+						<xsl:when test="contains($timestamps[1], 'Z')">
+							<xsl:value-of select="$timestamps[1]"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="concat($timestamps[1], 'Z')"/>
+						</xsl:otherwise>
+					</xsl:choose>
+				</field>
+
+				<field name="modified_timestamp">
+					<xsl:choose>
+						<xsl:when test="contains($timestamps[last()], 'Z')">
+							<xsl:value-of select="$timestamps[last()]"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="concat($timestamps[last()], 'Z')"/>
+						</xsl:otherwise>
+					</xsl:choose>
+				</field>
+			</xsl:if>
+
 			<field name="text">
 				<xsl:value-of select="$id"/>
 				<xsl:text> </xsl:text>
@@ -152,19 +186,19 @@
 
 	<xsl:template match="dcterms:isPartOf" mode="field">
 		<xsl:variable name="uri" select="@rdf:resource"/>
-		
+
 		<field name="field_uri">
 			<xsl:value-of select="@rdf:resource"/>
 		</field>
-		
+
 		<xsl:apply-templates select="$fields//field[@uri=$uri]">
 			<xsl:with-param name="uri" select="$uri"/>
 		</xsl:apply-templates>
 	</xsl:template>
-	
+
 	<xsl:template match="field">
 		<xsl:param name="uri"/>
-		
+
 		<field name="field_facet">
 			<xsl:value-of select="concat(name, '|', $uri)"/>
 		</field>

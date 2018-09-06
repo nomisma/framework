@@ -70,7 +70,8 @@ OPTIONAL {<URI> skos:broader ?broader .
 
 	<xsl:template match="/">
 		<add>
-			<xsl:apply-templates select="/content/rdf:RDF/*[rdf:type/@rdf:resource='http://www.w3.org/2004/02/skos/core#Concept'][not(child::dcterms:isReplacedBy)]" mode="generateDoc"/>
+			<xsl:apply-templates select="/rdf:RDF/*[rdf:type/@rdf:resource = 'http://www.w3.org/2004/02/skos/core#Concept' and skos:inScheme/@rdf:resource = 'http://nomisma.org/id/'][not(child::dcterms:isReplacedBy)]"
+				mode="generateDoc"/>
 		</add>
 	</xsl:template>
 </xsl:stylesheet>

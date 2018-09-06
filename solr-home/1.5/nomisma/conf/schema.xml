@@ -53,7 +53,10 @@
 	<field name="type" type="string" indexed="true" stored="true" multiValued="true"/>
 	<field name="label" type="text_general" indexed="true" stored="true" multiValued="true"/>	
 	<field name="definition" type="text_general" indexed="true" stored="true"/>
-	<field name="timestamp" type="date" indexed="true" stored="true"/>
+	<field name="conceptScheme" type="string" indexed="true" stored="true"/>
+
+	<!-- store multiple timestamps -->
+	<dynamicField name="*_timestamp" type="date" indexed="true" stored="true"/>
 
 	<!-- for geographic querying by means of the main solr index -->
 	<field name="geo" type="location_rpt" indexed="true" stored="true" multiValued="true"/>
