@@ -23,10 +23,10 @@ $(document).ready(function () {
         return false;
     });
     
-    //listTypes
-    $('.page-section').on('click', 'h3 small .toggle-button', function () {
+        //show/hide sections
+    $('.toggle-button').click(function () {
         var div = $(this).attr('id').split('-')[1];
-        $('#' + div + '-div').toggle();
+        $('#' + div).toggle();
         
         //replace minus with plus and vice versa
         var span = $(this).children('span');
@@ -40,12 +40,12 @@ $(document).ready(function () {
         return false;
     });
     
-    //toggle quantitative analysis form visibility
-    $('#quant .toggle-button').click(function () {
+    //listTypes
+    $('.page-section').on('click', 'h3 small .toggle-button', function () {
         var div = $(this).attr('id').split('-')[1];
-        $('#' + div).toggle();
+        $('#' + div + '-div').toggle();
         
-        //replace triangles
+        //replace minus with plus and vice versa
         var span = $(this).children('span');
         if (span.attr('class').indexOf('right') > 0) {
             span.removeClass('glyphicon-triangle-right');

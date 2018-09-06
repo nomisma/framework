@@ -4,6 +4,20 @@
 	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:org="http://www.w3.org/ns/org#"
 	xmlns:nomisma="http://nomisma.org/" xmlns:nmo="http://nomisma.org/ontology#" xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" exclude-result-prefixes="#all" version="2.0">
 
+	<xsl:template match="skos:prefLabel" mode="prefLabel">
+		<span property="{name()}" lang="{@xml:lang}">
+			<xsl:value-of select="."/>
+		</span>
+		<xsl:if test="string(@xml:lang)">
+			<span class="lang">
+				<xsl:value-of select="concat(' (', @xml:lang, ')')"/>
+			</span>
+		</xsl:if>
+		<xsl:if test="not(position() = last())">
+			<xsl:text>, </xsl:text>
+		</xsl:if>
+	</xsl:template>
+
 	<xsl:template match="*" mode="list-item">
 		<xsl:variable name="name" select="name()"/>
 		<dt>
@@ -76,7 +90,7 @@
 					</span>
 				</xsl:when>
 				<xsl:when test="*">
-					<xsl:apply-templates select="*" mode="suburi"/>
+					<xsl:apply-templates select="*" mode="type"/>
 				</xsl:when>
 			</xsl:choose>
 		</dd>

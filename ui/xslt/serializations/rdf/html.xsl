@@ -166,7 +166,24 @@
 						<a href="#quant">Quantitative Analysis</a>
 					</xsl:if>
 					
-					<xsl:apply-templates select="/content/rdf:RDF/*" mode="type"/>
+					<xsl:apply-templates select="/content/rdf:RDF/*[not(name() = 'dcterms:ProvenanceStatement')]" mode="type"/>
+					
+					<!-- ProvenanceStatement is hidden by default -->
+					<xsl:if test="/content/rdf:RDF/dcterms:ProvenanceStatement">
+						<h3>
+							<xsl:text>Data Provenance</xsl:text>
+							<small>
+								<a href="#" class="toggle-button" id="toggle-provenance" title="Click to hide or show the analysis form">
+									<span class="glyphicon glyphicon-triangle-right"/>
+								</a>
+							</small>
+						</h3>
+						<div style="display:none" id="provenance">
+							<xsl:apply-templates select="/content/rdf:RDF/*[name() = 'dcterms:ProvenanceStatement']" mode="type">
+								<xsl:with-param name="hasObjects" select="false()" as="xs:boolean"/>
+							</xsl:apply-templates>
+						</div>
+					</xsl:if>
 				</div>
 				<div class="col-md-{if ($hasMints = true() or $hasFindspots = true()) then '6' else '3'}">					
 					<div>
@@ -299,20 +316,24 @@
 			<xsl:if test="contains(@rdf:about, '#')">
 				<xsl:attribute name="id" select="substring-after(@rdf:about, '#')"/>
 			</xsl:if>
-			<xsl:element name="{if(position()=1) then 'h2' else 'h3'}">
-				<a href="{@rdf:about}">
-					<xsl:choose>
-						<xsl:when test="contains(@rdf:about, '#')">
-							<xsl:value-of select="concat('#', substring-after(@rdf:about, '#'))"/>
-						</xsl:when>
-						<xsl:when test="contains(@rdf:about, 'geonames.org')">
-							<xsl:value-of select="@rdf:about"/>
-						</xsl:when>
-						<xsl:otherwise>
-							<xsl:value-of select="$id"/>
-						</xsl:otherwise>
-					</xsl:choose>
-				</a>
+			
+			<xsl:element
+				name="{if (name() = 'dcterms:ProvenanceStatement') then 'h3' else if (not(parent::rdf:RDF)) then 'h3' else if(position()=1) then 'h2' else 'h3'}">
+				<xsl:if test="@rdf:about">
+					<a href="{@rdf:about}">
+						<xsl:choose>
+							<xsl:when test="contains(@rdf:about, '#')">
+								<xsl:value-of select="concat('#', substring-after(@rdf:about, '#'))"/>
+							</xsl:when>
+							<xsl:when test="contains(@rdf:about, 'geonames.org')">
+								<xsl:value-of select="@rdf:about"/>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="substring-after(@rdf:about, 'id/')"/>
+							</xsl:otherwise>
+						</xsl:choose>
+					</a>
+				</xsl:if>
 				<small>
 					<xsl:text> (</xsl:text>
 					<a href="{concat(namespace-uri(.), local-name())}">
@@ -321,6 +342,7 @@
 					<xsl:text>)</xsl:text>
 				</small>
 			</xsl:element>
+			
 			<dl class="dl-horizontal">
 				<xsl:if test="skos:prefLabel">
 					<dt>
@@ -366,19 +388,5 @@
 				</xsl:otherwise>
 			</xsl:choose>
 		</dd>		
-	</xsl:template>
-
-	<xsl:template match="skos:prefLabel" mode="prefLabel">
-		<span property="{name()}" lang="{@xml:lang}">
-			<xsl:value-of select="."/>
-		</span>
-		<xsl:if test="string(@xml:lang)">
-			<span class="lang">
-				<xsl:value-of select="concat(' (', @xml:lang, ')')"/>
-			</span>
-		</xsl:if>
-		<xsl:if test="not(position() = last())">
-			<xsl:text>, </xsl:text>
-		</xsl:if>
 	</xsl:template>
 </xsl:stylesheet>
