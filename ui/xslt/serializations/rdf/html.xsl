@@ -166,21 +166,23 @@
 						<a href="#quant">Quantitative Analysis</a>
 					</xsl:if>
 					
-					<xsl:apply-templates select="/content/rdf:RDF/*[not(name() = 'dcterms:ProvenanceStatement')]" mode="type"/>
+					<xsl:apply-templates select="/content/rdf:RDF/*[not(name() = 'dcterms:ProvenanceStatement')]" mode="type">
+						<xsl:with-param name="mode">record</xsl:with-param>
+					</xsl:apply-templates>
 					
 					<!-- ProvenanceStatement is hidden by default -->
 					<xsl:if test="/content/rdf:RDF/dcterms:ProvenanceStatement">
 						<h3>
 							<xsl:text>Data Provenance</xsl:text>
 							<small>
-								<a href="#" class="toggle-button" id="toggle-provenance" title="Click to hide or show the analysis form">
+								<a href="#" class="toggle-button" id="toggle-provenance" title="Click to hide or show the provenance">
 									<span class="glyphicon glyphicon-triangle-right"/>
 								</a>
 							</small>
 						</h3>
 						<div style="display:none" id="provenance">
 							<xsl:apply-templates select="/content/rdf:RDF/*[name() = 'dcterms:ProvenanceStatement']" mode="type">
-								<xsl:with-param name="hasObjects" select="false()" as="xs:boolean"/>
+								<xsl:with-param name="mode">record</xsl:with-param>
 							</xsl:apply-templates>
 						</div>
 					</xsl:if>
@@ -309,84 +311,5 @@
 
 			<xsl:call-template name="ajax-loader-template"/>
 		</div>
-	</xsl:template>
-
-	<xsl:template match="*" mode="type">
-		<div typeof="{name()}" about="{@rdf:about}">
-			<xsl:if test="contains(@rdf:about, '#')">
-				<xsl:attribute name="id" select="substring-after(@rdf:about, '#')"/>
-			</xsl:if>
-			
-			<xsl:element
-				name="{if (name() = 'dcterms:ProvenanceStatement') then 'h3' else if (not(parent::rdf:RDF)) then 'h3' else if(position()=1) then 'h2' else 'h3'}">
-				<xsl:if test="@rdf:about">
-					<a href="{@rdf:about}">
-						<xsl:choose>
-							<xsl:when test="contains(@rdf:about, '#')">
-								<xsl:value-of select="concat('#', substring-after(@rdf:about, '#'))"/>
-							</xsl:when>
-							<xsl:when test="contains(@rdf:about, 'geonames.org')">
-								<xsl:value-of select="@rdf:about"/>
-							</xsl:when>
-							<xsl:otherwise>
-								<xsl:value-of select="substring-after(@rdf:about, 'id/')"/>
-							</xsl:otherwise>
-						</xsl:choose>
-					</a>
-				</xsl:if>
-				<small>
-					<xsl:text> (</xsl:text>
-					<a href="{concat(namespace-uri(.), local-name())}">
-						<xsl:value-of select="name()"/>
-					</a>
-					<xsl:text>)</xsl:text>
-				</small>
-			</xsl:element>
-			
-			<dl class="dl-horizontal">
-				<xsl:if test="skos:prefLabel">
-					<dt>
-						<a href="{concat($namespaces//namespace[@prefix='skos']/@uri, 'prefLabel')}">skos:prefLabel</a>
-					</dt>
-					<dd>
-						<xsl:apply-templates select="skos:prefLabel" mode="prefLabel">
-							<xsl:sort select="@xml:lang"/>
-						</xsl:apply-templates>
-					</dd>
-				</xsl:if>
-				<xsl:apply-templates select="skos:definition" mode="list-item">
-					<xsl:sort select="@xml:lang"/>
-				</xsl:apply-templates>
-				<xsl:apply-templates select="*[not(name() = 'skos:prefLabel') and not(name() = 'skos:definition')][not(child::*)]" mode="list-item">
-					<xsl:sort select="name()"/>
-					<xsl:sort select="@rdf:resource"/>
-				</xsl:apply-templates>
-			</dl>
-			<xsl:apply-templates select="*[(child::*)]" mode="suburi">
-				<xsl:sort select="name()"/>
-				<xsl:sort select="@rdf:resource"/>
-			</xsl:apply-templates>
-		</div>
-	</xsl:template>
-	
-	<xsl:template match="foaf:thumbnail" mode="list-item">
-		<xsl:variable name="name" select="name()"/>
-		<dt>
-			<a href="{concat($namespaces//namespace[@prefix=substring-before($name, ':')]/@uri, substring-after($name, ':'))}">
-				<xsl:value-of select="name()"/>
-			</a>
-		</dt>
-		<dd>			
-			<xsl:choose>
-				<xsl:when test="../foaf:homepage">
-					<a href="{../foaf:homepage/@rdf:resource}">
-						<img src="{@rdf:resource}" rel="{name()}" alt="Logo" style="max-width:100%"/>
-					</a>
-				</xsl:when>
-				<xsl:otherwise>
-					<img src="{@rdf:resource}" rel="{name()}" alt="Logo" style="max-width:100%"/>
-				</xsl:otherwise>
-			</xsl:choose>
-		</dd>		
 	</xsl:template>
 </xsl:stylesheet>
