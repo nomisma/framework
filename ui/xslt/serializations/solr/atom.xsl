@@ -47,6 +47,8 @@
 	</xsl:template>
 
 	<xsl:template match="doc">
+		<xsl:variable name="uri" select="concat(str[@name='conceptScheme'], str[@name='id'])"/>
+		
 		<entry>
 			<title>
 				<xsl:value-of select="str[@name='prefLabel']"/>
@@ -54,16 +56,15 @@
 			<summary>
 				<xsl:value-of select="str[@name='definition']"/>
 			</summary>
-			<link href="{$url}id/{str[@name='id']}"/>
-			<link rel="alternate" type="application/rdf+xml" href="{$url}id/{str[@name='id']}.rdf"/>
-			<link rel="alternate" type="text/turtle" href="{$url}id/{str[@name='id']}.ttl"/>
-			<link rel="alternate" type="application/ld+json" href="{$url}id/{str[@name='id']}.jsonld"/>
+			<link type="text/html" href="{$uri}"/>
+			<link rel="jsonld" type="application/ld+json" href="{$uri}.jsonld"/>
+			<link rel="ttl" type="text/turtle" href="{$uri}.ttl"/>
+			<link rel="rdf" type="application/rdf+xml" href="{$uri}.rdf"/>
 			<id>
 				<xsl:value-of select="str[@name='id']"/>
 			</id>
-			<xsl:apply-templates select="arr[@name='type']/str"/>
 			<updated>
-				<xsl:value-of select="date[@name='timestamp']"/>
+				<xsl:value-of select="date[@name='modified_timestamp']"/>
 			</updated>
 		</entry>
 	</xsl:template>

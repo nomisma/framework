@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-	Copyright (C) 2010 Ethan Gruber
-	EADitor: http://code.google.com/p/eaditor/
-	Apache License 2.0: http://code.google.com/p/eaditor/
-	
+<!-- Author: Ethan Gruber
+	Date: September 2018
+	Function: Execute a Solr query that is used for the HTML browse page or the Atom feed
 -->
 <p:config xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:oxf="http://www.orbeon.com/oxf/processors">
 
@@ -37,7 +35,7 @@
 						</xsl:when>
 						<xsl:otherwise>
 							<xsl:if test="contains(doc('input:request')/request/request-uri, '/feed/')">
-								<xsl:text>timestamp desc</xsl:text>
+								<xsl:text>modified_timestamp desc</xsl:text>
 							</xsl:if>
 						</xsl:otherwise>
 					</xsl:choose>
