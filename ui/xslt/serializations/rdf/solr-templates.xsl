@@ -115,16 +115,20 @@
 			</xsl:if>
 
 			<field name="text">
-				<xsl:value-of select="$id"/>
-				<xsl:text> </xsl:text>
-				<xsl:for-each select="descendant-or-self::node()">
-					<xsl:value-of select="text()"/>
+				<xsl:variable name="text">
+					<xsl:value-of select="$id"/>
 					<xsl:text> </xsl:text>
-					<xsl:if test="string(@resource)">
-						<xsl:value-of select="@resource"/>
+					<xsl:for-each select="descendant-or-self::node()">
+						<xsl:value-of select="text()"/>
 						<xsl:text> </xsl:text>
-					</xsl:if>
-				</xsl:for-each>
+						<xsl:if test="string(@resource)">
+							<xsl:value-of select="@resource"/>
+							<xsl:text> </xsl:text>
+						</xsl:if>
+					</xsl:for-each>
+				</xsl:variable>
+				
+				<xsl:value-of select="normalize-space($text)"/>
 			</field>
 		</doc>
 	</xsl:template>
