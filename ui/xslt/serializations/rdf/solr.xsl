@@ -70,8 +70,13 @@ OPTIONAL {<URI> skos:broader ?broader .
 
 	<xsl:template match="/">
 		<add>
-			<xsl:apply-templates select="/content/rdf:RDF/*[rdf:type/@rdf:resource = 'http://www.w3.org/2004/02/skos/core#Concept' and skos:inScheme/@rdf:resource = 'http://nomisma.org/id/'][not(child::dcterms:isReplacedBy)]"
-				mode="generateDoc"/>	
+			<xsl:for-each select="/content/rdf:RDF/*[rdf:type/@rdf:resource = 'http://www.w3.org/2004/02/skos/core#Concept' and skos:inScheme/@rdf:resource='http://nomisma.org/id/'][not(child::dcterms:isReplacedBy)]">
+				<xsl:variable name="uri" select="@rdf:about"/>
+				
+				<xsl:apply-templates select="self::node()" mode="generateDoc">
+					<xsl:with-param name="provenance" select="following-sibling::dcterms:ProvenanceStatement[foaf:topic/@rdf:resource = $uri]" as="node()*"/>
+				</xsl:apply-templates>
+			</xsl:for-each>
 		</add>
 	</xsl:template>
 </xsl:stylesheet>

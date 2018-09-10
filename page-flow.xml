@@ -12,6 +12,9 @@
 	<page path="/nomisma/admin/query/" view="xforms/query.xhtml"/>
 	<page path="/nomisma/admin/" view="xforms/admin.xhtml"/>
 	
+	<!-- Solr -->
+	<page path="/nomisma/admin/all.solr" model="dump/nomisma.org.rdf" view="xpl/views/serializations/rdf/solr.xpl"/>
+	
 	<!-- void:Dataset validation -->
 	
 	<!-- authentication -->

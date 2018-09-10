@@ -131,6 +131,13 @@ UNION {?s rdf:type skos:Concept FILTER strStarts(str(?s), "http://kerameikos.org
 			</xforms:submission>
 
 			<!-- ************************* SOLR SUBMISSIONS ************************** -->
+			<!-- initiate transformation of all RDF/XML into Solr add doc -->
+			<xforms:submission id="load-all-solr" serialization="none" method="get" action="/nomisma/admin/all.solr" replace="instance" instance="addIndex">
+				<xforms:action ev:event="xforms-submit-error">
+					<xforms:message level="modal">Unable to load generate Solr add doc for all IDs</xforms:message>
+				</xforms:action>
+			</xforms:submission>
+			
 			<!-- post instance to Solr -->
 			<xforms:submission id="delete-all" action="{instance('config')/solr_published}update" ref="instance('deleteAll')" instance="deleteAll" replace="none" method="post">
 				<xforms:send ev:event="xforms-submit-done" submission="submit-commit"></xforms:send>
@@ -441,7 +448,7 @@ UNION {?s rdf:type skos:Concept FILTER strStarts(str(?s), "http://kerameikos.org
 								<xforms:trigger appearance="minimal">
 									<xforms:label>Refresh Triplestore</xforms:label>
 									<xforms:action ev:event="DOMActivate">
-										<xforms:dispatch target="repost-nomisma" name="fr-show"></xforms:dispatch>
+										<xforms:dispatch target="refresh-triplestore-dialog" name="fr-show"></xforms:dispatch>
 									</xforms:action>
 								</xforms:trigger>
 							</li>
@@ -464,7 +471,7 @@ UNION {?s rdf:type skos:Concept FILTER strStarts(str(?s), "http://kerameikos.org
 			</div>
 		</div>
 		<!-- *********** DIALOGS *********** -->
-		<fr:alert-dialog id="repost-nomisma">
+		<fr:alert-dialog id="refresh-triplestore-dialog">
 			<fr:label>Refresh Triplestore</fr:label>
 			<fr:message>This will refresh the Nomisma data in the triplestore. If any IDs have changed within the last 24 hours, rerun scripts/generate_dump.sh to create a new
 				static RDF/XML file. Continue?</fr:message>
@@ -518,15 +525,14 @@ UNION {?s rdf:type skos:Concept FILTER strStarts(str(?s), "http://kerameikos.org
 			<fr:positive-choice>
 				<fr:label>Yes</fr:label>
 				<xforms:action ev:event="DOMActivate">
-					<xforms:send submission="load-all-rdf"></xforms:send>
-					<xforms:action ev:event="xforms-submit-done">
-						<!-- delete all objects -->
-						<xforms:send submission="delete-all"></xforms:send>
-						<!-- transform into main solr model and post into solr/nomisma -->
-						<xforms:insert nodeset="instance('addIndex')"
-							origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/views/serializations/rdf/solr.xpl', 'data', instance('rdf'), 'data')"></xforms:insert>
+					<!-- delete all objects -->
+					<xforms:send submission="delete-all"></xforms:send>
+					
+					<!-- load Solr add doc by calling a pipeline -->
+					<xforms:send submission="load-all-solr"></xforms:send>
+					<xforms:action ev:event="xforms-submit-done">						
 						<xforms:send submission="post-to-solr"></xforms:send>
-						<xforms:send submission="optimize" ev:event="xforms-submit-done"></xforms:send>
+						<xforms:send submission="optimize" ev:event="xforms-submit-done"/>
 					</xforms:action>
 				</xforms:action>
 			</fr:positive-choice>

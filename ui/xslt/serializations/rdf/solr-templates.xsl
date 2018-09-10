@@ -7,6 +7,15 @@
 
 	<!-- process any object except those which have been deprecated -->
 	<xsl:template match="*[not(dcterms:isReplacedBy)]" mode="generateDoc">
+		<xsl:param name="provenance"/>
+
+		<!-- sort by timetamps; don't rely on RDF/XML element order -->
+		<xsl:variable name="timestamps" as="item()*">
+			<xsl:perform-sort select="$provenance/descendant::prov:atTime">
+				<xsl:sort select="xs:dateTime(.)" order="ascending"/>
+			</xsl:perform-sort>
+		</xsl:variable>
+
 		<doc>
 			<xsl:variable name="uri" select="@rdf:about"/>
 			<xsl:variable name="id" select="tokenize(@rdf:about, '/')[last()]"/>
@@ -88,31 +97,27 @@
 				</xsl:choose>
 			</field>
 
-			<xsl:if test="//dcterms:ProvenanceStatement[foaf:topic/@rdf:resource = $uri]">
-				<xsl:variable name="timestamps" select="//dcterms:ProvenanceStatement[foaf:topic/@rdf:resource = $uri]/descendant::prov:atTime"/>
+			<field name="created_timestamp">
+				<xsl:choose>
+					<xsl:when test="contains($timestamps[1], 'Z')">
+						<xsl:value-of select="$timestamps[1]"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="concat($timestamps[1], 'Z')"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</field>
 
-				<field name="created_timestamp">
-					<xsl:choose>
-						<xsl:when test="contains($timestamps[1], 'Z')">
-							<xsl:value-of select="$timestamps[1]"/>
-						</xsl:when>
-						<xsl:otherwise>
-							<xsl:value-of select="concat($timestamps[1], 'Z')"/>
-						</xsl:otherwise>
-					</xsl:choose>
-				</field>
-
-				<field name="modified_timestamp">
-					<xsl:choose>
-						<xsl:when test="contains($timestamps[last()], 'Z')">
-							<xsl:value-of select="$timestamps[last()]"/>
-						</xsl:when>
-						<xsl:otherwise>
-							<xsl:value-of select="concat($timestamps[last()], 'Z')"/>
-						</xsl:otherwise>
-					</xsl:choose>
-				</field>
-			</xsl:if>
+			<field name="modified_timestamp">
+				<xsl:choose>
+					<xsl:when test="contains($timestamps[last()], 'Z')">
+						<xsl:value-of select="$timestamps[last()]"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="concat($timestamps[last()], 'Z')"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</field>
 
 			<field name="text">
 				<xsl:variable name="text">
@@ -127,7 +132,7 @@
 						</xsl:if>
 					</xsl:for-each>
 				</xsl:variable>
-				
+
 				<xsl:value-of select="normalize-space($text)"/>
 			</field>
 		</doc>
