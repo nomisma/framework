@@ -16,7 +16,7 @@
 			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 				<!-- url params -->
 				<xsl:param name="q">pleiades_uri:*</xsl:param>
-				<xsl:param name="sort">timestamp desc</xsl:param>
+				<xsl:param name="sort">modified_timestamp desc</xsl:param>
 				<xsl:param name="start">0</xsl:param>
 				<xsl:param name="rows" as="xs:integer">100000</xsl:param>
 				

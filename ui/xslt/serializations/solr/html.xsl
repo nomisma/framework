@@ -143,6 +143,18 @@
 							</xsl:for-each>
 						</dd>
 					</xsl:if>
+					<xsl:if test="contains($sort, 'created')">
+						<dt>Creation Date</dt>
+						<dd>
+							<xsl:value-of select="date[@name='created_timestamp']"/>
+						</dd>
+					</xsl:if>
+					<xsl:if test="contains($sort, 'modified')">
+						<dt>Modification Date</dt>
+						<dd>
+							<xsl:value-of select="date[@name='modified_timestamp']"/>
+						</dd>
+					</xsl:if>
 				</dl>
 			</xsl:if>
 		</div>
@@ -242,17 +254,29 @@
 								</xsl:if>
 								<xsl:text>Alphabetical Z↓A</xsl:text>
 							</option>
-							<option value="timestamp desc">
-								<xsl:if test="$sort = 'timestamp desc'">
+							<option value="modified_timestamp desc">
+								<xsl:if test="$sort = 'modified_timestamp desc'">
 									<xsl:attribute name="selected">selected</xsl:attribute>
 								</xsl:if>
 								<xsl:text>Modification Date (newest first)</xsl:text>
 							</option>
-							<option value="timestamp asc">
-								<xsl:if test="$sort = 'timestamp asc'">
+							<option value="modified_timestamp asc">
+								<xsl:if test="$sort = 'modified_timestamp asc'">
 									<xsl:attribute name="selected">selected</xsl:attribute>
 								</xsl:if>
 								<xsl:text>Modification Date (oldest first)</xsl:text>
+							</option>
+							<option value="created_timestamp desc">
+								<xsl:if test="$sort = 'created_timestamp desc'">
+									<xsl:attribute name="selected">selected</xsl:attribute>
+								</xsl:if>
+								<xsl:text>Creation Date (newest first)</xsl:text>
+							</option>
+							<option value="created_timestamp asc">
+								<xsl:if test="$sort = 'created_timestamp asc'">
+									<xsl:attribute name="selected">selected</xsl:attribute>
+								</xsl:if>
+								<xsl:text>Creation Date (oldest first)</xsl:text>
 							</option>
 						</select>
 					</div>
