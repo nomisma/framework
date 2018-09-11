@@ -66,8 +66,9 @@ DELETE {?s ?p ?o} WHERE {
 UNION {?person rdf:type skos:Concept ; org:hasMembership ?s . ?s ?p ?o }
 UNION {?s rdf:type prov:Activity . ?s ?p ?o}
 UNION {?s rdf:type dcterms:ProvenanceStatement . ?s ?p ?o}
+UNION {?s rdf:type prov:Entity . ?s ?p ?o}
 UNION {?s rdf:type skos:Concept FILTER strStarts(str(?s), "http://nomisma.org/id/") . ?s ?p ?o}
-UNION {?s rdf:type skos:Concept FILTER strStarts(str(?s), "http://kerameikos.org/editor/") . ?s ?p ?o}}]]>
+UNION {?s rdf:type skos:Concept FILTER strStarts(str(?s), "http://nomisma.org/editor/") . ?s ?p ?o}}]]>
 					</query>
 				</queries>
 
