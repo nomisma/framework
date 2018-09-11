@@ -22,10 +22,10 @@
 			<xforms:instance id="control-instance" xxforms:exclude-result-prefixes="#all">
 				<controls xmlns="">
 					<status></status>
-					<spreadsheet_key></spreadsheet_key>
-					<worksheet_id></worksheet_id>
-					<spreadsheet_uri></spreadsheet_uri>
 					<username></username>
+					<spreadsheet_key></spreadsheet_key>
+					<spreadsheet_uri></spreadsheet_uri>
+					<worksheet_id></worksheet_id>
 					<id></id>
 					<type></type>
 					<mappings-valid>false</mappings-valid>
@@ -950,7 +950,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 														<!-- id -->
 														<xforms:action if="$mapping = 'id'">
 															<!-- only allow certain characters as the Nomisma ID -->
-															<xforms:var name="isValid" select="matches($value, &quot;^([a-zA-Z0-9\-\._\(\)\[\]&#x0027;]*)?$&quot;)"></xforms:var>
+															<xforms:var name="isValid" select="matches($value, &quot;^([a-zA-Z0-9\-\._\(\)&#x0027;]*)?$&quot;)"></xforms:var>
 															<xforms:insert if="not(string($value)) or $isValid = false()" context="instance('validation-model')/record[last()]"
 																nodeset="./child::node()[last()]" origin="xforms:element('error', 'Invalid or blank ID')"></xforms:insert>
 														</xforms:action>

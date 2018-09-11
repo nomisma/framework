@@ -423,14 +423,14 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 				</xforms:bind>
 				<xforms:bind nodeset="dcterms:ProvenanceStatement">
 					<xforms:bind nodeset="descendant::dcterms:description" required="true()">
-						<xforms:bind nodeset="@xml:lang" required="true()"/>
+						<xforms:bind nodeset="@xml:lang" required="true()"></xforms:bind>
 					</xforms:bind>
 				</xforms:bind>
 			</xforms:bind>
 
 			<xforms:bind nodeset="instance('control-instance')">
-				<xforms:bind nodeset="id" required="true()" constraint="matches(., &quot;^([a-zA-Z0-9\-\._\(\)\[\]&#x0027;]*)?$&quot;)" readonly="../new_id != true()"></xforms:bind>
-				<xforms:bind nodeset="idValid" type="xs:boolean" calculate="matches(../id, &quot;^([a-zA-Z0-9\-\._\(\)\[\]&#x0027;]*)?$&quot;) and string-length(../id) &gt; 0"/>
+				<xforms:bind nodeset="id" required="true()" constraint="matches(., &quot;^([a-zA-Z0-9\-\._\(\)&#x0027;]*)?$&quot;)" readonly="../new_id != true()"></xforms:bind>
+				<xforms:bind nodeset="idValid" type="xs:boolean" calculate="matches(../id, &quot;^([a-zA-Z0-9\-\._\(\)&#x0027;]*)?$&quot;) and string-length(../id) &gt; 0"></xforms:bind>
 				<xforms:bind nodeset="new_id" type="xs:boolean"></xforms:bind>
 				<xforms:bind nodeset="delete-success" type="xs:boolean"></xforms:bind>
 				<xforms:bind nodeset="geo">
@@ -441,7 +441,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 					<xforms:bind nodeset="fon" required="true()"></xforms:bind>
 				</xforms:bind>
 				<xforms:bind id="save-trigger" nodeset="save-trigger" type="xs:boolean" readonly=". != true()"></xforms:bind>
-				<xforms:bind id="proceed-trigger" nodeset="proceed-trigger" type="xs:boolean" readonly=". != true()" calculate="string-length(../type) &gt; 0 and ../idValid = true()"></xforms:bind>
+				<xforms:bind id="proceed-trigger" nodeset="proceed-trigger" type="xs:boolean" readonly=". != true()"
+					calculate="string-length(../type) &gt; 0 and ../idValid = true()"></xforms:bind>
 			</xforms:bind>
 
 			<xforms:bind id="deprecate-trigger" readonly="instance('doc')/*[1]/dcterms:isReplacedBy"></xforms:bind>
@@ -921,35 +922,29 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 									<xforms:trigger bind="proceed-trigger">
 										<xforms:label>Proceed</xforms:label>
 										<xforms:action ev:event="DOMActivate">
-											<xforms:var name="type" select="instance('control-instance')/type"/>
-											
+											<xforms:var name="type" select="instance('control-instance')/type"></xforms:var>
 											<!-- set URI -->
-											<xforms:setvalue ref="instance('control-instance')/uri"
-												value="concat('http://nomisma.org/id/', instance('control-instance')/id)"/>
-											
+											<xforms:setvalue ref="instance('control-instance')/uri" value="concat('http://nomisma.org/id/', instance('control-instance')/id)"
+											></xforms:setvalue>
 											<!-- create resource description -->
-											<xforms:insert context="instance('doc')"
-												origin="xforms:element($type, xforms:attribute('rdf:about', instance('control-instance')/uri))"/>
-											
-											<!-- insert rdf:type as skos:Concept -->											
+											<xforms:insert context="instance('doc')" origin="xforms:element($type, xforms:attribute('rdf:about', instance('control-instance')/uri))"
+											></xforms:insert>
+											<!-- insert rdf:type as skos:Concept -->
 											<xforms:insert context="instance('doc')/*[1]"
-												origin="xforms:element('rdf:type', xforms:attribute('rdf:resource', 'http://www.w3.org/2004/02/skos/core#Concept'))"></xforms:insert>
-											
+												origin="xforms:element('rdf:type', xforms:attribute('rdf:resource', 'http://www.w3.org/2004/02/skos/core#Concept'))"
+											></xforms:insert>
 											<!-- insert skos:prefLabel and skos:definition with @xml:lang='en'-->
 											<xforms:insert context="instance('doc')/*[1]" origin="xforms:element('skos:prefLabel', xforms:attribute('xml:lang', 'en'))"></xforms:insert>
 											<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]"
 												origin="xforms:element('skos:definition', xforms:attribute('xml:lang', 'en'))"></xforms:insert>
-											
 											<!-- insert skos:inScheme -->
 											<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]"
 												origin="xforms:element('skos:inScheme', xforms:attribute('rdf:resource', 'http://nomisma.org/id/'))"></xforms:insert>
-											
 											<!-- insert related foaf:webpage for a collection -->
 											<xforms:action if="$type='nmo:Collection'">
 												<xforms:insert context="instance('doc')/nmo:Collection" nodeset="./child::node()[last()]"
 													origin="xforms:element('foaf:homepage', xforms:attribute('rdf:resource', ''))"></xforms:insert>
 											</xforms:action>
-											
 											<!-- *** Provenance *** -->
 											<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]" origin="instance('changeNote-template')"></xforms:insert>
 											<xforms:setvalue ref="instance('doc')/*[1]/skos:changeNote/@rdf:resource"
@@ -957,8 +952,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											<xforms:insert context="instance('doc')" nodeset="./child::node()[last()]" origin="instance('provenance-template')"></xforms:insert>
 											<xforms:setvalue ref="instance('doc')/dcterms:ProvenanceStatement/@rdf:about"
 												value="concat(instance('control-instance')/uri, '#provenance')"></xforms:setvalue>
-											<xforms:setvalue ref="instance('doc')/dcterms:ProvenanceStatement/foaf:topic/@rdf:resource" value="instance('control-instance')/uri"></xforms:setvalue>
-											
+											<xforms:setvalue ref="instance('doc')/dcterms:ProvenanceStatement/foaf:topic/@rdf:resource" value="instance('control-instance')/uri"
+											></xforms:setvalue>
 											<!-- Create Activity -->
 											<xforms:insert context="instance('doc')/dcterms:ProvenanceStatement" nodeset="./child::node()[last()]"
 												origin="xforms:element('prov:wasGeneratedBy')"></xforms:insert>
@@ -972,19 +967,16 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 												value="concat('http://nomisma.org/editor/', instance('control-instance')/username)"></xforms:setvalue>
 											<xforms:setvalue ref="instance('doc')/dcterms:ProvenanceStatement/prov:wasGeneratedBy/prov:Activity/prov:atTime"
 												value="current-dateTime()"></xforms:setvalue>
-											
 											<!-- set new_id to false() to disable id editing -->
 											<xforms:setvalue ref="instance('control-instance')/new_id" value="false()"></xforms:setvalue>
-											
 											<!-- toggle interface -->
-											<xforms:toggle case="edit-id"/>
+											<xforms:toggle case="edit-id"></xforms:toggle>
 										</xforms:action>
 									</xforms:trigger>
 								</xforms:group>
 							</div>
 						</xforms:case>
 						<xforms:case id="edit-id">
-							
 							<!-- show save/deprecate button if applicable -->
 							<xforms:group ref=".[not(instance('doc')/*[1]/dcterms:isReplacedBy)]">
 								<div class="submission">
@@ -1025,7 +1017,6 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 									</xforms:trigger>
 								</div>
 							</xforms:group>
-							
 							<!-- display warning message that the ID has been deprecated -->
 							<xforms:group ref="instance('doc')/*[1]/dcterms:isReplacedBy">
 								<div class="alert alert-box alert-warning">
@@ -1036,9 +1027,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											<xforms:load show="new" resource="{@rdf:resource}"></xforms:load>
 										</xforms:action>
 									</xforms:trigger></div>
-							</xforms:group>
-							
-							<h1>Edit ID <small>
+							</xforms:group> <h1>Edit ID <small>
 									<xforms:trigger appearance="minimal">
 										<xforms:label ref="concat('(http://nomisma.org/id/', instance('control-instance')/id, ')')"></xforms:label>
 										<xforms:action ev:event="DOMActivate">
@@ -1049,365 +1038,369 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 							</h1>
 							<xforms:group ref="instance('doc')">
 								<xforms:group ref="*[1]">
-									<xforms:var name="type" select="name()"></xforms:var>
-									<h3>
-										<xforms:group ref=".[instance('classes')/class[type=$type]]">
-											<xforms:output ref="instance('classes')/class[type=$type]/label"></xforms:output>
-											<small> (<xforms:output value="$type"></xforms:output>)</small>
-										</xforms:group>
-										<xforms:group ref=".[not(instance('classes')/class[type=$type])]">
-											<xforms:output value="$type"></xforms:output>
-										</xforms:group>
-									</h3>
 									<div class="section">
-										<h4>Labels and Definitions</h4>
-										<xforms:repeat nodeset="skos:prefLabel[position() &lt;= 10]">
-											<div>
-												<xforms:input ref=".">
-													<xforms:label>Preferred Label</xforms:label>
-													<xforms:alert>Required</xforms:alert>
-												</xforms:input>
-												<xforms:select1 ref="@xml:lang">
-													<xforms:item>
-														<xforms:label>Select...</xforms:label>
-														<xforms:value></xforms:value>
-													</xforms:item>
-													<xforms:itemset nodeset="instance('languages')/language">
-														<xforms:label ref="."></xforms:label>
-														<xforms:value ref="@value"></xforms:value>
-													</xforms:itemset>
-													<xforms:alert>Required; English label most occur once.</xforms:alert>
-												</xforms:select1>
-												<xforms:group ref=".[count(instance('doc')/*[1]/skos:prefLabel) &gt; 1]">
+										<xforms:var name="type" select="name()"></xforms:var>
+										<h3>
+											<xforms:group ref=".[instance('classes')/class[type=$type]]">
+												<xforms:output ref="instance('classes')/class[type=$type]/label"></xforms:output>
+												<small> (<xforms:output value="$type"></xforms:output>)</small>
+											</xforms:group>
+											<xforms:group ref=".[not(instance('classes')/class[type=$type])]">
+												<xforms:output value="$type"></xforms:output>
+											</xforms:group>
+										</h3>
+										<div class="subsection">
+											<h4>Labels and Definitions</h4>
+											<xforms:repeat nodeset="skos:prefLabel[position() &lt;= 10]">
+												<div>
+													<xforms:input ref=".">
+														<xforms:label>Preferred Label</xforms:label>
+														<xforms:alert>Required</xforms:alert>
+													</xforms:input>
+													<xforms:select1 ref="@xml:lang">
+														<xforms:item>
+															<xforms:label>Select...</xforms:label>
+															<xforms:value></xforms:value>
+														</xforms:item>
+														<xforms:itemset nodeset="instance('languages')/language">
+															<xforms:label ref="."></xforms:label>
+															<xforms:value ref="@value"></xforms:value>
+														</xforms:itemset>
+														<xforms:alert>Required; English label most occur once.</xforms:alert>
+													</xforms:select1>
+													<xforms:group ref=".[count(instance('doc')/*[1]/skos:prefLabel) &gt; 1]">
+														<xforms:trigger appearance="minimal">
+															<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
+															<xforms:label>
+																<span class="glyphicon glyphicon-remove"></span>
+															</xforms:label>
+														</xforms:trigger>
+													</xforms:group>
+												</div>
+											</xforms:repeat>
+											<!-- more than 10 labels, put into div -->
+											<xforms:group ref=".[count(skos:prefLabel) &gt; 10]">
+												<h5>Additional Preferred Labels <small><a href="#" id="toggle-prefLabel" class="toggle-button"><span
+																class="glyphicon glyphicon-triangle-right"></span></a></small></h5>
+												<div id="prefLabel-div" style="display:none">
+													<xforms:repeat nodeset="skos:prefLabel[position() &gt; 10]">
+														<div>
+															<xforms:input ref=".">
+																<xforms:label>Preferred Label</xforms:label>
+																<xforms:alert>Required</xforms:alert>
+															</xforms:input>
+															<xforms:select1 ref="@xml:lang">
+																<xforms:item>
+																	<xforms:label>Select...</xforms:label>
+																	<xforms:value></xforms:value>
+																</xforms:item>
+																<xforms:itemset nodeset="instance('languages')/language">
+																	<xforms:label ref="."></xforms:label>
+																	<xforms:value ref="@value"></xforms:value>
+																</xforms:itemset>
+																<xforms:alert>Required; English label most occur once.</xforms:alert>
+															</xforms:select1>
+															<xforms:group ref=".[count(instance('doc')/*[1]/skos:prefLabel) &gt; 1]">
+																<xforms:trigger appearance="minimal">
+																	<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
+																	<xforms:label>
+																		<span class="glyphicon glyphicon-remove"></span>
+																	</xforms:label>
+																</xforms:trigger>
+															</xforms:group>
+														</div>
+													</xforms:repeat>
+												</div>
+											</xforms:group>
+											<xforms:repeat nodeset="skos:altLabel">
+												<div>
+													<xforms:input ref=".">
+														<xforms:label>Alternate Label</xforms:label>
+														<xforms:alert>Required</xforms:alert>
+													</xforms:input>
+													<xforms:select1 ref="@xml:lang">
+														<xforms:item>
+															<xforms:label>Select...</xforms:label>
+															<xforms:value></xforms:value>
+														</xforms:item>
+														<xforms:itemset nodeset="instance('languages')/language">
+															<xforms:label ref="."></xforms:label>
+															<xforms:value ref="@value"></xforms:value>
+														</xforms:itemset>
+														<xforms:alert>Required</xforms:alert>
+													</xforms:select1>
 													<xforms:trigger appearance="minimal">
 														<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
 														<xforms:label>
 															<span class="glyphicon glyphicon-remove"></span>
 														</xforms:label>
 													</xforms:trigger>
-												</xforms:group>
-											</div>
-										</xforms:repeat>
-										<!-- more than 10 labels, put into div -->
-										<xforms:group ref=".[count(skos:prefLabel) &gt; 10]">
-											<h5>Additional Preferred Labels <small><a href="#" id="toggle-prefLabel" class="toggle-button"><span
-															class="glyphicon glyphicon-triangle-right"></span></a></small></h5>
-											<div id="prefLabel-div" style="display:none">
-												<xforms:repeat nodeset="skos:prefLabel[position() &gt; 10]">
-													<div>
-														<xforms:input ref=".">
-															<xforms:label>Preferred Label</xforms:label>
-															<xforms:alert>Required</xforms:alert>
-														</xforms:input>
-														<xforms:select1 ref="@xml:lang">
-															<xforms:item>
-																<xforms:label>Select...</xforms:label>
-																<xforms:value></xforms:value>
-															</xforms:item>
-															<xforms:itemset nodeset="instance('languages')/language">
-																<xforms:label ref="."></xforms:label>
-																<xforms:value ref="@value"></xforms:value>
-															</xforms:itemset>
-															<xforms:alert>Required; English label most occur once.</xforms:alert>
-														</xforms:select1>
-														<xforms:group ref=".[count(instance('doc')/*[1]/skos:prefLabel) &gt; 1]">
-															<xforms:trigger appearance="minimal">
-																<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
-																<xforms:label>
-																	<span class="glyphicon glyphicon-remove"></span>
-																</xforms:label>
-															</xforms:trigger>
-														</xforms:group>
-													</div>
-												</xforms:repeat>
-											</div>
-										</xforms:group>
-										<xforms:repeat nodeset="skos:altLabel">
-											<div>
-												<xforms:input ref=".">
-													<xforms:label>Alternate Label</xforms:label>
-													<xforms:alert>Required</xforms:alert>
-												</xforms:input>
-												<xforms:select1 ref="@xml:lang">
-													<xforms:item>
-														<xforms:label>Select...</xforms:label>
-														<xforms:value></xforms:value>
-													</xforms:item>
-													<xforms:itemset nodeset="instance('languages')/language">
-														<xforms:label ref="."></xforms:label>
-														<xforms:value ref="@value"></xforms:value>
-													</xforms:itemset>
-													<xforms:alert>Required</xforms:alert>
-												</xforms:select1>
-												<xforms:trigger appearance="minimal">
-													<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
-													<xforms:label>
-														<span class="glyphicon glyphicon-remove"></span>
-													</xforms:label>
-												</xforms:trigger>
-											</div>
-										</xforms:repeat>
-										<xforms:repeat nodeset="skos:definition">
-											<div>
-												<xforms:textarea ref=".">
-													<xforms:label>Definition</xforms:label>
-													<xforms:alert>Required</xforms:alert>
-												</xforms:textarea>
-												<xforms:select1 ref="@xml:lang">
-													<xforms:item>
-														<xforms:label>Select...</xforms:label>
-														<xforms:value></xforms:value>
-													</xforms:item>
-													<xforms:itemset nodeset="instance('languages')/language">
-														<xforms:label ref="."></xforms:label>
-														<xforms:value ref="@value"></xforms:value>
-													</xforms:itemset>
-													<xforms:alert>Required; English label most occur once.</xforms:alert>
-												</xforms:select1>
-												<xforms:group ref=".[count(.) &gt; 1]">
+												</div>
+											</xforms:repeat>
+											<xforms:repeat nodeset="skos:definition">
+												<div>
+													<xforms:textarea ref=".">
+														<xforms:label>Definition</xforms:label>
+														<xforms:alert>Required</xforms:alert>
+													</xforms:textarea>
+													<xforms:select1 ref="@xml:lang">
+														<xforms:item>
+															<xforms:label>Select...</xforms:label>
+															<xforms:value></xforms:value>
+														</xforms:item>
+														<xforms:itemset nodeset="instance('languages')/language">
+															<xforms:label ref="."></xforms:label>
+															<xforms:value ref="@value"></xforms:value>
+														</xforms:itemset>
+														<xforms:alert>Required; English label most occur once.</xforms:alert>
+													</xforms:select1>
+													<xforms:group ref=".[count(.) &gt; 1]">
+														<xforms:trigger appearance="minimal">
+															<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
+															<xforms:label>
+																<span class="glyphicon glyphicon-remove"></span>
+															</xforms:label>
+														</xforms:trigger>
+													</xforms:group>
+												</div>
+											</xforms:repeat>
+											<xforms:group ref="skos:scopeNote">
+												<div>
+													<xforms:textarea ref=".">
+														<xforms:label>Scope Note</xforms:label>
+														<xforms:alert>Required</xforms:alert>
+													</xforms:textarea>
+													<xforms:select1 ref="@xml:lang">
+														<xforms:item>
+															<xforms:label>Select...</xforms:label>
+															<xforms:value></xforms:value>
+														</xforms:item>
+														<xforms:itemset nodeset="instance('languages')/language">
+															<xforms:label ref="."></xforms:label>
+															<xforms:value ref="@value"></xforms:value>
+														</xforms:itemset>
+														<xforms:alert>Required; English label most occur once.</xforms:alert>
+													</xforms:select1>
 													<xforms:trigger appearance="minimal">
 														<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
 														<xforms:label>
 															<span class="glyphicon glyphicon-remove"></span>
 														</xforms:label>
 													</xforms:trigger>
-												</xforms:group>
-											</div>
-										</xforms:repeat>
-										<xforms:group ref="skos:scopeNote">
-											<div>
-												<xforms:textarea ref=".">
-													<xforms:label>Scope Note</xforms:label>
-													<xforms:alert>Required</xforms:alert>
-												</xforms:textarea>
-												<xforms:select1 ref="@xml:lang">
-													<xforms:item>
-														<xforms:label>Select...</xforms:label>
-														<xforms:value></xforms:value>
-													</xforms:item>
-													<xforms:itemset nodeset="instance('languages')/language">
-														<xforms:label ref="."></xforms:label>
-														<xforms:value ref="@value"></xforms:value>
-													</xforms:itemset>
-													<xforms:alert>Required; English label most occur once.</xforms:alert>
-												</xforms:select1>
-												<xforms:trigger appearance="minimal">
-													<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
-													<xforms:label>
-														<span class="glyphicon glyphicon-remove"></span>
-													</xforms:label>
-												</xforms:trigger>
-											</div>
-										</xforms:group>
-									</div>
-									<div class="section">
-										<h4>Semantic Relations</h4>
-										<xforms:repeat nodeset="skos:broader">
-											<div>
-												<xforms:output ref="@rdf:resource">
-													<xforms:label>Broader Concept</xforms:label>
-												</xforms:output>
-												<xforms:trigger appearance="minimal">
-													<xforms:action ev:event="DOMActivate">
-														<xforms:delete context="."></xforms:delete>
-														<xforms:delete context="instance('doc')/geo:SpatialThing/dcterms:isPartOf" if="instance('doc')/geo:SpatialThing"
-														></xforms:delete>
-													</xforms:action>
-													<xforms:label>
-														<span class="glyphicon glyphicon-remove"></span>
-													</xforms:label>
-												</xforms:trigger>
-											</div>
-										</xforms:repeat>
-										<xforms:repeat nodeset="skos:exactMatch">
-											<div>
-												<xforms:input ref="@rdf:resource">
-													<xforms:label>Exact Match</xforms:label>
-													<xforms:alert>Required, must be URI</xforms:alert>
-												</xforms:input>
-												<xforms:trigger appearance="minimal">
-													<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
-													<xforms:label>
-														<span class="glyphicon glyphicon-remove"></span>
-													</xforms:label>
-												</xforms:trigger>
-											</div>
-										</xforms:repeat>
-										<xforms:repeat nodeset="skos:closeMatch">
-											<div>
-												<xforms:input ref="@rdf:resource">
-													<xforms:label>Close Match</xforms:label>
-													<xforms:alert>Required, must be URI</xforms:alert>
-												</xforms:input>
-												<xforms:trigger appearance="minimal">
-													<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
-													<xforms:label>
-														<span class="glyphicon glyphicon-remove"></span>
-													</xforms:label>
-												</xforms:trigger>
-											</div>
-										</xforms:repeat>
-										<xforms:repeat nodeset="dcterms:source">
-											<div>
-												<xforms:output ref="@rdf:resource">
-													<xforms:label>Reference</xforms:label>
-												</xforms:output>
-												<xforms:trigger appearance="minimal">
-													<xforms:action ev:event="DOMActivate">
-														<xforms:delete context="."></xforms:delete>
-													</xforms:action>
-													<xforms:label>
-														<span class="glyphicon glyphicon-remove"></span>
-													</xforms:label>
-												</xforms:trigger>
-											</div>
-										</xforms:repeat>
-										<xforms:repeat nodeset="rdfs:seeAlso">
-											<div>
-												<xforms:input ref="@rdf:resource">
-													<xforms:label>See Also</xforms:label>
-													<xforms:alert>Required, must be URL</xforms:alert>
-												</xforms:input>
-												<xforms:trigger appearance="minimal">
-													<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
-													<xforms:label>
-														<span class="glyphicon glyphicon-remove"></span>
-													</xforms:label>
-												</xforms:trigger>
-											</div>
-										</xforms:repeat>
-										<xforms:repeat nodeset="org:memberOf">
-											<div>
-												<xforms:input ref="@rdf:resource">
-													<xforms:label>Parent Organization</xforms:label>
-													<xforms:alert>Required, must be URL</xforms:alert>
-												</xforms:input>
-												<xforms:trigger appearance="minimal">
-													<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
-													<xforms:label>
-														<span class="glyphicon glyphicon-remove"></span>
-													</xforms:label>
-												</xforms:trigger>
-											</div>
-										</xforms:repeat>
-										<!-- treat the field of numismatics separately in the control-instance, then write changes into the RDF doc -->
-										<xforms:repeat nodeset="instance('control-instance')/fons/fon">
-											<xforms:var name="uri" select="."></xforms:var>
-											<xforms:var name="position" select="position()"></xforms:var>
-											<div>
-												<xforms:select1 ref=".">
-													<xforms:label>Field</xforms:label>
-													<xforms:alert>Required</xforms:alert>
-													<xforms:item>
-														<xforms:label>Select...</xforms:label>
-														<xforms:value></xforms:value>
-													</xforms:item>
-													<xforms:itemset nodeset="instance('fon-list')//item">
-														<xforms:label ref="."></xforms:label>
-														<xforms:value ref="@uri"></xforms:value>
-													</xforms:itemset>
-													<xforms:action ev:event="xforms-value-changed">
-														<!-- if there are more entries in fon than dcterms:isPartOf, then insert new isPartOf -->
-														<xforms:action
-															if="count(instance('control-instance')/fons/fon) &gt; count(instance('doc')/*[1]/dcterms:isPartOf[contains(@rdf:resource, '_numismatics')])">
-															<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]" origin="instance('isPartOf-template')"></xforms:insert>
-															<xforms:setvalue ref="instance('doc')/*[1]/dcterms:isPartOf[last()]/@rdf:resource" value="$uri"></xforms:setvalue>
-														</xforms:action>
-														<!-- otherwise, change the value of the dcterms:isPartOf -->
-														<xforms:action
-															if="count(instance('control-instance')/fons/fon) = count(instance('doc')/*[1]/dcterms:isPartOf[contains(@rdf:resource, '_numismatics')])">
-															<xforms:setvalue
-																ref="instance('doc')/*[1]/dcterms:isPartOf[contains(@rdf:resource, '_numismatics') and position() = $position]/@rdf:resource"
-																value="$uri"></xforms:setvalue>
-														</xforms:action>
-													</xforms:action>
-												</xforms:select1>
-												<xforms:trigger appearance="minimal">
-													<xforms:label>
-														<span class="glyphicon glyphicon-remove"></span>
-													</xforms:label>
-													<xforms:action ev:event="DOMActivate">
-														<!-- only delete the matching dcterms:isPartOf if there is a value -->
-														<xforms:action if="string-length($uri) &gt; 0">
-															<xforms:delete context="instance('doc')/*[1]/dcterms:isPartOf[@rdf:resource=$uri and position()=$position]"
+												</div>
+											</xforms:group>
+										</div>
+										<div class="subsection">
+											<h4>Semantic Relations</h4>
+											<xforms:repeat nodeset="skos:broader">
+												<div>
+													<xforms:output ref="@rdf:resource">
+														<xforms:label>Broader Concept</xforms:label>
+													</xforms:output>
+													<xforms:trigger appearance="minimal">
+														<xforms:action ev:event="DOMActivate">
+															<xforms:delete context="."></xforms:delete>
+															<xforms:delete context="instance('doc')/geo:SpatialThing/dcterms:isPartOf" if="instance('doc')/geo:SpatialThing"
 															></xforms:delete>
 														</xforms:action>
-														<xforms:delete context="."></xforms:delete>
-													</xforms:action>
-												</xforms:trigger>
-											</div>
-										</xforms:repeat>
-									</div>
-									<div class="section">
-										<h4>Miscellaneous Fields</h4>
-										<xforms:group ref="nmo:hasStartDate">
-											<xforms:var name="year" select="abs(number(.))"></xforms:var>
-											<div>
-												<xforms:input ref=".">
-													<xforms:label>Start Date</xforms:label>
-													<xforms:alert>Must conform to xsd:gYear</xforms:alert>
-												</xforms:input>
-												<xforms:output value="if (number(.) &lt; 0) then concat($year, ' B.C.') else concat('A.D. ', $year)"></xforms:output>
-												<xforms:trigger appearance="minimal">
-													<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
-													<xforms:label>
-														<span class="glyphicon glyphicon-remove"></span>
-													</xforms:label>
-												</xforms:trigger>
-											</div>
-										</xforms:group>
-										<xforms:group ref="nmo:hasEndDate">
-											<xforms:var name="year" select="abs(number(.))"></xforms:var>
-											<div>
-												<xforms:input ref=".">
-													<xforms:label>End Date</xforms:label>
-													<xforms:alert>Must conform to xsd:gYear</xforms:alert>
-												</xforms:input>
-												<xforms:output value="if (number(.) &lt; 0) then concat($year, ' B.C.') else concat('A.D. ', $year)"></xforms:output>
-												<xforms:trigger appearance="minimal">
-													<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
-													<xforms:label>
-														<span class="glyphicon glyphicon-remove"></span>
-													</xforms:label>
-												</xforms:trigger>
-											</div>
-										</xforms:group>
-										<xforms:group ref="foaf:homepage">
-											<div>
-												<xforms:input ref="@rdf:resource">
-													<xforms:label>Home Page</xforms:label>
-													<xforms:alert>Required</xforms:alert>
-												</xforms:input>
-											</div>
-										</xforms:group>
-										<xforms:group ref="foaf:thumbnail">
-											<div>
-												<xforms:input ref="@rdf:resource">
-													<xforms:label>Thumbnail</xforms:label>
-													<xforms:alert>Required</xforms:alert>
-												</xforms:input>
-												<xforms:trigger appearance="minimal">
-													<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
-													<xforms:label>
-														<span class="glyphicon glyphicon-remove"></span>
-													</xforms:label>
-												</xforms:trigger>
-											</div>
-										</xforms:group>
-										<xforms:group ref="geo:location">
-											<div>
-												<xforms:output ref="@rdf:resource">
-													<xforms:label>Location</xforms:label>
-												</xforms:output>
-											</div>
-										</xforms:group>
-										<xforms:repeat nodeset="org:hasMembership">
-											<div>
-												<xforms:output ref="@rdf:resource">
-													<xforms:label>Membership</xforms:label>
-												</xforms:output>
-											</div>
-										</xforms:repeat>
+														<xforms:label>
+															<span class="glyphicon glyphicon-remove"></span>
+														</xforms:label>
+													</xforms:trigger>
+												</div>
+											</xforms:repeat>
+											<xforms:repeat nodeset="skos:exactMatch">
+												<div>
+													<xforms:input ref="@rdf:resource">
+														<xforms:label>Exact Match</xforms:label>
+														<xforms:alert>Required, must be URI</xforms:alert>
+													</xforms:input>
+													<xforms:trigger appearance="minimal">
+														<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
+														<xforms:label>
+															<span class="glyphicon glyphicon-remove"></span>
+														</xforms:label>
+													</xforms:trigger>
+												</div>
+											</xforms:repeat>
+											<xforms:repeat nodeset="skos:closeMatch">
+												<div>
+													<xforms:input ref="@rdf:resource">
+														<xforms:label>Close Match</xforms:label>
+														<xforms:alert>Required, must be URI</xforms:alert>
+													</xforms:input>
+													<xforms:trigger appearance="minimal">
+														<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
+														<xforms:label>
+															<span class="glyphicon glyphicon-remove"></span>
+														</xforms:label>
+													</xforms:trigger>
+												</div>
+											</xforms:repeat>
+											<xforms:repeat nodeset="dcterms:source">
+												<div>
+													<xforms:output ref="@rdf:resource">
+														<xforms:label>Reference</xforms:label>
+													</xforms:output>
+													<xforms:trigger appearance="minimal">
+														<xforms:action ev:event="DOMActivate">
+															<xforms:delete context="."></xforms:delete>
+														</xforms:action>
+														<xforms:label>
+															<span class="glyphicon glyphicon-remove"></span>
+														</xforms:label>
+													</xforms:trigger>
+												</div>
+											</xforms:repeat>
+											<xforms:repeat nodeset="rdfs:seeAlso">
+												<div>
+													<xforms:input ref="@rdf:resource">
+														<xforms:label>See Also</xforms:label>
+														<xforms:alert>Required, must be URL</xforms:alert>
+													</xforms:input>
+													<xforms:trigger appearance="minimal">
+														<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
+														<xforms:label>
+															<span class="glyphicon glyphicon-remove"></span>
+														</xforms:label>
+													</xforms:trigger>
+												</div>
+											</xforms:repeat>
+											<xforms:repeat nodeset="org:memberOf">
+												<div>
+													<xforms:input ref="@rdf:resource">
+														<xforms:label>Parent Organization</xforms:label>
+														<xforms:alert>Required, must be URL</xforms:alert>
+													</xforms:input>
+													<xforms:trigger appearance="minimal">
+														<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
+														<xforms:label>
+															<span class="glyphicon glyphicon-remove"></span>
+														</xforms:label>
+													</xforms:trigger>
+												</div>
+											</xforms:repeat>
+											<!-- treat the field of numismatics separately in the control-instance, then write changes into the RDF doc -->
+											<xforms:repeat nodeset="instance('control-instance')/fons/fon">
+												<xforms:var name="uri" select="."></xforms:var>
+												<xforms:var name="position" select="position()"></xforms:var>
+												<div>
+													<xforms:select1 ref=".">
+														<xforms:label>Field</xforms:label>
+														<xforms:alert>Required</xforms:alert>
+														<xforms:item>
+															<xforms:label>Select...</xforms:label>
+															<xforms:value></xforms:value>
+														</xforms:item>
+														<xforms:itemset nodeset="instance('fon-list')//item">
+															<xforms:label ref="."></xforms:label>
+															<xforms:value ref="@uri"></xforms:value>
+														</xforms:itemset>
+														<xforms:action ev:event="xforms-value-changed">
+															<!-- if there are more entries in fon than dcterms:isPartOf, then insert new isPartOf -->
+															<xforms:action
+																if="count(instance('control-instance')/fons/fon) &gt; count(instance('doc')/*[1]/dcterms:isPartOf[contains(@rdf:resource, '_numismatics')])">
+																<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]"
+																	origin="instance('isPartOf-template')"></xforms:insert>
+																<xforms:setvalue ref="instance('doc')/*[1]/dcterms:isPartOf[last()]/@rdf:resource" value="$uri"></xforms:setvalue>
+															</xforms:action>
+															<!-- otherwise, change the value of the dcterms:isPartOf -->
+															<xforms:action
+																if="count(instance('control-instance')/fons/fon) = count(instance('doc')/*[1]/dcterms:isPartOf[contains(@rdf:resource, '_numismatics')])">
+																<xforms:setvalue
+																	ref="instance('doc')/*[1]/dcterms:isPartOf[contains(@rdf:resource, '_numismatics') and position() = $position]/@rdf:resource"
+																	value="$uri"></xforms:setvalue>
+															</xforms:action>
+														</xforms:action>
+													</xforms:select1>
+													<xforms:trigger appearance="minimal">
+														<xforms:label>
+															<span class="glyphicon glyphicon-remove"></span>
+														</xforms:label>
+														<xforms:action ev:event="DOMActivate">
+															<!-- only delete the matching dcterms:isPartOf if there is a value -->
+															<xforms:action if="string-length($uri) &gt; 0">
+																<xforms:delete context="instance('doc')/*[1]/dcterms:isPartOf[@rdf:resource=$uri and position()=$position]"
+																></xforms:delete>
+															</xforms:action>
+															<xforms:delete context="."></xforms:delete>
+														</xforms:action>
+													</xforms:trigger>
+												</div>
+											</xforms:repeat>
+										</div>
+										<div class="subsection">
+											<h4>Miscellaneous Fields</h4>
+											<xforms:group ref="nmo:hasStartDate">
+												<xforms:var name="year" select="abs(number(.))"></xforms:var>
+												<div>
+													<xforms:input ref=".">
+														<xforms:label>Start Date</xforms:label>
+														<xforms:alert>Must conform to xsd:gYear</xforms:alert>
+													</xforms:input>
+													<xforms:output value="if (number(.) &lt; 0) then concat($year, ' B.C.') else concat('A.D. ', $year)"></xforms:output>
+													<xforms:trigger appearance="minimal">
+														<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
+														<xforms:label>
+															<span class="glyphicon glyphicon-remove"></span>
+														</xforms:label>
+													</xforms:trigger>
+												</div>
+											</xforms:group>
+											<xforms:group ref="nmo:hasEndDate">
+												<xforms:var name="year" select="abs(number(.))"></xforms:var>
+												<div>
+													<xforms:input ref=".">
+														<xforms:label>End Date</xforms:label>
+														<xforms:alert>Must conform to xsd:gYear</xforms:alert>
+													</xforms:input>
+													<xforms:output value="if (number(.) &lt; 0) then concat($year, ' B.C.') else concat('A.D. ', $year)"></xforms:output>
+													<xforms:trigger appearance="minimal">
+														<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
+														<xforms:label>
+															<span class="glyphicon glyphicon-remove"></span>
+														</xforms:label>
+													</xforms:trigger>
+												</div>
+											</xforms:group>
+											<xforms:group ref="foaf:homepage">
+												<div>
+													<xforms:input ref="@rdf:resource">
+														<xforms:label>Home Page</xforms:label>
+														<xforms:alert>Required</xforms:alert>
+													</xforms:input>
+												</div>
+											</xforms:group>
+											<xforms:group ref="foaf:thumbnail">
+												<div>
+													<xforms:input ref="@rdf:resource">
+														<xforms:label>Thumbnail</xforms:label>
+														<xforms:alert>Required</xforms:alert>
+													</xforms:input>
+													<xforms:trigger appearance="minimal">
+														<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
+														<xforms:label>
+															<span class="glyphicon glyphicon-remove"></span>
+														</xforms:label>
+													</xforms:trigger>
+												</div>
+											</xforms:group>
+											<xforms:group ref="geo:location">
+												<div>
+													<xforms:output ref="@rdf:resource">
+														<xforms:label>Location</xforms:label>
+													</xforms:output>
+												</div>
+											</xforms:group>
+											<xforms:repeat nodeset="org:hasMembership">
+												<div>
+													<xforms:output ref="@rdf:resource">
+														<xforms:label>Membership</xforms:label>
+													</xforms:output>
+												</div>
+											</xforms:repeat>
+										</div>
+										<hr />
 									</div>
 								</xforms:group>
 								<!-- geographic -->
@@ -1548,293 +1541,375 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 												</xforms:group>
 											</div>
 										</div>
+										<hr />
 									</div>
 								</xforms:group>
-								<xforms:group ref="bio:Birth">
-									<xforms:var name="uri" select="@rdf:about"></xforms:var>
-									<div class="section row">
-										<div class="col-md-12">
-											<h3>Birth <small>
-													<xforms:output value="concat('(', $uri, ')')"></xforms:output>
-													<xforms:trigger appearance="minimal">
-														<xforms:action ev:event="DOMActivate">
-															<xforms:delete nodeset="instance('doc')/*[1]/bio:birth"></xforms:delete>
-															<xforms:delete nodeset="."></xforms:delete>
+								<!-- birth or death -->
+								<xforms:group ref=".[bio:Birth or bio:Death]">
+									<div class="section">
+										<h3>Biographical Information</h3>
+										
+										<xforms:group ref="bio:Birth">
+											<xforms:var name="uri" select="@rdf:about"></xforms:var>
+											<div class="subsection">
+												<h4>Birth <small>
+														<xforms:output value="concat('(', $uri, ')')"></xforms:output>
+														<xforms:trigger appearance="minimal">
+															<xforms:action ev:event="DOMActivate">
+																<xforms:delete nodeset="instance('doc')/*[1]/bio:birth"></xforms:delete>
+																<xforms:delete nodeset="."></xforms:delete>
+															</xforms:action>
+															<xforms:label>
+																<span class="glyphicon glyphicon-remove"></span>
+															</xforms:label>
+														</xforms:trigger>
+													</small>
+												</h4>
+												<div class="trigger_container">
+													<xforms:group ref=".[count(un:hasUncertainty) = 0]">
+														<xforms:trigger appearance="minimal">
+															<xforms:label>
+																<span class="glyphicon glyphicon-plus"></span>Uncertainty</xforms:label>
+															<xforms:insert ev:event="DOMActivate" origin="instance('hasUncertainty-template')" context="."
+																nodeset="./child::node()[last()]"></xforms:insert>
+														</xforms:trigger>
+													</xforms:group>
+												</div>
+												<div>
+													<xforms:input ref="dcterms:date">
+														<xforms:label>Date</xforms:label>
+														<xforms:alert>Must be a valid date</xforms:alert>
+														<!-- associated rdf:datatype based on content -->
+														<xforms:action ev:event="xforms-value-changed">
+															<xforms:var name="val" select="."></xforms:var>
+															<xforms:action if="$val castable as xs:date">
+																<xforms:insert if="not(@rdf:datatype)" context="."
+																	origin="xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#date')"></xforms:insert>
+																<xforms:setvalue if="@rdf:datatype" ref="@rdf:datatype">http://www.w3.org/2001/XMLSchema#date</xforms:setvalue>
+															</xforms:action>
+															<xforms:action if="$val castable as xs:gYearMonth">
+																<xforms:insert if="not(@rdf:datatype)" context="."
+																	origin="xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#gYearMonth')"></xforms:insert>
+																<xforms:setvalue if="@rdf:datatype" ref="@rdf:datatype"
+																	>http://www.w3.org/2001/XMLSchema#gYearMonth</xforms:setvalue>
+															</xforms:action>
+															<xforms:action if="$val castable as xs:gYear">
+																<xforms:insert if="not(@rdf:datatype)" context="."
+																	origin="xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#gYear')"></xforms:insert>
+																<xforms:setvalue if="@rdf:datatype" ref="@rdf:datatype">http://www.w3.org/2001/XMLSchema#gYear</xforms:setvalue>
+															</xforms:action>
+															<xforms:action
+																if="not($val castable as xs:date) and not($val castable as xs:gYearMonth) and not($val castable as xs:gYear)">
+																<xforms:delete nodeset="@rdf:datatype"></xforms:delete>
+															</xforms:action>
 														</xforms:action>
-														<xforms:label>
-															<span class="glyphicon glyphicon-remove"></span>
-														</xforms:label>
-													</xforms:trigger>
-												</small>
-											</h3>
-											<div class="trigger_container">
-												<xforms:group ref=".[count(un:hasUncertainty) = 0]">
-													<xforms:trigger appearance="minimal">
-														<xforms:label>
-															<span class="glyphicon glyphicon-plus"></span>Uncertainty</xforms:label>
-														<xforms:insert ev:event="DOMActivate" origin="instance('hasUncertainty-template')" context="."
-															nodeset="./child::node()[last()]"></xforms:insert>
-													</xforms:trigger>
+													</xforms:input>
+												</div>
+												<xforms:group ref="un:hasUncertainty">
+													<div>
+														<xforms:select1 ref="@rdf:resource">
+															<xforms:label>Uncertainty</xforms:label>
+															<xforms:alert>Required</xforms:alert>
+															<xforms:item>
+																<xforms:label>Select...</xforms:label>
+																<xforms:value></xforms:value>
+															</xforms:item>
+															<xforms:itemset nodeset="instance('uncertainty-list')//item">
+																<xforms:label ref="."></xforms:label>
+																<xforms:value ref="@uri"></xforms:value>
+															</xforms:itemset>
+														</xforms:select1>
+														<xforms:trigger appearance="minimal">
+															<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
+															<xforms:label><span class="glyphicon glyphicon-remove"></span></xforms:label>
+														</xforms:trigger>
+													</div>
 												</xforms:group>
 											</div>
-											<div>
-												<xforms:input ref="dcterms:date">
-													<xforms:label>Date</xforms:label>
-													<xforms:alert>Must be a valid date</xforms:alert>
-													<!-- associated rdf:datatype based on content -->
-													<xforms:action ev:event="xforms-value-changed">
-														<xforms:var name="val" select="."></xforms:var>
-														<xforms:action if="$val castable as xs:date">
-															<xforms:insert if="not(@rdf:datatype)" context="."
-																origin="xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#date')"></xforms:insert>
-															<xforms:setvalue if="@rdf:datatype" ref="@rdf:datatype">http://www.w3.org/2001/XMLSchema#date</xforms:setvalue>
-														</xforms:action>
-														<xforms:action if="$val castable as xs:gYearMonth">
-															<xforms:insert if="not(@rdf:datatype)" context="."
-																origin="xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#gYearMonth')"></xforms:insert>
-															<xforms:setvalue if="@rdf:datatype" ref="@rdf:datatype">http://www.w3.org/2001/XMLSchema#gYearMonth</xforms:setvalue>
-														</xforms:action>
-														<xforms:action if="$val castable as xs:gYear">
-															<xforms:insert if="not(@rdf:datatype)" context="."
-																origin="xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#gYear')"></xforms:insert>
-															<xforms:setvalue if="@rdf:datatype" ref="@rdf:datatype">http://www.w3.org/2001/XMLSchema#gYear</xforms:setvalue>
-														</xforms:action>
-														<xforms:action if="not($val castable as xs:date) and not($val castable as xs:gYearMonth) and not($val castable as xs:gYear)">
-															<xforms:delete nodeset="@rdf:datatype"></xforms:delete>
-														</xforms:action>
-													</xforms:action>
-												</xforms:input>
-											</div>
-											<xforms:group ref="un:hasUncertainty">
-												<div>
-													<xforms:select1 ref="@rdf:resource">
-														<xforms:label>Uncertainty</xforms:label>
-														<xforms:alert>Required</xforms:alert>
-														<xforms:item>
-															<xforms:label>Select...</xforms:label>
-															<xforms:value></xforms:value>
-														</xforms:item>
-														<xforms:itemset nodeset="instance('uncertainty-list')//item">
-															<xforms:label ref="."></xforms:label>
-															<xforms:value ref="@uri"></xforms:value>
-														</xforms:itemset>
-													</xforms:select1>
-													<xforms:trigger appearance="minimal">
-														<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
-														<xforms:label><span class="glyphicon glyphicon-remove"></span></xforms:label>
-													</xforms:trigger>
+										</xforms:group>
+										<xforms:group ref="bio:Death">
+											<xforms:var name="uri" select="@rdf:about"></xforms:var>
+											<div class="subsection">
+												<h4>Death <small>
+														<xforms:output value="concat('(', $uri, ')')"></xforms:output>
+														<xforms:trigger appearance="minimal">
+															<xforms:action ev:event="DOMActivate">
+																<xforms:delete nodeset="instance('doc')/*[1]/bio:death"></xforms:delete>
+																<xforms:delete nodeset="."></xforms:delete>
+															</xforms:action>
+															<xforms:label>
+																<span class="glyphicon glyphicon-remove"></span>
+															</xforms:label>
+														</xforms:trigger>
+													</small>
+												</h4>
+												<div class="trigger_container">
+													<xforms:group ref=".[count(un:hasUncertainty) = 0]">
+														<xforms:trigger appearance="minimal">
+															<xforms:label>
+																<span class="glyphicon glyphicon-plus"></span>Uncertainty</xforms:label>
+															<xforms:insert ev:event="DOMActivate" origin="instance('hasUncertainty-template')" context="."
+																nodeset="./child::node()[last()]"></xforms:insert>
+														</xforms:trigger>
+													</xforms:group>
 												</div>
-											</xforms:group>
-										</div>
-									</div>
-								</xforms:group>
-								<xforms:group ref="bio:Death">
-									<xforms:var name="uri" select="@rdf:about"></xforms:var>
-									<div class="section row">
-										<div class="col-md-12">
-											<h3>Death <small>
-													<xforms:output value="concat('(', $uri, ')')"></xforms:output>
-													<xforms:trigger appearance="minimal">
-														<xforms:action ev:event="DOMActivate">
-															<xforms:delete nodeset="instance('doc')/*[1]/bio:death"></xforms:delete>
-															<xforms:delete nodeset="."></xforms:delete>
+												<div>
+													<xforms:input ref="dcterms:date">
+														<xforms:label>Date</xforms:label>
+														<xforms:alert>Must be a valid date</xforms:alert>
+														<!-- associated rdf:datatype based on content -->
+														<xforms:action ev:event="xforms-value-changed">
+															<xforms:var name="val" select="."></xforms:var>
+															<xforms:action if="$val castable as xs:date">
+																<xforms:insert if="not(@rdf:datatype)" context="."
+																	origin="xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#date')"></xforms:insert>
+																<xforms:setvalue if="@rdf:datatype" ref="@rdf:datatype">http://www.w3.org/2001/XMLSchema#date</xforms:setvalue>
+															</xforms:action>
+															<xforms:action if="$val castable as xs:gYearMonth">
+																<xforms:insert if="not(@rdf:datatype)" context="."
+																	origin="xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#gYearMonth')"></xforms:insert>
+																<xforms:setvalue if="@rdf:datatype" ref="@rdf:datatype"
+																	>http://www.w3.org/2001/XMLSchema#gYearMonth</xforms:setvalue>
+															</xforms:action>
+															<xforms:action if="$val castable as xs:gYear">
+																<xforms:insert if="not(@rdf:datatype)" context="."
+																	origin="xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#gYear')"></xforms:insert>
+																<xforms:setvalue if="@rdf:datatype" ref="@rdf:datatype">http://www.w3.org/2001/XMLSchema#gYear</xforms:setvalue>
+															</xforms:action>
+															<xforms:action
+																if="not($val castable as xs:date) and not($val castable as xs:gYearMonth) and not($val castable as xs:gYear)">
+																<xforms:delete nodeset="@rdf:datatype"></xforms:delete>
+															</xforms:action>
 														</xforms:action>
-														<xforms:label>
-															<span class="glyphicon glyphicon-remove"></span>
-														</xforms:label>
-													</xforms:trigger>
-												</small>
-											</h3>
-											<div class="trigger_container">
-												<xforms:group ref=".[count(un:hasUncertainty) = 0]">
-													<xforms:trigger appearance="minimal">
-														<xforms:label>
-															<span class="glyphicon glyphicon-plus"></span>Uncertainty</xforms:label>
-														<xforms:insert ev:event="DOMActivate" origin="instance('hasUncertainty-template')" context="."
-															nodeset="./child::node()[last()]"></xforms:insert>
-													</xforms:trigger>
+													</xforms:input>
+												</div>
+												<xforms:group ref="un:hasUncertainty">
+													<div>
+														<xforms:select1 ref="@rdf:resource">
+															<xforms:label>Uncertainty</xforms:label>
+															<xforms:alert>Required</xforms:alert>
+															<xforms:item>
+																<xforms:label>Select...</xforms:label>
+																<xforms:value></xforms:value>
+															</xforms:item>
+															<xforms:itemset nodeset="instance('uncertainty-list')//item">
+																<xforms:label ref="."></xforms:label>
+																<xforms:value ref="@uri"></xforms:value>
+															</xforms:itemset>
+														</xforms:select1>
+														<xforms:trigger appearance="minimal">
+															<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
+															<xforms:label><span class="glyphicon glyphicon-remove"></span></xforms:label>
+														</xforms:trigger>
+													</div>
 												</xforms:group>
 											</div>
-											<div>
-												<xforms:input ref="dcterms:date">
-													<xforms:label>Date</xforms:label>
-													<xforms:alert>Must be a valid date</xforms:alert>
-													<!-- associated rdf:datatype based on content -->
-													<xforms:action ev:event="xforms-value-changed">
-														<xforms:var name="val" select="."></xforms:var>
-														<xforms:action if="$val castable as xs:date">
-															<xforms:insert if="not(@rdf:datatype)" context="."
-																origin="xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#date')"></xforms:insert>
-															<xforms:setvalue if="@rdf:datatype" ref="@rdf:datatype">http://www.w3.org/2001/XMLSchema#date</xforms:setvalue>
-														</xforms:action>
-														<xforms:action if="$val castable as xs:gYearMonth">
-															<xforms:insert if="not(@rdf:datatype)" context="."
-																origin="xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#gYearMonth')"></xforms:insert>
-															<xforms:setvalue if="@rdf:datatype" ref="@rdf:datatype">http://www.w3.org/2001/XMLSchema#gYearMonth</xforms:setvalue>
-														</xforms:action>
-														<xforms:action if="$val castable as xs:gYear">
-															<xforms:insert if="not(@rdf:datatype)" context="."
-																origin="xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#gYear')"></xforms:insert>
-															<xforms:setvalue if="@rdf:datatype" ref="@rdf:datatype">http://www.w3.org/2001/XMLSchema#gYear</xforms:setvalue>
-														</xforms:action>
-														<xforms:action if="not($val castable as xs:date) and not($val castable as xs:gYearMonth) and not($val castable as xs:gYear)">
-															<xforms:delete nodeset="@rdf:datatype"></xforms:delete>
-														</xforms:action>
-													</xforms:action>
-												</xforms:input>
-											</div>
-											<xforms:group ref="un:hasUncertainty">
-												<div>
-													<xforms:select1 ref="@rdf:resource">
-														<xforms:label>Uncertainty</xforms:label>
-														<xforms:alert>Required</xforms:alert>
-														<xforms:item>
-															<xforms:label>Select...</xforms:label>
-															<xforms:value></xforms:value>
-														</xforms:item>
-														<xforms:itemset nodeset="instance('uncertainty-list')//item">
-															<xforms:label ref="."></xforms:label>
-															<xforms:value ref="@uri"></xforms:value>
-														</xforms:itemset>
-													</xforms:select1>
-													<xforms:trigger appearance="minimal">
-														<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
-														<xforms:label><span class="glyphicon glyphicon-remove"></span></xforms:label>
-													</xforms:trigger>
-												</div>
-											</xforms:group>
-										</div>
+										</xforms:group>
+										<hr />
 									</div>
 								</xforms:group>
 								<!-- org:Membership -->
 								<xforms:repeat nodeset="org:Membership">
 									<xforms:var name="uri" select="@rdf:about"></xforms:var>
 									<xforms:var name="position" select="position()"></xforms:var>
-									<div class="section row">
-										<div class="col-md-12">
-											<h3>Membership <small>
-													<xforms:output value="concat('(', $uri, ')')"></xforms:output>
-													<xforms:trigger appearance="minimal">
-														<xforms:action ev:event="DOMActivate">
-															<xforms:delete nodeset="instance('doc')/*[1]/org:hasMembership[@rdf:resource=$uri]"></xforms:delete>
-															<xforms:delete nodeset="."></xforms:delete>
-														</xforms:action>
-														<xforms:label>
-															<span class="glyphicon glyphicon-remove"></span>
-														</xforms:label>
-													</xforms:trigger>
-												</small>
-											</h3>
-											<xforms:group ref=".[count(ancestor::rdf:RDF/org:Membership[@rdf:about=$uri]) != 1]">
-												<div class="alert-danger alert alert-box">
-													<span class="glyphicon glyphicon-exclamation-sign"></span>
-													<strong>Alert:</strong> There cannot be multiple memberships with identical URIs.</div>
+									<div class="section">
+										<h3>Membership <small>
+												<xforms:output value="concat('(', $uri, ')')"></xforms:output>
+												<xforms:trigger appearance="minimal">
+													<xforms:action ev:event="DOMActivate">
+														<xforms:delete nodeset="instance('doc')/*[1]/org:hasMembership[@rdf:resource=$uri]"></xforms:delete>
+														<xforms:delete nodeset="."></xforms:delete>
+													</xforms:action>
+													<xforms:label>
+														<span class="glyphicon glyphicon-remove"></span>
+													</xforms:label>
+												</xforms:trigger>
+											</small>
+										</h3>
+										<xforms:group ref=".[count(ancestor::rdf:RDF/org:Membership[@rdf:about=$uri]) != 1]">
+											<div class="alert-danger alert alert-box">
+												<span class="glyphicon glyphicon-exclamation-sign"></span>
+												<strong>Alert:</strong> There cannot be multiple memberships with identical URIs.</div>
+										</xforms:group>
+										<div class="trigger_container">
+											<xforms:group ref=".[count(nmo:hasStartDate) = 0]">
+												<xforms:trigger appearance="minimal">
+													<xforms:label>
+														<span class="glyphicon glyphicon-plus"></span>Start Date</xforms:label>
+													<xforms:insert ev:event="DOMActivate" origin="instance('hasStartDate-template')" context="." nodeset="./child::node()[last()]"
+													></xforms:insert>
+												</xforms:trigger>
 											</xforms:group>
-											<div class="trigger_container">
-												<xforms:group ref=".[count(nmo:hasStartDate) = 0]">
-													<xforms:trigger appearance="minimal">
-														<xforms:label>
-															<span class="glyphicon glyphicon-plus"></span>Start Date</xforms:label>
-														<xforms:insert ev:event="DOMActivate" origin="instance('hasStartDate-template')" context="."
-															nodeset="./child::node()[last()]"></xforms:insert>
-													</xforms:trigger>
-												</xforms:group>
-												<xforms:group ref=".[count(nmo:hasEndDate) = 0]">
-													<xforms:trigger appearance="minimal">
-														<xforms:label>
-															<span class="glyphicon glyphicon-plus"></span>End Date</xforms:label>
-														<xforms:insert ev:event="DOMActivate" origin="instance('hasEndDate-template')" context="." nodeset="./child::node()[last()]"
-														></xforms:insert>
-													</xforms:trigger>
-												</xforms:group>
-												<xforms:group ref=".[count(org:organization) = 0]">
-													<xforms:trigger appearance="minimal">
-														<xforms:label>
-															<span class="glyphicon glyphicon-plus"></span>Dynasty/Organization</xforms:label>
-														<xforms:action ev:event="DOMActivate">
-															<xforms:setvalue ref="instance('control-instance')/membership-position" value="$position"></xforms:setvalue>
-															<xforms:setvalue ref="instance('control-instance')/atom-type">&#x022;foaf:Organization&#x022;</xforms:setvalue>
-															<xxforms:show dialog="organization-dialog"></xxforms:show>
-														</xforms:action>
-													</xforms:trigger>
-												</xforms:group>
-											</div>
-											<!-- role -->
-											<xforms:group ref="org:role">
-												<div>
-													<xforms:select1 ref="@rdf:resource">
-														<xforms:label>Role</xforms:label>
-														<xforms:alert>Required</xforms:alert>
-														<xforms:item>
-															<xforms:label>Select...</xforms:label>
-															<xforms:value></xforms:value>
-														</xforms:item>
-														<xforms:itemset nodeset="instance('role-list')//item">
-															<xforms:label ref="."></xforms:label>
-															<xforms:value ref="@uri"></xforms:value>
-														</xforms:itemset>
-														<!-- when the value of the drop down is changed, update the URI of this object and the org:hasMembership in the parent concept -->
-														<xforms:action ev:event="xforms-value-changed">
-															<xforms:var name="role" select="."></xforms:var>
-															<xforms:var name="count" select="count(instance('doc')//org:role[@rdf:resource = $role])"></xforms:var>
-															<xforms:setvalue ref="ancestor::org:Membership/@rdf:about"
-																value="concat(ancestor::rdf:RDF/*[1]/@rdf:about, '#', substring-after($role, 'id/'), if ($count &gt; 1) then $count else '')"></xforms:setvalue>
-															<xforms:setvalue ref="ancestor::rdf:RDF/*[1]/org:hasMembership[position()=$position]/@rdf:resource"
-																value="concat(ancestor::rdf:RDF/*[1]/@rdf:about, '#', substring-after($role, 'id/'), if ($count &gt; 1) then $count else '')"
-															></xforms:setvalue>
-														</xforms:action>
-													</xforms:select1>
-												</div>
+											<xforms:group ref=".[count(nmo:hasEndDate) = 0]">
+												<xforms:trigger appearance="minimal">
+													<xforms:label>
+														<span class="glyphicon glyphicon-plus"></span>End Date</xforms:label>
+													<xforms:insert ev:event="DOMActivate" origin="instance('hasEndDate-template')" context="." nodeset="./child::node()[last()]"
+													></xforms:insert>
+												</xforms:trigger>
 											</xforms:group>
-											<!-- start and end date -->
-											<xforms:group ref="nmo:hasStartDate">
-												<xforms:var name="year" select="abs(number(.))"></xforms:var>
-												<div>
-													<xforms:input ref=".">
-														<xforms:label>Start Date</xforms:label>
-														<xforms:alert>Must conform to xsd:gYear</xforms:alert>
-													</xforms:input>
-													<xforms:output value="if (number(.) &lt; 0) then concat($year, ' B.C.') else concat('A.D. ', $year)"></xforms:output>
-													<xforms:trigger appearance="minimal">
-														<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
-														<xforms:label>
-															<span class="glyphicon glyphicon-remove"></span>
-														</xforms:label>
-													</xforms:trigger>
-												</div>
-											</xforms:group>
-											<xforms:group ref="nmo:hasEndDate">
-												<xforms:var name="year" select="abs(number(.))"></xforms:var>
-												<div>
-													<xforms:input ref=".">
-														<xforms:label>End Date</xforms:label>
-														<xforms:alert>Must conform to xsd:gYear</xforms:alert>
-													</xforms:input>
-													<xforms:output value="if (number(.) &lt; 0) then concat($year, ' B.C.') else concat('A.D. ', $year)"></xforms:output>
-													<xforms:trigger appearance="minimal">
-														<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
-														<xforms:label>
-															<span class="glyphicon glyphicon-remove"></span>
-														</xforms:label>
-													</xforms:trigger>
-												</div>
-											</xforms:group>
-											<xforms:group ref="org:organization">
-												<div>
-													<xforms:output ref="@rdf:resource">
-														<xforms:label>Dynasty/Org</xforms:label>
-													</xforms:output>
-													<xforms:trigger appearance="minimal">
-														<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
-														<xforms:label>
-															<span class="glyphicon glyphicon-remove"></span>
-														</xforms:label>
-													</xforms:trigger>
-												</div>
+											<xforms:group ref=".[count(org:organization) = 0]">
+												<xforms:trigger appearance="minimal">
+													<xforms:label>
+														<span class="glyphicon glyphicon-plus"></span>Dynasty/Organization</xforms:label>
+													<xforms:action ev:event="DOMActivate">
+														<xforms:setvalue ref="instance('control-instance')/membership-position" value="$position"></xforms:setvalue>
+														<xforms:setvalue ref="instance('control-instance')/atom-type">&#x022;foaf:Organization&#x022;</xforms:setvalue>
+														<xxforms:show dialog="organization-dialog"></xxforms:show>
+													</xforms:action>
+												</xforms:trigger>
 											</xforms:group>
 										</div>
+										<!-- role -->
+										<xforms:group ref="org:role">
+											<div>
+												<xforms:select1 ref="@rdf:resource">
+													<xforms:label>Role</xforms:label>
+													<xforms:alert>Required</xforms:alert>
+													<xforms:item>
+														<xforms:label>Select...</xforms:label>
+														<xforms:value></xforms:value>
+													</xforms:item>
+													<xforms:itemset nodeset="instance('role-list')//item">
+														<xforms:label ref="."></xforms:label>
+														<xforms:value ref="@uri"></xforms:value>
+													</xforms:itemset>
+													<!-- when the value of the drop down is changed, update the URI of this object and the org:hasMembership in the parent concept -->
+													<xforms:action ev:event="xforms-value-changed">
+														<xforms:var name="role" select="."></xforms:var>
+														<xforms:var name="count" select="count(instance('doc')//org:role[@rdf:resource = $role])"></xforms:var>
+														<xforms:setvalue ref="ancestor::org:Membership/@rdf:about"
+															value="concat(ancestor::rdf:RDF/*[1]/@rdf:about, '#', substring-after($role, 'id/'), if ($count &gt; 1) then $count else '')"></xforms:setvalue>
+														<xforms:setvalue ref="ancestor::rdf:RDF/*[1]/org:hasMembership[position()=$position]/@rdf:resource"
+															value="concat(ancestor::rdf:RDF/*[1]/@rdf:about, '#', substring-after($role, 'id/'), if ($count &gt; 1) then $count else '')"
+														></xforms:setvalue>
+													</xforms:action>
+												</xforms:select1>
+											</div>
+										</xforms:group>
+										<!-- start and end date -->
+										<xforms:group ref="nmo:hasStartDate">
+											<xforms:var name="year" select="abs(number(.))"></xforms:var>
+											<div>
+												<xforms:input ref=".">
+													<xforms:label>Start Date</xforms:label>
+													<xforms:alert>Must conform to xsd:gYear</xforms:alert>
+												</xforms:input>
+												<xforms:output value="if (number(.) &lt; 0) then concat($year, ' B.C.') else concat('A.D. ', $year)"></xforms:output>
+												<xforms:trigger appearance="minimal">
+													<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
+													<xforms:label>
+														<span class="glyphicon glyphicon-remove"></span>
+													</xforms:label>
+												</xforms:trigger>
+											</div>
+										</xforms:group>
+										<xforms:group ref="nmo:hasEndDate">
+											<xforms:var name="year" select="abs(number(.))"></xforms:var>
+											<div>
+												<xforms:input ref=".">
+													<xforms:label>End Date</xforms:label>
+													<xforms:alert>Must conform to xsd:gYear</xforms:alert>
+												</xforms:input>
+												<xforms:output value="if (number(.) &lt; 0) then concat($year, ' B.C.') else concat('A.D. ', $year)"></xforms:output>
+												<xforms:trigger appearance="minimal">
+													<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
+													<xforms:label>
+														<span class="glyphicon glyphicon-remove"></span>
+													</xforms:label>
+												</xforms:trigger>
+											</div>
+										</xforms:group>
+										<xforms:group ref="org:organization">
+											<div>
+												<xforms:output ref="@rdf:resource">
+													<xforms:label>Dynasty/Org</xforms:label>
+												</xforms:output>
+												<xforms:trigger appearance="minimal">
+													<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
+													<xforms:label>
+														<span class="glyphicon glyphicon-remove"></span>
+													</xforms:label>
+												</xforms:trigger>
+											</div>
+										</xforms:group>
+										<hr />
 									</div>
 								</xforms:repeat>
+								<!-- display provenance -->
+								<xforms:group ref="dcterms:ProvenanceStatement">
+									<xforms:var name="count" select="count(descendant::prov:Activity)"/>
+									
+									<div class="section">
+										<h3>Provenance</h3>
+										<table class="table">
+											<thead>
+												<th>Date</th>
+												<th>Editor</th>
+												<th>Edit Type</th>
+												<th>Description</th>
+											</thead>
+											<tbody>
+												<xforms:repeat nodeset="descendant::prov:Activity">
+													<xforms:var name="position" select="position()"/>
+													
+													<tr>
+														<td>
+															<xforms:output ref="format-dateTime(prov:atTime, '[M01]/[D01]/[Y0001]')"></xforms:output>
+														</td>
+														<td>
+															<xforms:repeat nodeset="prov:wasAssociatedWith">
+																<xforms:output value="tokenize(@rdf:resource, '/')[last()]"></xforms:output>
+																<br/>
+															</xforms:repeat>
+														</td>
+														<td>
+															<xforms:output ref="dcterms:type"></xforms:output>
+															<xforms:group ref=".[dcterms:type = 'spreadsheet']">
+																<xforms:trigger appearance="minimal">
+																	<xforms:label>
+																		<span class="glyphicon glyphicon-new-window"></span>
+																	</xforms:label>
+																	<xforms:load ev:event="DOMActivate" show="new" ref="prov:used/@rdf:resource"></xforms:load>
+																</xforms:trigger>
+															</xforms:group>
+														</td>
+														<td>
+															<xforms:group ref=".[$position = $count]">
+																<xforms:group ref="dcterms:description">
+																	<xforms:textarea ref=".">
+																		<xforms:alert>Required</xforms:alert>
+																	</xforms:textarea>
+																	<xforms:select1 ref="@xml:lang">
+																		<xforms:item>
+																			<xforms:label>Select...</xforms:label>
+																			<xforms:value></xforms:value>
+																		</xforms:item>
+																		<xforms:itemset nodeset="instance('languages')/language">
+																			<xforms:label ref="."></xforms:label>
+																			<xforms:value ref="@value"></xforms:value>
+																		</xforms:itemset>
+																		<xforms:alert>Required</xforms:alert>
+																	</xforms:select1>
+																	<xforms:trigger appearance="minimal">
+																		<xforms:dispatch target="delete-description-dialog" name="fr-show" ev:event="DOMActivate"></xforms:dispatch>
+																		<xforms:label>
+																			<span class="glyphicon glyphicon-remove"></span>
+																		</xforms:label>
+																	</xforms:trigger>
+																</xforms:group>
+															</xforms:group>
+															<xforms:group ref=".[$position &lt; $count]">
+																<xforms:output ref="dcterms:description"></xforms:output>
+															</xforms:group>
+														</td>
+													</tr>
+												</xforms:repeat>
+											</tbody>
+
+										</table>
+									</div>
+								</xforms:group>
 							</xforms:group>
 						</xforms:case>
 					</xforms:switch>
@@ -1872,6 +1947,22 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 						</xforms:group>
 					</xforms:group>
 				</div>
+				
+				<!-- ***** DIALOGS ***** -->
+				<fr:alert-dialog id="delete-description-dialog">
+					<fr:label>Delete Description</fr:label>
+					<fr:message>It isn't recommended to delete a description of provenance activity unless the edit is to fix a minor typo. Continue?</fr:message>
+					<fr:positive-choice>
+						<fr:label>Yes</fr:label>
+						<xforms:action ev:event="DOMActivate">
+							<xforms:delete nodeset="instance('doc')/descendant::prov:Activity[last()]/dcterms:description"/>
+						</xforms:action>
+					</fr:positive-choice>
+					<fr:negative-choice>
+						<fr:label>No</fr:label>
+					</fr:negative-choice>
+				</fr:alert-dialog>
+					
 				<xxforms:dialog id="atom-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
 					<xforms:label value="if (instance('control-instance')/link-property = 'skos:broader') then 'Broader Concept' else 'Bibliographic Reference'"></xforms:label>
 					<div>
@@ -2089,6 +2180,6 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 				</div>
 			</div>
 		</div>
-		<fr:xforms-inspector></fr:xforms-inspector>
+		<!--<fr:xforms-inspector></fr:xforms-inspector>-->
 	</body>
 </html>
