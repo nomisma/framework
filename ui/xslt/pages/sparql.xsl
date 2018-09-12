@@ -36,26 +36,17 @@
 	</xsl:template>
 
 	<xsl:template name="body">
-		<xsl:variable name="default-query"><![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX bio:	<http://purl.org/vocab/bio/0.1/>
-PREFIX crm:	<http://www.cidoc-crm.org/cidoc-crm/>
-PREFIX dcmitype:	<http://purl.org/dc/dcmitype/>
-PREFIX dcterms:	<http://purl.org/dc/terms/>
-PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
-PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
-PREFIX nm:	<http://nomisma.org/id/>
-PREFIX nmo:	<http://nomisma.org/ontology#>
-PREFIX org:	<http://www.w3.org/ns/org#>
-PREFIX osgeo:	<http://data.ordnancesurvey.co.uk/ontology/geometry/>
-PREFIX rdac:	<http://www.rdaregistry.info/Elements/c/>
-PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
-PREFIX spatial: <http://jena.apache.org/spatial#>
-PREFIX void:	<http://rdfs.org/ns/void#>
-PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
-
-SELECT * WHERE {
+		<xsl:variable name="default-query">
+			<xsl:variable name="select"><![CDATA[SELECT * WHERE {
   ?s ?p ?o
 } LIMIT 100]]></xsl:variable>
+
+			<xsl:apply-templates select="/config/namespaces/namespace[@default = true()]">
+				<xsl:sort select="@prefix"/>
+			</xsl:apply-templates>
+			<xsl:text>&#x00a;</xsl:text>
+			<xsl:value-of select="$select"/>
+		</xsl:variable>
 
 		<div class="container-fluid content">
 			<div class="row">
@@ -70,6 +61,24 @@ SELECT * WHERE {
 						<br/>
 						<div class="col-md-6">
 							<div class="form-group">
+								<h4>Additional prefixes</h4>
+								<ul class="list-inline">
+									<xsl:for-each select="/config/namespaces/namespace">
+										<xsl:sort select="@prefix"/>
+										
+										<li>
+											<xsl:if test="@default = true()">
+												<xsl:attribute name="class">hidden</xsl:attribute>
+											</xsl:if>
+											<button class="prefix-button btn btn-default" title="{@uri}" uri="{@uri}">
+												<xsl:value-of select="@prefix"/>
+											</button>
+										</li>
+									</xsl:for-each>
+								</ul>
+							</div>
+
+							<div class="form-group">
 								<label for="output">Output</label>
 								<select name="output" class="form-control">
 									<option value="html">HTML</option>
@@ -82,15 +91,25 @@ SELECT * WHERE {
 							<button type="submit" class="btn btn-default">Submit</button>
 						</div>
 						<div class="col-md-6">
-							<p class="text-info">This endpoint (<xsl:value-of select="concat(/config/url, 'query')"/>) supports content negotiation for the following content types with SELECT queries: <code>text/html</code>,
-									<code>text/csv</code>, <code>text/plain</code>, <code>application/sparql-results+json</code>, and <code>application/sparql-results+xml</code></p>
-						
-							<p class="text-info">When querying for geo:lat and geo:long properties, a map will be generated, and geographic data may be downloaded as GeoJSON and KML.</p>
+							<p class="text-info">This endpoint (<xsl:value-of select="concat(/config/url, 'query')"/>) supports content negotiation for the following content types
+								with SELECT queries: <code>text/html</code>, <code>text/csv</code>, <code>text/plain</code>, <code>application/sparql-results+json</code>, and
+									<code>application/sparql-results+xml</code></p>
+
+							<p class="text-info">When querying for geo:lat and geo:long properties, a map will be generated, and geographic data may be downloaded as GeoJSON and
+								KML.</p>
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
+	</xsl:template>
+
+	<xsl:template match="namespace">
+		<xsl:text>PREFIX </xsl:text>
+		<xsl:value-of select="@prefix"/>
+		<xsl:text>: &lt;</xsl:text>
+		<xsl:value-of select="@uri"/>
+		<xsl:text>&gt;&#x00a;</xsl:text>
 	</xsl:template>
 
 </xsl:stylesheet>

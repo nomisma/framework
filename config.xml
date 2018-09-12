@@ -14,17 +14,32 @@
 	<dump_path>/usr/local/projects/nomisma/dump</dump_path>
 	<flickr_api_key>226cb53f91a6c1331adfb52c365584e9</flickr_api_key>
 	<mapboxKey>pk.eyJ1IjoiZXdnMTE4IiwiYSI6IjViNDRlMzgxMjkyMDg0MGIxYTNlMzlkMjk1ZTI5Yzg5In0.1FU6cKAs4-vPMroB_l_0lA</mapboxKey>
-	<google_analytics>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-		
-		ga('create', 'UA-8722571-3', 'auto');
-		ga('send', 'pageview');
-	</google_analytics>
+	<google_analytics> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-8722571-3', 'auto'); ga('send', 'pageview'); </google_analytics>
 	<documentation>
 		<page stub="contribute" label="How to Contribute Data"/>
 		<page stub="sparql" label="SPARQL Examples"/>
 	</documentation>
+	<namespaces>
+		<namespace prefix="bio" uri="http://purl.org/vocab/bio/0.1/"/>
+		<namespace prefix="crm" uri="http://www.cidoc-crm.org/cidoc-crm/" default="true"/>
+		<namespace prefix="dcterms" uri="http://purl.org/dc/terms/" default="true"/>
+		<namespace prefix="dcmitype" uri="http://purl.org/dc/dcmitype/" default="true"/>
+		<namespace prefix="foaf" uri="http://xmlns.com/foaf/0.1/" default="true"/>
+		<namespace prefix="geo" uri="http://www.w3.org/2003/01/geo/wgs84_pos#" default="true"/>
+		<namespace prefix="nm" uri="http://nomisma.org/id/" default="true"/>
+		<namespace prefix="nmo" uri="http://nomisma.org/ontology#" default="true"/>
+		<namespace prefix="org" uri="http://www.w3.org/ns/org#" default="true"/>
+		<namespace prefix="osgeo" uri="http://data.ordnancesurvey.co.uk/ontology/geometry/"/>
+		<namespace prefix="prov" uri="http://www.w3.org/ns/prov#"/>
+		<namespace prefix="rdac" uri="http://www.rdaregistry.info/Elements/c/"/>
+		<namespace prefix="rdf" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#" default="true"/>
+		<namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#" default="true"/>
+		<namespace prefix="skos" uri="http://www.w3.org/2004/02/skos/core#" default="true"/>
+		<namespace prefix="spatial" uri="http://jena.apache.org/spatial#"/>
+		<namespace prefix="un" uri="http://www.owl-ontologies.com/Ontology1181490123.owl#"/>
+		<namespace prefix="void" uri="http://rdfs.org/ns/void#"/>
+		<namespace prefix="xsd" uri="http://www.w3.org/2001/XMLSchema#" default="true"/>
+	</namespaces>
 </config>

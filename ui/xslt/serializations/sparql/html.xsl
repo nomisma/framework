@@ -9,28 +9,8 @@
 
 	<xsl:variable name="display_path"/>
 
-	<xsl:variable name="namespaces" as="item()*">
-		<namespaces>
-			<namespace prefix="bio" uri="http://purl.org/vocab/bio/0.1/"/>
-			<namespace prefix="crm" uri="http://www.cidoc-crm.org/cidoc-crm/"/>
-			<namespace prefix="dcmitype" uri="http://purl.org/dc/dcmitype/"/>
-			<namespace prefix="dcterms" uri="http://purl.org/dc/terms/"/>
-			<namespace prefix="foaf" uri="http://xmlns.com/foaf/0.1/"/>
-			<namespace prefix="geo" uri="http://www.w3.org/2003/01/geo/wgs84_pos#"/>
-			<namespace prefix="nm" uri="http://nomisma.org/id/"/>
-			<namespace prefix="nmo" uri="http://nomisma.org/ontology#"/>
-			<namespace prefix="org" uri="http://www.w3.org/ns/org#"/>
-			<namespace prefix="osgeo" uri="http://data.ordnancesurvey.co.uk/ontology/geometry/"/>
-			<namespace prefix="prov" uri="http://www.w3.org/ns/prov#"/>
-			<namespace prefix="rdac" uri="http://www.rdaregistry.info/Elements/c/"/>
-			<namespace prefix="rdf" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-			<namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
-			<namespace prefix="skos" uri="http://www.w3.org/2004/02/skos/core#"/>
-			<namespace prefix="spatial" uri="http://jena.apache.org/spatial#"/>
-			<namespace prefix="un" uri="http://www.owl-ontologies.com/Ontology1181490123.owl#"/>
-			<namespace prefix="void" uri="http://rdfs.org/ns/void#"/>
-			<namespace prefix="xsd" uri="http://www.w3.org/2001/XMLSchema#"/>
-		</namespaces>
+	<xsl:variable name="namespaces" as="node()*">
+		<xsl:copy-of select="//config/namespaces"/>
 	</xsl:variable>
 
 	<xsl:variable name="hasGeo" as="xs:boolean">
