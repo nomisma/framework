@@ -23,11 +23,11 @@
 				<controls xmlns="">
 					<status></status>
 					<username></username>
-					<spreadsheet_key></spreadsheet_key>
+					<spreadsheet_key>1XYzJMQjDgfFUPgZpU8nqpN1CLJ43kmJYZhkYR0sJTzg</spreadsheet_key>
 					<spreadsheet_uri></spreadsheet_uri>
 					<worksheet_id></worksheet_id>
 					<id></id>
-					<type></type>
+					<type>foaf:Person</type>
 					<mappings-valid>false</mappings-valid>
 					<metadata-valid>false</metadata-valid>
 					<load-trigger>false</load-trigger>
@@ -314,8 +314,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>
 PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 					<query id="ask">ASK {&lt;URI&gt; rdf:type CLASS}</query>
 					<query id="ask-person">ASK {&lt;URI&gt; rdf:type ?type . FILTER (?type = nmo:Mint || ?type = foaf:Organization)} </query>
-					<query id="editor">SELECT ?uri ?label WHERE {?uri a foaf:Person ; skos:inScheme &lt;http://nomisma.org/editor/&gt; ; skos:prefLabel ?label .
-						FILTER(langMatches(lang(?label), "en"))} ORDER BY ?label</query>
+					<query id="editor">SELECT ?uri ?label WHERE {?uri a foaf:Person ; skos:inScheme &lt;http://nomisma.org/editor/&gt; ; skos:prefLabel ?label} ORDER BY ?label</query>
 				</templates>
 			</xforms:instance>
 
@@ -620,10 +619,16 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 				<xforms:send submission="submit-sparqlQuery"></xforms:send>
 				<xforms:action xxforms:iterate="instance('sparqlResponse')//res:result" ev:event="xforms-submit-done">
 					<xforms:var name="uri" select="data(res:binding[@name='uri']/res:uri)"></xforms:var>
-					<xforms:var name="label" select="(res:binding[@name='label']/res:literal)"></xforms:var>
+					<xforms:var name="label" select="data(res:binding[@name='label']/res:literal)"></xforms:var>
 					<xforms:insert context="instance('editor-list')" nodeset="./child::node()[last()]" origin="xforms:element('item', (xforms:attribute('uri', $uri), $label))"
 					></xforms:insert>
 				</xforms:action>
+			</xforms:action>
+			
+			<!-- ********** XFORMS-READY ********** -->
+			<xforms:action ev:event="xforms-ready">
+				<!-- test spreadsheet RDF validity on xforms-ready -->
+				<xforms:setvalue ref="instance('control-instance')/metadata-valid" value="true()" if="xxforms:valid(instance('spreadsheet-rdf'), true())"></xforms:setvalue>
 			</xforms:action>
 		</xforms:model>
 	</head>
@@ -642,7 +647,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 				<div class="col-md-12">
 					<p><a href="../"><span class="glyphicon glyphicon-arrow-left"></span>Return to Admin</a></p>
 					<xforms:group ref=".[string-length(instance('control-instance')/status) &gt; 0]">
-						<div class="bg-info alert-box">
+						<div class="alert-success alert-box alert">
 							<span class="glyphicon glyphicon-info-sign"></span>
 							<strong>Status:</strong>
 							<xforms:output ref="instance('control-instance')/status"></xforms:output>
@@ -761,83 +766,83 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 									are required.</p>
 								<xforms:group ref="instance('mappings')">
 									<xforms:group ref=".[count(mapping[@to='id']) != 1]">
-										<div class="bg-danger alert-box">
+										<div class="alert-danger alert-box alert">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong>There must be one Nomisma ID.</div>
 									</xforms:group>
 									<!-- language warnings -->
 									<xforms:group ref=".[count(mapping[@to='skos:prefLabel'][@lang='en']) = 0]">
-										<div class="bg-danger alert-box">
+										<div class="alert-danger alert-box alert">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> Preferred English Label is required.</div>
 									</xforms:group>
 									<xforms:group ref=".[count(mapping[@to='skos:definition'][@lang='en']) = 0]">
-										<div class="bg-danger alert-box">
+										<div class="alert-danger alert-box alert">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> Preferred English Definition is required.</div>
 									</xforms:group>
 									<xforms:group ref=".[count(mapping[@to='skos:prefLabel']/@lang) != count(distinct-values(mapping[@to='skos:prefLabel']/@lang))]">
-										<div class="bg-danger alert-box">
+										<div class="alert-danger alert-box alert">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> Preferred label languages must be unique.</div>
 									</xforms:group>
 									<xforms:group ref=".[count(mapping[@to='skos:definition']/@lang) != count(distinct-values(mapping[@to='skos:definition']/@lang))]">
-										<div class="bg-danger alert-box">
+										<div class="alert-danger alert-box alert">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> Definition languages must be unique.</div>
 									</xforms:group>
 									<xforms:group ref=".[count(mapping[@to='skos:scopeNote']/@lang) != count(distinct-values(mapping[@to='skos:scopeNote']/@lang))]">
-										<div class="bg-danger alert-box">
+										<div class="alert-danger alert-box alert">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> Scope Note languages must be unique.</div>
 									</xforms:group>
 									<!-- coordinate warnings -->
 									<xforms:group
 										ref=".[count(mapping[@to='geo:lat']) &gt; 1 and count(mapping[@to='geo:long']) &gt; 1 or count(mapping[@to='geo:lat']) != count(mapping[@to='geo:long'])]">
-										<div class="bg-danger alert-box">
+										<div class="alert-danger alert-box alert">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> There must be both a latitude and longitude, with a maximum of 1 mapping each.</div>
 									</xforms:group>
 									<!-- dates -->
 									<xforms:group ref=".[count(mapping[@to='nmo:hasStartDate']) &gt; 1]">
-										<div class="bg-danger alert-box">
+										<div class="alert-danger alert-box alert">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> There can not be more than one start date.</div>
 									</xforms:group>
 									<xforms:group ref=".[count(mapping[@to='nmo:hasEndDate']) &gt; 1]">
-										<div class="bg-danger alert-box">
+										<div class="alert-danger alert-box alert">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> There can not be more than one end date.</div>
 									</xforms:group>
 									<xforms:group
 										ref=".[(instance('control-instance')/type='foaf:Person' or instance('control-instance')/type='foaf:Organization') and (count(mapping[@to='nmo:hasStartDate']) &gt; 0 or count(mapping[@to='nmo:hasEndDate']) &gt; 0) and count(mapping[@to='org:role']) = 0]">
-										<div class="bg-danger alert-box">
+										<div class="alert-danger alert-box alert">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> A person or organization must have a role if there is a start or end date.</div>
 									</xforms:group>
 									<!-- role, organization -->
 									<xforms:group ref=".[count(mapping[@to='org:role']) &gt; 1]">
-										<div class="bg-danger alert-box">
+										<div class="alert-danger alert-box alert">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> There can not be more than one role.</div>
 									</xforms:group>
 									<xforms:group ref=".[count(mapping[@to='org:organization']) &gt; 1]">
-										<div class="bg-danger alert-box">
+										<div class="alert-danger alert-box alert">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> There can not be more than one organization.</div>
 									</xforms:group>
 									<xforms:group ref=".[count(mapping[@to='bio:birth']) &gt; 1]">
-										<div class="bg-danger alert-box">
+										<div class="alert-danger alert-box alert">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> There can not be more than one birth date.</div>
 									</xforms:group>
 									<xforms:group ref=".[count(mapping[@to='bio:death']) &gt; 1]">
-										<div class="bg-danger alert-box">
+										<div class="alert-danger alert-box alert">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> There can not be more than one death date.</div>
 									</xforms:group>
 									<xforms:group ref=".[count(mapping[@to='org:organization']) = 1 and count(mapping[@to='org:role']) = 0]">
-										<div class="bg-danger alert-box">
+										<div class="alert-danger alert-box alert">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> A role is required for an organization.</div>
 									</xforms:group>
@@ -1140,18 +1145,18 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 							<xforms:group ref="instance('validation-model')">
 								<h3>Validation</h3>
 								<xforms:group ref=".[count(descendant::error) = 0]">
-									<div class="bg-success alert-box">
+									<div class="alert-success alert-box alert">
 										<span class="glyphicon glyphicon-ok"></span>
 										<strong>Success: </strong><xforms:output value="count(record)"></xforms:output> records successfully validated.</div>
 								</xforms:group>
 								<xforms:group ref=".[count(descendant::error) &gt; 0]">
-									<div class="bg-danger alert-box">
+									<div class="alert-danger alert-box alert">
 										<span class="glyphicon glyphicon-exclamation-sign"></span>
 										<strong>Alert:</strong> The spreadsheet is invalid. Please fix errors and import again.</div>
 								</xforms:group>
 								<!-- if the error is on the top level -->
 								<xforms:group ref=".[error]">
-									<div class="bg-danger alert-box">
+									<div class="alert-danger alert-box alert">
 										<span class="glyphicon glyphicon-exclamation-sign"></span>
 										<strong>Alert:</strong>
 										<xforms:output ref="error"></xforms:output></div>
@@ -1408,7 +1413,8 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 											<xforms:insert nodeset="instance('dump')"
 												origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('rdf'), instance('save-config')), 'data')"></xforms:insert>
 											<!-- delete graphs from triplestore, then repost updates -->
-											<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-template'), 'URI', $uri)"></xforms:setvalue>
+											<xforms:setvalue ref="instance('sparqlUpdate')"
+												value="replace(instance('sparqlUpdate-templates')/query[@id='delete-concept'], 'URI', $uri)"/>
 											<xforms:send submission="delete-graph"></xforms:send>
 											<xforms:send submission="post-rdf"></xforms:send>
 											<!-- post to Solr -->
@@ -1471,7 +1477,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 							</table>
 						</xforms:case>
 					</xforms:switch>
-					<fr:xforms-inspector></fr:xforms-inspector>
+					<!--<fr:xforms-inspector></fr:xforms-inspector>-->
 				</div>
 			</div>
 		</div>
