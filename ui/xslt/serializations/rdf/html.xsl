@@ -12,9 +12,8 @@
 	<!-- config or other variables -->
 	<xsl:variable name="display_path">../</xsl:variable>
 	<xsl:variable name="mode">record</xsl:variable>
-	<xsl:variable name="id" select="tokenize(/content/rdf:RDF/*[1]/@rdf:about, '/')[last()]"/>
-	<xsl:variable name="html-uri" select="concat(/content/config/url, 'id/', $id, '.html')"/>
 	<xsl:variable name="type" select="/content/rdf:RDF/*[1]/name()"/>
+	<xsl:variable name="id" select="if ($type = 'skos:ConceptScheme') then tokenize(/content/rdf:RDF/*[1]/@rdf:about, '/')[last() -1] else tokenize(/content/rdf:RDF/*[1]/@rdf:about, '/')[last()]"/>	
 	<xsl:variable name="title" select="/content/rdf:RDF/*[1]/skos:prefLabel[@xml:lang = 'en']"/>
 
 	<!-- flickr -->
@@ -138,7 +137,7 @@
 				<xsl:for-each select="descendant::skos:definition">
 					<meta itemprop="description" content="{.}" lang="{@xml:lang}"/>
 				</xsl:for-each>
-				<meta itemprop="url" content="{concat(/content/config/url, 'id/', $id)}"/>
+				<meta itemprop="url" content="{descendant::skos:inScheme/@rdf:resource, $id}"/>
 				<xsl:for-each select="descendant::skos:exactMatch | descendant::skos:closeMatch">
 					<meta itemprop="sameAs" content="{@rdf:resource}"/>
 				</xsl:for-each>
@@ -195,7 +194,7 @@
 								<strong>Linked Data</strong>
 							</li>
 							<li>
-								<a href="https://github.com/nomisma/data/blob/master/id/{$id}.rdf">GitHub File</a>
+								<a href="https://github.com/nomisma/data/blob/master/{if ($type = 'skos:ConceptScheme') then '' else concat(tokenize(//rdf:RDF/*[1]/@rdf:about, '/')[last() - 1], '/')}{$id}.rdf">GitHub File</a>
 							</li>
 							<li>
 								<a href="{$id}.rdf">RDF/XML</a>
