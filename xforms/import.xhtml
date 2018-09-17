@@ -23,17 +23,21 @@
 				<controls xmlns="">
 					<status></status>
 					<username></username>
-					<spreadsheet_key>1XYzJMQjDgfFUPgZpU8nqpN1CLJ43kmJYZhkYR0sJTzg</spreadsheet_key>
+					<spreadsheet_key></spreadsheet_key>
 					<spreadsheet_uri></spreadsheet_uri>
 					<worksheet_id></worksheet_id>
 					<id></id>
-					<type>foaf:Person</type>
+					<type></type>
 					<mappings-valid>false</mappings-valid>
 					<metadata-valid>false</metadata-valid>
 					<load-trigger>false</load-trigger>
 					<validate-trigger>false</validate-trigger>
 					<import-trigger>false</import-trigger>
-					<parse-wikipedia>true</parse-wikipedia>
+					<import-wikidata-labels>true</import-wikidata-labels>
+					<import-wikidata-uris>true</import-wikidata-uris>
+					<new_id>true</new_id>
+					<content_before_hash></content_before_hash>
+					<content_after_hash></content_after_hash>
 					<wiki-id></wiki-id>
 					<wiki-title></wiki-title>
 					<wiki-lang></wiki-lang>
@@ -314,7 +318,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>
 PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 					<query id="ask">ASK {&lt;URI&gt; rdf:type CLASS}</query>
 					<query id="ask-person">ASK {&lt;URI&gt; rdf:type ?type . FILTER (?type = nmo:Mint || ?type = foaf:Organization)} </query>
-					<query id="editor">SELECT ?uri ?label WHERE {?uri a foaf:Person ; skos:inScheme &lt;http://nomisma.org/editor/&gt; ; skos:prefLabel ?label} ORDER BY ?label</query>
+					<query id="editor">SELECT ?uri ?label WHERE {?uri a foaf:Person ; skos:inScheme &lt;http://nomisma.org/editor/&gt; ; skos:prefLabel ?label} ORDER BY
+						?label</query>
 				</templates>
 			</xforms:instance>
 
@@ -343,7 +348,9 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 				<xforms:bind nodeset="metadata-valid" type="xs:boolean"></xforms:bind>
 				<xforms:bind nodeset="validate-trigger" id="validate-trigger" type="xs:boolean" readonly="../mappings-valid = false() or ../metadata-valid = false()"></xforms:bind>
 				<xforms:bind nodeset="import-trigger" id="import-trigger" type="xs:boolean" relevant=". = true()"></xforms:bind>
-				<xforms:bind nodeset="parse-wikipedia" type="xs:boolean"></xforms:bind>
+				<xforms:bind nodeset="import-wikidata-labels" type="xs:boolean"></xforms:bind>
+				<xforms:bind nodeset="import-wikidata-uris" type="xs:boolean"></xforms:bind>
+				<xforms:bind nodeset="new_id" type="xs:boolean"></xforms:bind>
 			</xforms:bind>
 
 			<xforms:bind nodeset="instance('mappings')"
@@ -371,19 +378,18 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 				<xforms:bind nodeset="role-invalid" required="true()" constraint=". = 'false'"></xforms:bind>
 				<xforms:bind nodeset="coordinates-invalid" required="true()" constraint=". = 'false'"></xforms:bind>
 			</xforms:bind>
-			
+
 			<!-- bindings for the RDF of spreadsheet metadata: creator and contributor URIs must be unique -->
 			<xforms:bind nodeset="instance('spreadsheet-rdf')">
-				<xforms:bind nodeset="prov:Entity"
-					constraint="count(dcterms:contributor/@rdf:resource) = count(distinct-values(dcterms:contributor/@rdf:resource))">
+				<xforms:bind nodeset="prov:Entity" constraint="count(dcterms:contributor/@rdf:resource) = count(distinct-values(dcterms:contributor/@rdf:resource))">
 					<xforms:bind nodeset="dcterms:description" required="true()">
-						<xforms:bind nodeset="@xml:lang" required="true()"/>
+						<xforms:bind nodeset="@xml:lang" required="true()"></xforms:bind>
 					</xforms:bind>
 					<xforms:bind nodeset="dcterms:creator">
-						<xforms:bind nodeset="@rdf:resource" required="true()" constraint="not(. = ../dcterms:contributor/@rdf:resource)"/>
+						<xforms:bind nodeset="@rdf:resource" required="true()" constraint="not(. = ../dcterms:contributor/@rdf:resource)"></xforms:bind>
 					</xforms:bind>
 					<xforms:bind nodeset="dcterms:contributor">
-						<xforms:bind nodeset="@rdf:resource" required="true()"/>
+						<xforms:bind nodeset="@rdf:resource" required="true()"></xforms:bind>
 					</xforms:bind>
 				</xforms:bind>
 			</xforms:bind>
@@ -395,20 +401,20 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 			<!-- **************** DYNAMIC VALIDATION CONTROLS ********************** -->
 			<!-- ensure that the mappings are valid before continuing with validation -->
 			<xforms:action ev:event="xxforms-invalid" ev:observer="mappings">
-				<xforms:setvalue ref="instance('control-instance')/mappings-valid" value="false()"/>
+				<xforms:setvalue ref="instance('control-instance')/mappings-valid" value="false()"></xforms:setvalue>
 			</xforms:action>
-			
+
 			<xforms:action ev:event="xxforms-valid" ev:observer="mappings">
-				<xforms:setvalue ref="instance('control-instance')/mappings-valid" value="true()"/>
+				<xforms:setvalue ref="instance('control-instance')/mappings-valid" value="true()"></xforms:setvalue>
 			</xforms:action>
-			
+
 			<!-- ensure that the spreadsheet metadata are valid before continuing with validation -->
 			<xforms:action ev:event="xxforms-invalid" ev:observer="spreadsheet-rdf">
-				<xforms:setvalue ref="instance('control-instance')/metadata-valid" value="false()"/>
+				<xforms:setvalue ref="instance('control-instance')/metadata-valid" value="false()"></xforms:setvalue>
 			</xforms:action>
-			
+
 			<xforms:action ev:event="xxforms-valid" ev:observer="spreadsheet-rdf">
-				<xforms:setvalue ref="instance('control-instance')/metadata-valid" value="true()"/>
+				<xforms:setvalue ref="instance('control-instance')/metadata-valid" value="true()"></xforms:setvalue>
 			</xforms:action>
 
 			<!-- **************** CUSTOM DATATYPES ********************** -->
@@ -430,7 +436,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 				<!-- if a feed is successfully received, set the id for the workshop -->
 				<xforms:action ev:event="xforms-submit-done">
 					<xforms:setvalue ref="instance('control-instance')/spreadsheet_uri"
-						value="concat('https://docs.google.com/spreadsheets/d/', instance('control-instance')/spreadsheet_key, '/pubhtml')"/>
+						value="concat('https://docs.google.com/spreadsheets/d/', instance('control-instance')/spreadsheet_key, '/pubhtml')"></xforms:setvalue>
 					<xforms:setvalue ref="instance('control-instance')/worksheet_id" value="tokenize(instance('spreadsheet-feed')//atom:entry[1]/atom:id, '/')[last()]"></xforms:setvalue>
 					<xforms:send submission="load-worksheet"></xforms:send>
 				</xforms:action>
@@ -457,12 +463,12 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 						<xforms:action if="instance('control-instance')/type='nmo:Mint'">
 							<xforms:insert context="instance('mappings')" nodeset="./child::node()[last()]" origin="xforms:element('coordinates-invalid', 'false')"></xforms:insert>
 						</xforms:action>
-						
+
 						<!-- read whether or not the spreadsheet already exists in the system -->
 						<xforms:action if="not(instance('spreadsheet-rdf')/prov:Entity[@rdf:about = instance('control-instance')/spreadsheet_uri])">
 							<!-- if there is no matching URI for the spreadsheet (prov:Entity), then insert the spreadsheet template into the spreadsheet RDF -->
-							<xforms:insert context="instance('spreadsheet-rdf')" nodeset="./child::node()[last()]" origin="instance('spreadsheet-template')"/>
-							<xforms:setvalue ref="instance('spreadsheet-rdf')/prov:Entity/@rdf:about" value="instance('control-instance')/spreadsheet_uri"/>
+							<xforms:insert context="instance('spreadsheet-rdf')" nodeset="./child::node()[last()]" origin="instance('spreadsheet-template')"></xforms:insert>
+							<xforms:setvalue ref="instance('spreadsheet-rdf')/prov:Entity/@rdf:about" value="instance('control-instance')/spreadsheet_uri"></xforms:setvalue>
 						</xforms:action>
 
 						<xforms:toggle case="mapping-interface"></xforms:toggle>
@@ -482,32 +488,39 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 				<xforms:action ev:event="xforms-submit-done">
 					<!-- process wikidata XML if the entity has an @id and it starts with Q -->
 					<xforms:action if="starts-with(instance('wikidata')//entity/@id, 'Q')">
-						<!-- create mapping based on the type: skos:closeMatch for mints, skos:exactMatch for all else -->
-						<xforms:var name="mapping" select="if (instance('control-instance')/type = 'nmo:Mint') then 'skos:closeMatch' else 'skos:exactMatch'"></xforms:var>
-						<!-- insert the wikidata URI -->
-						<xforms:var name="wikidata-uri" select="concat('https://www.wikidata.org/entity/', instance('wikidata')//entity/@id)"></xforms:var>
-						<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
-							if="not(instance('rdf')/*[1]/*[name()=$mapping][@rdf:resource=$wikidata-uri])"
-							origin="xforms:element($mapping, (xforms:attribute('rdf:resource', $wikidata-uri), ''))"></xforms:insert>
+
+						<!-- insert URIs -->
+						<xforms:action if="instance('control-instance')/import-wikidata-uris = true()">
+							<!-- create mapping based on the type: skos:closeMatch for mints, skos:exactMatch for all else -->
+							<xforms:var name="mapping" select="if (instance('control-instance')/type = 'nmo:Mint') then 'skos:closeMatch' else 'skos:exactMatch'"></xforms:var>
+
+							<!-- insert the wikidata URI -->
+							<xforms:var name="wikidata-uri" select="concat('http://www.wikidata.org/entity/', instance('wikidata')//entity/@id)"></xforms:var>
+							<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
+								if="not(instance('rdf')/*[1]/*[name()=$mapping][@rdf:resource=$wikidata-uri])"
+								origin="xforms:element($mapping, (xforms:attribute('rdf:resource', $wikidata-uri), ''))"></xforms:insert>
+
+							<!-- iterate through claims with matching properties to link to external vocabulary systems -->
+							<xforms:action
+								xxforms:iterate="instance('wikidata')//entity/claims/property[@id='P214' or @id='P227' or @id='P213' or @id='P268' or @id='P269'
+								or @id='P646' or @id='P245' or @id='P1014' or @id='P1566' or @id='P1667' or @id='P1900']">
+								<xforms:var name="property" select="data(context()/@id)"></xforms:var>
+								<xforms:var name="id" select="replace(data(context()/descendant::mainsnak[1]/datavalue/@value), ' ', '')"></xforms:var>
+								<xforms:var name="uri" select="concat(instance('wikidata-properties')/property[@id=$property], $id)"></xforms:var>
+
+								<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
+									if="not(instance('rdf')/*[1]/*[name()=$mapping][@rdf:resource=$uri])"
+									origin="xforms:element($mapping, (xforms:attribute('rdf:resource', $uri), ''))"></xforms:insert>
+							</xforms:action>
+						</xforms:action>
 
 						<!-- import new labels, but only ones that follow the two-digit ISO standard -->
-						<xforms:action xxforms:iterate="instance('wikidata')//entity/labels/label[string-length(@language) = 2]">
+						<xforms:action if="instance('control-instance')/import-wikidata-labels = true()"
+							xxforms:iterate="instance('wikidata')//entity/labels/label[string-length(@language) = 2]">
 							<xforms:var name="lang" select="data(context()/@language)"></xforms:var>
 							<xforms:var name="label" select="data(context()/@value)"></xforms:var>
 							<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]" if="not(instance('rdf')/*[1]/skos:prefLabel[@xml:lang=$lang])"
 								origin="xforms:element('skos:prefLabel', (xforms:attribute('xml:lang', $lang), $label))"></xforms:insert>
-						</xforms:action>
-
-						<!-- iterate through claims with matching properties to link to external vocabulary systems -->
-						<xforms:action
-							xxforms:iterate="instance('wikidata')//entity/claims/property[@id='P214' or @id='P227' or @id='P213' or @id='P268' or @id='P269'
-							or @id='P646' or @id='P245' or @id='P1014' or @id='P1566' or @id='P1667' or @id='P1900']">
-							<xforms:var name="property" select="data(context()/@id)"></xforms:var>
-							<xforms:var name="id" select="replace(data(context()/descendant::mainsnak[1]/datavalue/@value), ' ', '')"></xforms:var>
-							<xforms:var name="uri" select="concat(instance('wikidata-properties')/property[@id=$property], $id)"></xforms:var>
-
-							<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]" if="not(instance('rdf')/*[1]/*[name()=$mapping][@rdf:resource=$uri])"
-								origin="xforms:element($mapping, (xforms:attribute('rdf:resource', $uri), ''))"></xforms:insert>
 						</xforms:action>
 					</xforms:action>
 					<!-- clear wiki stuff from control-instance -->
@@ -549,58 +562,23 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 			<xforms:submission id="load-rdf" serialization="none" method="get" action="/nomisma/id/{instance('control-instance')/id}.rdf" replace="instance" instance="rdf">
 				<!-- ************ RDF PROCESSING TO CREATE A NEW ID ************** -->
 				<xforms:action ev:event="xforms-submit-error">
+					<!-- set new_id to true -->
+					<xforms:setvalue ref="instance('control-instance')/new_id" value="true()"></xforms:setvalue>
+
+					<!-- create the Concept object -->
 					<xforms:var name="uri" select="concat('http://nomisma.org/id/', instance('control-instance')/id)"></xforms:var>
 					<xforms:insert context="instance('rdf')" origin="xforms:element(instance('control-instance')/type, xforms:attribute('rdf:about', $uri))"></xforms:insert>
 					<!-- insert rdf:type as skos:Concept -->
 					<xforms:insert context="instance('rdf')/*[last()]"
 						origin="xforms:element('rdf:type', xforms:attribute('rdf:resource', 'http://www.w3.org/2004/02/skos/core#Concept'))"></xforms:insert>
-					
-					<!-- *** Provenance *** -->
-					<xforms:insert context="instance('rdf')/*[last()]" nodeset="./child::node()[last()]" origin="instance('changeNote-template')"/>
-					<xforms:setvalue ref="instance('rdf')/*[last()]/skos:changeNote/@rdf:resource" value="concat($uri, '#provenance')"/>
-					
-					<xforms:insert context="instance('rdf')" nodeset="./child::node()[last()]" origin="instance('provenance-template')"/>
-					<xforms:setvalue ref="instance('rdf')/dcterms:ProvenanceStatement/@rdf:about" value="concat($uri, '#provenance')"/>
-					<xforms:setvalue ref="instance('rdf')/dcterms:ProvenanceStatement/foaf:topic/@rdf:resource" value="$uri"/>
-					
-					<!-- Create Activity -->
-					<xforms:insert context="instance('rdf')/dcterms:ProvenanceStatement" nodeset="./child::node()[last()]"
-						origin="xforms:element('prov:wasGeneratedBy')"/>
-					<xforms:insert context="instance('rdf')/dcterms:ProvenanceStatement/prov:wasGeneratedBy" origin="instance('activity-template')"/>
-					<xforms:insert context="instance('rdf')/dcterms:ProvenanceStatement/prov:wasGeneratedBy/prov:Activity"
-						origin="xforms:element('rdf:type', xforms:attribute('rdf:resource', 'http://www.w3.org/ns/prov#Create'))"/>
-					<xforms:setvalue ref="instance('rdf')/dcterms:ProvenanceStatement/prov:wasGeneratedBy/prov:Activity/dcterms:type"
-						>spreadsheet</xforms:setvalue>
-					<xforms:setvalue ref="instance('rdf')/dcterms:ProvenanceStatement/prov:wasGeneratedBy/prov:Activity/prov:wasAssociatedWith/@rdf:resource"
-						value="concat('http://nomisma.org/editor/', instance('control-instance')/username)"/>
-					<xforms:setvalue ref="instance('rdf')/dcterms:ProvenanceStatement/prov:wasGeneratedBy/prov:Activity/prov:atTime" value="current-dateTime()"/>
-					<xforms:setvalue ref="instance('rdf')/dcterms:ProvenanceStatement/prov:wasGeneratedBy/prov:Activity/prov:used/@rdf:resource"
-						value="instance('control-instance')/spreadsheet_uri"/>
 				</xforms:action>
 
 				<!-- ************ RDF PROCESSING TO ADD SUPPLEMENTAL INFORMATION ************** -->
 				<xforms:action ev:event="xforms-submit-done">
-					<!-- *** PROVENANCE *** -->
-					<!-- evaluate whether there is already a prov:Activity that prov:used the spreadsheet URI -->					
-					<xforms:action if="instance('rdf')//prov:Activity[prov:used/@rdf:resource = instance('control-instance')/spreadsheet_uri]">
-						<!-- if this ID has already been created/updated by this spreadsheet, then update the timestamp -->						
-						<xforms:setvalue ref="instance('rdf')//prov:Activity[prov:used/@rdf:resource = instance('control-instance')/spreadsheet_uri]/prov:atTime" value="current-dateTime()"/>
-					</xforms:action>
-					<xforms:action if="not(instance('rdf')//prov:Activity[prov:used/@rdf:resource = instance('control-instance')/spreadsheet_uri])">
-						<!-- insert new Activity for Modify -->
-						<xforms:insert context="instance('rdf')/dcterms:ProvenanceStatement" nodeset="./child::node()[last()]"
-							origin="xforms:element('prov:activity')"/>
-						<xforms:insert context="instance('rdf')/dcterms:ProvenanceStatement/prov:activity[last()]" origin="instance('activity-template')"/>
-						<xforms:insert context="instance('rdf')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity"
-							origin="xforms:element('rdf:type', xforms:attribute('rdf:resource', 'http://www.w3.org/ns/prov#Modify'))"/>
-						<xforms:setvalue ref="instance('rdf')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity/dcterms:type"
-							>spreadsheet</xforms:setvalue>
-						<xforms:setvalue ref="instance('rdf')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity/prov:wasAssociatedWith/@rdf:resource"
-							value="concat('http://nomisma.org/editor/', instance('control-instance')/username)"/>
-						<xforms:setvalue ref="instance('rdf')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity/prov:atTime" value="current-dateTime()"/>
-						<xforms:setvalue ref="instance('rdf')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity/prov:used/@rdf:resource"
-							value="instance('control-instance')/spreadsheet_uri"/>
-					</xforms:action>
+					<!-- set new_id to false to initiate the comparing of content before and after -->
+					<xforms:setvalue ref="instance('control-instance')/new_id" value="false()"></xforms:setvalue>
+					<xforms:setvalue ref="instance('control-instance')/content_before_hash" value="digest(normalize-space(saxon:serialize(instance('rdf'), 'xml')), 'MD5', 'hex')"
+					></xforms:setvalue>
 				</xforms:action>
 			</xforms:submission>
 
@@ -624,7 +602,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 					></xforms:insert>
 				</xforms:action>
 			</xforms:action>
-			
+
 			<!-- ********** XFORMS-READY ********** -->
 			<xforms:action ev:event="xforms-ready">
 				<!-- test spreadsheet RDF validity on xforms-ready -->
@@ -692,23 +670,19 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 											<xforms:label>
 												<span class="glyphicon glyphicon-plus"></span>Contributor</xforms:label>
 											<xforms:insert ev:event="DOMActivate" context="." nodeset="./child::node()[last()]"
-												origin="xforms:element('dcterms:contributor', (xforms:attribute('rdf:resource'), ''))"/>
+												origin="xforms:element('dcterms:contributor', (xforms:attribute('rdf:resource'), ''))"></xforms:insert>
 										</xforms:trigger>
 									</div>
-									
 									<xforms:group ref=".[dcterms:creator/@rdf:resource = dcterms:contributor/@rdf:resource]">
 										<div class="alert-danger alert-box alert">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> The same person cannot be a creator and contributor simultaneously.</div>
 									</xforms:group>
-									
-									<xforms:group
-										ref=".[count(dcterms:contributor/@rdf:resource) &gt; count(distinct-values(dcterms:contributor/@rdf:resource))]">
+									<xforms:group ref=".[count(dcterms:contributor/@rdf:resource) &gt; count(distinct-values(dcterms:contributor/@rdf:resource))]">
 										<div class="alert-danger alert-box alert">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> The same contributor is selected more than once.</div>
 									</xforms:group>
-									
 									<xforms:group ref="dcterms:description">
 										<div>
 											<xforms:textarea ref=".">
@@ -718,11 +692,11 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 											<xforms:select1 ref="@xml:lang">
 												<xforms:item>
 													<xforms:label>Select...</xforms:label>
-													<xforms:value/>
+													<xforms:value></xforms:value>
 												</xforms:item>
 												<xforms:itemset nodeset="instance('languages')/language">
-													<xforms:label ref="."/>
-													<xforms:value ref="@value"/>
+													<xforms:label ref="."></xforms:label>
+													<xforms:value ref="@value"></xforms:value>
 												</xforms:itemset>
 												<xforms:alert>Required</xforms:alert>
 											</xforms:select1>
@@ -734,11 +708,11 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 											<xforms:alert>Required</xforms:alert>
 											<xforms:item>
 												<xforms:label>Select...</xforms:label>
-												<xforms:value/>
+												<xforms:value></xforms:value>
 											</xforms:item>
 											<xforms:itemset nodeset="instance('editor-list')/item">
-												<xforms:label ref="."/>
-												<xforms:value ref="@uri"/>
+												<xforms:label ref="."></xforms:label>
+												<xforms:value ref="@uri"></xforms:value>
 											</xforms:itemset>
 										</xforms:select1>
 									</div>
@@ -749,11 +723,11 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 												<xforms:alert>Required</xforms:alert>
 												<xforms:item>
 													<xforms:label>Select...</xforms:label>
-													<xforms:value/>
+													<xforms:value></xforms:value>
 												</xforms:item>
 												<xforms:itemset nodeset="instance('editor-list')/item">
-													<xforms:label ref="."/>
-													<xforms:value ref="@uri"/>
+													<xforms:label ref="."></xforms:label>
+													<xforms:value ref="@uri"></xforms:value>
 												</xforms:itemset>
 											</xforms:select1>
 										</div>
@@ -764,6 +738,21 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 								<h3>Mapping</h3>
 								<p>Associate the headings with allowable properties, where applicable. Note that the Nomisma ID, Preferred Label (English), and Definition (English)
 									are required.</p>
+								<div class="subsection">
+									<h4>Wikidata Imports</h4>
+									<p>When applicable, the following metadata will be imported from Wikidata when a relevant Wikipedia, Wikidata, or DBPedia URI has been parsed
+										from a skos:exactMatch or skos:closeMatch column.</p>
+									<div>
+										<xforms:input ref="instance('control-instance')/import-wikidata-labels">
+											<xforms:label>Labels</xforms:label>
+										</xforms:input>
+									</div>
+									<div>
+										<xforms:input ref="instance('control-instance')/import-wikidata-uris">
+											<xforms:label>Matching URIs</xforms:label>
+										</xforms:input>
+									</div>
+								</div>
 								<xforms:group ref="instance('mappings')">
 									<xforms:group ref=".[count(mapping[@to='id']) != 1]">
 										<div class="alert-danger alert-box alert">
@@ -1248,7 +1237,8 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 																	origin="xforms:element($property, (xforms:attribute('rdf:resource', $value), ''))"
 																	if="not(instance('rdf')/*[1]/*[name()=$property][@rdf:resource = $value])"></xforms:insert>
 																<!-- Harvest data from wikidata if applicable -->
-																<xforms:action if="instance('control-instance')/parse-wikipedia = true()">
+																<xforms:action
+																	if="instance('control-instance')/import-wikidata-labels = true() or instance('control-instance')/import-wikidata-uris = true()">
 																	<xforms:var name="title" select="tokenize($value, '/')[last()]"></xforms:var>
 																	<xforms:action if="string($title)">
 																		<xforms:setvalue ref="instance('control-instance')/wiki-title" value="$title"></xforms:setvalue>
@@ -1277,7 +1267,8 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 																		if="not(instance('rdf')/*[1]/*[name()=$property][@rdf:resource = $dbpedia-uri])"></xforms:insert>
 																</xforms:action>
 																<!-- Harvest data from wikidata if applicable -->
-																<xforms:action if="instance('control-instance')/parse-wikipedia = true()">
+																<xforms:action
+																	if="instance('control-instance')/import-wikidata-labels = true() or instance('control-instance')/import-wikidata-uris = true()">
 																	<xforms:action if="string($title) and string($lang)">
 																		<xforms:setvalue ref="instance('control-instance')/wiki-title" value="$title"></xforms:setvalue>
 																		<xforms:setvalue ref="instance('control-instance')/wiki-lang" value="$lang"></xforms:setvalue>
@@ -1289,12 +1280,12 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 														<!-- parse wikidata matches specifically -->
 														<xforms:action if="contains($value, 'wikidata.org') and ($mapping='skos:exactMatch' or $mapping='skos:closeMatch')">
 															<xforms:var name="property"
-																select="if (instance('control-instance')/type = 'nmo:Mint') then 'skos:closeMatch' else 'skos:exactMatch'"
-															></xforms:var>
+																select="if (instance('control-instance')/type = 'nmo:Mint') then 'skos:closeMatch' else 'skos:exactMatch'"></xforms:var>
 															<!-- parse wikidata entity ID -->
 															<xforms:var name="wiki-id" select="tokenize($value, '/')[last()]"></xforms:var>
 															<!-- Harvest data from wikidata if applicable -->
-															<xforms:action if="instance('control-instance')/parse-wikipedia = true()">
+															<xforms:action
+																if="instance('control-instance')/import-wikidata-labels = true() or instance('control-instance')/import-wikidata-uris = true()">
 																<xforms:action if="string($wiki-id)">
 																	<xforms:setvalue ref="instance('control-instance')/wiki-id" value="$wiki-id"></xforms:setvalue>
 																	<xforms:send submission="get-wikidata"></xforms:send>
@@ -1407,39 +1398,98 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 												</xforms:action>
 											</xforms:action>
 											<!-- *** BEGIN CRUD OPERATIONS *** -->
-											<!-- save file back to disk -->
-											<xforms:setvalue ref="instance('save-config')/url"
-												value="concat('file://', instance('config')/id_path, '/',  instance('control-instance')/id, '.rdf')"></xforms:setvalue>
-											<xforms:insert nodeset="instance('dump')"
-												origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('rdf'), instance('save-config')), 'data')"></xforms:insert>
-											<!-- delete graphs from triplestore, then repost updates -->
-											<xforms:setvalue ref="instance('sparqlUpdate')"
-												value="replace(instance('sparqlUpdate-templates')/query[@id='delete-concept'], 'URI', $uri)"/>
-											<xforms:send submission="delete-graph"></xforms:send>
-											<xforms:send submission="post-rdf"></xforms:send>
-											<!-- post to Solr -->
-											<xforms:insert nodeset="instance('addIndex')"
-												origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/views/serializations/rdf/solr.xpl', 'data', instance('rdf'), 'data')"></xforms:insert>
-											<xforms:send submission="post-solr-doc"></xforms:send>
+											<!-- if the ID is new, then insert dcterms:ProvenanceStatement and a prov:wasGeneratedBy statement -->
+											<xforms:action if="instance('control-instance')/new_id = true()">
+												<!-- *** Insert ProvenanceStatement *** -->
+												<xforms:insert context="instance('rdf')/*[last()]" nodeset="./child::node()[last()]" origin="instance('changeNote-template')"></xforms:insert>
+												<xforms:setvalue ref="instance('rdf')/*[last()]/skos:changeNote/@rdf:resource" value="concat($uri, '#provenance')"
+												></xforms:setvalue> <xforms:insert context="instance('rdf')" nodeset="./child::node()[last()]"
+													origin="instance('provenance-template')"></xforms:insert>
+												<xforms:setvalue ref="instance('rdf')/dcterms:ProvenanceStatement/@rdf:about" value="concat($uri, '#provenance')"></xforms:setvalue>
+												<xforms:setvalue ref="instance('rdf')/dcterms:ProvenanceStatement/foaf:topic/@rdf:resource" value="$uri"></xforms:setvalue>
+												<!-- Create Activity -->
+												<xforms:insert context="instance('rdf')/dcterms:ProvenanceStatement" nodeset="./child::node()[last()]"
+													origin="xforms:element('prov:wasGeneratedBy')"></xforms:insert>
+												<xforms:insert context="instance('rdf')/dcterms:ProvenanceStatement/prov:wasGeneratedBy" origin="instance('activity-template')"></xforms:insert>
+												<xforms:insert context="instance('rdf')/dcterms:ProvenanceStatement/prov:wasGeneratedBy/prov:Activity"
+													origin="xforms:element('rdf:type', xforms:attribute('rdf:resource', 'http://www.w3.org/ns/prov#Create'))"></xforms:insert>
+												<xforms:setvalue ref="instance('rdf')/dcterms:ProvenanceStatement/prov:wasGeneratedBy/prov:Activity/dcterms:type"
+													>spreadsheet</xforms:setvalue>
+												<xforms:setvalue
+													ref="instance('rdf')/dcterms:ProvenanceStatement/prov:wasGeneratedBy/prov:Activity/prov:wasAssociatedWith/@rdf:resource"
+													value="concat('http://nomisma.org/editor/', instance('control-instance')/username)"></xforms:setvalue>
+												<xforms:setvalue ref="instance('rdf')/dcterms:ProvenanceStatement/prov:wasGeneratedBy/prov:Activity/prov:atTime"
+													value="current-dateTime()"></xforms:setvalue>
+												<xforms:setvalue ref="instance('rdf')/dcterms:ProvenanceStatement/prov:wasGeneratedBy/prov:Activity/prov:used/@rdf:resource"
+													value="instance('control-instance')/spreadsheet_uri"></xforms:setvalue>
+												<!-- save file back to disk -->
+												<xforms:setvalue ref="instance('save-config')/url"
+													value="concat('file://', instance('config')/id_path, '/',  instance('control-instance')/id, '.rdf')"></xforms:setvalue>
+												<xforms:insert nodeset="instance('dump')"
+													origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('rdf'), instance('save-config')), 'data')"></xforms:insert>
+												<!-- delete graphs from triplestore, then repost updates -->
+												<xforms:setvalue ref="instance('sparqlUpdate')"
+													value="replace(instance('sparqlUpdate-templates')/query[@id='delete-concept'], 'URI', $uri)"></xforms:setvalue>
+												<xforms:send submission="delete-graph"></xforms:send>
+												<xforms:send submission="post-rdf"></xforms:send>
+												<!-- post to Solr -->
+												<xforms:insert nodeset="instance('addIndex')"
+													origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/views/serializations/rdf/solr.xpl', 'data', instance('rdf'), 'data')"></xforms:insert>
+												<xforms:send submission="post-solr-doc"></xforms:send>
+											</xforms:action>
+											<!-- if the ID is not new, hash encode the content after previous actions -->
+											<xforms:action if="instance('control-instance')/new_id = false()">
+												<xforms:setvalue ref="instance('control-instance')/content_after_hash"
+													value="digest(normalize-space(saxon:serialize(instance('rdf'), 'xml')), 'MD5', 'hex')"></xforms:setvalue>
+												<!-- if the old and new hashes are different, then insert a new modification event -->
+												<xforms:action if="not(instance('control-instance')/content_before_hash = instance('control-instance')/content_after_hash)">
+													<xforms:insert context="instance('rdf')/dcterms:ProvenanceStatement" nodeset="./child::node()[last()]"
+														origin="xforms:element('prov:activity')"></xforms:insert>
+													<xforms:insert context="instance('rdf')/dcterms:ProvenanceStatement/prov:activity[last()]"
+														origin="instance('activity-template')"></xforms:insert>
+													<xforms:insert context="instance('rdf')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity"
+														origin="xforms:element('rdf:type', xforms:attribute('rdf:resource', 'http://www.w3.org/ns/prov#Modify'))"></xforms:insert>
+													<xforms:setvalue ref="instance('rdf')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity/dcterms:type"
+														>spreadsheet</xforms:setvalue>
+													<xforms:setvalue
+														ref="instance('rdf')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity/prov:wasAssociatedWith/@rdf:resource"
+														value="concat('http://nomisma.org/editor/', instance('control-instance')/username)"></xforms:setvalue>
+													<xforms:setvalue ref="instance('rdf')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity/prov:atTime"
+														value="current-dateTime()"></xforms:setvalue>
+													<xforms:setvalue ref="instance('rdf')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity/prov:used/@rdf:resource"
+														value="instance('control-instance')/spreadsheet_uri"></xforms:setvalue>
+													<!-- save file back to disk, but only if the content has changed -->
+													<xforms:setvalue ref="instance('save-config')/url"
+														value="concat('file://', instance('config')/id_path, '/',  instance('control-instance')/id, '.rdf')"></xforms:setvalue>
+													<xforms:insert nodeset="instance('dump')"
+														origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('rdf'), instance('save-config')), 'data')"></xforms:insert>
+													<!-- delete graphs from triplestore, then repost updates -->
+													<xforms:setvalue ref="instance('sparqlUpdate')"
+														value="replace(instance('sparqlUpdate-templates')/query[@id='delete-concept'], 'URI', $uri)"></xforms:setvalue>
+													<xforms:send submission="delete-graph"></xforms:send>
+													<xforms:send submission="post-rdf"></xforms:send>
+													<!-- post to Solr -->
+													<xforms:insert nodeset="instance('addIndex')"
+														origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/views/serializations/rdf/solr.xpl', 'data', instance('rdf'), 'data')"></xforms:insert>
+													<xforms:send submission="post-solr-doc"></xforms:send>
+												</xforms:action>
+											</xforms:action>
+											<!-- end of ID processing action: CRUD operations moved to new or updated IDs only -->
 										</xforms:action>
-										
 										<!-- *** after each row in the spreadsheet has been processed, create/update the spreadsheet RDF *** -->
-										<xforms:delete nodeset="instance('rdf')/*"/>
-										<xforms:insert context="instance('rdf')" origin="instance('spreadsheet-rdf')/prov:Entity[@rdf:about = instance('control-instance')/spreadsheet_uri]"/>
-										
+										<xforms:delete nodeset="instance('rdf')/*"></xforms:delete>
+										<xforms:insert context="instance('rdf')"
+											origin="instance('spreadsheet-rdf')/prov:Entity[@rdf:about = instance('control-instance')/spreadsheet_uri]"></xforms:insert>
 										<!-- update SPARQL endpoint -->
 										<xforms:setvalue ref="instance('sparqlUpdate')"
-											value="replace(instance('sparqlUpdate-templates')/query[@id='delete-spreadsheet'], 'URI', instance('control-instance')/spreadsheet_uri)"/>
-										<xforms:send submission="delete-graph"/>
-										<xforms:send submission="post-rdf"/>
-										
+											value="replace(instance('sparqlUpdate-templates')/query[@id='delete-spreadsheet'], 'URI', instance('control-instance')/spreadsheet_uri)"></xforms:setvalue>
+										<xforms:send submission="delete-graph"></xforms:send>
+										<xforms:send submission="post-rdf"></xforms:send>
 										<!-- save the spreadsheet RDF to disk -->
-										<xforms:setvalue ref="instance('save-config')/url"
-											value="concat('file://', instance('config')/data_path, '/spreadsheets/spreadsheets.rdf')"/>
+										<xforms:setvalue ref="instance('save-config')/url" value="concat('file://', instance('config')/data_path, '/spreadsheets/spreadsheets.rdf')"></xforms:setvalue>
 										<xforms:insert nodeset="instance('dump')"
-											origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('spreadsheet-rdf'), instance('save-config')), 'data')"/>
-										
-										<xforms:toggle case="process-complete"></xforms:toggle>
+											origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('spreadsheet-rdf'), instance('save-config')), 'data')"
+										></xforms:insert> <xforms:toggle case="process-complete"></xforms:toggle>
 									</xforms:action>
 								</xforms:trigger>
 							</xforms:group>
