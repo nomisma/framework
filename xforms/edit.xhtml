@@ -254,6 +254,13 @@
 			<xforms:instance id="hasUncertainty-template" xxforms:exclude-result-prefixes="#all">
 				<un:hasUncertainty rdf:resource=""></un:hasUncertainty>
 			</xforms:instance>
+			
+			<xforms:instance id="uncertain-match-template" xxforms:exclude-result-prefixes="#all">
+				<skos:related>
+					<rdf:value rdf:resource=""/>
+					<un:hasUncertainty rdf:resource="http://nomisma.org/id/uncertain_value"/>
+				</skos:related>
+			</xforms:instance>
 
 			<!-- provenance -->
 			<xforms:instance id="changeNote-template" xxforms:exclude-result-prefixes="#all">
@@ -306,6 +313,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
 DELETE {?s ?p ?o} WHERE { 
 {<URI> geo:location ?s . ?s ?p ?o }
 UNION {<URI> org:hasMembership ?s . ?s ?p ?o}
+UNION {<URI> skos:related ?s . ?s ?p ?o}
 UNION {?prov foaf:topic <URI> .
 	?prov ?hasActivity ?s .
 	?s a prov:Activity . ?s ?p ?o}
@@ -720,6 +728,19 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										></xforms:insert>
 									</xforms:trigger>
 								</li>
+								<xforms:group ref=".[count(skos:related) = 0]">
+									<li>
+										<xforms:trigger appearance="minimal">
+											<xforms:label>
+												<span class="glyphicon glyphicon-plus"></span>Uncertain Mint Match</xforms:label>
+											<xforms:action ev:event="DOMActivate">
+												<xforms:setvalue ref="instance('control-instance')/atom-type">&#x022;nmo:Mint&#x022;</xforms:setvalue>
+												<xforms:setvalue ref="instance('control-instance')/link-property">skos:related</xforms:setvalue>
+												<xxforms:show dialog="atom-dialog"></xxforms:show>
+											</xforms:action>
+										</xforms:trigger>
+									</li>
+								</xforms:group>								
 							</xforms:group>
 							<xforms:group ref=".[not($type='foaf:Person')]">
 								<li>
@@ -1964,7 +1985,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 				</fr:alert-dialog>
 					
 				<xxforms:dialog id="atom-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
-					<xforms:label value="if (instance('control-instance')/link-property = 'skos:broader') then 'Broader Concept' else 'Bibliographic Reference'"></xforms:label>
+					<xforms:label value="if (instance('control-instance')/link-property = 'skos:broader') then 'Broader Concept' else if (instance('control-instance')/link-property = 'skos:related') then 'Uncertain Match' else 'Bibliographic Reference'"></xforms:label>
 					<div>
 						<xforms:input ref="instance('control-instance')/atom-search" />
 						<xforms:trigger>
@@ -1992,15 +2013,24 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 								<xforms:trigger>
 									<xforms:label>Select</xforms:label>
 									<xforms:action ev:event="DOMActivate">
-										<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]"
-											origin="xforms:element(instance('control-instance')/link-property, (xforms:attribute('rdf:resource', concat('http://nomisma.org/id/', instance('control-instance')/atom-id)), ''))"></xforms:insert>
-										<!-- only insert dcterms:isPartOf into geo:SpatialThing for borader queries -->
-										<xforms:action if="instance('control-instance')/link-property = 'skos:broader'">
-											<!-- insert dcterms:isPartOf into the SpatialThing, if it exists -->
-											<xforms:insert context="instance('doc')/geo:SpatialThing" nodeset="./child::node()[last()]"
-												origin="xforms:element('dcterms:isPartOf', (xforms:attribute('rdf:resource', concat('http://nomisma.org/id/', instance('control-instance')/atom-id, '#this')), ''))"
-												if="instance('doc')/geo:SpatialThing"></xforms:insert>
+										<!-- insert the uncertain-match-template if the link-property is skos:related -->
+										<xforms:action if="instance('control-instance')/link-property = 'skos:related'">
+											<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]" origin="instance('uncertain-match-template')"></xforms:insert>
+											<xforms:setvalue ref="instance('doc')/*[1]/skos:related/rdf:value/@rdf:resource" value="concat('http://nomisma.org/id/', instance('control-instance')/atom-id)"/>
 										</xforms:action>
+										<xforms:action if="not(instance('control-instance')/link-property = 'skos:related')">
+											<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]"
+												origin="xforms:element(instance('control-instance')/link-property, (xforms:attribute('rdf:resource', concat('http://nomisma.org/id/', instance('control-instance')/atom-id)), ''))"></xforms:insert>
+											<!-- only insert dcterms:isPartOf into geo:SpatialThing for borader queries -->
+											<xforms:action if="instance('control-instance')/link-property = 'skos:broader'">
+												<!-- insert dcterms:isPartOf into the SpatialThing, if it exists -->
+												<xforms:insert context="instance('doc')/geo:SpatialThing" nodeset="./child::node()[last()]"
+													origin="xforms:element('dcterms:isPartOf', (xforms:attribute('rdf:resource', concat('http://nomisma.org/id/', instance('control-instance')/atom-id, '#this')), ''))"
+													if="instance('doc')/geo:SpatialThing"></xforms:insert>
+											</xforms:action>
+										</xforms:action>
+										
+										
 										<!-- blank atom search nodes and atom feed -->
 										<xforms:delete nodeset="instance('feed')/*"></xforms:delete>
 										<xforms:setvalue ref="instance('control-instance')/atom-search"></xforms:setvalue>
@@ -2180,6 +2210,6 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 				</div>
 			</div>
 		</div>
-		<!--<fr:xforms-inspector></fr:xforms-inspector>-->
+		<fr:xforms-inspector></fr:xforms-inspector>
 	</body>
 </html>
