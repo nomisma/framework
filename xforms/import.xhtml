@@ -59,7 +59,8 @@
 					xmlns:org="http://www.w3.org/ns/org#" xmlns:rdac="http://www.rdaregistry.info/Elements/c/" xmlns:bio="http://purl.org/vocab/bio/0.1/"
 					xmlns:prov="http://www.w3.org/ns/prov#" xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/"></rdf:RDF>
 			</xforms:instance>
-
+			
+			<!-- provenance-related templates -->
 			<xforms:instance id="changeNote-template" xxforms:exclude-result-prefixes="#all">
 				<skos:changeNote rdf:resource=""></skos:changeNote>
 			</xforms:instance>
@@ -85,6 +86,14 @@
 					<dcterms:description xml:lang="en"></dcterms:description>
 					<dcterms:creator rdf:resource=""></dcterms:creator>
 				</prov:Entity>
+			</xforms:instance>
+			
+			<!-- complex templates -->
+			<xforms:instance id="uncertain-match-template" xxforms:exclude-result-prefixes="#all">
+				<skos:related>
+					<rdf:value rdf:resource=""/>
+					<un:hasUncertainty rdf:resource="http://nomisma.org/id/uncertain_value"/>
+				</skos:related>
 			</xforms:instance>
 
 			<!-- instance for spreadsheet RDF as a static file -->
@@ -220,6 +229,7 @@
 					<property label="Scope Note">skos:scopeNote</property>
 					<property label="Source">dcterms:source</property>
 					<property label="Start Date">nmo:hasStartDate</property>
+					<property label="Uncertain Match" contstraint="nmo:Mint">skos:related</property>
 				</properties>
 			</xforms:instance>
 
@@ -468,7 +478,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 						<xforms:action if="not(instance('spreadsheet-rdf')/prov:Entity[@rdf:about = instance('control-instance')/spreadsheet_uri])">
 							<!-- if there is no matching URI for the spreadsheet (prov:Entity), then insert the spreadsheet template into the spreadsheet RDF -->
 							<xforms:insert context="instance('spreadsheet-rdf')" nodeset="./child::node()[last()]" origin="instance('spreadsheet-template')"></xforms:insert>
-							<xforms:setvalue ref="instance('spreadsheet-rdf')/prov:Entity/@rdf:about" value="instance('control-instance')/spreadsheet_uri"></xforms:setvalue>
+							<xforms:setvalue ref="instance('spreadsheet-rdf')/prov:Entity[last()]/@rdf:about" value="instance('control-instance')/spreadsheet_uri"></xforms:setvalue>
 						</xforms:action>
 
 						<xforms:toggle case="mapping-interface"></xforms:toggle>
@@ -1115,6 +1125,38 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 																</xforms:action>
 															</xforms:action>
 														</xforms:action>
+														<!-- skos:related is the primary property for linking to a blank node that represents an uncertain, but likely match to a Nomisma URI for a mint -->
+														<xforms:action if="$mapping='skos:related'">
+															<xforms:action if="string-length($value) &gt; 0">
+																<!-- these are properties that must be linked internally to other Nomisma IDs -->
+																<xforms:insert if="not(contains($value, 'http://nomisma.org/id/'))"
+																	context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
+																	origin="xforms:element('error', concat($mapping, ' does not link to a Nomisma URI: ', $value))"></xforms:insert>
+																<xforms:action if="contains($value, 'http://nomisma.org/id/')">
+																	<!-- if the URI space is nm:, then test whether the URI has already been validated via SPARQL. If not, then submit a SPARQL query -->
+																	<xforms:action if="instance('nomisma-ids')/id[@uri=$value and @mapping=$mapping] = false()"
+																		context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
+																		origin="xforms:element('error', concat($mapping, ' links to a non-existent Nomisma URI or the URI is a different class: ', $value))"></xforms:action>
+																	<xforms:action if="not(instance('nomisma-ids')/id[@uri=$value and @mapping=$mapping])">
+																		
+																		<!-- set the SPARQL query to evaluate whether the URI is an nmo:Mint -->
+																		<xforms:setvalue ref="instance('sparqlQuery')"
+																			value="concat(instance('sparql-templates')/prefix, ' ', replace(replace(instance('sparql-templates')/query[@id='ask'], 'URI', $value), 'CLASS', 'nmo:Mint'))"></xforms:setvalue>
+																		<xforms:send submission="submit-sparqlQuery"></xforms:send>
+																		
+																		<!-- if the SPARQL query concludes successfully, then create an entry in nomisma-ids and display an error if the ASK if false -->
+																		<xforms:action ev:event="xforms-submit-done">
+																			<xforms:insert context="instance('nomisma-ids')" nodeset="./child::node()[last()]"
+																				origin="xforms:element('id', (xforms:attribute('uri', $value), xforms:attribute('mapping', $mapping), data(instance('sparqlResponse')/descendant::res:boolean)))"></xforms:insert>
+																			<xforms:insert if="instance('sparqlResponse')/descendant::res:boolean = 'false'"
+																				context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
+																				origin="xforms:element('error', concat($mapping, ' links to a non-existent Nomisma URI or the URI is a different class: ', $value))"
+																				></xforms:insert>
+																		</xforms:action>
+																	</xforms:action>
+																</xforms:action>
+															</xforms:action>
+														</xforms:action>
 													</xforms:action>
 												</xforms:action>
 											</xforms:action>
@@ -1315,6 +1357,17 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 															</xforms:action>
 														</xforms:action>
 													</xforms:action>
+													
+													<!-- insert template for uncertain match: there can only be one in a record, and it will not be overwritten -->
+													<xforms:action if="$mapping = 'skos:related'">
+														<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
+															origin="instance('uncertain-match-template')"
+															if="not(instance('rdf')/*[1]/skos:related)"></xforms:insert>
+														
+														<!-- set the value -->
+														<xforms:setvalue ref="instance('rdf')/*[1]/skos:related/rdf:value/@rdf:resource" value="$value"/>
+													</xforms:action>
+													
 													<!-- create geo:location and geo:SpatialThing if there a geo:lat -->
 													<xforms:action if="$mapping = 'geo:lat' or $mapping='geo:long'">
 														<xforms:var name="locationUri" select="concat($uri, '#this')"></xforms:var>
@@ -1397,6 +1450,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 													</xforms:action>
 												</xforms:action>
 											</xforms:action>
+											
 											<!-- *** BEGIN CRUD OPERATIONS *** -->
 											<!-- if the ID is new, then insert dcterms:ProvenanceStatement and a prov:wasGeneratedBy statement -->
 											<xforms:action if="instance('control-instance')/new_id = true()">
@@ -1539,13 +1593,5 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 				</div>
 			</div>
 		</div>
-
-		<!-- *********** DIALOGS *********** -->
-		<!--<xxforms:dialog id="progress-dialog" appearance="full" level="modal" close="false" draggable="true" visible="false">
-			<xforms:label>Import Progress</xforms:label>
-			<div style="width:400px">Processing record <xforms:output ref="instance('control-instance')/position"></xforms:output> of <xforms:output ref="instance('control-instance')/count"></xforms:output>:
-					<xforms:output ref="instance('control-instance')/id"></xforms:output>.</div>
-					
-		</xxforms:dialog>-->
 	</body>
 </html>
