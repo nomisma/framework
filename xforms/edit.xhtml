@@ -257,8 +257,10 @@
 			
 			<xforms:instance id="uncertain-match-template" xxforms:exclude-result-prefixes="#all">
 				<skos:related>
-					<rdf:value rdf:resource=""/>
-					<un:hasUncertainty rdf:resource="http://nomisma.org/id/uncertain_value"/>
+					<rdf:Description>
+						<rdf:value rdf:resource=""/>
+						<un:hasUncertainty rdf:resource="http://nomisma.org/id/uncertain_value"/>
+					</rdf:Description>
 				</skos:related>
 			</xforms:instance>
 
@@ -1258,6 +1260,19 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 													</xforms:trigger>
 												</div>
 											</xforms:repeat>
+											<xforms:group ref="skos:related">
+												<div>
+													<xforms:output ref="rdf:Description/rdf:value/@rdf:resource">
+														<xforms:label>Uncertain Match</xforms:label>
+													</xforms:output>
+													<xforms:trigger appearance="minimal">
+														<xforms:delete ev:event="DOMActivate" context="."></xforms:delete>
+														<xforms:label>
+															<span class="glyphicon glyphicon-remove"></span>
+														</xforms:label>
+													</xforms:trigger>
+												</div>
+											</xforms:group>
 											<xforms:repeat nodeset="dcterms:source">
 												<div>
 													<xforms:output ref="@rdf:resource">
@@ -2016,7 +2031,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										<!-- insert the uncertain-match-template if the link-property is skos:related -->
 										<xforms:action if="instance('control-instance')/link-property = 'skos:related'">
 											<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]" origin="instance('uncertain-match-template')"></xforms:insert>
-											<xforms:setvalue ref="instance('doc')/*[1]/skos:related/rdf:value/@rdf:resource" value="concat('http://nomisma.org/id/', instance('control-instance')/atom-id)"/>
+											<xforms:setvalue ref="instance('doc')/*[1]/skos:related/rdf:Description/rdf:value/@rdf:resource" value="concat('http://nomisma.org/id/', instance('control-instance')/atom-id)"/>
 										</xforms:action>
 										<xforms:action if="not(instance('control-instance')/link-property = 'skos:related')">
 											<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]"

@@ -49,11 +49,19 @@
 					</xsl:otherwise>
 				</xsl:choose>
 				
+				
 				<small>
 					<xsl:text> (</xsl:text>
-					<a href="{concat(namespace-uri(.), local-name())}">
-						<xsl:value-of select="name()"/>
-					</a>
+					<xsl:choose>
+						<xsl:when test="@rdf:parseType">
+							<xsl:value-of select="@rdf:parseType"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<a href="{concat(namespace-uri(.), local-name())}">
+								<xsl:value-of select="name()"/>
+							</a>
+						</xsl:otherwise>
+					</xsl:choose>
 					<xsl:text>)</xsl:text>
 				</small>
 			</xsl:element>
@@ -117,7 +125,10 @@
 			</a>
 		</dt>
 		<dd>
-			<xsl:choose>
+			<xsl:choose>				
+					<xsl:when test="@rdf:parseType='Resource'">
+						<xsl:apply-templates select="self::node()" mode="type"/>
+					</xsl:when>
 				<xsl:when test="child::*">
 					<!-- handle nested blank nodes (applies to provenance) -->
 					<xsl:apply-templates select="child::*" mode="type"/>

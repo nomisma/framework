@@ -382,7 +382,7 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 				<div class="col-md-12">
 					<p><a href="../"><span class="glyphicon glyphicon-arrow-left"></span>Return to Admin</a></p>
 					<xforms:group ref=".[string-length(instance('control-instance')/status) &gt; 0]">
-						<div class="bg-info alert-box">
+						<div class="alert-success alert alert-box">
 							<span class="glyphicon glyphicon-info-sign"></span>
 							<strong>Status:</strong>
 							<xforms:output ref="instance('control-instance')/status"/>
@@ -605,22 +605,22 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 								<xforms:group ref="void:Dataset[@rdf:about]">
 									<!-- display error messages for missing fields -->
 									<!--<xforms:group ref=".[not(string(dcterms:title))]">
-										<div class="bg-danger alert-box">
+										<div class="alert-danger alert alert-box">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> Title is required. </div>
 									</xforms:group>-->
 									<!--<xforms:group ref=".[not(string(dcterms:description)) and not(dcterms:description[@rdf:resource castable as xs:anyURI])]">
-										<div class="bg-danger alert-box">
+										<div class="alert-danger alert alert-box">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> Description is required. </div>
 									</xforms:group>-->
 									<xforms:group ref=".[not(string(dcterms:publisher)) and not(dcterms:publisher[@rdf:resource castable as xs:anyURI])]">
-										<div class="bg-danger alert-box">
+										<div class="alert-danger alert alert-box">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> Publisher is required. </div>
 									</xforms:group>
 									<xforms:group ref=".[not(string(dcterms:license)) and not(dcterms:license[@rdf:resource castable as xs:anyURI])]">
-										<div class="bg-danger alert-box">
+										<div class="alert-danger alert alert-box">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> Description is required. </div>
 									</xforms:group>
@@ -698,7 +698,7 @@ PREFIX void:	<http://rdfs.org/ns/void#>]]></prefix>
 								</xforms:group>
 								<!-- if there is not a void:Dataset child and/or there is no URI for the Dataset, then validation fails outright -->
 								<xforms:group ref=".[not(void:Dataset[@rdf:about])]">
-									<div class="bg-danger alert-box"><span class="glyphicon glyphicon-exclamation-sign"></span>
+									<div class="alert-danger alert alert-box"><span class="glyphicon glyphicon-exclamation-sign"></span>
 										<strong>Alert:</strong> No void:Dataset object or missing dataset URI.</div>
 									<xforms:trigger>
 										<xforms:label><span class="glyphicon glyphicon-arrow-left"></span> Back</xforms:label>
