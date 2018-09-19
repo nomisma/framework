@@ -585,6 +585,9 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 					<!-- insert rdf:type as skos:Concept -->
 					<xforms:insert context="instance('rdf')/*[last()]"
 						origin="xforms:element('rdf:type', xforms:attribute('rdf:resource', 'http://www.w3.org/2004/02/skos/core#Concept'))"></xforms:insert>
+					<!-- insert skos:inScheme -->
+					<xforms:insert context="instance('rdf')/*[last()]" nodeset="./child::node()[last()]"
+						origin="xforms:element('skos:inScheme', xforms:attribute('rdf:resource', 'http://nomisma.org/id/'))"/>
 				</xforms:action>
 
 				<!-- ************ RDF PROCESSING TO ADD SUPPLEMENTAL INFORMATION ************** -->
@@ -744,6 +747,12 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 													<xforms:value ref="@uri"></xforms:value>
 												</xforms:itemset>
 											</xforms:select1>
+											<xforms:trigger appearance="minimal">
+												<xforms:delete ev:event="DOMActivate" context="."/>
+												<xforms:label>
+													<span class="glyphicon glyphicon-remove"></span>
+												</xforms:label>
+											</xforms:trigger>
 										</div>
 									</xforms:repeat>
 								</div>
@@ -1497,10 +1506,8 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 													value="concat('file://', instance('config')/id_path, '/',  instance('control-instance')/id, '.rdf')"></xforms:setvalue>
 												<xforms:insert nodeset="instance('dump')"
 													origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('rdf'), instance('save-config')), 'data')"></xforms:insert>
-												<!-- delete graphs from triplestore, then repost updates -->
-												<xforms:setvalue ref="instance('sparqlUpdate')"
-													value="replace(instance('sparqlUpdate-templates')/query[@id='delete-concept'], 'URI', $uri)"></xforms:setvalue>
-												<xforms:send submission="delete-graph"></xforms:send>
+												
+												<!-- Post RDF (no deletion necessary ) -->												
 												<xforms:send submission="post-rdf"></xforms:send>
 												<!-- post to Solr -->
 												<xforms:insert nodeset="instance('addIndex')"
@@ -1536,11 +1543,13 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 														value="concat('file://', instance('config')/id_path, '/',  instance('control-instance')/id, '.rdf')"></xforms:setvalue>
 													<xforms:insert nodeset="instance('dump')"
 														origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('rdf'), instance('save-config')), 'data')"></xforms:insert>
+													
 													<!-- delete graphs from triplestore, then repost updates -->
 													<xforms:setvalue ref="instance('sparqlUpdate')"
 														value="replace(instance('sparqlUpdate-templates')/query[@id='delete-concept'], 'URI', $uri)"></xforms:setvalue>
 													<xforms:send submission="delete-graph"></xforms:send>
 													<xforms:send submission="post-rdf"></xforms:send>
+													
 													<!-- post to Solr -->
 													<xforms:insert nodeset="instance('addIndex')"
 														origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/views/serializations/rdf/solr.xpl', 'data', instance('rdf'), 'data')"></xforms:insert>
@@ -1602,7 +1611,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 							</table>
 						</xforms:case>
 					</xforms:switch>
-					<!--<fr:xforms-inspector></fr:xforms-inspector>-->
+					<fr:xforms-inspector></fr:xforms-inspector>
 				</div>
 			</div>
 		</div>
