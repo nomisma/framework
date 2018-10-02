@@ -16,10 +16,6 @@
 	<xsl:variable name="id" select="if ($type = 'skos:ConceptScheme') then tokenize(/content/rdf:RDF/*[1]/@rdf:about, '/')[last() -1] else tokenize(/content/rdf:RDF/*[1]/@rdf:about, '/')[last()]"/>	
 	<xsl:variable name="title" select="/content/rdf:RDF/*[1]/skos:prefLabel[@xml:lang = 'en']"/>
 
-	<!-- flickr -->
-	<xsl:variable name="flickr_api_key" select="/content/config/flickr_api_key"/>
-	<!--<xsl:variable name="service" select="concat('http://api.flickr.com/services/rest/?api_key=', $flickr_api_key)"/>-->
-
 	<!-- sparql -->
 	<xsl:variable name="sparql_endpoint" select="/content/config/sparql_query"/>
 

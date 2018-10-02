@@ -47,7 +47,8 @@
 					<idValid>false</idValid>
 					<uri></uri>
 					<username></username>
-					<new_id>true</new_id>
+					<new-id>true</new-id>
+					<load-error>false</load-error>
 					<save-trigger>false</save-trigger>
 					<proceed-trigger>false</proceed-trigger>
 					<status></status>
@@ -59,6 +60,8 @@
 					<link-property></link-property>
 					<dump></dump>
 					<membership-position></membership-position>
+					<content_before_hash></content_before_hash>
+					<content_after_hash></content_after_hash>
 					<geo>
 						<type></type>
 						<hasFeature></hasFeature>
@@ -452,10 +455,11 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 
 			<xforms:bind nodeset="instance('control-instance')">
 				<xforms:bind nodeset="id" required="true()" constraint="matches(., &quot;^([a-zA-Z0-9\-\._\(\)&#x0027;]*)?$&quot;)"
-					readonly="../new_id != true()"/>
+					readonly="../new-id != true()"/>
 				<xforms:bind nodeset="idValid" type="xs:boolean"
 					calculate="matches(../id, &quot;^([a-zA-Z0-9\-\._\(\)&#x0027;]*)?$&quot;) and string-length(../id) &gt; 0"/>
-				<xforms:bind nodeset="new_id" type="xs:boolean"/>
+				<xforms:bind nodeset="new-id" type="xs:boolean"/>
+				<xforms:bind nodeset="load-error" type="xs:boolean"/>
 				<xforms:bind nodeset="delete-success" type="xs:boolean"/>
 				<xforms:bind nodeset="geo">
 					<xforms:bind nodeset="type" constraint="string-length(.) &gt; 0"/>
@@ -573,6 +577,28 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 				</xforms:action>
 			</xforms:submission>
 
+			<!-- ************************* LOAD RDF/XML ************************** -->
+			<xforms:submission id="load-rdf" serialization="none" method="get" action="/nomisma/id/{instance('control-instance')/id}.rdf" replace="instance"
+				instance="doc">
+				<!-- ************ RDF PROCESSING TO CREATE A NEW ID ************** -->
+				<xforms:action ev:event="xforms-submit-error">
+					<xforms:setvalue ref="instance('control-instance')/load-error" value="true()"/>
+				</xforms:action>
+
+				<!-- ************ RDF PROCESSING TO ADD SUPPLEMENTAL INFORMATION ************** -->
+				<xforms:action ev:event="xforms-submit-done">
+					<!-- set new-id to false to initiate the comparing of content before and after -->
+					<xforms:setvalue ref="instance('control-instance')/new-id" value="false()"/>
+					<xforms:setvalue ref="instance('control-instance')/content_before_hash"
+						value="digest(normalize-space(saxon:serialize(instance('doc'), 'xml')), 'MD5', 'hex')"/>
+
+					<!-- set geo values -->
+					<xforms:setvalue ref="instance('control-instance')/geo/lat" value="instance('doc')/geo:SpatialThing/geo:lat"/>
+					<xforms:setvalue ref="instance('control-instance')/geo/long" value="instance('doc')/geo:SpatialThing/geo:long"/>
+					<xforms:setvalue ref="instance('control-instance')/geo/geoJSON" value="instance('doc')/geo:SpatialThing/osgeo:asGeoJSON"/>
+				</xforms:action>
+			</xforms:submission>
+
 			<!-- **************** MODEL-CONSTRUCT-DONE ********************** -->
 			<xforms:action ev:event="xforms-model-construct-done">
 				<!-- set username -->
@@ -581,30 +607,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 				<!-- load id if parameter is passed -->
 				<xforms:action if="string(xxforms:get-request-parameter('id'))">
 					<xforms:setvalue ref="instance('control-instance')/id" value="xxforms:get-request-parameter('id')"/>
-					<xforms:setvalue ref="instance('control-instance')/new_id" value="false()" if="string(xxforms:get-request-parameter('id'))"/>
-					<xforms:setvalue ref="instance('load-config')/url"
-						value="concat('file://', instance('config')/id_path, '/', xxforms:get-request-parameter('id'), '.rdf')"/>
-					<xforms:insert nodeset="instance('doc')"
-						origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/load-id.xpl', 'file', instance('load-config'), 'data')"/>
-
-					<!-- set geo values -->
-					<xforms:setvalue ref="instance('control-instance')/geo/lat" value="instance('doc')/geo:SpatialThing/geo:lat"/>
-					<xforms:setvalue ref="instance('control-instance')/geo/long" value="instance('doc')/geo:SpatialThing/geo:long"/>
-					<xforms:setvalue ref="instance('control-instance')/geo/geoJSON" value="instance('doc')/geo:SpatialThing/osgeo:asGeoJSON"/>
-
-					<!-- Insert Modify Activity -->
-					<xforms:insert context="instance('doc')/dcterms:ProvenanceStatement" nodeset="./child::node()[last()]"
-						origin="xforms:element('prov:activity')"/>
-					<xforms:insert context="instance('doc')/dcterms:ProvenanceStatement/prov:activity[last()]" origin="instance('activity-template')"/>
-					<xforms:insert context="instance('doc')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity"
-						origin="xforms:element('rdf:type', xforms:attribute('rdf:resource', 'http://www.w3.org/ns/prov#Modify'))"/>
-					<xforms:setvalue ref="instance('doc')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity/dcterms:type">manual</xforms:setvalue>
-					<xforms:setvalue ref="instance('doc')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity/prov:wasAssociatedWith/@rdf:resource"
-						value="concat('http://nomisma.org/editor/', instance('control-instance')/username)"/>
-					<xforms:setvalue ref="instance('doc')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity/prov:atTime"
-						value="current-dateTime()"/>
-					<xforms:insert context="instance('doc')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity" nodeset="./child::node()[last()]"
-						origin="instance('description-template')"/>
+					<xforms:send submission="load-rdf"/>
 				</xforms:action>
 
 				<!-- load uncertainty ids -->
@@ -659,7 +662,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 					value="if (instance('doc')/geo:SpatialThing/geo:lat or instance('doc')/geo:SpatialThing/osgeo:asGeoJSON) then true() else false()"/>
 
 				<!-- toggle case if it's not a new id -->
-				<xforms:toggle case="edit-id" if="instance('control-instance')/new_id = false()"/>
+				<xforms:toggle case="edit-id" if="instance('control-instance')/new-id = false()"/>
+				<xforms:toggle case="load-error" if="instance('control-instance')/load-error = true()"/>
 			</xforms:action>
 		</xforms:model>
 
@@ -971,7 +975,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										<xforms:value ref="type"/>
 									</xforms:itemset>
 								</xforms:select1>
-								<xforms:group ref=".[instance('control-instance')/new_id = true()]">
+								<xforms:group ref=".[instance('control-instance')/new-id = true()]">
 									<xforms:trigger bind="proceed-trigger">
 										<xforms:label>Proceed</xforms:label>
 										<xforms:action ev:event="DOMActivate">
@@ -1022,14 +1026,19 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 												value="concat('http://nomisma.org/editor/', instance('control-instance')/username)"/>
 											<xforms:setvalue ref="instance('doc')/dcterms:ProvenanceStatement/prov:wasGeneratedBy/prov:Activity/prov:atTime"
 												value="current-dateTime()"/>
-											<!-- set new_id to false() to disable id editing -->
-											<xforms:setvalue ref="instance('control-instance')/new_id" value="false()"/>
+											<!-- set new-id to false() to disable id editing -->
+											<xforms:setvalue ref="instance('control-instance')/new-id" value="false()"/>
 											<!-- toggle interface -->
 											<xforms:toggle case="edit-id"/>
 										</xforms:action>
 									</xforms:trigger>
 								</xforms:group>
 							</div>
+						</xforms:case>
+						<xforms:case id="load-error">
+							<div class="alert-danger alert alert-box">
+								<span class="glyphicon glyphicon-exclamation-sign"></span>
+								<strong>Alert:</strong> There is no RDF file matching this ID on the local filesystem.</div>
 						</xforms:case>
 						<xforms:case id="edit-id">
 							<!-- show save/deprecate button if applicable -->
@@ -1038,28 +1047,91 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 									<xforms:trigger bind="save-trigger">
 										<xforms:label><span class="glyphicon glyphicon-floppy-disk"></span>Save</xforms:label>
 										<xforms:action ev:event="DOMActivate">
-											<!-- save file back to disk -->
-											<xforms:setvalue ref="instance('save-config')/url"
-												value="concat('file://', instance('config')/id_path, '/',  instance('control-instance')/id, '.rdf')"/>
-											<xforms:insert nodeset="instance('dump')"
-												origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('doc'), instance('save-config')), 'data')"/>
-											<!-- delete graphs from triplestore, then repost updates -->
-											<xforms:action xxforms:iterate="instance('doc')/*">
+
+											<!-- if the ID is not new, then evaluate whether a provenance should be added -->
+											<xforms:action if="instance('control-instance')/new-id = false()">
+												<!-- set hash -->
+												<xforms:setvalue ref="instance('control-instance')/content_after_hash"
+													value="digest(normalize-space(saxon:serialize(instance('doc'), 'xml')), 'MD5', 'hex')"/>
+
+												<!-- if the hashed content has changed since the file was loaded -->
+												<xforms:action
+													if="not(instance('control-instance')/content_before_hash = instance('control-instance')/content_after_hash)">
+													<!-- insert a Modify Activity into the provenance -->
+													<xforms:insert context="instance('doc')/dcterms:ProvenanceStatement" nodeset="./child::node()[last()]"
+														origin="xforms:element('prov:activity')"/>
+													<xforms:insert context="instance('doc')/dcterms:ProvenanceStatement/prov:activity[last()]"
+														origin="instance('activity-template')"/>
+													<xforms:insert context="instance('doc')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity"
+														origin="xforms:element('rdf:type', xforms:attribute('rdf:resource', 'http://www.w3.org/ns/prov#Modify'))"/>
+													<xforms:setvalue
+														ref="instance('doc')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity/dcterms:type"
+														>manual</xforms:setvalue>
+													<xforms:setvalue
+														ref="instance('doc')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity/prov:wasAssociatedWith/@rdf:resource"
+														value="concat('http://nomisma.org/editor/', instance('control-instance')/username)"/>
+													<xforms:setvalue
+														ref="instance('doc')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity/prov:atTime"
+														value="current-dateTime()"/>
+													
+													<!-- perform CRUD only for modified IDs -->
+													<!-- save file to the filesystem -->
+													<xforms:setvalue ref="instance('save-config')/url"
+														value="concat('file://', instance('config')/data_path, '/id/',  instance('control-instance')/id, '.rdf')"/>
+													<xforms:insert nodeset="instance('dump')"
+														origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('doc'), instance('save-config')), 'data')"/>
+													
+													<!-- delete graph from triplestore, then repost updates -->
+													<xforms:setvalue ref="instance('sparqlUpdate')"
+														value="replace(instance('sparqlUpdate-template'), 'URI', instance('doc')/*[1]/@rdf:about)"/>
+													<xforms:send submission="delete-graph"/>
+													<xforms:send submission="post-new"/>
+													
+													<!-- post to Solr, if it isn't deprecated. otherwise delete from Solr -->
+													<xforms:action if="instance('doc')/*[1]/dcterms:isReplacedBy">
+														<xforms:setvalue ref="instance('deleteId')/id" value="instance('control-instance')/id"/>
+														<xforms:send submission="delete-id-from-solr"/>
+													</xforms:action>
+													<xforms:action if="not(instance('doc')/*[1]/dcterms:isReplacedBy)">
+														<xforms:insert nodeset="instance('addIndex')"
+															origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/views/serializations/rdf/solr.xpl', 'data', instance('doc'), 'data')"/>
+														<xforms:send submission="post-solr-doc"/>
+													</xforms:action>
+												</xforms:action>
+												
+												<!-- if the hashes are the same, then update the status -->
+												<xforms:action
+													if="instance('control-instance')/content_before_hash = instance('control-instance')/content_after_hash">
+													<xforms:setvalue ref="instance('control-instance')/status">The content is unchanged, so the ID has not been saved and updated online.</xforms:setvalue>
+												</xforms:action>
+											</xforms:action>
+											
+											<!-- perform CRUD for new IDs -->
+											<xforms:action if="instance('control-instance')/new-id = true()">
+												<!-- save file to the filesystem -->
+												<xforms:setvalue ref="instance('save-config')/url"
+													value="concat('file://', instance('config')/data_path, '/id/',  instance('control-instance')/id, '.rdf')"/>
+												<xforms:insert nodeset="instance('dump')"
+													origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('doc'), instance('save-config')), 'data')"/>
+												
+												<!-- delete graph from triplestore, then repost updates -->
 												<xforms:setvalue ref="instance('sparqlUpdate')"
-													value="replace(instance('sparqlUpdate-template'), 'URI', context()/@rdf:about)"/>
+													value="replace(instance('sparqlUpdate-template'), 'URI', instance('doc')/*[1]/@rdf:about)"/>
 												<xforms:send submission="delete-graph"/>
+												<xforms:send submission="post-new"/>
+												
+												<!-- post to Solr, if it isn't deprecated. otherwise delete from Solr -->
+												<xforms:action if="instance('doc')/*[1]/dcterms:isReplacedBy">
+													<xforms:setvalue ref="instance('deleteId')/id" value="instance('control-instance')/id"/>
+													<xforms:send submission="delete-id-from-solr"/>
+												</xforms:action>
+												<xforms:action if="not(instance('doc')/*[1]/dcterms:isReplacedBy)">
+													<xforms:insert nodeset="instance('addIndex')"
+														origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/views/serializations/rdf/solr.xpl', 'data', instance('doc'), 'data')"/>
+													<xforms:send submission="post-solr-doc"/>
+												</xforms:action>
 											</xforms:action>
-											<xforms:send submission="post-new"/>
-											<!-- post to Solr, if it isn't deprecated. otherwise delete from Solr -->
-											<xforms:action if="instance('doc')/*[1]/dcterms:isReplacedBy">
-												<xforms:setvalue ref="instance('deleteId')/id" value="instance('control-instance')/id"/>
-												<xforms:send submission="delete-id-from-solr"/>
-											</xforms:action>
-											<xforms:action if="not(instance('doc')/*[1]/dcterms:isReplacedBy)">
-												<xforms:insert nodeset="instance('addIndex')"
-													origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/views/serializations/rdf/solr.xpl', 'data', instance('doc'), 'data')"/>
-												<xforms:send submission="post-solr-doc"/>
-											</xforms:action>
+											
 										</xforms:action>
 									</xforms:trigger>
 									<xforms:trigger bind="deprecate-trigger">
@@ -1939,7 +2011,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 
 													<tr>
 														<td>
-															<xforms:output ref="format-dateTime(prov:atTime, '[M01]/[D01]/[Y0001]')"/>
+															<xforms:output ref="format-dateTime(prov:atTime, '[Y0001]-[M01]-[D01]')"/>
 														</td>
 														<td>
 															<xforms:repeat nodeset="prov:wasAssociatedWith">
@@ -2055,8 +2127,9 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 
 					<xforms:group ref=".[instance('control-instance')/type = 'nmo:Mint']">
 						<div style="width:400px">
-							<p class="text-info"><span class="glyphicon glyphicon-info-sign"/> In most cases, a mint should point to a parent region. In certain cases of individual, definable workshops, the
-								broader concept can be the primary mint for a place, within the same general field of numismatics.</p>
+							<p class="text-info"><span class="glyphicon glyphicon-info-sign"></span> In most cases, a mint should point to a parent region. In
+								certain cases of individual, definable workshops, the broader concept can be the primary mint for a place, within the same
+								general field of numismatics.</p>
 							<div>
 								<xforms:select1 ref="instance('control-instance')/atom-type" appearance="full">
 									<xforms:item>
@@ -2069,7 +2142,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 									</xforms:item>
 								</xforms:select1>
 							</div>
-						</div>						
+						</div>
 					</xforms:group>
 
 					<div>
@@ -2135,19 +2208,22 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										<xforms:label>Definition</xforms:label>
 									</xforms:output>
 									<xforms:trigger appearance="minimal">
-										<xforms:label><span class="glyphicon glyphicon-new-window"/></xforms:label>
-										<xforms:load ev:event="DOMActivate" show="new" ref="concat('http://nomisma.org/id/', instance('control-instance')/atom-id)"/>
+										<xforms:label>
+											<span class="glyphicon glyphicon-new-window"></span>
+										</xforms:label>
+										<xforms:load ev:event="DOMActivate" show="new"
+											ref="concat('http://nomisma.org/id/', instance('control-instance')/atom-id)"/>
 									</xforms:trigger>
 								</div>
 							</xforms:group>
-							
+
 						</xforms:group>
 						<xforms:group ref=".[count(instance('feed')//atom:entry) = 0 and string(instance('feed')/atom:title)]">
 							<h4>No results found.</h4>
 						</xforms:group>
 					</div>
 				</xxforms:dialog>
-				
+
 				<xxforms:dialog id="organization-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
 					<xforms:label>Parent Dynasty/Organization</xforms:label>
 					<div>
@@ -2212,8 +2288,11 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										<xforms:label>Definition</xforms:label>
 									</xforms:output>
 									<xforms:trigger appearance="minimal">
-										<xforms:label><span class="glyphicon glyphicon-new-window"/></xforms:label>
-										<xforms:load ev:event="DOMActivate" show="new" ref="concat('http://nomisma.org/id/', instance('control-instance')/atom-id)"/>
+										<xforms:label>
+											<span class="glyphicon glyphicon-new-window"></span>
+										</xforms:label>
+										<xforms:load ev:event="DOMActivate" show="new"
+											ref="concat('http://nomisma.org/id/', instance('control-instance')/atom-id)"/>
 									</xforms:trigger>
 								</div>
 							</xforms:group>
@@ -2223,7 +2302,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 						</xforms:group>
 					</div>
 				</xxforms:dialog>
-				
+
 				<xxforms:dialog id="deprecate-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
 					<xforms:label>Deprecate ID</xforms:label>
 					<div>
@@ -2256,26 +2335,28 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										<!-- delete all triples which are not skos:prefLabel and skos:definition -->
 										<xforms:delete nodeset="instance('doc')/*[not(position() = 1)]"/>
 										<xforms:delete nodeset="instance('doc')/*[1]/*[not(name()='skos:prefLabel') and not(name()='skos:definition')]"/>
+										
 										<!-- insert dcterms:isReplacedBy -->
 										<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]"
 											origin="xforms:element('dcterms:isReplacedBy', (xforms:attribute('rdf:resource', concat('http://nomisma.org/id/', instance('control-instance')/atom-id)), ''))"/>
+										
 										<!-- blank atom search nodes and atom feed -->
 										<xforms:delete nodeset="instance('feed')/*"/>
 										<xforms:setvalue ref="instance('control-instance')/atom-search"/>
 										<xforms:setvalue ref="instance('control-instance')/atom-id"/>
 										<xforms:setvalue ref="instance('control-instance')/atom-summary"/>
+										
 										<!-- save file back to disk -->
 										<xforms:setvalue ref="instance('save-config')/url"
-											value="concat('file://', instance('config')/id_path, '/',  instance('control-instance')/id, '.rdf')"/>
+											value="concat('file://', instance('config')/data_path, '/id/',  instance('control-instance')/id, '.rdf')"/>
 										<xforms:insert nodeset="instance('dump')"
 											origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('doc'), instance('save-config')), 'data')"/>
-										<!-- delete graphs from triplestore, then repost updates -->
-										<xforms:action xxforms:iterate="instance('doc')/*">
-											<xforms:setvalue ref="instance('sparqlUpdate')"
-												value="replace(instance('sparqlUpdate-template'), 'URI', context()/@rdf:about)"/>
-											<xforms:send submission="delete-graph"/>
-										</xforms:action>
+										
+										<!-- delete graph from triplestore, then repost updates -->
+										<xforms:setvalue ref="instance('sparqlUpdate')"
+											value="replace(instance('sparqlUpdate-template'), 'URI', instance('doc')/*[1]/@rdf:about)"/>
 										<xforms:send submission="post-new"/>
+										
 										<!-- delete from Solr -->
 										<xforms:setvalue ref="instance('deleteId')/id" value="instance('control-instance')/id"/>
 										<xforms:send submission="delete-id-from-solr"/>
@@ -2317,6 +2398,6 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 				</div>
 			</div>
 		</div>
-		<!--<fr:xforms-inspector></fr:xforms-inspector>-->
+		<!--<fr:xforms-inspector/>-->
 	</body>
 </html>
