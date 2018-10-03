@@ -11,5 +11,4 @@ file = "file:///usr/local/projects/nomisma-data/" + scheme + "/" + id + ".rdf"
 graph = Graph()
 
 graph.parse(file, format='application/rdf+xml')
-#print len(graph)
 print(graph.serialize(format='json-ld', indent=4))
