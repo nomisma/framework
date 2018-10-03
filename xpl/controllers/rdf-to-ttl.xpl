@@ -27,7 +27,7 @@
                     				
                     
                     <exec dir="/usr/local/projects/nomisma/script"
-                        executable="./rdf-to-json.py">
+                        executable="./rdf-to-ttl.py">
                         <arg line="{$id} {$scheme}"/>
                     </exec>	
                 </xsl:template>

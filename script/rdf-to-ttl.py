@@ -7,7 +7,7 @@ from rdflib.serializer import Serializer
 id = sys.argv[1]
 scheme = sys.argv[2]
 file = "file:///usr/local/projects/nomisma-data/" + scheme + "/" + id + ".rdf"
-#print file
+
 graph = Graph()
 
 graph.parse(file, format='application/rdf+xml')
