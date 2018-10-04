@@ -1515,11 +1515,13 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 											<!-- if the ID is new, then insert dcterms:ProvenanceStatement and a prov:wasGeneratedBy statement -->
 											<xforms:action if="instance('control-instance')/new_id = true()">
 
-												<!-- *** Insert ProvenanceStatement *** -->
-												<xforms:insert context="instance('rdf')/*[last()]" nodeset="./child::node()[last()]"
+												<!-- insert skos:changeNote template into the concept -->
+												<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
 													origin="instance('changeNote-template')"/>
-												<xforms:setvalue ref="instance('rdf')/*[last()]/skos:changeNote/@rdf:resource"
+												<xforms:setvalue ref="instance('rdf')/*[1]/skos:changeNote/@rdf:resource"
 													value="concat($uri, '#provenance')"/>
+												
+												<!-- *** Insert ProvenanceStatement *** -->
 												<xforms:insert context="instance('rdf')" nodeset="./child::node()[last()]"
 													origin="instance('provenance-template')"/>
 												<xforms:setvalue ref="instance('rdf')/dcterms:ProvenanceStatement/@rdf:about"
