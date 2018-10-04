@@ -53,12 +53,17 @@
 					
 					<xsl:variable name="query">
 						<![CDATA[PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 PREFIX nm:       <http://nomisma.org/id/>
 PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>						
-SELECT ?uri ?en ?lang WHERE {
+SELECT ?uri ?type ?en ?lang ?lat ?long WHERE {
 nm:%ID% skos:broader+ ?uri .
-?uri skos:prefLabel ?en . FILTER(langMatches(lang(?en), "en"))
+?uri rdf:type ?type FILTER (?type != <http://www.w3.org/2004/02/skos/core#Concept>).
+?uri skos:prefLabel ?en . FILTER(langMatches(lang(?en), "en")).
+OPTIONAL {?uri geo:location ?loc .
+	?loc geo:lat ?lat ;
+		geo:long ?long}
 %lang%}]]>
 					</xsl:variable>
 					

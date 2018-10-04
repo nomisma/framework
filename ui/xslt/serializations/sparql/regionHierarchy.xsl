@@ -20,7 +20,19 @@
 	</xsl:template>
 
 	<xsl:template match="res:result">
-		<region uri="{res:binding[@name='uri']/res:uri}">
+		<xsl:variable name="element" select="if (res:binding[@name='type']/res:uri = 'http://nomisma.org/ontology#Mint') then 'mint' else 'region'"/>
+		
+		<xsl:element name="{$element}">
+			<xsl:attribute name="uri" select="res:binding[@name='uri']/res:uri"/>
+			
+			<!-- optional coordinates -->
+			<xsl:if test="res:binding[@name='lat']">
+				<xsl:attribute name="lat" select="res:binding[@name='lat']/res:literal"/>
+			</xsl:if>
+			<xsl:if test="res:binding[@name='long']">
+				<xsl:attribute name="long" select="res:binding[@name='long']/res:literal"/>
+			</xsl:if>
+			
 			<xsl:choose>
 				<xsl:when test="string(res:binding[@name='lang']/res:literal)">
 					<xsl:value-of select="res:binding[@name='lang']/res:literal"/>
@@ -29,7 +41,7 @@
 					<xsl:value-of select="res:binding[@name='en']/res:literal"/>
 				</xsl:otherwise>
 			</xsl:choose>
-		</region>
+		</xsl:element>
 	</xsl:template>
 
 </xsl:stylesheet>
