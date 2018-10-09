@@ -1097,6 +1097,10 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 															origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/views/serializations/rdf/solr.xpl', 'data', instance('doc'), 'data')"/>
 														<xforms:send submission="post-solr-doc"/>
 													</xforms:action>
+													
+													<!-- set new hash -->
+													<xforms:setvalue ref="instance('control-instance')/content_before_hash"
+														value="digest(normalize-space(saxon:serialize(instance('doc'), 'xml')), 'MD5', 'hex')"/>
 												</xforms:action>
 												
 												<!-- if the hashes are the same, then update the status -->
@@ -1130,6 +1134,12 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 														origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/views/serializations/rdf/solr.xpl', 'data', instance('doc'), 'data')"/>
 													<xforms:send submission="post-solr-doc"/>
 												</xforms:action>
+												
+												<!-- set new-id to false -->
+												<xforms:setvalue ref="instance('control-instance')/new-id" value="false()"/>
+												<!-- set new hash -->
+												<xforms:setvalue ref="instance('control-instance')/content_before_hash"
+													value="digest(normalize-space(saxon:serialize(instance('doc'), 'xml')), 'MD5', 'hex')"/>
 											</xforms:action>
 											
 										</xforms:action>
