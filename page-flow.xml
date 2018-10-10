@@ -49,8 +49,8 @@
 	<!-- ID -->
 	<page path="/nomisma/(id|editor)/(.*)\.rdf" model="xpl/models/rdf/get-id.xpl" view="xpl/controllers/serialize-rdfxml.xpl"/>	
 	<page path="/nomisma/(id|editor)/(.*)\.kml" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/kml.xpl"/>
-	<page path="/nomisma/(id|editor)/(.*)\.ttl" view="xpl/controllers/rdf-to-ttl.xpl"/>
-	<page path="/nomisma/(id|editor)/(.*)\.jsonld" view="xpl/controllers/rdf-to-json.xpl"/>
+	<page path="/nomisma/(id|editor)/(.*)\.ttl" view="xpl/controllers/call-rdflib.xpl"/>
+	<page path="/nomisma/(id|editor)/(.*)\.jsonld" view="xpl/controllers/call-rdflib.xpl"/>
 	<page path="/nomisma/(id|editor)/(.*)\.solr" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/solr.xpl"/>
 	<page path="/nomisma/(id|editor)/(.*)" model="xpl/models/rdf/get-id.xpl" view="xpl/controllers/conneg-id.xpl"/>	
 	
