@@ -419,6 +419,10 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 					<xforms:bind nodeset="nmo:hasDate" type="xs:gYear" required="true()"/>
 					<xforms:bind nodeset="nmo:hasStartDate" type="xs:gYear" required="true()"/>
 					<xforms:bind nodeset="nmo:hasEndDate" type="xs:gYear" required="true()"/>
+					
+					<!-- dcterms:isPartOf must be field of numismatics -->
+					<xforms:bind nodeset="dcterms:isPartOf" constraint="contains(@rdf:resource, '_numismatics')"/>
+					
 					<!-- @rdf:resource -->
 					<xforms:bind nodeset="//@rdf:resource" required="true()" type="xs:anyURI"/>
 				</xforms:bind>
@@ -698,6 +702,12 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 						<div class="alert-danger alert alert-box">
 							<span class="glyphicon glyphicon-exclamation-sign"></span>
 							<strong>Alert:</strong> Definition languages must be unique. </div>
+					</xforms:group>
+					<xforms:group
+						ref=".[instance('doc')/*[1]/dcterms:isPartOf[string-length(@rdf:resource) &gt; 0 and not(contains(@rdf:resource, '_numismatics'))]]">
+						<div class="alert-danger alert alert-box">
+							<span class="glyphicon glyphicon-exclamation-sign"></span>
+							<strong>Alert:</strong> dcterms:isPartOf property present that does not link to valid Field of Numismatics. </div>
 					</xforms:group>
 				</div>
 			</div>
@@ -1432,6 +1442,23 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 													</xforms:trigger>
 												</div>
 											</xforms:repeat>
+											
+											<!-- insert output for dcterms:isPartOf that isn't a FON -->
+											<xforms:repeat nodeset="dcterms:isPartOf[string-length(@rdf:resource) &gt; 0 and not(contains(@rdf:resource, '_numismatics'))]">
+												<div class="text-danger">
+													<xforms:output ref="@rdf:resource">
+														<xforms:label>Is Part Of</xforms:label>
+														<xforms:alert>dcterms:isPartOf is reserved in this scope for Field of Numismatics</xforms:alert>
+													</xforms:output>
+													<xforms:trigger appearance="minimal">
+														<xforms:delete ev:event="DOMActivate" context="."/>
+														<xforms:label>
+															<span class="glyphicon glyphicon-remove"></span>
+														</xforms:label>
+													</xforms:trigger>
+												</div>
+											</xforms:repeat>
+											
 											<!-- treat the field of numismatics separately in the control-instance, then write changes into the RDF doc -->
 											<xforms:repeat nodeset="instance('control-instance')/fons/fon">
 												<xforms:var name="uri" select="."/>
