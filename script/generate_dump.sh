@@ -11,4 +11,6 @@ echo "Done."
 echo "Generating JSON-LD."
 python script/serialize-rdfdump.py json
 echo "Done."
+echo "Updating permissions."
+chmod a+r nomisma.org.*
 echo "Process complete."
