@@ -159,7 +159,7 @@ OPTIONAL { ?object nmo:hasReverse ?reverse .
 ?reverse foaf:thumbnail ?revThumb }
 OPTIONAL { ?object nmo:hasReverse ?reverse .
 ?reverse foaf:depiction ?revRef }
-} ORDER BY DESC(?obvThumb) DESC(?obvRef) DESC(?comThumb) DESC(?comRef) LIMIT 5]]></xsl:variable>
+} ORDER BY ASC(?datasetTitle) LIMIT 5]]></xsl:variable>
 							
 							
 							
