@@ -141,7 +141,7 @@ PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX void:	<http://rdfs.org/ns/void#>
-SELECT ?object ?identifier ?collection ?datasetTitle ?obvThumb ?revThumb ?obvRef ?revRef ?comThumb ?comRef WHERE {
+SELECT DISTINCT ?object ?identifier ?collection ?datasetTitle ?obvThumb ?revThumb ?obvRef ?revRef ?comThumb ?comRef WHERE {
 { ?object a nmo:NumismaticObject ;
  nmo:hasTypeSeriesItem <typeUri>}
 UNION { <typeUri> skos:exactMatch ?match .
