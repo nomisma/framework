@@ -144,6 +144,9 @@ PREFIX void:	<http://rdfs.org/ns/void#>
 SELECT ?object ?identifier ?collection ?datasetTitle ?obvThumb ?revThumb ?obvRef ?revRef ?comThumb ?comRef WHERE {
 { ?object a nmo:NumismaticObject ;
  nmo:hasTypeSeriesItem <typeUri>}
+UNION { <typeUri> skos:exactMatch ?match .
+?object nmo:hasTypeSeriesItem ?match ;
+  a nmo:NumismaticObject }
 UNION { ?broader skos:broader+ <typeUri> .
 ?object nmo:hasTypeSeriesItem ?broader ;
   a nmo:NumismaticObject }
