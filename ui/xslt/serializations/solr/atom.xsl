@@ -63,6 +63,7 @@
 			<id>
 				<xsl:value-of select="str[@name='id']"/>
 			</id>
+			<xsl:apply-templates select="arr[@name='type']/str"/>
 			<updated>
 				<xsl:value-of select="date[@name='modified_timestamp']"/>
 			</updated>
