@@ -86,6 +86,9 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 SELECT ?type (count(?type) as ?count) WHERE {
 { ?object a nmo:NumismaticObject ;
  nmo:hasTypeSeriesItem <typeUri>}
+UNION { <typeUri skos:exactMatch ?match .
+?object nmo:hasTypeSeriesItem ?match ;
+  a nmo:NumismaticObject }
 UNION { ?broader skos:broader+ <typeUri> .
 ?object nmo:hasTypeSeriesItem ?broader ;
   a nmo:NumismaticObject }
