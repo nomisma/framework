@@ -5,7 +5,7 @@
 	xmlns:nomisma="http://nomisma.org/" xmlns:org="http://www.w3.org/ns/org#" exclude-result-prefixes="#all" version="2.0">
 	<xsl:include href="solr-templates.xsl"/>
 
-	<xsl:variable name="id_path" select="/content/config/id_path"/>
+	<xsl:variable name="data_path" select="/content/config/data_path"/>
 	<xsl:variable name="sparql_endpoint" select="/content/config/sparql_query"/>
 
 	<!-- definition of namespaces for turning in solr type field URIs into abbreviations -->
@@ -21,7 +21,7 @@
 		<roles>
 			<xsl:for-each select="distinct-values(descendant::org:role[contains(@rdf:resource, 'nomisma.org')]/@rdf:resource)">
 				<role uri="{.}">
-					<xsl:value-of select="document(concat('file://', $id_path, '/', substring-after(., 'id/'), '.rdf'))//skos:prefLabel[@xml:lang='en']"/>
+					<xsl:value-of select="document(concat($data_path, '/id/', substring-after(., 'id/'), '.rdf'))//skos:prefLabel[@xml:lang='en']"/>
 				</role>
 			</xsl:for-each>
 		</roles>

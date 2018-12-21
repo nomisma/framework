@@ -7,11 +7,9 @@
 	<sparql_store>http://localhost:8080/fuseki/nomisma/data</sparql_store>
 	<solr_published>http://localhost:8080/solr/nomisma/</solr_published>
 	<solr_fuseki>http://localhost:8080/solr/nomisma-fuseki/</solr_fuseki>
-	<id_path>/usr/local/projects/nomisma-data/id</id_path>
-	<data_path>/usr/local/projects/nomisma-data</data_path>
-	<ontology_path>/usr/local/projects/nomisma-data/ontology</ontology_path>
-	<nuds_xsd_path>/usr/local/projects/NUDS/nuds.xsd</nuds_xsd_path>
-	<dump_path>/usr/local/projects/nomisma/dump</dump_path>
+	<data_path>oxf:/nomisma-data</data_path>
+	<absolute_data_path>/usr/local/projects/nomisma-data</absolute_data_path>
+	<nuds_xsd_path>oxf:/NUDS/nuds.xsd</nuds_xsd_path>
 	<flickr_api_key>226cb53f91a6c1331adfb52c365584e9</flickr_api_key>
 	<mapboxKey>pk.eyJ1IjoiZXdnMTE4IiwiYSI6IjViNDRlMzgxMjkyMDg0MGIxYTNlMzlkMjk1ZTI5Yzg5In0.1FU6cKAs4-vPMroB_l_0lA</mapboxKey>
 	<google_analytics> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

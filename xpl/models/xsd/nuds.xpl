@@ -13,7 +13,7 @@
 				<xsl:template match="/">
 					<config>
 						<url>
-							<xsl:value-of select="concat('file://', /config/nuds_xsd_path)"/>
+							<xsl:value-of select="/config/nuds_xsd_path"/>
 						</url>						
 						<mode>xml</mode>
 						<content-type>application/xml</content-type>

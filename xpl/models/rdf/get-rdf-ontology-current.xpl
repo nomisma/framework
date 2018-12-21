@@ -13,7 +13,7 @@
 				<xsl:template match="/">
 					<config>
 						<base-directory>
-							<xsl:value-of select="concat('file://', /config/ontology_path)"/>
+							<xsl:value-of select="concat(/config/data_path, '/ontology')"/>
 						</base-directory>
 						<include>*.rdf</include>
 						<case-sensitive>true</case-sensitive>
@@ -31,10 +31,13 @@
 	
 	<p:processor name="oxf:unsafe-xslt">		
 		<p:input name="data" href="#directory-scan"/>
+		<p:input name="config-xml" href="../../../config.xml"/>
 		<p:input name="config">
 			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 				<xsl:output indent="yes"/>
+				
 				<xsl:template match="/">
+					
 					<xsl:variable name="doc">
 						<xsl:for-each select="//file">
 							<xsl:sort select="@name" order="ascending"/>
@@ -44,9 +47,11 @@
 						</xsl:for-each>
 					</xsl:variable>					
 					
+					<xsl:variable name="data_path" select="doc('input:config-xml')/config/data_path"/>
+					
 					<config>
 						<url>
-							<xsl:value-of select="concat('file://', /directory/@path, '/', $doc)"/>
+							<xsl:value-of select="concat($data_path, '/ontology/', $doc)"/>
 						</url>						
 						<mode>xml</mode>
 						<content-type>application/xml</content-type>

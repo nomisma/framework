@@ -66,21 +66,21 @@
 						<url>
 							<xsl:choose>
 								<xsl:when test="string(doc('input:request')/request/parameters/parameter[name='id']/value)">
-									<xsl:value-of select="concat('file://', /config/data_path, '/id/', $doc, '.rdf')"/>
+									<xsl:value-of select="concat(/config/data_path, '/id/', $doc, '.rdf')"/>
 								</xsl:when>
 								<xsl:when test="string-length($pieces[last()]) &gt; 0">
 									<xsl:choose>
 										<xsl:when test="$scheme = 'map'">
-											<xsl:value-of select="concat('file://', /config/data_path, '/id/', $doc, '.rdf')"/>
+											<xsl:value-of select="concat(/config/data_path, '/id/', $doc, '.rdf')"/>
 										</xsl:when>
 										<xsl:otherwise>
-											<xsl:value-of select="concat('file://', /config/data_path, '/', $scheme, '/', $doc, '.rdf')"/>
+											<xsl:value-of select="concat(/config/data_path, '/', $scheme, '/', $doc, '.rdf')"/>
 										</xsl:otherwise>
 									</xsl:choose>
 									
 								</xsl:when>
 								<xsl:otherwise>
-									<xsl:value-of select="concat('file://', /config/data_path, '/', $doc, '.rdf')"/>
+									<xsl:value-of select="concat(/config/data_path, '/', $doc, '.rdf')"/>
 								</xsl:otherwise>
 							</xsl:choose>
 						</url>						

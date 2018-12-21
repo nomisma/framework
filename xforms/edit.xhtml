@@ -1087,7 +1087,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 													<!-- perform CRUD only for modified IDs -->
 													<!-- save file to the filesystem -->
 													<xforms:setvalue ref="instance('save-config')/url"
-														value="concat('file://', instance('config')/data_path, '/id/',  instance('control-instance')/id, '.rdf')"/>
+														value="concat(instance('config')/data_path, '/id/',  instance('control-instance')/id, '.rdf')"/>
 													<xforms:insert nodeset="instance('dump')"
 														origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('doc'), instance('save-config')), 'data')"/>
 													
@@ -1124,7 +1124,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											<xforms:action if="instance('control-instance')/new-id = true()">
 												<!-- save file to the filesystem -->
 												<xforms:setvalue ref="instance('save-config')/url"
-													value="concat('file://', instance('config')/data_path, '/id/',  instance('control-instance')/id, '.rdf')"/>
+													value="concat(instance('config')/data_path, '/id/',  instance('control-instance')/id, '.rdf')"/>
 												<xforms:insert nodeset="instance('dump')"
 													origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('doc'), instance('save-config')), 'data')"/>
 												
@@ -2385,7 +2385,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										
 										<!-- save file back to disk -->
 										<xforms:setvalue ref="instance('save-config')/url"
-											value="concat('file://', instance('config')/data_path, '/id/',  instance('control-instance')/id, '.rdf')"/>
+											value="concat(instance('config')/data_path, '/id/',  instance('control-instance')/id, '.rdf')"/>
 										<xforms:insert nodeset="instance('dump')"
 											origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('doc'), instance('save-config')), 'data')"/>
 										

@@ -15,7 +15,7 @@
 				<xsl:template match="/">
 					<config>
 						<base-directory>
-							<xsl:value-of select="concat('file://', /config/ontology_path)"/>
+							<xsl:value-of select="concat(/config/data_path, '/ontology')"/>
 						</base-directory>
 						<include>*.rdf</include>
 						<include>*.ttl</include>

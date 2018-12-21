@@ -13,7 +13,7 @@
 		<p:input name="data" href="#data"/>
 		<p:input name="config">
 			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-				<xsl:variable name="directory" select="concat('file:', /config/data_path)"/>
+				<xsl:variable name="directory" select="/config/data_path"/>
 
 				<xsl:template match="/">
 					<config>
@@ -64,7 +64,7 @@
 					<xsl:param name="path"/>
 					
 					<xsl:variable name="file" select="concat($path, '/', encode-for-uri(@name))"/>
-					<xsl:copy-of select="document(concat('file://', $file))/rdf:RDF/*"/>
+					<xsl:copy-of select="document(concat('oxf:', $file))/rdf:RDF/*"/>
 				</xsl:template>
 			</xsl:stylesheet>
 		</p:input>

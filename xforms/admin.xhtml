@@ -409,7 +409,7 @@ UNION {?s rdf:type skos:Concept FILTER strStarts(str(?s), "http://nomisma.org/ed
 						</xforms:group>
 						<xforms:group ref=".[$numFound = 0]">
 							<xforms:group ref=".[instance('control-instance')/solr-query = '*:*']">
-								<h1>No ids found in <xforms:output value="instance('config')/id_path"></xforms:output></h1>
+								<h1>No ids found in <xforms:output value="concat(instance('config')/data_path, '/id')"></xforms:output></h1>
 							</xforms:group>
 							<xforms:group ref=".[instance('control-instance')/solr-query != '*:*']">
 								<h1>No objects that match query: <xforms:output ref="instance('control-instance')/solr-query"></xforms:output>
@@ -509,7 +509,7 @@ UNION {?s rdf:type skos:Concept FILTER strStarts(str(?s), "http://nomisma.org/ed
 					<xforms:setvalue ref="instance('deleteId')/id" value="instance('control-instance')/id"></xforms:setvalue>
 					<xforms:send submission="delete-id-from-solr"></xforms:send>
 					<!-- delete the RDF file from the disk -->
-					<xforms:setvalue ref="instance('delete-config')/delete/url" value="concat('file://', instance('config')/id_path, '/',  instance('control-instance')/id, '.rdf')"></xforms:setvalue>
+					<xforms:setvalue ref="instance('delete-config')/delete/url" value="concat(instance('config')/data_path, '/id/',  instance('control-instance')/id, '.rdf')"></xforms:setvalue>
 					<xforms:insert nodeset="instance('dump')"
 						origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/delete-id.xpl', 'configuration', instance('delete-config'), 'data')"></xforms:insert>
 					<xforms:setvalue ref="instance('control-instance')/status">ID successfully deleted from system.</xforms:setvalue>
