@@ -2,8 +2,8 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/"
 	xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/"
-	xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:org="http://www.w3.org/ns/org#" xmlns:nomisma="http://nomisma.org/"
-	xmlns:nmo="http://nomisma.org/ontology#" xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" exclude-result-prefixes="#all" version="2.0">
+	xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:org="http://www.w3.org/ns/org#" xmlns:nomisma="http://nomisma.org/" xmlns:nmo="http://nomisma.org/ontology#"
+	xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" exclude-result-prefixes="#all" version="2.0">
 	<xsl:include href="../../templates.xsl"/>
 	<xsl:include href="../../functions.xsl"/>
 	<xsl:include href="html-templates.xsl"/>
@@ -13,7 +13,17 @@
 	<xsl:variable name="display_path">../</xsl:variable>
 	<xsl:variable name="mode">record</xsl:variable>
 	<xsl:variable name="type" select="/content/rdf:RDF/*[1]/name()"/>
-	<xsl:variable name="id" select="if ($type = 'skos:ConceptScheme') then tokenize(/content/rdf:RDF/*[1]/@rdf:about, '/')[last() -1] else tokenize(/content/rdf:RDF/*[1]/@rdf:about, '/')[last()]"/>	
+	<xsl:variable name="id"
+		select="
+			if ($type = 'skos:ConceptScheme') then
+				tokenize(/content/rdf:RDF/*[1]/@rdf:about, '/')[last() - 1]
+			else
+				tokenize(/content/rdf:RDF/*[1]/@rdf:about, '/')[last()]"/>
+	<xsl:variable name="scheme" select="
+			if ($type = 'skos:ConceptScheme') then
+				''
+			else
+				tokenize(/content/rdf:RDF/*[1]/@rdf:about, '/')[last() - 1]"/>
 	<xsl:variable name="title" select="/content/rdf:RDF/*[1]/skos:prefLabel[@xml:lang = 'en']"/>
 
 	<!-- sparql -->
@@ -118,7 +128,7 @@
 				<script type="text/javascript" src="{$display_path}ui//javascript/jquery.fancybox.pack.js?v=2.1.5"/>
 				<script type="text/javascript" src="{$display_path}ui/javascript/display_functions.js"/>
 				<link rel="stylesheet" href="{$display_path}ui/css/style.css"/>
-				
+
 				<!-- google analytics -->
 				<xsl:if test="string(//config/google_analytics)">
 					<script type="text/javascript">
@@ -160,11 +170,11 @@
 					<xsl:if test="$hasTypes = true()">
 						<a href="#quant">Quantitative Analysis</a>
 					</xsl:if>
-					
+
 					<xsl:apply-templates select="/content/rdf:RDF/*[not(name() = 'dcterms:ProvenanceStatement')]" mode="type">
 						<xsl:with-param name="mode">record</xsl:with-param>
 					</xsl:apply-templates>
-					
+
 					<!-- ProvenanceStatement is hidden by default -->
 					<xsl:if test="/content/rdf:RDF/dcterms:ProvenanceStatement">
 						<h3>
@@ -182,7 +192,7 @@
 						</div>
 					</xsl:if>
 				</div>
-				<div class="col-md-{if ($hasMints = true() or $hasFindspots = true()) then '6' else '3'}">					
+				<div class="col-md-{if ($hasMints = true() or $hasFindspots = true()) then '6' else '3'}">
 					<div>
 						<h3>Export</h3>
 						<ul class="list-inline">
@@ -190,7 +200,9 @@
 								<strong>Linked Data</strong>
 							</li>
 							<li>
-								<a href="https://github.com/nomisma/data/blob/master/{if ($type = 'skos:ConceptScheme') then '' else concat(tokenize(//rdf:RDF/*[1]/@rdf:about, '/')[last() - 1], '/')}{$id}.rdf">GitHub File</a>
+								<a
+									href="https://github.com/nomisma/data/blob/master/{if ($type = 'skos:ConceptScheme') then '' else concat(tokenize(//rdf:RDF/*[1]/@rdf:about, '/')[last() - 1], '/')}{$id}.rdf"
+									>GitHub File</a>
 							</li>
 							<li>
 								<a href="{$id}.rdf">RDF/XML</a>
@@ -251,30 +263,66 @@
 					</xsl:if>
 				</div>
 			</div>
-			<!-- list of associated coin types and example coins -->
-			<xsl:if test="$hasTypes = true()">
-				<div class="row">
-					<div class="col-md-12 page-section">
-						<hr/>
-						<div id="listTypes"/>
-					</div>
-				</div>
-			</xsl:if>
 
-			<!-- display quantitative analysis template if there are coin types associated with the concept -->
-			<xsl:if test="$hasTypes = true()">
-				<div class="row">
-					<div class="col-md-12 page-section" id="quant">
-						<h2>Quantitative Analysis</h2>
-						<xsl:call-template name="distribution-form">
-							<xsl:with-param name="mode" select="$mode"/>
-						</xsl:call-template>
-						<xsl:call-template name="metrical-form">
-							<xsl:with-param name="mode" select="$mode"/>
-						</xsl:call-template>
-					</div>
-				</div>
-			</xsl:if>
+			<!-- optional contexts -->
+			<xsl:choose>
+				<xsl:when test="$scheme = 'id'">
+					<!-- list of associated coin types and example coins -->
+					<xsl:if test="$hasTypes = true()">
+						<div class="row">
+							<div class="col-md-12 page-section">
+								<hr/>
+								<div id="listTypes"/>
+							</div>
+						</div>
+					</xsl:if>
+
+					<!-- display quantitative analysis template if there are coin types associated with the concept -->
+					<xsl:if test="$hasTypes = true()">
+						<div class="row">
+							<div class="col-md-12 page-section" id="quant">
+								<h2>Quantitative Analysis</h2>
+								<xsl:call-template name="distribution-form">
+									<xsl:with-param name="mode" select="$mode"/>
+								</xsl:call-template>
+								<xsl:call-template name="metrical-form">
+									<xsl:with-param name="mode" select="$mode"/>
+								</xsl:call-template>
+							</div>
+						</div>
+					</xsl:if>
+				</xsl:when>
+				<xsl:when test="$scheme = 'editor'">
+					<xsl:if test="count(doc('input:spreadsheet-list')//res:result) &gt; 0">
+						<div class="row">
+							<div class="col-md-12 page-section">
+								<hr/>
+								<h2>Nomisma Contributions</h2>
+								<xsl:if test="count(doc('input:spreadsheet-list')//res:result) &gt; 0">
+									<p>This editor has contributed Nomisma IDs through the following spreadsheets:</p>
+									<table>
+										<tbody>
+											<xsl:for-each select="doc('input:spreadsheet-list')//res:result">
+												<tr>
+													<td>
+														<a href="{res:binding[@name='spreadsheet']/res:uri}">
+															<xsl:value-of select="res:binding[@name = 'desc']/res:literal"/>
+														</a>
+													</td>
+													<td>
+														<xsl:value-of select="format-dateTime(res:binding[@name='date']/res:literal, '[D] [MNn] [Y0001]')"/>
+													</td>
+												</tr>
+											</xsl:for-each>
+										</tbody>
+									</table>
+								</xsl:if>
+							</div>
+						</div>
+					</xsl:if>
+				</xsl:when>
+			</xsl:choose>
+
 		</div>
 
 		<!-- variables retrieved from the config and used in javascript -->
@@ -299,7 +347,7 @@
 			<xsl:call-template name="compare-container-template">
 				<xsl:with-param name="template" as="xs:boolean">true</xsl:with-param>
 			</xsl:call-template>
-			
+
 			<xsl:call-template name="date-template">
 				<xsl:with-param name="template" as="xs:boolean">true</xsl:with-param>
 			</xsl:call-template>
