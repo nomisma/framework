@@ -95,7 +95,7 @@
 
 						<div class="media">
 							<a href="http://numismatics.org" title="http://numismatics.org" rel="nofollow">
-								<img src="http://www.numismatics.org/pmwiki/pub/skins/ans/ans_seal.gif" alt="http://numismatics.org"/>
+								<img src="http://nomisma.org/ui/images/ans_large.png" alt="http://numismatics.org"/>
 							</a>
 						</div>
 						<div class="media">
