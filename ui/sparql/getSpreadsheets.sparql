@@ -4,11 +4,14 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX prov:	<http://www.w3.org/ns/prov#>
 
-SELECT DISTINCT ?spreadsheet ?date ?desc WHERE {
+CONSTRUCT { ?spreadsheet a prov:Entity ;
+          dcterms:description ?desc ;
+          prov:atTime ?date}
+WHERE {
   BIND (<%URI%> as ?editor)
   ?activity prov:used ?spreadsheet ;
   		prov:atTime ?date .
         {?spreadsheet dcterms:creator ?editor }
         UNION {?spreadsheet dcterms:contributor ?editor}
   ?spreadsheet dcterms:description ?desc
-} ORDER BY DESC(?date)
+} ORDER BY ASC(?date)

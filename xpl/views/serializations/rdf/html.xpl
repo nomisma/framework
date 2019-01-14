@@ -4,7 +4,8 @@
 	Date Last Modified: January 2019
 	Function: Serialize an RDF snippet into HTML, including conditionals to execute other SPARQL queries to enhance page context with maps, example types, etc.
 -->
-<p:config xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:oxf="http://www.orbeon.com/oxf/processors" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<p:config xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:oxf="http://www.orbeon.com/oxf/processors" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:res="http://www.w3.org/2005/sparql-results#">
 
 	<p:param type="input" name="data"/>
 	<p:param type="output" name="data"/>
@@ -40,26 +41,26 @@
 	<!-- evaluate editor vs. id concept scheme -->
 	<p:choose href="#scheme">
 		<p:when test="/scheme = 'editor'">
-			
+
 			<!-- get the type of the RDF fragment in the editor namespace -->
 			<p:processor name="oxf:unsafe-xslt">
 				<p:input name="data" href="#data"/>
-				
+
 				<p:input name="config">
 					<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
 						xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-						
+
 						<xsl:template match="/">
 							<type>
 								<xsl:value-of select="/rdf:RDF/*[1]/name()"/>
 							</type>
 						</xsl:template>
-						
+
 					</xsl:stylesheet>
 				</p:input>
 				<p:output name="data" id="type"/>
 			</p:processor>
-			
+
 			<p:choose href="#type">
 				<p:when test="/type = 'skos:ConceptScheme'">
 					<!-- aggregate models and serialize into HTML -->
@@ -71,21 +72,51 @@
 					</p:processor>
 				</p:when>
 				<p:when test="/type = 'foaf:Person'">
-					<!-- execute SPARQL query to get a list of spreadsheets -->
+					<!-- execute SPARQL query to get total count of contributed IDs -->
 					<p:processor name="oxf:pipeline">
 						<p:input name="data" href="#data"/>
-						<p:input name="config" href="../../../models/sparql/getSpreadsheets.xpl"/>									
-						<p:output name="data" id="spreadsheet-list"/>
+						<p:input name="config" href="../../../models/sparql/countEditedIds.xpl"/>
+						<p:output name="data" id="id-count"/>
 					</p:processor>
-					
-					<!-- aggregate models and serialize into HTML -->
-					<p:processor name="oxf:unsafe-xslt">
-						<p:input name="request" href="#request"/>
-						<p:input name="spreadsheet-list" href="#spreadsheet-list"/>
-						<p:input name="data" href="aggregate('content', #data, ../../../../config.xml)"/>
-						<p:input name="config" href="../../../../ui/xslt/serializations/rdf/html.xsl"/>
-						<p:output name="data" id="model"/>
-					</p:processor>
+
+					<!-- if there are more than 0, then initiate the next two SPARQL queries to generate lists of spreadsheets and IDs -->
+					<p:choose href="#id-count">
+						<p:when test="number(//res:binding[@name='count']/res:literal) &gt; 0">
+							<!-- execute SPARQL query to get a list of spreadsheets -->
+							<p:processor name="oxf:pipeline">
+								<p:input name="data" href="#data"/>
+								<p:input name="config" href="../../../models/sparql/getSpreadsheets.xpl"/>
+								<p:output name="data" id="spreadsheet-list"/>
+							</p:processor>
+
+							<!-- execute SPARQL query to get a sample list of 100 created/edited IDs by the Nomisma editor -->
+							<p:processor name="oxf:pipeline">
+								<p:input name="data" href="#data"/>
+								<p:input name="config" href="../../../models/sparql/getEditedIds.xpl"/>
+								<p:output name="data" id="id-list"/>
+							</p:processor>
+
+							<!-- aggregate models and serialize into HTML -->
+							<p:processor name="oxf:unsafe-xslt">
+								<p:input name="request" href="#request"/>
+								<p:input name="id-count" href="#id-count"/>
+								<p:input name="id-list" href="#id-list"/>
+								<p:input name="spreadsheet-list" href="#spreadsheet-list"/>
+								<p:input name="data" href="aggregate('content', #data, ../../../../config.xml)"/>
+								<p:input name="config" href="../../../../ui/xslt/serializations/rdf/html.xsl"/>
+								<p:output name="data" id="model"/>
+							</p:processor>
+						</p:when>
+						<p:otherwise>
+							<p:processor name="oxf:unsafe-xslt">
+								<p:input name="request" href="#request"/>
+								<p:input name="id-count" href="#id-count"/>
+								<p:input name="data" href="aggregate('content', #data, ../../../../config.xml)"/>
+								<p:input name="config" href="../../../../ui/xslt/serializations/rdf/html.xsl"/>
+								<p:output name="data" id="model"/>
+							</p:processor>
+						</p:otherwise>
+					</p:choose>
 				</p:when>
 			</p:choose>
 		</p:when>

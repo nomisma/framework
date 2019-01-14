@@ -1287,9 +1287,11 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 								<xforms:trigger bind="import-trigger">
 									<xforms:label>Import Data</xforms:label>
 									<xforms:action ev:event="DOMActivate">
-										<!-- set the count for the progress dialog -->
-										<!--<xforms:setvalue ref="instance('control-instance')/count" value="count(instance('feed')//atom:entry)"></xforms:setvalue>-->
-										<!--<xxforms:show dialog="progress-dialog"></xxforms:show>-->
+										<!-- set the current dateTime into a variable that will apply to all IDs 
+											(previous version resulting in different time for each ID in spreadsheet -->
+										
+										<xforms:var name="dateTime" select="curent-dateTime()"/>
+										
 										<!-- begin processing the spreadsheet into RDF -->
 										<xforms:action xxforms:iterate="instance('feed')//atom:entry">
 											<!-- set position for progress dialog -->
@@ -1542,7 +1544,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 													ref="instance('rdf')/dcterms:ProvenanceStatement/prov:wasGeneratedBy/prov:Activity/prov:wasAssociatedWith/@rdf:resource"
 													value="concat('http://nomisma.org/editor/', instance('control-instance')/username)"/>
 												<xforms:setvalue ref="instance('rdf')/dcterms:ProvenanceStatement/prov:wasGeneratedBy/prov:Activity/prov:atTime"
-													value="current-dateTime()"/>
+													value="$dateTime"/>
 												<xforms:setvalue
 													ref="instance('rdf')/dcterms:ProvenanceStatement/prov:wasGeneratedBy/prov:Activity/prov:used/@rdf:resource"
 													value="instance('control-instance')/spreadsheet_uri"/>
@@ -1583,7 +1585,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 														value="concat('http://nomisma.org/editor/', instance('control-instance')/username)"/>
 													<xforms:setvalue
 														ref="instance('rdf')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity/prov:atTime"
-														value="current-dateTime()"/>
+														value="$dateTime"/>
 													<xforms:setvalue
 														ref="instance('rdf')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity/prov:used/@rdf:resource"
 														value="instance('control-instance')/spreadsheet_uri"/>

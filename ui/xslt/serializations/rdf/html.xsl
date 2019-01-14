@@ -3,7 +3,7 @@
 	xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/"
 	xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:org="http://www.w3.org/ns/org#" xmlns:nomisma="http://nomisma.org/" xmlns:nmo="http://nomisma.org/ontology#"
-	xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" exclude-result-prefixes="#all" version="2.0">
+	xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" xmlns:prov="http://www.w3.org/ns/prov#" exclude-result-prefixes="#all" version="2.0">
 	<xsl:include href="../../templates.xsl"/>
 	<xsl:include href="../../functions.xsl"/>
 	<xsl:include href="html-templates.xsl"/>
@@ -293,36 +293,21 @@
 					</xsl:if>
 				</xsl:when>
 				<xsl:when test="$scheme = 'editor'">
-					<xsl:if test="count(doc('input:spreadsheet-list')//res:result) &gt; 0">
+					<xsl:if test="doc('input:id-count')//res:binding[@name = 'count']/res:literal &gt; 0">
+						<xsl:variable name="count" select="doc('input:id-count')//res:binding[@name = 'count']/res:literal"/>
 						<div class="row">
 							<div class="col-md-12 page-section">
 								<hr/>
 								<h2>Nomisma Contributions</h2>
-								<xsl:if test="count(doc('input:spreadsheet-list')//res:result) &gt; 0">
-									<p>This editor has contributed Nomisma IDs through the following spreadsheets:</p>
-									<table>
-										<tbody>
-											<xsl:for-each select="doc('input:spreadsheet-list')//res:result">
-												<tr>
-													<td>
-														<a href="{res:binding[@name='spreadsheet']/res:uri}">
-															<xsl:value-of select="res:binding[@name = 'desc']/res:literal"/>
-														</a>
-													</td>
-													<td>
-														<xsl:value-of select="format-dateTime(res:binding[@name='date']/res:literal, '[D] [MNn] [Y0001]')"/>
-													</td>
-												</tr>
-											</xsl:for-each>
-										</tbody>
-									</table>
-								</xsl:if>
+								<xsl:apply-templates select="doc('input:spreadsheet-list')/rdf:RDF[count(prov:Entity) &gt; 0]" mode="spreadsheets"/>
+								<xsl:apply-templates select="doc('input:id-list')/res:sparql" mode="edited-ids">
+									<xsl:with-param name="count" select="$count"/>
+								</xsl:apply-templates>
 							</div>
 						</div>
 					</xsl:if>
 				</xsl:when>
 			</xsl:choose>
-
 		</div>
 
 		<!-- variables retrieved from the config and used in javascript -->
@@ -354,5 +339,79 @@
 
 			<xsl:call-template name="ajax-loader-template"/>
 		</div>
+	</xsl:template>
+
+	<!-- Related ID and spreadsheet templates for enhancing context of /editor pages -->
+	<xsl:template match="rdf:RDF" mode="spreadsheets">
+		<h3>Spreadsheets</h3>
+		<p>This editor has contributed Nomisma IDs through the following spreadsheets:</p>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Description</th>
+					<th>Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<xsl:for-each select="prov:Entity">
+					<xsl:sort select="prov:atTime[1]" order="descending"/>
+					<tr>
+						<td>
+							<a href="{@rdf:about}">
+								<xsl:value-of select="dcterms:description"/>
+							</a>
+						</td>
+						<td>
+							<xsl:value-of select="format-dateTime(prov:atTime[1], '[D] [MNn] [Y0001]')"/>
+						</td>
+					</tr>
+				</xsl:for-each>
+			</tbody>
+		</table>
+	</xsl:template>
+
+	<xsl:template match="res:sparql" mode="edited-ids">
+		<xsl:param name="count"/>
+
+		<h3>Concepts</h3>
+		<xsl:choose>
+			<xsl:when test="$count &gt; 25">
+				<p>This is a partial list of <strong>25</strong> of <strong><xsl:value-of select="$count"/></strong> IDs created or updated by this editor:</p>
+			</xsl:when>
+			<xsl:otherwise>
+				<p>This is a list of <strong><xsl:value-of select="$count"/></strong> IDs created or updated by this editor:</p>
+			</xsl:otherwise>
+		</xsl:choose>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Label</th>
+					<th>Spreadsheet</th>
+					<th>Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<xsl:for-each select="descendant::res:result">
+					<tr>
+						<td>
+							<a href="{res:binding[@name='concept']/res:uri}">
+								<xsl:value-of select="res:binding[@name = 'label']/res:literal"/>
+							</a>
+						</td>
+						<td>
+							<xsl:if test="res:binding[@name = 'spreadsheet']">
+								<a href="{res:binding[@name='spreadsheet']/res:uri}">
+									<xsl:value-of select="res:binding[@name = 'desc']/res:literal"/>
+								</a>
+							</xsl:if>
+						</td>
+						<td>
+							<xsl:value-of select="format-dateTime(res:binding[@name = 'date']/res:literal, '[D] [MNn] [Y0001]')"/>
+						</td>
+					</tr>
+				</xsl:for-each>
+			</tbody>
+		</table>
 	</xsl:template>
 </xsl:stylesheet>

@@ -1,0 +1,23 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX nm: <http://nomisma.org/id/>
+PREFIX nmo: <http://nomisma.org/ontology#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX prov:	<http://www.w3.org/ns/prov#>
+
+SELECT ?concept ?label ?date ?spreadsheet ?desc WHERE {
+  BIND (<%URI%> as ?editor)  
+  ?concept skos:changeNote ?prov ;
+  	skos:prefLabel ?label FILTER (langMatches(lang(?label), "en"))
+  {?prov prov:wasGeneratedBy ?activity}
+  UNION {?prov prov:activity ?activity}
+  ?activity a prov:Activity ;
+  	prov:atTime ?date
+  {?activity prov:wasAssociatedWith ?editor FILTER NOT EXISTS {?activity prov:used ?spreadsheet}}
+  UNION {?activity prov:used ?spreadsheet 
+        {?spreadsheet dcterms:creator ?editor }
+        UNION {?spreadsheet dcterms:contributor ?editor}
+        ?spreadsheet dcterms:description ?desc
+        }
+} ORDER BY ?label %LIMIT%
