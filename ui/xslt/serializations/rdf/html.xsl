@@ -2,8 +2,9 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/"
 	xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/"
-	xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:org="http://www.w3.org/ns/org#" xmlns:nomisma="http://nomisma.org/" xmlns:nmo="http://nomisma.org/ontology#"
-	xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" xmlns:prov="http://www.w3.org/ns/prov#" exclude-result-prefixes="#all" version="2.0">
+	xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:org="http://www.w3.org/ns/org#" xmlns:nomisma="http://nomisma.org/"
+	xmlns:nmo="http://nomisma.org/ontology#" xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" xmlns:prov="http://www.w3.org/ns/prov#"
+	exclude-result-prefixes="#all" version="2.0">
 	<xsl:include href="../../templates.xsl"/>
 	<xsl:include href="../../functions.xsl"/>
 	<xsl:include href="html-templates.xsl"/>
@@ -13,17 +14,19 @@
 	<xsl:variable name="display_path">../</xsl:variable>
 	<xsl:variable name="mode">record</xsl:variable>
 	<xsl:variable name="type" select="/content/rdf:RDF/*[1]/name()"/>
+	<xsl:variable name="conceptURI" select="/content/rdf:RDF/*[1]/@rdf:about"/>
 	<xsl:variable name="id"
 		select="
 			if ($type = 'skos:ConceptScheme') then
-				tokenize(/content/rdf:RDF/*[1]/@rdf:about, '/')[last() - 1]
+				tokenize($conceptURI, '/')[last() - 1]
 			else
-				tokenize(/content/rdf:RDF/*[1]/@rdf:about, '/')[last()]"/>
+				tokenize($conceptURI, '/')[last()]"/>
 	<xsl:variable name="scheme" select="
 			if ($type = 'skos:ConceptScheme') then
 				''
 			else
-				tokenize(/content/rdf:RDF/*[1]/@rdf:about, '/')[last() - 1]"/>
+				tokenize($conceptURI, '/')[last() - 1]"/>
+
 	<xsl:variable name="title" select="/content/rdf:RDF/*[1]/skos:prefLabel[@xml:lang = 'en']"/>
 
 	<!-- sparql -->
@@ -343,8 +346,14 @@
 
 	<!-- Related ID and spreadsheet templates for enhancing context of /editor pages -->
 	<xsl:template match="rdf:RDF" mode="spreadsheets">
+
+		<!-- load SPARQL as text -->
+		<xsl:variable name="query" select="doc('input:getSpreadsheets-query')"/>
+
 		<h3>Spreadsheets</h3>
-		<p>This editor has contributed Nomisma IDs through the following spreadsheets:</p>
+		<p>This editor has contributed Nomisma IDs through the following spreadsheets (<a
+				href="{$display_path}query?query={encode-for-uri(replace($query, '%URI%', $conceptURI))}&amp;output=json" title="Download list">
+				<span class="glyphicon glyphicon-download"/> Download list</a>):</p>
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -373,10 +382,16 @@
 	<xsl:template match="res:sparql" mode="edited-ids">
 		<xsl:param name="count"/>
 
+		<!-- load SPARQL as text -->
+		<xsl:variable name="query" select="doc('input:getEditedIds-query')"/>
+
 		<h3>Concepts</h3>
 		<xsl:choose>
 			<xsl:when test="$count &gt; 25">
-				<p>This is a partial list of <strong>25</strong> of <strong><xsl:value-of select="$count"/></strong> IDs created or updated by this editor:</p>
+				<p>This is a partial list of <strong>25</strong> of <strong><xsl:value-of select="$count"/></strong> IDs created or updated by this editor (<a
+						href="{$display_path}query?query={encode-for-uri(replace(replace($query, '%URI%', $conceptURI), ' %LIMIT%', ''))}&amp;output=csv"
+						title="Download list">
+						<span class="glyphicon glyphicon-download"/> Download list</a>):</p>
 			</xsl:when>
 			<xsl:otherwise>
 				<p>This is a list of <strong><xsl:value-of select="$count"/></strong> IDs created or updated by this editor:</p>

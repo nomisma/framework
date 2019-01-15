@@ -52,6 +52,7 @@
 	<page path="/nomisma/(id|editor)/(.*)\.ttl" view="xpl/controllers/call-rdflib.xpl"/>
 	<page path="/nomisma/(id|editor)/(.*)\.jsonld" view="xpl/controllers/call-rdflib.xpl"/>
 	<page path="/nomisma/(id|editor)/(.*)\.solr" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/solr.xpl"/>
+	<page path="/nomisma/editor/(.*)\.xml" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/datacite-xml.xpl"/>
 	<page path="/nomisma/(id|editor)/(.*)" model="xpl/models/rdf/get-id.xpl" view="xpl/controllers/conneg-id.xpl"/>	
 	
 	<!-- map page -->

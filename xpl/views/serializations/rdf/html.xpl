@@ -82,6 +82,45 @@
 					<!-- if there are more than 0, then initiate the next two SPARQL queries to generate lists of spreadsheets and IDs -->
 					<p:choose href="#id-count">
 						<p:when test="number(//res:binding[@name='count']/res:literal) &gt; 0">
+							<!-- get the SPARQL queries for edited IDs and spreadsheets to pass into the HTML serialization -->
+							<p:processor name="oxf:url-generator">
+								<p:input name="config">
+									<config>
+										<url>oxf:/apps/nomisma/ui/sparql/getEditedIds.sparql</url>
+										<content-type>text/plain</content-type>
+										<encoding>utf-8</encoding>
+									</config>
+								</p:input>
+								<p:output name="data" id="getEditedIds-query"/>
+							</p:processor>
+							
+							<p:processor name="oxf:text-converter">
+								<p:input name="data" href="#getEditedIds-query"/>
+								<p:input name="config">
+									<config/>
+								</p:input>
+								<p:output name="data" id="getEditedIds-query-document"/>
+							</p:processor>
+							
+							<p:processor name="oxf:url-generator">
+								<p:input name="config">
+									<config>
+										<url>oxf:/apps/nomisma/ui/sparql/getSpreadsheets.sparql</url>
+										<content-type>text/plain</content-type>
+										<encoding>utf-8</encoding>
+									</config>
+								</p:input>
+								<p:output name="data" id="getSpreadsheets-query"/>
+							</p:processor>
+							
+							<p:processor name="oxf:text-converter">
+								<p:input name="data" href="#getSpreadsheets-query"/>
+								<p:input name="config">
+									<config/>
+								</p:input>
+								<p:output name="data" id="getSpreadsheets-query-document"/>
+							</p:processor>
+							
 							<!-- execute SPARQL query to get a list of spreadsheets -->
 							<p:processor name="oxf:pipeline">
 								<p:input name="data" href="#data"/>
@@ -101,6 +140,8 @@
 								<p:input name="request" href="#request"/>
 								<p:input name="id-count" href="#id-count"/>
 								<p:input name="id-list" href="#id-list"/>
+								<p:input name="getSpreadsheets-query" href="#getSpreadsheets-query-document"/>
+								<p:input name="getEditedIds-query" href="#getEditedIds-query-document"/>
 								<p:input name="spreadsheet-list" href="#spreadsheet-list"/>
 								<p:input name="data" href="aggregate('content', #data, ../../../../config.xml)"/>
 								<p:input name="config" href="../../../../ui/xslt/serializations/rdf/html.xsl"/>
