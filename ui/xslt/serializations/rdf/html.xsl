@@ -385,6 +385,9 @@
 		<!-- load SPARQL as text -->
 		<xsl:variable name="query" select="doc('input:getEditedIds-query')"/>
 
+		<xsl:variable name="describe"
+			select="replace(replace(replace($query, '%URI%', $conceptURI), ' %LIMIT%', ''), 'SELECT', 'DESCRIBE')"/>
+
 		<h3>Concepts</h3>
 		<xsl:choose>
 			<xsl:when test="$count &gt; 25">
@@ -397,6 +400,15 @@
 				<p>This is a list of <strong><xsl:value-of select="$count"/></strong> IDs created or updated by this editor:</p>
 			</xsl:otherwise>
 		</xsl:choose>
+
+		<p>
+			<strong>Download as: </strong>
+			<a href="{$display_path}query?query={encode-for-uri($describe)}&amp;output=xml" title="RDF/XML">RDF/XML</a>
+			<xsl:text> | </xsl:text>
+			<a href="{$display_path}query?query={encode-for-uri($describe)}&amp;output=text" title="Turtle">Turtle</a>
+			<xsl:text> | </xsl:text>
+			<a href="{$display_path}query?query={encode-for-uri($describe)}&amp;output=json" title="JSON-LD">JSON-LD</a>
+		</p>
 
 		<table class="table table-striped">
 			<thead>

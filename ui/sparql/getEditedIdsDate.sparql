@@ -5,15 +5,10 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX prov:	<http://www.w3.org/ns/prov#>
-PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
-PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
-PREFIX org:	<http://www.w3.org/ns/org#>
-PREFIX rdac:	<http://www.rdaregistry.info/Elements/c/>
 
-SELECT ?concept ?label ?date ?spreadsheet ?desc WHERE {
+SELECT DISTINCT ?date WHERE {
   BIND (<%URI%> as ?editor)  
-  ?concept skos:changeNote ?prov ;
-  	skos:prefLabel ?label FILTER (langMatches(lang(?label), "en"))
+  ?concept skos:changeNote ?prov.
   {?prov prov:wasGeneratedBy ?activity}
   UNION {?prov prov:activity ?activity}
   ?activity a prov:Activity ;
@@ -22,6 +17,5 @@ SELECT ?concept ?label ?date ?spreadsheet ?desc WHERE {
   UNION {?activity prov:used ?spreadsheet 
         {?spreadsheet dcterms:creator ?editor }
         UNION {?spreadsheet dcterms:contributor ?editor}
-        ?spreadsheet dcterms:description ?desc
         }
-} ORDER BY ?label %LIMIT%
+} ORDER BY %ORDER%(?date) LIMIT 1
