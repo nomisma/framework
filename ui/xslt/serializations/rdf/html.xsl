@@ -221,6 +221,20 @@
 								</li>-->
 
 						</ul>
+						
+						<!-- insert a DataCite XML link for an editor with IDs -->
+						<xsl:if test="$scheme = 'editor'">
+							<xsl:if test="doc('input:id-count')//res:binding[@name = 'count']/res:literal &gt; 0">
+								<div class="text-right">
+									<a href="{$id}.xml" title="DataCite XML Metadata">
+										<img src="{$display_path}ui/images/datacite-medium.png" alt="DataCite Logo: https://datacite.org/"></img>
+									</a>
+									<br/>
+									<a href="{$id}.xml">DataCite XML Metadata</a>
+								</div>	
+							</xsl:if>
+						</xsl:if>
+						
 						<xsl:if test="$hasMints = true() or $hasFindspots = true()">
 							<ul class="list-inline">
 								<li>

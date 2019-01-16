@@ -24,4 +24,4 @@ SELECT ?concept ?label ?date ?spreadsheet ?desc WHERE {
         UNION {?spreadsheet dcterms:contributor ?editor}
         ?spreadsheet dcterms:description ?desc
         }
-} ORDER BY ?label %LIMIT%
+} ORDER BY DESC(?date) %LIMIT%
