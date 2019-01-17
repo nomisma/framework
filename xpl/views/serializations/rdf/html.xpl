@@ -63,9 +63,17 @@
 
 			<p:choose href="#type">
 				<p:when test="/type = 'skos:ConceptScheme'">
+					<!-- execute SPARQL query to get list of editors -->
+					<p:processor name="oxf:pipeline">
+						<p:input name="data" href="#data"/>
+						<p:input name="config" href="../../../models/sparql/getEditors.xpl"/>
+						<p:output name="data" id="editors"/>
+					</p:processor>
+					
 					<!-- aggregate models and serialize into HTML -->
 					<p:processor name="oxf:unsafe-xslt">
 						<p:input name="request" href="#request"/>
+						<p:input name="editors" href="#editors"/>
 						<p:input name="data" href="aggregate('content', #data, ../../../../config.xml)"/>
 						<p:input name="config" href="../../../../ui/xslt/serializations/rdf/html.xsl"/>
 						<p:output name="data" id="model"/>

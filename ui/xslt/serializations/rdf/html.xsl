@@ -221,20 +221,20 @@
 								</li>-->
 
 						</ul>
-						
+
 						<!-- insert a DataCite XML link for an editor with IDs -->
 						<xsl:if test="$scheme = 'editor'">
 							<xsl:if test="doc('input:id-count')//res:binding[@name = 'count']/res:literal &gt; 0">
 								<div class="text-right">
 									<a href="{$id}.xml" title="DataCite XML Metadata">
-										<img src="{$display_path}ui/images/datacite-medium.png" alt="DataCite Logo: https://datacite.org/"></img>
+										<img src="{$display_path}ui/images/datacite-medium.png" alt="DataCite Logo: https://datacite.org/"/>
 									</a>
 									<br/>
 									<a href="{$id}.xml">DataCite XML Metadata</a>
-								</div>	
+								</div>
 							</xsl:if>
 						</xsl:if>
-						
+
 						<xsl:if test="$hasMints = true() or $hasFindspots = true()">
 							<ul class="list-inline">
 								<li>
@@ -324,6 +324,14 @@
 						</div>
 					</xsl:if>
 				</xsl:when>
+				<xsl:otherwise>
+					<!-- context for ConceptSchemes -->
+					<xsl:choose>
+						<xsl:when test="$id = 'editor'">
+							<xsl:apply-templates select="doc('input:editors')/res:sparql[count(descendant::res:result) &gt; 0]" mode="editors"/>
+						</xsl:when>
+					</xsl:choose>
+				</xsl:otherwise>
 			</xsl:choose>
 		</div>
 
@@ -399,8 +407,7 @@
 		<!-- load SPARQL as text -->
 		<xsl:variable name="query" select="doc('input:getEditedIds-query')"/>
 
-		<xsl:variable name="describe"
-			select="replace(replace(replace($query, '%URI%', $conceptURI), ' %LIMIT%', ''), 'SELECT', 'DESCRIBE')"/>
+		<xsl:variable name="describe" select="replace(replace(replace($query, '%URI%', $conceptURI), ' %LIMIT%', ''), 'SELECT', 'DESCRIBE')"/>
 
 		<h3>Concepts</h3>
 		<xsl:choose>
@@ -454,5 +461,40 @@
 				</xsl:for-each>
 			</tbody>
 		</table>
+	</xsl:template>
+
+	<xsl:template match="res:sparql" mode="editors">
+		<div class="row">
+			<div class="col-md-12 page-section">
+				<hr/>
+				<h2>Editors</h2>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>ORCID</th>
+						</tr>
+					</thead>
+					<tbody>
+						<xsl:for-each select="descendant::res:result">
+							<tr>
+								<td>
+									<a href="{res:binding[@name='editor']/res:uri}">
+										<xsl:value-of select="res:binding[@name = 'name']/res:literal"/>
+									</a>
+								</td>
+								<td>
+									<xsl:if test="res:binding[@name = 'orcid']">
+										<a href="{res:binding[@name='orcid']/res:uri}">
+											<xsl:value-of select="tokenize(res:binding[@name = 'orcid']/res:uri, '/')[last()]"/>
+										</a>
+									</xsl:if>
+								</td>
+							</tr>
+						</xsl:for-each>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</xsl:template>
 </xsl:stylesheet>
