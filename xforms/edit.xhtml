@@ -62,6 +62,7 @@
 					<membership-position></membership-position>
 					<content_before_hash></content_before_hash>
 					<content_after_hash></content_after_hash>
+					<session-id/>
 					<geo>
 						<type></type>
 						<hasFeature></hasFeature>
@@ -665,6 +666,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 				<xforms:setvalue ref="instance('control-instance')/geo/hasFeature"
 					value="if (instance('doc')/geo:SpatialThing/geo:lat or instance('doc')/geo:SpatialThing/osgeo:asGeoJSON) then true() else false()"/>
 
+
 				<!-- toggle case if it's not a new id -->
 				<xforms:toggle case="edit-id" if="instance('control-instance')/new-id = false()"/>
 				<xforms:toggle case="load-error" if="instance('control-instance')/load-error = true()"/>
@@ -985,64 +987,63 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										<xforms:value ref="type"/>
 									</xforms:itemset>
 								</xforms:select1>
-								<xforms:group ref=".[instance('control-instance')/new-id = true()]">
-									<xforms:trigger bind="proceed-trigger">
-										<xforms:label>Proceed</xforms:label>
-										<xforms:action ev:event="DOMActivate">
-											<xforms:var name="type" select="instance('control-instance')/type"/>
-											<!-- set URI -->
-											<xforms:setvalue ref="instance('control-instance')/uri"
-												value="concat('http://nomisma.org/id/', instance('control-instance')/id)"/>
-											<!-- create resource description -->
-											<xforms:insert context="instance('doc')"
-												origin="xforms:element($type, xforms:attribute('rdf:about', instance('control-instance')/uri))"/>
-											<!-- insert rdf:type as skos:Concept -->
-											<xforms:insert context="instance('doc')/*[1]"
-												origin="xforms:element('rdf:type', xforms:attribute('rdf:resource', 'http://www.w3.org/2004/02/skos/core#Concept'))"/>
-											<!-- insert skos:prefLabel and skos:definition with @xml:lang='en'-->
-											<xforms:insert context="instance('doc')/*[1]"
-												origin="xforms:element('skos:prefLabel', xforms:attribute('xml:lang', 'en'))"/>
-											<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]"
-												origin="xforms:element('skos:definition', xforms:attribute('xml:lang', 'en'))"/>
-											<!-- insert skos:inScheme -->
-											<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]"
-												origin="xforms:element('skos:inScheme', xforms:attribute('rdf:resource', 'http://nomisma.org/id/'))"/>
-											<!-- insert related foaf:webpage for a collection -->
-											<xforms:action if="$type='nmo:Collection'">
-												<xforms:insert context="instance('doc')/nmo:Collection" nodeset="./child::node()[last()]"
-													origin="xforms:element('foaf:homepage', xforms:attribute('rdf:resource', ''))"/>
-											</xforms:action>
-											<!-- *** Provenance *** -->
-											<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]"
-												origin="instance('changeNote-template')"/>
-											<xforms:setvalue ref="instance('doc')/*[1]/skos:changeNote/@rdf:resource"
-												value="concat(instance('control-instance')/uri, '#provenance')"/>
-											<xforms:insert context="instance('doc')" nodeset="./child::node()[last()]" origin="instance('provenance-template')"/>
-											<xforms:setvalue ref="instance('doc')/dcterms:ProvenanceStatement/@rdf:about"
-												value="concat(instance('control-instance')/uri, '#provenance')"/>
-											<xforms:setvalue ref="instance('doc')/dcterms:ProvenanceStatement/foaf:topic/@rdf:resource"
-												value="instance('control-instance')/uri"/>
-											<!-- Create Activity -->
-											<xforms:insert context="instance('doc')/dcterms:ProvenanceStatement" nodeset="./child::node()[last()]"
-												origin="xforms:element('prov:wasGeneratedBy')"/>
-											<xforms:insert context="instance('doc')/dcterms:ProvenanceStatement/prov:wasGeneratedBy"
-												origin="instance('activity-template')"/>
-											<xforms:insert context="instance('doc')/dcterms:ProvenanceStatement/prov:wasGeneratedBy/prov:Activity"
-												origin="xforms:element('rdf:type', xforms:attribute('rdf:resource', 'http://www.w3.org/ns/prov#Create'))"/>
-											<xforms:setvalue ref="instance('doc')/dcterms:ProvenanceStatement/prov:wasGeneratedBy/prov:Activity/dcterms:type"
-												>manual</xforms:setvalue>
-											<xforms:setvalue
-												ref="instance('doc')/dcterms:ProvenanceStatement/prov:wasGeneratedBy/prov:Activity/prov:wasAssociatedWith/@rdf:resource"
-												value="concat('http://nomisma.org/editor/', instance('control-instance')/username)"/>
-											<xforms:setvalue ref="instance('doc')/dcterms:ProvenanceStatement/prov:wasGeneratedBy/prov:Activity/prov:atTime"
-												value="current-dateTime()"/>
-											<!-- set new-id to false() to disable id editing -->
-											<xforms:setvalue ref="instance('control-instance')/new-id" value="false()"/>
-											<!-- toggle interface -->
-											<xforms:toggle case="edit-id"/>
+								<xforms:trigger bind="proceed-trigger">
+									<xforms:label>Proceed</xforms:label>
+									<xforms:action ev:event="DOMActivate">
+										<xforms:var name="type" select="instance('control-instance')/type"/>
+										<!-- set URI -->
+										<xforms:setvalue ref="instance('control-instance')/uri"
+											value="concat('http://nomisma.org/id/', instance('control-instance')/id)"/>
+										<!-- create resource description -->
+										<xforms:insert context="instance('doc')"
+											origin="xforms:element($type, xforms:attribute('rdf:about', instance('control-instance')/uri))"/>
+										<!-- insert rdf:type as skos:Concept -->
+										<xforms:insert context="instance('doc')/*[1]"
+											origin="xforms:element('rdf:type', xforms:attribute('rdf:resource', 'http://www.w3.org/2004/02/skos/core#Concept'))"/>
+										<!-- insert skos:prefLabel and skos:definition with @xml:lang='en'-->
+										<xforms:insert context="instance('doc')/*[1]"
+											origin="xforms:element('skos:prefLabel', xforms:attribute('xml:lang', 'en'))"/>
+										<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]"
+											origin="xforms:element('skos:definition', xforms:attribute('xml:lang', 'en'))"/>
+										<!-- insert skos:inScheme -->
+										<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]"
+											origin="xforms:element('skos:inScheme', xforms:attribute('rdf:resource', 'http://nomisma.org/id/'))"/>
+										<!-- insert related foaf:webpage for a collection -->
+										<xforms:action if="$type='nmo:Collection'">
+											<xforms:insert context="instance('doc')/nmo:Collection" nodeset="./child::node()[last()]"
+												origin="xforms:element('foaf:homepage', xforms:attribute('rdf:resource', ''))"/>
 										</xforms:action>
-									</xforms:trigger>
-								</xforms:group>
+										
+										<!-- *** Provenance *** -->
+										<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]"
+											origin="instance('changeNote-template')"/>
+										<xforms:setvalue ref="instance('doc')/*[1]/skos:changeNote/@rdf:resource"
+											value="concat(instance('control-instance')/uri, '#provenance')"/>
+										<xforms:insert context="instance('doc')" nodeset="./child::node()[last()]" origin="instance('provenance-template')"/>
+										<xforms:setvalue ref="instance('doc')/dcterms:ProvenanceStatement/@rdf:about"
+											value="concat(instance('control-instance')/uri, '#provenance')"/>
+										<xforms:setvalue ref="instance('doc')/dcterms:ProvenanceStatement/foaf:topic/@rdf:resource"
+											value="instance('control-instance')/uri"/>
+										
+										<!-- Create Activity -->
+										<xforms:insert context="instance('doc')/dcterms:ProvenanceStatement" nodeset="./child::node()[last()]"
+											origin="xforms:element('prov:wasGeneratedBy')"/>
+										<xforms:insert context="instance('doc')/dcterms:ProvenanceStatement/prov:wasGeneratedBy"
+											origin="instance('activity-template')"/>
+										<xforms:insert context="instance('doc')/dcterms:ProvenanceStatement/prov:wasGeneratedBy/prov:Activity"
+											origin="xforms:element('rdf:type', xforms:attribute('rdf:resource', 'http://www.w3.org/ns/prov#Create'))"/>
+										<xforms:setvalue ref="instance('doc')/dcterms:ProvenanceStatement/prov:wasGeneratedBy/prov:Activity/dcterms:type"
+											>manual</xforms:setvalue>
+										<xforms:setvalue
+											ref="instance('doc')/dcterms:ProvenanceStatement/prov:wasGeneratedBy/prov:Activity/prov:wasAssociatedWith/@rdf:resource"
+											value="concat('http://nomisma.org/editor/', instance('control-instance')/username)"/>
+										<xforms:setvalue ref="instance('doc')/dcterms:ProvenanceStatement/prov:wasGeneratedBy/prov:Activity/prov:atTime"
+											value="current-dateTime()"/>
+										
+										<!-- toggle interface -->
+										<xforms:toggle case="edit-id"/>
+									</xforms:action>
+								</xforms:trigger>
 							</div>
 						</xforms:case>
 						<xforms:case id="load-error">
@@ -1057,32 +1058,42 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 									<xforms:trigger bind="save-trigger">
 										<xforms:label><span class="glyphicon glyphicon-floppy-disk"></span>Save</xforms:label>
 										<xforms:action ev:event="DOMActivate">
-
+											
+											
 											<!-- if the ID is not new, then evaluate whether a provenance should be added -->
 											<xforms:action if="instance('control-instance')/new-id = false()">
 												<!-- set hash -->
 												<xforms:setvalue ref="instance('control-instance')/content_after_hash"
 													value="digest(normalize-space(saxon:serialize(instance('doc'), 'xml')), 'MD5', 'hex')"/>
 
+												<!-- if the hashes are the same, then update the status -->
+												<xforms:action
+													if="instance('control-instance')/content_before_hash = instance('control-instance')/content_after_hash">
+													<xforms:setvalue ref="instance('control-instance')/status">The content is unchanged, so the ID has not been saved and updated online.</xforms:setvalue>
+												</xforms:action>
+												
 												<!-- if the hashed content has changed since the file was loaded -->
 												<xforms:action
 													if="not(instance('control-instance')/content_before_hash = instance('control-instance')/content_after_hash)">
-													<!-- insert a Modify Activity into the provenance -->
-													<xforms:insert context="instance('doc')/dcterms:ProvenanceStatement" nodeset="./child::node()[last()]"
+													
+													<!-- insert a Modify Activity into the provenance, but only if the session-id isn't set -->													
+													<xforms:action if="not(string(instance('control-instance')/session-id))">
+														<xforms:insert context="instance('doc')/dcterms:ProvenanceStatement" nodeset="./child::node()[last()]"
 														origin="xforms:element('prov:activity')"/>
-													<xforms:insert context="instance('doc')/dcterms:ProvenanceStatement/prov:activity[last()]"
-														origin="instance('activity-template')"/>
-													<xforms:insert context="instance('doc')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity"
-														origin="xforms:element('rdf:type', xforms:attribute('rdf:resource', 'http://www.w3.org/ns/prov#Modify'))"/>
-													<xforms:setvalue
-														ref="instance('doc')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity/dcterms:type"
-														>manual</xforms:setvalue>
-													<xforms:setvalue
-														ref="instance('doc')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity/prov:wasAssociatedWith/@rdf:resource"
-														value="concat('http://nomisma.org/editor/', instance('control-instance')/username)"/>
-													<xforms:setvalue
-														ref="instance('doc')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity/prov:atTime"
-														value="current-dateTime()"/>
+														<xforms:insert context="instance('doc')/dcterms:ProvenanceStatement/prov:activity[last()]"
+															origin="instance('activity-template')"/>
+														<xforms:insert context="instance('doc')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity"
+															origin="xforms:element('rdf:type', xforms:attribute('rdf:resource', 'http://www.w3.org/ns/prov#Modify'))"/>
+														<xforms:setvalue
+															ref="instance('doc')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity/dcterms:type"
+															>manual</xforms:setvalue>
+														<xforms:setvalue
+															ref="instance('doc')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity/prov:wasAssociatedWith/@rdf:resource"
+															value="concat('http://nomisma.org/editor/', instance('control-instance')/username)"/>
+														<xforms:setvalue
+															ref="instance('doc')/dcterms:ProvenanceStatement/prov:activity[last()]/prov:Activity/prov:atTime"
+															value="current-dateTime()"/>
+													</xforms:action>
 													
 													<!-- perform CRUD only for modified IDs -->
 													<!-- save file to the filesystem -->
@@ -1111,12 +1122,9 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 													<!-- set new hash -->
 													<xforms:setvalue ref="instance('control-instance')/content_before_hash"
 														value="digest(normalize-space(saxon:serialize(instance('doc'), 'xml')), 'MD5', 'hex')"/>
-												</xforms:action>
-												
-												<!-- if the hashes are the same, then update the status -->
-												<xforms:action
-													if="instance('control-instance')/content_before_hash = instance('control-instance')/content_after_hash">
-													<xforms:setvalue ref="instance('control-instance')/status">The content is unchanged, so the ID has not been saved and updated online.</xforms:setvalue>
+													
+													<!-- set session id-->
+													<xforms:setvalue ref="instance('control-instance')/session-id" value="xxforms:document-id()"/>
 												</xforms:action>
 											</xforms:action>
 											
@@ -1147,11 +1155,12 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 												
 												<!-- set new-id to false -->
 												<xforms:setvalue ref="instance('control-instance')/new-id" value="false()"/>
+												<!-- set session id to prevent Modify events from being inserted after the initial save -->
+												<xforms:setvalue ref="instance('control-instance')/session-id" value="xxforms:document-id()"/>
 												<!-- set new hash -->
 												<xforms:setvalue ref="instance('control-instance')/content_before_hash"
 													value="digest(normalize-space(saxon:serialize(instance('doc'), 'xml')), 'MD5', 'hex')"/>
-											</xforms:action>
-											
+											</xforms:action>											
 										</xforms:action>
 									</xforms:trigger>
 									<xforms:trigger bind="deprecate-trigger">
