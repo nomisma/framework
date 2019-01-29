@@ -1290,7 +1290,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 										<!-- set the current dateTime into a variable that will apply to all IDs 
 											(previous version resulting in different time for each ID in spreadsheet -->
 										
-										<xforms:var name="dateTime" select="curent-dateTime()"/>
+										<xforms:var name="dateTime" select="current-dateTime()"/>
 										
 										<!-- begin processing the spreadsheet into RDF -->
 										<xforms:action xxforms:iterate="instance('feed')//atom:entry">
