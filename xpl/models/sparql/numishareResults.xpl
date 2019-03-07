@@ -17,16 +17,7 @@
 	</p:processor>
 	
 	<!-- first validate -->
-	<p:choose href="#request">
-		<p:when test="not(string(/request/parameters/parameter[name='baseUri']/value))">
-			<p:processor name="oxf:identity">
-				<p:input name="data">
-					<error>baseUri parameter is required.</error>
-				</p:input>
-				<p:output name="data" ref="data"/>
-			</p:processor>
-			
-		</p:when>
+	<p:choose href="#request">		
 		<p:when test="not(string(/request/parameters/parameter[name='identifiers']/value))">
 			<p:processor name="oxf:identity">
 				<p:input name="data">
@@ -42,7 +33,6 @@
 				<p:input name="config">
 					<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 						<xsl:param name="identifiers" select="/request/parameters/parameter[name='identifiers']/value"/>
-						<xsl:param name="baseUri" select="/request/parameters/parameter[name='baseUri']/value"/>
 						
 						<xsl:template match="/">
 							<identifiers>
@@ -101,7 +91,19 @@ UNION { ?contents a dcmitype:Collection ;
 							
 							
 							<xsl:template match="/">
-								<xsl:variable name="uri" select="concat($baseUri, .)"/>
+								<xsl:variable name="uri">
+									<xsl:choose>
+										<xsl:when test="string($baseUri)">
+											<xsl:value-of select="concat($baseUri, .)"/>
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:if test="matches(., '^https?://')">
+												<xsl:value-of select="."/>
+											</xsl:if>
+										</xsl:otherwise>
+									</xsl:choose>
+								</xsl:variable>
+								
 								<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'typeUri', $uri))), '&amp;output=xml')"/>
 								
 								<config>
@@ -170,7 +172,19 @@ OPTIONAL { ?object nmo:hasReverse ?reverse .
 							
 							
 							<xsl:template match="/">
-								<xsl:variable name="uri" select="concat($baseUri, .)"/>
+								<xsl:variable name="uri">
+									<xsl:choose>
+										<xsl:when test="string($baseUri)">
+											<xsl:value-of select="concat($baseUri, .)"/>
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:if test="matches(., '^https?://')">
+												<xsl:value-of select="."/>
+											</xsl:if>
+										</xsl:otherwise>
+									</xsl:choose>
+								</xsl:variable>
+								
 								<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'typeUri', $uri))), '&amp;output=xml')"/>
 								
 								<config>

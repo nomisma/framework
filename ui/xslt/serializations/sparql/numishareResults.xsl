@@ -20,7 +20,7 @@
 	</xsl:template>
 
 	<xsl:template match="content" mode="xml">
-		<group id="{identifier}">
+		<group id="{tokenize(identifier, '/')[last()]}">
 			<!-- display counts -->
 			<xsl:apply-templates select="res:sparql[1]/res:results" mode="counts"/>
 
@@ -29,7 +29,7 @@
 		</group>
 	</xsl:template>
 
-	<xsl:template match="content" mode="json"> { "id": "<xsl:value-of select="identifier"/>", <xsl:apply-templates select="res:sparql[1]/res:results"
+	<xsl:template match="content" mode="json"> { "id": "<xsl:value-of select="tokenize(identifier, '/')[last()]"/>", <xsl:apply-templates select="res:sparql[1]/res:results"
 			mode="counts"/>
 		<xsl:apply-templates select="res:sparql[2]/res:results[count(res:result) &gt; 0]" mode="images"/> } <xsl:if test="not(position() = last())">
 			<xsl:text>,</xsl:text>
