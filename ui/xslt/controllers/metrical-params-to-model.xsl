@@ -19,11 +19,9 @@
 				
 				<xsl:choose>
 					<xsl:when test="$property = 'portrait' or $property='deity'">
-						<triple s="" p="nmo:hasObverse" o="?obv"/>
-						<triple s="" p="nmo:hasReverse" o="?rev"/>
 						<union>
-							<triple s="?obv" p="nmo:hasPortrait" o="{$object}"/>
-							<triple s="?rev" p="nmo:hasPortrait" o="{$object}"/>
+							<triple s="" p="nmo:hasObverse/nmo:hasPortrait" o="{$object}"/>
+							<triple s="" p="nmo:hasReverse/nmo:hasPortrait" o="{$object}"/>
 						</union>
 					</xsl:when>
 					<xsl:when test="$property = 'from'">

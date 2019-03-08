@@ -95,11 +95,9 @@
 
 								<xsl:choose>
 									<xsl:when test="$property = 'portrait' or $property='deity'">
-										<triple s="?coinType" p="nmo:hasObverse" o="?obv"/>
-										<triple s="?coinType" p="nmo:hasReverse" o="?rev"/>
 										<union>
-											<triple s="?obv" p="nmo:hasPortrait" o="{$object}"/>
-											<triple s="?rev" p="nmo:hasPortrait" o="{$object}"/>
+											<triple s="?coinType" p="nmo:hasObverse/nmo:hasPortrait" o="{$object}"/>
+											<triple s="?coinType" p="nmo:hasReverse/nmo:hasPortrait" o="{$object}"/>
 										</union>
 									</xsl:when>
 									<xsl:when test="$property = 'from'">
@@ -138,12 +136,9 @@
 							<xsl:choose>
 								<xsl:when test="$dist='portrait' or $dist='deity'">
 									<xsl:variable name="distClass" select="if ($dist='portrait') then 'foaf:Person' else 'wordnet:Deity'"/>
-
-									<triple s="?coinType" p="nmo:hasObverse" o="?obv"/>
-									<triple s="?coinType" p="nmo:hasReverse" o="?rev"/>
 									<union>
-										<triple s="?obv" p="nmo:hasPortrait" o="?dist"/>
-										<triple s="?rev" p="nmo:hasPortrait" o="?dist"/>
+										<triple s="?coinType" p="nmo:hasObverse/nmo:hasPortrait" o="?dist"/>
+										<triple s="?coinType" p="nmo:hasReverse/nmo:hasPortrait" o="?dist"/>
 									</union>
 									<triple s="?dist" p="a" o="{$distClass}"/>
 								</xsl:when>

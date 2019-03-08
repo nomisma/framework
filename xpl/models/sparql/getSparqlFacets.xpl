@@ -65,13 +65,10 @@
 							<!-- process filters -->
 							<xsl:choose>
 								<xsl:when test="$property = 'portrait' or $property='deity'">
-									<xsl:variable name="distClass" select="if ($facet='portrait') then 'foaf:Person' else 'wordnet:Deity'"/>									
-									<triple s="?coinType" p="nmo:hasObverse" o="?obv"/>
-									<triple s="?coinType" p="nmo:hasReverse" o="?rev"/>
 									<union>
-										<triple s="?obv" p="nmo:hasPortrait" o="{$object}"/>
-										<triple s="?rev" p="nmo:hasPortrait" o="{$object}"/>
-									</union>																		
+										<triple s="?coinType" p="nmo:hasObverse/nmo:hasPortrait" o="{$object}"/>
+										<triple s="?coinType" p="nmo:hasReverse/nmo:hasPortrait" o="{$object}"/>
+									</union>																							
 								</xsl:when>
 								<xsl:when test="$property = 'from'">
 									<xsl:if test="$object castable as xs:integer">
@@ -113,12 +110,10 @@
 							</xsl:when>
 							<xsl:when test="$facet='portrait' or $facet='deity'">
 								<xsl:variable name="distClass" select="if ($facet='portrait') then 'foaf:Person' else 'wordnet:Deity'"/>									
-								<triple s="?coinType" p="nmo:hasObverse" o="?obv"/>
-								<triple s="?coinType" p="nmo:hasReverse" o="?rev"/>
 								<union>
-									<triple s="?obv" p="nmo:hasPortrait" o="?facet"/>
-									<triple s="?rev" p="nmo:hasPortrait" o="?facet"/>
-								</union>	
+									<triple s="?coinType" p="nmo:hasObverse/nmo:hasPortrait" o="?facet"/>
+									<triple s="?coinType" p="nmo:hasReverse/nmo:hasPortrait" o="?facet"/>
+								</union>
 								<triple s="?facet" p="a" o="{$distClass}"/>				
 							</xsl:when>
 							<xsl:otherwise>
