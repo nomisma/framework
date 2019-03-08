@@ -386,7 +386,7 @@ function parseFilter(container) {
     var pair;
     
     //only generate filter if both the property and object have values
-    if (container.children('.add-filter-prop').val().length > 0 && container.children('.prop-container').children('.add-filter-object').val().length > 0) {
+    if (container.children('.add-filter-prop').val().length > 0) {
         //evaluate dates vs. facets
         if (container.children('.add-filter-prop').val() == 'to' || container.children('.add-filter-prop').val() == 'from') {
             var year = container.children('.prop-container').children('span').children('input.year').val();
