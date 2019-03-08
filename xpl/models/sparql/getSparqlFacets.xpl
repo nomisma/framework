@@ -43,6 +43,8 @@
 		<p:input name="data" href="../../../config.xml"/>
 		<p:input name="config">
 			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+				<xsl:include href="../../../ui/xslt/controllers/sparql-metamodel.xsl"/>
+				
 				<!-- request parameters -->
 				<xsl:param name="filter" select="doc('input:request')/request/parameters/parameter[name='filter']/value"/>
 				<xsl:param name="facet" select="doc('input:request')/request/parameters/parameter[name='facet']/value"/>
@@ -127,7 +129,7 @@
 				</xsl:variable>
 				
 				<xsl:variable name="statementsSPARQL">
-					<xsl:apply-templates select="$statements/triple|$statements/union"/>
+					<xsl:apply-templates select="$statements/*"/>
 				</xsl:variable>
 
 				<xsl:variable name="service">
@@ -145,24 +147,6 @@
 						<content-type>application/xml</content-type>
 						<encoding>utf-8</encoding>
 					</config>
-				</xsl:template>
-				
-				<xsl:template match="triple">
-					<xsl:value-of select="concat(@s, ' ', @p, ' ', @o, '.')"/>
-					<xsl:if test="not(parent::union)">
-						<xsl:text>&#x0A;</xsl:text>
-					</xsl:if>
-				</xsl:template>
-				
-				<xsl:template match="union">
-					<xsl:for-each select="triple">
-						<xsl:if test="position() &gt; 1">
-							<xsl:text>UNION </xsl:text>
-						</xsl:if>
-						<xsl:text>{</xsl:text>
-						<xsl:apply-templates select="self::node()"/>
-						<xsl:text>}&#x0A;</xsl:text>
-					</xsl:for-each>
 				</xsl:template>
 			</xsl:stylesheet>
 		</p:input>
