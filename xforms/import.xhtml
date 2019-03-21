@@ -37,6 +37,7 @@
 					<import-trigger>false</import-trigger>
 					<import-wikidata-labels>true</import-wikidata-labels>
 					<import-wikidata-uris>true</import-wikidata-uris>
+					<overwrite-definitions>false</overwrite-definitions>
 					<new_id>true</new_id>
 					<content_before_hash></content_before_hash>
 					<content_after_hash></content_after_hash>
@@ -368,6 +369,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 				<xforms:bind nodeset="import-trigger" id="import-trigger" type="xs:boolean" relevant=". = true()"/>
 				<xforms:bind nodeset="import-wikidata-labels" type="xs:boolean"/>
 				<xforms:bind nodeset="import-wikidata-uris" type="xs:boolean"/>
+				<xforms:bind nodeset="overwrite-definitions" type="xs:boolean"/>
 				<xforms:bind nodeset="new_id" type="xs:boolean"/>
 			</xforms:bind>
 
@@ -793,6 +795,11 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 									<div>
 										<xforms:input ref="instance('control-instance')/import-wikidata-uris">
 											<xforms:label>Matching URIs</xforms:label>
+										</xforms:input>
+									</div>
+									<div>
+										<xforms:input ref="instance('control-instance')/overwrite-definitions">
+											<xforms:label>Overwrite Definitions</xforms:label>
 										</xforms:input>
 									</div>
 								</div>
@@ -1315,11 +1322,32 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 													<xforms:var name="mapping" select="instance('mappings')/mapping[@from=$from]/@to"/>
 													<!-- handle labels, definitions, scopenNote -->
 													<xforms:action
-														if="$mapping = 'skos:prefLabel' or $mapping='skos:definition' or $mapping='skos:altLabel' or $mapping='skos:scopeNote'">
+														if="$mapping = 'skos:prefLabel' or $mapping='skos:altLabel' or $mapping='skos:scopeNote'">
 														<xforms:var name="lang" select="instance('mappings')/mapping[@from=$from]/@lang"/>
 														<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
 															origin="xforms:element($mapping, (xforms:attribute('xml:lang', $lang), $value))"
 															if="not(instance('rdf')/*[1]/*[name()=$mapping][@xml:lang=$lang])"/>
+													</xforms:action>
+													<xforms:action
+														if="$mapping='skos:definition'">
+														<xforms:var name="lang" select="instance('mappings')/mapping[@from=$from]/@lang"/>
+														
+														<xforms:action if="instance('control-instance')/overwrite-definitions = true()">
+															<!-- overwrite definition if there is already a definition with this language -->
+															<xforms:action if="instance('rdf')/*[1]/skos:definition[@xml:lang=$lang]">
+																<xforms:setvalue ref="instance('rdf')/*[1]/skos:definition[@xml:lang=$lang]" value="$value"/>
+															</xforms:action>															
+															<!-- otherwise, insert a new definition -->
+															<xforms:action if="not(instance('rdf')/*[1]/skos:definition[@xml:lang=$lang])">
+																<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
+																	origin="xforms:element($mapping, (xforms:attribute('xml:lang', $lang), $value))"/>
+															</xforms:action>
+														</xforms:action>
+														<xforms:action if="instance('control-instance')/overwrite-definitions = false()">
+															<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
+																origin="xforms:element($mapping, (xforms:attribute('xml:lang', $lang), $value))"
+																if="not(instance('rdf')/*[1]/*[name()=$mapping][@xml:lang=$lang])"/>
+														</xforms:action>
 													</xforms:action>
 													<!-- create URIs for the following simple mappings that go into the skos:Concept object -->
 													<xforms:action
