@@ -22,10 +22,14 @@
 		<p:input name="data" href="../../../config.xml"/>
 		<p:input name="config">
 			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+				<xsl:include href="../../../ui/xslt/controllers/sparql-metamodel.xsl"/>
+
 				<!-- request parameters -->
 				<xsl:param name="uri" select="doc('input:request')/request/parameters/parameter[name='uri']/value"/>
-				<xsl:param name="lang" select="doc('input:request')/request/parameters/parameter[name='lang']/value"/>
-				<xsl:variable name="langStr" select="if (string($lang)) then $lang else 'en'"/>
+				<xsl:param name="langParam" select="doc('input:request')/request/parameters/parameter[name='lang']/value"/>
+
+				<xsl:variable name="lang" select="if (string($langParam)) then $langParam else 'en'"/>
+				<xsl:variable name="prop" select="if (matches($uri, 'https?://')) then concat('&lt;', $uri, '&gt;') else $uri"/>
 
 				<!-- config variables -->
 				<xsl:variable name="sparql_endpoint" select="/config/sparql_query"/>
@@ -35,22 +39,34 @@ PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX nm:       <http://nomisma.org/id/>
 PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>						
-SELECT ?label WHERE {
-%URI% skos:prefLabel ?label FILTER(langMatches(lang(?label), "LANG"))}]]></xsl:variable>
+SELECT ?label ?en_label WHERE {
+%STATEMENTS%
+}]]></xsl:variable>
+
+				<!-- parse query statements into a data object -->
+				<xsl:variable name="statements" as="element()*">
+					<statements>
+						<xsl:choose>
+							<xsl:when test="not($lang = 'en')">
+								<optional>
+									<triple s="{$prop}" p="skos:prefLabel" o="?label" filter="langMatches(lang(?label), &#x022;{$lang}&#x022;)"/>
+								</optional>
+								<triple s="{$prop}" p="skos:prefLabel" o="?en_label" filter="langMatches(lang(?en_label), &#x022;en&#x022;)"/>
+							</xsl:when>
+							<xsl:otherwise>
+								<triple s="{$prop}" p="skos:prefLabel" o="?label" filter="langMatches(lang(?label), &#x022;en&#x022;)"/>
+							</xsl:otherwise>
+						</xsl:choose>
+					</statements>
+				</xsl:variable>
+
+				<xsl:variable name="statementsSPARQL">
+					<xsl:apply-templates select="$statements/*"/>
+				</xsl:variable>
 
 				<xsl:variable name="service">
-					<xsl:choose>
-						<xsl:when test="matches($uri, 'https?://')">
-							<xsl:value-of
-								select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace(replace($query, 'LANG', $langStr), '%URI%', concat('&lt;', $uri, '&gt;')))), '&amp;output=xml')"
-							/>
-						</xsl:when>
-						<xsl:otherwise>
-							<xsl:value-of
-								select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace(replace($query, 'LANG', $langStr), '%URI%', $uri))), '&amp;output=xml')"
-							/>
-						</xsl:otherwise>
-					</xsl:choose>
+					<xsl:value-of
+						select="concat($sparql_endpoint, '?query=', encode-for-uri(replace($query, '%STATEMENTS%', $statementsSPARQL)), '&amp;output=xml')"/>
 				</xsl:variable>
 
 				<xsl:template match="/">

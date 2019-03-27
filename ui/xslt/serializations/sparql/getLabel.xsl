@@ -8,17 +8,17 @@
 		<xsl:choose>
 			<xsl:when test="$format='json'">
 				<xsl:text>{"label":"</xsl:text>
-				<xsl:value-of select="descendant::res:binding[@name='label']/res:literal"/>
+				<xsl:value-of select="if (descendant::res:binding[@name='label']) then descendant::res:binding[@name='label']/res:literal else descendant::res:binding[@name='en_label']/res:literal"/>
 				<xsl:text>"}</xsl:text>
 			</xsl:when>
 			<xsl:when test="$format='jsonp'">
 				<xsl:text>jsonCallback ({"label":"</xsl:text>
-				<xsl:value-of select="descendant::res:binding[@name='label']/res:literal"/>
+				<xsl:value-of select="if (descendant::res:binding[@name='label']) then descendant::res:binding[@name='label']/res:literal else descendant::res:binding[@name='en_label']/res:literal"/>
 				<xsl:text>"})</xsl:text>
 			</xsl:when>
 			<xsl:otherwise>
 				<response>
-					<xsl:value-of select="descendant::res:binding[@name='label']/res:literal"/>
+					<xsl:value-of select="if (descendant::res:binding[@name='label']) then descendant::res:binding[@name='label']/res:literal else descendant::res:binding[@name='en_label']/res:literal"/>
 				</response>
 			</xsl:otherwise>
 		</xsl:choose>		
