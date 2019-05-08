@@ -1,0 +1,7 @@
+<!-- *************************** Crossref Config *********************************
+The username and password must be set to interact with the Crossref API
+-->
+<crossref-config>
+    <username></username>
+    <password></password>
+</crossref-config>

@@ -12,6 +12,9 @@
 	<page path="/nomisma/admin/query/" view="xforms/query.xhtml"/>
 	<page path="/nomisma/admin/" view="xforms/admin.xhtml"/>
 	
+	<!-- interact with Crossref API -->
+	<page path="/nomisma/admin/attach-metadata" view="xpl/xforms/attach-metadata.xpl"/>
+	
 	<!-- Solr -->
 	<page path="/nomisma/admin/all.solr" model="dump/nomisma.org.rdf" view="xpl/views/serializations/rdf/solr.xpl"/>
 	
@@ -52,7 +55,6 @@
 	<page path="/nomisma/(id|editor)/(.*)\.ttl" view="xpl/controllers/call-rdflib.xpl"/>
 	<page path="/nomisma/(id|editor)/(.*)\.jsonld" view="xpl/controllers/call-rdflib.xpl"/>
 	<page path="/nomisma/(id|editor)/(.*)\.solr" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/solr.xpl"/>
-	<page path="/nomisma/editor/(.*)\.xml" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/datacite-xml.xpl"/>
 	<page path="/nomisma/(id|editor)/(.*)" model="xpl/models/rdf/get-id.xpl" view="xpl/controllers/conneg-id.xpl"/>	
 	
 	<!-- map page -->
@@ -95,12 +97,6 @@
 	<!-- **** AJAX **** -->
 	<page path="/nomisma/ajax/listTypes" model="xpl/models/sparql/listTypes.xpl" view="xpl/views/serializations/sparql/listTypes.xpl"/>
 	<page path="/nomisma/ajax/getSparqlFacets" model="xpl/models/sparql/getSparqlFacets.xpl" view="xpl/views/serializations/sparql/getSparqlFacets.xpl"/>
-
-	<!-- **** PROJECT NAMESPACES **** -->
-	<!--<page path="/nomisma/project" model="xpl/controllers/page-redirect.xpl"/>
-	<page path="/nomisma/project/" model="xpl/models/sparql/project.xpl" view="xpl/views/serializations/sparql/project.xpl"/>
-	<page path="/nomisma/project/(.*)\/" model="xpl/models/sparql/project.xpl" view="xpl/views/serializations/sparql/project.xpl"/>
-	<page path="/nomisma/project/(.*)\/(.*)" model="xpl/controllers/project-redirect.xpl"/>-->
 	
 	<!-- **** DATA DUMPS **** -->	
 	<page path="/nomisma/pelagios.void.rdf" view="dump/pelagios.void.rdf"/>
@@ -110,6 +106,9 @@
 	<page path="/nomisma/nomisma.org.ttl" view="xpl/controllers/serialize-dump.xpl"/>
 	<page path="/nomisma/pelagios-objects.void.rdf" model="xpl/models/sparql/pelagios-objects.void.xpl" view="xpl/views/serializations/sparql/pelagios-objects.void.xpl"/>
 	<page path="/nomisma/pelagios-objects\.([0-9]+)\.rdf" model="xpl/models/sparql/pelagios.xpl" view="xpl/views/serializations/sparql/pelagios.xpl"/>
+	
+	<!-- **** CROSSREF DATASET ****-->
+	<page path="/nomisma/crossref\.xml" model="xpl/models/sparql/getEditors.xpl" view="xpl/views/serializations/sparql/crossref.xpl"/>
 	
 	<!-- **** ONTOLOGY **** -->
 	<page path="/nomisma/ontology.rdf" model="xpl/models/rdf/get-rdf-ontology-current.xpl" view="xpl/controllers/serialize-rdfxml.xpl"/>
