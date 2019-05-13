@@ -13,7 +13,7 @@
 	<page path="/nomisma/admin/" view="xforms/admin.xhtml"/>
 	
 	<!-- interact with Crossref API -->
-	<page path="/nomisma/admin/attach-metadata" view="xpl/xforms/attach-metadata.xpl"/>
+	<page path="/nomisma/admin/post-crossref" view="xpl/controllers/post-crossref.xpl"/>
 	
 	<!-- Solr -->
 	<page path="/nomisma/admin/all.solr" model="dump/nomisma.org.rdf" view="xpl/views/serializations/rdf/solr.xpl"/>

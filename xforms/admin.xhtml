@@ -247,16 +247,11 @@ UNION {?s rdf:type skos:Concept FILTER strStarts(str(?s), "http://nomisma.org/ed
 			</xforms:submission>
 			
 			<!-- interact with PHP script in CGI to run multipart/form-data -->
-			<xforms:submission id="post-crossref" serialization="none" method="get" action="/nomisma/admin/attach-metadata?file={instance('crossref-form-data')/fname}"
+			<xforms:submission id="post-crossref" serialization="none" method="get" action="/nomisma/admin/post-crossref"
 				instance="dump" replace="instance">
-				<xforms:header>
-					<xforms:name>User-Agent</xforms:name>
-					<xforms:value>Nomisma.org/XForms</xforms:value>
-				</xforms:header>
-				<xforms:message ev:event="xforms-submit-error" level="modal" value="event('response-body')"></xforms:message>
-				<xforms:action ev:event="xforms-submit-done">
-					<xforms:setvalue ref="instance('status')">Metadata successfully sent to Crossref</xforms:setvalue>
-				</xforms:action>
+				<!--<xforms:message ev:event="xforms-submit-error" level="modal" value="event('response-body')"></xforms:message>-->
+				<xforms:message ev:event="xforms-submit-error" level="modal">Error writing or posting /tmp/crossref.xml to the Crossref API.</xforms:message>
+				<xforms:setvalue ref="instance('control-instance')/status" ev:event="xforms-submit-done">DOIs successfully created or updated to Crossref.</xforms:setvalue>
 			</xforms:submission>
 
 			<!-- ********** XFORMS-MODEL-CONSTRUCT-DONE ********** -->

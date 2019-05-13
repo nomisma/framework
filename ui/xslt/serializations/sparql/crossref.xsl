@@ -26,7 +26,7 @@
 	</xsl:template>
 
 	<xsl:template match="config">
-		<database_metadata>
+		<database_metadata language="en">
 			<titles>
 				<title>
 					<xsl:value-of select="title"/>
@@ -46,7 +46,7 @@
 
 	<!-- process every SPARQL result into a separate dataset -->
 	<xsl:template match="res:result">
-		<dataset>
+		<dataset dataset_type="collection">
 			<contributors>
 				<person_name sequence="first" contributor_role="author">
 					<given_name>
@@ -55,7 +55,6 @@
 					<surname>
 						<xsl:value-of select="substring-after(res:binding[@name = 'name']/res:literal, ' ')"/>
 					</surname>
-					<format>application/rdf+xml</format>
 					<xsl:if test="res:binding[@name = 'orcid']">
 						<ORCID>
 							<xsl:value-of select="res:binding[@name = 'orcid']/res:uri"/>
@@ -63,9 +62,13 @@
 					</xsl:if>
 				</person_name>
 			</contributors>
+			<titles>
+				<title>Contributions of <xsl:value-of select="res:binding[@name = 'name']/res:literal"/> to <xsl:value-of select="doc('input:config-xml')/config/title"/></title>
+			</titles>
+			<format>application/rdf+xml</format>
 			<doi_data>
 				<doi>
-					<xsl:value-of select="concat(doc('input:config-xml')/config/crossref/doi_prefix, '/nomisma.org:', tokenize(res:binding[@name = 'editor']/res:uri, '/')[last()])"
+					<xsl:value-of select="concat(doc('input:config-xml')/config/crossref/doi_prefix, '/', digest:md5Hex(string(res:binding[@name = 'editor']/res:uri)))"
 					/>
 				</doi>
 				<resource>
