@@ -11,7 +11,12 @@
             <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
                 
                 <xsl:template match="/">
-                    <xsl:variable name="api">https://test.crossref.org/servlet/deposit</xsl:variable>
+                    <xsl:variable name="api">
+                        <xsl:choose>
+                            <xsl:when test="/crossref-config/api = 'dev'">https://test.crossref.org/servlet/deposit</xsl:when>
+                            <xsl:when test="/crossref-config/api = 'prod'">https://doi.crossref.org/servlet/deposit</xsl:when>
+                        </xsl:choose>
+                    </xsl:variable>
                     <xsl:variable name="username" select="/crossref-config/username"/>				
                     <xsl:variable name="password" select="/crossref-config/password"/>
                     
