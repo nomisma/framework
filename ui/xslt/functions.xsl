@@ -79,6 +79,22 @@
 						</xsl:matching-substring>
 					</xsl:analyze-string>
 				</xsl:when>
+				<xsl:when test="contains(., 'authPerson')">
+					<xsl:analyze-string select="." regex="authPerson\s(nm:.*)">
+						<xsl:matching-substring>
+							<xsl:text>Authority: </xsl:text>
+							<xsl:value-of select="nomisma:getLabel(regex-group(1))"/>
+						</xsl:matching-substring>
+					</xsl:analyze-string>
+				</xsl:when>
+				<xsl:when test="contains(., 'authCorp')">
+					<xsl:analyze-string select="." regex="authCorp\s(nm:.*)">
+						<xsl:matching-substring>
+							<xsl:text>State: </xsl:text>
+							<xsl:value-of select="nomisma:getLabel(regex-group(1))"/>
+						</xsl:matching-substring>
+					</xsl:analyze-string>
+				</xsl:when>
 				<xsl:when test="matches(normalize-space(.), '^from\s')">
 					<xsl:analyze-string select="." regex="from\s(.*)">
 						<xsl:matching-substring>
