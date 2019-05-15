@@ -676,7 +676,13 @@ function validate(formId) {
 }
 
 function renderDistChart(path, urlParams) {
-    var distLabel = $('select[name=dist] option:selected').text().toLowerCase();
+    if (urlParams[ 'dist'].indexOf('nmo:has') != -1) {
+        var distValue = urlParams[ 'dist'].replace('nmo:has', '').toLowerCase();
+    } else {
+        var distValue = urlParams[ 'dist'];
+    }
+    var distLabel = $('select[name=dist] option:selected').text();
+    
     if (urlParams[ 'type'] == 'count') {
         var y = 'count';
     } else {
@@ -688,7 +694,9 @@ function renderDistChart(path, urlParams) {
         $('#distribution .chart-container').removeClass('hidden');
         $('#distribution-chart').html('');
         $('#distribution-chart').height(600);
-        var visualization = d3plus.viz().container("#distribution-chart").data(data).type("bar").id('subset').x(distLabel).y(y).legend({
+        var visualization = d3plus.viz().container("#distribution-chart").data(data).type("bar").id('subset').x({
+            'value': distValue, 'label': distLabel
+        }).y(y).legend({
             "value": true, "size": 50
         }).color({
             "value": "subset"

@@ -440,7 +440,8 @@
 
 			<xsl:variable name="properties" as="element()*">
 				<properties>
-					<prop value="nmo:hasAuthority" class="foaf:Person|foaf:Organization">Authority</prop>
+					<prop value="authPerson" class="foaf:Person">Authority (Person)</prop>
+					<prop value="authCorp" class="foaf:Organization">Authority (State)</prop>
 					<prop value="nmo:hasStatedAuthority" class="foaf:Person|foaf:Organization">Authority, Stated</prop>
 					<prop value="deity" class="">Deity</prop>
 					<prop value="nmo:hasDenomination" class="nmo:Denomination">Denomination</prop>
@@ -448,7 +449,7 @@
 					<prop value="nmo:hasManufacture" class="nmo:Manufacture">Manufacture</prop>
 					<prop value="nmo:hasMaterial" class="nmo:Material">Material</prop>
 					<prop value="nmo:hasMint" class="nmo:Mint">Mint</prop>
-					<prop value="nmo:representsObjectType" class="nmo:ObjectType">ObjectType</prop>
+					<prop value="nmo:representsObjectType" class="nmo:ObjectType">Object Type</prop>
 					<prop value="portrait" class="">Portrait</prop>
 					<prop value="nmo:hasRegion" class="nmo:Region">Region</prop>
 				</properties>

@@ -100,6 +100,20 @@
 											<triple s="?coinType" p="nmo:hasReverse/nmo:hasPortrait" o="{$object}"/>
 										</union>
 									</xsl:when>
+									<xsl:when test="$property = 'authPerson'">
+										<triple s="?coinType" p="nmo:hasAuthority" o="{$object}"/>
+									</xsl:when>
+									<xsl:when test="$property = 'authCorp'">
+										<union>
+											<group>
+												<triple s="?coinType" p="nmo:hasAuthority" o="{$object}"/>
+											</group>
+											<group>
+												<triple s="?coinType" p="nmo:hasAuthority" o="?authority"/>
+												<triple s="?authority" p="org:hasMembership/org:organization" o="{$object}"/>
+											</group>
+										</union>
+									</xsl:when>
 									<xsl:when test="$property = 'from'">
 										<xsl:if test="$object castable as xs:integer">
 											<xsl:variable name="gYear" select="format-number(number($object), '0000')"/>
@@ -141,6 +155,22 @@
 										<triple s="?coinType" p="nmo:hasReverse/nmo:hasPortrait" o="?dist"/>
 									</union>
 									<triple s="?dist" p="a" o="{$distClass}"/>
+								</xsl:when>
+								<xsl:when test="$dist='authPerson'">
+									<triple s="?coinType" p="nmo:hasAuthority" o="?dist"/>
+									<triple s="?dist" p="a" o="foaf:Person"/>
+								</xsl:when>
+								<xsl:when test="$dist='authCorp'">
+									<union>
+										<group>
+											<triple s="?coinType" p="nmo:hasAuthority" o="?dist"/>
+										</group>
+										<group>
+											<triple s="?coinType" p="nmo:hasAuthority" o="?authority"/>
+											<triple s="?authority" p="org:hasMembership/org:organization" o="?dist"/>
+										</group>
+									</union>
+									<triple s="?dist" p="a" o="foaf:Organization"/>
 								</xsl:when>
 								<xsl:otherwise>
 									<triple s="?coinType" p="{$dist}" o="?dist"/>
