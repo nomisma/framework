@@ -1,38 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:nomisma="http://nomisma.org/"
-	exclude-result-prefixes="#all">
+	xmlns:numishare="https://github.com/ewg118/numishare" exclude-result-prefixes="#all">
 	<xsl:include href="metamodel-templates.xsl"/>
 	<xsl:include href="sparql-metamodel.xsl"/>
 
 	<!-- request parameters -->
-	<xsl:param name="filter" select="doc('input:filter')/query"/>
-	<xsl:param name="measurement" select="doc('input:request')/request/parameters/parameter[name = 'measurement']/value"/>
-	<xsl:param name="format" select="doc('input:request')/request/parameters/parameter[name = 'format']/value"/>
+	<xsl:param name="filter" select="doc('input:request')/request/parameters/parameter[name = 'filter']/value"/>
+	<xsl:param name="facet" select="doc('input:request')/request/parameters/parameter[name = 'facet']/value"/>
 
 	<!-- config variables -->
 	<xsl:variable name="sparql_endpoint" select="/config/sparql_query"/>
 	<xsl:variable name="query" select="doc('input:query')"/>
 
-	<!-- parse query statements into a data object -->
 	<xsl:variable name="statements" as="element()*">
 		<statements>
-			<union>
-				<group>
-					<xsl:call-template name="nomisma:filterToMetamodel">
-						<xsl:with-param name="subject">?coinType</xsl:with-param>
-						<xsl:with-param name="filter" select="$filter"/>
-					</xsl:call-template>
-					<triple s="?coin" p="nmo:hasTypeSeriesItem" o="?coinType"/>
-				</group>
-				<group>
-					<xsl:call-template name="nomisma:filterToMetamodel">
-						<xsl:with-param name="subject">?coin</xsl:with-param>
-						<xsl:with-param name="filter" select="$filter"/>
-					</xsl:call-template>
-				</group>
-			</union>
-			<!-- parse measurement -->
-			<triple s="?coin" p="{$measurement}" o="?measurement"/>
+			<triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
+
+			<!-- parse filters -->
+			<xsl:call-template name="nomisma:filterToMetamodel">
+				<xsl:with-param name="subject">?coinType</xsl:with-param>
+				<xsl:with-param name="filter" select="$filter"/>
+			</xsl:call-template>
+
+			<!-- facet -->
+			<xsl:call-template name="nomisma:distToMetamodel">
+				<xsl:with-param name="object">?facet</xsl:with-param>
+				<xsl:with-param name="dist" select="$facet"/>
+			</xsl:call-template>
 		</statements>
 	</xsl:variable>
 
@@ -53,5 +47,4 @@
 			<encoding>utf-8</encoding>
 		</config>
 	</xsl:template>
-	
 </xsl:stylesheet>

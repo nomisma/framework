@@ -24,7 +24,7 @@
 			<xsl:text>UNION </xsl:text>
 		</xsl:if>
 		<xsl:text>{</xsl:text>
-		<xsl:apply-templates select="triple"/>
+		<xsl:apply-templates/>
 		<xsl:text>}&#x0A;</xsl:text>
 	</xsl:template>
 	

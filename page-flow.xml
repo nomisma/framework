@@ -75,6 +75,7 @@
 	<page path="/nomisma/apis/getLabel" model="xpl/models/sparql/getLabel.xpl" view="xpl/views/serializations/sparql/getLabel.xpl"/>
 	<page path="/nomisma/apis/getDistribution" model="xpl/models/sparql/getDistribution.xpl" view="xpl/controllers/sparql/visualization.xpl"/>
 	<page path="/nomisma/apis/getMetrical" model="xpl/models/sparql/getMetrical.xpl" view="xpl/controllers/sparql/visualization.xpl"/>
+	<page path="/nomisma/apis/getDateRange" model="xpl/models/sparql/getDateRange.xpl" view="xpl/views/serializations/sparql/getDateRange.xpl"/>
 	<!--<page path="/nomisma/apis/getCoins" view="xpl/models/sparql/getCoins.xpl"/>-->
 	<page path="/nomisma/apis/getMints" model="xpl/models/sparql/getMints.xpl" view="xpl/views/serializations/sparql/geojson.xpl"/>
 	<page path="/nomisma/apis/getFindspots" model="xpl/models/sparql/getFindspots.xpl" view="xpl/views/serializations/sparql/geojson.xpl"/>

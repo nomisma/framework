@@ -4,6 +4,6 @@ API should be 'dev' or 'prod'. The URL is set within xpl/controllers/post-crossr
 -->
 <crossref-config>
     <api>dev</api>
-    <username></username>
-    <password></password>
+    <username>numis</username>
+    <password>ans_81</password>
 </crossref-config>

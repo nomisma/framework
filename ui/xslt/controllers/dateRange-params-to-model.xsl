@@ -3,36 +3,27 @@
 	exclude-result-prefixes="#all">
 	<xsl:include href="metamodel-templates.xsl"/>
 	<xsl:include href="sparql-metamodel.xsl"/>
+	<xsl:include href="../functions.xsl"/>
 
 	<!-- request parameters -->
 	<xsl:param name="filter" select="doc('input:filter')/query"/>
-	<xsl:param name="measurement" select="doc('input:request')/request/parameters/parameter[name = 'measurement']/value"/>
-	<xsl:param name="format" select="doc('input:request')/request/parameters/parameter[name = 'format']/value"/>
 
 	<!-- config variables -->
-	<xsl:variable name="sparql_endpoint" select="/config/sparql_query"/>
+	<xsl:variable name="sparql_endpoint" select="/config/sparql_endpoint"/>
 	<xsl:variable name="query" select="doc('input:query')"/>
 
 	<!-- parse query statements into a data object -->
 	<xsl:variable name="statements" as="element()*">
 		<statements>
-			<union>
-				<group>
-					<xsl:call-template name="nomisma:filterToMetamodel">
-						<xsl:with-param name="subject">?coinType</xsl:with-param>
-						<xsl:with-param name="filter" select="$filter"/>
-					</xsl:call-template>
-					<triple s="?coin" p="nmo:hasTypeSeriesItem" o="?coinType"/>
-				</group>
-				<group>
-					<xsl:call-template name="nomisma:filterToMetamodel">
-						<xsl:with-param name="subject">?coin</xsl:with-param>
-						<xsl:with-param name="filter" select="$filter"/>
-					</xsl:call-template>
-				</group>
-			</union>
-			<!-- parse measurement -->
-			<triple s="?coin" p="{$measurement}" o="?measurement"/>
+			<!-- process each SPARQL query fragments -->
+			<xsl:call-template name="nomisma:filterToMetamodel">
+				<xsl:with-param name="subject">?coinType</xsl:with-param>
+				<xsl:with-param name="filter" select="$filter"/>
+			</xsl:call-template>
+
+			<!-- insert start and end dates -->
+			<triple s="?coinType" p="nmo:hasStartDate" o="?start"/>
+			<triple s="?coinType" p="nmo:hasEndDate" o="?end"/>
 		</statements>
 	</xsl:variable>
 
@@ -53,5 +44,4 @@
 			<encoding>utf-8</encoding>
 		</config>
 	</xsl:template>
-	
 </xsl:stylesheet>
