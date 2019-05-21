@@ -133,13 +133,18 @@
 				</xsl:if>
 
 				<!-- display optional date range last -->
-				<div>
+				<div class="form-group">
 					<h4>Date Range</h4>
 					<p>You may select both a start and end date to display change in measurement(s) over time in the form of a line chart. An average will be taken for the selected
 						interval over the entire duration.</p>
 					<div class="bg-danger text-danger measurementRange-alert danger-box hidden">
 						<span class="glyphicon glyphicon-exclamation-sign"/>
 						<strong>Alert:</strong> Inputted date range is invalid and/or interval is not set.</div>
+
+					<div class="getDateRange-container hidden" style="margin-bottom:15px">
+						<button class="btn btn-default" id="getDateRange">Calculate Range</button>
+						<span class="hidden text-muted"><img src="{$display_path}ui/images/ajax-loader.gif" alt="loading"/> Automatically calculating date range based on existing queries.</span>
+					</div>
 
 					<div class="form-inline" id="measurementRange-container">
 						<input type="number" class="form-control year" id="fromYear" min="1" step="1" placeholder="Year">

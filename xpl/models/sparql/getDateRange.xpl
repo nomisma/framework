@@ -18,16 +18,11 @@
 		<p:output name="data" id="request"/>
 	</p:processor>
 
-	<p:processor name="oxf:pipeline">
-		<p:input name="config" href="../config.xpl"/>
-		<p:output name="data" id="config"/>
-	</p:processor>
-
 	<!-- get query from a text file on disk -->
 	<p:processor name="oxf:url-generator">
 		<p:input name="config">
 			<config>
-				<url>oxf:/apps/numishare/ui/sparql/get-dates-for-query.sparql</url>
+				<url>oxf:/apps/nomisma/ui/sparql/get-dates-for-query.sparql</url>
 				<content-type>text/plain</content-type>
 				<encoding>utf-8</encoding>
 			</config>
@@ -66,6 +61,7 @@
 						</xsl:for-each>
 					</queries>
 				</xsl:template>
+				
 			</xsl:stylesheet>
 		</p:input>
 		<p:output name="data" id="compare-queries"/>
@@ -77,7 +73,7 @@
 			<p:input name="filter" href="current()"/>
 			<p:input name="query" href="#query-document"/>
 			<p:input name="request" href="#request"/>
-			<p:input name="data" href="#config"/>
+			<p:input name="data" href="../../../config.xml"/>
 			<p:input name="config" href="../../../ui/xslt/controllers/dateRange-params-to-model.xsl"/>
 			<p:output name="data" id="compare-url-generator-config"/>
 		</p:processor>

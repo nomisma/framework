@@ -3,13 +3,12 @@
 	exclude-result-prefixes="#all">
 	<xsl:include href="metamodel-templates.xsl"/>
 	<xsl:include href="sparql-metamodel.xsl"/>
-	<xsl:include href="../functions.xsl"/>
 
 	<!-- request parameters -->
 	<xsl:param name="filter" select="doc('input:filter')/query"/>
 
 	<!-- config variables -->
-	<xsl:variable name="sparql_endpoint" select="/config/sparql_endpoint"/>
+	<xsl:variable name="sparql_endpoint" select="/config/sparql_query"/>
 	<xsl:variable name="query" select="doc('input:query')"/>
 
 	<!-- parse query statements into a data object -->
