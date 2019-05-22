@@ -387,8 +387,8 @@ $(document).ready(function () {
     
     //delete dataset query
     $(' .compare-master-container').on('click', '.compare-container h4 small .remove-dataset', function () {
-        $(this).closest('.compare-container').remove();
         var formId = $(this).closest('form').attr('id');
+        $(this).closest('.compare-container').remove();
         validate(formId);
         return false;
     });
@@ -718,14 +718,14 @@ function validate(formId) {
                 $('#' + formId).children('input[name=interval]').remove();
             }
         }
-         //enable the button
+        //enable the button
         $('#' + formId).children('.visualize-submit').prop("disabled", false);
         
         //show the button to automatically generate the date range for the given queries.
         $('.getDateRange-container').removeClass('hidden');
     } else {
         $('#' + formId).children('.visualize-submit').prop("disabled", true);
-         $('.getDateRange-container').addClass('hidden');
+        $('.getDateRange-container').addClass('hidden');
     }
 }
 
