@@ -2,8 +2,8 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/"
 	xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/"
-	xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:org="http://www.w3.org/ns/org#" xmlns:nomisma="http://nomisma.org/" xmlns:nmo="http://nomisma.org/ontology#"
-	xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" exclude-result-prefixes="#all" version="2.0">
+	xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:org="http://www.w3.org/ns/org#" xmlns:nomisma="http://nomisma.org/"
+	xmlns:nmo="http://nomisma.org/ontology#" xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" exclude-result-prefixes="#all" version="2.0">
 
 	<!-- distribution params -->
 	<xsl:param name="dist" select="doc('input:request')/request/parameters/parameter[name = 'dist']/value"/>
@@ -24,7 +24,7 @@
 		<xsl:if test="$mode = 'record'">
 			<hr/>
 		</xsl:if>
-		
+
 		<h3>
 			<xsl:text>Measurement Analysis</xsl:text>
 			<xsl:if test="$mode = 'record'">
@@ -107,10 +107,10 @@
 				<xsl:if test="$mode = 'record'">
 					<div class="form-inline">
 						<h4>Additional Filters</h4>
-						<p>Include additional filters to the basic distribution query for this concept. <a href="#" class="add-filter"><span class="glyphicon glyphicon-plus"/>Add
-								one</a></p>
+						<p>Include additional filters to the basic distribution query for this concept. <a href="#" class="add-filter"><span
+									class="glyphicon glyphicon-plus"/>Add one</a></p>
 						<div class="filter-container">
-							<div class="bg-danger text-danger duplicate-date-alert danger-box hidden">
+							<div class="duplicate-date-alert alert alert-box alert-danger hidden">
 								<span class="glyphicon glyphicon-exclamation-sign"/>
 								<strong>Alert:</strong> There must not be more than one from or to date.</div>
 							<!-- if there's a dist and filter, then break the filter query and insert preset filter templates -->
@@ -135,15 +135,21 @@
 				<!-- display optional date range last -->
 				<div class="form-group">
 					<h4>Date Range</h4>
-					<p>You may select both a start and end date to display change in measurement(s) over time in the form of a line chart. An average will be taken for the selected
-						interval over the entire duration.</p>
-					<div class="bg-danger text-danger measurementRange-alert danger-box hidden">
+					<p>You may select both a start and end date to display change in measurement(s) over time in the form of a line chart. An average will be
+						taken for the selected interval over the entire duration.</p>
+					<div class="measurementRange-alert alert alert-box alert-danger hidden">
 						<span class="glyphicon glyphicon-exclamation-sign"/>
 						<strong>Alert:</strong> Inputted date range is invalid and/or interval is not set.</div>
 
+					<div class="alert alert-box alert-danger interval-alert hidden">
+						<span class="glyphicon glyphicon-exclamation-sign"/>
+						<strong>Alert:</strong> An interval of 1 year can only be applied to a maximum range of 30 years due to performance issues regarding
+						iterative queries.</div>
+
 					<div class="getDateRange-container hidden" style="margin-bottom:15px">
 						<button class="btn btn-default" id="getDateRange">Calculate Range</button>
-						<span class="hidden text-muted"><img src="{$display_path}ui/images/ajax-loader.gif" alt="loading"/> Automatically calculating date range based on existing queries.</span>
+						<span class="hidden text-muted"><img src="{$display_path}ui/images/ajax-loader.gif" alt="loading"/> Automatically calculating date range
+							based on existing queries.</span>
 					</div>
 
 					<div class="form-inline" id="measurementRange-container">
@@ -197,6 +203,14 @@
 						<label>Interval</label>
 						<select class="form-control interval" id="interval">
 							<option>Select...</option>
+							<option value="1">
+								<xsl:if test="$interval castable as xs:integer">
+									<xsl:if test="xs:integer($interval) = 1">
+										<xsl:attribute name="selected">selected</xsl:attribute>
+									</xsl:if>
+								</xsl:if>
+								<xsl:text>1</xsl:text>
+							</option>
 							<option value="5">
 								<xsl:if test="$interval castable as xs:integer">
 									<xsl:if test="xs:integer($interval) = 5">
@@ -224,7 +238,7 @@
 
 	<xsl:template name="distribution-form">
 		<xsl:param name="mode"/>
-		
+
 		<!--<xsl:if test="$mode = 'record'">
 			<hr/>
 		</xsl:if>-->
@@ -310,10 +324,10 @@
 				<xsl:if test="$mode = 'record'">
 					<div class="form-inline">
 						<h4>Additional Filters</h4>
-						<p>Include additional filters to the basic distribution query for this concept. <a href="#" class="add-filter"><span class="glyphicon glyphicon-plus"/>Add
-								one</a></p>
+						<p>Include additional filters to the basic distribution query for this concept. <a href="#" class="add-filter"><span
+									class="glyphicon glyphicon-plus"/>Add one</a></p>
 						<div class="filter-container">
-							<div class="bg-danger text-danger duplicate-date-alert danger-box hidden">
+							<div class="duplicate-date-alert alert alert-box alert-danger hidden">
 								<span class="glyphicon glyphicon-exclamation-sign"/>
 								<strong>Alert:</strong> There must not be more than one from or to date.</div>
 							<!-- if there's a dist and filter, then break the filter query and insert preset filter templates -->
@@ -460,8 +474,8 @@
 				</properties>
 			</xsl:variable>
 
-			<p>Select a category below to generate a graph showing the quantitative distribution for the following queries. The distribution is based on coin type data aggregated
-				into Nomisma.</p>
+			<p>Select a category below to generate a graph showing the quantitative distribution for the following queries. The distribution is based on coin
+				type data aggregated into Nomisma.</p>
 			<select name="dist" class="form-control" id="categorySelect">
 				<option value="">Select...</option>
 				<xsl:choose>
@@ -495,8 +509,8 @@
 	<xsl:template name="measurement-categories">
 		<div class="form-group">
 			<h4>Measurement Type</h4>
-			<p>Select the measurement type below for visualization. Measurement queries are executed across all coins harvested in Nomisma.org, regardless connection to coin type
-				URIs.</p>
+			<p>Select the measurement type below for visualization. Measurement queries are executed across all coins harvested in Nomisma.org, regardless
+				connection to coin type URIs.</p>
 			<select name="measurement" class="form-control" id="measurementSelect">
 				<option value="">Select...</option>
 				<option value="nmo:hasWeight">
@@ -524,9 +538,10 @@
 					<xsl:when test="$mode = 'page'">Compare Queries</xsl:when>
 				</xsl:choose>
 			</h4>
-			<p>You can compare multiple queries to generate a more complex chart. Note that the value for each category for comparison is refined by previous selections in that
-				group. For example, if the first category in a Group is "Denomination: Denarius", and Mint is select as the second category, the drop-down menu will include only
-				those mints that produced denarii. <a href="#" class="add-compare"><span class="glyphicon glyphicon-plus"/>Add query</a></p>
+			<p>You can compare multiple queries to generate a more complex chart. Note that the value for each category for comparison is refined by previous
+				selections in that group. For example, if the first category in a Group is "Denomination: Denarius", and Mint is select as the second category,
+				the drop-down menu will include only those mints that produced denarii. <a href="#" class="add-compare"><span class="glyphicon glyphicon-plus"
+					/>Add query</a></p>
 			<div class="compare-master-container">
 				<xsl:for-each select="$compare">
 					<xsl:call-template name="compare-container-template">
@@ -591,10 +606,10 @@
 					<a href="#" class="add-compare-field" title="Add Query Field"><span class="glyphicon glyphicon-plus"/>Add Query Field</a>
 				</small>
 			</h4>
-			<div class="bg-danger text-danger empty-query-alert danger-box hidden">
+			<div class="empty-query-alert alert alert-box alert-danger hidden">
 				<span class="glyphicon glyphicon-exclamation-sign"/>
 				<strong>Alert:</strong> There must be at least one field in the group query.</div>
-			<div class="bg-danger text-danger duplicate-date-alert danger-box hidden">
+			<div class="duplicate-date-alert alert alert-box alert-danger hidden">
 				<span class="glyphicon glyphicon-exclamation-sign"/>
 				<strong>Alert:</strong> There must not be more than one from or to date.</div>
 			<!-- if this xsl:template isn't an HTML template used by Javascript (generated in DOM from the compare request parameter), then pre-populate the query fields -->

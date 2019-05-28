@@ -22,7 +22,17 @@
 						<xsl:with-param name="subject">?coinType</xsl:with-param>
 						<xsl:with-param name="filter" select="$filter"/>
 					</xsl:call-template>
-					<triple s="?coin" p="nmo:hasTypeSeriesItem" o="?coinType"/>
+					
+					<!-- include all coins related to the type and skos:exactMatch types -->
+					<union>
+						<group>
+							<triple s="?coin" p="nmo:hasTypeSeriesItem" o="?coinType"/>
+						</group>
+						<group>
+							<triple s="?coinType" p="skos:exactMatch" o="?match"/>
+							<triple s="?coin" p="nmo:hasTypeSeriesItem" o="?match"/>						
+						</group>					
+					</union>
 				</group>
 				<group>
 					<xsl:call-template name="nomisma:filterToMetamodel">

@@ -626,22 +626,36 @@ function validate(formId) {
                     }
                     if (fromYear >= toYear) {
                         elements.push(false);
-                        $('.measurementRange-alert').removeClass('hidden')
+                        $('.measurementRange-alert').removeClass('hidden');
                     } else {
                         elements.push(true);
-                        $('.measurementRange-alert').addClass('hidden')
+                        $('.measurementRange-alert').addClass('hidden');
+                    }
+                    
+                    //evaluate the interval and only allow the interval of 1 year for a range of <= 30 years
+                    if (interval == 1) {
+                        if (toYear - fromYear > 30) {
+                            elements.push(false);
+                            $('.interval-alert').removeClass('hidden');
+                        } else {
+                            elements.push(true);
+                            $('.interval-alert').addClass('hidden');
+                        }
+                    } else {
+                        $('.interval-alert').addClass('hidden');
                     }
                 } else {
                     elements.push(false);
-                    $('.measurementRange-alert').removeClass('hidden')
+                    $('.measurementRange-alert').removeClass('hidden');
                 }
             } else {
                 elements.push(false);
-                $('.measurementRange-alert').removeClass('hidden')
+                $('.measurementRange-alert').removeClass('hidden');
             }
         } else {
             //hide the date alert if no values have been set
-            $('.measurementRange-alert').addClass('hidden')
+            $('.measurementRange-alert').addClass('hidden');
+            $('.interval-alert').addClass('hidden');
         }
     }
     

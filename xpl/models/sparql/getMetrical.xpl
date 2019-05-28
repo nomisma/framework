@@ -105,16 +105,27 @@
 							<xsl:param name="query"/>
 
 							<query>
-								<xsl:attribute name="range">
-									<xsl:value-of select="if ($from = 0) then nomisma:normalizeDate('1') else nomisma:normalizeDate(string($from))"/>
-									<xsl:text> - </xsl:text>
-									<xsl:value-of select="nomisma:normalizeDate(string($from + ($interval - 1)))"/>
-								</xsl:attribute>
-								<!--<xsl:attribute name="year" select="$from"/>-->
-								<xsl:attribute name="year" select="if ($from = 0) then (format-number(1, '0000')) else format-number($from, '0000')"/>
-								<xsl:value-of select="$query"/>
-								<xsl:text>; range </xsl:text>
-								<xsl:value-of select="concat(string($from), '|', string($from + ($interval - 1)))"/>
+								<xsl:choose>
+									<xsl:when test="$interval = 1">
+										<xsl:attribute name="range" select="if ($from = 0) then nomisma:normalizeDate('1') else nomisma:normalizeDate(string($from))"/>		
+										<xsl:attribute name="year" select="if ($from = 0) then (format-number(1, '0000')) else format-number($from, '0000')"/>
+										<xsl:value-of select="$query"/>
+										<xsl:text>; range </xsl:text>
+										<xsl:value-of select="concat(string($from), '|', string($from))"/>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:attribute name="range">
+											<xsl:value-of select="if ($from = 0) then nomisma:normalizeDate('1') else nomisma:normalizeDate(string($from))"/>
+											<xsl:text> - </xsl:text>
+											<xsl:value-of select="nomisma:normalizeDate(string($from + ($interval - 1)))"/>
+										</xsl:attribute>
+										<!--<xsl:attribute name="year" select="$from"/>-->
+										<xsl:attribute name="year" select="if ($from = 0) then (format-number(1, '0000')) else format-number($from, '0000')"/>
+										<xsl:value-of select="$query"/>
+										<xsl:text>; range </xsl:text>
+										<xsl:value-of select="concat(string($from), '|', string($from + ($interval - 1)))"/>
+									</xsl:otherwise>
+								</xsl:choose>
 							</query>
 
 							<xsl:if test="$from + $interval &lt;= $to">
