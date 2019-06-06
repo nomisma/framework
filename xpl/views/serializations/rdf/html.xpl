@@ -69,7 +69,7 @@
 						<p:input name="config" href="../../../models/sparql/getEditors.xpl"/>
 						<p:output name="data" id="editors"/>
 					</p:processor>
-					
+
 					<!-- aggregate models and serialize into HTML -->
 					<p:processor name="oxf:unsafe-xslt">
 						<p:input name="request" href="#request"/>
@@ -101,7 +101,7 @@
 								</p:input>
 								<p:output name="data" id="getEditedIds-query"/>
 							</p:processor>
-							
+
 							<p:processor name="oxf:text-converter">
 								<p:input name="data" href="#getEditedIds-query"/>
 								<p:input name="config">
@@ -109,7 +109,7 @@
 								</p:input>
 								<p:output name="data" id="getEditedIds-query-document"/>
 							</p:processor>
-							
+
 							<p:processor name="oxf:url-generator">
 								<p:input name="config">
 									<config>
@@ -120,7 +120,7 @@
 								</p:input>
 								<p:output name="data" id="getSpreadsheets-query"/>
 							</p:processor>
-							
+
 							<p:processor name="oxf:text-converter">
 								<p:input name="data" href="#getSpreadsheets-query"/>
 								<p:input name="config">
@@ -128,7 +128,7 @@
 								</p:input>
 								<p:output name="data" id="getSpreadsheets-query-document"/>
 							</p:processor>
-							
+
 							<!-- execute SPARQL query to get a list of spreadsheets -->
 							<p:processor name="oxf:pipeline">
 								<p:input name="data" href="#data"/>
@@ -180,15 +180,15 @@
 							<classes>
 								<class>nmo:Collection</class>
 								<class>nmo:Denomination</class>
-								<!--<class>rdac:Family</class>
-						<class>nmo:Ethnic</class>
-						<class>foaf:Group</class>-->
+								<class>rdac:Family</class>
+								<class>nmo:Ethnic</class>
+								<class>foaf:Group</class>
 								<class>nmo:Hoard</class>
 								<class>nmo:Manufacture</class>
 								<class>nmo:Material</class>
 								<class>nmo:Mint</class>
 								<class>nmo:ObjectType</class>
-								<!--<class>foaf:Organization</class>-->
+								<class>foaf:Organization</class>
 								<class>foaf:Person</class>
 								<class>nmo:Region</class>
 								<class>nmo:TypeSeries</class>
@@ -198,14 +198,14 @@
 						<xsl:variable name="hasFindspots" as="item()*">
 							<classes>
 								<class>nmo:Denomination</class>
-								<!--<class>rdac:Family</class>
-						<class>nmo:Ethnic</class>
-						<class>foaf:Group</class>-->
+								<class>rdac:Family</class>
+								<class>nmo:Ethnic</class>
+								<class>foaf:Group</class>
 								<class>nmo:Manufacture</class>
 								<class>nmo:Material</class>
 								<class>nmo:Mint</class>
 								<class>nmo:ObjectType</class>
-								<!--<class>foaf:Organization</class>-->
+								<class>foaf:Organization</class>
 								<class>foaf:Person</class>
 								<class>nmo:Region</class>
 							</classes>
@@ -273,109 +273,59 @@
 				</p:when>
 				<!-- apply alternate SPARQL query to get mints associated with a Hoard -->
 				<p:otherwise>
+
+					<!-- get query from a text file on disk -->
+					<p:processor name="oxf:url-generator">
+						<p:input name="config">
+							<config>
+								<url>oxf:/apps/nomisma/ui/sparql/askMints.sparql</url>
+								<content-type>text/plain</content-type>
+								<encoding>utf-8</encoding>
+							</config>
+						</p:input>
+						<p:output name="data" id="query"/>
+					</p:processor>
+
+					<p:processor name="oxf:text-converter">
+						<p:input name="data" href="#query"/>
+						<p:input name="config">
+							<config/>
+						</p:input>
+						<p:output name="data" id="query-document"/>
+					</p:processor>
+
 					<p:processor name="oxf:unsafe-xslt">
 						<p:input name="request" href="#request"/>
+						<p:input name="query" href="#query-document"/>
 						<p:input name="data" href="#type"/>
 						<p:input name="config-xml" href=" ../../../../config.xml"/>
 						<p:input name="config">
 							<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-								xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-								<xsl:variable name="id" select="tokenize(doc('input:request')/request/request-url, '/')[last()]"/>
+								xmlns:nomisma="http://nomisma.org/" exclude-result-prefixes="#all">
+								<xsl:include href="../../../../ui/xslt/controllers/metamodel-templates.xsl"/>
+								<xsl:include href="../../../../ui/xslt/controllers/sparql-metamodel.xsl"/>
+
 								<xsl:variable name="sparql_endpoint" select="doc('input:config-xml')/config/sparql_query"/>
+								<xsl:variable name="id" select="tokenize(doc('input:request')/request/request-url, '/')[last()]"/>
 								<xsl:variable name="type" select="/type"/>
 
-								<xsl:variable name="classes" as="item()*">
-									<classes>
-										<class prop="nmo:hasCollection">nmo:Collection</class>
-										<class prop="nmo:hasDenomination">nmo:Denomination</class>
-										<class prop="?prop">rdac:Family</class>
-										<class prop="?prop">nmo:Ethnic</class>
-										<class prop="?prop">foaf:Group</class>
-										<class prop="dcterms:isPartOf">nmo:Hoard</class>
-										<class prop="nmo:hasManufacture">nmo:Manufacture</class>
-										<class prop="nmo:hasMaterial">nmo:Material</class>
-										<class prop="nmo:hasMint">nmo:Mint</class>
-										<class prop="nmo:representsObjectType">nmo:ObjectType</class>
-										<class prop="?prop">foaf:Organization</class>
-										<class prop="?prop">foaf:Person</class>
-										<class prop="nmo:hasRegion">nmo:Region</class>
-										<class prop="dcterms:source">nmo:TypeSeries</class>
-									</classes>
+								<xsl:variable name="query" select="doc('input:query')"/>
+
+								<xsl:variable name="statements" as="element()*">
+									<xsl:call-template name="nomisma:getMintsStatements">
+										<xsl:with-param name="type" select="$type"/>
+										<xsl:with-param name="id" select="$id"/>
+									</xsl:call-template>
 								</xsl:variable>
 
-
-								<xsl:variable name="query"><![CDATA[PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX dcterms:  <http://purl.org/dc/terms/>
-PREFIX dcmitype:	<http://purl.org/dc/dcmitype/>
-PREFIX nm:       <http://nomisma.org/id/>
-PREFIX nmo:	<http://nomisma.org/ontology#>
-PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
-PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
-PREFIX osgeo:	<http://data.ordnancesurvey.co.uk/ontology/geometry/>
-PREFIX org: <http://www.w3.org/ns/org#>]]>
-									<xsl:choose>
-										<xsl:when test="$type='nmo:Mint'"><![CDATA[ASK {nm:ID geo:location ?loc}]]></xsl:when>
-										<xsl:when test="$type='nmo:Region'"><![CDATA[ASK {
-  {nm:ID geo:location ?loc}
-  UNION {?mint skos:broader+ nm:ID ;
-          geo:location ?loc}}]]></xsl:when>
-										<xsl:when test="$type='nmo:Hoard'"><![CDATA[ASK {?coin dcterms:isPartOf nm:ID ;
-  	rdf:type nmo:NumismaticObject
-  {?coin nmo:hasTypeSeriesItem ?type .
-        ?type nmo:hasMint ?place}
-  UNION {?coin nmo:hasMint ?place}
-   ?place geo:location ?loc }]]>
-										</xsl:when>
-										<xsl:when test="$type='nmo:Collection'"><![CDATA[ASK {
-  ?coin nmo:hasCollection nm:ID .
-  {?coin nmo:hasTypeSeriesItem ?type .
-        ?type nmo:hasMint ?place}
-  UNION {?coin nmo:hasMint ?place}
-  ?place geo:location ?loc}]]>
-										</xsl:when>
-										<xsl:when test="$type='foaf:Person'"><![CDATA[ASK {
-{?obj PROP nm:ID .
-          ?obj nmo:hasMint ?place }
-UNION {?obj PROP nm:ID .
-	?obj nmo:hasObverse ?obv .
-          ?obj nmo:hasMint ?place }
-UNION {?rev PROP nm:ID .
-	?obj nmo:hasReverse ?rev .
-          ?obj nmo:hasMint ?place }
-UNION { nm:ID org:hasMembership ?membership .
- ?membership org:organization ?place .
- ?place rdf:type nmo:Mint }
- ?place geo:location ?loc }]]>
-										</xsl:when>
-										<xsl:otherwise><![CDATA[ASK {
-{?obj PROP nm:ID .
-	MINUS {?obj dcterms:isReplacedBy ?replaced}
-          ?obj nmo:hasMint ?place}
-UNION { ?obj PROP nm:ID .
-	MINUS {?obj dcterms:isReplacedBy ?replaced}
-          ?obj nmo:hasMint ?place }
-  ?place geo:location ?loc }]]>
-										</xsl:otherwise>
-									</xsl:choose>
+								<xsl:variable name="statementsSPARQL">
+									<xsl:apply-templates select="$statements/*"/>
 								</xsl:variable>
+
+								<xsl:variable name="service"
+									select="concat($sparql_endpoint, '?query=', encode-for-uri(replace($query, '%STATEMENTS%', $statementsSPARQL)), '&amp;output=xml')"/>
 
 								<xsl:template match="/">
-									<xsl:variable name="service">
-										<xsl:choose>
-											<xsl:when test="$type='nmo:Hoard' or $type='nmo:Collection' or $type='nmo:Mint' or $type='nmo:Region'">
-												<xsl:value-of
-													select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'ID', $id))), '&amp;output=xml')"/>
-											</xsl:when>
-											<xsl:otherwise>
-												<xsl:value-of
-													select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace(replace($query, 'ID', $id), 'PROP',
-											$classes//class[text()=$type]/@prop))), '&amp;output=xml')"
-												/>
-											</xsl:otherwise>
-										</xsl:choose>
-									</xsl:variable>
-
-
 									<config>
 										<url>
 											<xsl:value-of select="$service"/>
@@ -540,7 +490,8 @@ UNION { ?coinType PROP nm:ID ;
 										<xsl:choose>
 											<xsl:when test="$type='nmo:Hoard'">
 												<xsl:value-of
-													select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'ID', $id))), '&amp;output=xml')"/>
+													select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'ID', $id))), '&amp;output=xml')"
+												/>
 											</xsl:when>
 											<xsl:otherwise>
 												<xsl:value-of
@@ -616,51 +567,59 @@ UNION { ?coinType PROP nm:ID ;
 				</p:when>
 				<!-- execute SPARQL query for other classes of object -->
 				<p:otherwise>
+
+					<!-- get query from a text file on disk -->
+					<p:processor name="oxf:url-generator">
+						<p:input name="config">
+							<config>
+								<url>oxf:/apps/nomisma/ui/sparql/askTypes.sparql</url>
+								<content-type>text/plain</content-type>
+								<encoding>utf-8</encoding>
+							</config>
+						</p:input>
+						<p:output name="data" id="query"/>
+					</p:processor>
+
+					<p:processor name="oxf:text-converter">
+						<p:input name="data" href="#query"/>
+						<p:input name="config">
+							<config/>
+						</p:input>
+						<p:output name="data" id="query-document"/>
+					</p:processor>
+
 					<p:processor name="oxf:unsafe-xslt">
 						<p:input name="request" href="#request"/>
+						<p:input name="query" href="#query-document"/>
 						<p:input name="data" href="#type"/>
 						<p:input name="config-xml" href=" ../../../../config.xml"/>
 						<p:input name="config">
 							<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-								xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-								<xsl:variable name="id" select="tokenize(doc('input:request')/request/request-url, '/')[last()]"/>
+								xmlns:nomisma="http://nomisma.org/" exclude-result-prefixes="#all">
+								<xsl:include href="../../../../ui/xslt/controllers/metamodel-templates.xsl"/>
+								<xsl:include href="../../../../ui/xslt/controllers/sparql-metamodel.xsl"/>
+
 								<xsl:variable name="sparql_endpoint" select="doc('input:config-xml')/config/sparql_query"/>
+								<xsl:variable name="id" select="tokenize(doc('input:request')/request/request-url, '/')[last()]"/>
 								<xsl:variable name="type" select="/type"/>
 
-								<xsl:variable name="classes" as="item()*">
-									<classes>
-										<class prop="nmo:hasDenomination">nmo:Denomination</class>
-										<class prop="?prop">rdac:Family</class>
-										<class prop="?prop">nmo:Ethnic</class>
-										<class prop="?prop">foaf:Group</class>
-										<class prop="nmo:hasManufacture">nmo:Manufacture</class>
-										<class prop="nmo:hasMaterial">nmo:Material</class>
-										<class prop="nmo:hasMint">nmo:Mint</class>
-										<class prop="nmo:representsObjectType">nmo:ObjectType</class>
-										<class prop="?prop">foaf:Organization</class>
-										<class prop="?prop">foaf:Person</class>
-										<class prop="nmo:hasRegion">nmo:Region</class>
-									</classes>
+								<xsl:variable name="query" select="doc('input:query')"/>
+
+								<xsl:variable name="statements" as="element()*">
+									<xsl:call-template name="nomisma:listTypesStatements">
+										<xsl:with-param name="type" select="$type"/>
+										<xsl:with-param name="id" select="$id"/>
+									</xsl:call-template>
 								</xsl:variable>
 
-								<!-- construct different queries for individual finds, hoards, and combined for heatmap -->
-								<xsl:variable name="query"><![CDATA[PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX dcterms:  <http://purl.org/dc/terms/>
-PREFIX dcmitype:	<http://purl.org/dc/dcmitype/>
-PREFIX nm:       <http://nomisma.org/id/>
-PREFIX nmo:	<http://nomisma.org/ontology#>
-PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
-PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
-PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
-ASK {?s PROP nm:ID ; a nmo:TypeSeriesItem }]]></xsl:variable>
-
-
+								<xsl:variable name="statementsSPARQL">
+									<xsl:apply-templates select="$statements/*"/>
+								</xsl:variable>
 
 								<xsl:template match="/">
 
 									<xsl:variable name="service"
-										select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace(replace($query, 'ID', $id), 'PROP',
-								$classes//class[text()=$type]/@prop))), '&amp;output=xml')"/>
+										select="concat($sparql_endpoint, '?query=', encode-for-uri(replace($query, '%STATEMENTS%', $statementsSPARQL)), '&amp;output=xml')"/>
 
 									<config>
 										<url>

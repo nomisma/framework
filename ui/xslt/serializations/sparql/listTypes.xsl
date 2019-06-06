@@ -1,91 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Author: Ethan Gruber
+	Date: June 2019
+	Function: serialize SPARQL results for coin types associated with the given Nomisma concept into HTML. Call the numishareResults API to display related images 
+-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="http://www.w3.org/2005/sparql-results#"
 	xmlns:nomisma="http://nomisma.org/" exclude-result-prefixes="#all" version="2.0">
 	<xsl:include href="../../functions.xsl"/>
+	<xsl:include href="../../controllers/metamodel-templates.xsl"/>
+	<xsl:include href="../../controllers/sparql-metamodel.xsl"/>
 
-	<xsl:param name="id" select="doc('input:request')/request/parameters/parameter[name='id']/value"/>
-	<xsl:param name="type" select="doc('input:request')/request/parameters/parameter[name='type']/value"/>
+	<xsl:param name="id" select="doc('input:request')/request/parameters/parameter[name = 'id']/value"/>
+	<xsl:param name="type" select="doc('input:request')/request/parameters/parameter[name = 'type']/value"/>
 
 	<xsl:variable name="display_path">../</xsl:variable>
-
-	<xsl:variable name="classes" as="item()*">
-		<classes>
-			<class map="false" types="false">nmo:Collection</class>
-			<class map="true" types="true" prop="nmo:hasDenomination">nmo:Denomination</class>
-			<class map="true" types="true" prop="?prop">rdac:Family</class>
-			<class map="true" types="false">nmo:Ethnic</class>
-			<class map="false" types="false">nmo:FieldOfNumismatics</class>
-			<class map="true" types="false">nmo:Hoard</class>
-			<class map="true" types="true" prop="nmo:hasManufacture">nmo:Manufacture</class>
-			<class map="true" types="true" prop="nmo:hasMaterial">nmo:Material</class>
-			<class map="true" types="true" prop="nmo:hasMint">nmo:Mint</class>
-			<class map="false" types="false">nmo:NumismaticTerm</class>
-			<class map="true" types="false">nmo:ObjectType</class>
-			<class map="true" types="true" prop="?prop">foaf:Group</class>
-			<class map="true" types="true" prop="?prop">foaf:Organization</class>
-			<class map="true" types="true" prop="?prop">foaf:Person</class>
-			<class map="false" types="false">crm:E4_Period</class>
-			<class>nmo:ReferenceWork</class>
-			<class map="true" types="true" prop="nmo:hasRegion">nmo:Region</class>
-			<class map="false" types="false">org:Role</class>
-			<class map="false" types="false">nmo:TypeSeries</class>
-			<class map="false" types="false">un:Uncertainty</class>
-			<class map="false" types="false">nmo:CoinWear</class>
-		</classes>
-	</xsl:variable>
-
-	<xsl:variable name="listTypes-query">
-		<xsl:choose>
-			<xsl:when test="$type='foaf:Person'">
-				<![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX nm:	<http://nomisma.org/id/>
-PREFIX nmo:	<http://nomisma.org/ontology#>
-PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
-PREFIX dcterms:	<http://purl.org/dc/terms/>
-PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-
-SELECT * WHERE {
- { ?type PROP nm:ID }
- UNION { ?type nmo:hasObverse ?obv . ?obv PROP nm:ID }
- UNION { ?type nmo:hasReverse ?rev . ?rev PROP nm:ID }
-   ?type a nmo:TypeSeriesItem ;
-   skos:prefLabel ?label FILTER(langMatches(lang(?label), "en")) .
-   MINUS {?type dcterms:isReplacedBy ?replaced}
-   ?type dcterms:source ?source . 
-   	?source skos:prefLabel ?sourceLabel FILTER(langMatches(lang(?sourceLabel), "en"))
-   OPTIONAL {?type nmo:hasStartDate ?startDate}
-   OPTIONAL {?type nmo:hasEndDate ?endDate}
-   OPTIONAL {?type nmo:hasMint ?mint . 
-   	?mint skos:prefLabel ?mintLabel FILTER(langMatches(lang(?mintLabel), "en"))}
-   OPTIONAL {?type nmo:hasDenomination ?den . 
-   	?den skos:prefLabel ?denLabel FILTER(langMatches(lang(?denLabel), "en"))}
-}]]>
-			</xsl:when>
-			<xsl:otherwise>
-				<![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX nm:	<http://nomisma.org/id/>
-PREFIX nmo:	<http://nomisma.org/ontology#>
-PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
-PREFIX dcterms:	<http://purl.org/dc/terms/>
-PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-
-SELECT * WHERE {
- ?type PROP nm:ID ;
-   a nmo:TypeSeriesItem ;
-   skos:prefLabel ?label FILTER(langMatches(lang(?label), "en")) .
-   MINUS {?type dcterms:isReplacedBy ?replaced}
-   ?type dcterms:source ?source . 
-   	?source skos:prefLabel ?sourceLabel FILTER(langMatches(lang(?sourceLabel), "en"))
-   OPTIONAL {?type nmo:hasStartDate ?startDate}
-   OPTIONAL {?type nmo:hasEndDate ?endDate}
-   OPTIONAL {?type nmo:hasMint ?mint . 
-   	?mint skos:prefLabel ?mintLabel FILTER(langMatches(lang(?mintLabel), "en"))}
-   OPTIONAL {?type nmo:hasDenomination ?den . 
-   	?den skos:prefLabel ?denLabel FILTER(langMatches(lang(?denLabel), "en"))}
-}]]>
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:variable>
+	<xsl:variable name="query" select="doc('input:query')"/>
 
 	<xsl:template match="/">
 		<xsl:apply-templates select="/res:sparql"/>
@@ -95,7 +23,7 @@ SELECT * WHERE {
 		<!-- aggregate ids and get URI space -->
 		<xsl:variable name="type_series_items" as="element()*">
 			<type_series_items>
-				<xsl:for-each select="descendant::res:result/res:binding[@name='type']/res:uri">
+				<xsl:for-each select="descendant::res:result/res:binding[@name = 'coinType']/res:uri">
 					<item>
 						<xsl:value-of select="."/>
 					</item>
@@ -105,7 +33,7 @@ SELECT * WHERE {
 
 		<xsl:variable name="type_series" as="element()*">
 			<list>
-				<xsl:for-each select="distinct-values(descendant::res:result/res:binding[@name='type']/substring-before(res:uri, 'id/'))">
+				<xsl:for-each select="distinct-values(descendant::res:result/res:binding[@name = 'coinType']/substring-before(res:uri, 'id/'))">
 					<xsl:variable name="uri" select="."/>
 					<type_series uri="{$uri}">
 						<xsl:for-each select="$type_series_items//item[starts-with(., $uri)]">
@@ -133,8 +61,17 @@ SELECT * WHERE {
 			</response>
 		</xsl:variable>
 
-		<xsl:variable name="prop" select="$classes//class[text()=$type]/@prop"/>
-		<xsl:variable name="query" select="replace(replace($listTypes-query, 'ID', $id), 'PROP', $prop)"/>
+		<!-- dynamically generate SPARQL query based on the template, given the $type and $id -->
+		<xsl:variable name="statements" as="element()*">
+			<xsl:call-template name="nomisma:listTypesStatements">
+				<xsl:with-param name="type" select="$type"/>
+				<xsl:with-param name="id" select="$id"/>
+			</xsl:call-template>
+		</xsl:variable>
+
+		<xsl:variable name="statementsSPARQL">
+			<xsl:apply-templates select="$statements/*"/>
+		</xsl:variable>
 
 		<!-- HTML output -->
 		<h3>
@@ -149,13 +86,15 @@ SELECT * WHERE {
 
 		<div id="listTypes-div">
 			<div style="margin-bottom:10px;" class="control-row">
-				<a href="#" class="toggle-button btn btn-primary" id="toggle-listTypesQuery"><span class="glyphicon glyphicon-plus"/> View SPARQL for full query</a>
-				<a href="{$display_path}query?query={encode-for-uri($query)}&amp;output=csv" title="Download CSV" class="btn btn-primary" style="margin-left:10px">
+				<a href="#" class="toggle-button btn btn-primary" id="toggle-listTypesQuery"><span class="glyphicon glyphicon-plus"/> View SPARQL for full
+					query</a>
+				<a href="{$display_path}query?query={encode-for-uri(replace($query, '%STATEMENTS%', $statementsSPARQL))}&amp;output=csv" title="Download CSV"
+					class="btn btn-primary" style="margin-left:10px">
 					<span class="glyphicon glyphicon-download"/>Download CSV</a>
 			</div>
 			<div id="listTypesQuery-div" style="display:none">
 				<pre>
-				<xsl:value-of select="$query"/>
+				<xsl:value-of select="replace($query, '%STATEMENTS%', $statementsSPARQL)"/>
 			</pre>
 			</div>
 
@@ -164,65 +103,52 @@ SELECT * WHERE {
 					<tr>
 						<th>Type</th>
 						<th>Type Series</th>
-						<xsl:if test="$type='foaf:Person' or $type='foaf:Organization' or $type='rdac:Family'">
-							<th>Role</th>
-						</xsl:if>
 						<th style="width:280px">Example</th>
 					</tr>
 				</thead>
 				<tbody>
 					<xsl:for-each select="descendant::res:result">
-						<xsl:variable name="type_id" select="substring-after(res:binding[@name='type']/res:uri, 'id/')"/>
+						<xsl:variable name="type_id" select="substring-after(res:binding[@name = 'coinType']/res:uri, 'id/')"/>
 
 						<tr>
 							<td>
-								<a href="{res:binding[@name='type']/res:uri}">
-									<xsl:value-of select="res:binding[@name='label']/res:literal"/>
+								<a href="{res:binding[@name='coinType']/res:uri}">
+									<xsl:value-of select="res:binding[@name = 'label']/res:literal"/>
 								</a>
 								<dl class="dl-horizontal">
-									<xsl:if test="res:binding[@name='mint']/res:uri">
+									<xsl:if test="res:binding[@name = 'mint']/res:uri">
 										<dt>Mint</dt>
 										<dd>
 											<a href="{res:binding[@name='mint']/res:uri}">
-												<xsl:value-of select="res:binding[@name='mintLabel']/res:literal"/>
+												<xsl:value-of select="res:binding[@name = 'mintLabel']/res:literal"/>
 											</a>
 										</dd>
 									</xsl:if>
-									<xsl:if test="res:binding[@name='den']/res:uri">
+									<xsl:if test="res:binding[@name = 'den']/res:uri">
 										<dt>Denomination</dt>
 										<dd>
 											<a href="{res:binding[@name='den']/res:uri}">
-												<xsl:value-of select="res:binding[@name='denLabel']/res:literal"/>
+												<xsl:value-of select="res:binding[@name = 'denLabel']/res:literal"/>
 											</a>
 										</dd>
 									</xsl:if>
-									<xsl:if test="res:binding[@name='startDate']/res:literal or res:binding[@name='endDate']/res:literal">
+									<xsl:if test="res:binding[@name = 'startDate']/res:literal or res:binding[@name = 'endDate']/res:literal">
 										<dt>Date</dt>
 										<dd>
-											<xsl:value-of select="nomisma:normalizeDate(res:binding[@name='startDate']/res:literal)"/>
-											<xsl:if test="res:binding[@name='startDate']/res:literal and res:binding[@name='startDate']/res:literal"> - </xsl:if>
-											<xsl:value-of select="nomisma:normalizeDate(res:binding[@name='endDate']/res:literal)"/>
+											<xsl:value-of select="nomisma:normalizeDate(res:binding[@name = 'startDate']/res:literal)"/>
+											<xsl:if test="res:binding[@name = 'startDate']/res:literal and res:binding[@name = 'startDate']/res:literal"> - </xsl:if>
+											<xsl:value-of select="nomisma:normalizeDate(res:binding[@name = 'endDate']/res:literal)"/>
 										</dd>
 									</xsl:if>
 								</dl>
 							</td>
 							<td>
 								<a href="{res:binding[@name='source']/res:uri}">
-									<xsl:value-of select="res:binding[@name='sourceLabel']/res:literal"/>
+									<xsl:value-of select="res:binding[@name = 'sourceLabel']/res:literal"/>
 								</a>
 							</td>
-							<xsl:if test="$type = 'foaf:Group' or $type='foaf:Person' or $type='foaf:Organization' or $type='rdac:Family'">
-								<td>
-									<xsl:variable name="uri" select="res:binding[@name='prop']/res:uri"/>
-									<a href="{$uri}">
-										<!--<xsl:value-of select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"/>-->
-										<xsl:value-of select="$uri"/>
-									</a>
-
-								</td>
-							</xsl:if>
 							<td class="text-right">
-								<xsl:apply-templates select="$sparqlResult//group[@id=$type_id]/descendant::object" mode="results"/>
+								<xsl:apply-templates select="$sparqlResult//group[@id = $type_id]/descendant::object" mode="results"/>
 							</td>
 						</tr>
 					</xsl:for-each>

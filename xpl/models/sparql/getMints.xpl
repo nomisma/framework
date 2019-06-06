@@ -15,12 +15,13 @@
 		</p:input>
 		<p:output name="data" id="request"/>
 	</p:processor>
-	
+
 	<!-- determine whether the query is for a coin type or for a Nomisma ID -->
 	<p:processor name="oxf:xslt">
 		<p:input name="data" href="#request"/>
 		<p:input name="config">
-			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+				xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 				<xsl:template match="/">
 					<type>
 						<xsl:choose>
@@ -29,12 +30,12 @@
 						</xsl:choose>
 					</type>
 				</xsl:template>
-				
+
 			</xsl:stylesheet>
 		</p:input>
 		<p:output name="data" id="concept-type"/>
 	</p:processor>
-	
+
 	<p:choose href="#concept-type">
 		<!-- execute specific SPARQL queries for getting associated geo locations for Nomisma ID Concepts -->
 		<p:when test="/type = 'id'">
@@ -42,34 +43,34 @@
 				<p:input name="config" href="../rdf/get-id.xpl"/>
 				<p:output name="data" id="rdf"/>
 			</p:processor>
-			
-			<p:processor name="oxf:unsafe-xslt">		
-				<p:input name="data" href="#rdf"/>		
+
+			<p:processor name="oxf:unsafe-xslt">
+				<p:input name="data" href="#rdf"/>
 				<p:input name="config">
-					<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-						
+					<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+						xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+
 						<xsl:variable name="hasMints" as="item()*">
 							<classes>
 								<class>nmo:Collection</class>
 								<class>nmo:Denomination</class>
-								<!--<class>rdac:Family</class>
-						<class>nmo:Ethnic</class>
-						<class>foaf:Group</class>-->
+								<class>rdac:Family</class>
+								<class>nmo:Ethnic</class>
+								<class>foaf:Group</class>
 								<class>nmo:Hoard</class>
 								<class>nmo:Manufacture</class>
 								<class>nmo:Material</class>
 								<class>nmo:Mint</class>
 								<class>nmo:ObjectType</class>
-								<!--<class>foaf:Organization</class>-->
+								<class>foaf:Organization</class>
 								<class>foaf:Person</class>
 								<class>nmo:Region</class>
 								<class>nmo:TypeSeries</class>
 							</classes>
 						</xsl:variable>
-						
+
 						<xsl:variable name="type" select="/rdf:RDF/*[1]/name()"/>
-						
-						
+
 						<xsl:template match="/">
 							<type>
 								<xsl:attribute name="hasMints">
@@ -77,17 +78,17 @@
 										<xsl:when test="$hasMints//class[text()=$type]">true</xsl:when>
 										<xsl:otherwise>false</xsl:otherwise>
 									</xsl:choose>
-								</xsl:attribute>						
-								
+								</xsl:attribute>
+
 								<xsl:value-of select="$type"/>
 							</type>
 						</xsl:template>
-						
+
 					</xsl:stylesheet>
 				</p:input>
 				<p:output name="data" id="type"/>
 			</p:processor>
-			
+
 			<p:choose href="#type">
 				<!-- check to see whether the ID is a mint or region, if so, process the coordinates or geoJSON polygon in the RDF into geoJSON -->
 				<p:when test="type = 'nmo:Mint'">
@@ -103,10 +104,11 @@
 						<p:input name="data" href="#type"/>
 						<p:input name="config-xml" href=" ../../../config.xml"/>
 						<p:input name="config">
-							<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+							<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+								xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 								<xsl:param name="id" select="doc('input:request')/request/parameters/parameter[name='id']/value"/>
 								<xsl:variable name="sparql_endpoint" select="doc('input:config-xml')/config/sparql_query"/>
-								
+
 								<xsl:variable name="query"><![CDATA[PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:  <http://purl.org/dc/terms/>
 PREFIX dcmitype:	<http://purl.org/dc/dcmitype/>
@@ -124,8 +126,9 @@ SELECT ?place ?label ?lat ?long WHERE {
        geo:long ?long
 }]]></xsl:variable>
 								<xsl:template match="/">
-									<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'ID', $id))), '&amp;output=xml')"/>
-									
+									<xsl:variable name="service"
+										select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'ID', $id))), '&amp;output=xml')"/>
+
 									<config>
 										<url>
 											<xsl:value-of select="$service"/>
@@ -134,17 +137,17 @@ SELECT ?place ?label ?lat ?long WHERE {
 										<encoding>utf-8</encoding>
 									</config>
 								</xsl:template>
-								
+
 							</xsl:stylesheet>
 						</p:input>
 						<p:output name="data" id="url-generator-config"/>
 					</p:processor>
-					
+
 					<p:processor name="oxf:url-generator">
 						<p:input name="config" href="#url-generator-config"/>
 						<p:output name="data" id="sparql-results"/>
 					</p:processor>
-					
+
 					<p:processor name="oxf:identity">
 						<p:input name="data" href="aggregate('content', #rdf, #sparql-results)"/>
 						<p:output name="data" ref="data"/>
@@ -161,122 +164,59 @@ SELECT ?place ?label ?lat ?long WHERE {
 				</p:when>
 				<!-- apply alternate SPARQL query to get mints associated with a Hoard -->
 				<p:otherwise>
+
+					<!-- get query from a text file on disk -->
+					<p:processor name="oxf:url-generator">
+						<p:input name="config">
+							<config>
+								<url>oxf:/apps/nomisma/ui/sparql/getMints.sparql</url>
+								<content-type>text/plain</content-type>
+								<encoding>utf-8</encoding>
+							</config>
+						</p:input>
+						<p:output name="data" id="query"/>
+					</p:processor>
+
+					<p:processor name="oxf:text-converter">
+						<p:input name="data" href="#query"/>
+						<p:input name="config">
+							<config/>
+						</p:input>
+						<p:output name="data" id="query-document"/>
+					</p:processor>
+
 					<p:processor name="oxf:unsafe-xslt">
 						<p:input name="request" href="#request"/>
+						<p:input name="query" href="#query-document"/>
 						<p:input name="data" href="#type"/>
 						<p:input name="config-xml" href=" ../../../config.xml"/>
 						<p:input name="config">
-							<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+							<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+								xmlns:nomisma="http://nomisma.org/" exclude-result-prefixes="#all">
+								<xsl:include href="../../../ui/xslt/controllers/metamodel-templates.xsl"/>
+								<xsl:include href="../../../ui/xslt/controllers/sparql-metamodel.xsl"/>
+
+								<xsl:variable name="sparql_endpoint" select="doc('input:config-xml')/config/sparql_query"/>
 								<xsl:param name="id" select="doc('input:request')/request/parameters/parameter[name='id']/value"/>
-								<xsl:variable name="sparql_endpoint" select="doc('input:config-xml')/config/sparql_query"/>						
 								<xsl:variable name="type" select="/type"/>
-								
-								<xsl:variable name="classes" as="item()*">
-									<classes>
-										<class prop="nmo:hasCollection">nmo:Collection</class>
-										<class prop="nmo:hasDenomination">nmo:Denomination</class>
-										<class prop="?prop">rdac:Family</class>
-										<class prop="?prop">nmo:Ethnic</class>								
-										<class prop="dcterms:isPartOf">nmo:Hoard</class>
-										<class prop="nmo:hasManufacture">nmo:Manufacture</class>
-										<class prop="nmo:hasMaterial">nmo:Material</class>
-										<class prop="nmo:hasMint">nmo:Mint</class>								
-										<class prop="nmo:representsObjectType">nmo:ObjectType</class>
-										<class prop="?prop">foaf:Organization</class>
-										<class prop="?prop">foaf:Person</class>								
-										<class prop="nmo:hasRegion">nmo:Region</class>								
-										<class prop="dcterms:source">nmo:TypeSeries</class>
-									</classes>
+
+								<xsl:variable name="query" select="doc('input:query')"/>
+
+								<xsl:variable name="statements" as="element()*">
+									<xsl:call-template name="nomisma:getMintsStatements">
+										<xsl:with-param name="type" select="$type"/>
+										<xsl:with-param name="id" select="$id"/>
+									</xsl:call-template>
 								</xsl:variable>
-								
-								
-								<xsl:variable name="query"><![CDATA[PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX dcterms:  <http://purl.org/dc/terms/>
-PREFIX dcmitype:	<http://purl.org/dc/dcmitype/>
-PREFIX nm:       <http://nomisma.org/id/>
-PREFIX nmo:	<http://nomisma.org/ontology#>
-PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
-PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
-PREFIX osgeo:	<http://data.ordnancesurvey.co.uk/ontology/geometry/>
-PREFIX org: <http://www.w3.org/ns/org#>]]>
-									<xsl:choose>
-										<xsl:when test="$type='nmo:Hoard'"><![CDATA[SELECT DISTINCT ?place ?label ?lat ?long ?poly WHERE {
-  ?coin dcterms:isPartOf nm:ID ;
-  	rdf:type nmo:NumismaticObject
-  {?coin nmo:hasTypeSeriesItem ?type .
-        ?type nmo:hasMint ?place}
-  UNION {?coin nmo:hasMint ?place}
-   ?place skos:prefLabel ?label FILTER langMatches(lang(?label), "en") .
-   ?place geo:location ?loc .
-  {?loc geo:lat ?lat ;
-       geo:long ?long }
-  UNION {?loc osgeo:asGeoJSON ?poly }}]]>
-										</xsl:when>
-										<xsl:when test="$type='nmo:Collection'"><![CDATA[SELECT DISTINCT ?place ?label ?lat ?long ?poly WHERE {
-  ?coin nmo:hasCollection nm:ID .
-  {?coin nmo:hasTypeSeriesItem ?type .
-        ?type nmo:hasMint ?place}
-  UNION {?coin nmo:hasMint ?place}
-  ?place skos:prefLabel ?label . FILTER langMatches(lang(?label), "en") .
-  ?place geo:location ?loc .
-  {?loc geo:lat ?lat ;
-       geo:long ?long}
-  UNION {?loc osgeo:asGeoJSON ?poly}
-}]]>
-										</xsl:when>
-										<xsl:when test="$type='foaf:Person'"><![CDATA[SELECT DISTINCT ?place ?label ?lat ?long ?poly WHERE {
-{?obj PROP nm:ID .
-	MINUS {?obj dcterms:isReplacedBy ?replaced}
-          ?obj nmo:hasMint ?place }
-UNION {?obj nmo:hasPortrait nm:ID .
-	?obj nmo:hasObverse ?obv .
-	MINUS {?obj dcterms:isReplacedBy ?replaced}
-          ?obj nmo:hasMint ?place }
-UNION {?rev nmo:hasPortrait nm:ID .
-	?obj nmo:hasReverse ?rev .
-	MINUS {?obj dcterms:isReplacedBy ?replaced}
-          ?obj nmo:hasMint ?place }
-UNION { nm:ID org:hasMembership ?membership .
- ?membership org:organization ?place .
- ?place rdf:type nmo:Mint }
- ?place geo:location ?loc .
-  OPTIONAL {?loc geo:lat ?lat ; geo:long ?long }
-  OPTIONAL {?loc osgeo:asGeoJSON ?poly }
-    ?place skos:prefLabel ?label . FILTER langMatches(lang(?label), "en")
-}]]>
-										</xsl:when>
-										<xsl:otherwise><![CDATA[SELECT DISTINCT ?place ?label ?lat ?long ?poly WHERE {
-{?obj PROP nm:ID .
-	MINUS {?obj dcterms:isReplacedBy ?replaced}
-          ?obj nmo:hasMint ?place .
-  ?place geo:location ?loc .
-  ?loc geo:lat ?lat ;
-       geo:long ?long }
-UNION { ?obj PROP nm:ID .
-	MINUS {?obj dcterms:isReplacedBy ?replaced}
-          ?obj nmo:hasMint ?place .
-  ?place geo:location ?loc .
-  ?loc osgeo:asGeoJSON ?poly }
-    ?place skos:prefLabel ?label . FILTER langMatches(lang(?label), "en")
-}]]>
-										</xsl:otherwise>
-									</xsl:choose>
+
+								<xsl:variable name="statementsSPARQL">
+									<xsl:apply-templates select="$statements/*"/>
 								</xsl:variable>
-								
+
+								<xsl:variable name="service"
+									select="concat($sparql_endpoint, '?query=', encode-for-uri(replace($query, '%STATEMENTS%', $statementsSPARQL)), '&amp;output=xml')"> </xsl:variable>
+
 								<xsl:template match="/">
-									<xsl:variable name="service">
-										<xsl:choose>
-											<xsl:when test="$type='nmo:Hoard' or $type='nmo:Collection'">
-												<xsl:value-of select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'ID', $id))), '&amp;output=xml')"/>
-											</xsl:when>
-											<xsl:otherwise>
-												<xsl:value-of select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace(replace($query, 'ID', $id), 'PROP',
-													$classes//class[text()=$type]/@prop))), '&amp;output=xml')"/>
-											</xsl:otherwise>
-										</xsl:choose>
-									</xsl:variable>
-									
-									
 									<config>
 										<url>
 											<xsl:value-of select="$service"/>
@@ -285,12 +225,12 @@ UNION { ?obj PROP nm:ID .
 										<encoding>utf-8</encoding>
 									</config>
 								</xsl:template>
-								
+
 							</xsl:stylesheet>
 						</p:input>
 						<p:output name="data" id="url-generator-config"/>
 					</p:processor>
-					
+
 					<p:processor name="oxf:url-generator">
 						<p:input name="config" href="#url-generator-config"/>
 						<p:output name="data" ref="data"/>
@@ -309,7 +249,7 @@ UNION { ?obj PROP nm:ID .
 				</p:input>
 				<p:output name="data" id="sparql-query"/>
 			</p:processor>
-			
+
 			<!-- convert text into an XML document for use in XSLT -->
 			<p:processor name="oxf:text-converter">
 				<p:input name="data" href="#sparql-query"/>
@@ -318,24 +258,26 @@ UNION { ?obj PROP nm:ID .
 				</p:input>
 				<p:output name="data" id="sparql-query-document"/>
 			</p:processor>
-			
+
 			<!-- generate the SPARQL query -->
 			<p:processor name="oxf:unsafe-xslt">
 				<p:input name="request" href="#request"/>
 				<p:input name="query" href="#sparql-query-document"/>
 				<p:input name="data" href=" ../../../config.xml"/>
 				<p:input name="config">
-					<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+					<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+						xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 						<!-- request params -->
 						<xsl:param name="uri" select="doc('input:request')/request/parameters/parameter[name='symbol']/value"/>
-						
+
 						<!-- config, SPARQL query variables -->
 						<xsl:variable name="sparql_endpoint" select="/config/sparql_query"/>
 						<xsl:variable name="query" select="doc('input:query')"/>
-						
+
 						<xsl:template match="/">
-							<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, '%URI%', $uri))), '&amp;output=xml')"/>
-							
+							<xsl:variable name="service"
+								select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, '%URI%', $uri))), '&amp;output=xml')"/>
+
 							<config>
 								<url>
 									<xsl:value-of select="$service"/>
@@ -344,12 +286,12 @@ UNION { ?obj PROP nm:ID .
 								<encoding>utf-8</encoding>
 							</config>
 						</xsl:template>
-						
+
 					</xsl:stylesheet>
 				</p:input>
 				<p:output name="data" id="url-generator-config"/>
 			</p:processor>
-			
+
 			<!-- execute SPARQL query -->
 			<p:processor name="oxf:url-generator">
 				<p:input name="config" href="#url-generator-config"/>

@@ -173,7 +173,7 @@
 					<xsl:if test="$hasTypes = true()">
 						<a href="#quant">Quantitative Analysis</a>
 					</xsl:if>
-
+					
 					<xsl:apply-templates select="/content/rdf:RDF/*[not(name() = 'dcterms:ProvenanceStatement')]" mode="type">
 						<xsl:with-param name="mode">record</xsl:with-param>
 					</xsl:apply-templates>

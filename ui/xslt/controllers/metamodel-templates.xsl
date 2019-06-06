@@ -1,7 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Author: Ethan Gruber
+    Date: June 2019
+    Function: XSLT templates that construct the XML metamodel used in various contexts for SPARQL queries. 
+    The sparql-metamodel.xsl stylesheet converts this XML model into text for the SPARQL endpoint
+-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:nomisma="http://nomisma.org/"
     exclude-result-prefixes="#all" version="2.0">
 
+    <!-- default properties associated with the various classes of RDF for Nomisma concepts -->
+    <xsl:variable name="classes" as="item()*">
+        <classes>
+            <class prop="nmo:hasCollection">nmo:Collection</class>
+            <class prop="nmo:hasDenomination">nmo:Denomination</class>
+            <class prop="?prop">nmo:Ethnic</class>
+            <class prop="?prop">rdac:Family</class>
+            <class prop="?prop">foaf:Group</class>
+            <class prop="dcterms:isPartOf">nmo:Hoard</class>
+            <class prop="nmo:hasManufacture">nmo:Manufacture</class>
+            <class prop="nmo:hasMaterial">nmo:Material</class>
+            <class prop="nmo:hasMint">nmo:Mint</class>
+            <class prop="?prop">foaf:Organization</class>
+            <class prop="nmo:representsObjectType">nmo:ObjectType</class>
+            <class prop="?prop">foaf:Person</class>
+            <class prop="nmo:hasRegion">nmo:Region</class>
+            <class prop="dcterms:source">nmo:TypeSeries</class>
+        </classes>
+    </xsl:variable>
+
+    <!-- convert the $filter params (simple, semi-colon separated fragments) for the metrical and distribution analysis interfaces 
+    into an XML meta-model that reflects complex SPARQL queries-->
     <xsl:template name="nomisma:filterToMetamodel">
         <xsl:param name="subject"/>
         <xsl:param name="filter"/>
@@ -126,6 +153,7 @@
         </xsl:for-each>
     </xsl:template>
 
+    <!-- extract the $dist for distribution queries or the $facet for the SPARQL-based facet drop down menu. The prefLabel portion of the query is embedded in the SPARQL -->
     <xsl:template name="nomisma:distToMetamodel">
         <xsl:param name="object"/>
         <xsl:param name="dist"/>
@@ -179,6 +207,417 @@
                 <triple s="?coinType" p="{$dist}" o="{$object}"/>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:template>
+
+    <xsl:template name="nomisma:getMintsStatements">
+        <xsl:param name="type"/>
+        <xsl:param name="id"/>
+        
+        <statements>
+            <xsl:choose>
+                <xsl:when test="$type = 'nmo:Mint'">
+                    <triple s="nm:{$id}" p="geo:location" o="?loc"/>
+                </xsl:when>
+                <xsl:when test="$type = 'nmo:Region'">
+                    <union>
+                        <group>
+                            <triple s="nm:{$id}" p="geo:location" o="?loc"/>
+                        </group>
+                        <group>
+                            <triple s="?mint" p="skos:broader+" o="nm:{$id}"/>
+                            <triple s="?mint" p="geo:location" o="?loc"/>
+                        </group>
+                    </union>
+                </xsl:when>
+                <xsl:when test="$type = 'nmo:Hoard'">
+                    <triple s="?coin" p="dcterms:isPartOf" o="nm:{$id}"/>
+                    <triple s="?coin" p="a" o="nmo:NumismaticObject"/>
+                    <union>
+                        <group>
+                            <triple s="?coin" p="nmo:hasTypeSeriesItem" o="?coinType"/>
+                            <triple s="?coinType" p="nmo:hasMint" o="?place"/>
+                        </group>
+                        <group>
+                            <triple s="?coin" p="nmo:hasMint" o="?place"/>
+                        </group>
+                    </union>
+                    <triple s="?place" p="geo:location" o="?loc"/>
+                </xsl:when>
+                <xsl:when test="$type = 'nmo:Collection'">
+                    <triple s="?coin" p="nmo:hasCollection" o="nm:{$id}"/>
+                    <union>
+                        <group>
+                            <triple s="?coin" p="nmo:hasTypeSeriesItem" o="?coinType"/>
+                            <triple s="?coinType" p="nmo:hasMint" o="?place"/>
+                        </group>
+                        <group>
+                            <triple s="?coin" p="nmo:hasMint" o="?place"/>
+                        </group>
+                    </union>
+                    <triple s="?place" p="geo:location" o="?loc"/>
+                </xsl:when>
+                <xsl:when test="$type = 'foaf:Person'">
+                    <union>
+                        <group>
+                            <triple s="?coinType" p="?prop" o="nm:{$id}"/>                            
+                        </group>
+                        <group>
+                            <triple s="?obv" p="?prop" o="nm:{$id}"/>
+                            <triple s="?coinType" p="nmo:hasObverse" o="?obv"/>
+                        </group>
+                        <group>
+                            <triple s="?rev" p="?prop" o="nm:{$id}"/>
+                            <triple s="?coinType" p="nmo:hasReverse" o="?rev"/>
+                        </group>
+                        <group>
+                            <triple s="nm:{$id}" p="org:hasMembership/org:organization" o="?place"/>
+                        </group>
+                    </union>
+                    <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
+                    <triple s="?coinType" p="nmo:hasMint" o="?place"/>
+                    <minus>
+                        <triple s="?coinType" p="dcterms:isReplacedBy" o="?replaced"/>
+                    </minus>
+                    <triple s="?place" p="geo:location" o="?loc"/>
+                </xsl:when>
+                <xsl:when test="$type = 'rdac:Family'">
+                    <union>
+                        <group>
+                            <triple s="?coinType" p="?prop" o="nm:{$id}"/>
+                        </group>
+                        <group>
+                            <triple s="?coinType" p="?prop" o="?person"/>
+                            <triple s="?person" p="a" o="foaf:Person"/>
+                            <triple s="?person" p="org:memberOf" o="nm:{$id}"/>
+                        </group>
+                    </union>
+                    <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
+                    <triple s="?coinType" p="nmo:hasMint" o="?place"/>
+                    <minus>
+                        <triple s="?coinType" p="dcterms:isReplacedBy" o="?replaced"/>
+                    </minus>
+                    <triple s="?place" p="geo:location" o="?loc"/>
+                </xsl:when>
+                <xsl:when test="$type = 'foaf:Organization' or $type = 'foaf:Group'">
+                    <union>
+                        <group>
+                            <triple s="?coinType" p="nmo:hasAuthority" o="nm:{$id}"/>
+                        </group>
+                        <group>
+                            <triple s="?coinType" p="nmo:hasAuthority" o="?person"/>
+                            <triple s="?person" p="a" o="foaf:Person"/>
+                            <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
+                        </group>
+                    </union>                    
+                    <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
+                    <triple s="?coinType" p="nmo:hasMint" o="?place"/>
+                    <minus>
+                        <triple s="?coinType" p="dcterms:isReplacedBy" o="?replaced"/>
+                    </minus>
+                    <triple s="?place" p="geo:location" o="?loc"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <triple s="?coinType" p="{$classes//class[text()=$type]/@prop}" o="nm:{$id}"/>
+                    <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
+                    <triple s="?coinType" p="nmo:hasMint" o="?place"/>
+                    <minus>
+                        <triple s="?coinType" p="dcterms:isReplacedBy" o="?replaced"/>
+                    </minus>
+                    <triple s="?place" p="geo:location" o="?loc"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </statements>
+    </xsl:template>
+    
+    <xsl:template name="nomisma:getFindspotsStatements">
+        <xsl:param name="api"/>
+        <xsl:param name="type"/>
+        <xsl:param name="id"/>
+        
+        <statements>
+            <xsl:choose>
+                <xsl:when test="$type = 'foaf:Person'">
+                    
+                    <xsl:choose>
+                        <xsl:when test="$api = 'getHoards'">
+                            <union>
+                                <group>
+                                    <xsl:call-template name="person-findspots">
+                                        <xsl:with-param name="id" select="$id"/>
+                                    </xsl:call-template>
+                                    <triple s="?object" p="dcterms:isPartOf" o="?hoard"/>
+                                </group>
+                               <group>
+                                   <xsl:call-template name="hoard-content-query">
+                                       <xsl:with-param name="id" select="$id"/>
+                                       <xsl:with-param name="type" select="$type"/>
+                                   </xsl:call-template>
+                               </group>
+                            </union>                           
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:call-template name="person-findspots">
+                                <xsl:with-param name="id" select="$id"/>
+                            </xsl:call-template>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:when test="$type = 'rdac:Family'">
+                    <xsl:choose>
+                        <xsl:when test="$api = 'getHoards'">
+                            <union>
+                                <group>
+                                    <xsl:call-template name="dynasty-findspots">
+                                        <xsl:with-param name="id" select="$id"/>
+                                    </xsl:call-template>
+                                    <triple s="?object" p="dcterms:isPartOf" o="?hoard"/>
+                                </group>
+                                <group>
+                                    <xsl:call-template name="hoard-content-query">
+                                        <xsl:with-param name="id" select="$id"/>
+                                        <xsl:with-param name="type" select="$type"/>
+                                    </xsl:call-template>
+                                </group>
+                            </union>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:call-template name="dynasty-findspots">
+                                <xsl:with-param name="id" select="$id"/>
+                            </xsl:call-template>
+                        </xsl:otherwise>
+                    </xsl:choose>                    
+                </xsl:when>
+                <xsl:when test="$type = 'foaf:Organization' or $type = 'foaf:Group'">
+                    
+                    <xsl:choose>
+                        <xsl:when test="$api = 'getHoards'">
+                            <union>
+                                <group>
+                                    <xsl:call-template name="org-findspots">
+                                        <xsl:with-param name="id" select="$id"/>
+                                    </xsl:call-template>
+                                    <triple s="?object" p="dcterms:isPartOf" o="?hoard"/>
+                                </group>
+                                <group>
+                                    <xsl:call-template name="hoard-content-query">
+                                        <xsl:with-param name="id" select="$id"/>
+                                        <xsl:with-param name="type" select="$type"/>
+                                    </xsl:call-template>
+                                </group>
+                            </union>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:call-template name="org-findspots">
+                                <xsl:with-param name="id" select="$id"/>
+                            </xsl:call-template>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:when test="$type = 'nmo:TypeSeriesItem'">    
+                    <xsl:choose>
+                        <xsl:when test="$api = 'getHoards'">
+                            <union>
+                                <group>
+                                    <triple s="?object" p="nmo:hasTypeSeriesItem" o="&lt;{$id}&gt;"/>
+                                    <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
+                                    <triple s="?object" p="dcterms:isPartOf" o="?hoard"/>
+                                </group>
+                                <group>
+                                    <triple s="?contents"  p="nmo:hasTypeSeriesItem" o="&lt;{$id}&gt;"/>
+                                    <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
+                                    <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>
+                                </group>
+                            </union>                            
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <triple s="?object" p="nmo:hasTypeSeriesItem" o="&lt;{$id}&gt;"/>
+                            <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:when test="$type = 'nmo:Monogram'">  
+                    <select variables="?side">
+                        <triple s="?side" p="nmo:hasMonogram" o="&lt;{$id}&gt;"/>
+                    </select>
+                    <triple s="?coinType" p="?prop" o="?side"/>
+                    <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>
+                    <triple s="?object" p="nmo:hasTypeSeriesItem" o="&lt;{$id}&gt;"/>
+                    <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
+                    <xsl:if test="$api = 'getHoards'">
+                        <triple s="?object" p="dcterms:isPartOf" o="?hoard"/>
+                    </xsl:if>
+                </xsl:when>
+                <xsl:otherwise>
+                    <union>
+                        <group>
+                            <triple s="?coinType" p="{$classes//class[text()=$type]/@prop}" o="nm:{$id}"/>
+                            <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
+                            <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>  
+                            <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
+                            <xsl:if test="$api = 'getHoards'">
+                                <triple s="?object" p="dcterms:isPartOf" o="?hoard"/>
+                            </xsl:if>
+                        </group>
+                        <group>
+                            <triple s="?object" p="{$classes//class[text()=$type]/@prop}" o="nm:{$id}"/>
+                            <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
+                            <xsl:if test="$api = 'getHoards'">
+                                <triple s="?object" p="dcterms:isPartOf" o="?hoard"/>
+                            </xsl:if>
+                        </group>
+                        <xsl:if test="$api = 'getHoards'">
+                            <xsl:call-template name="hoard-content-query">
+                                <xsl:with-param name="id" select="$id"/>
+                                <xsl:with-param name="type" select="$type"/>
+                            </xsl:call-template>
+                        </xsl:if>
+                    </union>
+                </xsl:otherwise>
+            </xsl:choose>
+            
+            <xsl:choose>
+                <xsl:when test="$api = 'getHoards'">
+                    <triple s="?hoard" p="nmo:hasFindspot" o="?place"/>
+                </xsl:when>
+                <xsl:when test="$api = 'getFindspots'">
+                    <triple s="?object" p="nmo:hasFindspot" o="?place"/>
+                </xsl:when>
+            </xsl:choose>
+            
+        </statements>        
+    </xsl:template>
+    
+    <xsl:template name="person-findspots">
+        <xsl:param name="id"/>
+        
+        <union>
+            <group>
+                <triple s="?coinType" p="?prop" o="nm:{$id}"/>                            
+            </group>
+            <group>
+                <triple s="?obv" p="?prop" o="nm:{$id}"/>
+                <triple s="?coinType" p="nmo:hasObverse" o="?obv"/>
+            </group>
+            <group>
+                <triple s="?rev" p="?prop" o="nm:{$id}"/>
+                <triple s="?coinType" p="nmo:hasReverse" o="?rev"/>
+            </group>                        
+        </union>
+        <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
+        <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>
+        <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
+    </xsl:template>
+    
+    <xsl:template name="dynasty-findspots">
+        <xsl:param name="id"/>
+        
+        <union>
+            <group>
+                <triple s="?coinType" p="?prop" o="nm:{$id}"/>
+            </group>
+            <group>
+                <triple s="?coinType" p="?prop" o="?person"/>
+                <triple s="?person" p="a" o="foaf:Person"/>
+                <triple s="?person" p="org:memberOf" o="nm:{$id}"/>
+            </group>
+        </union>
+        <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
+        <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>
+        <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
+    </xsl:template>
+    
+    <xsl:template name="org-findspots">
+        <xsl:param name="id"/>
+        
+        <union>
+            <group>
+                <triple s="?coinType" p="nmo:hasAuthority" o="nm:{$id}"/>
+            </group>
+            <group>
+                <triple s="?coinType" p="nmo:hasAuthority" o="?person"/>
+                <triple s="?person" p="a" o="foaf:Person"/>
+                <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
+            </group>
+        </union>                    
+        <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>  
+        <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>
+        <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
+    </xsl:template>
+    
+    <xsl:template name="hoard-content-query">
+        <xsl:param name="id"/>
+        <xsl:param name="type"/>
+          
+        <group>
+            <group>
+                <triple s="?coinType" p="{$classes//class[text()=$type]/@prop}" o="nm:{$id}"/>
+                <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
+                <triple s="?contents" p="nmo:hasTypeSeriesItem" o="?coinType"/>
+                <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
+                <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>
+            </group>
+            <group>
+                <triple s="?contents"  p="{$classes//class[text()=$type]/@prop}" o="nm:{$id}"/>
+                <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
+                <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>
+            </group>
+        </group>
+    </xsl:template>
+
+    <xsl:template name="nomisma:listTypesStatements">
+        <xsl:param name="type"/>
+        <xsl:param name="id"/>
+        
+        <statements>
+            <xsl:choose>
+                <xsl:when test="$type = 'foaf:Person'">
+                    <union>
+                        <triple s="?coinType" p="?prop" o="nm:{$id}"/>
+                        <triple s="?coinType" p="nmo:hasObverse/nmo:hasPortrait" o="nm:{$id}"/>
+                        <triple s="?coinType" p="nmo:hasReverse/nmo:hasPortrait" o="nm:{$id}"/>
+                    </union>
+                </xsl:when>
+                <xsl:when test="$type = 'rdac:Family'">
+                    <union>
+                        <group>
+                            <triple s="?coinType" p="?prop" o="nm:{$id}"/>
+                        </group>
+                        <group>
+                            <triple s="?coinType" p="nmo:hasAuthority" o="?person"/>
+                            <triple s="?person" p="a" o="foaf:Person"/>
+                            <triple s="?person" p="org:memberOf" o="nm:{$id}"/>
+                        </group>
+                    </union>
+                </xsl:when>
+                <xsl:when test="$type = 'foaf:Organization' or $type = 'foaf:Group' or $type = 'nmo:Ethnic'">
+                    <union>
+                        <group>
+                            <triple s="?coinType" p="nmo:hasAuthority" o="nm:{$id}"/>
+                        </group>
+                        <group>
+                            <triple s="?coinType" p="?prop" o="?person"/>
+                            <triple s="?person" p="a" o="foaf:Person"/>
+                            <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
+                        </group>
+                    </union>
+                </xsl:when>
+                <xsl:when test="$type = 'nmo:Region'">
+                    <union>
+                        <group>
+                            <triple s="?coinType" p="nmo:hasRegion" o="nm:{$id}"/>
+                        </group>
+                        <group>
+                            <triple s="?coinType" p="nmo:hasMint" o="?mint"/>
+                            <triple s="?mint" p="skos:broader+" o="nm:{$id}"/>
+                        </group>
+                    </union>
+                </xsl:when>
+                <xsl:otherwise>
+                    <triple s="?coinType" p="{$classes//class[text()=$type]/@prop}" o="nm:{$id}"/>
+                </xsl:otherwise>
+            </xsl:choose>
+            <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
+        </statements>
     </xsl:template>
 
 </xsl:stylesheet>
