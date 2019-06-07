@@ -100,6 +100,14 @@
 						</xsl:matching-substring>
 					</xsl:analyze-string>
 				</xsl:when>
+				<xsl:when test="contains(., 'dynasty')">
+					<xsl:analyze-string select="." regex="dynasty\s(nm:.*)">
+						<xsl:matching-substring>
+							<xsl:text>Dynasty: </xsl:text>
+							<xsl:value-of select="nomisma:getLabel(regex-group(1))"/>
+						</xsl:matching-substring>
+					</xsl:analyze-string>
+				</xsl:when>
 				<xsl:when test="matches(normalize-space(.), '^from\s')">
 					<xsl:analyze-string select="." regex="from\s(.*)">
 						<xsl:matching-substring>

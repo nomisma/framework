@@ -700,6 +700,7 @@
 				<prop value="to">Date, To</prop>
 				<prop value="nmo:hasDenomination" class="nmo:Denomination">Denomination</prop>
 				<prop value="deity" class="">Deity</prop>
+				<prop value="dynasty" class="">Dynasty</prop>
 				<prop value="nmo:hasIssuer" class="foaf:Person|foaf:Organization">Issuer</prop>
 				<prop value="nmo:hasManufacture" class="nmo:Manufacture">Manufacture</prop>
 				<prop value="nmo:hasMaterial" class="nmo:Material">Material</prop>

@@ -62,7 +62,7 @@
 		<classes>
 			<class map="false" types="false" prop="nmo:hasCollection">nmo:Collection</class>
 			<class map="true" types="true" prop="nmo:hasDenomination" dist="true">nmo:Denomination</class>
-			<class map="true" types="true" prop="?prop">rdac:Family</class>
+			<class map="true" types="true" prop="dynasty" dist="true">rdac:Family</class>
 			<class map="true" types="false">nmo:Ethnic</class>
 			<class map="false" types="false">nmo:FieldOfNumismatics</class>
 			<class map="true" types="false">nmo:Hoard</class>
@@ -71,7 +71,7 @@
 			<class map="true" types="true" prop="nmo:hasMint" dist="true">nmo:Mint</class>
 			<class map="false" types="false">nmo:NumismaticTerm</class>
 			<class map="true" types="false">nmo:ObjectType</class>
-			<class map="true" types="true" prop="?prop">foaf:Group</class>
+			<class map="true" types="true" prop="?prop" dist="true">foaf:Group</class>
 			<class map="true" types="true" prop="?prop" dist="true">foaf:Organization</class>
 			<class map="true" types="true" prop="?prop" dist="true">foaf:Person</class>
 			<class map="false" types="false">crm:E4_Period</class>
