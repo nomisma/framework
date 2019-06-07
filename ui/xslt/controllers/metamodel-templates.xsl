@@ -61,14 +61,21 @@
                     <union>
                         <group>
                             <triple s="{$subject}" p="nmo:hasAuthority" o="{$object}"/>
-                            <triple s="{$object}" p="a" o="rdac:Family"/>
                         </group>
                         <group>
                             <triple s="{$subject}" p="nmo:hasAuthority" o="?person"/>
-                            <triple s="?person" p="org:memberOf" o="{$object}"/>
-                            <triple s="{$object}" p="a" o="rdac:Family"/>
+                            <triple s="?person" p="org:memberOf" o="{$object}"/>                            
                         </group>
                     </union>
+                    <triple s="{$object}" p="a" o="rdac:Family"/>
+                </xsl:when>
+                <xsl:when test="$property = '?prop'">
+                    <union>
+                        <triple s="{$subject}" p="?prop" o="{$object}"/>
+                        <triple s="{$subject}" p="nmo:hasObverse/nmo:hasPortrait" o="{$object}"/>
+                        <triple s="{$subject}" p="nmo:hasReverse/nmo:hasPortrait" o="{$object}"/>
+                    </union>
+                    <triple s="{$object}" p="a" o="foaf:Person"/>
                 </xsl:when>
                 <xsl:when test="$property = 'from'">
                     <xsl:if test="$object castable as xs:integer">
@@ -173,8 +180,12 @@
 
         <xsl:choose>
             <xsl:when test="$dist = '?prop'">
-                <triple s="?coinType" p="?prop" o="{$object}"/>
-                <triple s="{$object}" p="rdf:type" o="?type FILTER strStarts(str(?type), &#x022;http://xmlns.com/foaf/0.1/&#x022;)"/>
+                <union>
+                    <triple s="?coinType" p="?prop" o="{$object}"/>
+                    <triple s="?coinType" p="nmo:hasObverse/nmo:hasPortrait" o="{$object}"/>
+                    <triple s="?coinType" p="nmo:hasReverse/nmo:hasPortrait" o="{$object}"/>
+                </union>
+                <triple s="{$object}" p="a" o="foaf:Person"/>
             </xsl:when>
             <xsl:when test="$dist = 'authPerson'">
                 <triple s="?coinType" p="nmo:hasAuthority" o="{$object}"/>
@@ -218,6 +229,7 @@
                 </union>
                 <triple s="{$object}" p="a" o="{$distClass}"/>
             </xsl:when>
+            
             <xsl:when test="$dist = 'region'">
                 <union>
                     <group>
