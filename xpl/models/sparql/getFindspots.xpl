@@ -125,35 +125,7 @@
 					<!-- execute SPARQL query for other classes of object
 				Load a SPARQL query from a text file, based on API and RDF Class -->
 					<p:choose href="#api">
-						<p:when test="/api = 'heatmap'">
-							<p:choose href="#type">
-								<p:when test="/type = 'foaf:Person'">
-									<p:processor name="oxf:url-generator">
-										<p:input name="config">
-											<config>
-												<url>oxf:/apps/nomisma/ui/sparql/heatmap_person.sparql</url>
-												<content-type>text/plain</content-type>
-												<encoding>utf-8</encoding>
-											</config>
-										</p:input>
-										<p:output name="data" id="sparql-query"/>
-									</p:processor>
-								</p:when>
-								<p:otherwise>
-									<p:processor name="oxf:url-generator">
-										<p:input name="config">
-											<config>
-												<url>oxf:/apps/nomisma/ui/sparql/heatmap_other.sparql</url>
-												<content-type>text/plain</content-type>
-												<encoding>utf-8</encoding>
-											</config>
-										</p:input>
-										<p:output name="data" id="sparql-query"/>
-									</p:processor>
-								</p:otherwise>
-							</p:choose>
-						</p:when>
-						<p:when test="/api = 'getFindspots'">
+						<p:when test="/api = 'heatmap' or /api = 'getFindspots'">
 							<p:processor name="oxf:url-generator">
 								<p:input name="config">
 									<config>
@@ -164,7 +136,7 @@
 								</p:input>
 								<p:output name="data" id="sparql-query"/>
 							</p:processor>
-						</p:when>
+						</p:when>						
 						<p:when test="/api = 'getHoards'">
 							<p:processor name="oxf:url-generator">
 								<p:input name="config">
@@ -248,19 +220,7 @@
 		<p:when test="/type = 'coinType'">
 			<!-- execute SPARQL queries for findspots and hoards for coin types with the coinType HTTP request parameter -->
 			<p:choose href="#api">
-				<p:when test="/api = 'heatmap'">
-					<p:processor name="oxf:url-generator">
-						<p:input name="config">
-							<config>
-								<url>oxf:/apps/nomisma/ui/sparql/heatmap_coinType.sparql</url>
-								<content-type>text/plain</content-type>
-								<encoding>utf-8</encoding>
-							</config>
-						</p:input>
-						<p:output name="data" id="sparql-query"/>
-					</p:processor>
-				</p:when>
-				<p:when test="/api = 'getFindspots'">
+				<p:when test="/api = 'heatmap' or /api = 'getFindspots'">
 					<p:processor name="oxf:url-generator">
 						<p:input name="config">
 							<config>
@@ -353,19 +313,7 @@
 		<p:when test="/type = 'symbol'">
 			<!-- execute SPARQL queries for findspots and hoards for coin types with the symbol HTTP request parameter -->
 			<p:choose href="#api">
-				<p:when test="/api = 'heatmap'">
-					<p:processor name="oxf:url-generator">
-						<p:input name="config">
-							<config>
-								<url>oxf:/apps/nomisma/ui/sparql/heatmap_symbol.sparql</url>
-								<content-type>text/plain</content-type>
-								<encoding>utf-8</encoding>
-							</config>
-						</p:input>
-						<p:output name="data" id="sparql-query"/>
-					</p:processor>
-				</p:when>
-				<p:when test="/api = 'getFindspots'">
+				<p:when test="/api = 'heatmap' or /api = 'getFindspots'">
 					<p:processor name="oxf:url-generator">
 						<p:input name="config">
 							<config>
