@@ -27,6 +27,14 @@
 				<xsl:with-param name="object">?dist</xsl:with-param>
 				<xsl:with-param name="dist" select="$dist"/>
 			</xsl:call-template>
+			
+			<xsl:if test="$dist='nmo:hasMint' and $format='csv'">
+				<optional>
+					<triple s="?dist" p="geo:location" o="?loc"/>
+					<triple s="?loc" p="geo:lat" o="?lat"/>
+					<triple s="?loc" p="geo:long" o="?long"/>
+				</optional>
+			</xsl:if>
 		</statements>
 	</xsl:variable>
 
