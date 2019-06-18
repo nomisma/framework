@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 	Author: Ethan Gruber
-	Date Last Modified: January 2019
+	Date Last Modified: June 2019
 	Function: Serialize an RDF snippet into HTML, including conditionals to execute other SPARQL queries to enhance page context with maps, example types, etc.
 -->
 <p:config xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:oxf="http://www.orbeon.com/oxf/processors" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
