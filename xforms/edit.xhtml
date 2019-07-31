@@ -425,7 +425,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 					<xforms:bind nodeset="dcterms:isPartOf" constraint="contains(@rdf:resource, '_numismatics')"/>
 
 					<!-- @rdf:resource -->
-					<xforms:bind nodeset="//@rdf:resource" required="true()" type="xs:anyURI"/>
+					<xforms:bind nodeset="//@rdf:resource" required="true()" type="xs:anyURI" constraint="matches(., '(https?|ftp)://(-\.)?([^\s/?\.#-]+\.?)+(/[^\s]*)?$')"/>
 				</xforms:bind>
 				<!-- geographic -->
 				<xforms:bind nodeset="geo:SpatialThing" constraint="(geo:lat and geo:long) or osgeo:asGeoJSON">
