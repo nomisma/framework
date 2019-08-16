@@ -46,6 +46,7 @@
 		<namespace prefix="spatial" uri="http://jena.apache.org/spatial#"/>
 		<namespace prefix="un" uri="http://www.owl-ontologies.com/Ontology1181490123.owl#"/>
 		<namespace prefix="void" uri="http://rdfs.org/ns/void#"/>
+		<namespace prefix="wordnet" uri="http://ontologi.es/WordNet/class/"/>
 		<namespace prefix="xsd" uri="http://www.w3.org/2001/XMLSchema#" default="true"/>
 	</namespaces>
 </config>
