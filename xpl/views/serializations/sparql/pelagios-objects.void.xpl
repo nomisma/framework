@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	Copyright (C) 2010 Ethan Gruber
-	EADitor: http://code.google.com/p/eaditor/
-	Apache License 2.0: http://code.google.com/p/eaditor/
-	
+	Author: Ethan Gruber
+	Date: August 2019
+	Function: Serialize RDF for the data dumps into VoID. Include a count of coins associated with Pleiades URIs.
 -->
 <p:config xmlns:p="http://www.orbeon.com/oxf/pipeline"
 	xmlns:oxf="http://www.orbeon.com/oxf/processors">
@@ -27,9 +26,12 @@ PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX void: <http://rdfs.org/ns/void#>
 PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
 
-SELECT (count(?coin) as ?count) WHERE {
+SELECT (count(DISTINCT ?coin) as ?count) WHERE {
 ?coin a nmo:NumismaticObject ;
-        void:inDataset ?dataset . FILTER (?dataset != <http://numismatics.org/search/> && ?dataset != <http://coins.lib.virginia.edu/> && ?dataset != <https://finds.org.uk/>) 
+	nmo:hasTypeSeriesItem ?type ;
+	void:inDataset ?dataset . FILTER (?dataset != <http://numismatics.org/search/> && ?dataset != <http://coins.lib.virginia.edu/> && ?dataset != <https://finds.org.uk/>) .
+	?type nmo:hasMint ?mint .
+	?mint skos:closeMatch|skos:exactMatch ?match FILTER strStarts(str(?match), "https://pleiades")
 }]]></xsl:variable>
 				
 				<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri($query), '&amp;output=xml')"/>

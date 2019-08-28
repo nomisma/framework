@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	XPL handling SPARQL queries from Fuseki	
+	Author: Ethan Gruber
+	Date: August 2019
+	Function: Execute SPARQL query to get list of datasets for the Nomisma partner VoID RDF
 -->
 <p:config xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:oxf="http://www.orbeon.com/oxf/processors">
 
