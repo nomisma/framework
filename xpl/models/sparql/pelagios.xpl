@@ -66,7 +66,7 @@ OPTIONAL { ?coin edm:isShownBy ?model .
   OPTIONAL {?type nmo:hasStartDate ?startDate}
   OPTIONAL {?type nmo:hasEndDate ?endDate}
 ?type nmo:hasMint ?mint .
-?mint skos:closeMatch ?match FILTER strStarts(str(?match), "http://pleiades")
+?mint skos:closeMatch ?match FILTER strStarts(str(?match), "https://pleiades")
 } LIMIT %LIMIT% OFFSET %OFFSET%]]></xsl:variable>
 
 				<xsl:variable name="service">
