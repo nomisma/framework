@@ -49,14 +49,14 @@
 					xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:edm="http://www.europeana.eu/schemas/edm/" xmlns:svcs="http://rdfs.org/sioc/services#"
 					xmlns:doap="http://usefulinc.com/ns/doap#"> </nmo:NumismaticObject>
 			</xforms:instance>
-			
+
 			<xforms:instance id="webresource-template" xxforms:exclude-result-prefixes="#all">
 				<edm:WebResource rdf:about="">
 					<svcs:has_service rdf:resource=""/>
 					<dcterms:isReferencedBy rdf:resource=""/>
-				</edm:WebResource>				
+				</edm:WebResource>
 			</xforms:instance>
-			
+
 			<xforms:instance id="service-template" xxforms:exclude-result-prefixes="#all">
 				<svcs:Service rdf:about="">
 					<dcterms:conformsTo rdf:resource="http://iiif.io/api/image"/>
@@ -518,7 +518,7 @@ SELECT ?uri ?type WHERE {
 						</xforms:action>
 
 						<!-- iterate through types in order to parse the shape -->
-						<!--<xforms:action xxforms:iterate="context()/classified_as/_[@type='object']">
+						<!--<xforms:action xxforms:iterate="context()/classified_as/_[]">
 							<xforms:var name="uri" select="context()/id"/>
 
 							<xforms:action if="instance('mappings')/mapping[@from = $uri]/@type = 'http://kerameikos.org/ontology#Shape'">
@@ -530,45 +530,61 @@ SELECT ?uri ?type WHERE {
 						</xforms:action>-->
 
 						<!-- insert and convert dimensions to metric -->
-						<!--<xforms:action if="count(context()/dimension/_) &gt; 0">
-							<xforms:action xxforms:iterate="context()/dimension/_">
+						<xforms:action xxforms:iterate="context()/dimension/_">
 
-								<!-\- ensure that the value is numeric -\->
-								<xforms:action if="context()/value castable as xs:decimal">
-									<xforms:var name="type" select="data(context()/classified_as/_[1]/id)"/>
-									<xforms:var name="units" select="data(context()/unit/id)"/>
-									<xforms:var name="val" select="number(context()/value)"/>
-									
-									
+							<!-- ensure that the value is numeric -->
+							<xforms:action if="context()/value castable as xs:decimal">
+								<xforms:var name="type" select="data(context()/classified_as/_[1]/id)"/>
+								<xforms:var name="value" select="number(context()/value)"/>
+								<xforms:var name="units" select="data(context()/unit/id)"/>
 
-									<!-\- insert the dimension template, but only if the units conform to AAT -\->
-									<xforms:action if="matches($units, 'https?://vocab.getty.edu/aat/\d+')">										
-										<xforms:insert context="instance('object')" nodeset="./child::node()[last()]" origin="instance('dimension-template')"/>
+								<!-- die axis -->
+								<xforms:action if="$type = 'http://nomisma.org/id/axis' and $value castable as xs:integer">
 
-										<!-\- set the dimension type -\->
-										<xforms:setvalue ref="instance('object')/crm:P43_has_dimension[last()]/crm:E54_Dimension/crm:P2_has_type/@rdf:resource"
-											value="context()/classified_as/_[1]/id"/>
-
-										<!-\- perform some math to convert various units to mm, if applicable -\->
-										<xforms:action if="$units = 'http://vocab.getty.edu/aat/300379100'">
-											<!-\- inches -\->
-											<xforms:setvalue ref="instance('object')/crm:P43_has_dimension[last()]/crm:E54_Dimension/crm:P90_has_value"
-												value="format-number($val * 25.4, '###.##')"/>
-										</xforms:action>
-										<xforms:action if="$units = 'http://vocab.getty.edu/aat/300379098'">
-											<!-\- cm -\->
-											<xforms:setvalue ref="instance('object')/crm:P43_has_dimension[last()]/crm:E54_Dimension/crm:P90_has_value"
-												value="format-number($val * 10, '###.##')"/>
-										</xforms:action>										
-										<xforms:action if="$units = 'http://vocab.getty.edu/aat/300379098'">
-											<!-\- mm -\->
-											<xforms:setvalue ref="instance('object')/crm:P43_has_dimension[last()]/crm:E54_Dimension/crm:P90_has_value"
-												value="$val"/>
-										</xforms:action>
+									<!-- the die axis must be between 0 and 12 -->
+									<xforms:action if="$value &gt;= 0 and $value &lt;= 12">
+										<xforms:insert context="instance('object')" nodeset="./child::node()[last()]"
+											origin="xforms:element('nmo:hasAxis', (xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#integer'), $value))"
+										/>
 									</xforms:action>
+
 								</xforms:action>
+
+								<!-- weight: grams are required -->
+								<xforms:action if="$type = 'http://vocab.getty.edu/aat/300056240' and $units = 'http://vocab.getty.edu/aat/300379225'">
+									<xforms:insert context="instance('object')" nodeset="./child::node()[last()]"
+										origin="xforms:element('nmo:hasWeight', (xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#decimal'), $value))"
+									/>
+								</xforms:action>
+
+								<!-- millimeter-based measurements-->
+								<xforms:action
+									if="$type = 'http://vocab.getty.edu/aat/300072633' or $type = 'http://vocab.getty.edu/aat/300055624' or $type = 'http://vocab.getty.edu/aat/300055644' or $type = 'http://vocab.getty.edu/aat/300055647'">
+
+									<!-- use AAT URI to determine the correct Nomisma property -->
+									<xforms:var name="element"
+										select="if ($type = 'http://vocab.getty.edu/aat/300072633') then 'nmo:hasDepth' 
+										else if ($type = 'http://vocab.getty.edu/aat/300055624') then 'nmo:hasDiameter' 
+										else if ($type = 'http://vocab.getty.edu/aat/300055644') then 'nmo:hasHeight'
+										else 'nmo:hasWidth'"/>
+
+									<!-- convert from inches, cm, or leave the mm value. any other $units results in 'null' and the RDF property is not added -->
+									<xforms:var name="normalizedValue"
+										select="if ($units = 'http://vocab.getty.edu/aat/300379100') then format-number($value * 25.4, '###.##') 
+										else if ($units = 'http://vocab.getty.edu/aat/300379098') then format-number($value * 10, '###.##')
+										else if ($units = 'http://vocab.getty.edu/aat/300379097') then $value else 'null'"/>
+
+									<xforms:insert context="instance('object')" nodeset="./child::node()[last()]"
+										origin="xforms:element($element, (xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#decimal'), $normalizedValue))"
+									if="$normalizedValue castable as xs:decimal"/>
+								</xforms:action>
+
 							</xforms:action>
-						</xforms:action>-->
+						</xforms:action>
+
+						<!-- boolean variable whether there's a link to a IIIF manifest. The manifest link is required for combined IIIF images (e.g., Harvard Art Museums) -->
+						<xforms:var name="hasManifest" select="boolean(context()/subject_of/_[conforms_to/_/id = 'http://iiif.io/api/presentation'])"
+							as="xs:boolean"/>
 
 						<!-- digital images -->
 						<xforms:action xxforms:iterate="context()//representation">
@@ -583,7 +599,7 @@ SELECT ?uri ?type WHERE {
 								<!-- process IIIF first -->
 								<xforms:action if="context()/_[conforms_to = 'http://iiif.io/api/image']">
 									<xforms:var name="service" select="context()/_[conforms_to = 'http://iiif.io/api/image']/id"/>
-									
+
 									<!-- create and insert relevant images into nmo:hasObverse and nmo:hasReverse -->
 									<xforms:insert context="instance('object')" nodeset="./child::node()[last()]" origin="xforms:element($element)"/>
 									<xforms:insert context="instance('object')/*[name()=$element]" origin="xforms:element('rdf:Description')"/>
@@ -595,44 +611,52 @@ SELECT ?uri ?type WHERE {
 
 									<!-- insert edm:WebResource and related service templates into instance('rdf') rather than instance('object') -->
 									<xforms:insert context="instance('rdf')" nodeset="./child::node()[last()]" origin="instance('webresource-template')"/>
-									<xforms:setvalue ref="instance('rdf')/edm:WebResource[last()]/@rdf:about" value="concat($service, '/full/!400,400/0/default.jpg')"/>
+									<xforms:setvalue ref="instance('rdf')/edm:WebResource[last()]/@rdf:about"
+										value="concat($service, '/full/!400,400/0/default.jpg')"/>
 									<xforms:setvalue ref="instance('rdf')/edm:WebResource[last()]/svcs:has_service/@rdf:resource" value="$service"/>
-									<xforms:setvalue ref="instance('rdf')/edm:WebResource[last()]/dcterms:isReferencedBy/@rdf:resource" value="concat($service, '/info.json')"/>
-									
+									<xforms:setvalue ref="instance('rdf')/edm:WebResource[last()]/dcterms:isReferencedBy/@rdf:resource"
+										value="concat($service, '/info.json')"/>
+
 									<xforms:insert context="instance('rdf')" nodeset="./child::node()[last()]" origin="instance('service-template')"/>
 									<xforms:setvalue ref="instance('rdf')/svcs:Service[last()]/@rdf:about" value="$service"/>
 								</xforms:action>
-								<xforms:action if="not(context()/_/conforms_to = 'http://iiif.io/api/image')"> </xforms:action>
 
+								<xforms:action if="not(context()/_[conforms_to = 'http://iiif.io/api/image'])">
+
+									<!-- only include the property if there's a jpeg image -->
+									<xforms:action if="context()/_[format = 'image/jpeg']">
+										<xforms:var name="image" select="context()/_[format = 'image/jpeg'][1]/id"/>
+
+										<xforms:insert context="instance('object')" nodeset="./child::node()[last()]" origin="xforms:element($element)"/>
+										<xforms:insert context="instance('object')/*[name()=$element]" origin="xforms:element('rdf:Description')"/>
+										<xforms:insert context="instance('object')/*[name()=$element]/rdf:Description" nodeset="./child::node()[last()]"
+											origin="xforms:element('foaf:depiction', (xforms:attribute('rdf:resource', $image), ''))"/>
+
+									</xforms:action>
+								</xforms:action>
 							</xforms:action>
+
+							<!-- TODO test later -->
 							<xforms:action if="$side = 'combined'">
 								<!-- process IIIF first -->
+								<xforms:action if="context()/_[conforms_to = 'http://iiif.io/api/image'] and $hasManifest = true()">
+									<xforms:var name="service" select="context()/_[conforms_to = 'http://iiif.io/api/image']/id"/>
+									<xforms:var name="manifest"
+										select="context()/parent::node()/subject_of/_[conforms_to/_/id = 'http://iiif.io/api/presentation']/id"/>
+
+									<!-- insert web resources and service -->
+
+								</xforms:action>
+								<xforms:action if="not(context()/_[conforms_to = 'http://iiif.io/api/image'])">
+									<xforms:action if="context()/_[format = 'image/jpeg']">
+										<xforms:var name="image" select="context()/_[format = 'image/jpeg'][1]/id"/>
+
+										<!-- insert foaf:depiction directly into the nmo:NumismaticObject -->
+										<xforms:insert context="instance('object')" nodeset="./child::node()[last()]"
+											origin="xforms:element('foaf:depiction', (xforms:attribute('rdf:resource', $image), ''))"/>
+									</xforms:action>
+								</xforms:action>
 							</xforms:action>
-
-
-
-							<!--<xforms:insert context="instance('object')" nodeset="./child::node()[last()]" origin="instance('representation-template')"/>
-							<xforms:setvalue ref="instance('object')/crm:P138i_has_representation[last()]/crm:E36_Visual_Item/@rdf:about" value="$binding/id"/>
-
-							<!-\- insert label, if applicable -\->
-							<xforms:insert context="instance('object')/crm:P138i_has_representation[last()]/crm:E36_Visual_Item"
-								nodeset="./child::node()[last()]" origin="xforms:element('rdfs:label', data($binding/_label))"
-								if="string(data($binding/_label))"/>
-
-							<!-\- evaluate classified_as or conforms_to as image or IIIF -\->
-							<xforms:insert context="instance('object')/crm:P138i_has_representation[last()]/crm:E36_Visual_Item"
-								nodeset="./child::node()[last()]"
-								origin="xforms:element('dcterms:conformsTo', (xforms:attribute('rdf:resource', 'http://iiif.io/api/image')))"
-								if="$binding/conforms_to"/>
-							<xforms:insert context="instance('object')/crm:P138i_has_representation[last()]/crm:E36_Visual_Item"
-								nodeset="./child::node()[last()]" origin="xforms:element('dcterms:format', 'image/jpeg')" if="$binding/classified_as"/>-->
-						</xforms:action>
-
-						<!-- if there's a IIIF Manifest link -->
-						<xforms:action if="context()/subject_of/_[conforms_to/_/id = 'http://iiif.io/api/presentation']">
-							<xforms:insert context="instance('object')" nodeset="./child::node()[last()]" origin="instance('manifest-template')"/>
-							<xforms:setvalue ref="instance('object')/crm:P129i_is_subject_of[last()]/crm:E73_Information_Object/@rdf:about"
-								value="context()/subject_of/_[conforms_to/_/id = 'http://iiif.io/api/presentation']/id"/>
 						</xforms:action>
 
 						<!-- insert collection link -->
