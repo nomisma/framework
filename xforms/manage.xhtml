@@ -681,10 +681,10 @@ SELECT ?uri ?type WHERE {
 			<!-- ********** XFORMS-MODEL-CONSTRUCT-DONE ********** -->
 			<xforms:action ev:event="xforms-model-construct-done">
 				<!-- populate the page with a list of current collections ingested into Nomisma -->
-				<!--<xforms:setvalue ref="instance('sparqlQuery')" value="instance('sparql-templates')/query[@id='get-datasets']"/>
+				<xforms:setvalue ref="instance('sparqlQuery')" value="instance('sparql-templates')/query[@id='get-datasets']"/>
 				<xforms:send submission="submit-sparqlQuery"/>
 				<xforms:delete nodeset="instance('datasets')/*"/>
-				<xforms:insert context="instance('datasets')" origin="instance('sparqlResponse')/*"/>-->
+				<xforms:insert context="instance('datasets')" origin="instance('sparqlResponse')/*"/>
 			</xforms:action>
 		</xforms:model>
 	</head>
