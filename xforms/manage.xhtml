@@ -518,16 +518,12 @@ SELECT ?uri ?type WHERE {
 						</xforms:action>
 
 						<!-- iterate through types in order to parse the shape -->
-						<!--<xforms:action xxforms:iterate="context()/classified_as/_[]">
+						<xforms:action xxforms:iterate="context()/classified_as/_[classified_as/_/id = 'http://vocab.getty.edu/aat/300067209']">
 							<xforms:var name="uri" select="context()/id"/>
 
-							<xforms:action if="instance('mappings')/mapping[@from = $uri]/@type = 'http://kerameikos.org/ontology#Shape'">
-								<xforms:var name="match" select="instance('mappings')/mapping[@from = $uri]/@to"/>
-
-								<xforms:insert context="instance('object')" nodeset="./child::node()[last()]"
-									origin="xforms:element('kon:hasShape', (xforms:attribute('rdf:resource', $match)))"/>
-							</xforms:action>
-						</xforms:action>-->
+							<xforms:insert context="instance('object')" nodeset="./child::node()[last()]"
+								origin="xforms:element('nmo:hasTypeSeriesItem', (xforms:attribute('rdf:resource', $uri)))"/>
+						</xforms:action>
 
 						<!-- insert and convert dimensions to metric -->
 						<xforms:action xxforms:iterate="context()/dimension/_">
@@ -933,6 +929,12 @@ SELECT ?uri ?type WHERE {
 						<xforms:case id="harvest-json">
 							<xforms:group ref="instance('void-rdf')/void:Dataset">
 
+								<div class="alert-info alert alert-box">
+									<p>
+										<span class="glyphicon glyphicon-info-sign"></span>
+										<strong>Notice:</strong> This is a beta interface and does not currently update the SPARQL endpoint.</p>
+								</div>
+
 								<xforms:group ref=".[not(count(dcterms:title/@xml:lang) = count(distinct-values(dcterms:title/@xml:lang)))]">
 									<div class="alert-danger alert alert-box">
 										<p>
@@ -1265,6 +1267,8 @@ SELECT ?uri ?type WHERE {
 									</xforms:action>
 								</xforms:trigger>
 							</xforms:group>
+							
+							<fr:xforms-inspector/>
 						</xforms:case>
 						<xforms:case id="validate-void">
 							<xforms:group ref="instance('void-rdf')">
@@ -1375,7 +1379,7 @@ SELECT ?uri ?type WHERE {
 						</xforms:case>
 					</xforms:switch>
 
-					<fr:xforms-inspector/>
+					<!--<fr:xforms-inspector/>-->
 				</div>
 			</div>
 		</div>
