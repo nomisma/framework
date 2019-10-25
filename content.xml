@@ -419,11 +419,14 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial . FILTER isLiteral(?burial) }}]]>
 			<h4>Findspots for individual finds (not hoards)</h4>
 			<p>Findspots can expressed with nmo:hasFindspot in the following way:</p>
 			<pre><code class="language-markup"><![CDATA[<nmo:hasFindspot>
-	<rdf:Description xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" rdf:about="http://www.geonames.org/670093">
+	<rdf:Description xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
 		<geo:lat>37.689444</geo:lat>
 		<geo:long>26.943056</geo:long>
+		dcterms:isPartOf rdf:resource="http://www.geonames.org/670093"/>
 	</rdf:Description>
 </nmo:hasFindspot>]]></code></pre>
+			<p>Note that a findspot always occurs <i>within</i> the spatial limitations of the gazetteer URI. The findspot is never precisely the place defined by the URI, even
+			if the latitude and longitude within the spatial boundaries of the place URI are unknown.</p>
 
 			<h3>Hoards</h3>
 			<pre><code class="language-markup"><![CDATA[<rdf:RDF xmlns:nmo="http://nomisma.org/ontology#" 
@@ -438,7 +441,7 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial . FILTER isLiteral(?burial) }}]]>
          xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
     <nmo:Hoard rdf:about="http://numismatics.org/chrr/id/SCU">
         <dcterms:title xml:lang="en">Scurta (Romania; SCU)</dcterms:title>
-        <nmo:hasFindspot rdf:resource="http://www.geonames.org/663431"/>
+        <nmo:hasFindspot rdf:resource="http://numismatics.org/chrr/id/SCU#this"/>
         <nmo:hasClosingDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">0014</nmo:hasClosingDate>
         <dcterms:tableOfContents rdf:resource="http://numismatics.org/chrr/id/SCU#contents"/>
         <void:inDataset rdf:resource="http://numismatics.org/chrr/"/>
@@ -455,10 +458,11 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial . FILTER isLiteral(?burial) }}]]>
         <nmo:hasTypeSeriesItem rdf:resource="http://numismatics.org/ocre/id/ric.1(2).aug.541"/>
         <nmo:hasTypeSeriesItem rdf:resource="http://numismatics.org/ocre/id/ric.1(2).aug.340"/>
     </dcmitype:Collection>
-    <geo:SpatialThing rdf:about="http://www.geonames.org/663431">
+    <geo:SpatialThing rdf:about="http://numismatics.org/chrr/id/SCU#this">
         <geo:lat>46.10391</geo:lat>
         <geo:long>26.19728</geo:long>
         <foaf:name>Valea Scurtă (Romania)</foaf:name>
+        <dcterms:isPartOf rdf:resource="http://www.geonames.org/663431"/>
     </geo:SpatialThing>
 </rdf:RDF>]]></code></pre>
 			<p>Like physical coins, the dcterms:title, and dcterms:identifier are required, and the resource must carry the nmo:Hoard class. Similarly, the
