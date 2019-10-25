@@ -323,7 +323,8 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial . FILTER isLiteral(?burial) }}]]>
 				about this dump, in <a href="http://www.w3.org/TR/void/">Vocabulary of Interlinked Datasets (VoID)</a> RDF.</p>
 			<h2>VoID RDF</h2>
 			<pre>
-				<code class="language-markup"><![CDATA[<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+				<code class="language-markup"><![CDATA[
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
 	xmlns:dcterms="http://purl.org/dc/terms/"
 	xmlns:void="http://rdfs.org/ns/void#">
 	<void:Dataset rdf:about="http://coins.lib.virginia.edu/">
