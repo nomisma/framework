@@ -441,7 +441,7 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial . FILTER isLiteral(?burial) }}]]>
         <nmo:hasFindspot rdf:resource="http://www.geonames.org/663431"/>
         <nmo:hasClosingDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">0014</nmo:hasClosingDate>
         <dcterms:tableOfContents rdf:resource="http://numismatics.org/chrr/id/SCU#contents"/>
-        <void:inDataset="http://numismatics.org/chrr/"/>
+        <void:inDataset rdf:resource="http://numismatics.org/chrr/"/>
     </nmo:Hoard>
     <dcmitype:Collection rdf:about="http://numismatics.org/chrr/id/SCU#contents">
         <nmo:hasTypeSeriesItem rdf:resource="http://numismatics.org/crro/id/rrc-252.1"/>
