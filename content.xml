@@ -15,7 +15,7 @@
 
 			<p>The project is steered by a committee currently consisting of:</p>
 
-			<ul>				
+			<ul>
 				<li>Rahel Ackermann, Swiss Inventory of Coin Finds</li>
 				<li>Florence Codine, <a href="https://www.ephe.fr/">Ecole Pratique des Hautes Etudes</a></li>
 				<li>Karsten Dahmen, <a href="http://ww2.smb.museum/ikmk/">MK Berlin</a></li>
@@ -322,9 +322,7 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial . FILTER isLiteral(?burial) }}]]>
 					href="http://pelagios-project.blogspot.com/">Pelagios Project</a>: an RDF data dump (which also much be accessible by URL) and some metadata
 				about this dump, in <a href="http://www.w3.org/TR/void/">Vocabulary of Interlinked Datasets (VoID)</a> RDF.</p>
 			<h2>VoID RDF</h2>
-			<pre>
-				<code class="language-markup"><![CDATA[
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+			<pre><code class="language-markup"><![CDATA[<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
 	xmlns:dcterms="http://purl.org/dc/terms/"
 	xmlns:void="http://rdfs.org/ns/void#">
 	<void:Dataset rdf:about="http://coins.lib.virginia.edu/">
@@ -336,8 +334,7 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial . FILTER isLiteral(?burial) }}]]>
 		<void:uriSpace>http://coins.lib.virginia.edu/id/</void:uriSpace>
 		<void:dataDump rdf:resource="http://coins.lib.virginia.edu/nomisma.rdf"/>
 	</void:Dataset>
-</rdf:RDF>]]></code>
-			</pre>
+</rdf:RDF>]]></code></pre>
 			<p>The void:Dataset should include the URI for your project, and this URI should be linked from each individual object (physical coin, coin type, or
 				hoard) within the data dump using the void:inDataset property (see examples, below). The dcterms:title, dcterms:description, dcterms:publisher,
 				and dcterms:license are all required. The title and description must be textual strings, but the publisher and license may be URIs. In fact, the
