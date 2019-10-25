@@ -358,9 +358,9 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial . FILTER isLiteral(?burial) }}]]>
 		<nmo:hasCollection rdf:resource="http://nomisma.org/id/uva"/>
 		<nmo:hasTypeSeriesItem rdf:resource="http://numismatics.org/ocre/id/ric.5.gall(1).143fA"/>
 		<dcterms:replaces rdf:resource="http://coins.lib.virginia.edu/display-uva?id=n1991_17_140"/>
-		<nmo:hasAxis rdf:datatype="xsd:integer">6</nmo:hasAxis>
-		<nmo:hasDiameter rdf:datatype="xsd:decimal">22</nmo:hasDiameter>
-		<nmo:hasWeight rdf:datatype="xsd:decimal">2.86</nmo:hasWeight>
+		<nmo:hasAxis rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</nmo:hasAxis>
+		<nmo:hasDiameter rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">22</nmo:hasDiameter>
+		<nmo:hasWeight rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2.86</nmo:hasWeight>
 		<dcterms:isPartOf rdf:resource="http://nomisma.org/id/olivers_orchard_hoards"/>
 		<nmo:hasObverse rdf:resource="http://coins.lib.virginia.edu/id/1991.17.140#obverse"/>
 		<nmo:hasReverse rdf:resource="http://coins.lib.virginia.edu/id/1991.17.140#reverse"/>
