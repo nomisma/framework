@@ -358,7 +358,7 @@ SELECT ?uri ?type WHERE {
 			<!-- ************* BINDINGS **********************-->
 			<xforms:bind nodeset="instance('void-rdf')">
 				<xforms:bind nodeset="void:Dataset">
-					<xforms:bind nodeset="@rdf:about" required="true()" type="xs:anyURI" constraint="matches(., 'https?://(-\.)?([^\s/?\.#-]+\.?)+(/[^\s]*)?$')"/>
+					<xforms:bind nodeset="@rdf:about" required="true()" type="xs:anyURI" constraint="matches(., 'https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$')"/>
 					<xforms:bind nodeset="dcterms:title" required="true()">
 						<xforms:bind nodeset="@xml:lang"
 							constraint="string-length(.) &gt; 0 and (count(parent::node()/parent::node()/dcterms:title/@xml:lang) = count(distinct-values(parent::node()/parent::node()/dcterms:title/@xml:lang)))"
@@ -374,7 +374,7 @@ SELECT ?uri ?type WHERE {
 					<xforms:bind nodeset="dcterms:rights"
 						constraint="if (not(@rdf:resource)) then string-length(normalize-space(.)) &gt; 0 else string-length(normalize-space(.)) = 0"/>
 					<xforms:bind nodeset="//@rdf:resource" type="xs:anyURI" required="true()"
-						constraint="matches(., 'https?://(-\.)?([^\s/?\.#-]+\.?)+(/[^\s]*)?$')"/>
+						constraint="matches(., 'https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$')"/>
 				</xforms:bind>
 			</xforms:bind>
 
