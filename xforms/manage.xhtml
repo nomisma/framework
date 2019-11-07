@@ -1126,7 +1126,7 @@ SELECT ?uri ?type WHERE {
 														<xforms:action ev:event="xforms-value-changed">
 															<xforms:var name="val" select="."/>
 															<!-- set the @rdf:resource if the value is a URL, otherwise set the literal -->
-															<xforms:action if="matches($val, 'https?://(-\.)?([^\s/?\.#-]+\.?)+(/[^\s]*)?$')">
+															<xforms:action if="matches($val, 'https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$')">
 																<!-- insert @rdf:resource if it doesn't already exist -->
 																<xforms:insert context="instance('void-rdf')/void:Dataset/dcterms:license"
 																	origin="xforms:attribute('rdf:resource', '')"
@@ -1136,7 +1136,7 @@ SELECT ?uri ?type WHERE {
 																	value="$val"/>
 																<xforms:setvalue ref="instance('void-rdf')/void:Dataset/dcterms:license"/>
 															</xforms:action>
-															<xforms:action if="not(matches($val, 'https?://(-\.)?([^\s/?\.#-]+\.?)+(/[^\s]*)?$'))">
+															<xforms:action if="not(matches($val, 'https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$'))">
 																<xforms:delete nodeset="instance('void-rdf')/void:Dataset/dcterms:license/@rdf:resource"/>
 																<xforms:setvalue ref="instance('void-rdf')/void:Dataset/dcterms:license" value="$val"/>
 															</xforms:action>
@@ -1210,7 +1210,7 @@ SELECT ?uri ?type WHERE {
 														<xforms:action ev:event="xforms-value-changed">
 															<xforms:var name="val" select="."/>
 															<!-- set the @rdf:resource if the value is a URL, otherwise set the literal -->
-															<xforms:action if="matches($val, 'https?://(-\.)?([^\s/?\.#-]+\.?)+(/[^\s]*)?$')">
+															<xforms:action if="matches($val, 'https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$')">
 																<!-- insert @rdf:resource if it doesn't already exist -->
 																<xforms:insert context="instance('void-rdf')/void:Dataset/dcterms:rights"
 																	origin="xforms:attribute('rdf:resource', '')"
@@ -1220,7 +1220,7 @@ SELECT ?uri ?type WHERE {
 																	value="$val"/>
 																<xforms:setvalue ref="instance('void-rdf')/void:Dataset/dcterms:rights"/>
 															</xforms:action>
-															<xforms:action if="not(matches($val, 'https?://(-\.)?([^\s/?\.#-]+\.?)+(/[^\s]*)?$'))">
+															<xforms:action if="not(matches($val, 'https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$'))">
 																<xforms:delete nodeset="instance('void-rdf')/void:Dataset/dcterms:rights/@rdf:resource"/>
 																<xforms:setvalue ref="instance('void-rdf')/void:Dataset/dcterms:rights" value="$val"/>
 															</xforms:action>
