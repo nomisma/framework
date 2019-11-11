@@ -572,7 +572,7 @@ SELECT ?uri ?type WHERE {
 
 									<xforms:insert context="instance('object')" nodeset="./child::node()[last()]"
 										origin="xforms:element($element, (xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#decimal'), $normalizedValue))"
-									if="$normalizedValue castable as xs:decimal"/>
+										if="$normalizedValue castable as xs:decimal"/>
 								</xforms:action>
 
 							</xforms:action>
@@ -1255,6 +1255,8 @@ SELECT ?uri ?type WHERE {
 										<!-- after the completion of the request, initiate SPARQL publication -->
 										<!--<xforms:send submission="post-dump"/>
 										<xforms:action ev:event="xforms-submit-done">
+										<xforms:insert context="instance('void-rdf')/void:Dataset" nodeset="./child::node()[last()]"
+												origin="xforms:element('dcterms:date', current-dateTime())"/>
 											<xforms:send submission="post-void"/>
 										</xforms:action>-->
 
@@ -1267,7 +1269,7 @@ SELECT ?uri ?type WHERE {
 									</xforms:action>
 								</xforms:trigger>
 							</xforms:group>
-							
+
 							<fr:xforms-inspector/>
 						</xforms:case>
 						<xforms:case id="validate-void">
@@ -1345,8 +1347,12 @@ SELECT ?uri ?type WHERE {
 									<xforms:trigger>
 										<xforms:label><span class="glyphicon glyphicon-upload"></span> Import</xforms:label>
 										<xforms:action ev:event="DOMActivate">
+											<!-- insert date -->
+											<xforms:insert context="instance('void-rdf')/void:Dataset" nodeset="./child::node()[last()]"
+												origin="xforms:element('dcterms:date', current-dateTime())"/>
+
 											<!-- push VoID RDF into triplestore -->
-											<xforms:send submission="post-void"/>
+											<!--<xforms:send submission="post-void"/>
 											<xforms:action ev:event="xforms-submit-done">
 												<xforms:action xxforms:iterate="instance('void-rdf')/void:Dataset/void:dataDump">
 													<xforms:setvalue ref="instance('control-instance')/dump_uri" value="context()/@rdf:resource"/>
@@ -1356,13 +1362,13 @@ SELECT ?uri ?type WHERE {
 													</xforms:action>
 												</xforms:action>
 
-												<!-- refresh page after dumps have been posted -->
+												<!-\- refresh page after dumps have been posted -\->
 												<xforms:setvalue ref="instance('sparqlQuery')" value="instance('sparql-templates')/query[@id='get-datasets']"/>
 												<xforms:send submission="submit-sparqlQuery"/>
 												<xforms:delete nodeset="instance('datasets')/*"/>
 												<xforms:insert context="instance('datasets')" origin="instance('sparqlResponse')/*"/>
 												<xforms:toggle case="default"/>
-											</xforms:action>
+											</xforms:action>-->
 										</xforms:action>
 									</xforms:trigger>
 								</xforms:group>
