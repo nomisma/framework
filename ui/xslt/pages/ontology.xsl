@@ -3,7 +3,7 @@
 	xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:skos="http://www.w3.org/2004/02/skos/core#" exclude-result-prefixes="#all" version="2.0">
 	<xsl:include href="../templates.xsl"/>
-	<xsl:variable name="display_path"/>
+
 
 	<xsl:variable name="url" select="/content/config/url"/>
 
@@ -27,6 +27,13 @@
 				concat('ontology/', $version)
 			else
 				'ontology'"/>
+
+	<xsl:variable name="display_path"
+		select="
+			if (tokenize(doc('input:request')/request/request-url, '/')[last()] != 'ontology') then
+				'../'
+			else
+				''"/>
 
 	<xsl:variable name="namespaces" as="item()*">
 		<namespaces>
@@ -74,7 +81,7 @@
 					<div>
 						<xsl:apply-templates select="/content/directory"/>
 					</div>
-					
+
 					<div>
 						<h2>Cross reference for Nomisma classes and properties</h2>
 						<h3>Classes</h3>
@@ -88,8 +95,7 @@
 	</xsl:template>
 
 	<xsl:template match="directory">
-		<xsl:variable name="date"
-			select="concat('20', substring($version, 1, 2), '-', substring($version, 3, 2), '-', substring($version, 5, 2))"/>
+		<xsl:variable name="date" select="concat('20', substring($version, 1, 2), '-', substring($version, 3, 2), '-', substring($version, 5, 2))"/>
 
 		<dl>
 			<dt>This version:</dt>
@@ -119,8 +125,7 @@
 					<xsl:sort order="descending" data-type="number"/>
 
 					<xsl:if test=". &lt; $version">
-						<xsl:variable name="date"
-							select="concat('20', substring(., 1, 2), '-', substring(., 3, 2), '-', substring(., 5, 2))"/>
+						<xsl:variable name="date" select="concat('20', substring(., 1, 2), '-', substring(., 3, 2), '-', substring(., 5, 2))"/>
 
 						<a href="{concat($url, 'ontology/', .)}">
 							<xsl:value-of select="concat($url, 'ontology/', .)"/>
@@ -134,7 +139,7 @@
 			</dd>
 		</dl>
 	</xsl:template>
-	
+
 	<!-- styling for classes and properties -->
 	<xsl:template match="owl:Class | owl:ObjectProperty">
 		<xsl:variable name="uri" select="@rdf:about"/>
