@@ -23,7 +23,7 @@
 				<xsl:template match="/">
 					<config>
 						<url>
-							<xsl:value-of select="concat(/config/data_path, '/ontology/', tokenize(doc('input:request')/request/request-url, '/')[last()])"/>
+							<xsl:value-of select="concat(/config/data_path, '/ontology/ontology.', tokenize(doc('input:request')/request/request-url, '/')[last()])"/>
 						</url>						
 						<mode>text</mode>
 						<content-type>text/turtle</content-type>

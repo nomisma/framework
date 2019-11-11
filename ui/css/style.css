@@ -4,13 +4,13 @@
   ****************************************
  */
 body{
-	background-color:#F8F8F8;
+    background-color: #F8F8F8;
 }
 .nav{
-	margin-top:10px;
+    margin-top: 10px;
 }
 .navbar{
-	margin-bottom:0;
+    margin-bottom: 0;
 }
 /*
   .navbar-brand {
@@ -19,21 +19,21 @@ body{
   }
  */
 .row{
-	background-color:white;
+    background-color: white;
 }
 .highlight{
-	background-color:#F7F7F9;
-	border:1px solid #E1E1E8;
-	border-radius:4px;
-	margin-bottom:14px;
-	padding:9px 14px;
+    background-color: #F7F7F9;
+    border: 1px solid #E1E1E8;
+    border-radius: 4px;
+    margin-bottom: 14px;
+    padding: 9px 14px;
 }
-.alert-box {
-	width:50%;
-	margin:20px auto;
+.alert-box{
+    width: 50%;
+    margin: 20px auto;
 }
 .table-dl td{
-	padding:5px;
+    padding: 5px;
 }
 /*
   ***************************************
@@ -41,19 +41,39 @@ body{
   ***************************************
  */
 .media{
-	display:inline;
+    display: inline;
 }
 .media img{
-	height:50px;
-	margin:5px;
+    height: 50px;
+    margin: 5px;
 }
 /*
   ***************************************
   ONTOLOGY PAGE
   ***************************************
  */
-.def{
-	margin-left:20px;
+.entity{
+    border: 1px solid navy;
+    padding: 5px;
+    margin: 5px 0;
+}
+
+.entity h1,
+.entity h2,
+.entity h3,
+.entity h4,
+.entity h5{
+    border-bottom: 1px solid navy;
+}
+.description{
+    border-top: 1px dashed gray;
+    border-bottom: 1px dashed gray;
+    background-color: rgb(242, 243, 244);
+    margin-top: 5px;
+    padding-bottom: 5px;
+}
+.description dl dd {
+    margin-left: 1em;
 }
 /*
   ***************************************
@@ -61,9 +81,9 @@ body{
   ***************************************
  */
 #footer{
-	padding:10px 0;
-	border-top:1px solid #e7e7e7;
-	text-align:center;
+    padding: 10px 0;
+    border-top: 1px solid #e7e7e7;
+    text-align: center;
 }
 /*
   ***************************************
@@ -71,23 +91,23 @@ body{
   ***************************************
  */
 .result-doc{
-	margin:10px 0;
-	padding:10px 0;
-	border-bottom:1px solid silver;
+    margin: 10px 0;
+    padding: 10px 0;
+    border-bottom: 1px solid silver;
 }
 .doc-label{
-	font-size:120%;
+    font-size: 120%;
 }
 .paging_div{
-	padding:10px 0;
-	vertical-align:top
+    padding: 10px 0;
+    vertical-align: top
 }
 .page-nos{
-	text-align:right;
+    text-align: right;
 }
 #filter-form .form-control{
-	width:20em;
-	display:inline;
+    width: 20em;
+    display: inline;
 }
 /*
   ***************************************
@@ -95,25 +115,25 @@ body{
   ***************************************
  */
 #sparqlForm{
-	margin:20px 0;
+    margin: 20px 0;
 }
 #sparqlForm select{
-	width:20em;
+    width: 20em;
 }
 .CodeMirror{
-	background-color:#fff;
-	background-image:none;
-	border:1px solid #ccc;
-	border-radius:4px;
-	box-shadow:0 1px 1px rgba(0, 0, 0, 0.075) inset;
-	color:#555;
-	padding:6px 12px;
-	transition:border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #555;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
 }
 .CodeMirror:focus{
-	border-color:#66afe9;
-	box-shadow:0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
-	outline:0 none;
+    border-color: #66afe9;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
+    outline: 0 none;
 }
 /*
   ***************************************
@@ -121,31 +141,33 @@ body{
   ***************************************
  */
 .lang{
-	font-style:italic;
+    font-style: italic;
 }
 .toggle-geoJSON{
-	margin-left:10px;
+    margin-left: 10px;
 }
 .map-normal{
-	width:100%;
-	height:400px;
+    width: 100%;
+    height: 400px;
 }
-.map-fullscreen {
-	width:100%;
-	height:100%;
+.map-fullscreen{
+    width: 100%;
+    height: 100%;
 }
-.ol-attribution {
-  max-width: calc(100% - 3em);
+.ol-attribution{
+    max-width: calc(100% - 3em);
 }
-.ol-control button, .ol-attribution, .ol-scale-line-inner {
-  font-family: 'Lucida Grande',Verdana,Geneva,Lucida,Arial,Helvetica,sans-serif;
+.ol-control button,
+.ol-attribution,
+.ol-scale-line-inner{
+    font-family: 'Lucida Grande', Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif;
 }
 .thumbImage,
 .flickrthumb{
-	margin:5px;
+    margin: 5px;
 }
 .thumbImage > img{
-	max-width:120px;
+    max-width: 120px;
 }
 
 /*
@@ -153,29 +175,31 @@ body{
   VISUALIZATION FORM
   ***************************************
 */
-.quant-form input[type=text], .quant-form select {
-	width:20em;
+.quant-form input[type = text],
+.quant-form select{
+    width: 20em;
 }
-.quant-form select.era {
-    width:5em;
-    margin-left:10px;
+.quant-form select.era{
+    width: 5em;
+    margin-left: 10px;
 }
-.quant-form input.year, .quant-form select.interval {
-    width:10em;
+.quant-form input.year,
+.quant-form select.interval{
+    width: 10em;
 }
-.control-container {
-	display:inline;
-	width:20px;
+.control-container{
+    display: inline;
+    width: 20px;
 }
 .control-row .btn{
-    margin:0 5px;
+    margin: 0 5px;
 }
-.query-pair {
-	display:block;
-	margin-bottom:15px;
+.query-pair{
+    display: block;
+    margin-bottom: 15px;
 }
-.prop-container {
-	display:inline;
-	margin-left:10px;
-	margin-right:10px;
+.prop-container{
+    display: inline;
+    margin-left: 10px;
+    margin-right: 10px;
 }
