@@ -1352,7 +1352,7 @@ SELECT ?uri ?type WHERE {
 												origin="xforms:element('dcterms:date', current-dateTime())"/>
 
 											<!-- push VoID RDF into triplestore -->
-											<!--<xforms:send submission="post-void"/>
+											<xforms:send submission="post-void"/>
 											<xforms:action ev:event="xforms-submit-done">
 												<xforms:action xxforms:iterate="instance('void-rdf')/void:Dataset/void:dataDump">
 													<xforms:setvalue ref="instance('control-instance')/dump_uri" value="context()/@rdf:resource"/>
@@ -1362,13 +1362,13 @@ SELECT ?uri ?type WHERE {
 													</xforms:action>
 												</xforms:action>
 
-												<!-\- refresh page after dumps have been posted -\->
+												<!-- refresh page after dumps have been posted -->
 												<xforms:setvalue ref="instance('sparqlQuery')" value="instance('sparql-templates')/query[@id='get-datasets']"/>
 												<xforms:send submission="submit-sparqlQuery"/>
 												<xforms:delete nodeset="instance('datasets')/*"/>
 												<xforms:insert context="instance('datasets')" origin="instance('sparqlResponse')/*"/>
 												<xforms:toggle case="default"/>
-											</xforms:action>-->
+											</xforms:action>
 										</xforms:action>
 									</xforms:trigger>
 								</xforms:group>
