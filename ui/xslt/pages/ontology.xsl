@@ -77,6 +77,10 @@
 
 					<p>The namespace for all terms is <code>http://nomisma.org/ontology#</code></p>
 
+					<p>Download OWL ontology for this version: <a href="{concat($url, $path, '.rdf')}">RDF/XML</a>
+						<xsl:text>, </xsl:text>
+						<a href="{concat($url, $path, '.ttl')}">TTL</a></p>
+					
 					<!-- version history -->
 					<div>
 						<xsl:apply-templates select="/content/directory"/>
@@ -112,12 +116,6 @@
 				<a href="{concat($url, 'ontology')}">
 					<xsl:value-of select="concat($url, 'ontology')"/>
 				</a>
-			</dd>
-			<dt>OWL implementation of this version:</dt>
-			<dd>
-				<a href="{concat($url, $path, '.rdf')}">RDF/XML</a>
-				<xsl:text>, </xsl:text>
-				<a href="{concat($url, $path, '.ttl')}">TTL</a>
 			</dd>
 			<dt>Previous versions:</dt>
 			<dd>
@@ -165,7 +163,16 @@
 				</code>
 			</p>
 
-			<xsl:apply-templates select="rdfs:comment | owl:deprecated"/>
+			<xsl:choose>
+				<xsl:when test="rdfs:comment">
+					<xsl:apply-templates select="rdfs:comment"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:apply-templates select="//rdf:Description[@rdf:about = $uri]/rdfs:comment"/>
+				</xsl:otherwise>
+			</xsl:choose>
+
+			<xsl:apply-templates select="owl:deprecated"/>
 
 			<div class="description">
 				<dl>
