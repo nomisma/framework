@@ -37,7 +37,6 @@
 
 	<xsl:variable name="namespaces" as="item()*">
 		<namespaces>
-			<namespace prefix="dcterms" uri="http://purl.org/dc/terms/"/>
 			<xsl:for-each select="//rdf:RDF/namespace::*[not(name() = 'xml')]">
 				<namespace prefix="{if (string(name())) then name() else 'nmo'}" uri="{.}"/>
 			</xsl:for-each>
