@@ -130,6 +130,7 @@
 					<query id="delete-metadata"><![CDATA[PREFIX void:	<http://rdfs.org/ns/void#> 
 DELETE {?s ?p ?o} WHERE { <DATASET> ?p ?o . ?s ?p ?o . FILTER (?s = <DATASET>)}]]></query>
 					<query id="delete-dump"><![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX crm:	<http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX void:	<http://rdfs.org/ns/void#>
 PREFIX dcterms:	<http://purl.org/dc/terms/>
 PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
@@ -150,37 +151,17 @@ UNION { ?object nmo:hasReverse/foaf:depiction ?image .
 UNION { ?object nmo:hasReverse/foaf:depiction ?s . ?s ?p ?o}
 UNION { ?object nmo:hasReverse ?s . ?s ?p ?o}
 UNION { ?object dcterms:tableOfContents ?s . ?s ?p ?o}
+UNION { ?object nmo:hasFindspot/crm:P7_took_place_at ?s . ?s ?p ?o}
+UNION { ?object nmo:hasFindspot ?s . ?s ?p ?o}
 UNION { BIND (?object as ?s)
         ?s ?p ?o }
 }]]></query>
-					<!--<query id="delete-NumismaticObject"><![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
-PREFIX void:	<http://rdfs.org/ns/void#>
-PREFIX dcterms:	<http://purl.org/dc/terms/>
-PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
-PREFIX svcs:	<http://rdfs.org/sioc/services#>
-DELETE {?s ?p ?o} WHERE {
-  {
-     SELECT ?object WHERE {?object void:inDataset <DATASET>}  
-  }
-{ ?object foaf:depiction ?image .
-  ?image svcs:has_service ?s . ?s ?p ?o}
-UNION { ?object foaf:depiction ?s . ?s ?p ?o}
-UNION { ?object nmo:hasObverse/foaf:depiction ?image .
-  ?image svcs:has_service ?s . ?s ?p ?o}
-UNION { ?object nmo:hasObverse/foaf:depiction ?s . ?s ?p ?o}
-UNION { ?object nmo:hasObverse ?s . ?s ?p ?o}
-UNION { ?object nmo:hasReverse/foaf:depiction ?image .
-  ?image svcs:has_service ?s . ?s ?p ?o}
-UNION { ?object nmo:hasReverse/foaf:depiction ?s . ?s ?p ?o}
-UNION { ?object nmo:hasReverse ?s . ?s ?p ?o}
-UNION { BIND (?object as ?s)
-        ?s ?p ?o }
-}]]></query>-->
 					<query id="delete-NumismaticObject"><![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX void:	<http://rdfs.org/ns/void#>
 PREFIX dcterms:	<http://purl.org/dc/terms/>
 PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
 PREFIX svcs:	<http://rdfs.org/sioc/services#>
+PREFIX crm:	<http://www.cidoc-crm.org/cidoc-crm/>
 DELETE {?s ?p ?o} WHERE {
 { ?object void:inDataset <DATASET> ;
   foaf:depiction ?image .
@@ -201,6 +182,10 @@ UNION { ?object  void:inDataset <DATASET> ;
 	nmo:hasReverse/foaf:depiction ?s . ?s ?p ?o}
 UNION { ?object  void:inDataset <DATASET> ;
 	nmo:hasReverse ?s . ?s ?p ?o}
+UNION { ?object  void:inDataset <DATASET> ;
+	nmo:hasFindspot/crm:P7_took_place_at ?s . ?s ?p ?o}
+UNION { ?object  void:inDataset <DATASET> ;
+	nmo:hasFindspot ?s . ?s ?p ?o}
 UNION { ?s void:inDataset <DATASET> . ?s ?p ?o}
 }]]></query>
 
@@ -439,6 +424,11 @@ SELECT ?uri ?type WHERE {
 			<!-- ************************* LOAD RDF/XML ************************** -->
 			<xforms:submission id="load-void" serialization="none" method="get" action="{instance('control-instance')/void_uri}" replace="instance"
 				instance="void-rdf">
+				<xforms:header>
+					<xforms:name>User-Agent</xforms:name>
+					<xforms:value>XForms/Nomisma.org</xforms:value>
+				</xforms:header>
+
 				<xforms:action ev:event="xforms-submit-error">
 					<xforms:message level="modal">Unable to load VoID metadata RDF.</xforms:message>
 				</xforms:action>
@@ -446,6 +436,10 @@ SELECT ?uri ?type WHERE {
 
 			<xforms:submission id="load-dump" serialization="none" method="get" action="{instance('control-instance')/dump_uri}" replace="instance"
 				instance="rdf">
+				<xforms:header>
+					<xforms:name>User-Agent</xforms:name>
+					<xforms:value>XForms/Nomisma.org</xforms:value>
+				</xforms:header>
 				<xforms:action ev:event="xforms-submit-error">
 					<xforms:message level="modal">Unable to load VoID dump.</xforms:message>
 				</xforms:action>
