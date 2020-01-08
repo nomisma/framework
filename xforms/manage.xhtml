@@ -188,17 +188,21 @@ UNION { ?object  void:inDataset <DATASET> ;
 	nmo:hasFindspot ?s . ?s ?p ?o}
 UNION { ?s void:inDataset <DATASET> . ?s ?p ?o}
 }]]></query>
-
 					<query id="delete-TypeSeriesItem"><![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX void:	<http://rdfs.org/ns/void#>
 PREFIX dcterms:	<http://purl.org/dc/terms/>
 PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
 PREFIX svcs:	<http://rdfs.org/sioc/services#>
+PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
+PREFIX prov:	<http://www.w3.org/ns/prov#>
+PREFIX crm:	<http://www.cidoc-crm.org/cidoc-crm/>
 DELETE {?s ?p ?o} WHERE {
 { ?object void:inDataset <DATASET> ;
-  nmo:hasObverse ?s . ?s ?p ?o }
+  skos:changeNote ?prov . 
+  ?prov ?hasActivity ?s .
+  ?s a prov:Activity . ?s ?p ?o}
 UNION { ?object void:inDataset <DATASET> ;
-  nmo:hasReverse ?s . ?s ?p ?o }
+  nmo:hasObverse|nmo:hasReverse|crm:P165i_is_incorporated_in|skos:changeNote ?s . ?s ?p ?o }
 UNION { ?s void:inDataset <DATASET> . ?s ?p ?o}
 }]]></query>
 					<query id="delete-Hoard"><![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
