@@ -44,6 +44,7 @@
 			<xforms:instance id="sparqlUpdate-templates">
 				<queries xmlns="">
 					<query id="delete-id"><![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX crm:	<http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
 PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
 PREFIX nmo:	<http://nomisma.org/ontology#>
@@ -51,16 +52,14 @@ PREFIX org:	<http://www.w3.org/ns/org#>
 PREFIX prov:	<http://www.w3.org/ns/prov#>
 PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
 DELETE {?s ?p ?o} WHERE { 
-{<URI> geo:location ?s . ?s ?p ?o }
-UNION {<URI> org:hasMembership ?s . ?s ?p ?o}
-UNION {<URI> skos:related ?s . ?s ?p ?o}
-UNION {?prov foaf:topic <URI> .
+{?prov foaf:topic <URI> .
 	?prov ?hasActivity ?s .
 	?s a prov:Activity . ?s ?p ?o}
-UNION {<URI> skos:changeNote ?s . ?s ?p ?o}
+UNION {<URI> org:hasMembership|skos:related|crm:P165i_is_incorporated_in|skos:changeNote|geo:location ?s . ?s ?p ?o}
 UNION {<URI> ?p ?o . ?s ?p ?o . FILTER (?s = <URI>) }
 }]]></query>
 					<query id="delete-all-ids"><![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX crmdig:	<http://www.ics.forth.gr/isl/CRMdig/>
 PREFIX dcterms:	<http://purl.org/dc/terms/>
 PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
 PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
@@ -75,8 +74,28 @@ UNION {?concept rdf:type skos:Concept ; skos:related ?s . ?s ?p ?o }
 UNION {?s rdf:type prov:Activity . ?s ?p ?o}
 UNION {?s rdf:type dcterms:ProvenanceStatement . ?s ?p ?o}
 UNION {?s rdf:type prov:Entity . ?s ?p ?o}
+UNION {?s rdf:type crmdig:D1_Digital_Object . ?s ?p ?o}
 UNION {?s rdf:type skos:Concept FILTER strStarts(str(?s), "http://nomisma.org/id/") . ?s ?p ?o}
-UNION {?s rdf:type skos:Concept FILTER strStarts(str(?s), "http://nomisma.org/editor/") . ?s ?p ?o}}]]>
+UNION {?s rdf:type skos:Concept FILTER strStarts(str(?s), "http://nomisma.org/editor/") . ?s ?p ?o}
+UNION {?s rdf:type skos:Concept FILTER strStarts(str(?s), "http://nomisma.org/symbol/") . ?s ?p ?o}}]]>
+
+
+						<!--SELECT ?s ?p ?o WHERE {  
+  { ?concept a skos:Concept;
+                   skos:inScheme ?scheme . FILTER strStarts(str(?scheme), "http://nomisma.org/")
+    ?concept skos:changeNote ?prov .
+    ?prov ?hasActivity ?s .
+	?s a prov:Activity . ?s ?p ?o}
+  UNION {
+    ?concept a skos:Concept;
+                   skos:inScheme ?scheme . FILTER strStarts(str(?scheme), "http://nomisma.org/")
+    ?concept org:hasMembership|skos:related|crm:P165i_is_incorporated_in|skos:changeNote|geo:location ?s . ?s ?p ?o}
+  UNION {   	
+    ?s a skos:Concept;
+                   skos:inScheme ?scheme . FILTER strStarts(str(?scheme), "http://nomisma.org/") . ?s ?p ?o
+  }
+} LIMIT 1 OFFSET 1000-->
+
 					</query>
 				</queries>
 

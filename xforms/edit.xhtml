@@ -7,7 +7,7 @@
 	xmlns:un="http://www.owl-ontologies.com/Ontology1181490123.owl#" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:nomisma="https://github.com/nomisma"
 	xmlns:rdac="http://www.rdaregistry.info/Elements/c/" xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/"
 	xmlns:nmo="http://nomisma.org/ontology#" xmlns:org="http://www.w3.org/ns/org#" xmlns:bio="http://purl.org/vocab/bio/0.1/"
-	xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" xmlns:prov="http://www.w3.org/ns/prov#">
+	xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" xmlns:prov="http://www.w3.org/ns/prov#" xmlns:crmdig="http://www.ics.forth.gr/isl/CRMdig/">
 	<head>
 		<title>nomisma.org: edit</title>
 		<link rel="stylesheet" href="/fr/style/bootstrap/css/bootstrap.css" type="text/css" />
@@ -33,7 +33,8 @@
 					xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
 					xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:un="http://www.owl-ontologies.com/Ontology1181490123.owl#"
 					xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:org="http://www.w3.org/ns/org#"
-					xmlns:rdac="http://www.rdaregistry.info/Elements/c/" xmlns:bio="http://purl.org/vocab/bio/0.1/"/>
+					xmlns:rdac="http://www.rdaregistry.info/Elements/c/" xmlns:bio="http://purl.org/vocab/bio/0.1/"
+					xmlns:crmdig="http://www.ics.forth.gr/isl/CRMdig/"/>
 			</xforms:instance>
 
 			<xforms:instance id="config" xxforms:exclude-result-prefixes="#all">
@@ -52,6 +53,8 @@
 					<proceed-trigger>false</proceed-trigger>
 					<status></status>
 					<type></type>
+					<concept_path></concept_path>
+					<conceptScheme></conceptScheme>
 					<labels-visible>false</labels-visible>
 					<atom-type></atom-type>
 					<atom-search></atom-search>
@@ -142,6 +145,10 @@
 						<type>nmo:Mint</type>
 					</class>
 					<class>
+						<label>Monogram</label>
+						<type>nmo:Monogram</type>
+					</class>
+					<class>
 						<label>Numismatic Term</label>
 						<type>nmo:NumismaticTerm</type>
 					</class>
@@ -172,6 +179,10 @@
 					<class>
 						<label>Role</label>
 						<type>org:Role</type>
+					</class>
+					<class>
+						<label>Symbol (E37 Mark)</label>
+						<type>crm:E37_Mark</type>
 					</class>
 					<class>
 						<label>Type Series</label>
@@ -271,6 +282,13 @@
 				</skos:related>
 			</xforms:instance>
 
+			<!-- image template for monograms/symbols -->
+			<xforms:instance id="image-template" xxforms:exclude-result-prefixes="#all">
+				<crm:P165i_is_incorporated_in>
+					<crmdig:D1_Digital_Object rdf:about=""/>
+				</crm:P165i_is_incorporated_in>
+			</xforms:instance>
+
 			<!-- provenance -->
 			<xforms:instance id="changeNote-template" xxforms:exclude-result-prefixes="#all">
 				<skos:changeNote rdf:resource=""/>
@@ -313,6 +331,7 @@
 			<!-- sparql update -->
 			<xforms:instance id="sparqlUpdate-template">
 				<query><![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX crm:	<http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
 PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
 PREFIX nmo:	<http://nomisma.org/ontology#>
@@ -320,13 +339,10 @@ PREFIX org:	<http://www.w3.org/ns/org#>
 PREFIX prov:	<http://www.w3.org/ns/prov#>
 PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
 DELETE {?s ?p ?o} WHERE { 
-{<URI> geo:location ?s . ?s ?p ?o }
-UNION {<URI> org:hasMembership ?s . ?s ?p ?o}
-UNION {<URI> skos:related ?s . ?s ?p ?o}
-UNION {?prov foaf:topic <URI> .
+{?prov foaf:topic <URI> .
 	?prov ?hasActivity ?s .
 	?s a prov:Activity . ?s ?p ?o}
-UNION {<URI> skos:changeNote ?s . ?s ?p ?o}
+UNION {<URI> org:hasMembership|skos:related|crm:P165i_is_incorporated_in|skos:changeNote|geo:location ?s . ?s ?p ?o}
 UNION {<URI> ?p ?o . ?s ?p ?o . FILTER (?s = <URI>) }
 }]]></query>
 			</xforms:instance>
@@ -425,7 +441,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 					<xforms:bind nodeset="dcterms:isPartOf" constraint="contains(@rdf:resource, '_numismatics')"/>
 
 					<!-- @rdf:resource -->
-					<xforms:bind nodeset="//@rdf:resource" required="true()" type="xs:anyURI" constraint="matches(., 'https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$')"/>
+					<xforms:bind nodeset="//@rdf:resource" required="true()" type="xs:anyURI"
+						constraint="matches(., 'https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$')"/>
 				</xforms:bind>
 				<!-- geographic -->
 				<xforms:bind nodeset="geo:SpatialThing" constraint="(geo:lat and geo:long) or osgeo:asGeoJSON">
@@ -584,8 +601,9 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 			</xforms:submission>
 
 			<!-- ************************* LOAD RDF/XML ************************** -->
-			<xforms:submission id="load-rdf" serialization="none" method="get" action="/nomisma/id/{instance('control-instance')/id}.rdf" replace="instance"
-				instance="doc">
+			<xforms:submission id="load-rdf" serialization="none" method="get"
+				action="/nomisma/{if (instance('control-instance')/type = 'nmo:Monogram' or instance('control-instance')/type = 'crm:E37_Mark') then 'symbol' else 'id'}/{instance('control-instance')/id}.rdf"
+				replace="instance" instance="doc">
 				<!-- ************ RDF PROCESSING TO CREATE A NEW ID ************** -->
 				<xforms:action ev:event="xforms-submit-error">
 					<xforms:setvalue ref="instance('control-instance')/load-error" value="true()"/>
@@ -725,8 +743,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
 										<span class="glyphicon glyphicon-plus"></span>Preferred Label</xforms:label>
-									<xforms:insert ev:event="DOMActivate" origin="instance('prefLabel-template')" context="." nodeset="skos:prefLabel[@xml:lang='en']" position="after"
-									/>
+									<xforms:insert ev:event="DOMActivate" origin="instance('prefLabel-template')" context="."
+										nodeset="skos:prefLabel[@xml:lang='en']" position="after"/>
 								</xforms:trigger>
 							</li>
 							<li>
@@ -845,10 +863,10 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 												<span class="glyphicon glyphicon-plus"></span>Birth</xforms:label>
 											<xforms:action ev:event="DOMActivate">
 												<xforms:insert
-													origin="xforms:element('bio:birth', (xforms:attribute('rdf:resource', concat('http://nomisma.org/id/', instance('control-instance')/id, '#birth'))))"
+													origin="xforms:element('bio:birth', (xforms:attribute('rdf:resource', concat(instance('control-instance')/conceptScheme, instance('control-instance')/id, '#birth'))))"
 													context="." nodeset="./child::node()[last()]"/>
 												<xforms:insert context="instance('doc')" nodeset="./child::node()[last()]"
-													origin="xforms:element('bio:Birth', (xforms:attribute('rdf:about', concat('http://nomisma.org/id/', instance('control-instance')/id, '#birth'))))"/>
+													origin="xforms:element('bio:Birth', (xforms:attribute('rdf:about', concat(instance('control-instance')/conceptScheme, instance('control-instance')/id, '#birth'))))"/>
 												<xforms:insert context="instance('doc')/bio:Birth" origin="xforms:element('dcterms:date')"/>
 											</xforms:action>
 										</xforms:trigger>
@@ -861,10 +879,10 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 												<span class="glyphicon glyphicon-plus"></span>Death</xforms:label>
 											<xforms:action ev:event="DOMActivate">
 												<xforms:insert
-													origin="xforms:element('bio:death', (xforms:attribute('rdf:resource', concat('http://nomisma.org/id/', instance('control-instance')/id, '#death'))))"
+													origin="xforms:element('bio:death', (xforms:attribute('rdf:resource', concat(instance('control-instance')/conceptScheme, instance('control-instance')/id, '#death'))))"
 													context="." nodeset="./child::node()[last()]"/>
 												<xforms:insert context="instance('doc')" nodeset="./child::node()[last()]"
-													origin="xforms:element('bio:Death', (xforms:attribute('rdf:about', concat('http://nomisma.org/id/', instance('control-instance')/id, '#death'))))"/>
+													origin="xforms:element('bio:Death', (xforms:attribute('rdf:about', concat(instance('control-instance')/conceptScheme, instance('control-instance')/id, '#death'))))"/>
 												<xforms:insert context="instance('doc')/bio:Death" origin="xforms:element('dcterms:date')"/>
 											</xforms:action>
 										</xforms:trigger>
@@ -928,10 +946,10 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										<xforms:action ev:event="DOMActivate">
 											<!-- insert geo:location -->
 											<xforms:insert context="." nodeset="./child::node()[last()]"
-												origin="xforms:element('geo:location', (xforms:attribute('rdf:resource', concat('http://nomisma.org/id/', instance('control-instance')/id, '#this')), ''))"/>
+												origin="xforms:element('geo:location', (xforms:attribute('rdf:resource', concat(instance('control-instance')/conceptScheme, instance('control-instance')/id, '#this')), ''))"/>
 											<!-- insert SpatialThing -->
 											<xforms:insert context="instance('doc')" nodeset="./child::node()[last()]"
-												origin="xforms:element('geo:SpatialThing', (xforms:attribute('rdf:about', concat('http://nomisma.org/id/', instance('control-instance')/id, '#this')), ''))"/>
+												origin="xforms:element('geo:SpatialThing', (xforms:attribute('rdf:about', concat(instance('control-instance')/conceptScheme, instance('control-instance')/id, '#this')), ''))"/>
 											<!-- insert dcterms:isPartOf if there is a skos:broader -->
 											<xforms:insert context="instance('doc')/geo:SpatialThing" nodeset="./child::node()[last()]"
 												origin="xforms:element('dcterms:isPartOf', (xforms:attribute('rdf:resource', concat(instance('doc')/*[1]/skos:broader/@rdf:resource, '#this')), ''))"
@@ -992,9 +1010,18 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 									<xforms:label>Proceed</xforms:label>
 									<xforms:action ev:event="DOMActivate">
 										<xforms:var name="type" select="instance('control-instance')/type"/>
+
+										<!-- set the data_path based on class -->
+										<xforms:setvalue ref="instance('control-instance')/concept_path"
+											value="if ($type = 'nmo:Monogram' or $type = 'crm:E37_Mark') then concat(instance('config')/data_path, '/symbol/') else concat(instance('config')/data_path, '/id/')"/>
+
+										<!-- set conceptScheme URI -->
+										<xforms:setvalue ref="instance('control-instance')/conceptScheme"
+											value="if ($type = 'nmo:Monogram' or $type = 'crm:E37_Mark') then 'http://nomisma.org/symbol/' else 'http://nomisma.org/id/'"/>
+
 										<!-- set URI -->
 										<xforms:setvalue ref="instance('control-instance')/uri"
-											value="concat('http://nomisma.org/id/', instance('control-instance')/id)"/>
+											value="concat(instance('control-instance')/conceptScheme, instance('control-instance')/id)"/>
 										<!-- create resource description -->
 										<xforms:insert context="instance('doc')"
 											origin="xforms:element($type, xforms:attribute('rdf:about', instance('control-instance')/uri))"/>
@@ -1008,7 +1035,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											origin="xforms:element('skos:definition', xforms:attribute('xml:lang', 'en'))"/>
 										<!-- insert skos:inScheme -->
 										<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]"
-											origin="xforms:element('skos:inScheme', xforms:attribute('rdf:resource', 'http://nomisma.org/id/'))"/>
+											origin="xforms:element('skos:inScheme', xforms:attribute('rdf:resource', instance('control-instance')/conceptScheme))"/>
 										<!-- insert related foaf:webpage for a collection -->
 										<xforms:action if="$type='nmo:Collection'">
 											<xforms:insert context="instance('doc')/nmo:Collection" nodeset="./child::node()[last()]"
@@ -1099,7 +1126,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 													<!-- perform CRUD only for modified IDs -->
 													<!-- save file to the filesystem -->
 													<xforms:setvalue ref="instance('save-config')/url"
-														value="concat(instance('config')/data_path, '/id/',  instance('control-instance')/id, '.rdf')"/>
+														value="concat(instance('control-instance')/concept_path,  instance('control-instance')/id, '.rdf')"/>
 													<xforms:insert nodeset="instance('dump')"
 														origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('doc'), instance('save-config')), 'data')"/>
 
@@ -1133,7 +1160,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											<xforms:action if="instance('control-instance')/new-id = true()">
 												<!-- save file to the filesystem -->
 												<xforms:setvalue ref="instance('save-config')/url"
-													value="concat(instance('config')/data_path, '/id/',  instance('control-instance')/id, '.rdf')"/>
+													value="concat(instance('control-instance')/concept_path,  instance('control-instance')/id, '.rdf')"/>
 												<xforms:insert nodeset="instance('dump')"
 													origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('doc'), instance('save-config')), 'data')"/>
 
@@ -1190,7 +1217,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 									<xforms:trigger appearance="minimal">
 										<xforms:label ref="concat('(http://nomisma.org/id/', instance('control-instance')/id, ')')"/>
 										<xforms:action ev:event="DOMActivate">
-											<xforms:load show="new" resource="{concat('http://nomisma.org/id/', instance('control-instance')/id)}"/>
+											<xforms:load show="new"
+												resource="{concat(instance('control-instance')/conceptScheme, instance('control-instance')/id)}"/>
 										</xforms:action>
 									</xforms:trigger>
 								</small>
@@ -1247,13 +1275,13 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 																	value="true()"/>
 															</xforms:trigger>
 														</xforms:group>
-													<xforms:group ref=".[instance('control-instance')/labels-visible = true()]">
-														<xforms:trigger appearance="minimal">
-															<xforms:label><span class="glyphicon glyphicon-triangle-bottom"></span></xforms:label>
-															<xforms:setvalue ev:event="DOMActivate" ref="instance('control-instance')/labels-visible"
-																value="false()"/>
-														</xforms:trigger>
-													</xforms:group>
+														<xforms:group ref=".[instance('control-instance')/labels-visible = true()]">
+															<xforms:trigger appearance="minimal">
+																<xforms:label><span class="glyphicon glyphicon-triangle-bottom"></span></xforms:label>
+																<xforms:setvalue ev:event="DOMActivate" ref="instance('control-instance')/labels-visible"
+																	value="false()"/>
+															</xforms:trigger>
+														</xforms:group>
 													</small></h5>
 
 												<xforms:group ref=".[instance('control-instance')/labels-visible = true()]">
@@ -2243,16 +2271,16 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]"
 												origin="instance('uncertain-match-template')"/>
 											<xforms:setvalue ref="instance('doc')/*[1]/skos:related/rdf:Description/rdf:value/@rdf:resource"
-												value="concat('http://nomisma.org/id/', instance('control-instance')/atom-id)"/>
+												value="concat(instance('control-instance')/conceptScheme, instance('control-instance')/atom-id)"/>
 										</xforms:action>
 										<xforms:action if="not(instance('control-instance')/link-property = 'skos:related')">
 											<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]"
-												origin="xforms:element(instance('control-instance')/link-property, (xforms:attribute('rdf:resource', concat('http://nomisma.org/id/', instance('control-instance')/atom-id)), ''))"/>
+												origin="xforms:element(instance('control-instance')/link-property, (xforms:attribute('rdf:resource', concat(instance('control-instance')/conceptScheme, instance('control-instance')/atom-id)), ''))"/>
 											<!-- only insert dcterms:isPartOf into geo:SpatialThing for borader queries -->
 											<xforms:action if="instance('control-instance')/link-property = 'skos:broader'">
 												<!-- insert dcterms:isPartOf into the SpatialThing, if it exists -->
 												<xforms:insert context="instance('doc')/geo:SpatialThing" nodeset="./child::node()[last()]"
-													origin="xforms:element('dcterms:isPartOf', (xforms:attribute('rdf:resource', concat('http://nomisma.org/id/', instance('control-instance')/atom-id, '#this')), ''))"
+													origin="xforms:element('dcterms:isPartOf', (xforms:attribute('rdf:resource', concat(instance('control-instance')/conceptScheme, instance('control-instance')/atom-id, '#this')), ''))"
 													if="instance('doc')/geo:SpatialThing"/>
 											</xforms:action>
 										</xforms:action>
@@ -2278,7 +2306,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											<span class="glyphicon glyphicon-new-window"></span>
 										</xforms:label>
 										<xforms:load ev:event="DOMActivate" show="new"
-											ref="concat('http://nomisma.org/id/', instance('control-instance')/atom-id)"/>
+											ref="concat(instance('control-instance')/conceptScheme, instance('control-instance')/atom-id)"/>
 									</xforms:trigger>
 								</div>
 							</xforms:group>
@@ -2338,7 +2366,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										<xforms:insert
 											context="instance('doc')/org:Membership[position() = number(instance('control-instance')/membership-position)]"
 											nodeset="./child::node()[last()]"
-											origin="xforms:element('org:organization', (xforms:attribute('rdf:resource', concat('http://nomisma.org/id/', instance('control-instance')/atom-id)), ''))"/>
+											origin="xforms:element('org:organization', (xforms:attribute('rdf:resource', concat(instance('control-instance')/conceptScheme, instance('control-instance')/atom-id)), ''))"/>
 										<!-- blank atom search nodes and atom feed -->
 										<xforms:delete nodeset="instance('feed')/*"/>
 										<xforms:setvalue ref="instance('control-instance')/atom-search"/>
@@ -2358,7 +2386,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											<span class="glyphicon glyphicon-new-window"></span>
 										</xforms:label>
 										<xforms:load ev:event="DOMActivate" show="new"
-											ref="concat('http://nomisma.org/id/', instance('control-instance')/atom-id)"/>
+											ref="concat(instance('control-instance')/conceptScheme, instance('control-instance')/atom-id)"/>
 									</xforms:trigger>
 								</div>
 							</xforms:group>
@@ -2404,7 +2432,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 
 										<!-- insert dcterms:isReplacedBy -->
 										<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]"
-											origin="xforms:element('dcterms:isReplacedBy', (xforms:attribute('rdf:resource', concat('http://nomisma.org/id/', instance('control-instance')/atom-id)), ''))"/>
+											origin="xforms:element('dcterms:isReplacedBy', (xforms:attribute('rdf:resource', concat(instance('control-instance')/conceptScheme, instance('control-instance')/atom-id)), ''))"/>
 
 										<!-- blank atom search nodes and atom feed -->
 										<xforms:delete nodeset="instance('feed')/*"/>
@@ -2414,7 +2442,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 
 										<!-- save file back to disk -->
 										<xforms:setvalue ref="instance('save-config')/url"
-											value="concat(instance('config')/data_path, '/id/',  instance('control-instance')/id, '.rdf')"/>
+											value="concat(instance('control-instance')/concept_path,  instance('control-instance')/id, '.rdf')"/>
 										<xforms:insert nodeset="instance('dump')"
 											origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('doc'), instance('save-config')), 'data')"/>
 
@@ -2440,7 +2468,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											<span class="glyphicon glyphicon-new-window"></span>
 										</xforms:label>
 										<xforms:action ev:event="DOMActivate">
-											<xforms:load show="new" resource="http://nomisma.org/id/{instance('control-instance')/atom-id}"/>
+											<xforms:load show="new"
+												resource="{concat(instance('control-instance')/conceptScheme, instance('control-instance')/atom-id)}"/>
 										</xforms:action>
 									</xforms:trigger>
 								</div>

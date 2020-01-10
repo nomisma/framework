@@ -8,7 +8,7 @@
 	xmlns:un="http://www.owl-ontologies.com/Ontology1181490123.owl#" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:nomisma="https://github.com/nomisma"
 	xmlns:rdac="http://www.rdaregistry.info/Elements/c/" xmlns:prov="http://www.w3.org/ns/prov#"
 	xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:nmo="http://nomisma.org/ontology#" xmlns:org="http://www.w3.org/ns/org#"
-	xmlns:bio="http://purl.org/vocab/bio/0.1/" xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/">
+	xmlns:bio="http://purl.org/vocab/bio/0.1/" xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" xmlns:crmdig="http://www.ics.forth.gr/isl/CRMdig/">
 	<head>
 		<title>nomisma.org: manage datasets</title>
 		<link rel="stylesheet" href="/fr/style/bootstrap/css/bootstrap.css" type="text/css" />
@@ -30,6 +30,8 @@
 					<worksheet_id></worksheet_id>
 					<id></id>
 					<type></type>
+					<concept_path></concept_path>
+					<conceptScheme></conceptScheme>
 					<mappings-valid>false</mappings-valid>
 					<metadata-valid>false</metadata-valid>
 					<load-trigger>false</load-trigger>
@@ -102,6 +104,13 @@
 				</skos:related>
 			</xforms:instance>
 
+			<!-- image template for monograms/symbols -->
+			<xforms:instance id="image-template" xxforms:exclude-result-prefixes="#all">
+				<crm:P165i_is_incorporated_in>
+					<crmdig:D1_Digital_Object rdf:about=""/>
+				</crm:P165i_is_incorporated_in>
+			</xforms:instance>
+
 			<!-- instance for spreadsheet RDF as a static file -->
 			<xforms:instance id="spreadsheet-rdf" xxforms:exclude-result-prefixes="xhtml xforms xs ev xxforms fr res xi nomisma atom">
 				<rdf:RDF xmlns=""/>
@@ -167,6 +176,10 @@
 						<type>nmo:Mint</type>
 					</class>
 					<class>
+						<label>Monogram</label>
+						<type>nmo:Monogram</type>
+					</class>
+					<class>
 						<label>Numismatic Term</label>
 						<type>nmo:NumismaticTerm</type>
 					</class>
@@ -199,6 +212,10 @@
 						<type>org:Role</type>
 					</class>
 					<class>
+						<label>Symbol (E37 Mark)</label>
+						<type>crm:E37_Mark</type>
+					</class>
+					<class>
 						<label>Type Series</label>
 						<type>nmo:TypeSeries</type>
 					</class>
@@ -224,10 +241,14 @@
 					<property label="Death" constraint="foaf:Person">bio:death</property>
 					<property label="Broader Concept" exclude="foaf:Person">skos:broader</property>
 					<property label="Close Match" constraint="nmo:Mint">skos:closeMatch</property>
+					<property label="Constituent Symbol(s)" constraint="crm:E37_Mark|nmo:Monogram">crm:P106_is_composed_of</property>
 					<property label="Dynasty" constraint="foaf:Person">org:memberOf</property>
 					<property label="End Date">nmo:hasEndDate</property>
 					<property label="Exact Match" exclude="nmo:Mint">skos:exactMatch</property>
 					<property label="Field of Numismatics">dcterms:isPartOf</property>
+					<property label="Image Creator" constraint="crm:E37_Mark|nmo:Monogram">image_creator</property>
+					<property label="Image License" constraint="crm:E37_Mark|nmo:Monogram">image_license</property>
+					<property label="Image URI or Unicode Character" constraint="crm:E37_Mark|nmo:Monogram">crm:P165i_is_incorporated_in</property>
 					<property label="Latitude" constraint="nmo:Mint">geo:lat</property>
 					<property label="Longitude" constraint="nmo:Mint">geo:long</property>
 					<property label="Organization" constraint="foaf:Person">org:organization</property>
@@ -303,6 +324,7 @@
 }]]></query>
 					<query id="delete-concept">
 						<![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX crm:	<http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
 PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
 PREFIX nmo:	<http://nomisma.org/ontology#>
@@ -310,13 +332,10 @@ PREFIX org:	<http://www.w3.org/ns/org#>
 PREFIX prov:	<http://www.w3.org/ns/prov#>
 PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
 DELETE {?s ?p ?o} WHERE { 
-{<URI> geo:location ?s . ?s ?p ?o }
-UNION {<URI> org:hasMembership ?s . ?s ?p ?o}
-UNION {<URI> skos:related ?s . ?s ?p ?o}
-UNION {?prov foaf:topic <URI> .
+{?prov foaf:topic <URI> .
 	?prov ?hasActivity ?s .
 	?s a prov:Activity . ?s ?p ?o}
-UNION {<URI> skos:changeNote ?s . ?s ?p ?o}
+UNION {<URI> org:hasMembership|skos:related|crm:P165i_is_incorporated_in|skos:changeNote|geo:location ?s . ?s ?p ?o}
 UNION {<URI> ?p ?o . ?s ?p ?o . FILTER (?s = <URI>) }
 }]]></query>
 				</templates>
@@ -374,7 +393,16 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 			</xforms:bind>
 
 			<xforms:bind nodeset="instance('mappings')"
-				constraint="count(mapping[@to = 'id']) = 1 and count(mapping[@to = 'skos:prefLabel'][@lang='en']) = 1 and count(mapping[@to = 'skos:definition'][@lang='en']) = 1 and count(mapping[@to='nmo:hasStartDate']) &lt;= 1 and  count(mapping[@to='nmo:hasEndDate']) &lt;= 1 and  count(mapping[@to='org:role']) &lt;= 1 and count(mapping[@to='org:organization']) &lt;= 1 and count(mapping[@to='geo:lat']) &lt;= 1 and count(mapping[@to='geo:long']) &lt;= 1 and count(mapping[@to='bio:birth']) &lt;= 1 and count(mapping[@to='bio:death']) &lt;= 1">
+				constraint="count(mapping[@to = 'id']) = 1 and count(mapping[@to = 'skos:prefLabel'][@lang='en']) = 1 
+				and count(mapping[@to = 'skos:definition'][@lang='en']) = 1 and count(mapping[@to='nmo:hasStartDate']) &lt;= 1 and  count(mapping[@to='nmo:hasEndDate']) &lt;= 1 
+				and count(mapping[@to='org:role']) &lt;= 1 and count(mapping[@to='org:organization']) &lt;= 1 
+				and count(mapping[@to='geo:lat']) &lt;= 1 and count(mapping[@to='geo:long']) &lt;= 1 
+				and count(mapping[@to='bio:birth']) &lt;= 1 and count(mapping[@to='bio:death']) &lt;= 1
+				and count(mapping[@to = 'image_creator']) &lt;= 1 and count(mapping[@to = 'image_license']) &lt;= 1
+				and (if (count(mapping[@to = 'image_creator']) = 1) then not(mapping[@to = 'image_creator']/following-sibling::mapping[@to = 'crm:P165i_is_incorporated_in']) else true())
+				and (if(count(mapping[@to = 'image_creator']) = 1) then (count(mapping[@to = 'crm:P165i_is_incorporated_in']) &gt; 0) else true())
+				and (if (count(mapping[@to = 'image_license']) = 1) then not(mapping[@to = 'image_license']/following-sibling::mapping[@to = 'crm:P165i_is_incorporated_in']) else true())
+				and (if(count(mapping[@to = 'image_license']) = 1) then (count(mapping[@to = 'crm:P165i_is_incorporated_in']) &gt; 0) else true())">
 				<!-- language bindings -->
 				<xforms:bind nodeset="mapping[@to='skos:prefLabel']">
 					<xforms:bind nodeset="@lang" required="true()"
@@ -591,22 +619,23 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 			</xforms:submission>
 
 			<!-- ************************* LOAD RDF/XML ************************** -->
-			<xforms:submission id="load-rdf" serialization="none" method="get" action="/nomisma/id/{instance('control-instance')/id}.rdf" replace="instance"
-				instance="rdf">
+			<xforms:submission id="load-rdf" serialization="none" method="get"
+				action="/nomisma/{if (instance('control-instance')/type = 'nmo:Monogram' or instance('control-instance')/type = 'crm:E37_Mark') then 'symbol' else 'id'}/{instance('control-instance')/id}.rdf"
+				replace="instance" instance="rdf">
 				<!-- ************ RDF PROCESSING TO CREATE A NEW ID ************** -->
 				<xforms:action ev:event="xforms-submit-error">
 					<!-- set new_id to true -->
 					<xforms:setvalue ref="instance('control-instance')/new_id" value="true()"/>
 
 					<!-- create the Concept object -->
-					<xforms:var name="uri" select="concat('http://nomisma.org/id/', instance('control-instance')/id)"/>
+					<xforms:var name="uri" select="concat(instance('control-instance')/conceptScheme, instance('control-instance')/id)"/>
 					<xforms:insert context="instance('rdf')" origin="xforms:element(instance('control-instance')/type, xforms:attribute('rdf:about', $uri))"/>
 					<!-- insert rdf:type as skos:Concept -->
 					<xforms:insert context="instance('rdf')/*[last()]"
 						origin="xforms:element('rdf:type', xforms:attribute('rdf:resource', 'http://www.w3.org/2004/02/skos/core#Concept'))"/>
 					<!-- insert skos:inScheme -->
 					<xforms:insert context="instance('rdf')/*[last()]" nodeset="./child::node()[last()]"
-						origin="xforms:element('skos:inScheme', xforms:attribute('rdf:resource', 'http://nomisma.org/id/'))"/>
+						origin="xforms:element('skos:inScheme', xforms:attribute('rdf:resource', instance('control-instance')/conceptScheme))"/>
 				</xforms:action>
 
 				<!-- ************ RDF PROCESSING TO ADD SUPPLEMENTAL INFORMATION ************** -->
@@ -694,13 +723,25 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 									</xforms:input>
 									<xforms:trigger bind="load-trigger">
 										<xforms:label>Load Spreadsheet</xforms:label>
-										<xforms:send submission="query-spreadsheet-feed" ev:event="DOMActivate"/>
+										<xforms:action ev:event="DOMActivate">
+											<!-- load spreadsheet -->
+											<xforms:send submission="query-spreadsheet-feed"/>
+
+											<!-- set the concept_path based on class -->
+											<xforms:setvalue ref="instance('control-instance')/concept_path"
+												value="if (instance('control-instance')/type = 'nmo:Monogram' or instance('control-instance')/type = 'crm:E37_Mark') then concat(instance('config')/data_path, '/symbol/') else concat(instance('config')/data_path, '/id/')"/>
+
+											<!-- set conceptScheme URI -->
+											<xforms:setvalue ref="instance('control-instance')/conceptScheme"
+												value="if (instance('control-instance')/type = 'nmo:Monogram' or instance('control-instance')/type = 'crm:E37_Mark') then 'http://nomisma.org/symbol/' else 'http://nomisma.org/id/'"
+											/>
+										</xforms:action>
 									</xforms:trigger>
 								</div>
 							</xforms:group>
 						</xforms:case>
 						<xforms:case id="mapping-interface">
-							<xforms:group ref="instance('spreadsheet-rdf')/prov:Entity[@rdf:about  =instance('control-instance')/spreadsheet_uri]">
+							<xforms:group ref="instance('spreadsheet-rdf')/prov:Entity[@rdf:about = instance('control-instance')/spreadsheet_uri]">
 								<div class="section">
 									<h3>Spreadsheet Metadata</h3>
 									<div class="trigger_container">
@@ -888,6 +929,43 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> A role is required for an organization.</div>
 									</xforms:group>
+
+									<!-- symbol/monogram warnings -->
+									<xforms:group ref=".[count(mapping[@to = 'image_creator']) &gt; 1]">
+										<div class="alert-danger alert-box alert">
+											<span class="glyphicon glyphicon-exclamation-sign"></span>
+											<strong>Alert:</strong> There cannot be more than one Image Creator.</div>
+									</xforms:group>
+									<xforms:group
+										ref=".[count(mapping[@to = 'image_creator']) &gt; 0 and count(mapping[@to = 'crm:P165i_is_incorporated_in']) = 0]">
+										<div class="alert-danger alert-box alert">
+											<span class="glyphicon glyphicon-exclamation-sign"></span>
+											<strong>Alert:</strong> There must be at least one Image URL or Unicode Character column when the Image Creator is
+											specified.</div>
+									</xforms:group>
+									<xforms:group
+										ref=".[count(mapping[@to = 'image_license']) &gt; 0 and count(mapping[@to = 'crm:P165i_is_incorporated_in']) = 0]">
+										<div class="alert-danger alert-box alert">
+											<span class="glyphicon glyphicon-exclamation-sign"></span>
+											<strong>Alert:</strong> There must be at least one Image URL or Unicode Character column when the Image License is
+											specified.</div>
+									</xforms:group>
+									<xforms:group
+										ref=".[count(mapping[@to = 'image_creator']) &gt; 0 and mapping[@to = 'image_creator']/following-sibling::mapping[@to = 'crm:P165i_is_incorporated_in']]">
+										<div class="alert-danger alert-box alert">
+											<span class="glyphicon glyphicon-exclamation-sign"></span>
+											<strong>Alert:</strong> The Image Creator column must come after the Image URL or Unicode Character column(s).</div>
+									</xforms:group>
+
+									<xforms:group
+										ref=".[count(mapping[@to = 'image_license']) &gt; 0 and mapping[@to = 'image_license']/following-sibling::mapping[@to = 'crm:P165i_is_incorporated_in']]">
+										<div class="alert-danger alert-box alert">
+											<span class="glyphicon glyphicon-exclamation-sign"></span>
+											<strong>Alert:</strong> The Image License column must come after the Image URL or Unicode Character column(s).</div>
+									</xforms:group>
+
+									<!-- begin mapping UI -->
+
 									<table class="table">
 										<thead>
 											<tr>
@@ -987,6 +1065,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 													if="count(instance('feed')//atom:entry/*[name()=instance('mappings')/mapping[@to='id']/@from]) != count(distinct-values(instance('feed')//atom:entry/*[name()=instance('mappings')/mapping[@to='id']/@from]))"
 													context="instance('validation-model')" nodeset="./child::node()[last()]"
 													origin="xforms:element('error', 'Duplicate Nomisma IDs.')"/>
+												
 												<!-- iterate through all gsx elements -->
 												<xforms:action xxforms:iterate="*[namespace-uri()='http://schemas.google.com/spreadsheets/2006/extended']">
 													<xforms:var name="from" select="name()"/>
@@ -1111,10 +1190,11 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 																</xforms:action>
 															</xforms:action>
 														</xforms:action>
+
 														<!-- URI validation -->
 														<xforms:action
-															if="$mapping='skos:exactMatch' or $mapping='skos:closeMatch' or $mapping='dcterms:source'">
-															<xforms:var name="isValid" select="matches($value, 'https?://.+')"/>
+															if="$mapping='skos:exactMatch' or $mapping='skos:closeMatch' or $mapping='dcterms:source' or $mapping = 'crm:P165i_is_incorporated_in' or $mapping = 'image_creator' or $mapping = 'image_license'">
+															<xforms:var name="isValid" select="matches($value, 'https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$')"/>
 															<xforms:insert
 																if="string-length($value) &gt; 0 and (not($value castable as xs:anyURI) or $isValid = false())"
 																context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
@@ -1127,14 +1207,49 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 														<xforms:action if="$mapping='prov:alternateOf'">
 															<!-- verify that the prov:alternateOf is a Nomisma URI, but not validate its existence (as this ID may be in the same spreadsheet -->
 															<xforms:action if="string-length($value) &gt; 0">
-																<xforms:insert if="not(contains($value, 'http://nomisma.org/id/'))"
+																<xforms:insert if="not(contains($value, instance('control-instance')/conceptScheme))"
 																	context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
 																	origin="xforms:element('error', concat($mapping, ' does not link to a Nomisma URI: ', $value))"
 																/>
 															</xforms:action>
 														</xforms:action>
+														
+														<!-- skos:broader must be within the same concept scheme -->
+														<xforms:action if="$mapping = 'skos:broader' and string-length($value) &gt; 0">															
+															<xforms:insert if="not(contains($value, instance('control-instance')/conceptScheme))"
+																context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
+																origin="xforms:element('error', concat($mapping, ' does not link to a Nomisma URI in the same Concept Scheme: ', $value))"/>
+															
+															<xforms:action if="contains($value, instance('control-instance')/conceptScheme)">
+																<xforms:var name="class" select="instance('control-instance')/type"/>
+																
+																<!-- for linking Mints to nmo:Region (typical) or nmo:Mint for sub-workshops -->
+																<xforms:setvalue ref="instance('sparqlQuery')"
+																	if="instance('control-instance')/type = 'nmo:Mint'"
+																	value="concat(instance('sparql-templates')/prefix, ' ', replace(instance('sparql-templates')/query[@id='ask-mint'], 'URI', $value))"/>
+																
+																<!-- all other ASK queries -->
+																<xforms:setvalue ref="instance('sparqlQuery')"
+																	if="not(instance('control-instance')/type = 'nmo:Mint')"
+																	value="concat(instance('sparql-templates')/prefix, ' ', replace(replace(instance('sparql-templates')/query[@id='ask'], 'URI', $value), 'CLASS', $class))"/>
+																
+																<xforms:send submission="submit-sparqlQuery"/>
+																<!-- if the SPARQL query concludes successfully, then create an entry in nomisma-ids and display an error if the ASK if false -->
+																<xforms:action ev:event="xforms-submit-done">
+																	<xforms:insert context="instance('nomisma-ids')" nodeset="./child::node()[last()]"
+																		origin="xforms:element('id', (xforms:attribute('uri', $value), xforms:attribute('mapping', $mapping), data(instance('sparqlResponse')/descendant::res:boolean)))"/>
+																	<xforms:insert if="instance('sparqlResponse')/descendant::res:boolean = 'false'"
+																		context="instance('validation-model')/record[last()]"
+																		nodeset="./child::node()[last()]"
+																		origin="xforms:element('error', concat($mapping, ' links to a non-existent Nomisma URI or the URI is a different class: ', $value))"
+																	/>
+																</xforms:action>
+															</xforms:action>
+														</xforms:action>
+														
+														<!-- these URIs must be in the id/ namespace -->
 														<xforms:action
-															if="$mapping='skos:broader' or $mapping='org:role' or $mapping='org:organization' or $mapping='org:memberOf' or $mapping='dcterms:isPartOf'">
+															if="$mapping='org:role' or $mapping='org:organization' or $mapping='org:memberOf' or $mapping='dcterms:isPartOf'">
 															<xforms:action if="string-length($value) &gt; 0">
 																<!-- these are properties that must be linked internally to other Nomisma IDs -->
 																<xforms:insert if="not(contains($value, 'http://nomisma.org/id/'))"
@@ -1190,10 +1305,10 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 														<xforms:action if="$mapping='skos:related'">
 															<xforms:action if="string-length($value) &gt; 0">
 																<!-- these are properties that must be linked internally to other Nomisma IDs -->
-																<xforms:insert if="not(contains($value, 'http://nomisma.org/id/'))"
+																<xforms:insert if="not(contains($value, instance('control-instance')/conceptScheme))"
 																	context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
 																	origin="xforms:element('error', concat($mapping, ' does not link to a Nomisma URI: ', $value))"/>
-																<xforms:action if="contains($value, 'http://nomisma.org/id/')">
+																<xforms:action if="contains($value, instance('control-instance')/conceptScheme)">
 																	<!-- if the URI space is nm:, then test whether the URI has already been validated via SPARQL. If not, then submit a SPARQL query -->
 																	<xforms:action if="instance('nomisma-ids')/id[@uri=$value and @mapping=$mapping] = false()"
 																		context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
@@ -1296,47 +1411,46 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 									<xforms:action ev:event="DOMActivate">
 										<!-- set the current dateTime into a variable that will apply to all IDs 
 											(previous version resulting in different time for each ID in spreadsheet -->
-										
+
 										<xforms:var name="dateTime" select="current-dateTime()"/>
-										
-										<!-- begin processing the spreadsheet into RDF -->
-										<xforms:action xxforms:iterate="instance('feed')//atom:entry">
+
+										<!-- *** BEGIN ATOM TO RDF IMPORT *** -->
+										<xforms:action xxforms:iterate="instance('feed')//atom:entry[1]">
 											<!-- set position for progress dialog -->
 											<!--<xforms:setvalue ref="instance('control-instance')/position" value="context()/position()"></xforms:setvalue>-->
 											<xforms:var name="id"
 												select="normalize-space(data(context()/*[namespace-uri()='http://schemas.google.com/spreadsheets/2006/extended'][name()=instance('mappings')/mapping[@to='id']/@from]))"/>
-											<xforms:var name="uri" select="concat('http://nomisma.org/id/', $id)"/>
+											<xforms:var name="uri" select="concat(instance('control-instance')/conceptScheme, $id)"/>
 											<xforms:var name="position" select="position()"/>
 											<!-- set the id in the control-instance and then attempt to load the RDF/XML from disc. If it fails to load, this means the ID does not exist, and a new one will be created. If the ID does exist and the RDF is loaded, then add supplementary information. -->
 											<xforms:setvalue ref="instance('control-instance')/id" value="$id"/>
 											<!-- clear data from RDF instance before loading-->
 											<xforms:delete nodeset="instance('rdf')/*"/>
 											<xforms:send submission="load-rdf"/>
-											<!-- *** BEGIN ATOM TO RDF IMPORT *** -->
+											
+											<!-- iterate through columns -->
 											<xforms:action
-												xxforms:iterate="instance('feed')//atom:entry[position()=$position]/*[namespace-uri()='http://schemas.google.com/spreadsheets/2006/extended']">
+												xxforms:iterate="context()/*[namespace-uri()='http://schemas.google.com/spreadsheets/2006/extended']">
 												<xforms:var name="from" select="name()"/>
 												<xforms:var name="value" select="normalize-space(data(context()))"/>
 												<!-- only process those fields which have been mapped in the user interface -->
 												<xforms:action if="string(instance('mappings')/mapping[@from=$from]/@to) and string-length($value) &gt; 0">
 													<xforms:var name="mapping" select="instance('mappings')/mapping[@from=$from]/@to"/>
 													<!-- handle labels, definitions, scopenNote -->
-													<xforms:action
-														if="$mapping = 'skos:prefLabel' or $mapping='skos:altLabel' or $mapping='skos:scopeNote'">
+													<xforms:action if="$mapping = 'skos:prefLabel' or $mapping='skos:altLabel' or $mapping='skos:scopeNote'">
 														<xforms:var name="lang" select="instance('mappings')/mapping[@from=$from]/@lang"/>
 														<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
 															origin="xforms:element($mapping, (xforms:attribute('xml:lang', $lang), $value))"
 															if="not(instance('rdf')/*[1]/*[name()=$mapping][@xml:lang=$lang])"/>
 													</xforms:action>
-													<xforms:action
-														if="$mapping='skos:definition'">
+													<xforms:action if="$mapping='skos:definition'">
 														<xforms:var name="lang" select="instance('mappings')/mapping[@from=$from]/@lang"/>
-														
+
 														<xforms:action if="instance('control-instance')/overwrite-definitions = true()">
 															<!-- overwrite definition if there is already a definition with this language -->
 															<xforms:action if="instance('rdf')/*[1]/skos:definition[@xml:lang=$lang]">
 																<xforms:setvalue ref="instance('rdf')/*[1]/skos:definition[@xml:lang=$lang]" value="$value"/>
-															</xforms:action>															
+															</xforms:action>
 															<!-- otherwise, insert a new definition -->
 															<xforms:action if="not(instance('rdf')/*[1]/skos:definition[@xml:lang=$lang])">
 																<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
@@ -1538,6 +1652,79 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 															origin="xforms:element($mapping, (xforms:attribute('rdf:resource', $value), ''))"
 															if="not(instance('rdf')/org:Membership[@rdf:about=$membershipUri]/*[name()=$mapping])"/>
 													</xforms:action>
+
+													<!-- *** SYMBOL/MONOGRAM PROPERTIES *** -->
+													<!-- constituent letters and symbols -->
+													<xforms:action if="$mapping = 'crm:P106_is_composed_of'">
+														<!-- if the value is a URI, then set the URI for the $mapping -->
+														<xforms:action if="matches($value, 'https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$')">
+															<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
+																origin="xforms:element($mapping, (xforms:attribute('rdf:resource', $value)))"/>
+														</xforms:action>
+
+														<!-- if the value is not a URI, then split the string into letters -->
+														<xforms:action if="not(matches($value, 'https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$'))">
+															<xforms:action
+																xxforms:iterate="for $c in string-to-codepoints($value) return codepoints-to-string($c)">
+																<xforms:var name="letter" select="normalize-space(.)"/>
+
+																<!-- ignore whitespace in the sequence -->
+																<xforms:action if="string-length($letter) &gt; 0">
+																	<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
+																		origin="xforms:element($mapping, $letter)"/>
+																</xforms:action>
+															</xforms:action>
+														</xforms:action>
+													</xforms:action>
+
+													<!-- image references -->
+													<xforms:action if="$mapping = 'crm:P165i_is_incorporated_in'">
+														<!-- If the string length is 1, then the symbol is represented by an existing unicode character -->
+														<xforms:action if="string-length($value) = 1">
+															<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
+																origin="xforms:element('crm:P165i_is_incorporated_in', $value)"/>
+														</xforms:action>
+
+														<!-- if the $value matches a URI pattern, then insert a D1 Digital Object -->
+														<xforms:action if="matches($value, 'https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$')">
+															<xforms:var name="ext" select="tokenize(tokenize($value, '/')[last()], '\.')[last()]"/>
+															<xforms:var name="format" select="if ($ext = 'svg') then 'image/svg+xml' else ''"/>
+
+															<xforms:insert context="instance('rdf')/*[1]" nodeset="child::node()[last()]"
+																origin="instance('image-template')"/>
+															<xforms:setvalue
+																ref="instance('rdf')/*[1]/crm:P165i_is_incorporated_in[last()]/crmdig:D1_Digital_Object/@rdf:about"
+																value="$value"/>
+
+															<!-- if the format is discernable from the filename extension, then insert the appropriate property -->
+															<xforms:action if="string($format)">
+																<xforms:insert
+																	context="instance('rdf')/*[1]/crm:P165i_is_incorporated_in[last()]/crmdig:D1_Digital_Object"
+																	nodeset="./child::node()[last()]" origin="xforms:element('dcterms:format', $format)"/>
+															</xforms:action>
+														</xforms:action>
+													</xforms:action>
+
+													<!-- insert the image creator URI into each D1_Digital_Object. 
+																Validation will ensure each D1_Digital_Ojbect is already created before the image_creator column is processed -->
+													<xforms:action if="$mapping = 'image_creator'">
+														<!-- only insert an image_creator if there are D1_Digital_Objects (this ignores unicode characters) -->
+														<xforms:action
+															xxforms:iterate="instance('rdf')/*[1]/crm:P165i_is_incorporated_in[last()]/crmdig:D1_Digital_Object">
+															<xforms:insert context="." nodeset="./child::node()[last()]"
+																origin="xforms:element('dcterms:creator', xforms:attribute('rdf:resource', $value))"/>
+														</xforms:action>
+													</xforms:action>
+
+													<xforms:action if="$mapping = 'image_license'">
+														<!-- only insert an image_license if there are D1_Digital_Objects (this ignores unicode characters) -->
+														<xforms:action
+															xxforms:iterate="instance('rdf')/*[1]/crm:P165i_is_incorporated_in[last()]/crmdig:D1_Digital_Object">
+															<xforms:insert context="." nodeset="./child::node()[last()]"
+																origin="xforms:element('dcterms:license', xforms:attribute('rdf:resource', $value))"/>
+														</xforms:action>
+													</xforms:action>
+
 												</xforms:action>
 											</xforms:action>
 
@@ -1548,9 +1735,8 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 												<!-- insert skos:changeNote template into the concept -->
 												<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
 													origin="instance('changeNote-template')"/>
-												<xforms:setvalue ref="instance('rdf')/*[1]/skos:changeNote/@rdf:resource"
-													value="concat($uri, '#provenance')"/>
-												
+												<xforms:setvalue ref="instance('rdf')/*[1]/skos:changeNote/@rdf:resource" value="concat($uri, '#provenance')"/>
+
 												<!-- *** Insert ProvenanceStatement *** -->
 												<xforms:insert context="instance('rdf')" nodeset="./child::node()[last()]"
 													origin="instance('provenance-template')"/>
@@ -1579,7 +1765,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 
 												<!-- save file back to disk -->
 												<xforms:setvalue ref="instance('save-config')/url"
-													value="concat(instance('config')/data_path, '/id/',  instance('control-instance')/id, '.rdf')"/>
+													value="concat(instance('control-instance')/concept_path,  instance('control-instance')/id, '.rdf')"/>
 												<xforms:insert nodeset="instance('dump')"
 													origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('rdf'), instance('save-config')), 'data')"/>
 
@@ -1620,7 +1806,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 
 													<!-- save file back to disk, but only if the content has changed -->
 													<xforms:setvalue ref="instance('save-config')/url"
-														value="concat(instance('config')/data_path, '/id/',  instance('control-instance')/id, '.rdf')"/>
+														value="concat(instance('control-instance')/concept_path,  instance('control-instance')/id, '.rdf')"/>
 													<xforms:insert nodeset="instance('dump')"
 														origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('rdf'), instance('save-config')), 'data')"/>
 
@@ -1638,6 +1824,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 											</xforms:action>
 											<!-- end of ID processing action: CRUD operations moved to new or updated IDs only -->
 										</xforms:action>
+										
 										<!-- *** after each row in the spreadsheet has been processed, create/update the spreadsheet RDF *** -->
 										<xforms:delete nodeset="instance('rdf')/*"/>
 										<xforms:insert context="instance('rdf')"
@@ -1649,7 +1836,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 										<xforms:send submission="post-rdf"/>
 										<!-- save the spreadsheet RDF to disk -->
 										<xforms:setvalue ref="instance('save-config')/url"
-											value="concat(instance('config')/data_path, '/spreadsheets/spreadsheets.rdf')"/>
+											value="concat(instance('config')/concept_path, '/spreadsheets/spreadsheets.rdf')"/>
 										<xforms:insert nodeset="instance('dump')"
 											origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('spreadsheet-rdf'), instance('save-config')), 'data')"/>
 
@@ -1691,7 +1878,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 							</table>
 						</xforms:case>
 					</xforms:switch>
-					<!--<fr:xforms-inspector></fr:xforms-inspector>-->
+					<!--<fr:xforms-inspector/>-->
 				</div>
 			</div>
 		</div>

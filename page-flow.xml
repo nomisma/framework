@@ -51,12 +51,12 @@
 	<page path="/nomisma/feed/" model="xpl/models/solr/query.xpl" view="xpl/views/serializations/solr/atom.xpl"/>
 	
 	<!-- ID -->
-	<page path="/nomisma/(id|editor)/(.*)\.rdf" model="xpl/models/rdf/get-id.xpl" view="xpl/controllers/serialize-rdfxml.xpl"/>	
-	<page path="/nomisma/(id|editor)/(.*)\.kml" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/kml.xpl"/>
-	<page path="/nomisma/(id|editor)/(.*)\.ttl" view="xpl/controllers/call-rdflib.xpl"/>
-	<page path="/nomisma/(id|editor)/(.*)\.jsonld" view="xpl/controllers/call-rdflib.xpl"/>
-	<page path="/nomisma/(id|editor)/(.*)\.solr" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/solr.xpl"/>
-	<page path="/nomisma/(id|editor)/(.*)" model="xpl/models/rdf/get-id.xpl" view="xpl/controllers/conneg-id.xpl"/>	
+	<page path="/nomisma/(id|editor|symbol)/(.*)\.rdf" model="xpl/models/rdf/get-id.xpl" view="xpl/controllers/serialize-rdfxml.xpl"/>	
+	<page path="/nomisma/(id|editor|symbol)/(.*)\.kml" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/kml.xpl"/>
+	<page path="/nomisma/(id|editor|symbol)/(.*)\.ttl" view="xpl/controllers/call-rdflib.xpl"/>
+	<page path="/nomisma/(id|editor|symbol)/(.*)\.jsonld" view="xpl/controllers/call-rdflib.xpl"/>
+	<page path="/nomisma/(id|editor|symbol)/(.*)\.solr" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/solr.xpl"/>
+	<page path="/nomisma/(id|editor|symbol)/(.*)" model="xpl/models/rdf/get-id.xpl" view="xpl/controllers/conneg-id.xpl"/>	
 	
 	<!-- map page -->
 	<!--<page path="/nomisma/map" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/html-map.xpl"/>-->
