@@ -3,7 +3,7 @@
 	xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/"
 	xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:org="http://www.w3.org/ns/org#" xmlns:nomisma="http://nomisma.org/"
-	xmlns:nmo="http://nomisma.org/ontology#" xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" xmlns:prov="http://www.w3.org/ns/prov#"
+	xmlns:nmo="http://nomisma.org/ontology#" xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" xmlns:prov="http://www.w3.org/ns/prov#" xmlns:crmdig="http://www.ics.forth.gr/isl/CRMdig/"
 	exclude-result-prefixes="#all" version="2.0">
 	<xsl:include href="../../templates.xsl"/>
 	<xsl:include href="../../functions.xsl"/>
@@ -12,7 +12,7 @@
 
 	<!-- config or other variables -->
 	<xsl:variable name="display_path">../</xsl:variable>
-	<xsl:variable name="mode">record</xsl:variable>
+	<xsl:param name="mode">record</xsl:param>
 	<xsl:variable name="type" select="/content/rdf:RDF/*[1]/name()"/>
 	<xsl:variable name="conceptURI" select="/content/rdf:RDF/*[1]/@rdf:about"/>
 	<xsl:variable name="id"
@@ -177,6 +177,24 @@
 					<xsl:apply-templates select="/content/rdf:RDF/*[not(name() = 'dcterms:ProvenanceStatement')]" mode="type">
 						<xsl:with-param name="mode">record</xsl:with-param>
 					</xsl:apply-templates>
+					
+					<!-- separate template for Digital Images for symbols -->
+					<xsl:if test="/content//crmdig:D1_Digital_Object">
+						<div>
+							<h3>Digital Images</h3>
+							
+							<table class="table table-striped">
+								<thead>
+									<th style="width:120px">Image</th>
+									<th>Metadata</th>
+								</thead>
+								<tbody>
+									<xsl:apply-templates select="/content//crmdig:D1_Digital_Object"/>
+								</tbody>
+							</table>
+							
+						</div>
+					</xsl:if>
 
 					<!-- ProvenanceStatement is hidden by default -->
 					<xsl:if test="/content/rdf:RDF/dcterms:ProvenanceStatement">
@@ -216,10 +234,6 @@
 							<li>
 								<a href="{$id}.jsonld">JSON-LD</a>
 							</li>
-							<!--<li>
-								<a href="{$id}.pelagios.rdf">Pelagios RDF/XML</a>
-								</li>-->
-
 						</ul>
 
 						<!-- insert a DataCite XML link for an editor with IDs -->
@@ -283,7 +297,7 @@
 
 			<!-- optional contexts -->
 			<xsl:choose>
-				<xsl:when test="$scheme = 'id'">
+				<xsl:when test="$scheme = 'id' or $scheme = 'symbol'">
 					<!-- list of associated coin types and example coins -->
 					<xsl:if test="$hasTypes = true()">
 						<div class="row">

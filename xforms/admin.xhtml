@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ev="http://www.w3.org/2001/xml-events"
-	xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:nm="http://nomisma.org/id/"
-	xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2008/05/skos#"
-	xmlns:foaf="http://xmlns.com/foaf/0.1/">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:nm="http://nomisma.org/id/" xmlns:owl="http://www.w3.org/2002/07/owl#"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2008/05/skos#" xmlns:foaf="http://xmlns.com/foaf/0.1/">
 	<head>
 		<title>nomisma.org: admin</title>
 		<link rel="stylesheet" href="/fr/style/bootstrap/css/bootstrap.css" type="text/css" />
@@ -15,21 +15,24 @@
 
 		<xforms:model>
 			<xforms:instance id="rdf" xxforms:exclude-result-prefixes="#all">
-				<rdf:RDF></rdf:RDF>
+				<rdf:RDF/>
 			</xforms:instance>
 
 			<xforms:instance id="config" xxforms:exclude-result-prefixes="#all">
-				<xi:include href="../config.xml"></xi:include>
+				<xi:include href="../config.xml"/>
 			</xforms:instance>
-			
+
 			<!-- crossref authentication stored in XML file -->
 			<xforms:instance id="crossref-config" xxforms:exclude-result-prefixes="#all">
-				<xi:include href="../crossref-config.xml"></xi:include>
+				<xi:include href="../crossref-config.xml"/>
 			</xforms:instance>
 
 			<xforms:instance id="control-instance">
 				<controls xmlns="">
 					<id></id>
+					<conceptScheme></conceptScheme>
+					<conceptScheme_uri></conceptScheme_uri>
+					<concept_path></concept_path>
 					<original_id></original_id>
 					<save-trigger></save-trigger>
 					<status></status>
@@ -51,12 +54,13 @@ PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX org:	<http://www.w3.org/ns/org#>
 PREFIX prov:	<http://www.w3.org/ns/prov#>
 PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
-DELETE {?s ?p ?o} WHERE { 
-{?prov foaf:topic <URI> .
+DELETE {?s ?p ?o} WHERE {
+BIND (<URI> as ?concept)
+{?prov foaf:topic ?concept .
 	?prov ?hasActivity ?s .
 	?s a prov:Activity . ?s ?p ?o}
-UNION {<URI> org:hasMembership|skos:related|crm:P165i_is_incorporated_in|skos:changeNote|geo:location ?s . ?s ?p ?o}
-UNION {<URI> ?p ?o . ?s ?p ?o . FILTER (?s = <URI>) }
+UNION {?concept org:hasMembership|skos:related|crm:P165i_is_incorporated_in|skos:changeNote|geo:location ?s . ?s ?p ?o}
+UNION {?concept ?p ?o . ?s ?p ?o . FILTER (?s = ?concept) }
 }]]></query>
 					<query id="delete-all-ids"><![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX crm:	<http://www.cidoc-crm.org/cidoc-crm/>
@@ -139,12 +143,12 @@ DELETE {?s ?p ?o} WHERE {
 					</delete>
 				</config>
 			</xforms:instance>
-			
+
 			<!-- DOI/Crossref templates -->
 			<xforms:instance id="crossref" xxforms:exclude-result-prefixes="#all">
 				<doi_batch xmlns=""></doi_batch>
 			</xforms:instance>
-			
+
 			<xforms:instance id="crossref-form-data" xxforms:exclude-result-prefixes="#all">
 				<formData xmlns="">
 					<operation>doMDUpload</operation>
@@ -154,7 +158,7 @@ DELETE {?s ?p ?o} WHERE {
 					<!--					<fname/>-->
 				</formData>
 			</xforms:instance>
-			
+
 			<xforms:instance id="save-crossref-config">
 				<config xmlns="">
 					<url></url>
@@ -167,19 +171,20 @@ DELETE {?s ?p ?o} WHERE {
 			<xforms:instance id="dump">
 				<dump xmlns=""></dump>
 			</xforms:instance>
-			
+
 			<!-- ************* BINDINGS **********************-->
 			<xforms:bind nodeset="instance('crossref-form-data')">
-				<xforms:bind nodeset="fname" as="xs:anyURI"></xforms:bind>
+				<xforms:bind nodeset="fname" as="xs:anyURI"/>
 			</xforms:bind>
 
 			<!-- ************* SPARQL SUBMISSIONS **********************-->
-			<xforms:submission id="delete-graph" action="{instance('config')/sparql_update}" ref="instance('sparqlUpdate')" serialization="text/plain" replace="none" method="post"
-				mediatype="application/sparql-update">
+			<xforms:submission id="delete-graph" action="{instance('config')/sparql_update}" ref="instance('sparqlUpdate')" serialization="text/plain"
+				replace="none" method="post" mediatype="application/sparql-update">
 				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL update failed.</xforms:message>
 			</xforms:submission>
 
-			<xforms:submission id="post-new" action="{instance('config')/sparql_store}?default" ref="instance('rdf')" replace="none" method="post" mediatype="application/rdf+xml">
+			<xforms:submission id="post-new" action="{instance('config')/sparql_store}?default" ref="instance('rdf')" replace="none" method="post"
+				mediatype="application/rdf+xml">
 				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Successfully posted to endpoint.</xforms:setvalue>
 				<xforms:message ev:event="xforms-submit-error" level="modal">Post to endpoint failed.</xforms:message>
 			</xforms:submission>
@@ -196,31 +201,36 @@ DELETE {?s ?p ?o} WHERE {
 					<xforms:message level="modal">Unable to load generate Solr add doc for all IDs</xforms:message>
 				</xforms:action>
 			</xforms:submission>
-			
+
 			<!-- post instance to Solr -->
-			<xforms:submission id="delete-all" action="{instance('config')/solr_published}update" ref="instance('deleteAll')" instance="deleteAll" replace="none" method="post">
-				<xforms:send ev:event="xforms-submit-done" submission="submit-commit"></xforms:send>
+			<xforms:submission id="delete-all" action="{instance('config')/solr_published}update" ref="instance('deleteAll')" instance="deleteAll"
+				replace="none" method="post">
+				<xforms:send ev:event="xforms-submit-done" submission="submit-commit"/>
 				<xforms:message ev:event="xforms-submit-error" level="modal">Failed to delete all Solr docs.</xforms:message>
 			</xforms:submission>
 
-			<xforms:submission id="post-to-solr" action="{instance('config')/solr_published}update" ref="instance('addIndex')" instance="addIndex" replace="instance" method="post">
-				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
-				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"></xforms:send>
+			<xforms:submission id="post-to-solr" action="{instance('config')/solr_published}update" ref="instance('addIndex')" instance="addIndex"
+				replace="instance" method="post">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is
+					incorrect.</xforms:message>
+				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"/>
 			</xforms:submission>
 
-			<xforms:submission id="delete-id-from-solr" action="{instance('config')/solr_published}update" ref="instance('deleteId')" instance="deleteId" replace="none"
-				method="post">
-				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
-				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"></xforms:send>
+			<xforms:submission id="delete-id-from-solr" action="{instance('config')/solr_published}update" ref="instance('deleteId')" instance="deleteId"
+				replace="none" method="post">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is
+					incorrect.</xforms:message>
+				<xforms:send submission="submit-commit" ev:event="xforms-submit-done"/>
 			</xforms:submission>
 
 			<!-- send commit -->
-			<xforms:submission id="submit-commit" action="{instance('config')/solr_published}update" ref="instance('sendCommit')" instance="sendCommit" replace="none" method="post">
+			<xforms:submission id="submit-commit" action="{instance('config')/solr_published}update" ref="instance('sendCommit')" instance="sendCommit"
+				replace="none" method="post">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Failed to commit to Solr index.</xforms:message>
 			</xforms:submission>
 
-			<xforms:submission id="optimize" action="{instance('config')/solr_published}update" ref="instance('optimizeIndex')" instance="optimizeIndex" replace="none"
-				method="post">
+			<xforms:submission id="optimize" action="{instance('config')/solr_published}update" ref="instance('optimizeIndex')" instance="optimizeIndex"
+				replace="none" method="post">
 				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Solr index flushed and reloaded.</xforms:setvalue>
 				<xforms:message ev:event="xforms-submit-error" level="modal">Solr optimize failed.</xforms:message>
 			</xforms:submission>
@@ -239,45 +249,45 @@ DELETE {?s ?p ?o} WHERE {
 				</xforms:action>
 			</xforms:submission>
 
-			<xforms:submission id="load-rdf" serialization="none" method="get" action="/nomisma/id/{instance('control-instance')/id}.rdf" replace="instance" instance="rdf">
+			<xforms:submission id="load-rdf" serialization="none" method="get"
+				action="/nomisma/{instance('control-instance')/conceptScheme}/{instance('control-instance')/id}.rdf" replace="instance" instance="rdf">
 				<xforms:action ev:event="xforms-submit-error">
 					<xforms:message level="modal">Unable to load RDF/XML from oxf:/apps/nomisma/id/{$id}.rdf</xforms:message>
 				</xforms:action>
 			</xforms:submission>
-			
+
 			<!--***************** CROSSREF ******************-->
 			<!-- serialize MODS/TEI into Crossref XML -->
-			<xforms:submission id="load-crossref" method="get" replace="instance" instance="crossref" serialization="none"
-				resource="/nomisma/crossref.xml">
+			<xforms:submission id="load-crossref" method="get" replace="instance" instance="crossref" serialization="none" resource="/nomisma/crossref.xml">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Error generating Crossref XML document.</xforms:message>
-				
+
 				<xforms:action ev:event="xforms-submit-done">
 					<!-- set crossref credentials for form data -->
-					<xforms:setvalue ref="instance('crossref-form-data')/login_id" value="instance('crossref-config')/username"></xforms:setvalue>
-					<xforms:setvalue ref="instance('crossref-form-data')/login_passwd" value="instance('crossref-config')/password"></xforms:setvalue>
+					<xforms:setvalue ref="instance('crossref-form-data')/login_id" value="instance('crossref-config')/username"/>
+					<xforms:setvalue ref="instance('crossref-form-data')/login_passwd" value="instance('crossref-config')/password"/>
 					<xforms:setvalue ref="instance('crossref-form-data')/fname">crossref.xml</xforms:setvalue>
-					
+
 					<!-- serialize the instance XML into a file in /tmp -->
 					<xforms:setvalue ref="instance('save-crossref-config')/url">file:///tmp/crossref.xml</xforms:setvalue>
 					<xforms:insert nodeset="instance('dump')"
-						origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-crossref.xpl', ('doc', 'configuration'), (instance('crossref'), instance('save-crossref-config')), 'data')"></xforms:insert>
-					
+						origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-crossref.xpl', ('doc', 'configuration'), (instance('crossref'), instance('save-crossref-config')), 'data')"/>
+
 					<!-- post data to Crossref API -->
-					<xforms:send submission="post-crossref"></xforms:send>
+					<xforms:send submission="post-crossref"/>
 				</xforms:action>
 			</xforms:submission>
-			
+
 			<!-- interact with PHP script in CGI to run multipart/form-data -->
-			<xforms:submission id="post-crossref" serialization="none" method="get" action="/nomisma/admin/post-crossref"
-				instance="dump" replace="instance">
+			<xforms:submission id="post-crossref" serialization="none" method="get" action="/nomisma/admin/post-crossref" instance="dump" replace="instance">
 				<!--<xforms:message ev:event="xforms-submit-error" level="modal" value="event('response-body')"></xforms:message>-->
 				<xforms:message ev:event="xforms-submit-error" level="modal">Error writing or posting /tmp/crossref.xml to the Crossref API.</xforms:message>
-				<xforms:setvalue ref="instance('control-instance')/status" ev:event="xforms-submit-done">DOIs successfully created or updated to Crossref.</xforms:setvalue>
+				<xforms:setvalue ref="instance('control-instance')/status" ev:event="xforms-submit-done">DOIs successfully created or updated to
+					Crossref.</xforms:setvalue>
 			</xforms:submission>
 
 			<!-- ********** XFORMS-MODEL-CONSTRUCT-DONE ********** -->
 			<xforms:action ev:event="xforms-model-construct-done">
-				<xforms:send submission="query-solr"></xforms:send>
+				<xforms:send submission="query-solr"/>
 			</xforms:action>
 		</xforms:model>
 	</head>
@@ -300,29 +310,29 @@ DELETE {?s ?p ?o} WHERE {
 							<p>
 								<span class="glyphicon glyphicon-info-sign"></span>
 								<strong>Status:</strong>
-								<xforms:output ref="instance('control-instance')/status"></xforms:output>
+								<xforms:output ref="instance('control-instance')/status"/>
 							</p>
 						</div>
 					</xforms:group>
 					<p><a href="edit/"><span class="glyphicon glyphicon-file"></span> Create New Concept</a></p>
 					<xforms:group ref="instance('solr-response')/result[@name='response']">
-						<xforms:var name="numFound" select="@numFound"></xforms:var>
+						<xforms:var name="numFound" select="@numFound"/>
 						<xforms:group ref=".[$numFound &gt; 0]">
 							<!-- pagination variables -->
-							<xforms:var name="rows" select="number(100)"></xforms:var>
-							<xforms:var name="page" select="number(instance('control-instance')/page)"></xforms:var>
-							<xforms:var name="next" select="$page + 1"></xforms:var>
-							<xforms:var name="previous" select="if ($page &gt;= 1) then $page - 1 else 1"></xforms:var>
-							<xforms:var name="current" select="$page"></xforms:var>
-							<xforms:var name="total" select="ceiling($numFound div $rows)"></xforms:var>
+							<xforms:var name="rows" select="number(100)"/>
+							<xforms:var name="page" select="number(instance('control-instance')/page)"/>
+							<xforms:var name="next" select="$page + 1"/>
+							<xforms:var name="previous" select="if ($page &gt;= 1) then $page - 1 else 1"/>
+							<xforms:var name="current" select="$page"/>
+							<xforms:var name="total" select="ceiling($numFound div $rows)"/>
 							<div class="row">
 								<div class="col-md-12">
-									<xforms:input ref="instance('control-instance')/solr-query" />
+									<xforms:input ref="instance('control-instance')/solr-query"/>
 									<xforms:trigger>
 										<xforms:label>Search</xforms:label>
 										<xforms:action ev:event="DOMActivate">
 											<xforms:setvalue ref="instance('control-instance')/page">1</xforms:setvalue>
-											<xforms:send submission="query-solr"></xforms:send>
+											<xforms:send submission="query-solr"/>
 										</xforms:action>
 									</xforms:trigger>
 									<xforms:group ref=".[instance('control-instance')/solr-query != '*:*']">
@@ -331,7 +341,7 @@ DELETE {?s ?p ?o} WHERE {
 											<xforms:action ev:event="DOMActivate">
 												<xforms:setvalue ref="instance('control-instance')/solr-query">*:*</xforms:setvalue>
 												<xforms:setvalue ref="instance('control-instance')/page">1</xforms:setvalue>
-												<xforms:send submission="query-solr"></xforms:send>
+												<xforms:send submission="query-solr"/>
 											</xforms:action>
 										</xforms:trigger>
 									</xforms:group>
@@ -340,11 +350,11 @@ DELETE {?s ?p ?o} WHERE {
 							<!-- pagination -->
 							<div class="paging_div row">
 								<div class="col-md-6"> Displaying records <b>
-										<xforms:output value="(($page - 1) * $rows) + 1"></xforms:output>
+										<xforms:output value="(($page - 1) * $rows) + 1"/>
 									</b> to <b>
-										<xforms:output value="if ($numFound &gt; $page * $rows) then $page * $rows else $numFound"></xforms:output>
+										<xforms:output value="if ($numFound &gt; $page * $rows) then $page * $rows else $numFound"/>
 									</b> of <b>
-										<xforms:output value="$numFound"></xforms:output>
+										<xforms:output value="$numFound"/>
 									</b> total results.</div>
 								<div class="col-md-6 page-nos">
 									<!-- previous -->
@@ -355,7 +365,7 @@ DELETE {?s ?p ?o} WHERE {
 											</xforms:label>
 											<xforms:action ev:event="DOMActivate">
 												<xforms:setvalue ref="instance('control-instance')/page">1</xforms:setvalue>
-												<xforms:send submission="query-solr"></xforms:send>
+												<xforms:send submission="query-solr"/>
 											</xforms:action>
 										</xforms:trigger>
 										<xforms:trigger>
@@ -363,8 +373,8 @@ DELETE {?s ?p ?o} WHERE {
 												<span class="glyphicon glyphicon-backward"></span>
 											</xforms:label>
 											<xforms:action ev:event="DOMActivate">
-												<xforms:setvalue ref="instance('control-instance')/page" value="$previous"></xforms:setvalue>
-												<xforms:send submission="query-solr"></xforms:send>
+												<xforms:setvalue ref="instance('control-instance')/page" value="$previous"/>
+												<xforms:send submission="query-solr"/>
 											</xforms:action>
 										</xforms:trigger>
 									</xforms:group>
@@ -379,7 +389,7 @@ DELETE {?s ?p ?o} WHERE {
 									<!-- current-->
 									<button type="button" class="btn btn-default">
 										<b>
-											<xforms:output value="$current"></xforms:output>
+											<xforms:output value="$current"/>
 										</b>
 									</button>
 									<!-- next -->
@@ -389,8 +399,8 @@ DELETE {?s ?p ?o} WHERE {
 												<span class="glyphicon glyphicon-forward"></span>
 											</xforms:label>
 											<xforms:action ev:event="DOMActivate">
-												<xforms:setvalue ref="instance('control-instance')/page" value="$next"></xforms:setvalue>
-												<xforms:send submission="query-solr"></xforms:send>
+												<xforms:setvalue ref="instance('control-instance')/page" value="$next"/>
+												<xforms:send submission="query-solr"/>
 											</xforms:action>
 										</xforms:trigger>
 										<xforms:trigger>
@@ -398,8 +408,8 @@ DELETE {?s ?p ?o} WHERE {
 												<span class="glyphicon glyphicon-fast-forward"></span>
 											</xforms:label>
 											<xforms:action ev:event="DOMActivate">
-												<xforms:setvalue ref="instance('control-instance')/page" value="$total"></xforms:setvalue>
-												<xforms:send submission="query-solr"></xforms:send>
+												<xforms:setvalue ref="instance('control-instance')/page" value="$total"/>
+												<xforms:send submission="query-solr"/>
 											</xforms:action>
 										</xforms:trigger>
 									</xforms:group>
@@ -425,14 +435,17 @@ DELETE {?s ?p ?o} WHERE {
 										</thead>
 										<tbody>
 											<xforms:repeat nodeset="doc">
-												<xforms:var name="id" select="str[@name='id']"></xforms:var>
+												<xforms:var name="id" select="str[@name='id']"/>
+												<xforms:var name="conceptScheme"
+													select="if (arr[@name='type']/str = 'nmo:Monogram' or arr[@name='type']/str = 'crm:E37_Mark') then 'symbol' else 'id'"/>
+
 												<tr>
 													<td>
 														<h4>
 															<xforms:trigger appearance="minimal">
-																<xforms:label value="str[@name='prefLabel']"></xforms:label>
+																<xforms:label value="str[@name='prefLabel']"/>
 																<xforms:action ev:event="DOMActivate">
-																	<xforms:load show="replace" resource="edit/?id={$id}"></xforms:load>
+																	<xforms:load show="replace" resource="edit/?{$conceptScheme}={$id}"/>
 																</xforms:action>
 															</xforms:trigger>
 														</h4>
@@ -440,18 +453,18 @@ DELETE {?s ?p ?o} WHERE {
 															<dt>URI</dt>
 															<dd>
 																<xforms:trigger appearance="minimal">
-																	<xforms:label value="concat(instance('config')/url, 'id/', $id)"></xforms:label>
+																	<xforms:label value="concat(instance('config')/url, $conceptScheme, '/', $id)"/>
 																	<xforms:action ev:event="DOMActivate">
-																		<xforms:load show="new" resource="{instance('config')/url}id/{encode-for-uri($id)}"></xforms:load>
+																		<xforms:load show="new" resource="{instance('config')/url}{$conceptScheme}/{encode-for-uri($id)}"/>
 																	</xforms:action>
 																</xforms:trigger>
 															</dd>
 															<dt>Definition</dt>
-															<dd><xforms:output value="str[@name='definition']"></xforms:output></dd>
+															<dd><xforms:output value="str[@name='definition']"/></dd>
 															<xforms:repeat nodeset="arr[@name='type']/str">
 																<dt>Type</dt>
 																<dd>
-																	<xforms:output ref="."></xforms:output>
+																	<xforms:output ref="."/>
 																</dd>
 															</xforms:repeat>
 
@@ -463,14 +476,21 @@ DELETE {?s ?p ?o} WHERE {
 																<span class="glyphicon glyphicon-refresh"></span>
 															</xforms:label>
 															<xforms:action ev:event="DOMActivate">
-																<xforms:setvalue ref="instance('control-instance')/id" value="$id"></xforms:setvalue>
-																<xforms:setvalue ref="instance('sparqlUpdate')"
-																	value="replace(instance('sparqlUpdate-templates')/query[@id='delete-id'], 'URI', concat('http://nomisma.org/id/', $id))"></xforms:setvalue>
-																<xforms:send submission="delete-graph"></xforms:send>
+																<xforms:setvalue ref="instance('control-instance')/id" value="$id"/>
+																<!-- set conceptScheme -->
+																<xforms:setvalue ref="instance('control-instance')/conceptScheme" value="$conceptScheme"/>
+																<xforms:setvalue ref="instance('control-instance')/conceptScheme_uri"
+																	value="concat('http://nomisma.org/', instance('control-instance')/conceptScheme, '/')"/>
+																<!-- set the concept_path based on conceptScheme -->
+																<xforms:setvalue ref="instance('control-instance')/concept_path"
+																	value="concat(instance('config')/data_path, '/', instance('control-instance')/conceptScheme, '/')"
+																/> <xforms:setvalue ref="instance('sparqlUpdate')"
+																	value="replace(instance('sparqlUpdate-templates')/query[@id='delete-id'], 'URI', concat(instance('control-instance')/conceptScheme_uri, $id))"/>
+																<xforms:send submission="delete-graph"/>
 																<!-- then get the current RDF/XML and post it -->
 																<xforms:action ev:event="xforms-submit-done">
-																	<xforms:send submission="load-rdf"></xforms:send>
-																	<xforms:send submission="post-new" ev:event="xforms-submit-done"></xforms:send>
+																	<xforms:send submission="load-rdf"/>
+																	<xforms:send submission="post-new" ev:event="xforms-submit-done"/>
 																</xforms:action>
 															</xforms:action>
 														</xforms:trigger>
@@ -481,8 +501,15 @@ DELETE {?s ?p ?o} WHERE {
 																<span class="glyphicon glyphicon-remove"></span>
 															</xforms:label>
 															<xforms:action ev:event="DOMActivate">
-																<xforms:setvalue ref="instance('control-instance')/id" value="$id"></xforms:setvalue>
-																<xforms:dispatch target="delete-id" name="fr-show"></xforms:dispatch>
+																<xforms:setvalue ref="instance('control-instance')/id" value="$id"/>
+																<!-- set conceptScheme -->
+																<xforms:setvalue ref="instance('control-instance')/conceptScheme" value="$conceptScheme"/>
+																<xforms:setvalue ref="instance('control-instance')/conceptScheme_uri"
+																	value="concat('http://nomisma.org/', instance('control-instance')/conceptScheme, '/')"/>
+																<!-- set the concept_path based on conceptScheme -->
+																<xforms:setvalue ref="instance('control-instance')/concept_path"
+																	value="concat(instance('config')/data_path, '/', instance('control-instance')/conceptScheme, '/')"
+																/> <xforms:dispatch target="delete-id" name="fr-show"/>
 															</xforms:action>
 														</xforms:trigger>
 													</td>
@@ -495,17 +522,18 @@ DELETE {?s ?p ?o} WHERE {
 						</xforms:group>
 						<xforms:group ref=".[$numFound = 0]">
 							<xforms:group ref=".[instance('control-instance')/solr-query = '*:*']">
-								<h1>No ids found in <xforms:output value="concat(instance('config')/data_path, '/id')"></xforms:output></h1>
+								<h1>No ids found in <xforms:output value="concat(instance('config')/data_path, '/id')"/></h1>
+								<p>Be sure to index the files in the right-hand sidebar.</p>
 							</xforms:group>
 							<xforms:group ref=".[instance('control-instance')/solr-query != '*:*']">
-								<h1>No objects that match query: <xforms:output ref="instance('control-instance')/solr-query"></xforms:output>
+								<h1>No objects that match query: <xforms:output ref="instance('control-instance')/solr-query"/>
 									<small>
 										<xforms:trigger appearance="minimal">
 											<xforms:label>clear</xforms:label>
 											<xforms:action ev:event="DOMActivate">
 												<xforms:setvalue ref="instance('control-instance')/solr-query">*:*</xforms:setvalue>
 												<xforms:setvalue ref="instance('control-instance')/page">1</xforms:setvalue>
-												<xforms:send submission="query-solr"></xforms:send>
+												<xforms:send submission="query-solr"/>
 											</xforms:action>
 										</xforms:trigger>
 									</small>
@@ -513,7 +541,7 @@ DELETE {?s ?p ?o} WHERE {
 							</xforms:group>
 						</xforms:group>
 					</xforms:group>
-					<!--<fr:xforms-inspector></fr:xforms-inspector>-->
+					<!--<fr:xforms-inspector/>-->
 				</div>
 				<div class="col-md-3">
 					<h2>Actions</h2>
@@ -537,7 +565,7 @@ DELETE {?s ?p ?o} WHERE {
 								<xforms:trigger appearance="minimal">
 									<xforms:label>Refresh Triplestore</xforms:label>
 									<xforms:action ev:event="DOMActivate">
-										<xforms:dispatch target="refresh-triplestore-dialog" name="fr-show"></xforms:dispatch>
+										<xforms:dispatch target="refresh-triplestore-dialog" name="fr-show"/>
 									</xforms:action>
 								</xforms:trigger>
 							</li>
@@ -550,7 +578,7 @@ DELETE {?s ?p ?o} WHERE {
 								<xforms:trigger appearance="minimal">
 									<xforms:label>Flush and Reload Indices</xforms:label>
 									<xforms:action ev:event="DOMActivate">
-										<xforms:dispatch target="solr-dialog" name="fr-show"></xforms:dispatch>
+										<xforms:dispatch target="solr-dialog" name="fr-show"/>
 									</xforms:action>
 								</xforms:trigger>
 							</li>
@@ -563,7 +591,7 @@ DELETE {?s ?p ?o} WHERE {
 								<xforms:trigger appearance="minimal">
 									<xforms:label>Create/Update DOIs</xforms:label>
 									<xforms:action ev:event="DOMActivate">
-										<xforms:dispatch target="crossref-dialog" name="fr-show"></xforms:dispatch>
+										<xforms:dispatch target="crossref-dialog" name="fr-show"/>
 									</xforms:action>
 								</xforms:trigger>
 							</li>
@@ -575,18 +603,18 @@ DELETE {?s ?p ?o} WHERE {
 		<!-- *********** DIALOGS *********** -->
 		<fr:alert-dialog id="refresh-triplestore-dialog">
 			<fr:label>Refresh Triplestore</fr:label>
-			<fr:message>This will refresh the Nomisma data in the triplestore. If any IDs have changed within the last 24 hours, rerun scripts/generate_dump.sh to create a new
-				static RDF/XML file. Continue?</fr:message>
+			<fr:message>This will refresh the Nomisma data in the triplestore. If any IDs have changed within the last 24 hours, rerun scripts/generate_dump.sh
+				to create a new static RDF/XML file. Continue?</fr:message>
 			<fr:positive-choice>
 				<fr:label>Yes</fr:label>
 				<xforms:action ev:event="DOMActivate">
 					<!-- first delete all Nomisma concepts -->
-					<xforms:setvalue ref="instance('sparqlUpdate')" value="instance('sparqlUpdate-templates')/query[@id='delete-all-ids']"></xforms:setvalue>
-					<xforms:send submission="delete-graph"></xforms:send>
+					<xforms:setvalue ref="instance('sparqlUpdate')" value="instance('sparqlUpdate-templates')/query[@id='delete-all-ids']"/>
+					<xforms:send submission="delete-graph"/>
 					<!-- then get the current RDF/XML and post it -->
 					<xforms:action ev:event="xforms-submit-done">
-						<xforms:send submission="load-all-rdf"></xforms:send>
-						<xforms:send submission="post-new" ev:event="xforms-submit-done"></xforms:send>
+						<xforms:send submission="load-all-rdf"/>
+						<xforms:send submission="post-new" ev:event="xforms-submit-done"/>
 					</xforms:action>
 				</xforms:action>
 			</fr:positive-choice>
@@ -602,19 +630,20 @@ DELETE {?s ?p ?o} WHERE {
 				<xforms:action ev:event="DOMActivate">
 					<!-- purge from the triplestore -->
 					<xforms:setvalue ref="instance('sparqlUpdate')"
-						value="replace(instance('sparqlUpdate-templates')/query[@id='delete-id'], 'URI', concat('http://nomisma.org/id/', instance('control-instance')/id))"></xforms:setvalue>
-					<xforms:send submission="delete-graph"></xforms:send>
+						value="replace(instance('sparqlUpdate-templates')/query[@id='delete-id'], 'URI', concat(instance('control-instance')/conceptScheme_uri, instance('control-instance')/id))"/>
+					<xforms:send submission="delete-graph"/>
 					<!-- delete from Solr -->
-					<xforms:setvalue ref="instance('deleteId')/id" value="instance('control-instance')/id"></xforms:setvalue>
-					<xforms:send submission="delete-id-from-solr"></xforms:send>
+					<xforms:setvalue ref="instance('deleteId')/id" value="instance('control-instance')/id"/>
+					<xforms:send submission="delete-id-from-solr"/>
 					<!-- delete the RDF file from the disk -->
-					<xforms:setvalue ref="instance('delete-config')/delete/url" value="concat(instance('config')/data_path, '/id/',  instance('control-instance')/id, '.rdf')"></xforms:setvalue>
+					<xforms:setvalue ref="instance('delete-config')/delete/url"
+						value="concat(instance('control-instance')/concept_path, instance('control-instance')/id, '.rdf')"/>
 					<xforms:insert nodeset="instance('dump')"
-						origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/delete-id.xpl', 'configuration', instance('delete-config'), 'data')"></xforms:insert>
+						origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/delete-id.xpl', 'configuration', instance('delete-config'), 'data')"/>
 					<xforms:setvalue ref="instance('control-instance')/status">ID successfully deleted from system.</xforms:setvalue>
 					<!-- reset the search -->
 					<xforms:setvalue ref="instance('control-instance')/page">1</xforms:setvalue>
-					<xforms:send submission="query-solr"></xforms:send>
+					<xforms:send submission="query-solr"/>
 				</xforms:action>
 			</fr:positive-choice>
 			<fr:negative-choice>
@@ -628,12 +657,11 @@ DELETE {?s ?p ?o} WHERE {
 				<fr:label>Yes</fr:label>
 				<xforms:action ev:event="DOMActivate">
 					<!-- delete all objects -->
-					<xforms:send submission="delete-all"></xforms:send>
-					
+					<xforms:send submission="delete-all"/>
 					<!-- load Solr add doc by calling a pipeline -->
-					<xforms:send submission="load-all-solr"></xforms:send>
-					<xforms:action ev:event="xforms-submit-done">						
-						<xforms:send submission="post-to-solr"></xforms:send>
+					<xforms:send submission="load-all-solr"/>
+					<xforms:action ev:event="xforms-submit-done">
+						<xforms:send submission="post-to-solr"/>
 						<xforms:send submission="optimize" ev:event="xforms-submit-done"/>
 					</xforms:action>
 				</xforms:action>
@@ -642,14 +670,13 @@ DELETE {?s ?p ?o} WHERE {
 				<fr:label>No</fr:label>
 			</fr:negative-choice>
 		</fr:alert-dialog>
-		
 		<fr:alert-dialog id="crossref-dialog">
 			<fr:label>Create/Update DOIs</fr:label>
 			<fr:message>Create or update DOIs for Nomisma.org editor contributions. Continue?</fr:message>
 			<fr:positive-choice>
 				<fr:label>Yes</fr:label>
 				<xforms:action ev:event="DOMActivate">
-					<xforms:send submission="load-crossref"></xforms:send>
+					<xforms:send submission="load-crossref"/>
 				</xforms:action>
 			</fr:positive-choice>
 			<fr:negative-choice>

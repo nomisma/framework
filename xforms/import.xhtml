@@ -30,8 +30,9 @@
 					<worksheet_id></worksheet_id>
 					<id></id>
 					<type></type>
-					<concept_path></concept_path>
 					<conceptScheme></conceptScheme>
+					<conceptScheme_uri></conceptScheme_uri>
+					<concept_path></concept_path>
 					<mappings-valid>false</mappings-valid>
 					<metadata-valid>false</metadata-valid>
 					<load-trigger>false</load-trigger>
@@ -620,7 +621,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 
 			<!-- ************************* LOAD RDF/XML ************************** -->
 			<xforms:submission id="load-rdf" serialization="none" method="get"
-				action="/nomisma/{if (instance('control-instance')/type = 'nmo:Monogram' or instance('control-instance')/type = 'crm:E37_Mark') then 'symbol' else 'id'}/{instance('control-instance')/id}.rdf"
+				action="/nomisma/{instance('control-instance')/conceptScheme}/{instance('control-instance')/id}.rdf"
 				replace="instance" instance="rdf">
 				<!-- ************ RDF PROCESSING TO CREATE A NEW ID ************** -->
 				<xforms:action ev:event="xforms-submit-error">
@@ -628,14 +629,14 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 					<xforms:setvalue ref="instance('control-instance')/new_id" value="true()"/>
 
 					<!-- create the Concept object -->
-					<xforms:var name="uri" select="concat(instance('control-instance')/conceptScheme, instance('control-instance')/id)"/>
+					<xforms:var name="uri" select="concat(instance('control-instance')/conceptScheme_uri, instance('control-instance')/id)"/>
 					<xforms:insert context="instance('rdf')" origin="xforms:element(instance('control-instance')/type, xforms:attribute('rdf:about', $uri))"/>
 					<!-- insert rdf:type as skos:Concept -->
 					<xforms:insert context="instance('rdf')/*[last()]"
 						origin="xforms:element('rdf:type', xforms:attribute('rdf:resource', 'http://www.w3.org/2004/02/skos/core#Concept'))"/>
 					<!-- insert skos:inScheme -->
 					<xforms:insert context="instance('rdf')/*[last()]" nodeset="./child::node()[last()]"
-						origin="xforms:element('skos:inScheme', xforms:attribute('rdf:resource', instance('control-instance')/conceptScheme))"/>
+						origin="xforms:element('skos:inScheme', xforms:attribute('rdf:resource', instance('control-instance')/conceptScheme_uri))"/>
 				</xforms:action>
 
 				<!-- ************ RDF PROCESSING TO ADD SUPPLEMENTAL INFORMATION ************** -->
@@ -724,17 +725,18 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 									<xforms:trigger bind="load-trigger">
 										<xforms:label>Load Spreadsheet</xforms:label>
 										<xforms:action ev:event="DOMActivate">
+											<!-- set conceptScheme -->
+											<xforms:setvalue ref="instance('control-instance')/conceptScheme"
+												value="if (instance('control-instance')/type = 'nmo:Monogram' or instance('control-instance')/type = 'crm:E37_Mark') then 'symbol' else 'id'"/>
+											<xforms:setvalue ref="instance('control-instance')/conceptScheme_uri"
+												value="concat('http://nomisma.org/', instance('control-instance')/conceptScheme, '/')"/>
+
+											<!-- set the concept_path based on conceptScheme -->
+											<xforms:setvalue ref="instance('control-instance')/concept_path"
+												value="concat(instance('config')/data_path, '/', instance('control-instance')/conceptScheme, '/')"/>											
+											
 											<!-- load spreadsheet -->
 											<xforms:send submission="query-spreadsheet-feed"/>
-
-											<!-- set the concept_path based on class -->
-											<xforms:setvalue ref="instance('control-instance')/concept_path"
-												value="if (instance('control-instance')/type = 'nmo:Monogram' or instance('control-instance')/type = 'crm:E37_Mark') then concat(instance('config')/data_path, '/symbol/') else concat(instance('config')/data_path, '/id/')"/>
-
-											<!-- set conceptScheme URI -->
-											<xforms:setvalue ref="instance('control-instance')/conceptScheme"
-												value="if (instance('control-instance')/type = 'nmo:Monogram' or instance('control-instance')/type = 'crm:E37_Mark') then 'http://nomisma.org/symbol/' else 'http://nomisma.org/id/'"
-											/>
 										</xforms:action>
 									</xforms:trigger>
 								</div>
@@ -1065,7 +1067,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 													if="count(instance('feed')//atom:entry/*[name()=instance('mappings')/mapping[@to='id']/@from]) != count(distinct-values(instance('feed')//atom:entry/*[name()=instance('mappings')/mapping[@to='id']/@from]))"
 													context="instance('validation-model')" nodeset="./child::node()[last()]"
 													origin="xforms:element('error', 'Duplicate Nomisma IDs.')"/>
-												
+
 												<!-- iterate through all gsx elements -->
 												<xforms:action xxforms:iterate="*[namespace-uri()='http://schemas.google.com/spreadsheets/2006/extended']">
 													<xforms:var name="from" select="name()"/>
@@ -1207,46 +1209,45 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 														<xforms:action if="$mapping='prov:alternateOf'">
 															<!-- verify that the prov:alternateOf is a Nomisma URI, but not validate its existence (as this ID may be in the same spreadsheet -->
 															<xforms:action if="string-length($value) &gt; 0">
-																<xforms:insert if="not(contains($value, instance('control-instance')/conceptScheme))"
+																<xforms:insert if="not(contains($value, instance('control-instance')/conceptScheme_uri))"
 																	context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
 																	origin="xforms:element('error', concat($mapping, ' does not link to a Nomisma URI: ', $value))"
 																/>
 															</xforms:action>
 														</xforms:action>
-														
+
 														<!-- skos:broader must be within the same concept scheme -->
-														<xforms:action if="$mapping = 'skos:broader' and string-length($value) &gt; 0">															
-															<xforms:insert if="not(contains($value, instance('control-instance')/conceptScheme))"
+														<xforms:action if="$mapping = 'skos:broader' and string-length($value) &gt; 0">
+															<xforms:insert if="not(contains($value, instance('control-instance')/conceptScheme_uri))"
 																context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
 																origin="xforms:element('error', concat($mapping, ' does not link to a Nomisma URI in the same Concept Scheme: ', $value))"/>
-															
-															<xforms:action if="contains($value, instance('control-instance')/conceptScheme)">
+
+															<xforms:action if="contains($value, instance('control-instance')/conceptScheme_uri)">
 																<xforms:var name="class" select="instance('control-instance')/type"/>
-																
+
 																<!-- for linking Mints to nmo:Region (typical) or nmo:Mint for sub-workshops -->
 																<xforms:setvalue ref="instance('sparqlQuery')"
 																	if="instance('control-instance')/type = 'nmo:Mint'"
 																	value="concat(instance('sparql-templates')/prefix, ' ', replace(instance('sparql-templates')/query[@id='ask-mint'], 'URI', $value))"/>
-																
+
 																<!-- all other ASK queries -->
 																<xforms:setvalue ref="instance('sparqlQuery')"
 																	if="not(instance('control-instance')/type = 'nmo:Mint')"
 																	value="concat(instance('sparql-templates')/prefix, ' ', replace(replace(instance('sparql-templates')/query[@id='ask'], 'URI', $value), 'CLASS', $class))"/>
-																
+
 																<xforms:send submission="submit-sparqlQuery"/>
 																<!-- if the SPARQL query concludes successfully, then create an entry in nomisma-ids and display an error if the ASK if false -->
 																<xforms:action ev:event="xforms-submit-done">
 																	<xforms:insert context="instance('nomisma-ids')" nodeset="./child::node()[last()]"
 																		origin="xforms:element('id', (xforms:attribute('uri', $value), xforms:attribute('mapping', $mapping), data(instance('sparqlResponse')/descendant::res:boolean)))"/>
 																	<xforms:insert if="instance('sparqlResponse')/descendant::res:boolean = 'false'"
-																		context="instance('validation-model')/record[last()]"
-																		nodeset="./child::node()[last()]"
+																		context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
 																		origin="xforms:element('error', concat($mapping, ' links to a non-existent Nomisma URI or the URI is a different class: ', $value))"
 																	/>
 																</xforms:action>
 															</xforms:action>
 														</xforms:action>
-														
+
 														<!-- these URIs must be in the id/ namespace -->
 														<xforms:action
 															if="$mapping='org:role' or $mapping='org:organization' or $mapping='org:memberOf' or $mapping='dcterms:isPartOf'">
@@ -1305,10 +1306,10 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 														<xforms:action if="$mapping='skos:related'">
 															<xforms:action if="string-length($value) &gt; 0">
 																<!-- these are properties that must be linked internally to other Nomisma IDs -->
-																<xforms:insert if="not(contains($value, instance('control-instance')/conceptScheme))"
+																<xforms:insert if="not(contains($value, instance('control-instance')/conceptScheme_uri))"
 																	context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
 																	origin="xforms:element('error', concat($mapping, ' does not link to a Nomisma URI: ', $value))"/>
-																<xforms:action if="contains($value, instance('control-instance')/conceptScheme)">
+																<xforms:action if="contains($value, instance('control-instance')/conceptScheme_uri)">
 																	<!-- if the URI space is nm:, then test whether the URI has already been validated via SPARQL. If not, then submit a SPARQL query -->
 																	<xforms:action if="instance('nomisma-ids')/id[@uri=$value and @mapping=$mapping] = false()"
 																		context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
@@ -1415,22 +1416,21 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 										<xforms:var name="dateTime" select="current-dateTime()"/>
 
 										<!-- *** BEGIN ATOM TO RDF IMPORT *** -->
-										<xforms:action xxforms:iterate="instance('feed')//atom:entry[1]">
+										<xforms:action xxforms:iterate="instance('feed')//atom:entry">
 											<!-- set position for progress dialog -->
 											<!--<xforms:setvalue ref="instance('control-instance')/position" value="context()/position()"></xforms:setvalue>-->
 											<xforms:var name="id"
 												select="normalize-space(data(context()/*[namespace-uri()='http://schemas.google.com/spreadsheets/2006/extended'][name()=instance('mappings')/mapping[@to='id']/@from]))"/>
-											<xforms:var name="uri" select="concat(instance('control-instance')/conceptScheme, $id)"/>
+											<xforms:var name="uri" select="concat(instance('control-instance')/conceptScheme_uri, $id)"/>
 											<xforms:var name="position" select="position()"/>
 											<!-- set the id in the control-instance and then attempt to load the RDF/XML from disc. If it fails to load, this means the ID does not exist, and a new one will be created. If the ID does exist and the RDF is loaded, then add supplementary information. -->
 											<xforms:setvalue ref="instance('control-instance')/id" value="$id"/>
 											<!-- clear data from RDF instance before loading-->
 											<xforms:delete nodeset="instance('rdf')/*"/>
 											<xforms:send submission="load-rdf"/>
-											
+
 											<!-- iterate through columns -->
-											<xforms:action
-												xxforms:iterate="context()/*[namespace-uri()='http://schemas.google.com/spreadsheets/2006/extended']">
+											<xforms:action xxforms:iterate="context()/*[namespace-uri()='http://schemas.google.com/spreadsheets/2006/extended']">
 												<xforms:var name="from" select="name()"/>
 												<xforms:var name="value" select="normalize-space(data(context()))"/>
 												<!-- only process those fields which have been mapped in the user interface -->
@@ -1824,7 +1824,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 											</xforms:action>
 											<!-- end of ID processing action: CRUD operations moved to new or updated IDs only -->
 										</xforms:action>
-										
+
 										<!-- *** after each row in the spreadsheet has been processed, create/update the spreadsheet RDF *** -->
 										<xforms:delete nodeset="instance('rdf')/*"/>
 										<xforms:insert context="instance('rdf')"
@@ -1836,7 +1836,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 										<xforms:send submission="post-rdf"/>
 										<!-- save the spreadsheet RDF to disk -->
 										<xforms:setvalue ref="instance('save-config')/url"
-											value="concat(instance('config')/concept_path, '/spreadsheets/spreadsheets.rdf')"/>
+											value="concat(instance('config')/data_path, '/spreadsheets/spreadsheets.rdf')"/>
 										<xforms:insert nodeset="instance('dump')"
 											origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('spreadsheet-rdf'), instance('save-config')), 'data')"/>
 
@@ -1861,9 +1861,9 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 										<tr>
 											<td>
 												<xforms:trigger appearance="minimal">
-													<xforms:label value="concat(instance('config')/url, 'id/', $id)"/>
+													<xforms:label value="concat(instance('config')/url, instance('control-instance')/conceptScheme, '/', $id)"/>
 													<xforms:action ev:event="DOMActivate">
-														<xforms:load show="replace" resource="{concat(instance('config')/url, 'id/', $id)}"/>
+														<xforms:load show="replace" resource="{concat(instance('config')/url, instance('control-instance')/conceptScheme, '/', $id)}"/>
 													</xforms:action>
 												</xforms:trigger>
 											</td>

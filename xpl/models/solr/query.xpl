@@ -27,6 +27,7 @@
 				<xsl:param name="start" select="if (doc('input:request')/request/parameters/parameter[name='start']/value castable as xs:integer) then
 					doc('input:request')/request/parameters/parameter[name='start']/value  else 0"/>
 				<xsl:param name="rows" as="xs:integer">100</xsl:param>
+				<xsl:param name="fq" select="doc('input:request')/request/parameters/parameter[name='fq']/value"/>
 
 				<xsl:param name="sort">
 					<xsl:choose>
@@ -46,6 +47,11 @@
 					<xsl:for-each select="doc('input:request')/request/parameters/parameter[not(name='start') and not(name='q') and not(name='sort') and not(name='rows')]">
 						<xsl:value-of select="concat('&amp;', name, '=', encode-for-uri(value))"/>
 					</xsl:for-each>
+					
+					<!-- add the fq parameter for the HTML browse page -->
+					<xsl:if test="tokenize(doc('input:request')/request/request-uri, '/')[last()] = 'browse' and not(string($fq))">
+						<xsl:value-of select="concat('&amp;fq=', encode-for-uri('conceptScheme:&#x022;http://nomisma.org/id/&#x022;'))"/>
+					</xsl:if>
 				</xsl:variable>
 
 				<!-- config variables -->
@@ -55,11 +61,11 @@
 					<xsl:choose>
 						<xsl:when test="string($q)">
 							<xsl:value-of select="concat($solr-url, '?q=', encode-for-uri($q), '&amp;sort=', encode-for-uri($sort), '&amp;start=',$start,
-								'&amp;rows=100&amp;facet=true&amp;facet.field=type&amp;facet.field=role_facet&amp;facet.field=field_facet&amp;facet.sort=index&amp;facet.limit=-1', $other-params)"/>
+								'&amp;rows=100&amp;facet=true&amp;facet.field=type&amp;facet.field=role_facet&amp;facet.field=field_facet&amp;facet.sort=index&amp;facet.limit=-1&amp;facet.mincount=1', $other-params)"/>
 						</xsl:when>
 						<xsl:otherwise>
 							<xsl:value-of select="concat($solr-url, '?q=*:*&amp;sort=', encode-for-uri($sort), '&amp;start=',$start,
-								'&amp;rows=100&amp;facet=true&amp;facet.field=type&amp;facet.field=role_facet&amp;facet.field=field_facet&amp;facet.sort=index&amp;facet.limit=-1', $other-params)"/>
+								'&amp;rows=100&amp;facet=true&amp;facet.field=type&amp;facet.field=role_facet&amp;facet.field=field_facet&amp;facet.sort=index&amp;facet.limit=-1&amp;facet.mincount=1', $other-params)"/>
 						</xsl:otherwise>
 					</xsl:choose>
 				</xsl:variable>
