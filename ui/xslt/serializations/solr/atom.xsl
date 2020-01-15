@@ -47,7 +47,7 @@
 	</xsl:template>
 
 	<xsl:template match="doc">
-		<xsl:variable name="uri" select="concat(str[@name='conceptScheme'], str[@name='id'])"/>
+		<xsl:variable name="uri" select="concat($url, tokenize(str[@name='conceptScheme'], '/')[last()-1], '/', str[@name='id'])"/>
 		
 		<entry>
 			<title>
