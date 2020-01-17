@@ -332,12 +332,13 @@ PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX org:	<http://www.w3.org/ns/org#>
 PREFIX prov:	<http://www.w3.org/ns/prov#>
 PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
-DELETE {?s ?p ?o} WHERE { 
-{?prov foaf:topic <URI> .
+DELETE {?s ?p ?o} WHERE {
+BIND (<URI> as ?concept)
+{?prov foaf:topic ?concept .
 	?prov ?hasActivity ?s .
 	?s a prov:Activity . ?s ?p ?o}
-UNION {<URI> org:hasMembership|skos:related|crm:P165i_is_incorporated_in|skos:changeNote|geo:location ?s . ?s ?p ?o}
-UNION {<URI> ?p ?o . ?s ?p ?o . FILTER (?s = <URI>) }
+UNION {?concept org:hasMembership|skos:related|crm:P165i_is_incorporated_in|skos:changeNote|geo:location ?s . ?s ?p ?o}
+UNION {?concept ?p ?o . ?s ?p ?o . FILTER (?s = ?concept) }
 }]]></query>
 				</templates>
 
