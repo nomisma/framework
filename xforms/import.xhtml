@@ -249,7 +249,7 @@
 					<property label="Field of Numismatics">dcterms:isPartOf</property>
 					<property label="Image Creator" constraint="crm:E37_Mark|nmo:Monogram">image_creator</property>
 					<property label="Image License" constraint="crm:E37_Mark|nmo:Monogram">image_license</property>
-					<property label="Image URI or Unicode Character" constraint="crm:E37_Mark|nmo:Monogram">crm:P165i_is_incorporated_in</property>
+					<property label="Image URI" constraint="crm:E37_Mark|nmo:Monogram">crm:P165i_is_incorporated_in</property>
 					<property label="Latitude" constraint="nmo:Mint">geo:lat</property>
 					<property label="Longitude" constraint="nmo:Mint">geo:long</property>
 					<property label="Organization" constraint="foaf:Person">org:organization</property>
@@ -258,6 +258,7 @@
 					<property label="Source">dcterms:source</property>
 					<property label="Start Date">nmo:hasStartDate</property>
 					<property label="Uncertain Match" contstraint="nmo:Mint">skos:related</property>
+					<property label="Unicode Representation of Symbol/Monogram" constraint="crm:E37_Mark|nmo:Monogram">crm:P190_has_symbolic_content</property>
 				</properties>
 			</xforms:instance>
 
@@ -400,6 +401,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 				and count(mapping[@to='org:role']) &lt;= 1 and count(mapping[@to='org:organization']) &lt;= 1 
 				and count(mapping[@to='geo:lat']) &lt;= 1 and count(mapping[@to='geo:long']) &lt;= 1 
 				and count(mapping[@to='bio:birth']) &lt;= 1 and count(mapping[@to='bio:death']) &lt;= 1
+				and count(mapping[@to='crm:P190_has_symbolic_content']) &lt;= 1
 				and count(mapping[@to = 'image_creator']) &lt;= 1 and count(mapping[@to = 'image_license']) &lt;= 1
 				and (if (count(mapping[@to = 'image_creator']) = 1) then not(mapping[@to = 'image_creator']/following-sibling::mapping[@to = 'crm:P165i_is_incorporated_in']) else true())
 				and (if(count(mapping[@to = 'image_creator']) = 1) then (count(mapping[@to = 'crm:P165i_is_incorporated_in']) &gt; 0) else true())
@@ -622,8 +624,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 
 			<!-- ************************* LOAD RDF/XML ************************** -->
 			<xforms:submission id="load-rdf" serialization="none" method="get"
-				action="/nomisma/{instance('control-instance')/conceptScheme}/{instance('control-instance')/id}.rdf"
-				replace="instance" instance="rdf">
+				action="/nomisma/{instance('control-instance')/conceptScheme}/{instance('control-instance')/id}.rdf" replace="instance" instance="rdf">
 				<!-- ************ RDF PROCESSING TO CREATE A NEW ID ************** -->
 				<xforms:action ev:event="xforms-submit-error">
 					<!-- set new_id to true -->
@@ -734,8 +735,8 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 
 											<!-- set the concept_path based on conceptScheme -->
 											<xforms:setvalue ref="instance('control-instance')/concept_path"
-												value="concat(instance('config')/data_path, '/', instance('control-instance')/conceptScheme, '/')"/>											
-											
+												value="concat(instance('config')/data_path, '/', instance('control-instance')/conceptScheme, '/')"/>
+
 											<!-- load spreadsheet -->
 											<xforms:send submission="query-spreadsheet-feed"/>
 										</xforms:action>
@@ -938,6 +939,12 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 										<div class="alert-danger alert-box alert">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> There cannot be more than one Image Creator.</div>
+									</xforms:group>
+									<xforms:group ref=".[count(mapping[@to = 'crm:P190_has_symbolic_content']) &gt; 1]">
+										<div class="alert-danger alert-box alert">
+											<span class="glyphicon glyphicon-exclamation-sign"></span>
+											<strong>Alert:</strong> There cannot be more than one Unicode character that represents the symbol or
+											monogram.</div>
 									</xforms:group>
 									<xforms:group
 										ref=".[count(mapping[@to = 'image_creator']) &gt; 0 and count(mapping[@to = 'crm:P165i_is_incorporated_in']) = 0]">
@@ -1194,6 +1201,14 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 															</xforms:action>
 														</xforms:action>
 
+														<!-- Unicode character (symbolic object) representing a symbol or monogram must be blank or at most 1 character -->
+														<xforms:action if="$mapping = 'crm:P190_has_symbolic_content'">
+															<xforms:insert if="string-length($value) &gt; 1"
+																context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
+																origin="xforms:element('error', 'The Unicode representation may not be more than 1 character.')"
+															> </xforms:insert>
+														</xforms:action>
+
 														<!-- URI validation -->
 														<xforms:action
 															if="$mapping='skos:exactMatch' or $mapping='skos:closeMatch' or $mapping='dcterms:source' or $mapping = 'crm:P165i_is_incorporated_in' or $mapping = 'image_creator' or $mapping = 'image_license'">
@@ -1417,7 +1432,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 										<xforms:var name="dateTime" select="current-dateTime()"/>
 
 										<!-- *** BEGIN ATOM TO RDF IMPORT *** -->
-										<xforms:action xxforms:iterate="instance('feed')//atom:entry">
+										<xforms:action xxforms:iterate="instance('feed')//atom:entry[1]">
 											<!-- set position for progress dialog -->
 											<!--<xforms:setvalue ref="instance('control-instance')/position" value="context()/position()"></xforms:setvalue>-->
 											<xforms:var name="id"
@@ -1657,10 +1672,12 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 													<!-- *** SYMBOL/MONOGRAM PROPERTIES *** -->
 													<!-- constituent letters and symbols -->
 													<xforms:action if="$mapping = 'crm:P106_is_composed_of'">
+
 														<!-- if the value is a URI, then set the URI for the $mapping -->
 														<xforms:action if="matches($value, 'https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$')">
 															<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
-																origin="xforms:element($mapping, (xforms:attribute('rdf:resource', $value)))"/>
+																origin="xforms:element($mapping, (xforms:attribute('rdf:resource', $value)))"
+																if="not(instance('rdf')/*[1]/crm:P106_is_composed_of/@rdf:resource = $value)"/>
 														</xforms:action>
 
 														<!-- if the value is not a URI, then split the string into letters -->
@@ -1670,40 +1687,48 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 																<xforms:var name="letter" select="normalize-space(.)"/>
 
 																<!-- ignore whitespace in the sequence -->
-																<xforms:action if="string-length($letter) &gt; 0">
+																<xforms:action
+																	if="string-length($letter) &gt; 0 and not(instance('rdf')/*[1]/crm:P106_is_composed_of = $letter)">
 																	<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
 																		origin="xforms:element($mapping, $letter)"/>
 																</xforms:action>
 															</xforms:action>
 														</xforms:action>
+
 													</xforms:action>
 
 													<!-- image references -->
 													<xforms:action if="$mapping = 'crm:P165i_is_incorporated_in'">
-														<!-- If the string length is 1, then the symbol is represented by an existing unicode character -->
-														<xforms:action if="string-length($value) = 1">
-															<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
-																origin="xforms:element('crm:P165i_is_incorporated_in', $value)"/>
-														</xforms:action>
-
 														<!-- if the $value matches a URI pattern, then insert a D1 Digital Object -->
 														<xforms:action if="matches($value, 'https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$')">
-															<xforms:var name="ext" select="tokenize(tokenize($value, '/')[last()], '\.')[last()]"/>
-															<xforms:var name="format" select="if ($ext = 'svg') then 'image/svg+xml' else ''"/>
 
-															<xforms:insert context="instance('rdf')/*[1]" nodeset="child::node()[last()]"
-																origin="instance('image-template')"/>
-															<xforms:setvalue
-																ref="instance('rdf')/*[1]/crm:P165i_is_incorporated_in[last()]/crmdig:D1_Digital_Object/@rdf:about"
-																value="$value"/>
+															<!-- only insert if it doesn't already exist -->
+															<xforms:action
+																if="not(instance('rdf')/*[1]/crm:P165i_is_incorporated_in/crmdig:D1_Digital_Object/@rdf:about = $value)">
+																<xforms:var name="ext" select="tokenize(tokenize($value, '/')[last()], '\.')[last()]"/>
+																<xforms:var name="format" select="if ($ext = 'svg') then 'image/svg+xml' else ''"/>
 
-															<!-- if the format is discernable from the filename extension, then insert the appropriate property -->
-															<xforms:action if="string($format)">
-																<xforms:insert
-																	context="instance('rdf')/*[1]/crm:P165i_is_incorporated_in[last()]/crmdig:D1_Digital_Object"
-																	nodeset="./child::node()[last()]" origin="xforms:element('dcterms:format', $format)"/>
+																<xforms:insert context="instance('rdf')/*[1]" nodeset="child::node()[last()]"
+																	origin="instance('image-template')"/>
+																<xforms:setvalue
+																	ref="instance('rdf')/*[1]/crm:P165i_is_incorporated_in[last()]/crmdig:D1_Digital_Object/@rdf:about"
+																	value="$value"/>
+
+																<!-- if the format is discernable from the filename extension, then insert the appropriate property -->
+																<xforms:action if="string($format)">
+																	<xforms:insert
+																		context="instance('rdf')/*[1]/crm:P165i_is_incorporated_in[last()]/crmdig:D1_Digital_Object"
+																		nodeset="./child::node()[last()]" origin="xforms:element('dcterms:format', $format)"/>
+																</xforms:action>
 															</xforms:action>
 														</xforms:action>
+													</xforms:action>
+
+													<!-- a single unicode character that represents the symbol or monogram (e.g., chi-rho monogram) -->
+													<xforms:action if="$mapping = 'crm:P190_has_symbolic_content' and string-length($value) = 1">
+														<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
+															origin="xforms:element('crm:P190_has_symbolic_content', $value)"
+															if="not(instance('rdf')/*[1]/crm:P190_has_symbolic_content = $value)"/>
 													</xforms:action>
 
 													<!-- insert the image creator URI into each D1_Digital_Object. 
@@ -1713,7 +1738,9 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 														<xforms:action
 															xxforms:iterate="instance('rdf')/*[1]/crm:P165i_is_incorporated_in[last()]/crmdig:D1_Digital_Object">
 															<xforms:insert context="." nodeset="./child::node()[last()]"
-																origin="xforms:element('dcterms:creator', xforms:attribute('rdf:resource', $value))"/>
+																origin="xforms:element('dcterms:creator', xforms:attribute('rdf:resource', $value))"
+																if="not(instance('rdf')/*[1]/crm:P165i_is_incorporated_in/crmdig:D1_Digital_Object/dcterms:creator/@rdf:resource = $value)"
+															/>
 														</xforms:action>
 													</xforms:action>
 
@@ -1722,7 +1749,9 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 														<xforms:action
 															xxforms:iterate="instance('rdf')/*[1]/crm:P165i_is_incorporated_in[last()]/crmdig:D1_Digital_Object">
 															<xforms:insert context="." nodeset="./child::node()[last()]"
-																origin="xforms:element('dcterms:license', xforms:attribute('rdf:resource', $value))"/>
+																origin="xforms:element('dcterms:license', xforms:attribute('rdf:resource', $value))"
+																if="not(instance('rdf')/*[1]/crm:P165i_is_incorporated_in/crmdig:D1_Digital_Object/dcterms:license/@rdf:resource = $value)"
+															/>
 														</xforms:action>
 													</xforms:action>
 
@@ -1864,7 +1893,8 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 												<xforms:trigger appearance="minimal">
 													<xforms:label value="concat(instance('config')/url, instance('control-instance')/conceptScheme, '/', $id)"/>
 													<xforms:action ev:event="DOMActivate">
-														<xforms:load show="replace" resource="{concat(instance('config')/url, instance('control-instance')/conceptScheme, '/', $id)}"/>
+														<xforms:load show="replace"
+															resource="{concat(instance('config')/url, instance('control-instance')/conceptScheme, '/', $id)}"/>
 													</xforms:action>
 												</xforms:trigger>
 											</td>

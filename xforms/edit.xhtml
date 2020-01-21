@@ -466,7 +466,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 								constraint="matches(., 'https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$')"/>
 						</xforms:bind>
 					</xforms:bind>
-					<xforms:bind nodeset="crm:P106_is_composed_of[not(@rdf:resource)]" required="true()" constraint="string-length(normalize-space(.)) = 1"/>
+					<xforms:bind nodeset="crm:P190_has_symbolic_content" required="true()" constraint="string-length(normalize-space(.)) = 1"/>
 
 					<!-- @rdf:resource -->
 					<xforms:bind nodeset="//@rdf:resource" required="true()" type="xs:anyURI"
@@ -1740,8 +1740,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 									<xforms:group ref=".[instance('control-instance')/conceptScheme = 'symbol']">
 										<div class="subsection">
 											<h4>Symbol and Monogram Fields</h4>
-											
-																						
+
+
 
 											<xforms:group ref=".[count(crm:P106_is_composed_of) &gt; 0]">
 												<div class="subsection">
@@ -1769,10 +1769,10 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 															</xforms:output>
 														</div>
 													</xforms:repeat>
-													<hr/>
+													<hr />
 												</div>
 											</xforms:group>
-											
+
 
 											<xforms:group ref=".[count(crm:P165i_is_incorporated_in) &gt; 0]">
 												<div class="subsection">
@@ -1782,13 +1782,13 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 
 														<xforms:group ref="crmdig:D1_Digital_Object">
 															<h6>SVG Graphic <xforms:trigger appearance="minimal">
-																<xforms:delete ev:event="DOMActivate" context="parent::node()"/>
-																<xforms:label>
-																	<span class="glyphicon glyphicon-remove"></span>
-																</xforms:label>
-															</xforms:trigger>
+																	<xforms:delete ev:event="DOMActivate" context="parent::node()"/>
+																	<xforms:label>
+																		<span class="glyphicon glyphicon-remove"></span>
+																	</xforms:label>
+																</xforms:trigger>
 															</h6>
-															
+
 															<div>
 																<xforms:input ref="@rdf:about">
 																	<xforms:label>URI</xforms:label>
@@ -1814,18 +1814,18 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 																	</xforms:itemset>
 																</xforms:select1>
 															</div>
-														</xforms:group>														
+														</xforms:group>
 													</xforms:repeat>
-													
-													<hr/>
+
+													<hr />
 												</div>
 											</xforms:group>
-											
+
 											<xforms:group ref="crm:P190_has_symbolic_content">
 												<div>
 													<xforms:input ref=".">
 														<xforms:label>Unicode Character</xforms:label>
-														<xforms:alert>Required</xforms:alert>
+														<xforms:alert>Must be 1 character</xforms:alert>
 													</xforms:input>
 													<xforms:trigger appearance="minimal">
 														<xforms:delete ev:event="DOMActivate" context="."/>
