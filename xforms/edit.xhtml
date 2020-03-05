@@ -656,6 +656,10 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 					<!-- set the concept_path based on conceptScheme -->
 					<xforms:setvalue ref="instance('control-instance')/concept_path"
 						value="concat(instance('config')/data_path, '/', instance('control-instance')/conceptScheme, '/')"/>
+					
+					<!-- set URI -->
+					<xforms:setvalue ref="instance('control-instance')/uri"
+						value="concat(instance('control-instance')/conceptScheme_uri, instance('control-instance')/id)"/>
 				</xforms:action>
 			</xforms:submission>
 
@@ -998,12 +1002,14 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										<xforms:label>
 											<span class="glyphicon glyphicon-plus"></span>Role</xforms:label>
 										<xforms:action ev:event="DOMActivate">
-											<!-- insert geo:location -->
+											<!-- insert org:hasMembership -->
+											<xforms:var name="membershipUri" select="concat(instance('control-instance')/uri, '#membership_', digest(string(current-dateTime()), 'MD5', 'hex'))"/>											
+											
 											<xforms:insert context="." nodeset="./child::node()[last()]"
-												origin="xforms:element('org:hasMembership', (xforms:attribute('rdf:resource', ''), ''))"/>
+												origin="xforms:element('org:hasMembership', (xforms:attribute('rdf:resource', $membershipUri), ''))"/>
 											<!-- insert org:Membership -->
 											<xforms:insert context="instance('doc')" nodeset="./child::node()[last()]"
-												origin="xforms:element('org:Membership', (xforms:attribute('rdf:about', ''), ''))"/>
+												origin="xforms:element('org:Membership', (xforms:attribute('rdf:about', $membershipUri), ''))"/>
 											<!-- insert org:role into the last org:Membership -->
 											<xforms:insert context="instance('doc')/org:Membership[last()]" nodeset="./child::node()[last()]"
 												origin="xforms:element('org:role', (xforms:attribute('rdf:resource', ''), ''))"/>
@@ -2223,8 +2229,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 														<xforms:label ref="."/>
 														<xforms:value ref="@uri"/>
 													</xforms:itemset>
-													<!-- when the value of the drop down is changed, update the URI of this object and the org:hasMembership in the parent concept -->
-													<xforms:action ev:event="xforms-value-changed">
+													<!-- no longer change the URI for the membership based on the role. Difficult to maintain -->
+													<!--<xforms:action ev:event="xforms-value-changed">
 														<xforms:var name="role" select="."/>
 														<xforms:var name="count" select="count(instance('doc')//org:role[@rdf:resource = $role])"/>
 														<xforms:setvalue ref="ancestor::org:Membership/@rdf:about"
@@ -2232,7 +2238,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 														<xforms:setvalue ref="ancestor::rdf:RDF/*[1]/org:hasMembership[position()=$position]/@rdf:resource"
 															value="concat(ancestor::rdf:RDF/*[1]/@rdf:about, '#', substring-after($role, 'id/'), if ($count &gt; 1) then $count else '')"
 														/>
-													</xforms:action>
+													</xforms:action>-->
 												</xforms:select1>
 											</div>
 										</xforms:group>
