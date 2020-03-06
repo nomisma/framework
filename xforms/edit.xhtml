@@ -7,7 +7,8 @@
 	xmlns:un="http://www.owl-ontologies.com/Ontology1181490123.owl#" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:nomisma="https://github.com/nomisma"
 	xmlns:rdac="http://www.rdaregistry.info/Elements/c/" xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/"
 	xmlns:nmo="http://nomisma.org/ontology#" xmlns:org="http://www.w3.org/ns/org#" xmlns:bio="http://purl.org/vocab/bio/0.1/"
-	xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" xmlns:prov="http://www.w3.org/ns/prov#" xmlns:crmdig="http://www.ics.forth.gr/isl/CRMdig/">
+	xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" xmlns:prov="http://www.w3.org/ns/prov#" xmlns:crmdig="http://www.ics.forth.gr/isl/CRMdig/"
+	xmlns:wordnet="http://ontologi.es/WordNet/class/">
 	<head>
 		<title>nomisma.org: edit</title>
 		<link rel="stylesheet" href="/fr/style/bootstrap/css/bootstrap.css" type="text/css" />
@@ -34,7 +35,7 @@
 					xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:un="http://www.owl-ontologies.com/Ontology1181490123.owl#"
 					xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:org="http://www.w3.org/ns/org#"
 					xmlns:rdac="http://www.rdaregistry.info/Elements/c/" xmlns:bio="http://purl.org/vocab/bio/0.1/"
-					xmlns:crmdig="http://www.ics.forth.gr/isl/CRMdig/"/>
+					xmlns:crmdig="http://www.ics.forth.gr/isl/CRMdig/" xmlns:wordnet="http://ontologi.es/WordNet/class/"/>
 			</xforms:instance>
 
 			<xforms:instance id="config" xxforms:exclude-result-prefixes="#all">
@@ -116,6 +117,10 @@
 					<class>
 						<label>Collection</label>
 						<type>nmo:Collection</type>
+					</class>
+					<class>
+						<label>Deity</label>
+						<type>wordnet:Deity</type>
 					</class>
 					<class>
 						<label>Denomination</label>
@@ -656,7 +661,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 					<!-- set the concept_path based on conceptScheme -->
 					<xforms:setvalue ref="instance('control-instance')/concept_path"
 						value="concat(instance('config')/data_path, '/', instance('control-instance')/conceptScheme, '/')"/>
-					
+
 					<!-- set URI -->
 					<xforms:setvalue ref="instance('control-instance')/uri"
 						value="concat(instance('control-instance')/conceptScheme_uri, instance('control-instance')/id)"/>
@@ -1003,9 +1008,9 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											<span class="glyphicon glyphicon-plus"></span>Role</xforms:label>
 										<xforms:action ev:event="DOMActivate">
 											<!-- insert org:hasMembership -->
-											<xforms:var name="membershipUri" select="concat(instance('control-instance')/uri, '#membership_', digest(string(current-dateTime()), 'MD5', 'hex'))"/>											
-											
-											<xforms:insert context="." nodeset="./child::node()[last()]"
+											<xforms:var name="membershipUri"
+												select="concat(instance('control-instance')/uri, '#membership_', digest(string(current-dateTime()), 'MD5', 'hex'))"
+											/> <xforms:insert context="." nodeset="./child::node()[last()]"
 												origin="xforms:element('org:hasMembership', (xforms:attribute('rdf:resource', $membershipUri), ''))"/>
 											<!-- insert org:Membership -->
 											<xforms:insert context="instance('doc')" nodeset="./child::node()[last()]"
@@ -2700,6 +2705,6 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 				</div>
 			</div>
 		</div>
-		<fr:xforms-inspector/>
+		<!--<fr:xforms-inspector/>-->
 	</body>
 </html>
