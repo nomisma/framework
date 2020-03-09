@@ -1237,7 +1237,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 
 														<!-- URI validation -->
 														<xforms:action
-															if="$mapping='skos:exactMatch' or $mapping='skos:closeMatch' or $mapping='dcterms:source' or $mapping = 'rdfs:seeAlso' or $mapping = 'crm:P165i_is_incorporated_in' or $mapping = 'image_creator' or $mapping = 'image_license'">
+															if="$mapping='skos:exactMatch' or $mapping='skos:closeMatch' or $mapping='dcterms:source' or $mapping = 'crm:P165i_is_incorporated_in' or $mapping = 'image_creator' or $mapping = 'image_license'">
 															<xforms:var name="isValid" select="matches($value, 'https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$')"/>
 															<xforms:insert
 																if="string-length($value) &gt; 0 and (not($value castable as xs:anyURI) or $isValid = false())"
@@ -1247,6 +1247,14 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 																context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
 																origin="xforms:element('warning', concat($value, ' does not map to a precise concept. It will be mapped to rdfs:seeAlso instead.'))"
 															> </xforms:insert>
+														</xforms:action>
+														<xforms:action if="$mapping = 'rdfs:seeAlso'">
+															<!-- seeAlso has looser semantics than other relations -->
+															<xforms:var name="isValid" select="matches($value, 'https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$')"/>
+															<xforms:insert
+																if="string-length($value) &gt; 0 and (not($value castable as xs:anyURI) or $isValid = false())"
+																context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
+																origin="xforms:element('error', concat('URI is invalid: ', $value))"> </xforms:insert>
 														</xforms:action>
 														<xforms:action if="$mapping='prov:alternateOf'">
 															<!-- verify that the prov:alternateOf is a Nomisma URI, but not validate its existence (as this ID may be in the same spreadsheet -->
@@ -1264,8 +1272,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 																context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
 																origin="xforms:element('error', concat($mapping, ' does not link to a Nomisma URI in the same Concept Scheme: ', $value))"/>
 
-															<xforms:action if="contains($value, instance('control-instance')/conceptScheme_uri)">
-																<xforms:var name="class" select="instance('control-instance')/type"/>
+															<xforms:action if="contains($value, instance('control-instance')/conceptScheme_uri)">																
 																<xforms:var name="id" select="tokenize($value, '/')[last()]"/>
 
 																<!-- look in the spreadsheet to see if this ID exists -->
@@ -1279,6 +1286,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 																<!-- if not, execute SPARQL query -->
 																<xforms:action
 																	if="not(instance('feed')//atom:entry[*[namespace-uri()='http://schemas.google.com/spreadsheets/2006/extended'][name()=instance('mappings')/mapping[@to='id']/@from] = $id])">
+																	<xforms:var name="class" select="instance('control-instance')/type"/>
 																	
 																	<!-- for linking Mints to nmo:Region (typical) or nmo:Mint for sub-workshops -->
 																	<xforms:setvalue ref="instance('sparqlQuery')"
@@ -1314,46 +1322,62 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 																	context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
 																	origin="xforms:element('error', concat($mapping, ' does not link to a Nomisma URI: ', $value))"/>
 																<xforms:action if="contains($value, 'http://nomisma.org/id/')">
+																	
 																	<!-- if the URI space is nm:, then test whether the URI has already been validated via SPARQL. If not, then submit a SPARQL query -->
 																	<xforms:action if="instance('nomisma-ids')/id[@uri=$value and @mapping=$mapping] = false()"
 																		context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
 																		origin="xforms:element('error', concat($mapping, ' links to a non-existent Nomisma URI or the URI is a different class: ', $value))"/>
+																	
 																	<xforms:action if="not(instance('nomisma-ids')/id[@uri=$value and @mapping=$mapping])">
-																		<!-- if the $mapping is dcterms:isPartOf, then the target will be an nmo:FieldOfNumismatics;
+																		<xforms:var name="id" select="tokenize($value, '/')[last()]"/>
+																		
+																		<!-- look in the spreadsheet to see if this ID exists -->
+																		<xforms:action
+																			if="instance('feed')//atom:entry[*[namespace-uri()='http://schemas.google.com/spreadsheets/2006/extended'][name()=instance('mappings')/mapping[@to='id']/@from] = $id]">
+																			<xforms:insert context="instance('nomisma-ids')" nodeset="./child::node()[last()]"
+																				origin="xforms:element('id', (xforms:attribute('uri', $value), xforms:attribute('mapping', $mapping), true()))"
+																			/>
+																		</xforms:action>
+																		
+																		<!-- if not, execute SPARQL query -->
+																		<xforms:action
+																			if="not(instance('feed')//atom:entry[*[namespace-uri()='http://schemas.google.com/spreadsheets/2006/extended'][name()=instance('mappings')/mapping[@to='id']/@from] = $id])">
+																			<!-- if the $mapping is dcterms:isPartOf, then the target will be an nmo:FieldOfNumismatics;
 																	else if the $mapping is skos:broader and the class is an nmo:Mint, then the skos:broader will be nmo:Region;
 																	if the $mapping is org:memberOf and the class is foaf:Person, then the target entity must be a dynasty (rdac:Family);
 																	if the $mapping is an org:organization and class is a foaf:Person, then the target entity must be an organization (foaf:Organization) or mint (nmo:Mint), set by separate SPARQL query template;
 																	if the $mapping is an org:role, the class must be either a foaf:Person or foaf:Organization, and the target must be a foaf:Organization;
 																	otherwise, it will be assumed the mapping is skos:broader and the target class is the same as the source class.
 																	-->
-																		<xforms:var name="class"
-																			select="if($mapping = 'dcterms:isPartOf') then 'nmo:FieldOfNumismatics' else if (instance('control-instance')/type = 'foaf:Person' and $mapping='org:memberOf') then 'rdac:Family' else if ((instance('control-instance')/type = 'foaf:Person' or instance('control-instance')/type = 'foaf:Organization') and $mapping='org:role') then 'org:Role' else instance('control-instance')/type"/>
-
-																		<!-- for linking People to foaf:Organization/nmo:Mint -->
-																		<xforms:setvalue ref="instance('sparqlQuery')"
-																			if="instance('control-instance')/type = 'foaf:Person' and $mapping='org:organization'"
-																			value="concat(instance('sparql-templates')/prefix, ' ', replace(instance('sparql-templates')/query[@id='ask-person'], 'URI', $value))"/>
-
-																		<!-- for linking Mints to nmo:Region (typical) or nmo:Mint for sub-workshops -->
-																		<xforms:setvalue ref="instance('sparqlQuery')"
-																			if="instance('control-instance')/type = 'nmo:Mint' and $mapping='skos:broader'"
-																			value="concat(instance('sparql-templates')/prefix, ' ', replace(instance('sparql-templates')/query[@id='ask-mint'], 'URI', $value))"/>
-
-																		<!-- all other ASK queries -->
-																		<xforms:setvalue ref="instance('sparqlQuery')"
-																			if="not(instance('control-instance')/type = 'foaf:Person' and $mapping='org:organization') and not(instance('control-instance')/type = 'nmo:Mint' and $mapping='skos:broader')"
-																			value="concat(instance('sparql-templates')/prefix, ' ', replace(replace(instance('sparql-templates')/query[@id='ask'], 'URI', $value), 'CLASS', $class))"/>
-
-																		<xforms:send submission="submit-sparqlQuery"/>
-																		<!-- if the SPARQL query concludes successfully, then create an entry in nomisma-ids and display an error if the ASK if false -->
-																		<xforms:action ev:event="xforms-submit-done">
-																			<xforms:insert context="instance('nomisma-ids')" nodeset="./child::node()[last()]"
-																				origin="xforms:element('id', (xforms:attribute('uri', $value), xforms:attribute('mapping', $mapping), data(instance('sparqlResponse')/descendant::res:boolean)))"/>
-																			<xforms:insert if="instance('sparqlResponse')/descendant::res:boolean = 'false'"
-																				context="instance('validation-model')/record[last()]"
-																				nodeset="./child::node()[last()]"
-																				origin="xforms:element('error', concat($mapping, ' links to a non-existent Nomisma URI or the URI is a different class: ', $value))"
-																			/>
+																			<xforms:var name="class"
+																				select="if($mapping = 'dcterms:isPartOf') then 'nmo:FieldOfNumismatics' else if (instance('control-instance')/type = 'foaf:Person' and $mapping='org:memberOf') then 'rdac:Family' else if ((instance('control-instance')/type = 'foaf:Person' or instance('control-instance')/type = 'foaf:Organization') and $mapping='org:role') then 'org:Role' else instance('control-instance')/type"/>
+																			
+																			<!-- for linking People to foaf:Organization/nmo:Mint -->
+																			<xforms:setvalue ref="instance('sparqlQuery')"
+																				if="instance('control-instance')/type = 'foaf:Person' and $mapping='org:organization'"
+																				value="concat(instance('sparql-templates')/prefix, ' ', replace(instance('sparql-templates')/query[@id='ask-person'], 'URI', $value))"/>
+																			
+																			<!-- for linking Mints to nmo:Region (typical) or nmo:Mint for sub-workshops -->
+																			<xforms:setvalue ref="instance('sparqlQuery')"
+																				if="instance('control-instance')/type = 'nmo:Mint' and $mapping='skos:broader'"
+																				value="concat(instance('sparql-templates')/prefix, ' ', replace(instance('sparql-templates')/query[@id='ask-mint'], 'URI', $value))"/>
+																			
+																			<!-- all other ASK queries -->
+																			<xforms:setvalue ref="instance('sparqlQuery')"
+																				if="not(instance('control-instance')/type = 'foaf:Person' and $mapping='org:organization') and not(instance('control-instance')/type = 'nmo:Mint' and $mapping='skos:broader')"
+																				value="concat(instance('sparql-templates')/prefix, ' ', replace(replace(instance('sparql-templates')/query[@id='ask'], 'URI', $value), 'CLASS', $class))"/>
+																			
+																			<xforms:send submission="submit-sparqlQuery"/>
+																			<!-- if the SPARQL query concludes successfully, then create an entry in nomisma-ids and display an error if the ASK if false -->
+																			<xforms:action ev:event="xforms-submit-done">
+																				<xforms:insert context="instance('nomisma-ids')" nodeset="./child::node()[last()]"
+																					origin="xforms:element('id', (xforms:attribute('uri', $value), xforms:attribute('mapping', $mapping), data(instance('sparqlResponse')/descendant::res:boolean)))"/>
+																				<xforms:insert if="instance('sparqlResponse')/descendant::res:boolean = 'false'"
+																					context="instance('validation-model')/record[last()]"
+																					nodeset="./child::node()[last()]"
+																					origin="xforms:element('error', concat($mapping, ' links to a non-existent Nomisma URI or the URI is a different class: ', $value))"
+																				/>
+																			</xforms:action>
 																		</xforms:action>
 																	</xforms:action>
 																</xforms:action>
@@ -1963,7 +1987,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 							</table>
 						</xforms:case>
 					</xforms:switch>
-					<fr:xforms-inspector/>
+					<!--<fr:xforms-inspector/>-->
 				</div>
 			</div>
 		</div>
