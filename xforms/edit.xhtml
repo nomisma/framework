@@ -1021,6 +1021,16 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										</xforms:action>
 									</xforms:trigger>
 								</li>
+								<xforms:group ref=".[$type='foaf:Person']">
+									<li>
+										<xforms:trigger appearance="minimal">
+											<xforms:label>
+												<span class="glyphicon glyphicon-plus"></span>Dynasty</xforms:label>
+											<xforms:insert ev:event="DOMActivate" origin="instance('memberOf-template')" context="."
+												nodeset="./child::node()[last()]"/>
+										</xforms:trigger>
+									</li>
+								</xforms:group>
 							</xforms:group>
 
 							<xforms:group ref=".[$type='nmo:Monogram' or $type = 'crm:E37_Mark']">
