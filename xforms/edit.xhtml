@@ -1604,7 +1604,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											<xforms:repeat nodeset="org:memberOf">
 												<div>
 													<xforms:input ref="@rdf:resource">
-														<xforms:label>Parent Organization</xforms:label>
+														<xforms:label value="if (instance('control-instance')/type = 'nmo:Collection') then 'Parent Organization' else 'Dynasty'"></xforms:label>
 														<xforms:alert>Required, must be URL</xforms:alert>
 													</xforms:input>
 													<xforms:trigger appearance="minimal">
@@ -2548,10 +2548,10 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 								<xforms:label>Organization</xforms:label>
 								<xforms:value>&#x022;foaf:Organization&#x022;</xforms:value>
 							</xforms:item>
-							<xforms:item>
+							<!--<xforms:item>
 								<xforms:label>Family</xforms:label>
 								<xforms:value>&#x022;rdac:Family&#x022;</xforms:value>
-							</xforms:item>
+							</xforms:item>-->
 							<xforms:item>
 								<xforms:label>Mint</xforms:label>
 								<xforms:value>&#x022;nmo:Mint&#x022;</xforms:value>
