@@ -665,6 +665,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 					<!-- set URI -->
 					<xforms:setvalue ref="instance('control-instance')/uri"
 						value="concat(instance('control-instance')/conceptScheme_uri, instance('control-instance')/id)"/>
+					
+					<xforms:setvalue ref="instance('control-instance')/type" value="instance('doc')/*[1]/name()"/>
 				</xforms:action>
 			</xforms:submission>
 
@@ -1009,8 +1011,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										<xforms:action ev:event="DOMActivate">
 											<!-- insert org:hasMembership -->
 											<xforms:var name="membershipUri"
-												select="concat(instance('control-instance')/uri, '#membership_', digest(string(current-dateTime()), 'MD5', 'hex'))"
-											/> <xforms:insert context="." nodeset="./child::node()[last()]"
+												select="concat(instance('control-instance')/uri, '#membership_', digest(string(current-dateTime()), 'MD5', 'hex'))"/>
+											<xforms:insert context="." nodeset="./child::node()[last()]"
 												origin="xforms:element('org:hasMembership', (xforms:attribute('rdf:resource', $membershipUri), ''))"/>
 											<!-- insert org:Membership -->
 											<xforms:insert context="instance('doc')" nodeset="./child::node()[last()]"
@@ -1026,8 +1028,12 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										<xforms:trigger appearance="minimal">
 											<xforms:label>
 												<span class="glyphicon glyphicon-plus"></span>Dynasty</xforms:label>
-											<xforms:insert ev:event="DOMActivate" origin="instance('memberOf-template')" context="."
-												nodeset="./child::node()[last()]"/>
+											<xforms:action ev:event="DOMActivate">
+												<xforms:setvalue ref="instance('control-instance')/atom-type"
+													>&#x022;rdac:Family&#x022;</xforms:setvalue>
+												<xxforms:show dialog="organization-dialog"/>
+											</xforms:action>
+											
 										</xforms:trigger>
 									</li>
 								</xforms:group>
@@ -1601,21 +1607,40 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 													</xforms:trigger>
 												</div>
 											</xforms:repeat>
-											<xforms:repeat nodeset="org:memberOf">
-												<div>
-													<xforms:input ref="@rdf:resource">
-														<xforms:label value="if (instance('control-instance')/type = 'nmo:Collection') then 'Parent Organization' else 'Dynasty'"></xforms:label>
-														<xforms:alert>Required, must be URL</xforms:alert>
-													</xforms:input>
-													<xforms:trigger appearance="minimal">
-														<xforms:delete ev:event="DOMActivate" context="."/>
-														<xforms:label>
-															<span class="glyphicon glyphicon-remove"></span>
-														</xforms:label>
-													</xforms:trigger>
-												</div>
-											</xforms:repeat>
 
+											<xforms:group ref=".[instance('control-instance')/type = 'nmo:Collection']">
+												<xforms:repeat nodeset="org:memberOf">
+													<div>
+														<xforms:input ref="@rdf:resource">
+															<xforms:label>Parent Org</xforms:label>
+															<xforms:alert>Required, must be URL</xforms:alert>
+														</xforms:input>
+														<xforms:trigger appearance="minimal">
+															<xforms:delete ev:event="DOMActivate" context="."/>
+															<xforms:label>
+																<span class="glyphicon glyphicon-remove"></span>
+															</xforms:label>
+														</xforms:trigger>
+													</div>
+												</xforms:repeat>
+											</xforms:group>
+											
+											<xforms:group ref=".[instance('control-instance')/type = 'foaf:Person']">
+												<xforms:repeat nodeset="org:memberOf">
+													<div>
+														<xforms:output ref="@rdf:resource">
+															<xforms:label>Dynasty</xforms:label>															
+														</xforms:output>
+														<xforms:trigger appearance="minimal">
+															<xforms:delete ev:event="DOMActivate" context="."/>
+															<xforms:label>
+																<span class="glyphicon glyphicon-remove"></span>
+															</xforms:label>
+														</xforms:trigger>
+													</div>
+												</xforms:repeat>
+											</xforms:group>
+											
 											<!-- insert output for dcterms:isPartOf that isn't a FON -->
 											<xforms:repeat
 												nodeset="dcterms:isPartOf[string-length(@rdf:resource) &gt; 0 and not(contains(@rdf:resource, '_numismatics'))]">
@@ -2220,7 +2245,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											<xforms:group ref=".[count(org:organization) = 0]">
 												<xforms:trigger appearance="minimal">
 													<xforms:label>
-														<span class="glyphicon glyphicon-plus"></span>Dynasty/Organization</xforms:label>
+														<span class="glyphicon glyphicon-plus"></span>Organization</xforms:label>
 													<xforms:action ev:event="DOMActivate">
 														<xforms:setvalue ref="instance('control-instance')/membership-position" value="$position"/>
 														<xforms:setvalue ref="instance('control-instance')/atom-type"
@@ -2542,22 +2567,27 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 
 				<xxforms:dialog id="organization-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
 					<xforms:label>Parent Dynasty/Organization</xforms:label>
-					<div>
-						<xforms:select1 ref="instance('control-instance')/atom-type" appearance="full">
-							<xforms:item>
-								<xforms:label>Organization</xforms:label>
-								<xforms:value>&#x022;foaf:Organization&#x022;</xforms:value>
-							</xforms:item>
-							<!--<xforms:item>
+
+					<!-- only display this choice in the lookup menu for the org:Membership model -->
+					<xforms:group ref=".[not(instance('control-instance')/atom-type = '&#x022;rdac:Family&#x022;')]">
+						<div>
+							<xforms:select1 ref="instance('control-instance')/atom-type" appearance="full">
+								<xforms:item>
+									<xforms:label>Organization</xforms:label>
+									<xforms:value>&#x022;foaf:Organization&#x022;</xforms:value>
+								</xforms:item>
+								<!--<xforms:item>
 								<xforms:label>Family</xforms:label>
 								<xforms:value>&#x022;rdac:Family&#x022;</xforms:value>
 							</xforms:item>-->
-							<xforms:item>
-								<xforms:label>Mint</xforms:label>
-								<xforms:value>&#x022;nmo:Mint&#x022;</xforms:value>
-							</xforms:item>
-						</xforms:select1>
-					</div>
+								<xforms:item>
+									<xforms:label>Mint</xforms:label>
+									<xforms:value>&#x022;nmo:Mint&#x022;</xforms:value>
+								</xforms:item>
+							</xforms:select1>
+						</div>
+					</xforms:group>
+
 					<div>
 						<xforms:input ref="instance('control-instance')/atom-search"/>
 						<xforms:trigger>
@@ -2585,10 +2615,18 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 								<xforms:trigger>
 									<xforms:label>Select</xforms:label>
 									<xforms:action ev:event="DOMActivate">
+
+										<!-- insert org:organization into the org:Membership for people, otherwise, insert org:memberOf -->
 										<xforms:insert
 											context="instance('doc')/org:Membership[position() = number(instance('control-instance')/membership-position)]"
 											nodeset="./child::node()[last()]"
-											origin="xforms:element('org:organization', (xforms:attribute('rdf:resource', concat(instance('control-instance')/conceptScheme_uri, instance('control-instance')/atom-id)), ''))"/>
+											origin="xforms:element('org:organization', (xforms:attribute('rdf:resource', concat(instance('control-instance')/conceptScheme_uri, instance('control-instance')/atom-id)), ''))"
+											if="not(instance('control-instance')/atom-type = '&#x022;rdac:Family&#x022;')"/>
+
+										<xforms:insert context="instance('doc')/*[1]" nodeset="./child::node()[last()]"
+											origin="xforms:element('org:memberOf', (xforms:attribute('rdf:resource', concat(instance('control-instance')/conceptScheme_uri, instance('control-instance')/atom-id)), ''))"
+											if="instance('control-instance')/atom-type = '&#x022;rdac:Family&#x022;'"/>
+
 										<!-- blank atom search nodes and atom feed -->
 										<xforms:delete nodeset="instance('feed')/*"/>
 										<xforms:setvalue ref="instance('control-instance')/atom-search"/>
