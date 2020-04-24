@@ -830,6 +830,14 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											nodeset="./child::node()[last()]"/>
 									</xforms:trigger>
 								</li>
+								<li>
+									<xforms:trigger appearance="minimal">
+										<xforms:label>
+											<span class="glyphicon glyphicon-plus"></span>Exact Match</xforms:label>
+										<xforms:insert ev:event="DOMActivate" origin="instance('exactMatch-template')" context="."
+											nodeset="./child::node()[last()]"/>
+									</xforms:trigger>
+								</li>
 								<xforms:group ref=".[count(skos:related) = 0]">
 									<li>
 										<xforms:trigger appearance="minimal">
