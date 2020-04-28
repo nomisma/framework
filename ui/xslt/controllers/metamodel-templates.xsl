@@ -385,7 +385,7 @@
                                     </xsl:call-template>
                                     <triple s="?object" p="dcterms:isPartOf" o="?hoard"/>
                                     <xsl:if test="$api = 'heatmap'">
-                                        <triple s="?hoard" p="nmo:hasFindspot" o="?place"/>
+                                        <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                                     </xsl:if>
                                 </group>
                                 <xsl:if test="$api = 'heatmap'">
@@ -393,7 +393,7 @@
                                         <xsl:call-template name="person-findspots">
                                             <xsl:with-param name="id" select="$id"/>
                                         </xsl:call-template>
-                                        <triple s="?object" p="nmo:hasFindspot" o="?place"/>
+                                        <triple s="?object" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                                     </group>
                                 </xsl:if>
                                <group>
@@ -422,7 +422,7 @@
                                     </xsl:call-template>
                                     <triple s="?object" p="dcterms:isPartOf" o="?hoard"/>
                                     <xsl:if test="$api = 'heatmap'">
-                                        <triple s="?hoard" p="nmo:hasFindspot" o="?place"/>
+                                        <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                                     </xsl:if>
                                 </group>
                                 <xsl:if test="$api = 'heatmap'">
@@ -430,7 +430,7 @@
                                         <xsl:call-template name="dynasty-findspots">
                                             <xsl:with-param name="id" select="$id"/>
                                         </xsl:call-template>
-                                        <triple s="?object" p="nmo:hasFindspot" o="?place"/>
+                                        <triple s="?object" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                                     </group>
                                 </xsl:if>
                                 <group>
@@ -460,7 +460,7 @@
                                     </xsl:call-template>
                                     <triple s="?object" p="dcterms:isPartOf" o="?hoard"/>
                                     <xsl:if test="$api = 'heatmap'">
-                                        <triple s="?hoard" p="nmo:hasFindspot" o="?place"/>
+                                        <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                                     </xsl:if>
                                 </group>
                                 <xsl:if test="$api = 'heatmap'">
@@ -468,7 +468,7 @@
                                         <xsl:call-template name="org-findspots">
                                             <xsl:with-param name="id" select="$id"/>
                                         </xsl:call-template>
-                                        <triple s="?object" p="nmo:hasFindspot" o="?place"/>
+                                        <triple s="?object" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                                     </group>
                                 </xsl:if>
                                 <group>
@@ -496,14 +496,14 @@
                                     <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
                                     <triple s="?object" p="dcterms:isPartOf" o="?hoard"/>
                                     <xsl:if test="$api = 'heatmap'">
-                                        <triple s="?hoard" p="nmo:hasFindspot" o="?place"/>
+                                        <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                                     </xsl:if>
                                 </group>
                                 <xsl:if test="$api = 'heatmap'">
                                     <group>
                                         <triple s="?object" p="nmo:hasTypeSeriesItem" o="&lt;{$id}&gt;"/>
                                         <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
-                                        <triple s="?object" p="nmo:hasFindspot" o="?place"/>
+                                        <triple s="?object" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                                     </group>
                                 </xsl:if>
                                 <group>
@@ -511,7 +511,7 @@
                                     <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
                                     <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>
                                     <xsl:if test="$api = 'heatmap'">
-                                        <triple s="?hoard" p="nmo:hasFindspot" o="?place"/>
+                                        <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                                     </xsl:if>
                                 </group>
                             </union>                            
@@ -536,7 +536,7 @@
                                     <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
                                     <triple s="?object" p="dcterms:isPartOf" o="?hoard"/>
                                     <xsl:if test="$api = 'heatmap'">
-                                        <triple s="?hoard" p="nmo:hasFindspot" o="?place"/>
+                                        <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                                     </xsl:if>
                                 </group>
                                 <xsl:if test="$api = 'heatmap'">
@@ -544,7 +544,7 @@
                                         <triple s="?coinType" p="?prop" o="?side"/>
                                         <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>
                                         <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
-                                        <triple s="?object" p="nmo:hasFindspot" o="?place"/>
+                                        <triple s="?object" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                                     </group>
                                 </xsl:if>
                                 <group>
@@ -553,7 +553,7 @@
                                     <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
                                     <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>
                                     <xsl:if test="$api = 'heatmap'">
-                                        <triple s="?hoard" p="nmo:hasFindspot" o="?place"/>
+                                        <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                                     </xsl:if>
                                 </group>
                             </union>
@@ -579,7 +579,7 @@
                                     <triple s="?object" p="dcterms:isPartOf" o="?hoard"/>
                                 </xsl:when>
                                 <xsl:when test="$api = 'heatmap'">
-                                    <triple s="?object" p="nmo:hasFindspot" o="?place"/>
+                                    <triple s="?object" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                                 </xsl:when>
                             </xsl:choose>
                         </group>
@@ -593,7 +593,7 @@
                                     <triple s="?object" p="dcterms:isPartOf" o="?hoard"/>
                                 </xsl:when>
                                 <xsl:when test="$api = 'heatmap'">
-                                    <triple s="?object" p="nmo:hasFindspot" o="?place"/>
+                                    <triple s="?object" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                                 </xsl:when>
                             </xsl:choose>
                         </group>
@@ -606,14 +606,14 @@
                                 <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>  
                                 <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
                                 <triple s="?object" p="dcterms:isPartOf" o="?hoard"/> 
-                                <triple s="?hoard" p="nmo:hasFindspot" o="?place"/>
+                                <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                             </group>
                             <!-- get physical coins connected to the concept -->
                             <group>
                                 <triple s="?object" p="{$classes//class[text()=$type]/@prop}" o="nm:{$id}"/>
                                 <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
                                 <triple s="?object" p="dcterms:isPartOf" o="?hoard"/>
-                                <triple s="?hoard" p="nmo:hasFindspot" o="?place"/>
+                                <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                             </group>
                         </xsl:if>
                         
@@ -631,7 +631,7 @@
             <!-- evaluate whether the coin has a findspot for the getFindspots API or whether the coin/type is part of a hoard -->
             <xsl:choose>
                 <xsl:when test="$api = 'getHoards'">
-                    <triple s="?hoard" p="nmo:hasFindspot" o="?place"/>
+                    <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                 </xsl:when>
                 <xsl:when test="$api = 'getFindspots'">
                     <triple s="?object" p="nmo:hasFindspot" o="?place"/>
@@ -712,7 +712,7 @@
                 <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
                 <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>
                 <xsl:if test="$api = 'heatmap'">
-                    <triple s="?hoard" p="nmo:hasFindspot" o="?place"/>
+                    <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                 </xsl:if>
             </group>
             <group>
@@ -720,7 +720,7 @@
                 <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
                 <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>
                 <xsl:if test="$api = 'heatmap'">
-                    <triple s="?hoard" p="nmo:hasFindspot" o="?place"/>
+                    <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                 </xsl:if>
             </group>
         </group>

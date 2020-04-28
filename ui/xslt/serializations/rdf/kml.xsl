@@ -145,6 +145,7 @@
 		
 		<xsl:variable name="query">
 			<![CDATA[PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX dcterms:  <http://purl.org/dc/terms/>
 PREFIX dcmitype:	<http://purl.org/dc/dcmitype/>
 PREFIX nm:       <http://nomisma.org/id/>
@@ -164,21 +165,22 @@ UNION { ?coinType PROP <URI> ;
   ?object nmo:hasTypeSeriesItem ?coinType ;
   rdf:type nmo:NumismaticObject ;
   dcterms:isPartOf ?hoard .
-  ?hoard nmo:hasFindspot ?findspot }
+  ?hoard nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within ?findspot }
 UNION { ?coinType PROP <URI> ;
   a nmo:TypeSeriesItem .
 ?contents nmo:hasTypeSeriesItem ?coinType ;
                   a dcmitype:Collection .
   ?object dcterms:tableOfContents ?contents ;
-    nmo:hasFindspot ?findspot }
+    nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within ?findspot }
  UNION { ?contents PROP <URI> ;
                   a dcmitype:Collection .
   ?object dcterms:tableOfContents ?contents ;
-    nmo:hasFindspot ?findspot }
+    nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within ?findspot }
 ?object a ?type .
-?findspot geo:lat ?lat ; geo:long ?long .
-OPTIONAL { ?findspot foaf:name ?name }
-OPTIONAL { ?findspot rdfs:label ?name }
+?findspot a crm:E53_Place ;
+    rdfs:label ?label ;
+    geo:location ?loc .
+?loc geo:lat ?lat ; geo:long ?long
 }]]>
 		</xsl:variable>
 		

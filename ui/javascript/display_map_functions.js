@@ -41,7 +41,7 @@ function initialize_map(id) {
 	});
 	
 	//overlays
-	var heatmapLayer = new HeatmapOverlay({
+	/*var heatmapLayer = new HeatmapOverlay({
 		"radius": .5,
 		"maxOpacity": .8,
 		"scaleRadius": true,
@@ -49,12 +49,13 @@ function initialize_map(id) {
 		latField: 'lat',
 		lngField: 'lng',
 		valueField: 'count'
-	});
+	});*/
 	
 	var map = new L.Map('mapcontainer', {
 		center: new L.LatLng(0, 0),
 		zoom: 4,
-		layers:[awmcterrain, heatmapLayer]
+		//layers:[awmcterrain, heatmapLayer]
+		layers:[awmcterrain]
 	});
 	
 	//add mintLayer from AJAX
@@ -67,18 +68,18 @@ function initialize_map(id) {
 	var hoardLayer = L.geoJson.ajax('../apis/getHoards?id=' + id, {
 		onEachFeature: onEachFeature,
 		pointToLayer: renderPoints
-	});
+	}).addTo(map);
 	
 	//add individual finds layer, but don't make visible
 	var findLayer = L.geoJson.ajax('../apis/getFindspots?id=' + id, {
 		onEachFeature: onEachFeature,
 		pointToLayer: renderPoints
-	});
+	}).addTo(map);
 	
 	//load heatmapLayer after JSON loading concludes
-	$.getJSON('../apis/heatmap?id=' + id, function (data) {
+/*	$.getJSON('../apis/heatmap?id=' + id, function (data) {
 		heatmapLayer.setData(data);
-	});
+	});*/
 	
 	//add controls
 	var baseMaps = {
@@ -104,7 +105,7 @@ function initialize_map(id) {
 	} else {
 		overlayMaps[ 'Hoards'] = hoardLayer;
 		overlayMaps[ 'Finds'] = findLayer;
-		overlayMaps[ 'Heatmap'] = heatmapLayer;
+		//overlayMaps[ 'Heatmap'] = heatmapLayer;
 	}
 	
 	L.control.layers(baseMaps, overlayMaps).addTo(map);

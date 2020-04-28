@@ -208,12 +208,15 @@ UNION { ?s void:inDataset <DATASET> . ?s ?p ?o}
 }]]></query>
 					<query id="delete-Hoard"><![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX void:	<http://rdfs.org/ns/void#>
+PREFIX crm:	<http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX dcterms:	<http://purl.org/dc/terms/>
 PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
 PREFIX svcs:	<http://rdfs.org/sioc/services#>
 DELETE {?s ?p ?o} WHERE {
 { ?object void:inDataset <DATASET> ;
-  dcterms:tableOfContents ?s . ?s ?p ?o }
+  nmo:hasFindspot/crm:P7_took_place_at ?s . ?s ?p ?o }
+UNION { ?object void:inDataset <DATASET> ;
+  dcterms:tableOfContents|nmo:hasFindspot ?s . ?s ?p ?o }
 UNION { ?s void:inDataset <DATASET> . ?s ?p ?o}
 }]]></query>
 					<query id="replace-findspot"><![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
@@ -864,6 +867,26 @@ SELECT ?uri ?type WHERE {
 
 					<xforms:switch>
 						<xforms:case id="default">
+							
+							<!--<xforms:trigger>
+								<xforms:label>Delete</xforms:label>
+								<xforms:action ev:event="DOMActivate">
+									<!-\- first delete the objects associated with the dataset, linked by void:inDataset -\->
+									<xforms:setvalue ref="instance('sparqlUpdate')"
+										value="replace(instance('sparqlUpdate-template')/query[@id='delete-Hoard'], 'DATASET', instance('control-instance')/dataset)"/>
+									<xforms:send submission="update-graph"/>
+									<!-\- then delete the void:Dataset object -\->
+									<xforms:setvalue ref="instance('sparqlUpdate')"
+										value="replace(instance('sparqlUpdate-template')/query[@id='delete-metadata'], 'DATASET', instance('control-instance')/dataset)"/>
+									<xforms:send submission="update-graph"/>
+									<!-\- resubmit SPARQL query for void:Datasets to reset the table -\->
+									<xforms:setvalue ref="instance('sparqlQuery')" value="instance('sparql-templates')/query[@id='get-datasets']"/>
+									<xforms:send submission="submit-sparqlQuery"/>
+									<xforms:delete nodeset="instance('datasets')/*"/>
+									<xforms:insert context="instance('datasets')" origin="instance('sparqlResponse')/*"/>
+								</xforms:action>
+							</xforms:trigger>-->
+							
 							<xforms:group ref="instance('datasets')">
 								<xforms:group ref=".[count(void:Dataset) &gt; 0]">
 									<table class="table">

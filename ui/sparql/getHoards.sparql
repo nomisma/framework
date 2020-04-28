@@ -20,9 +20,9 @@ PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
 SELECT DISTINCT ?hoard ?hoardLabel ?closingDate ?place ?label ?lat ?long WHERE {
 %STATEMENTS%
 OPTIONAL {?hoard skos:prefLabel ?hoardLabel FILTER langMatches(lang(?hoardLabel), "en")}
-OPTIONAL {?hoard dcterms:title ?hoardLabel FILTER langMatches(lang(?hoardLabel), "en")}
 OPTIONAL {?hoard nmo:hasClosingDate ?closingDate}
-  ?place geo:lat ?lat ; 
-    geo:long ?long .
-  OPTIONAL {?place foaf:name ?label}
+?place a crm:E53_Place ;
+    rdfs:label ?label ;
+    geo:location ?loc .
+?loc geo:lat ?lat ; geo:long ?long
 }
