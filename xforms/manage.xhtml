@@ -868,27 +868,28 @@ SELECT ?uri ?type WHERE {
 					<xforms:switch>
 						<xforms:case id="default">
 							
-							<!--<xforms:trigger>
+							<xforms:trigger>
 								<xforms:label>Delete</xforms:label>
 								<xforms:action ev:event="DOMActivate">
-									<!-\- first delete the objects associated with the dataset, linked by void:inDataset -\->
+									<xforms:setvalue ref="instance('control-instance')/dataset">http://localhost:8080/orbeon/igch/</xforms:setvalue>
+									<!-- first delete the objects associated with the dataset, linked by void:inDataset -->
 									<xforms:setvalue ref="instance('sparqlUpdate')"
 										value="replace(instance('sparqlUpdate-template')/query[@id='delete-Hoard'], 'DATASET', instance('control-instance')/dataset)"/>
 									<xforms:send submission="update-graph"/>
-									<!-\- then delete the void:Dataset object -\->
+									<!-- then delete the void:Dataset object -->
 									<xforms:setvalue ref="instance('sparqlUpdate')"
 										value="replace(instance('sparqlUpdate-template')/query[@id='delete-metadata'], 'DATASET', instance('control-instance')/dataset)"/>
 									<xforms:send submission="update-graph"/>
-									<!-\- resubmit SPARQL query for void:Datasets to reset the table -\->
+									<!-- resubmit SPARQL query for void:Datasets to reset the table -->
 									<xforms:setvalue ref="instance('sparqlQuery')" value="instance('sparql-templates')/query[@id='get-datasets']"/>
 									<xforms:send submission="submit-sparqlQuery"/>
 									<xforms:delete nodeset="instance('datasets')/*"/>
 									<xforms:insert context="instance('datasets')" origin="instance('sparqlResponse')/*"/>
 								</xforms:action>
-							</xforms:trigger>-->
+							</xforms:trigger>
 							
 							<xforms:group ref="instance('datasets')">
-								<xforms:group ref=".[count(void:Dataset) &gt; 0]">
+								<xforms:group ref=".[count(void:Dataset) &gt; 0]">									
 									<table class="table">
 										<thead>
 											<tr>
