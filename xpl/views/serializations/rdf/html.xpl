@@ -431,6 +431,7 @@
 								<xsl:variable name="query"><![CDATA[PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:  <http://purl.org/dc/terms/>
 PREFIX dcmitype:	<http://purl.org/dc/dcmitype/>
+PREFIX org: <http://www.w3.org/ns/org#>
 PREFIX nm:       <http://nomisma.org/id/>
 PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
@@ -449,9 +450,8 @@ UNION {?s nmo:hasReverse ?rev .
 {?object nmo:hasTypeSeriesItem ?s ;
 	a nmo:NumismaticObject ;
   nmo:hasFindspot ?place }
-UNION { ?object a nmo:NumismaticObject ;
-	nmo:hasFindspot ?place }
-UNION { ?object dcterms:isPartOf ?hoard .
+UNION { ?object nmo:hasTypeSeriesItem ?s;
+	dcterms:isPartOf ?hoard .
   ?hoard a nmo:Hoard ;
            nmo:hasFindspot ?place }
 UNION {?contents nmo:hasTypeSeriesItem ?s ;
@@ -462,6 +462,36 @@ UNION { ?contents PROP nm:ID ;
                   a dcmitype:Collection .
   ?object dcterms:tableOfContents ?contents ;
     nmo:hasFindspot ?place }
+}]]></xsl:when>
+										<xsl:when test="$type = 'foaf:Organization' or $type = 'foaf:Group'">
+											<![CDATA[ASK { 
+?person org:hasMembership/org:organization nm:ID .
+{ ?type ?prop ?person ;
+  	a nmo:TypeSeriesItem .
+  ?object nmo:hasTypeSeriesItem ?type ;
+	a nmo:NumismaticObject ;
+	nmo:hasFindspot ?findspot}
+UNION { ?type ?prop ?person ;
+  	a nmo:TypeSeriesItem .
+  ?object nmo:hasTypeSeriesItem ?type ;
+	a nmo:NumismaticObject ;
+    dcterms:isPartOf ?hoard .
+      ?hoard a nmo:Hoard ;
+               nmo:hasFindspot ?findspot}
+UNION {?type ?prop ?person ;
+      a nmo:TypeSeriesItem .
+    ?contents nmo:hasTypeSeriesItem ?type ;                 
+          a dcmitype:Collection.
+	?hoard dcterms:tableOfContents ?contents ;
+           nmo:hasFindspot ?findspot }
+UNION {?contents ?prop ?person ;
+          a dcmitype:Collection.
+	?hoard dcterms:tableOfContents ?contents ;
+           nmo:hasFindspot ?findspot}
+UNION {?contents nmo:hasAuthority nm:ID;
+      a dcmitype:Collection.
+	?hoard dcterms:tableOfContents ?contents ;
+           nmo:hasFindspot ?findspot}  
 }]]></xsl:when>
 										<xsl:otherwise>
 											<![CDATA[ASK {
