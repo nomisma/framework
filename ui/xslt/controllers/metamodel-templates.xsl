@@ -12,14 +12,14 @@
         <classes>
             <class prop="nmo:hasCollection">nmo:Collection</class>
             <class prop="nmo:hasDenomination">nmo:Denomination</class>
-            <class prop="?prop">nmo:Ethnic</class>
-            <class prop="?prop">rdac:Family</class>
-            <class prop="?prop">foaf:Group</class>
+            <class prop="nmo:hasAuthority">nmo:Ethnic</class>
+            <class prop="nmo:hasAuthority">rdac:Family</class>
+            <class prop="nmo:hasAuthority">foaf:Group</class>
             <class prop="dcterms:isPartOf">nmo:Hoard</class>
             <class prop="nmo:hasManufacture">nmo:Manufacture</class>
             <class prop="nmo:hasMaterial">nmo:Material</class>
             <class prop="nmo:hasMint">nmo:Mint</class>
-            <class prop="?prop">foaf:Organization</class>
+            <class prop="nmo:hasAuthority">foaf:Organization</class>
             <class prop="nmo:representsObjectType">nmo:ObjectType</class>
             <class prop="?prop">foaf:Person</class>
             <class prop="nmo:hasRegion">nmo:Region</class>
@@ -321,10 +321,10 @@
                 <xsl:when test="$type = 'rdac:Family'">
                     <union>
                         <group>
-                            <triple s="?coinType" p="?prop" o="nm:{$id}"/>
+                            <triple s="?coinType" p="nmo:hasAuthority" o="nm:{$id}"/>
                         </group>
                         <group>
-                            <triple s="?coinType" p="?prop" o="?person"/>
+                            <triple s="?coinType" p="nmo:hasAuthority" o="?person"/>
                             <triple s="?person" p="a" o="foaf:Person"/>
                             <triple s="?person" p="org:memberOf" o="nm:{$id}"/>
                         </group>
@@ -671,9 +671,9 @@
                 <triple s="?coinType" p="?prop" o="nm:{$id}"/>
             </group>
             <group>
-                <triple s="?coinType" p="?prop" o="?person"/>
-                <triple s="?person" p="a" o="foaf:Person"/>
                 <triple s="?person" p="org:memberOf" o="nm:{$id}"/>
+                <triple s="?person" p="a" o="foaf:Person"/>                
+                <triple s="?coinType" p="?prop" o="?person"/>               
             </group>
         </union>
         <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
@@ -689,9 +689,9 @@
                 <triple s="?coinType" p="nmo:hasAuthority" o="nm:{$id}"/>
             </group>
             <group>
-                <triple s="?coinType" p="nmo:hasAuthority" o="?person"/>
-                <triple s="?person" p="a" o="foaf:Person"/>
                 <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
+                <triple s="?person" p="a" o="foaf:Person"/>
+                <triple s="?coinType" p="nmo:hasAuthority" o="?person"/>                                
             </group>
         </union>                    
         <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>  
@@ -723,6 +723,33 @@
                     <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                 </xsl:if>
             </group>
+            <!-- look for people related to orgs and dynasties only in the hoard contents -->
+            <xsl:choose>
+                <xsl:when test="$type = 'foaf:Group' or 'foaf:Organization'">
+                    <group>
+                        <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
+                        <triple s="?person" p="rdf:type" o="foaf:Person"/>
+                        <triple s="?contents"  p="nmo:hasAuthority" o="?person"/>
+                        <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
+                        <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>
+                        <xsl:if test="$api = 'heatmap'">
+                            <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
+                        </xsl:if>
+                    </group>
+                </xsl:when>
+                <xsl:when test="$type = 'rdac:Family'">
+                    <group>
+                        <triple s="?person" p="org:memberOf" o="nm:{$id}"/>
+                        <triple s="?person" p="rdf:type" o="foaf:Person"/>
+                        <triple s="?contents"  p="nmo:hasAuthority" o="?person"/>
+                        <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
+                        <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>
+                        <xsl:if test="$api = 'heatmap'">
+                            <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
+                        </xsl:if>
+                    </group>
+                </xsl:when>
+            </xsl:choose>
         </group>
     </xsl:template>
 
@@ -742,7 +769,7 @@
                 <xsl:when test="$type = 'rdac:Family'">
                     <union>
                         <group>
-                            <triple s="?coinType" p="?prop" o="nm:{$id}"/>
+                            <triple s="?coinType" p="nmo:hasAuthority" o="nm:{$id}"/>
                         </group>
                         <group>
                             <triple s="?coinType" p="nmo:hasAuthority" o="?person"/>

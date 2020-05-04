@@ -493,6 +493,36 @@ UNION {?contents nmo:hasAuthority nm:ID;
 	?hoard dcterms:tableOfContents ?contents ;
            nmo:hasFindspot ?findspot}  
 }]]></xsl:when>
+										<xsl:when test="$type = 'rdac:Family'">
+											<![CDATA[ASK { 
+?person org:memberOf nm:ID .
+{ ?type ?prop ?person ;
+  	a nmo:TypeSeriesItem .
+  ?object nmo:hasTypeSeriesItem ?type ;
+	a nmo:NumismaticObject ;
+	nmo:hasFindspot ?findspot}
+UNION { ?type ?prop ?person ;
+  	a nmo:TypeSeriesItem .
+  ?object nmo:hasTypeSeriesItem ?type ;
+	a nmo:NumismaticObject ;
+    dcterms:isPartOf ?hoard .
+      ?hoard a nmo:Hoard ;
+               nmo:hasFindspot ?findspot}
+UNION {?type ?prop ?person ;
+      a nmo:TypeSeriesItem .
+    ?contents nmo:hasTypeSeriesItem ?type ;                 
+          a dcmitype:Collection.
+	?hoard dcterms:tableOfContents ?contents ;
+           nmo:hasFindspot ?findspot }
+UNION {?contents ?prop ?person ;
+          a dcmitype:Collection.
+	?hoard dcterms:tableOfContents ?contents ;
+           nmo:hasFindspot ?findspot}
+UNION {?contents nmo:hasAuthority nm:ID;
+      a dcmitype:Collection.
+	?hoard dcterms:tableOfContents ?contents ;
+           nmo:hasFindspot ?findspot}  
+}]]></xsl:when>
 										<xsl:otherwise>
 											<![CDATA[ASK {
 { ?coinType PROP nm:ID ;
