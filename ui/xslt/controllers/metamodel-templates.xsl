@@ -524,14 +524,14 @@
                 </xsl:when>
                 <xsl:when test="$type = 'nmo:Monogram'">  
                     <select variables="?side">
-                        <triple s="?side" p="nmo:hasMonogram" o="&lt;{$id}&gt;"/>
+                        <triple s="?side" p="nmo:hasControlmark" o="&lt;{$id}&gt;"/>
                     </select>
                     
                     <xsl:choose>
                         <xsl:when test="$api = 'getHoards' or $api = 'heatmap'">
                             <union>
                                 <group>
-                                    <triple s="?coinType" p="?prop" o="?side"/>
+                                    <triple s="?coinType" p="nmo:hasObverse|nmo:hasReverse" o="?side"/>
                                     <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>
                                     <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
                                     <triple s="?object" p="dcterms:isPartOf" o="?hoard"/>
@@ -541,14 +541,14 @@
                                 </group>
                                 <xsl:if test="$api = 'heatmap'">
                                     <group>
-                                        <triple s="?coinType" p="?prop" o="?side"/>
+                                        <triple s="?coinType" p="nmo:hasObverse|nmo:hasReverse" o="?side"/>
                                         <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>
                                         <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
                                         <triple s="?object" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                                     </group>
                                 </xsl:if>
                                 <group>
-                                    <triple s="?coinType" p="?prop" o="?side"/>
+                                    <triple s="?coinType" p="nmo:hasObverse|nmo:hasReverse" o="?side"/>
                                     <triple s="?contents"  p="nmo:hasTypeSeriesItem" o="?coinType"/>
                                     <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
                                     <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>
@@ -559,7 +559,7 @@
                             </union>
                         </xsl:when>
                         <xsl:otherwise>
-                            <triple s="?coinType" p="?prop" o="?side"/>
+                            <triple s="?coinType" p="nmo:hasObverse|nmo:hasReverse" o="?side"/>
                             <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>
                             <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
                         </xsl:otherwise>

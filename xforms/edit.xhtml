@@ -139,6 +139,10 @@
 						<type>nmo:FieldOfNumismatics</type>
 					</class>
 					<class>
+						<label>Group</label>
+						<type>foaf:Group</type>
+					</class>
+					<class>
 						<label>Manufacture</label>
 						<type>nmo:Manufacture</type>
 					</class>
@@ -1008,7 +1012,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 									</xforms:trigger>
 								</li>
 							</xforms:group>
-							<xforms:group ref=".[$type='foaf:Person' or $type='foaf:Organization']">
+							<xforms:group ref=".[$type='foaf:Person' or $type='foaf:Organization' or $type='foaf:Group']">
 								<li>
 									<h4>Roles</h4>
 								</li>
@@ -2444,7 +2448,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 							</xforms:group>
 						</xforms:group>
 						<!-- query VIAF to add associated URIs -->
-						<xforms:group ref=".[$type='foaf:Person' or $type='foaf:Organization']">
+						<xforms:group ref=".[$type='foaf:Person' or $type='foaf:Organization' or $type = 'foaf:Group']">
 							<!--<nomisma:bm/>-->
 							<nomisma:getty/>
 							<nomisma:viaf/>

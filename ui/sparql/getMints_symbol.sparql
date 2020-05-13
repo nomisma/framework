@@ -9,17 +9,16 @@ PREFIX osgeo:	<http://data.ordnancesurvey.co.uk/ontology/geometry/>
 SELECT DISTINCT ?place ?label ?lat ?long ?poly WHERE {
    {
     SELECT ?side WHERE {
-    	?side nmo:hasMonogram <%URI%>
+    	?side nmo:hasControlmark <%URI%>
     }
   }
-  ?coinType ?prop ?side .
+?coinType nmo:hasObverse|nmo:hasReverse ?side .
   MINUS {?coinType dcterms:isReplacedBy ?replaced}
- {?coinType nmo:hasMint ?place .
-  ?place geo:location ?loc .
+  {?coinType nmo:hasMint ?place}
+  UNION {?coinType nmo:hasMint/rdf:value ?place}          
+  ?place a nmo:Mint ;
+           geo:location ?loc ;
+           skos:prefLabel ?label . FILTER langMatches(lang(?label), "en")
   ?loc geo:lat ?lat ;
-       geo:long ?long }
-UNION {?coinType nmo:hasMint ?place .
-  ?place geo:location ?loc .
-  ?loc osgeo:asGeoJSON ?poly }
-    ?place skos:prefLabel ?label . FILTER langMatches(lang(?label), "en")
+       geo:long ?long .
 }
