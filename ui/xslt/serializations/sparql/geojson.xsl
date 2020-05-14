@@ -346,6 +346,12 @@
 						else
 							$findType"/>
 				<xsl:text>"</xsl:text>
+				<xsl:if test="res:binding[@name = 'closingDate']">
+					<xsl:text>,"closing_date":"</xsl:text>
+					<xsl:value-of select="nomisma:normalizeDate(res:binding[@name='closingDate']/res:literal)"/>
+					<xsl:text>"</xsl:text>
+				</xsl:if>
+				<xsl:text></xsl:text>
 				<xsl:text>}}</xsl:text>
 				<xsl:if test="not(position() = last())">
 					<xsl:text>,</xsl:text>
