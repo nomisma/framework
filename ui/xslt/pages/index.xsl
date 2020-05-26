@@ -136,11 +136,11 @@
 								<img src="ui/images/SMB_MK_Black_sRGB.jpg" alt="http://www.smb.museum/ikmk/"/>
 							</a>
 						</div>
-						<div class="media">
+						<!--<div class="media">
 							<a href="http://www.acad.ro/" title="http://www.acad.ro/" rel="nofollow">
 								<img src="http://upload.wikimedia.org/wikipedia/de/7/7a/Sigla_academia_romana.gif" alt="http://www.acad.ro/"/>
 							</a>
-						</div>
+						</div>-->
 						<div class="media">
 							<a href="http://www2.uni-frankfurt.de/" title="http://www2.uni-frankfurt.de/" rel="nofollow">
 								<img src="ui/images/goethe.png" alt="http://www2.uni-frankfurt.de/"/>
