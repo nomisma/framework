@@ -156,6 +156,10 @@ UNION { <typeUri> skos:exactMatch ?match .
 UNION { ?broader skos:broader+ <typeUri> .
 ?object nmo:hasTypeSeriesItem ?broader ;
   a nmo:NumismaticObject }
+UNION { ?broader skos:broader+ <typeUri> .
+?broader skos:exactMatch ?match .
+?object nmo:hasTypeSeriesItem ?match ;
+  a nmo:NumismaticObject }
 OPTIONAL { ?object dcterms:identifier ?identifier }
 OPTIONAL { ?object nmo:hasCollection ?colUri .
 ?colUri skos:prefLabel ?collection FILTER(langMatches(lang(?collection), "EN"))}
