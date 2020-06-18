@@ -9,7 +9,9 @@ PREFIX osgeo:	<http://data.ordnancesurvey.co.uk/ontology/geometry/>
 SELECT DISTINCT ?place ?label ?lat ?long ?poly WHERE {
    {
     SELECT ?side WHERE {
-    	?side nmo:hasControlmark <%URI%>
+    	{?side nmo:hasControlmark <%URI%>}
+    	UNION {?children skos:broader+ <%URI%> .
+              ?side nmo:hasControlmark ?children}
     }
   }
 ?coinType nmo:hasObverse|nmo:hasReverse ?side .

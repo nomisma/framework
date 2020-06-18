@@ -522,9 +522,17 @@
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:when>
-                <xsl:when test="$type = 'nmo:Monogram'">  
+                <xsl:when test="$type = 'nmo:Monogram' or $type = 'crm:E37_Mark'">  
                     <select variables="?side">
-                        <triple s="?side" p="nmo:hasControlmark" o="&lt;{$id}&gt;"/>
+                        <union>
+                            <group>
+                                <triple s="?side" p="nmo:hasControlmark" o="&lt;{$id}&gt;"/>
+                            </group>
+                            <group>
+                                <triple s="?children" p="skos:broader+" o="&lt;{$id}&gt;"/>
+                                <triple s="?side" p="nmo:hasControlmark" o="?children"/>
+                            </group>
+                        </union>                        
                     </select>
                     
                     <xsl:choose>
