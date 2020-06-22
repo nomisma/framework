@@ -250,6 +250,7 @@
     <xsl:template name="nomisma:getMintsStatements">
         <xsl:param name="type"/>
         <xsl:param name="id"/>
+        <xsl:param name="letters"/>
         
         <statements>
             <xsl:choose>
@@ -354,6 +355,25 @@
                     </minus>
                     <triple s="?place" p="geo:location" o="?loc"/>
                 </xsl:when>
+                <!-- when the query type is for constituent letters from a monogram, then construct a different sort of query than typical ID queries -->
+                <xsl:when test="$type = 'letter'">
+                    <!-- evaluate the $letters and construct the proper object query for 1+ literals -->
+                    <xsl:variable name="letter-query">
+                        <xsl:for-each select="$letters//value">
+                            <xsl:value-of select="concat('&#x022;', ., '&#x022;')"/>
+                            <xsl:if test="not(position() = last())">
+                                <xsl:text>,</xsl:text>
+                            </xsl:if>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    
+                    <triple s="?monogram" p="crm:P106_is_composed_of" o="{$letter-query}"/>
+                    <triple s="?side" p="nmo:hasControlmark" o="?monogram"/>
+                    <triple s="?coinType" p="nmo:hasObverse|nmo:hasReverse" o="?side"/>
+                    <triple s="?coinType" p="rdf:type" o="?TypeSeriesItem"/>
+                    <triple s="?coinType" p="nmo:hasMint|nmo:hasMint/rdf:value" o="?place"/>                    
+                    <triple s="?place" p="geo:location" o="?loc"/>
+                </xsl:when>
                 <xsl:otherwise>
                     <triple s="?coinType" p="{$classes//class[text()=$type]/@prop}" o="nm:{$id}"/>
                     <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
@@ -371,6 +391,7 @@
         <xsl:param name="api"/>
         <xsl:param name="type"/>
         <xsl:param name="id"/>
+        <xsl:param name="letters"/>
         
         <statements>
             <xsl:choose>
@@ -522,19 +543,43 @@
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:when>
-                <xsl:when test="$type = 'nmo:Monogram' or $type = 'crm:E37_Mark'">  
-                    <select variables="?side">
-                        <union>
-                            <group>
-                                <triple s="?side" p="nmo:hasControlmark" o="&lt;{$id}&gt;"/>
-                            </group>
-                            <group>
-                                <triple s="?children" p="skos:broader+" o="&lt;{$id}&gt;"/>
-                                <triple s="?side" p="nmo:hasControlmark" o="?children"/>
-                            </group>
-                        </union>                        
-                    </select>
+                <xsl:when test="$type = 'nmo:Monogram' or $type = 'crm:E37_Mark' or $type = 'letter'">  
                     
+                    <xsl:choose>
+                        <!-- Monograms and other E37_Marks utilize a sub-select query to get all coin type sides
+                            connected to the URI or and children concepts of the URI -->
+                        <xsl:when test="$type = 'nmo:Monogram' or $type = 'crm:E37_Mark'">
+                            <select variables="?side">
+                                <union>
+                                    <group>
+                                        <triple s="?side" p="nmo:hasControlmark" o="&lt;{$id}&gt;"/>
+                                    </group>
+                                    <group>
+                                        <triple s="?children" p="skos:broader+" o="&lt;{$id}&gt;"/>
+                                        <triple s="?side" p="nmo:hasControlmark" o="?children"/>
+                                    </group>
+                                </union>                        
+                            </select>
+                        </xsl:when>
+                        <!-- when querying for 1 or more letters that are constituent parts of a monogram, then form the query -->
+                        <xsl:when test="$type = 'letter'">
+                            <!-- evaluate the $letters and construct the proper object query for 1+ literals -->
+                            <xsl:variable name="letter-query">
+                                <xsl:for-each select="$letters//value">
+                                    <xsl:value-of select="concat('&#x022;', ., '&#x022;')"/>
+                                    <xsl:if test="not(position() = last())">
+                                        <xsl:text>,</xsl:text>
+                                    </xsl:if>
+                                </xsl:for-each>
+                            </xsl:variable>
+                            
+                            <triple s="?monogram" p="crm:P106_is_composed_of" o="{$letter-query}"/>
+                            <triple s="?side" p="nmo:hasControlmark" o="?monogram"/>
+                        </xsl:when>
+                    </xsl:choose>
+                    
+                    
+                    <!-- remaining hoard union queries apply -->
                     <xsl:choose>
                         <xsl:when test="$api = 'getHoards' or $api = 'heatmap'">
                             <union>
@@ -572,6 +617,9 @@
                             <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
                         </xsl:otherwise>
                     </xsl:choose>
+                    
+                    <!-- for letters, be sure to include a possible UNION query of type series -->
+                    
                 </xsl:when>
                 <xsl:otherwise>
                     <union>

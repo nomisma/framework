@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	XPL handling SPARQL queries from Fuseki	
+	Author: Ethan Gruber
+	Date: June 2020
+	Function: Read the type of response, whether a nomisma ID, a symbol URI, or symbol letter and type series in order to determine
+	the structure of the SPARQL query to submit to the endpoint in order to get mints pertaining to that query.
 -->
 <p:config xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:oxf="http://www.orbeon.com/oxf/processors" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 
@@ -27,6 +30,7 @@
 						<xsl:choose>
 							<xsl:when test="/request/parameters/parameter[name='id']/value">id</xsl:when>
 							<xsl:when test="/request/parameters/parameter[name='symbol']/value">symbol</xsl:when>
+							<xsl:when test="/request/parameters/parameter[name='letter']">letter</xsl:when>
 						</xsl:choose>
 					</type>
 				</xsl:template>
@@ -206,6 +210,7 @@ SELECT ?place ?label ?lat ?long WHERE {
 									<xsl:call-template name="nomisma:getMintsStatements">
 										<xsl:with-param name="type" select="$type"/>
 										<xsl:with-param name="id" select="$id"/>
+										<xsl:with-param name="letters"/>
 									</xsl:call-template>
 								</xsl:variable>
 
@@ -292,6 +297,79 @@ SELECT ?place ?label ?lat ?long WHERE {
 				<p:output name="data" id="url-generator-config"/>
 			</p:processor>
 
+			<!-- execute SPARQL query -->
+			<p:processor name="oxf:url-generator">
+				<p:input name="config" href="#url-generator-config"/>
+				<p:output name="data" ref="data"/>
+			</p:processor>
+		</p:when>
+		<p:when test="/type = 'letter'">
+			<p:processor name="oxf:url-generator">
+				<p:input name="config">
+					<config>
+						<url>oxf:/apps/nomisma/ui/sparql/getMints.sparql</url>
+						<content-type>text/plain</content-type>
+						<encoding>utf-8</encoding>
+					</config>
+				</p:input>
+				<p:output name="data" id="sparql-query"/>
+			</p:processor>
+			
+			<!-- convert text into an XML document for use in XSLT -->
+			<p:processor name="oxf:text-converter">
+				<p:input name="data" href="#sparql-query"/>
+				<p:input name="config">
+					<config/>
+				</p:input>
+				<p:output name="data" id="sparql-query-document"/>
+			</p:processor>
+			
+			<!-- generate the SPARQL query -->
+			<p:processor name="oxf:unsafe-xslt">
+				<p:input name="request" href="#request"/>
+				<p:input name="query" href="#sparql-query-document"/>
+				<p:input name="data" href=" ../../../config.xml"/>
+				<p:input name="config">
+					<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+						xmlns:nomisma="http://nomisma.org/" exclude-result-prefixes="#all">
+						<xsl:include href="../../../ui/xslt/controllers/metamodel-templates.xsl"/>
+						<xsl:include href="../../../ui/xslt/controllers/sparql-metamodel.xsl"/>
+						
+						<xsl:variable name="sparql_endpoint" select="/config/sparql_query"/>
+						<xsl:param name="letters" select="doc('input:request')/request/parameters/parameter[name='letter']"/>						
+						
+						<xsl:variable name="query" select="doc('input:query')"/>
+						
+						<xsl:variable name="statements" as="element()*">
+							<xsl:call-template name="nomisma:getMintsStatements">
+								<xsl:with-param name="type">letter</xsl:with-param>
+								<xsl:with-param name="id"/>
+								<xsl:with-param name="letters" select="$letters"/>
+							</xsl:call-template>
+						</xsl:variable>
+						
+						<xsl:variable name="statementsSPARQL">
+							<xsl:apply-templates select="$statements/*"/>
+						</xsl:variable>
+						
+						<xsl:variable name="service"
+							select="concat($sparql_endpoint, '?query=', encode-for-uri(replace($query, '%STATEMENTS%', $statementsSPARQL)), '&amp;output=xml')"> </xsl:variable>
+						
+						<xsl:template match="/">
+							<config>
+								<url>
+									<xsl:value-of select="$service"/>
+								</url>
+								<content-type>application/xml</content-type>
+								<encoding>utf-8</encoding>
+							</config>
+						</xsl:template>
+						
+					</xsl:stylesheet>
+				</p:input>
+				<p:output name="data" id="url-generator-config"/>
+			</p:processor>
+			
 			<!-- execute SPARQL query -->
 			<p:processor name="oxf:url-generator">
 				<p:input name="config" href="#url-generator-config"/>
