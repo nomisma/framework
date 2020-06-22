@@ -64,7 +64,7 @@
                         </group>
                         <group>
                             <triple s="{$subject}" p="nmo:hasAuthority" o="?person"/>
-                            <triple s="?person" p="org:memberOf" o="{$object}"/>                            
+                            <triple s="?person" p="org:memberOf" o="{$object}"/>
                         </group>
                     </union>
                     <triple s="{$object}" p="a" o="rdac:Family"/>
@@ -229,7 +229,7 @@
                 </union>
                 <triple s="{$object}" p="a" o="{$distClass}"/>
             </xsl:when>
-            
+
             <xsl:when test="$dist = 'region'">
                 <union>
                     <group>
@@ -251,7 +251,8 @@
         <xsl:param name="type"/>
         <xsl:param name="id"/>
         <xsl:param name="letters"/>
-        
+        <xsl:param name="typeSeries"/>
+
         <statements>
             <xsl:choose>
                 <xsl:when test="$type = 'nmo:Mint'">
@@ -298,7 +299,7 @@
                 <xsl:when test="$type = 'foaf:Person'">
                     <union>
                         <group>
-                            <triple s="?coinType" p="?prop" o="nm:{$id}"/>                            
+                            <triple s="?coinType" p="?prop" o="nm:{$id}"/>
                         </group>
                         <group>
                             <triple s="?obv" p="?prop" o="nm:{$id}"/>
@@ -347,7 +348,7 @@
                             <triple s="?person" p="a" o="foaf:Person"/>
                             <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
                         </group>
-                    </union>                    
+                    </union>
                     <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
                     <triple s="?coinType" p="nmo:hasMint" o="?place"/>
                     <minus>
@@ -366,12 +367,27 @@
                             </xsl:if>
                         </xsl:for-each>
                     </xsl:variable>
-                    
+
                     <triple s="?monogram" p="crm:P106_is_composed_of" o="{$letter-query}"/>
                     <triple s="?side" p="nmo:hasControlmark" o="?monogram"/>
                     <triple s="?coinType" p="nmo:hasObverse|nmo:hasReverse" o="?side"/>
                     <triple s="?coinType" p="rdf:type" o="?TypeSeriesItem"/>
-                    <triple s="?coinType" p="nmo:hasMint|nmo:hasMint/rdf:value" o="?place"/>                    
+                    <!-- type series -->
+                    <xsl:choose>
+                        <xsl:when test="count($typeSeries//value) = 1">
+                            <triple s="?coinType" p="dcterms:source" o="&lt;{$typeSeries//value}&gt;"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <union>
+                                <xsl:for-each select="$typeSeries//value">
+                                    <group>
+                                        <triple s="?coinType" p="dcterms:source" o="&lt;{.}&gt;"/>
+                                    </group>
+                                </xsl:for-each>
+                            </union>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    <triple s="?coinType" p="nmo:hasMint|nmo:hasMint/rdf:value" o="?place"/>
                     <triple s="?place" p="geo:location" o="?loc"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -386,17 +402,18 @@
             </xsl:choose>
         </statements>
     </xsl:template>
-    
+
     <xsl:template name="nomisma:getFindspotsStatements">
         <xsl:param name="api"/>
         <xsl:param name="type"/>
         <xsl:param name="id"/>
         <xsl:param name="letters"/>
-        
+        <xsl:param name="typeSeries"/>
+
         <statements>
             <xsl:choose>
                 <xsl:when test="$type = 'foaf:Person'">
-                    
+
                     <xsl:choose>
                         <xsl:when test="$api = 'getHoards' or $api = 'heatmap'">
                             <union>
@@ -417,14 +434,14 @@
                                         <triple s="?object" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                                     </group>
                                 </xsl:if>
-                               <group>
-                                   <xsl:call-template name="hoard-content-query">
-                                       <xsl:with-param name="api" select="$api"/>
-                                       <xsl:with-param name="id" select="$id"/>
-                                       <xsl:with-param name="type" select="$type"/>
-                                   </xsl:call-template>
-                               </group>
-                            </union>                           
+                                <group>
+                                    <xsl:call-template name="hoard-content-query">
+                                        <xsl:with-param name="api" select="$api"/>
+                                        <xsl:with-param name="id" select="$id"/>
+                                        <xsl:with-param name="type" select="$type"/>
+                                    </xsl:call-template>
+                                </group>
+                            </union>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:call-template name="person-findspots">
@@ -468,10 +485,10 @@
                                 <xsl:with-param name="id" select="$id"/>
                             </xsl:call-template>
                         </xsl:otherwise>
-                    </xsl:choose>                    
+                    </xsl:choose>
                 </xsl:when>
                 <xsl:when test="$type = 'foaf:Organization' or $type = 'foaf:Group'">
-                    
+
                     <xsl:choose>
                         <xsl:when test="$api = 'getHoards' or $api = 'heatmap'">
                             <union>
@@ -508,10 +525,10 @@
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:when>
-                <xsl:when test="$type = 'nmo:TypeSeriesItem'">    
+                <xsl:when test="$type = 'nmo:TypeSeriesItem'">
                     <xsl:choose>
                         <xsl:when test="$api = 'getHoards' or $api = 'heatmap'">
-                            <union>                                
+                            <union>
                                 <group>
                                     <triple s="?object" p="nmo:hasTypeSeriesItem" o="&lt;{$id}&gt;"/>
                                     <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
@@ -528,14 +545,14 @@
                                     </group>
                                 </xsl:if>
                                 <group>
-                                    <triple s="?contents"  p="nmo:hasTypeSeriesItem" o="&lt;{$id}&gt;"/>
+                                    <triple s="?contents" p="nmo:hasTypeSeriesItem" o="&lt;{$id}&gt;"/>
                                     <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
                                     <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>
                                     <xsl:if test="$api = 'heatmap'">
                                         <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                                     </xsl:if>
                                 </group>
-                            </union>                            
+                            </union>
                         </xsl:when>
                         <xsl:otherwise>
                             <triple s="?object" p="nmo:hasTypeSeriesItem" o="&lt;{$id}&gt;"/>
@@ -543,8 +560,8 @@
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:when>
-                <xsl:when test="$type = 'nmo:Monogram' or $type = 'crm:E37_Mark' or $type = 'letter'">  
-                    
+                <xsl:when test="$type = 'nmo:Monogram' or $type = 'crm:E37_Mark' or $type = 'letter'">
+
                     <xsl:choose>
                         <!-- Monograms and other E37_Marks utilize a sub-select query to get all coin type sides
                             connected to the URI or and children concepts of the URI -->
@@ -558,7 +575,7 @@
                                         <triple s="?children" p="skos:broader+" o="&lt;{$id}&gt;"/>
                                         <triple s="?side" p="nmo:hasControlmark" o="?children"/>
                                     </group>
-                                </union>                        
+                                </union>
                             </select>
                         </xsl:when>
                         <!-- when querying for 1 or more letters that are constituent parts of a monogram, then form the query -->
@@ -572,19 +589,36 @@
                                     </xsl:if>
                                 </xsl:for-each>
                             </xsl:variable>
-                            
+
                             <triple s="?monogram" p="crm:P106_is_composed_of" o="{$letter-query}"/>
                             <triple s="?side" p="nmo:hasControlmark" o="?monogram"/>
                         </xsl:when>
                     </xsl:choose>
-                    
-                    
+
+
                     <!-- remaining hoard union queries apply -->
                     <xsl:choose>
                         <xsl:when test="$api = 'getHoards' or $api = 'heatmap'">
                             <union>
                                 <group>
                                     <triple s="?coinType" p="nmo:hasObverse|nmo:hasReverse" o="?side"/>
+                                    <!-- for letters, be sure to include a possible UNION query of type series -->
+                                    <xsl:if test="$type = 'letter'">
+                                        <xsl:choose>
+                                            <xsl:when test="count($typeSeries//value) = 1">
+                                                <triple s="?coinType" p="dcterms:source" o="&lt;{$typeSeries//value}&gt;"/>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <union>
+                                                    <xsl:for-each select="$typeSeries//value">
+                                                        <group>
+                                                            <triple s="?coinType" p="dcterms:source" o="&lt;{.}&gt;"/>
+                                                        </group>
+                                                    </xsl:for-each>
+                                                </union>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:if>
                                     <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>
                                     <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
                                     <triple s="?object" p="dcterms:isPartOf" o="?hoard"/>
@@ -595,6 +629,22 @@
                                 <xsl:if test="$api = 'heatmap'">
                                     <group>
                                         <triple s="?coinType" p="nmo:hasObverse|nmo:hasReverse" o="?side"/>
+                                        <xsl:if test="$type = 'letter'">
+                                            <xsl:choose>
+                                                <xsl:when test="count($typeSeries//value) = 1">
+                                                    <triple s="?coinType" p="dcterms:source" o="&lt;{$typeSeries//value}&gt;"/>
+                                                </xsl:when>
+                                                <xsl:otherwise>
+                                                    <union>
+                                                        <xsl:for-each select="$typeSeries//value">
+                                                            <group>
+                                                                <triple s="?coinType" p="dcterms:source" o="&lt;{.}&gt;"/>
+                                                            </group>
+                                                        </xsl:for-each>
+                                                    </union>
+                                                </xsl:otherwise>
+                                            </xsl:choose>
+                                        </xsl:if>
                                         <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>
                                         <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
                                         <triple s="?object" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
@@ -602,7 +652,23 @@
                                 </xsl:if>
                                 <group>
                                     <triple s="?coinType" p="nmo:hasObverse|nmo:hasReverse" o="?side"/>
-                                    <triple s="?contents"  p="nmo:hasTypeSeriesItem" o="?coinType"/>
+                                    <xsl:if test="$type = 'letter'">
+                                        <xsl:choose>
+                                            <xsl:when test="count($typeSeries//value) = 1">
+                                                <triple s="?coinType" p="dcterms:source" o="&lt;{$typeSeries//value}&gt;"/>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <union>
+                                                    <xsl:for-each select="$typeSeries//value">
+                                                        <group>
+                                                            <triple s="?coinType" p="dcterms:source" o="&lt;{.}&gt;"/>
+                                                        </group>
+                                                    </xsl:for-each>
+                                                </union>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:if>
+                                    <triple s="?contents" p="nmo:hasTypeSeriesItem" o="?coinType"/>
                                     <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
                                     <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>
                                     <xsl:if test="$api = 'heatmap'">
@@ -617,9 +683,6 @@
                             <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
                         </xsl:otherwise>
                     </xsl:choose>
-                    
-                    <!-- for letters, be sure to include a possible UNION query of type series -->
-                    
                 </xsl:when>
                 <xsl:otherwise>
                     <union>
@@ -627,9 +690,9 @@
                         <group>
                             <triple s="?coinType" p="{$classes//class[text()=$type]/@prop}" o="nm:{$id}"/>
                             <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
-                            <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>  
+                            <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>
                             <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
-                            
+
                             <xsl:choose>
                                 <xsl:when test="$api = 'getHoards'">
                                     <triple s="?object" p="dcterms:isPartOf" o="?hoard"/>
@@ -643,7 +706,7 @@
                         <group>
                             <triple s="?object" p="{$classes//class[text()=$type]/@prop}" o="nm:{$id}"/>
                             <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
-                            
+
                             <xsl:choose>
                                 <xsl:when test="$api = 'getHoards'">
                                     <triple s="?object" p="dcterms:isPartOf" o="?hoard"/>
@@ -653,15 +716,15 @@
                                 </xsl:when>
                             </xsl:choose>
                         </group>
-                        
+
                         <xsl:if test="$api = 'heatmap'">
                             <!-- in the heatmap API, combine the query for both hoards and findspots related to the concept -->
                             <group>
                                 <triple s="?coinType" p="{$classes//class[text()=$type]/@prop}" o="nm:{$id}"/>
                                 <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
-                                <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>  
+                                <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>
                                 <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
-                                <triple s="?object" p="dcterms:isPartOf" o="?hoard"/> 
+                                <triple s="?object" p="dcterms:isPartOf" o="?hoard"/>
                                 <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                             </group>
                             <!-- get physical coins connected to the concept -->
@@ -672,7 +735,7 @@
                                 <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                             </group>
                         </xsl:if>
-                        
+
                         <xsl:if test="$api = 'getHoards' or $api = 'heatmap'">
                             <xsl:call-template name="hoard-content-query">
                                 <xsl:with-param name="api" select="$api"/>
@@ -683,7 +746,7 @@
                     </union>
                 </xsl:otherwise>
             </xsl:choose>
-            
+
             <!-- evaluate whether the coin has a findspot for the getFindspots API or whether the coin/type is part of a hoard -->
             <xsl:choose>
                 <xsl:when test="$api = 'getHoards'">
@@ -693,17 +756,17 @@
                     <triple s="?object" p="nmo:hasFindspot" o="?place"/>
                 </xsl:when>
             </xsl:choose>
-            
-        </statements>        
+
+        </statements>
     </xsl:template>
-    
+
     <!-- reusable templates for specific entities -->
     <xsl:template name="person-findspots">
         <xsl:param name="id"/>
-        
+
         <union>
             <group>
-                <triple s="?coinType" p="?prop" o="nm:{$id}"/>                            
+                <triple s="?coinType" p="?prop" o="nm:{$id}"/>
             </group>
             <group>
                 <triple s="?obv" p="?prop" o="nm:{$id}"/>
@@ -712,34 +775,34 @@
             <group>
                 <triple s="?rev" p="?prop" o="nm:{$id}"/>
                 <triple s="?coinType" p="nmo:hasReverse" o="?rev"/>
-            </group>                        
+            </group>
         </union>
         <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
         <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>
         <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
     </xsl:template>
-    
+
     <xsl:template name="dynasty-findspots">
         <xsl:param name="id"/>
-        
+
         <union>
             <group>
                 <triple s="?coinType" p="?prop" o="nm:{$id}"/>
             </group>
             <group>
                 <triple s="?person" p="org:memberOf" o="nm:{$id}"/>
-                <triple s="?person" p="a" o="foaf:Person"/>                
-                <triple s="?coinType" p="?prop" o="?person"/>               
+                <triple s="?person" p="a" o="foaf:Person"/>
+                <triple s="?coinType" p="?prop" o="?person"/>
             </group>
         </union>
         <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
         <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>
         <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
     </xsl:template>
-    
+
     <xsl:template name="org-findspots">
         <xsl:param name="id"/>
-        
+
         <union>
             <group>
                 <triple s="?coinType" p="nmo:hasAuthority" o="nm:{$id}"/>
@@ -747,19 +810,19 @@
             <group>
                 <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
                 <triple s="?person" p="a" o="foaf:Person"/>
-                <triple s="?coinType" p="nmo:hasAuthority" o="?person"/>                                
+                <triple s="?coinType" p="nmo:hasAuthority" o="?person"/>
             </group>
-        </union>                    
-        <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>  
+        </union>
+        <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
         <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>
         <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
     </xsl:template>
-    
+
     <xsl:template name="hoard-content-query">
         <xsl:param name="api"/>
         <xsl:param name="id"/>
         <xsl:param name="type"/>
-          
+
         <group>
             <group>
                 <triple s="?coinType" p="{$classes//class[text()=$type]/@prop}" o="nm:{$id}"/>
@@ -772,7 +835,7 @@
                 </xsl:if>
             </group>
             <group>
-                <triple s="?contents"  p="{$classes//class[text()=$type]/@prop}" o="nm:{$id}"/>
+                <triple s="?contents" p="{$classes//class[text()=$type]/@prop}" o="nm:{$id}"/>
                 <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
                 <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>
                 <xsl:if test="$api = 'heatmap'">
@@ -785,7 +848,7 @@
                     <group>
                         <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
                         <triple s="?person" p="rdf:type" o="foaf:Person"/>
-                        <triple s="?contents"  p="nmo:hasAuthority" o="?person"/>
+                        <triple s="?contents" p="nmo:hasAuthority" o="?person"/>
                         <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
                         <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>
                         <xsl:if test="$api = 'heatmap'">
@@ -797,7 +860,7 @@
                     <group>
                         <triple s="?person" p="org:memberOf" o="nm:{$id}"/>
                         <triple s="?person" p="rdf:type" o="foaf:Person"/>
-                        <triple s="?contents"  p="nmo:hasAuthority" o="?person"/>
+                        <triple s="?contents" p="nmo:hasAuthority" o="?person"/>
                         <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
                         <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>
                         <xsl:if test="$api = 'heatmap'">
@@ -812,7 +875,7 @@
     <xsl:template name="nomisma:listTypesStatements">
         <xsl:param name="type"/>
         <xsl:param name="id"/>
-        
+
         <statements>
             <xsl:choose>
                 <xsl:when test="$type = 'foaf:Person'">

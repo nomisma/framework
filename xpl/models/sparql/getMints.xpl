@@ -211,6 +211,7 @@ SELECT ?place ?label ?lat ?long WHERE {
 										<xsl:with-param name="type" select="$type"/>
 										<xsl:with-param name="id" select="$id"/>
 										<xsl:with-param name="letters"/>
+										<xsl:with-param name="typeSeries"/>
 									</xsl:call-template>
 								</xsl:variable>
 
@@ -336,7 +337,8 @@ SELECT ?place ?label ?lat ?long WHERE {
 						<xsl:include href="../../../ui/xslt/controllers/sparql-metamodel.xsl"/>
 						
 						<xsl:variable name="sparql_endpoint" select="/config/sparql_query"/>
-						<xsl:param name="letters" select="doc('input:request')/request/parameters/parameter[name='letter']"/>						
+						<xsl:variable name="letters" select="doc('input:request')/request/parameters/parameter[name='letter']"/>						
+						<xsl:variable name="typeSeries" select="doc('input:request')/request/parameters/parameter[name='typeSeries']"/>
 						
 						<xsl:variable name="query" select="doc('input:query')"/>
 						
@@ -345,6 +347,7 @@ SELECT ?place ?label ?lat ?long WHERE {
 								<xsl:with-param name="type">letter</xsl:with-param>
 								<xsl:with-param name="id"/>
 								<xsl:with-param name="letters" select="$letters"/>
+								<xsl:with-param name="typeSeries" select="$typeSeries"/>
 							</xsl:call-template>
 						</xsl:variable>
 						

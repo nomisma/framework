@@ -254,6 +254,7 @@
 										<xsl:with-param name="type">nmo:TypeSeriesItem</xsl:with-param>
 										<xsl:with-param name="id" select="$coinType"/>
 										<xsl:with-param name="letters"/>
+										<xsl:with-param name="typeSeries"/>
 									</xsl:call-template>
 								</xsl:when>
 								<xsl:when test="$type = 'symbol'">
@@ -264,17 +265,20 @@
 										<xsl:with-param name="type">nmo:Monogram</xsl:with-param>
 										<xsl:with-param name="id" select="$uri"/>
 										<xsl:with-param name="letters"/>
+										<xsl:with-param name="typeSeries"/>
 									</xsl:call-template>
 								</xsl:when>
 								
 								<xsl:when test="$type = 'letter'">
 									<xsl:variable name="letters" select="doc('input:request')/request/parameters/parameter[name='letter']"/>
-									
+									<xsl:variable name="typeSeries" select="doc('input:request')/request/parameters/parameter[name='typeSeries']"/>
+																		
 									<xsl:call-template name="nomisma:getFindspotsStatements">
 										<xsl:with-param name="api" select="$api"/>
 										<xsl:with-param name="type">letter</xsl:with-param>
 										<xsl:with-param name="id"/>
 										<xsl:with-param name="letters" select="$letters"/>
+										<xsl:with-param name="typeSeries" select="$typeSeries"/>
 									</xsl:call-template>
 								</xsl:when>
 							</xsl:choose>
