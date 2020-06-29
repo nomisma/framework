@@ -33,10 +33,12 @@
     </xsl:template>
     
     <xsl:template match="query">
+        <xsl:variable name="frag" select="replace(., '/', '')"/>
+        
         <xsl:text>(text:(</xsl:text>
-        <xsl:value-of select="."/>
+        <xsl:value-of select="$frag"/>
         <xsl:text>) OR label:(</xsl:text>
-        <xsl:value-of select="."/>
+        <xsl:value-of select="$frag"/>
         <xsl:text>)^5)</xsl:text>
     </xsl:template>
     
