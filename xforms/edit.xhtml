@@ -2491,7 +2491,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 						else if (instance('control-instance')/link-property = 'skos:related') then 'Uncertain Match' 
 						else 'Bibliographic Reference'"/>
 
-					<xforms:group ref=".[instance('control-instance')/type = 'nmo:Mint']">
+					<!-- display radio button for broader dialog for mints -->
+					<xforms:group ref=".[instance('control-instance')/type = 'nmo:Mint' and instance('control-instance')/link-property = 'skos:broader']">
 						<div style="width:400px">
 							<p class="text-info"><span class="glyphicon glyphicon-info-sign"></span> In most cases, a mint should point to a parent region. In
 								certain cases of individual, definable workshops, the broader concept can be the primary mint for a place, within the same
