@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Author: Ethan Gruber
+	Function: Evaluate Accept HTTP header and perform the correct content negotiation -->
 <p:pipeline xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:oxf="http://www.orbeon.com/oxf/processors">
 
 	<p:param type="input" name="data"/>
@@ -108,27 +110,10 @@
 				</p:when>
 				<p:otherwise>
 					<p:processor name="oxf:pipeline">
-						<p:input name="config" href="../views/serializations/rdf/html.xpl"/>
 						<p:input name="data" href="#data"/>	
+						<p:input name="config" href="../views/serializations/rdf/html.xpl"/>						
 						<p:output name="data" ref="data"/>
-						<!--<p:output name="data" id="html"/>-->
 					</p:processor>
-					
-					<!-- header -->
-					<!--<p:processor name="oxf:http-serializer">
-						<p:input name="data" href="#html"/>
-						<p:input name="config" >
-							<config>
-								<status-code>200</status-code>
-								<content-type>text/html</content-type>
-								<header>
-									<name>Accept</name>
-									<value>text/html;1.0, application/rdf+xml;0.9, text/turtle;0.9, application/vnd.google-earth.kml+xml;0.5, application/ld+json;0.8</value>
-								</header>								
-							</config>
-						</p:input>	
-						<p:output name="data" ref="data"/>
-					</p:processor>-->
 				</p:otherwise>
 			</p:choose>
 		</p:when>

@@ -83,12 +83,6 @@
 				</p:input>
 				<p:output name="data" ref="data"/>
 			</p:processor>
-			<!--<p:processor name="oxf:pipeline">
-				<p:input name="data" href="#html"/>
-				<p:input name="config" href="http-accept-headers.xpl"/>		
-				<p:output name="data" ref="data"/>
-			</p:processor>-->			
-			
 		</p:when>
 		<p:otherwise>
 			<p:processor name="oxf:pipeline">

@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Author: Ethan Gruber
+	Date: August 2020
+	Function: Repond with 406 Not Acceptable when the content-type is not supported -->
 <p:pipeline xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:oxf="http://www.orbeon.com/oxf/processors">
 
 	<p:param type="input" name="data"/>
@@ -19,7 +22,7 @@
 			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 				<xsl:output indent="yes"/>
 				<xsl:template match="/">
-					<xsl:variable name="content-type" select="//header[name[.='content-type']]/value"/>
+					<xsl:variable name="content-type" select="//header[name[.='accept']]/value"/>
 
 					<xml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" content-type="text/html">
 <![CDATA[<html>
@@ -28,7 +31,7 @@
 	</head>
 	<body>
 		<h1>406 Not Acceptable</h1>
-		<p><xsl:value-of select="]]>	<xsl:value-of select="$content-type"/><![CDATA["/> is not acceptable.</p>
+		<p>]]><xsl:value-of select="$content-type"/><![CDATA[ is not acceptable.</p>
 	</body>
 </html>]]>	
 					</xml>
@@ -44,32 +47,10 @@
 		<p:input name="config">
 			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 				<xsl:output indent="yes"/>
-				<xsl:template match="/">
-					<xsl:variable name="content-type" select="//header[name[.='content-type']]/value"/>
+				<xsl:template match="/">					
 					<config>
 						<status-code>406</status-code>
 						<content-type>text/html</content-type>
-						<xsl:choose>
-							<xsl:when test="string-length(substring-after(/request/request-url, 'id/')) &gt; 0">
-								<header>
-									<name>Accept</name>
-									<value>text/html, application/rdf+xml, text/turtle, application/vnd.google-earth.kml+xml, application/ld+json</value>
-								</header>
-							</xsl:when>
-							<xsl:when test="string-length(substring-after(/request/request-url, 'query/')) &gt; 0">
-								<header>
-									<name>Accept</name>
-									<value>text/html, text/csv, text/plain, application/sparql-results+xml, application/sparql-results+json</value>
-								</header>
-							</xsl:when>
-							<xsl:otherwise>
-								<header>
-									<name>Accept</name>
-									<value>text/html, application/atom+xml</value>
-								</header>
-							</xsl:otherwise>
-						</xsl:choose>
-						
 					</config>
 				</xsl:template>
 			</xsl:stylesheet>

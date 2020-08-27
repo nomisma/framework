@@ -56,10 +56,10 @@
 			<summary>
 				<xsl:value-of select="str[@name='definition']"/>
 			</summary>
-			<link type="text/html" href="{$uri}"/>
-			<link rel="jsonld" type="application/ld+json" href="{$uri}.jsonld"/>
-			<link rel="ttl" type="text/turtle" href="{$uri}.ttl"/>
-			<link rel="rdf" type="application/rdf+xml" href="{$uri}.rdf"/>
+			<link rel="canonical" type="text/html" href="{$uri}"/>
+			<link rel="alternate" type="application/ld+json" href="{$uri}.jsonld"/>
+			<link rel="alternate" type="text/turtle" href="{$uri}.ttl"/>
+			<link rel="alternate" type="application/rdf+xml" href="{$uri}.rdf"/>
 			<id>
 				<xsl:value-of select="str[@name='id']"/>
 			</id>
