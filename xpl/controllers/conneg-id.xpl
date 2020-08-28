@@ -19,23 +19,79 @@
 	<p:processor name="oxf:unsafe-xslt">
 		<p:input name="data" href="#request"/>
 		<p:input name="config">
-			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nomisma="http://nomisma.org/">
 				<xsl:output indent="yes"/>
 				
 				<xsl:variable name="content-type" select="//header[name[.='accept']]/value"/>
 				
 				<xsl:template match="/">
 					<content-type>
+						<xsl:variable name="pieces" select="tokenize($content-type, ';')"/>
+						
+						<!-- normalize space in fragments in order to support better parsing for content negotiation -->
+						<xsl:variable name="accept-fragments" as="item()*">
+							<nodes>
+								<xsl:for-each select="$pieces">
+									<node>
+										<xsl:value-of select="normalize-space(.)"/>
+									</node>
+								</xsl:for-each>
+							</nodes>
+						</xsl:variable>
+						
 						<xsl:choose>
-							<xsl:when test="$content-type='application/ld+json'">json-ld</xsl:when>
-							<xsl:when test="$content-type='application/vnd.google-earth.kml+xml'">kml</xsl:when>
-							<xsl:when test="$content-type='application/rdf+xml' or $content-type='application/xml' or $content-type='text/xml'">xml</xsl:when>
-							<xsl:when test="$content-type='text/turtle'">turtle</xsl:when>
-							<xsl:when test="contains($content-type, 'text/html') or $content-type='*/*' or not(string($content-type))">html</xsl:when>
-							<xsl:otherwise>error</xsl:otherwise>
+							<xsl:when test="count($accept-fragments/node) &gt; 1">
+								
+								<!-- validate profiles, only linked.art profile for JSON-LD is supported at the moment, to differentiate from the default Nomisma.org JSON-LD -->
+								<xsl:choose>
+									<xsl:when test="$accept-fragments/node[starts-with(., 'profile=')]">
+										<!-- parse the profile URI -->
+										<xsl:variable name="profile" select="replace(substring-after($accept-fragments/node[starts-with(., 'profile=')][1], '='), '&#x022;', '')"/>
+										
+										<xsl:choose>
+											<!-- only allow the linked.art profile if the content-type is validated to JSON-LD -->
+											<xsl:when test="nomisma:resolve-content-type($accept-fragments/node[1]) = 'json-ld'">												
+												<xsl:choose>
+													<xsl:when test="$profile = 'https://linked.art/ns/v1/linked-art.json'">linked-art</xsl:when>
+													<xsl:otherwise>json-ld</xsl:otherwise>
+												</xsl:choose>
+											</xsl:when>
+											<xsl:otherwise>
+												<xsl:value-of select="nomisma:resolve-content-type($accept-fragments/node[1])"/>
+											</xsl:otherwise>
+										</xsl:choose>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:value-of select="nomisma:resolve-content-type($accept-fragments/node[1])"/>
+									</xsl:otherwise>
+								</xsl:choose>
+							</xsl:when>
+							<xsl:otherwise>
+								<!--<xsl:choose>
+									<xsl:when test="$accept-profile = '&lt;https://linked.art/ns/v1/linked-art.json&gt;'">linked-art</xsl:when>
+									<xsl:otherwise>
+										<xsl:value-of select="nomisma:resolve-content-type($content-type)"/>
+									</xsl:otherwise>
+								</xsl:choose>-->
+								
+								<xsl:value-of select="nomisma:resolve-content-type($content-type)"/>
+							</xsl:otherwise>
 						</xsl:choose>
 					</content-type>
 				</xsl:template>
+				
+				<xsl:function name="nomisma:resolve-content-type">
+					<xsl:param name="content-type"/>
+					
+					<xsl:choose>
+						<xsl:when test="$content-type='application/ld+json'">json-ld</xsl:when>
+						<xsl:when test="$content-type='application/vnd.google-earth.kml+xml'">kml</xsl:when>
+						<xsl:when test="$content-type='application/rdf+xml' or $content-type='application/xml' or $content-type='text/xml'">xml</xsl:when>
+						<xsl:when test="$content-type='text/turtle'">turtle</xsl:when>
+						<xsl:when test="contains($content-type, 'text/html') or $content-type='*/*' or not(string($content-type))">html</xsl:when>
+						<xsl:otherwise>error</xsl:otherwise>
+					</xsl:choose>
+				</xsl:function>
 			</xsl:stylesheet>
 		</p:input>
 		<p:output name="data" id="conneg-config"/>
@@ -57,6 +113,13 @@
 						<indent-amount>4</indent-amount>
 					</config>
 				</p:input>
+				<p:output name="data" ref="data"/>
+			</p:processor>
+		</p:when>
+		<p:when test="content-type='linked-art'">
+			<p:processor name="oxf:pipeline">
+				<p:input name="data" href="#data"/>
+				<p:input name="config" href="../views/serializations/rdf/linkedart-json-ld.xpl"/>
 				<p:output name="data" ref="data"/>
 			</p:processor>
 		</p:when>
