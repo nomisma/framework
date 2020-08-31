@@ -58,6 +58,8 @@
 				<xsl:when test="$type = 'foaf:Person'">Person</xsl:when>
 				<xsl:when test="$type = 'foaf:Group' or $type = 'foaf:Organization' or $type = 'rdac:Family'">Group</xsl:when>
 				<xsl:when test="$type = 'nmo:Mint' or $type = 'nmo:Region'">Place</xsl:when>
+				<xsl:when test="$type = 'nmo:Material'">Material</xsl:when>
+				<xsl:when test="$type = 'crm:E4_Period'">Period</xsl:when>
 				<xsl:when test="$type = 'skos:ConceptScheme'">AuthorityDocument</xsl:when>
 				<xsl:otherwise>Type</xsl:otherwise>
 			</xsl:choose>
