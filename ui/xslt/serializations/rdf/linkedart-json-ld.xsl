@@ -65,7 +65,11 @@
 			</xsl:choose>
 		</type>
 		<_label>
-			<xsl:value-of select="skos:prefLabel[@xml:lang = 'en']"/>
+			<xsl:value-of select="
+				if (rdfs:label) then
+				rdfs:label
+				else
+				skos:prefLabel[@xml:lang = 'en']"/>
 		</_label>
 
 		<xsl:if test="$type = 'nmo:Mint' or $type = 'nmo:Region'">
