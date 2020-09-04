@@ -169,7 +169,10 @@ function initialize_map(id) {
 				if (feature.properties.type == 'hoard') {
 					str += '<b>Findspot: </b>';
 				}
-				str +='<a href="' + feature.properties.gazetteer_uri + '">' + feature.properties.toponym + '</a></span>'
+				str +='<a href="' + feature.properties.gazetteer_uri + '">' + feature.properties.toponym + '</a></span>';
+				if (feature.properties.type == 'hoard' && feature.properties.hasOwnProperty('closing_date') == true) {
+					str += '<br/><b>Closing Date: </b>' + feature.properties.closing_date;
+				}
 			}
 		}
 		layer.bindPopup(str);
