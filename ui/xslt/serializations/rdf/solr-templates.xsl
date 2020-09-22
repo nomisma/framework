@@ -97,37 +97,15 @@
 
 			<!-- provenance -->
 			<field name="indexed_timestamp">
-				<xsl:variable name="timestamp" select="string(current-dateTime())"/>
-				<xsl:choose>
-					<xsl:when test="contains($timestamp, 'Z')">
-						<xsl:value-of select="$timestamp"/>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:value-of select="concat($timestamp, 'Z')"/>
-					</xsl:otherwise>
-				</xsl:choose>
+				<xsl:value-of select="format-dateTime(current-dateTime(), '[Y0001]-[M01]-[D01]T[h01]:[m01]:[s01]Z')"/>
 			</field>
 
 			<field name="created_timestamp">
-				<xsl:choose>
-					<xsl:when test="contains($timestamps[1], 'Z')">
-						<xsl:value-of select="$timestamps[1]"/>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:value-of select="concat($timestamps[1], 'Z')"/>
-					</xsl:otherwise>
-				</xsl:choose>
+				<xsl:value-of select="format-dateTime(xs:dateTime($timestamps[1]), '[Y0001]-[M01]-[D01]T[h01]:[m01]:[s01]Z')"/>
 			</field>
 
 			<field name="modified_timestamp">
-				<xsl:choose>
-					<xsl:when test="contains($timestamps[last()], 'Z')">
-						<xsl:value-of select="$timestamps[last()]"/>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:value-of select="concat($timestamps[last()], 'Z')"/>
-					</xsl:otherwise>
-				</xsl:choose>
+				<xsl:value-of select="format-dateTime(xs:dateTime($timestamps[last()]), '[Y0001]-[M01]-[D01]T[h01]:[m01]:[s01]Z')"/>
 			</field>
 
 			<field name="text">

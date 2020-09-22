@@ -5,7 +5,7 @@
 	<sparql_query>http://localhost:8080/fuseki/nomisma/query</sparql_query>
 	<sparql_update>http://localhost:8080/fuseki/nomisma/update</sparql_update>
 	<sparql_store>http://localhost:8080/fuseki/nomisma/data</sparql_store>
-	<solr_published>http://localhost:8080/solr/nomisma/</solr_published>
+	<solr_published>http://localhost:8983/solr/nomisma/</solr_published>
 	<solr_fuseki>http://localhost:8080/solr/nomisma-fuseki/</solr_fuseki>
 	<data_path>oxf:/nomisma-data</data_path>
 	<absolute_data_path>/usr/local/projects/nomisma-data</absolute_data_path>
