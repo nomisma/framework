@@ -151,6 +151,11 @@
 								<img src="ui/images/AvH_Logo_n7_Word_rgb2.jpg" alt="https://www.humboldt-foundation.de/"/>
 							</a>
 						</div>
+						<div class="media">
+							<a href="https://www.neh.gov/" title="The National Endowment for the Humanities" rel="nofollow">
+								<img src="ui/images/neh_logo_horizontal_rgb.jpg" alt="NEH Logo"/>
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
