@@ -55,7 +55,7 @@ function initialize_map(id) {
 		center: new L.LatLng(0, 0),
 		zoom: 4,
 		//layers:[awmcterrain, heatmapLayer]
-		layers:[awmcterrain]
+		layers:[imperium]
 	});
 	
 	//add mintLayer from AJAX
