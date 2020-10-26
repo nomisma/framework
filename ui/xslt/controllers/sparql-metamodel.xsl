@@ -33,7 +33,7 @@
 	
 	<xsl:template match="optional">
 		<xsl:text>OPTIONAL {</xsl:text>
-		<xsl:apply-templates select="triple|graph|optional"/>
+		<xsl:apply-templates select="optional|triple"/>
 		<xsl:text>}&#x0A;</xsl:text>
 	</xsl:template>
 	
