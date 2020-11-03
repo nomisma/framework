@@ -46,6 +46,7 @@
 		<namespace prefix="rdac" uri="http://www.rdaregistry.info/Elements/c/"/>
 		<namespace prefix="rdf" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#" default="true"/>
 		<namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#" default="true"/>
+		<namespace prefix="sd" uri="http://www.w3.org/TR/sparql11-service-description/"/>
 		<namespace prefix="skos" uri="http://www.w3.org/2004/02/skos/core#" default="true"/>
 		<namespace prefix="spatial" uri="http://jena.apache.org/spatial#"/>
 		<namespace prefix="un" uri="http://www.owl-ontologies.com/Ontology1181490123.owl#"/>

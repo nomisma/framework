@@ -4,7 +4,7 @@
 	xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:void="http://rdfs.org/ns/void#"
 	xmlns:dcterms="http://purl.org/dc/terms/" xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" xmlns:nmo="http://nomisma.org/ontology#"
 	xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:edm="http://www.europeana.eu/schemas/edm/"
-	xmlns:svcs="http://rdfs.org/sioc/services#" xmlns:doap="http://usefulinc.com/ns/doap#">
+	xmlns:svcs="http://rdfs.org/sioc/services#" xmlns:doap="http://usefulinc.com/ns/doap#" xmlns:sd="http://www.w3.org/TR/sparql11-service-description/">
 	<head>
 		<title>nomisma.org: manage datasets</title>
 		<link rel="stylesheet" href="/fr/style/bootstrap/css/bootstrap.css" type="text/css" />
@@ -85,12 +85,13 @@
 					<void_uri></void_uri>
 					<dump_uri></dump_uri>
 					<dataset></dataset>
+					<namedGraph>default</namedGraph>
 					<license></license>
 					<validate-trigger>false</validate-trigger>
 					<import-json-trigger>false</import-json-trigger>
 					<new_findspot_uri></new_findspot_uri>
 					<concept_type></concept_type>
-					<response/>
+					<response></response>
 				</controls>
 			</xforms:instance>
 
@@ -108,6 +109,10 @@
 
 			<!-- store the void:Datasets in their own instance to free up the SPARQL response for other data harvesting and validation -->
 			<xforms:instance id="datasets">
+				<rdf:RDF/>
+			</xforms:instance>
+			
+			<xforms:instance id="namedGraphs">
 				<rdf:RDF/>
 			</xforms:instance>
 
@@ -129,34 +134,7 @@
 			<xforms:instance id="sparqlUpdate-template">
 				<templates xmlns="">
 					<query id="delete-metadata"><![CDATA[PREFIX void:	<http://rdfs.org/ns/void#> 
-DELETE {?s ?p ?o} WHERE { <DATASET> ?p ?o . ?s ?p ?o . FILTER (?s = <DATASET>)}]]></query>
-					<query id="delete-dump"><![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
-PREFIX crm:	<http://www.cidoc-crm.org/cidoc-crm/>
-PREFIX void:	<http://rdfs.org/ns/void#>
-PREFIX dcterms:	<http://purl.org/dc/terms/>
-PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
-PREFIX svcs:	<http://rdfs.org/sioc/services#>
-DELETE {?s ?p ?o} WHERE {
-  {
-     SELECT ?object WHERE {?object void:inDataset <DATASET>}  
-  }
-{ ?object foaf:depiction ?image .
-  ?image svcs:has_service ?s . ?s ?p ?o}
-UNION { ?object foaf:depiction ?s . ?s ?p ?o}
-UNION { ?object nmo:hasObverse/foaf:depiction ?image .
-  ?image svcs:has_service ?s . ?s ?p ?o}
-UNION { ?object nmo:hasObverse/foaf:depiction ?s . ?s ?p ?o}
-UNION { ?object nmo:hasObverse ?s . ?s ?p ?o}
-UNION { ?object nmo:hasReverse/foaf:depiction ?image .
-  ?image svcs:has_service ?s . ?s ?p ?o}
-UNION { ?object nmo:hasReverse/foaf:depiction ?s . ?s ?p ?o}
-UNION { ?object nmo:hasReverse ?s . ?s ?p ?o}
-UNION { ?object dcterms:tableOfContents ?s . ?s ?p ?o}
-UNION { ?object nmo:hasFindspot/crm:P7_took_place_at ?s . ?s ?p ?o}
-UNION { ?object nmo:hasFindspot ?s . ?s ?p ?o}
-UNION { BIND (?object as ?s)
-        ?s ?p ?o }
-}]]></query>
+DELETE {?s ?p ?o} WHERE { <DATASET> ?p ?o . ?s ?p ?o . FILTER (?s = <DATASET>)}]]></query>					
 					<query id="delete-NumismaticObject"><![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX void:	<http://rdfs.org/ns/void#>
 PREFIX dcterms:	<http://purl.org/dc/terms/>
@@ -219,6 +197,7 @@ UNION { ?object void:inDataset <DATASET> ;
   dcterms:tableOfContents|nmo:hasFindspot ?s . ?s ?p ?o }
 UNION { ?s void:inDataset <DATASET> . ?s ?p ?o}
 }]]></query>
+					<query id="delete-namedGraph"><![CDATA[DROP GRAPH <%GRAPH%>]]></query>
 					<query id="replace-findspot"><![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX dcterms:	<http://purl.org/dc/terms/>
 PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
@@ -286,6 +265,26 @@ WHERE {
              rdf:type ?type
     } GROUP BY ?uri ?type
   }
+} ORDER BY ASC(?publisher) ASC(?title)]]></query>
+					<query id="get-namedGraphs"><![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:	<http://purl.org/dc/terms/>
+PREFIX void:	<http://rdfs.org/ns/void#>
+PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
+PREFIX sd:	<http://www.w3.org/TR/sparql11-service-description/>
+CONSTRUCT {?uri rdf:type void:Dataset ; 
+  dcterms:publisher ?publisher; 
+  dcterms:title ?title ; 
+  void:dataDump ?dump ;
+  dcterms:type ?type ;
+  sd:namedGraph ?namedGraph}
+WHERE {   
+  {?uri a sd:Dataset}
+  UNION {?uri a void:Dataset}
+  ?uri void:dataDump ?dump ; 
+  	dcterms:publisher | dcterms:publisher/skos:prefLabel ?publisher FILTER (isLiteral(?publisher)) .
+  ?uri dcterms:title ?title FILTER (lang(?title) = "" || langMatches(lang(?title), "en")).
+  ?uri sd:namedGraph/sd:name ?namedGraph
+  OPTIONAL {?uri dcterms:type ?type }
 } ORDER BY ASC(?publisher) ASC(?title)]]></query>
 					<query id="get-findspot"><![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
@@ -410,8 +409,8 @@ SELECT ?uri ?type WHERE {
 				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to post VoID metadata.</xforms:message>
 			</xforms:submission>
 
-			<xforms:submission id="post-dump" action="{instance('config')/sparql_store}?default" ref="instance('rdf')" replace="none" method="post"
-				mediatype="application/rdf+xml">
+			<xforms:submission id="post-dump" action="{instance('config')/sparql_store}?graph={instance('control-instance')/namedGraph}" ref="instance('rdf')"
+				replace="none" method="post" mediatype="application/rdf+xml">
 				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Successfully posted to endpoint.</xforms:setvalue>
 				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to post data dump.</xforms:message>
 			</xforms:submission>
@@ -437,12 +436,12 @@ SELECT ?uri ?type WHERE {
 					<xforms:value>XForms/Nomisma.org</xforms:value>
 				</xforms:header>
 
-				<xforms:action ev:event="xforms-submit-error">					
+				<xforms:action ev:event="xforms-submit-error">
 					<!-- if the mime-type is not a type of XML, then check to see if the event('body') is RDF (an application/octet-stream attachment from ContentDM) -->
 					<xforms:action if="event('body')/*/namespace-uri() = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'">
 						<!-- delete the void:Dataset and insert the new one from the response body -->
 						<xforms:delete nodeset="instance('void-rdf')/void:Dataset"/>
-						
+
 						<xforms:insert context="instance('void-rdf')" origin="event('body')/rdf:RDF/void:Dataset"/>
 					</xforms:action>
 					<xforms:action if="not(event('body')/*/namespace-uri() = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#')">
@@ -457,10 +456,10 @@ SELECT ?uri ?type WHERE {
 					<xforms:name>User-Agent</xforms:name>
 					<xforms:value>XForms/Nomisma.org</xforms:value>
 				</xforms:header>
-				
-				<xforms:action ev:event="xforms-submit-error">					
+
+				<xforms:action ev:event="xforms-submit-error">
 					<!-- if the mime-type is not a type of XML, then check to see if the event('body') is RDF (an application/octet-stream attachment from ContentDM) -->
-					<xforms:action if="event('body')/*/namespace-uri() = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'">						
+					<xforms:action if="event('body')/*/namespace-uri() = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'">
 						<xforms:insert context="instance('rdf')" origin="event('body')/rdf:RDF/*"/>
 					</xforms:action>
 					<xforms:action if="not(event('body')/*/namespace-uri() = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#')">
@@ -703,6 +702,12 @@ SELECT ?uri ?type WHERE {
 				<xforms:send submission="submit-sparqlQuery"/>
 				<xforms:delete nodeset="instance('datasets')/*"/>
 				<xforms:insert context="instance('datasets')" origin="instance('sparqlResponse')/*"/>
+				
+				<!-- insert the list of supplementary datasets bound to named graphs -->
+				<xforms:setvalue ref="instance('sparqlQuery')" value="instance('sparql-templates')/query[@id='get-namedGraphs']"/>
+				<xforms:send submission="submit-sparqlQuery"/>
+				<xforms:delete nodeset="instance('namedGraphs')/*"/>
+				<xforms:insert context="instance('namedGraphs')" origin="instance('sparqlResponse')/*"/>
 			</xforms:action>
 		</xforms:model>
 	</head>
@@ -867,7 +872,7 @@ SELECT ?uri ?type WHERE {
 
 					<xforms:switch>
 						<xforms:case id="default">
-							
+
 							<!--<xforms:trigger>
 								<xforms:label>Delete</xforms:label>
 								<xforms:action ev:event="DOMActivate">
@@ -887,21 +892,21 @@ SELECT ?uri ?type WHERE {
 									<xforms:insert context="instance('datasets')" origin="instance('sparqlResponse')/*"/>
 								</xforms:action>
 							</xforms:trigger>-->
-							
+
 							<xforms:group ref="instance('datasets')">
-								<xforms:group ref=".[count(void:Dataset) &gt; 0]">									
+								<xforms:group ref=".[count(void:Dataset|*[rdf:type/@rdf:resource = 'http://rdfs.org/ns/void#Dataset']) &gt; 0]">									
 									<table class="table">
 										<thead>
 											<tr>
 												<th>Dataset</th>
 												<th>Publisher</th>
 												<th>Record Types</th>
-												<th>Refresh</th>
+												<!--<th>Refresh</th>-->
 												<th>Delete</th>
 											</tr>
 										</thead>
 										<tbody>
-											<xforms:repeat nodeset="descendant::void:Dataset">
+											<xforms:repeat nodeset="void:Dataset|*[rdf:type/@rdf:resource = 'http://rdfs.org/ns/void#Dataset']">
 												<tr>
 													<td>
 														<xforms:trigger appearance="minimal">
@@ -923,7 +928,7 @@ SELECT ?uri ?type WHERE {
 															<br />
 														</xforms:repeat>
 													</td>
-													<td class="text-center">
+													<!--<td class="text-center">
 														<xforms:trigger appearance="minimal">
 															<xforms:label><span class="glyphicon glyphicon-refresh"></span></xforms:label>
 															<xforms:action ev:event="DOMActivate">
@@ -935,7 +940,7 @@ SELECT ?uri ?type WHERE {
 																<xforms:dispatch target="refresh-dataset-dialog" name="fr-show"/>
 															</xforms:action>
 														</xforms:trigger>
-													</td>
+													</td>-->
 													<td class="text-center">
 														<xforms:trigger appearance="minimal">
 															<xforms:label><span class="glyphicon glyphicon-remove"></span></xforms:label>
@@ -954,7 +959,7 @@ SELECT ?uri ?type WHERE {
 										</tbody>
 									</table>
 								</xforms:group>
-								<xforms:group ref=".[count(descendant::res:result) = 0]">
+								<xforms:group ref=".[count(void:Dataset|*[rdf:type/@rdf:resource = 'http://rdfs.org/ns/void#Dataset']) = 0]">
 									<p>No datasets found in endpoint. <xforms:trigger appearance="minimal">
 											<xforms:label>Add a dataset.</xforms:label>
 											<xforms:action ev:event="DOMActivate">
@@ -962,6 +967,71 @@ SELECT ?uri ?type WHERE {
 												<xxforms:show dialog="lookup-dialog"/>
 											</xforms:action>
 										</xforms:trigger></p>
+								</xforms:group>
+								
+								<xforms:group ref="instance('namedGraphs')[count(*) &gt; 0]">
+									<h3>Supplementary Datasets</h3>
+									<p>These datasets are bound to named graphs that enable further statements to be made about objects that may already be harvested in Nomisma, for example,
+										die links between coins and die URIs that are bound to a named graph defining the scholarly attribution.</p>
+									
+									<table class="table">
+										<thead>
+											<tr>
+												<th>Dataset</th>
+												<th>Publisher</th>
+												<th>Type</th>
+												<th>Named Graph</th>
+												<!--<th>Refresh</th>-->
+												<th>Delete</th>
+											</tr>
+										</thead>
+										<tbody>
+											<xforms:repeat nodeset="*">
+												<tr>
+													<td>
+														<xforms:trigger appearance="minimal">
+															<xforms:label value="dcterms:title"/>
+															<xforms:action ev:event="DOMActivate">
+																<xforms:load show="new" resource="{@rdf:about}"/>
+															</xforms:action>
+														</xforms:trigger>
+													</td>
+													<td><xforms:output ref="dcterms:publisher"/></td>
+													<td>
+														<xforms:output ref="dcterms:type"/>
+													</td>
+													<td>
+														<xforms:output ref="sd:namedGraph/@rdf:resource"/>
+													</td>
+													<!--<td class="text-center">
+														<xforms:trigger appearance="minimal">
+															<xforms:label><span class="glyphicon glyphicon-refresh"></span></xforms:label>
+															<xforms:action ev:event="DOMActivate">
+																<xforms:var name="dataset" select="@rdf:about"/>
+																<xforms:var name="type"
+																	select="if (dcterms:type[@rdf:resource='http://nomisma.org/ontology#Hoard']) then 'Hoard' else if (dcterms:type[@rdf:resource='http://nomisma.org/ontology#TypeSeriesItem']) then 'TypeSeriesItem' else 'NumismaticObject'"/>
+																<xforms:setvalue ref="instance('control-instance')/concept_type" select="$type"/>
+																<xforms:setvalue ref="instance('control-instance')/dataset" value="$dataset"/>
+																<xforms:dispatch target="refresh-dataset-dialog" name="fr-show"/>
+															</xforms:action>
+														</xforms:trigger>
+													</td>-->
+													<td class="text-center">
+														<xforms:trigger appearance="minimal">
+															<xforms:label><span class="glyphicon glyphicon-remove"></span></xforms:label>
+															<xforms:action ev:event="DOMActivate">
+																<xforms:var name="dataset" select="@rdf:about"/>
+																<xforms:var name="namedGraph" select="sd:namedGraph/@rdf:resource"/>
+																<xforms:setvalue ref="instance('control-instance')/dataset" value="$dataset"/>
+																<xforms:setvalue ref="instance('control-instance')/namedGraph" value="$namedGraph"/>
+																<xforms:dispatch target="delete-dataset-dialog" name="fr-show"/>
+															</xforms:action>
+														</xforms:trigger>
+													</td>
+												</tr>
+											</xforms:repeat>
+										</tbody>
+									</table>
 								</xforms:group>
 							</xforms:group>
 						</xforms:case>
@@ -1311,7 +1381,7 @@ SELECT ?uri ?type WHERE {
 						</xforms:case>
 						<xforms:case id="validate-void">
 							<xforms:group ref="instance('void-rdf')">
-								<xforms:group ref="void:Dataset[@rdf:about]">
+								<xforms:group ref="void:Dataset[@rdf:about]|sd:Dataset[@rdf:about]">
 									<!-- display error messages for missing fields -->
 									<!--<xforms:group ref=".[not(string(dcterms:title))]">
 										<div class="alert-danger alert alert-box">
@@ -1353,13 +1423,19 @@ SELECT ?uri ?type WHERE {
 										<div>
 											<xforms:output value="if (@rdf:resource) then @rdf:resource else .">
 												<xforms:label>Description</xforms:label>
-												<xforms:alert>test</xforms:alert>
 											</xforms:output>
 											<xforms:group ref="@lang">
 												<xforms:output value="concat('(', ., ')')"/>
 											</xforms:group>
 										</div>
 									</xforms:repeat>
+									<xforms:group ref="dcterms:type">
+										<div>
+											<xforms:output value="if (@rdf:resource) then @rdf:resource else .">
+												<xforms:label>Type</xforms:label>
+											</xforms:output>
+										</div>
+									</xforms:group>
 									<xforms:group ref="dcterms:publisher">
 										<div>
 											<xforms:output value="if (@rdf:resource) then @rdf:resource else .">
@@ -1385,13 +1461,19 @@ SELECT ?uri ?type WHERE {
 										<xforms:label><span class="glyphicon glyphicon-upload"></span> Import</xforms:label>
 										<xforms:action ev:event="DOMActivate">
 											<!-- insert date -->
-											<xforms:insert context="instance('void-rdf')/void:Dataset" nodeset="./child::node()[last()]"
+											<xforms:insert context="instance('void-rdf')/*[local-name()='Dataset']" nodeset="./child::node()[last()]"
 												origin="xforms:element('dcterms:date', current-dateTime())"/>
 
 											<!-- push VoID RDF into triplestore -->
 											<xforms:send submission="post-void"/>
 											<xforms:action ev:event="xforms-submit-done">
-												<xforms:action xxforms:iterate="instance('void-rdf')/void:Dataset/void:dataDump">
+												<!-- set the namedGraph, if applicable -->
+												<xforms:setvalue ref="instance('control-instance')/namedGraph"
+													value="if (instance('void-rdf')/*[local-name()='Dataset']/sd:namedGraph/sd:NamedGraph/sd:name) 
+														then instance('void-rdf')/*[local-name()='Dataset']/sd:namedGraph/sd:NamedGraph/sd:name/@rdf:resource 
+														else 'default'"/>
+
+												<xforms:action xxforms:iterate="instance('void-rdf')/*[local-name()='Dataset']/void:dataDump">
 													<xforms:setvalue ref="instance('control-instance')/dump_uri" value="context()/@rdf:resource"/>
 													<xforms:send submission="load-dump"/>
 													<xforms:action ev:event="xforms-submit-done">
@@ -1399,18 +1481,28 @@ SELECT ?uri ?type WHERE {
 													</xforms:action>
 												</xforms:action>
 
+												<!-- reset graph to default -->
+												<xforms:setvalue ref="instance('control-instance')/namedGraph">default</xforms:setvalue>
+												
 												<!-- refresh page after dumps have been posted -->
 												<xforms:setvalue ref="instance('sparqlQuery')" value="instance('sparql-templates')/query[@id='get-datasets']"/>
 												<xforms:send submission="submit-sparqlQuery"/>
 												<xforms:delete nodeset="instance('datasets')/*"/>
 												<xforms:insert context="instance('datasets')" origin="instance('sparqlResponse')/*"/>
+												
+												<!-- insert the list of supplementary datasets bound to named graphs -->
+												<xforms:setvalue ref="instance('sparqlQuery')" value="instance('sparql-templates')/query[@id='get-namedGraphs']"/>
+												<xforms:send submission="submit-sparqlQuery"/>
+												<xforms:delete nodeset="instance('namedGraphs')/*"/>
+												<xforms:insert context="instance('namedGraphs')" origin="instance('sparqlResponse')/*"/>
+												
 												<xforms:toggle case="default"/>
 											</xforms:action>
 										</xforms:action>
 									</xforms:trigger>
 								</xforms:group>
 								<!-- if there is not a void:Dataset child and/or there is no URI for the Dataset, then validation fails outright -->
-								<xforms:group ref=".[not(void:Dataset[@rdf:about])]">
+								<xforms:group ref=".[not(void:Dataset[@rdf:about] or sd:Dataset[@rdf:about])]">
 									<div class="alert-danger alert alert-box"><span class="glyphicon glyphicon-exclamation-sign"></span>
 										<strong>Alert:</strong> No void:Dataset object or missing dataset URI.</div>
 									<xforms:trigger>
@@ -1422,7 +1514,7 @@ SELECT ?uri ?type WHERE {
 						</xforms:case>
 					</xforms:switch>
 
-					<!--<fr:xforms-inspector/>-->
+					<fr:xforms-inspector/>
 				</div>
 			</div>
 		</div>
@@ -1455,43 +1547,59 @@ SELECT ?uri ?type WHERE {
 			<fr:positive-choice>
 				<fr:label>Yes</fr:label>
 				<xforms:action ev:event="DOMActivate">
-					<!-- first delete the objects associated with the dataset, linked by void:inDataset -->
-					<xforms:setvalue ref="instance('sparqlUpdate')"
-						value="replace(instance('sparqlUpdate-template')/query[@id=concat('delete-', instance('control-instance')/concept_type)], 'DATASET', instance('control-instance')/dataset)"/>
+					<!-- if the namedGraph matches a URI pattern, then execute the DROP GRAPH update -->
+					<xforms:action if="matches(instance('control-instance')/namedGraph, '^https?://')">
+						<xforms:setvalue ref="instance('sparqlUpdate')"
+							value="replace(instance('sparqlUpdate-template')/query[@id = 'delete-namedGraph'], '%GRAPH%', instance('control-instance')/namedGraph)"/>
+					</xforms:action>
+					<!-- if there is no namedGraph, then delete the dataset from the default graph by means of void:inDataset property -->
+					<xforms:action if="not(matches(instance('control-instance')/namedGraph, '^https?://'))">
+						<xforms:setvalue ref="instance('sparqlUpdate')"
+							value="replace(instance('sparqlUpdate-template')/query[@id=concat('delete-', instance('control-instance')/concept_type)], 'DATASET', instance('control-instance')/dataset)"/>
+					</xforms:action>
+					<!-- send SPARQL/Update -->
 					<xforms:send submission="update-graph"/>
+					
 					<!-- then delete the void:Dataset object -->
 					<xforms:setvalue ref="instance('sparqlUpdate')"
 						value="replace(instance('sparqlUpdate-template')/query[@id='delete-metadata'], 'DATASET', instance('control-instance')/dataset)"/>
 					<xforms:send submission="update-graph"/>
+					
 					<!-- resubmit SPARQL query for void:Datasets to reset the table -->
 					<xforms:setvalue ref="instance('sparqlQuery')" value="instance('sparql-templates')/query[@id='get-datasets']"/>
 					<xforms:send submission="submit-sparqlQuery"/>
 					<xforms:delete nodeset="instance('datasets')/*"/>
 					<xforms:insert context="instance('datasets')" origin="instance('sparqlResponse')/*"/>
+					
+					<!-- insert the list of supplementary datasets bound to named graphs -->
+					<xforms:setvalue ref="instance('sparqlQuery')" value="instance('sparql-templates')/query[@id='get-namedGraphs']"/>
+					<xforms:send submission="submit-sparqlQuery"/>
+					<xforms:delete nodeset="instance('namedGraphs')/*"/>
+					<xforms:insert context="instance('namedGraphs')" origin="instance('sparqlResponse')/*"/>
 				</xforms:action>
 			</fr:positive-choice>
 			<fr:negative-choice>
 				<fr:label>No</fr:label>
 			</fr:negative-choice>
 		</fr:alert-dialog>
-		<fr:alert-dialog id="refresh-dataset-dialog">
+		<!--<fr:alert-dialog id="refresh-dataset-dialog">
 			<fr:label>Refresh Dataset</fr:label>
 			<fr:message>Refreshing the dataset may take several minutes. Continue?</fr:message>
 			<fr:positive-choice>
 				<fr:label>Yes</fr:label>
 				<xforms:action ev:event="DOMActivate">
-					<!-- first delete the objects associated with the dataset, linked by void:inDataset -->
+					<!-\- first delete the objects associated with the dataset, linked by void:inDataset -\->
 					<xforms:setvalue ref="instance('sparqlUpdate')"
 						value="replace(instance('sparqlUpdate-template')/query[@id=concat('delete-', instance('control-instance')/concept_type)], 'DATASET', instance('control-instance')/dataset)"/>
 					<xforms:send submission="update-graph"/>
-					<!-- then fetch the new data dump -->
+					<!-\- then fetch the new data dump -\->
 					<xforms:action ev:event="xforms-submit-done">
 						<xforms:action xxforms:iterate="instance('sparqlResponse')//void:Dataset[@rdf:about=instance('control-instance')/dataset]/void:dataDump">
 							<xforms:setvalue ref="instance('control-instance')/dump_uri" value="context()/@rdf:resource"/>
 							<xforms:send submission="load-dump"/>
 							<xforms:send submission="post-dump" ev:event="xforms-submit-done"/>
 						</xforms:action>
-						<!-- resubmit SPARQL query for void:Datasets to reset the table -->
+						<!-\- resubmit SPARQL query for void:Datasets to reset the table -\->
 						<xforms:setvalue ref="instance('sparqlQuery')" value="instance('sparql-templates')/query[@id='get-datasets']"/>
 						<xforms:send submission="submit-sparqlQuery"/>
 						<xforms:delete nodeset="instance('datasets')/*"/>
@@ -1502,6 +1610,6 @@ SELECT ?uri ?type WHERE {
 			<fr:negative-choice>
 				<fr:label>No</fr:label>
 			</fr:negative-choice>
-		</fr:alert-dialog>
+		</fr:alert-dialog>-->
 	</body>
 </html>
