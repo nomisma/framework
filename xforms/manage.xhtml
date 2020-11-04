@@ -133,8 +133,12 @@
 			<!-- sparql update -->
 			<xforms:instance id="sparqlUpdate-template">
 				<templates xmlns="">
-					<query id="delete-metadata"><![CDATA[PREFIX void:	<http://rdfs.org/ns/void#> 
-DELETE {?s ?p ?o} WHERE { <DATASET> ?p ?o . ?s ?p ?o . FILTER (?s = <DATASET>)}]]></query>					
+					<query id="delete-metadata"><![CDATA[PREFIX void:	<http://rdfs.org/ns/void#>
+PREFIX sd:	<http://www.w3.org/TR/sparql11-service-description/>
+DELETE {?s ?p ?o} WHERE {
+	{<DATASET> sd:namedGraph ?s . ?s ?p ?o }
+	UNION {<DATASET> ?p ?o . ?s ?p ?o . FILTER (?s = <DATASET>)}
+}]]></query>					
 					<query id="delete-NumismaticObject"><![CDATA[PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX void:	<http://rdfs.org/ns/void#>
 PREFIX dcterms:	<http://purl.org/dc/terms/>
@@ -1429,6 +1433,15 @@ SELECT ?uri ?type WHERE {
 											</xforms:group>
 										</div>
 									</xforms:repeat>
+									<xforms:group ref="sd:namedGraph">
+										<div>
+											<div>
+												<xforms:output value="sd:NamedGraph/sd:name/@rdf:resource">
+													<xforms:label>Named Graph</xforms:label>
+												</xforms:output>
+											</div>
+										</div>
+									</xforms:group>
 									<xforms:group ref="dcterms:type">
 										<div>
 											<xforms:output value="if (@rdf:resource) then @rdf:resource else .">
@@ -1514,7 +1527,7 @@ SELECT ?uri ?type WHERE {
 						</xforms:case>
 					</xforms:switch>
 
-					<fr:xforms-inspector/>
+					<!--<fr:xforms-inspector/>-->
 				</div>
 			</div>
 		</div>
