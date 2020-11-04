@@ -922,9 +922,9 @@ SELECT ?uri ?type WHERE {
 													</td>
 													<td><xforms:output ref="dcterms:publisher"/></td>
 													<td>
-														<xforms:repeat nodeset="dcterms:type">
+														<xforms:repeat nodeset="dcterms:type[not(@rdf:resource = 'http://www.w3.org/2004/02/skos/core#Concept')]">
 															<xforms:trigger appearance="minimal">
-																<xforms:label value="substring-after(@rdf:resource, '#')"/>
+																<xforms:label value="if (contains(@rdf:resource, '#')) then substring-after(@rdf:resource, '#') else tokenize(@rdf:resource, '/')[last()]"/>
 																<xforms:action ev:event="DOMActivate">
 																	<xforms:load show="new" resource="{@rdf:resource}"/>
 																</xforms:action>
@@ -950,8 +950,11 @@ SELECT ?uri ?type WHERE {
 															<xforms:label><span class="glyphicon glyphicon-remove"></span></xforms:label>
 															<xforms:action ev:event="DOMActivate">
 																<xforms:var name="dataset" select="@rdf:about"/>
+																<!-- the TypeSeriesItem query deletes symbols and monograms -->
 																<xforms:var name="type"
-																	select="if (dcterms:type[@rdf:resource='http://nomisma.org/ontology#Hoard']) then 'Hoard' else if (dcterms:type[@rdf:resource='http://nomisma.org/ontology#TypeSeriesItem']) then 'TypeSeriesItem' else 'NumismaticObject'"/>
+																	select="if (dcterms:type[@rdf:resource='http://nomisma.org/ontology#NumismaticObject']) then 'NumismaticObject' 
+																		else if (dcterms:type[@rdf:resource='http://nomisma.org/ontology#Hoard']) then 'Hoard' 
+																		else 'TypeSeriesItem'"/>
 																<xforms:setvalue ref="instance('control-instance')/concept_type" value="$type"/>
 																<xforms:setvalue ref="instance('control-instance')/dataset" value="$dataset"/>
 																<xforms:dispatch target="delete-dataset-dialog" name="fr-show"/>
