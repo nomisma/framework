@@ -270,11 +270,12 @@
 					<property label="End Date">nmo:hasEndDate</property>
 					<property label="Exact Match" exclude="nmo:Mint">skos:exactMatch</property>
 					<property label="Field of Numismatics">dcterms:isPartOf</property>
+					<property label="GeoJSON Polygon" constraint="nmo:Mint|nmo:Region">osgeo:asGeoJSON</property>
 					<property label="Image Creator" constraint="crm:E37_Mark|nmo:Monogram">image_creator</property>
 					<property label="Image License" constraint="crm:E37_Mark|nmo:Monogram">image_license</property>
 					<property label="Image URI" constraint="crm:E37_Mark|nmo:Monogram">crm:P165i_is_incorporated_in</property>
 					<property label="Latitude" constraint="nmo:Mint">geo:lat</property>
-					<property label="Longitude" constraint="nmo:Mint">geo:long</property>
+					<property label="Longitude" constraint="nmo:Mint">geo:long</property>					
 					<property label="Organization" constraint="foaf:Person|foaf:Organization">org:organization</property>
 					<property label="Role" constraint="foaf:Person|foaf:Organization">org:role</property>
 					<property label="Scope Note">skos:scopeNote</property>
@@ -427,6 +428,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 				and count(mapping[@to='geo:lat']) &lt;= 1 and count(mapping[@to='geo:long']) &lt;= 1 
 				and count(mapping[@to='bio:birth']) &lt;= 1 and count(mapping[@to='bio:death']) &lt;= 1
 				and count(mapping[@to='crm:P190_has_symbolic_content']) &lt;= 1
+				and count(mapping[@to='osgeo:asGeoJSON']) &lt;= 1
 				and count(mapping[@to = 'image_creator']) &lt;= 1 and count(mapping[@to = 'image_license']) &lt;= 1
 				and (if (count(mapping[@to = 'image_creator']) = 1) then not(mapping[@to = 'image_creator']/following-sibling::mapping[@to = 'crm:P165i_is_incorporated_in']) else true())
 				and (if(count(mapping[@to = 'image_creator']) = 1) then (count(mapping[@to = 'crm:P165i_is_incorporated_in']) &gt; 0) else true())
@@ -1696,6 +1698,27 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 															origin="xforms:element($mapping, (xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#decimal'), $value))"
 															if="not(instance('rdf')/geo:SpatialThing/*[name()=$mapping])"/>
 													</xforms:action>
+													
+													<!-- create geo:location and geo:SpatialThing if there a osgeo:asGeoJSON -->
+													<xforms:action if="$mapping = 'osgeo:asGeoJSON'">
+														<xforms:var name="locationUri" select="concat($uri, '#this')"/>
+														<!-- insert geo:location if it doesn't exist -->
+														<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
+															origin="xforms:element('geo:location', (xforms:attribute('rdf:resource', $locationUri), ''))"
+															if="not(instance('rdf')/*[1]/geo:location)"/>
+														<!-- if there is no existing SpatialThing, then create one -->
+														<xforms:insert context="instance('rdf')" nodeset="./child::node()[last()]"
+															origin="xforms:element('geo:SpatialThing', (xforms:attribute('rdf:about', $locationUri), ''))"
+															if="not(instance('rdf')/geo:SpatialThing)"/>
+														<!-- insert the osgeo:asGeoJSON property if it doesn't exist -->
+														<xforms:insert context="instance('rdf')/geo:SpatialThing" nodeset="./child::node()[last()]"
+															origin="xforms:element($mapping, '')"
+															if="not(instance('rdf')/geo:SpatialThing/*[name()=$mapping])"/>		
+														
+														<!-- set (overwrite value) -->
+														<xforms:setvalue ref="instance('rdf')/geo:SpatialThing/*[name()=$mapping]" value="$value"/>
+													</xforms:action>
+													
 													<!-- create bio:birth or bio:death property and associated bio:Birth and bio:Death object -->
 													<xforms:action if="$mapping = 'bio:birth' or $mapping='bio:death'">
 														<xforms:var name="fragmentUri" select="concat($uri, '#', substring-after($mapping, ':'))"/>
