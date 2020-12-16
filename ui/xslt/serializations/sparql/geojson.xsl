@@ -131,7 +131,7 @@
 		<xsl:param name="label"/>
 
 		<xsl:text>{"type": "Feature","label":"</xsl:text>
-		<xsl:value-of select="$label"/>
+		<xsl:value-of select="replace($label, '&#x022;', '\\&#x022;')"/>
 		<xsl:text>","id":"</xsl:text>
 		<xsl:value-of select="$uri"/>
 		<xsl:text>","geometry": {"type": "Point","coordinates": [</xsl:text>
@@ -153,7 +153,7 @@
 		<xsl:param name="label"/>
 
 		<xsl:text>{"type": "Feature","label": "</xsl:text>
-		<xsl:value-of select="$label"/>
+		<xsl:value-of select="replace($label, '&#x022;', '\\&#x022;')"/>
 		<xsl:text>","id":"</xsl:text>
 		<xsl:value-of select="$uri"/>
 		<xsl:text>","geometry":</xsl:text>
@@ -194,7 +194,7 @@
 		<xsl:variable name="label" select="res:binding[1]/res:*"/>
 
 		<xsl:text>{"type": "Feature","label":"</xsl:text>
-		<xsl:value-of select="$label"/>
+		<xsl:value-of select="replace($label, '&#x022;', '\\&#x022;')"/>
 		<xsl:text>"</xsl:text>
 		<xsl:if test="matches($label, 'https?://')">
 			<xsl:text>,"id":"</xsl:text>
@@ -237,7 +237,7 @@
 		</xsl:variable>
 
 		<xsl:text>{"type": "Feature","label":"</xsl:text>
-		<xsl:value-of select="$label"/>
+		<xsl:value-of select="replace($label, '&#x022;', '\\&#x022;')"/>
 		<xsl:text>","id":"</xsl:text>
 		<xsl:value-of select="$object/*[1]/@rdf:about"/>
 		<xsl:text>",</xsl:text>
