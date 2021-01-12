@@ -1,0 +1,494 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxforms="http://orbeon.org/oxf/xml/xforms"
+	xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:org="http://www.w3.org/ns/org#" xmlns:prov="http://www.w3.org/ns/prov#">
+	<head>
+		<title>nomisma.org: creator or edit nomisma editor</title>
+		<link rel="stylesheet" href="/fr/style/bootstrap/css/bootstrap.css" type="text/css" />
+		<link rel="stylesheet" href="/fr/style/form-runner-bootstrap-override.css" type="text/css" />
+
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+		<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<link rel="shortcut icon" href="/ops/images/orbeon-icon-16.ico" />
+		<link rel="icon" href="/ops/images/orbeon-icon-16.png" type="image/png" />
+		<link rel="stylesheet" href="/apps/nomisma/xforms/css/style.css" />
+
+		<!-- model -->
+		<xforms:model>
+			<xforms:instance id="doc" xxforms:exclude-result-prefixes="#default xhtml xforms xs ev xxforms fr res xi nomisma atom">
+				<rdf:RDF xmlns="" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/" xmlns:nmo="http://nomisma.org/ontology#"
+					xmlns:prov="http://www.w3.org/ns/prov#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+					xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+					xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:org="http://www.w3.org/ns/org#">
+					<foaf:Person rdf:about="">
+						<rdf:type rdf:resource="http://www.w3.org/ns/prov#Agent"/>
+						<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+						<skos:prefLabel/>
+						<skos:inScheme rdf:resource="http://nomisma.org/editor/"/>
+					</foaf:Person>
+				</rdf:RDF>
+			</xforms:instance>
+
+			<xforms:instance id="config" xxforms:exclude-result-prefixes="#all">
+				<xi:include href="../config.xml"/>
+			</xforms:instance>
+
+			<xforms:instance id="control-instance" xxforms:exclude-result-prefixes="#all">
+				<controls xmlns="">
+					<id></id>
+					<idValid>false</idValid>
+					<uri></uri>
+					<username></username>
+					<new-id>true</new-id>
+					<load-error>false</load-error>
+					<save-trigger>false</save-trigger>
+					<proceed-trigger>false</proceed-trigger>
+					<status></status>
+					<type></type>
+					<conceptScheme>editor</conceptScheme>
+					<conceptScheme_uri>http://nomisma.org/editor/</conceptScheme_uri>
+					<concept_path></concept_path>
+					<dump></dump>
+					<membership-position></membership-position>
+					<content_before_hash></content_before_hash>
+					<content_after_hash></content_after_hash>
+					<session-id></session-id>
+				</controls>
+			</xforms:instance>
+
+			<xforms:instance id="load-config">
+				<config xmlns="">
+					<url></url>
+					<content-type>application/xml</content-type>
+					<mode>xml</mode>
+				</config>
+			</xforms:instance>
+
+			<xforms:instance id="save-config">
+				<config xmlns="">
+					<url></url>
+					<content-type>text/plain</content-type>
+					<make-directories>false</make-directories>
+					<append>false</append>
+				</config>
+			</xforms:instance>
+
+			<xforms:instance id="delete-config">
+				<config xmlns="">
+					<delete>
+						<url></url>
+					</delete>
+				</config>
+			</xforms:instance>
+
+			<xforms:instance id="dump">
+				<dump xmlns=""></dump>
+			</xforms:instance>
+
+
+			<!-- ******** RDF PROPERTY TEMPLATES ******** -->
+			<!-- skos -->
+			<xforms:instance id="exactMatch-template" xxforms:exclude-result-prefixes="#all">
+				<skos:exactMatch rdf:resource=""/>
+			</xforms:instance>
+
+			<xforms:instance id="memberOf-template" xxforms:exclude-result-prefixes="#all">
+				<org:memberOf rdf:resource=""/>
+			</xforms:instance>
+
+			<!-- provenance -->
+			<xforms:instance id="changeNote-template" xxforms:exclude-result-prefixes="#all">
+				<skos:changeNote rdf:resource=""/>
+			</xforms:instance>
+
+			<xforms:instance id="provenance-template" xxforms:exclude-result-prefixes="#all">
+				<dcterms:ProvenanceStatement rdf:about="">
+					<foaf:topic rdf:resource=""/>
+				</dcterms:ProvenanceStatement>
+			</xforms:instance>
+
+			<xforms:instance id="activity-template" xxforms:exclude-result-prefixes="#all">
+				<prov:Activity>
+					<prov:atTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"/>
+					<prov:wasAssociatedWith rdf:resource=""/>
+					<dcterms:type/>
+				</prov:Activity>
+			</xforms:instance>
+
+			<!-- ********** REST RESPONSES ********** -->
+			<!-- sparql queries -->
+			<xforms:instance id="sparqlQuery">
+				<query></query>
+			</xforms:instance>
+
+			<!-- preloaded instances -->
+			<xforms:instance id="sparqlResponse">
+				<sparql xmlns="http://www.w3.org/2005/sparql-results#"/>
+			</xforms:instance>
+
+			<!-- sparql update -->
+			<xforms:instance id="sparqlUpdate-template">
+				<query><![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX crm:	<http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
+PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX org:	<http://www.w3.org/ns/org#>
+PREFIX prov:	<http://www.w3.org/ns/prov#>
+PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
+DELETE {?s ?p ?o} WHERE {
+BIND (<URI> as ?concept)
+?concept ?p ?o . ?s ?p ?o . FILTER (?s = ?concept)
+}]]></query>
+			</xforms:instance>
+
+			<xforms:instance id="sparqlUpdate">
+				<query></query>
+			</xforms:instance>
+
+			<!-- **************** BINDINGS ********************** -->
+			<xforms:bind nodeset="instance('doc')">
+				<!-- handle top-level rdf:type -->
+				<xforms:bind nodeset="*[1]">
+					<xforms:bind nodeset="@rdf:about" required="true()" type="xs:anyURI"/>
+					<!-- skos -->
+					<xforms:bind nodeset="skos:prefLabel" required="true()"/>
+					<!-- @rdf:resource -->
+					<xforms:bind nodeset="//@rdf:resource" required="true()" type="xs:anyURI"
+						constraint="matches(., 'https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$')"/>
+				</xforms:bind>
+			</xforms:bind>
+
+			<xforms:bind nodeset="instance('control-instance')">
+				<xforms:bind nodeset="id" required="true()" constraint="matches(., &quot;^([a-zA-Z0-9\-\._\(\)&#x0027;]*)?$&quot;)"
+					readonly="../new-id != true()"/>
+				<xforms:bind nodeset="idValid" type="xs:boolean"
+					calculate="matches(../id, &quot;^([a-zA-Z0-9\-\._\(\)&#x0027;]*)?$&quot;) and string-length(../id) &gt; 0"/>
+				<xforms:bind nodeset="new-id" type="xs:boolean"/>
+				<xforms:bind nodeset="load-error" type="xs:boolean"/>
+				<xforms:bind nodeset="delete-success" type="xs:boolean"/>
+				<xforms:bind id="labels-visible" nodeset="labels-visible" type="xs:boolean"/>
+				<xforms:bind id="save-trigger" nodeset="save-trigger" type="xs:boolean" readonly=". != true()"/>
+				<xforms:bind id="proceed-trigger" nodeset="proceed-trigger" type="xs:boolean" readonly=". != true()"
+					calculate="../idValid = true()"/>
+			</xforms:bind>
+
+			<!-- **************** DYNAMIC VALIDATION CONTROLS ********************** -->
+			<xforms:action ev:event="xxforms-invalid" ev:observer="doc">
+				<xforms:setvalue ref="instance('control-instance')/save-trigger" value="false()"/>				
+			</xforms:action>
+			
+			<xforms:action ev:event="xxforms-valid" ev:observer="doc">
+				<xforms:setvalue ref="instance('control-instance')/save-trigger" value="true()"/>				
+			</xforms:action>
+
+			<!-- ************* SPARQL SUBMISSIONS **********************-->
+			<!-- SPARQL queries -->
+			<xforms:submission id="submit-sparqlQuery" action="{instance('config')/sparql_query}?query={encode-for-uri(instance('sparqlQuery'))}&amp;output=xml"
+				ref="instance('sparqlResponse')" replace="instance" method="get">
+				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL query failed.</xforms:message>
+			</xforms:submission>
+
+			<xforms:submission id="delete-graph" action="{instance('config')/sparql_update}" ref="instance('sparqlUpdate')" serialization="text/plain"
+				replace="none" method="post" mediatype="application/sparql-update">
+				<xforms:action ev:event="xforms-submit-error">
+					<xforms:message level="modal">SPARQL update failed.</xforms:message>
+					<xforms:setvalue ref="instance('control-instance')/delete-success" value="false()"/>
+				</xforms:action>
+				<xforms:action ev:event="xforms-submit-done">
+					<xforms:setvalue ref="instance('control-instance')/delete-success" value="true()"/>
+				</xforms:action>
+			</xforms:submission>
+
+			<xforms:submission id="post-new" action="{instance('config')/sparql_store}?default" ref="instance('doc')" replace="none" method="post"
+				mediatype="application/rdf+xml">
+				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Successfully posted to endpoint.</xforms:setvalue>
+				<xforms:message ev:event="xforms-submit-error" level="modal">Post to endpoint failed.</xforms:message>
+			</xforms:submission>
+
+			<!-- ************************* SOLR SUBMISSIONS ************************** -->
+			<!-- post instance to Solr -->
+			<xforms:submission id="post-solr-doc" action="{instance('config')/solr_published}update" ref="instance('addIndex')" instance="addIndex"
+				replace="instance" method="post">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is
+					incorrect.</xforms:message>
+				<xforms:action ev:event="xforms-submit-done">
+					<xforms:setvalue ref="instance('control-instance')/status">Document successfully saved to Solr.</xforms:setvalue>
+					<xforms:send submission="submit-commit"/>
+				</xforms:action>
+
+			</xforms:submission>
+
+			<xforms:submission id="delete-id-from-solr" action="{instance('config')/solr_published}update" ref="instance('deleteId')" instance="deleteId"
+				replace="instance" method="post">
+				<xforms:action ev:event="xforms-submit-error">
+					<xforms:message level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
+					<xforms:setvalue ref="instance('control-instance')/delete-success" value="false()"/>
+				</xforms:action>
+				<xforms:action ev:event="xforms-submit-done">
+					<xforms:send submission="submit-commit"/>
+					<xforms:setvalue ref="instance('control-instance')/status">Document successfully deleted from Solr.</xforms:setvalue>
+					<xforms:setvalue ref="instance('control-instance')/delete-success" value="true()"/>
+				</xforms:action>
+			</xforms:submission>
+
+			<!-- send commit -->
+			<xforms:submission id="submit-commit" action="{instance('config')/solr_published}update" ref="instance('sendCommit')" instance="sendCommit"
+				replace="none" method="post">
+				<xforms:action ev:event="xforms-submit-error">
+					<xforms:message level="modal">Failed to commit to Solr index.</xforms:message>
+					<xforms:setvalue ref="instance('control-instance')/delete-success" value="false()"/>
+				</xforms:action>
+				<xforms:action ev:event="xforms-submit-done">
+					<xforms:setvalue ref="instance('control-instance')/delete-success" value="true()"/>
+				</xforms:action>
+			</xforms:submission>
+
+			<!-- ************************* LOAD RDF/XML ************************** -->
+			<xforms:submission id="load-rdf" serialization="none" method="get"
+				action="/nomisma/{instance('control-instance')/conceptScheme}/{instance('control-instance')/id}.rdf" replace="instance" instance="doc">
+				<!-- ************ RDF PROCESSING TO CREATE A NEW ID ************** -->
+				<xforms:action ev:event="xforms-submit-error">
+					<xforms:setvalue ref="instance('control-instance')/load-error" value="true()"/>
+				</xforms:action>
+
+				<!-- ************ RDF PROCESSING TO ADD SUPPLEMENTAL INFORMATION ************** -->
+				<xforms:action ev:event="xforms-submit-done">
+					<!-- set new-id to false to initiate the comparing of content before and after -->
+					<xforms:setvalue ref="instance('control-instance')/new-id" value="false()"/>
+					<xforms:setvalue ref="instance('control-instance')/content_before_hash"
+						value="digest(normalize-space(saxon:serialize(instance('doc'), 'xml')), 'MD5', 'hex')"/>
+
+					<!-- set geo values -->
+					<xforms:setvalue ref="instance('control-instance')/geo/lat" value="instance('doc')/geo:SpatialThing/geo:lat"/>
+					<xforms:setvalue ref="instance('control-instance')/geo/long" value="instance('doc')/geo:SpatialThing/geo:long"/>
+					<xforms:setvalue ref="instance('control-instance')/geo/geoJSON" value="instance('doc')/geo:SpatialThing/osgeo:asGeoJSON"/>
+
+					<xforms:setvalue ref="instance('control-instance')/conceptScheme_uri"
+						value="concat('http://nomisma.org/', instance('control-instance')/conceptScheme, '/')"/>
+
+					<!-- set the concept_path based on conceptScheme -->
+					<xforms:setvalue ref="instance('control-instance')/concept_path"
+						value="concat(instance('config')/data_path, '/', instance('control-instance')/conceptScheme, '/')"/>
+
+					<!-- set URI -->
+					<xforms:setvalue ref="instance('control-instance')/uri"
+						value="concat(instance('control-instance')/conceptScheme_uri, instance('control-instance')/id)"/>
+
+					<xforms:setvalue ref="instance('control-instance')/type" value="instance('doc')/*[1]/name()"/>
+				</xforms:action>
+			</xforms:submission>
+
+			<!-- **************** MODEL-CONSTRUCT-DONE ********************** -->
+			<xforms:action ev:event="xforms-model-construct-done">
+				<!-- set username -->
+				<xforms:setvalue ref="instance('control-instance')/username" value="xxforms:get-remote-user()"/>
+
+				<!-- load RDF file from a conceptScheme dependent on the request parameter used -->
+				<xforms:action if="string(xxforms:get-request-parameter('id'))">
+					<xforms:setvalue ref="instance('control-instance')/id" value="xxforms:get-request-parameter('id')"/>
+					<xforms:setvalue ref="instance('control-instance')/conceptScheme">editor</xforms:setvalue>
+					<xforms:send submission="load-rdf"/>
+				</xforms:action>
+			</xforms:action>
+
+			<!-- **************** XFORMS-READY ********************** -->
+			<xforms:action ev:event="xforms-ready">
+				<!-- toggle case if it's not a new id -->
+				<xforms:toggle case="edit-id" if="instance('control-instance')/new-id = false()"/>
+				<xforms:toggle case="load-error" if="instance('control-instance')/load-error = true()"/>
+			</xforms:action>
+		</xforms:model>
+	</head>
+
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<p><a href="../editors/"><span class="glyphicon glyphicon-arrow-left"></span>Return to Editors Page</a></p>
+					<xforms:group ref=".[string-length(instance('control-instance')/status) &gt; 0]">
+						<div class="alert-success alert-box alert">
+							<span class="glyphicon glyphicon-info-sign"></span>
+							<strong>Status:</strong>
+							<xforms:output ref="instance('control-instance')/status"/>
+						</div>
+					</xforms:group>
+
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2">
+					<xforms:group ref="instance('doc')/foaf:Person[string(@rdf:about)]">
+						<xforms:var name="type" select="name()"/>
+						<h2>Controls</h2>
+						<ul class="control-list">
+							<li><h4>Relations</h4></li>
+							<li>
+								<xforms:trigger appearance="minimal">
+									<xforms:label>
+										<span class="glyphicon glyphicon-plus"></span>Exact Match</xforms:label>
+									<xforms:insert ev:event="DOMActivate" origin="instance('exactMatch-template')" context="." nodeset="./child::node()[last()]"
+									/>
+								</xforms:trigger>
+							</li>
+						</ul>
+					</xforms:group>
+				</div>
+				<div class="col-md-10">
+					<xforms:switch>
+						<xforms:case id="create-id">
+							<h1>Create ID</h1>
+							<div>
+								<xforms:input ref="instance('control-instance')/id" incremental="true">
+									<xforms:label>id</xforms:label>
+									<xforms:alert>Required</xforms:alert>
+								</xforms:input>
+							</div>
+							<div>								
+								<xforms:trigger bind="proceed-trigger">
+									<xforms:label>Proceed</xforms:label>
+									<xforms:action ev:event="DOMActivate">										
+										
+										<!-- set the concept_path based on conceptScheme -->
+										<xforms:setvalue ref="instance('control-instance')/concept_path"
+											value="concat(instance('config')/data_path, '/', instance('control-instance')/conceptScheme, '/')"/>
+										
+										<!-- set URI -->
+										<xforms:setvalue ref="instance('control-instance')/uri"
+											value="concat(instance('control-instance')/conceptScheme_uri, instance('control-instance')/id)"/>
+										
+										<!-- create resource description -->
+										<xforms:setvalue ref="instance('doc')/*[1]/@rdf:about"
+											value="instance('control-instance')/uri"/>
+										
+										<!-- toggle interface -->
+										<xforms:toggle case="edit-id"/>
+									</xforms:action>
+								</xforms:trigger>
+							</div>
+						</xforms:case>
+						<xforms:case id="edit-id">
+							<h1>Edit ID <small>
+									<xforms:trigger appearance="minimal">
+										<xforms:label ref="concat('(', instance('control-instance')/conceptScheme_uri, instance('control-instance')/id, ')')"/>
+										<xforms:action ev:event="DOMActivate">
+											<xforms:load show="new"
+												resource="{concat(instance('control-instance')/conceptScheme_uri, instance('control-instance')/id)}"/>
+										</xforms:action>
+									</xforms:trigger>
+								</small>
+							</h1>
+							<xforms:group ref="instance('doc')">
+								<xforms:group ref="*[1]">
+									<xforms:var name="type" select="name()"/>
+
+									<!-- display save/deprecate button when relevant -->
+									<div class="submission">
+										<xforms:trigger bind="save-trigger">
+											<xforms:label><span class="glyphicon glyphicon-floppy-disk"></span>Save</xforms:label>
+											<xforms:action ev:event="DOMActivate">
+
+
+												<!-- if the ID is not new, then evaluate whether a provenance should be added -->
+												<xforms:action if="instance('control-instance')/new-id = false()">
+													<!-- set hash -->
+													<xforms:setvalue ref="instance('control-instance')/content_after_hash"
+														value="digest(normalize-space(saxon:serialize(instance('doc'), 'xml')), 'MD5', 'hex')"/>
+
+													<!-- if the hashes are the same, then update the status -->
+													<xforms:action
+														if="instance('control-instance')/content_before_hash = instance('control-instance')/content_after_hash">
+														<xforms:setvalue ref="instance('control-instance')/status">The content is unchanged, so the ID has not
+															been saved and updated online.</xforms:setvalue>
+													</xforms:action>
+
+													<!-- if the hashed content has changed since the file was loaded -->
+													<xforms:action
+														if="not(instance('control-instance')/content_before_hash = instance('control-instance')/content_after_hash)">
+
+														<!-- perform CRUD only for modified IDs -->
+														<!-- save file to the filesystem -->
+														<xforms:setvalue ref="instance('save-config')/url"
+															value="concat(instance('control-instance')/concept_path,  instance('control-instance')/id, '.rdf')"/>
+														<xforms:insert nodeset="instance('dump')"
+															origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('doc'), instance('save-config')), 'data')"/>
+
+														<!-- delete graph from triplestore, then repost updates -->
+														<xforms:setvalue ref="instance('sparqlUpdate')"
+															value="replace(instance('sparqlUpdate-template'), 'URI', instance('doc')/*[1]/@rdf:about)"/>
+														<xforms:send submission="delete-graph"/>
+														<xforms:send submission="post-new"/>
+
+														<!-- set new hash -->
+														<xforms:setvalue ref="instance('control-instance')/content_before_hash"
+															value="digest(normalize-space(saxon:serialize(instance('doc'), 'xml')), 'MD5', 'hex')"/>
+
+														<!-- set session id-->
+														<xforms:setvalue ref="instance('control-instance')/session-id" value="xxforms:document-id()"/>
+													</xforms:action>
+												</xforms:action>
+
+												<!-- perform CRUD for new IDs -->
+												<xforms:action if="instance('control-instance')/new-id = true()">
+													<!-- save file to the filesystem -->
+													<xforms:setvalue ref="instance('save-config')/url"
+														value="concat(instance('control-instance')/concept_path,  instance('control-instance')/id, '.rdf')"/>
+													<xforms:insert nodeset="instance('dump')"
+														origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('doc'), instance('save-config')), 'data')"/>
+
+													<!-- delete graph from triplestore, then repost updates -->
+													<xforms:setvalue ref="instance('sparqlUpdate')"
+														value="replace(instance('sparqlUpdate-template'), 'URI', instance('doc')/*[1]/@rdf:about)"/>
+													<xforms:send submission="delete-graph"/>
+													<xforms:send submission="post-new"/>
+
+													<!-- set new-id to false -->
+													<xforms:setvalue ref="instance('control-instance')/new-id" value="false()"/>
+													<!-- set session id to prevent Modify events from being inserted after the initial save -->
+													<xforms:setvalue ref="instance('control-instance')/session-id" value="xxforms:document-id()"/>
+													<!-- set new hash -->
+													<xforms:setvalue ref="instance('control-instance')/content_before_hash"
+														value="digest(normalize-space(saxon:serialize(instance('doc'), 'xml')), 'MD5', 'hex')"/>
+												</xforms:action>
+											</xforms:action>
+										</xforms:trigger>
+									</div>
+									<div class="section">
+										<div>
+											<xforms:input ref="skos:prefLabel">
+												<xforms:label>Preferred Label</xforms:label>
+												<xforms:alert>Required</xforms:alert>
+											</xforms:input>
+										</div>
+										<xforms:repeat nodeset="skos:exactMatch">
+											<div>
+												<xforms:input ref="@rdf:resource">
+													<xforms:label>Exact Match</xforms:label>
+													<xforms:alert>Required, must be URI</xforms:alert>
+												</xforms:input>
+												<xforms:trigger appearance="minimal">
+													<xforms:delete ev:event="DOMActivate" context="."/>
+													<xforms:label>
+														<span class="glyphicon glyphicon-remove"></span>
+													</xforms:label>
+												</xforms:trigger>
+											</div>
+										</xforms:repeat>										
+									</div>
+								</xforms:group>
+							</xforms:group>
+						</xforms:case>
+						<xforms:case id="load-error">
+							<div class="alert-danger alert alert-box">
+								<span class="glyphicon glyphicon-exclamation-sign"></span>
+								<strong>Alert:</strong> There is no RDF file matching this ID on the local filesystem.</div>
+						</xforms:case>
+
+					</xforms:switch>
+				</div>
+			</div>
+		</div>
+		<!--<fr:xforms-inspector/>-->
+	</body>
+</html>

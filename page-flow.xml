@@ -8,7 +8,9 @@
 	***************** -->
 	<page path="/nomisma/admin/import/" view="xforms/import.xhtml"/>
 	<page path="/nomisma/admin/manage/" view="xforms/manage.xhtml"/>
-	<page path="/nomisma/admin/edit/" view="xforms/edit.xhtml"/>
+	<page path="/nomisma/admin/edit/" view="xforms/edit-concept.xhtml"/>
+	<page path="/nomisma/admin/editors/edit" view="xforms/edit-editor.xhtml"/>
+	<page path="/nomisma/admin/editors/" view="xforms/editors.xhtml"/>
 	<page path="/nomisma/admin/query/" view="xforms/query.xhtml"/>
 	<page path="/nomisma/admin/" view="xforms/admin.xhtml"/>
 	
