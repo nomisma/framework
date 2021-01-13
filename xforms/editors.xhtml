@@ -3,7 +3,7 @@
 	xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:xi="http://www.w3.org/2001/XInclude"
 	xmlns:dcterms="http://purl.org/dc/terms/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:org="http://www.w3.org/ns/org#"
-	xmlns:prov="http://www.w3.org/ns/prov#">
+	xmlns:crossref="http://www.crossref.org/schema/4.4.0" xmlns:prov="http://www.w3.org/ns/prov#">
 	<head>
 		<title>nomisma.org: editors</title>
 		<link rel="stylesheet" href="/fr/style/bootstrap/css/bootstrap.css" type="text/css" />
@@ -17,49 +17,43 @@
 
 		<!-- model -->
 		<xforms:model>
-			<xforms:instance id="doc" xxforms:exclude-result-prefixes="#default xhtml xforms xs ev xxforms fr res xi nomisma atom">
-				<rdf:RDF xmlns="" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/" xmlns:nmo="http://nomisma.org/ontology#"
-					xmlns:prov="http://www.w3.org/ns/prov#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-					xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-					xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:org="http://www.w3.org/ns/org#">
-					<foaf:Person rdf:about="">
-						<rdf:type rdf:resource="http://www.w3.org/ns/prov#Agent"/>
-						<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-						<skos:prefLabel/>
-						<skos:inScheme rdf:resource="http://nomisma.org/editor/"/>
-					</foaf:Person>
-				</rdf:RDF>
+			<xforms:instance id="rdf" xxforms:exclude-result-prefixes="#all">
+				<rdf:RDF/>
 			</xforms:instance>
 
 			<xforms:instance id="config" xxforms:exclude-result-prefixes="#all">
 				<xi:include href="../config.xml"/>
 			</xforms:instance>
 
+			<!-- crossref authentication stored in XML file -->
+			<xforms:instance id="crossref-config" xxforms:exclude-result-prefixes="#all">
+				<xi:include href="../crossref-config.xml"/>
+			</xforms:instance>
+
 			<xforms:instance id="control-instance" xxforms:exclude-result-prefixes="#all">
 				<controls xmlns="">
 					<id></id>
-					<idValid>false</idValid>
 					<uri></uri>
+					<doi></doi>
 					<username></username>
-					<new-id>true</new-id>
-					<load-error>false</load-error>
-					<save-trigger>false</save-trigger>
-					<proceed-trigger>false</proceed-trigger>
 					<status></status>
-					<type></type>
 					<conceptScheme>editor</conceptScheme>
 					<conceptScheme_uri>http://nomisma.org/editor/</conceptScheme_uri>
 					<concept_path></concept_path>
-					<dump></dump>
-					<membership-position></membership-position>
-					<content_before_hash></content_before_hash>
-					<content_after_hash></content_after_hash>
-					<session-id></session-id>
 				</controls>
 			</xforms:instance>
 
 			<xforms:instance id="dump">
 				<dump xmlns=""></dump>
+			</xforms:instance>
+
+			<xforms:instance id="save-config">
+				<config xmlns="">
+					<url></url>
+					<content-type>text/plain</content-type>
+					<make-directories>false</make-directories>
+					<append>false</append>
+				</config>
 			</xforms:instance>
 
 			<!-- ********** REST RESPONSES ********** -->
@@ -72,11 +66,12 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-SELECT ?editor ?name ?orcid WHERE {
+SELECT ?editor ?name ?orcid ?doi WHERE {
   ?editor a foaf:Person ;
             skos:inScheme <http://nomisma.org/editor/> ;
             skos:prefLabel ?name .  
   OPTIONAL {?editor skos:exactMatch ?orcid FILTER contains(str(?orcid), "orcid.org")}
+  OPTIONAL {?editor dcterms:identifier ?doi}
 } ORDER BY ?name]]></query>
 			</xforms:instance>
 
@@ -85,6 +80,55 @@ SELECT ?editor ?name ?orcid WHERE {
 				<sparql xmlns="http://www.w3.org/2005/sparql-results#"/>
 			</xforms:instance>
 
+			<!-- sparql update -->
+			<xforms:instance id="sparqlUpdate-template">
+				<query><![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX crm:	<http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
+PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX org:	<http://www.w3.org/ns/org#>
+PREFIX prov:	<http://www.w3.org/ns/prov#>
+PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
+DELETE {?s ?p ?o} WHERE {
+BIND (<URI> as ?concept)
+?concept ?p ?o . ?s ?p ?o . FILTER (?s = ?concept)
+}]]></query>
+			</xforms:instance>
+
+			<xforms:instance id="sparqlUpdate">
+				<query></query>
+			</xforms:instance>
+
+			<!-- DOI/Crossref templates -->
+			<xforms:instance id="crossref" xxforms:exclude-result-prefixes="#all">
+				<doi_batch xmlns=""></doi_batch>
+			</xforms:instance>
+
+			<xforms:instance id="crossref-form-data" xxforms:exclude-result-prefixes="#all">
+				<formData xmlns="">
+					<operation>doMDUpload</operation>
+					<login_id></login_id>
+					<login_passwd></login_passwd>
+					<fname filename="" mediatype="" size=""></fname>
+					<!--					<fname/>-->
+				</formData>
+			</xforms:instance>
+
+			<xforms:instance id="save-crossref-config">
+				<config xmlns="">
+					<url></url>
+					<content-type>text/plain</content-type>
+					<make-directories>false</make-directories>
+					<append>false</append>
+				</config>
+			</xforms:instance>
+
+			<!-- ************* BINDINGS **********************-->
+			<xforms:bind nodeset="instance('crossref-form-data')">
+				<xforms:bind nodeset="fname" as="xs:anyURI"/>
+			</xforms:bind>
+
 			<!-- ************* SPARQL SUBMISSIONS **********************-->
 			<!-- SPARQL queries -->
 			<xforms:submission id="submit-sparqlQuery" action="{instance('config')/sparql_query}?query={encode-for-uri(instance('sparqlQuery'))}&amp;output=xml"
@@ -92,8 +136,99 @@ SELECT ?editor ?name ?orcid WHERE {
 				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL query failed.</xforms:message>
 			</xforms:submission>
 
+			<xforms:submission id="delete-graph" action="{instance('config')/sparql_update}" ref="instance('sparqlUpdate')" serialization="text/plain"
+				replace="none" method="post" mediatype="application/sparql-update">
+				<xforms:action ev:event="xforms-submit-error">
+					<xforms:message level="modal">SPARQL update failed.</xforms:message>
+				</xforms:action>
+			</xforms:submission>
+
+			<xforms:submission id="post-new" action="{instance('config')/sparql_store}?default" ref="instance('rdf')" replace="none" method="post"
+				mediatype="application/rdf+xml">
+				<xforms:setvalue ev:event="xforms-submit-done" ref="instance('control-instance')/status">Successfully posted to endpoint.</xforms:setvalue>
+				<xforms:message ev:event="xforms-submit-error" level="modal">Post to endpoint failed.</xforms:message>
+			</xforms:submission>
+
+			<!-- ************************* LOAD RDF/XML ************************** -->
+			<xforms:submission id="load-rdf" serialization="none" method="get"
+				action="/nomisma/{instance('control-instance')/conceptScheme}/{instance('control-instance')/id}.rdf" replace="instance" instance="rdf">
+				<!-- ************ RDF PROCESSING TO CREATE A NEW ID ************** -->
+				<xforms:action ev:event="xforms-submit-error">
+					<xforms:message level="modal">Unable to load editor RDF file from filesystem.</xforms:message>
+				</xforms:action>
+
+				<!-- ************ INSERT NEW DOI ************** -->
+				<xforms:action ev:event="xforms-submit-done">
+					<!-- insert DOI if it doesn't exist. -->
+					<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
+						origin="xforms:element('dcterms:identifier', data(instance('control-instance')/doi))"
+						if="not(instance('rdf')/*[1]/dcterms:identifier = instance('control-instance')/doi)"/>
+
+					<!-- save file to the filesystem -->
+					<xforms:setvalue ref="instance('save-config')/url"
+						value="concat(instance('control-instance')/concept_path,  instance('control-instance')/id, '.rdf')"/>
+					<xforms:insert nodeset="instance('dump')"
+						origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('rdf'), instance('save-config')), 'data')"/>
+
+					<!-- delete graph from triplestore, then repost updates -->
+					<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-template'), 'URI', instance('rdf')/*[1]/@rdf:about)"/>
+					<xforms:send submission="delete-graph"/>
+					<xforms:send submission="post-new"/>
+				</xforms:action>
+			</xforms:submission>
+
+			<!--***************** CROSSREF ******************-->
+			<!-- Load Nomisma Crossref XML batch -->
+			<xforms:submission id="load-crossref" method="get" replace="instance" instance="crossref" serialization="none" resource="/nomisma/crossref.xml">
+				<xforms:message ev:event="xforms-submit-error" level="modal">Error generating Crossref XML document.</xforms:message>
+
+				<xforms:action ev:event="xforms-submit-done">
+					<!-- set crossref credentials for form data -->
+					<xforms:setvalue ref="instance('crossref-form-data')/login_id" value="instance('crossref-config')/username"/>
+					<xforms:setvalue ref="instance('crossref-form-data')/login_passwd" value="instance('crossref-config')/password"/>
+					<xforms:setvalue ref="instance('crossref-form-data')/fname" value="concat(instance('control-instance')/id, '.xml')"/>
+
+					<!-- serialize the instance XML into a file in /tmp -->
+					<xforms:setvalue ref="instance('save-crossref-config')/url">file:///tmp/crossref.xml</xforms:setvalue>
+					<xforms:insert nodeset="instance('dump')"
+						origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-crossref.xpl', ('doc', 'configuration'), (instance('crossref'), instance('save-crossref-config')), 'data')"/>
+
+					<!-- post data to Crossref API -->
+					<xforms:send submission="post-crossref"/>
+				</xforms:action>
+			</xforms:submission>
+
+			<!-- execute command line process to curl post the Cross XML data to the given API -->
+			<xforms:submission id="post-crossref" serialization="none" method="get" action="/nomisma/admin/post-crossref" instance="dump" replace="instance">
+				<!--<xforms:message ev:event="xforms-submit-error" level="modal" value="event('response-body')"></xforms:message>-->
+				<xforms:message ev:event="xforms-submit-error" level="modal">Error writing or posting /tmp/crossref.xml to the Crossref API.</xforms:message>
+				
+				<xforms:action ev:event="xforms-submit-done">
+					<xforms:action xxforms:iterate="instance('sparqlResponse')//res:result[not(res:binding[@name = 'doi'])]">
+						<xforms:setvalue ref="instance('control-instance')/uri" value="context()/res:binding[@name = 'editor']/res:uri"/>
+						<xforms:setvalue ref="instance('control-instance')/id" value="tokenize(instance('control-instance')/uri, '/')[last()]"/>
+						<xforms:setvalue ref="instance('control-instance')/doi"
+							value="instance('crossref')//crossref:doi_data[crossref:resource = instance('control-instance')/uri]/crossref:doi"/>
+						
+						<!-- load the RDF file -->
+						<xforms:send submission="load-rdf"/>
+					</xforms:action>
+					
+					<xforms:setvalue ref="instance('control-instance')/status">DOIs successfully created or updated to
+						Crossref.</xforms:setvalue>
+					
+					<!-- refresh the editor list -->
+					<xforms:send submission="submit-sparqlQuery"/>
+				</xforms:action>
+				
+			</xforms:submission>
+
 			<!-- **************** MODEL-CONSTRUCT-DONE ********************** -->
 			<xforms:action ev:event="xforms-model-construct-done">
+				<!-- set the concept_path based on conceptScheme -->
+				<xforms:setvalue ref="instance('control-instance')/concept_path"
+					value="concat(instance('config')/data_path, '/', instance('control-instance')/conceptScheme, '/')"/>
+				
 				<xforms:send submission="submit-sparqlQuery"/>
 			</xforms:action>
 		</xforms:model>
@@ -118,16 +253,25 @@ SELECT ?editor ?name ?orcid WHERE {
 				<div class="col-md-12">
 					<h1>Nomisma.org Editors</h1>
 					<p><a href="edit"><span class="glyphicon glyphicon-file"></span> Create New Editor</a></p>
+					<p>
+						<xforms:trigger appearance="minimal">
+							<xforms:label><span class="glyphicon glyphicon-upload"/> Create/Update DOIs</xforms:label>
+							<xforms:action ev:event="DOMActivate">
+								<xforms:send submission="load-crossref"/>
+							</xforms:action>
+						</xforms:trigger>
+					</p>
 					<xforms:group ref="instance('sparqlResponse')">
 						<xforms:group ref=".[count(descendant::res:result) = 0]">
-							<p>If this list is blank, the Nomisma.org SPARQL endpoint needs to be reloaded with a newly-generated RDF dump in the Admin panel.</p>
+							<p>If this list is blank, the Nomisma.org SPARQL endpoint needs to be reloaded with a newly-generated RDF dump in the Admin
+								panel.</p>
 						</xforms:group>
 						<xforms:group ref=".[count(descendant::res:result) &gt; 0]">
 							<table class="table">
 								<thead>
 									<tr>
-										<th style="width:80%">ID</th>
-										<th style="width:20%">View</th>
+										<th style="width:90%">Editor</th>
+										<th style="width:10%">View</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -143,6 +287,22 @@ SELECT ?editor ?name ?orcid WHERE {
 														</xforms:action>
 													</xforms:trigger>
 												</h4>
+												<xforms:group ref=".[res:binding[@name = 'orcid'] or res:binding[@name = 'doi']]">
+													<dl class="dl-horizontal">
+														<xforms:group ref=".[res:binding[@name = 'orcid']]">
+															<dt>ORCID</dt>
+															<dd>
+																<xforms:output ref="res:binding[@name = 'orcid']/res:uri"/>
+															</dd>
+														</xforms:group>
+														<xforms:group ref=".[res:binding[@name = 'doi']]">
+															<dt>DOI</dt>
+															<dd>
+																<xforms:output ref="res:binding[@name = 'doi']/res:literal"/>
+															</dd>
+														</xforms:group>
+													</dl>
+												</xforms:group>
 											</td>
 											<td class="text-center">
 												<a href="{instance('config')/url}id/{$id}" target="_blank">html</a>

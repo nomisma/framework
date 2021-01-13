@@ -22,11 +22,6 @@
 				<xi:include href="../config.xml"/>
 			</xforms:instance>
 
-			<!-- crossref authentication stored in XML file -->
-			<xforms:instance id="crossref-config" xxforms:exclude-result-prefixes="#all">
-				<xi:include href="../crossref-config.xml"/>
-			</xforms:instance>
-
 			<xforms:instance id="control-instance">
 				<controls xmlns="">
 					<id></id>
@@ -144,39 +139,6 @@ DELETE {?s ?p ?o} WHERE {
 				</config>
 			</xforms:instance>
 
-			<!-- DOI/Crossref templates -->
-			<xforms:instance id="crossref" xxforms:exclude-result-prefixes="#all">
-				<doi_batch xmlns=""></doi_batch>
-			</xforms:instance>
-
-			<xforms:instance id="crossref-form-data" xxforms:exclude-result-prefixes="#all">
-				<formData xmlns="">
-					<operation>doMDUpload</operation>
-					<login_id></login_id>
-					<login_passwd></login_passwd>
-					<fname filename="" mediatype="" size=""></fname>
-					<!--					<fname/>-->
-				</formData>
-			</xforms:instance>
-
-			<xforms:instance id="save-crossref-config">
-				<config xmlns="">
-					<url></url>
-					<content-type>text/plain</content-type>
-					<make-directories>false</make-directories>
-					<append>false</append>
-				</config>
-			</xforms:instance>
-
-			<xforms:instance id="dump">
-				<dump xmlns=""></dump>
-			</xforms:instance>
-
-			<!-- ************* BINDINGS **********************-->
-			<xforms:bind nodeset="instance('crossref-form-data')">
-				<xforms:bind nodeset="fname" as="xs:anyURI"/>
-			</xforms:bind>
-
 			<!-- ************* SPARQL SUBMISSIONS **********************-->
 			<xforms:submission id="delete-graph" action="{instance('config')/sparql_update}" ref="instance('sparqlUpdate')" serialization="text/plain"
 				replace="none" method="post" mediatype="application/sparql-update">
@@ -254,35 +216,6 @@ DELETE {?s ?p ?o} WHERE {
 				<xforms:action ev:event="xforms-submit-error">
 					<xforms:message level="modal">Unable to load RDF/XML from oxf:/apps/nomisma/id/{$id}.rdf</xforms:message>
 				</xforms:action>
-			</xforms:submission>
-
-			<!--***************** CROSSREF ******************-->
-			<!-- serialize MODS/TEI into Crossref XML -->
-			<xforms:submission id="load-crossref" method="get" replace="instance" instance="crossref" serialization="none" resource="/nomisma/crossref.xml">
-				<xforms:message ev:event="xforms-submit-error" level="modal">Error generating Crossref XML document.</xforms:message>
-
-				<xforms:action ev:event="xforms-submit-done">
-					<!-- set crossref credentials for form data -->
-					<xforms:setvalue ref="instance('crossref-form-data')/login_id" value="instance('crossref-config')/username"/>
-					<xforms:setvalue ref="instance('crossref-form-data')/login_passwd" value="instance('crossref-config')/password"/>
-					<xforms:setvalue ref="instance('crossref-form-data')/fname">crossref.xml</xforms:setvalue>
-
-					<!-- serialize the instance XML into a file in /tmp -->
-					<xforms:setvalue ref="instance('save-crossref-config')/url">file:///tmp/crossref.xml</xforms:setvalue>
-					<xforms:insert nodeset="instance('dump')"
-						origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-crossref.xpl', ('doc', 'configuration'), (instance('crossref'), instance('save-crossref-config')), 'data')"/>
-
-					<!-- post data to Crossref API -->
-					<xforms:send submission="post-crossref"/>
-				</xforms:action>
-			</xforms:submission>
-
-			<!-- interact with PHP script in CGI to run multipart/form-data -->
-			<xforms:submission id="post-crossref" serialization="none" method="get" action="/nomisma/admin/post-crossref" instance="dump" replace="instance">
-				<!--<xforms:message ev:event="xforms-submit-error" level="modal" value="event('response-body')"></xforms:message>-->
-				<xforms:message ev:event="xforms-submit-error" level="modal">Error writing or posting /tmp/crossref.xml to the Crossref API.</xforms:message>
-				<xforms:setvalue ref="instance('control-instance')/status" ev:event="xforms-submit-done">DOIs successfully created or updated to
-					Crossref.</xforms:setvalue>
 			</xforms:submission>
 
 			<!-- ********** XFORMS-MODEL-CONSTRUCT-DONE ********** -->
@@ -591,20 +524,7 @@ DELETE {?s ?p ?o} WHERE {
 								</xforms:trigger>
 							</li>
 						</ul>
-					</div>
-					<div>
-						<h3>Crossref</h3>
-						<ul>
-							<li>
-								<xforms:trigger appearance="minimal">
-									<xforms:label>Create/Update DOIs</xforms:label>
-									<xforms:action ev:event="DOMActivate">
-										<xforms:dispatch target="crossref-dialog" name="fr-show"/>
-									</xforms:action>
-								</xforms:trigger>
-							</li>
-						</ul>
-					</div>
+					</div>					
 				</div>
 			</div>
 		</div>
@@ -677,19 +597,6 @@ DELETE {?s ?p ?o} WHERE {
 			<fr:negative-choice>
 				<fr:label>No</fr:label>
 			</fr:negative-choice>
-		</fr:alert-dialog>
-		<fr:alert-dialog id="crossref-dialog">
-			<fr:label>Create/Update DOIs</fr:label>
-			<fr:message>Create or update DOIs for Nomisma.org editor contributions. Continue?</fr:message>
-			<fr:positive-choice>
-				<fr:label>Yes</fr:label>
-				<xforms:action ev:event="DOMActivate">
-					<xforms:send submission="load-crossref"/>
-				</xforms:action>
-			</fr:positive-choice>
-			<fr:negative-choice>
-				<fr:label>No</fr:label>
-			</fr:negative-choice>
-		</fr:alert-dialog>
+		</fr:alert-dialog>		
 	</body>
 </html>

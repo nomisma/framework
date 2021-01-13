@@ -207,44 +207,6 @@ BIND (<URI> as ?concept)
 				<xforms:message ev:event="xforms-submit-error" level="modal">Post to endpoint failed.</xforms:message>
 			</xforms:submission>
 
-			<!-- ************************* SOLR SUBMISSIONS ************************** -->
-			<!-- post instance to Solr -->
-			<xforms:submission id="post-solr-doc" action="{instance('config')/solr_published}update" ref="instance('addIndex')" instance="addIndex"
-				replace="instance" method="post">
-				<xforms:message ev:event="xforms-submit-error" level="modal">Data Failed to POST to Solr. Index may be offline or URL is
-					incorrect.</xforms:message>
-				<xforms:action ev:event="xforms-submit-done">
-					<xforms:setvalue ref="instance('control-instance')/status">Document successfully saved to Solr.</xforms:setvalue>
-					<xforms:send submission="submit-commit"/>
-				</xforms:action>
-
-			</xforms:submission>
-
-			<xforms:submission id="delete-id-from-solr" action="{instance('config')/solr_published}update" ref="instance('deleteId')" instance="deleteId"
-				replace="instance" method="post">
-				<xforms:action ev:event="xforms-submit-error">
-					<xforms:message level="modal">Data Failed to POST to Solr. Index may be offline or URL is incorrect.</xforms:message>
-					<xforms:setvalue ref="instance('control-instance')/delete-success" value="false()"/>
-				</xforms:action>
-				<xforms:action ev:event="xforms-submit-done">
-					<xforms:send submission="submit-commit"/>
-					<xforms:setvalue ref="instance('control-instance')/status">Document successfully deleted from Solr.</xforms:setvalue>
-					<xforms:setvalue ref="instance('control-instance')/delete-success" value="true()"/>
-				</xforms:action>
-			</xforms:submission>
-
-			<!-- send commit -->
-			<xforms:submission id="submit-commit" action="{instance('config')/solr_published}update" ref="instance('sendCommit')" instance="sendCommit"
-				replace="none" method="post">
-				<xforms:action ev:event="xforms-submit-error">
-					<xforms:message level="modal">Failed to commit to Solr index.</xforms:message>
-					<xforms:setvalue ref="instance('control-instance')/delete-success" value="false()"/>
-				</xforms:action>
-				<xforms:action ev:event="xforms-submit-done">
-					<xforms:setvalue ref="instance('control-instance')/delete-success" value="true()"/>
-				</xforms:action>
-			</xforms:submission>
-
 			<!-- ************************* LOAD RDF/XML ************************** -->
 			<xforms:submission id="load-rdf" serialization="none" method="get"
 				action="/nomisma/{instance('control-instance')/conceptScheme}/{instance('control-instance')/id}.rdf" replace="instance" instance="doc">
@@ -259,11 +221,6 @@ BIND (<URI> as ?concept)
 					<xforms:setvalue ref="instance('control-instance')/new-id" value="false()"/>
 					<xforms:setvalue ref="instance('control-instance')/content_before_hash"
 						value="digest(normalize-space(saxon:serialize(instance('doc'), 'xml')), 'MD5', 'hex')"/>
-
-					<!-- set geo values -->
-					<xforms:setvalue ref="instance('control-instance')/geo/lat" value="instance('doc')/geo:SpatialThing/geo:lat"/>
-					<xforms:setvalue ref="instance('control-instance')/geo/long" value="instance('doc')/geo:SpatialThing/geo:long"/>
-					<xforms:setvalue ref="instance('control-instance')/geo/geoJSON" value="instance('doc')/geo:SpatialThing/osgeo:asGeoJSON"/>
 
 					<xforms:setvalue ref="instance('control-instance')/conceptScheme_uri"
 						value="concat('http://nomisma.org/', instance('control-instance')/conceptScheme, '/')"/>
