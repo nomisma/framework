@@ -20,4 +20,4 @@ SELECT ?editor ?name ?orcid (min(?date) as ?creation) (max(?date) as ?update) WH
         {?spreadsheet dcterms:creator ?editor }
         UNION {?spreadsheet dcterms:contributor ?editor}
       } }
-} GROUP BY ?editor ?name ?orcid ORDER BY ?namename
+} GROUP BY ?editor ?name ?orcid ORDER BY ?name
