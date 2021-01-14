@@ -6,13 +6,12 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX prov:	<http://www.w3.org/ns/prov#>
 
-SELECT ?editor ?name ?orcid ?creation ?update WHERE {
+SELECT ?editor ?name ?orcid (min(?date) as ?creation) (max(?date) as ?update) WHERE {
   ?editor a foaf:Person ;
             skos:inScheme <http://nomisma.org/editor/> ;
             skos:prefLabel ?name .  
   OPTIONAL {?editor skos:exactMatch ?orcid FILTER contains(str(?orcid), "orcid.org")}
-  {
-    SELECT ?editor (min(?date) as ?creation) (max(?date) as ?update) WHERE {
+  OPTIONAL {
       ?activity a prov:Activity ;
                   prov:atTime ?date.
       {?activity prov:wasAssociatedWith ?editor FILTER NOT EXISTS {?activity prov:used ?spreadsheet}}
@@ -20,7 +19,5 @@ SELECT ?editor ?name ?orcid ?creation ?update WHERE {
         ?activity prov:used ?spreadsheet.
         {?spreadsheet dcterms:creator ?editor }
         UNION {?spreadsheet dcterms:contributor ?editor}
-      }
-    } GROUP BY ?editor
-  }
-} ORDER BY ?name
+      } }
+} GROUP BY ?editor ?name ?orcid ORDER BY ?namename
