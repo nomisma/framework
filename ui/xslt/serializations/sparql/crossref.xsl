@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns="http://www.crossref.org/schema/4.4.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:digest="org.apache.commons.codec.digest.DigestUtils" xmlns:nomisma="http://nomisma.org/" exclude-result-prefixes="#all"
-	version="2.0">
+	xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:digest="org.apache.commons.codec.digest.DigestUtils" xmlns:nomisma="http://nomisma.org/"
+	exclude-result-prefixes="#all" version="2.0">
 
 	<xsl:template match="/">
 		<doi_batch version="4.4.0" xmlns="http://www.crossref.org/schema/4.4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -16,7 +16,7 @@
 				<database>
 					<!-- database metadata -->
 					<xsl:apply-templates select="doc('input:config-xml')/config"/>
-					
+
 					<!-- datasets for each editor -->
 					<xsl:apply-templates select="descendant::res:result"/>
 				</database>
@@ -46,6 +46,8 @@
 
 	<!-- process every SPARQL result into a separate dataset -->
 	<xsl:template match="res:result">
+		
+
 		<dataset dataset_type="collection">
 			<contributors>
 				<person_name sequence="first" contributor_role="author">
@@ -63,19 +65,41 @@
 				</person_name>
 			</contributors>
 			<titles>
-				<title>Contributions of <xsl:value-of select="res:binding[@name = 'name']/res:literal"/> to <xsl:value-of select="doc('input:config-xml')/config/title"/></title>
+				<title>Contributions of <xsl:value-of select="res:binding[@name = 'name']/res:literal"/> to <xsl:value-of
+						select="doc('input:config-xml')/config/title"/></title>
 			</titles>
+			<database_date>				
+				<xsl:apply-templates select="res:binding[@name = 'update'] | res:binding[@name = 'creation']"/>
+			</database_date>
 			<format>application/rdf+xml</format>
 			<doi_data>
 				<doi>
-					<xsl:value-of select="concat(doc('input:config-xml')/config/crossref/doi_prefix, '/', digest:md5Hex(string(res:binding[@name = 'editor']/res:uri)))"
-					/>
+					<xsl:value-of
+						select="concat(doc('input:config-xml')/config/crossref/doi_prefix, '/', digest:md5Hex(string(res:binding[@name = 'editor']/res:uri)))"/>
 				</doi>
 				<resource>
 					<xsl:value-of select="res:binding[@name = 'editor']/res:uri"/>
 				</resource>
 			</doi_data>
 		</dataset>
+	</xsl:template>
+	
+	<xsl:template match="res:binding[@name = 'creation'] | res:binding[@name = 'update']">
+		<xsl:variable name="date" select="tokenize(substring-before(res:literal, 'T'), '-')"/>
+		
+		<xsl:element name="{@name}_date" namespace="http://www.crossref.org/schema/4.4.0">
+			<xsl:attribute name="media_type">print</xsl:attribute>
+			
+			<xsl:element name="month" namespace="http://www.crossref.org/schema/4.4.0">
+				<xsl:value-of select="$date[2]"/>
+			</xsl:element>
+			<xsl:element name="day" namespace="http://www.crossref.org/schema/4.4.0">
+				<xsl:value-of select="$date[3]"/>
+			</xsl:element>
+			<xsl:element name="year" namespace="http://www.crossref.org/schema/4.4.0">
+				<xsl:value-of select="$date[1]"/>
+			</xsl:element>
+		</xsl:element>
 	</xsl:template>
 
 	<!-- config templates -->

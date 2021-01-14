@@ -487,6 +487,7 @@
 						<tr>
 							<th>Name</th>
 							<th>ORCID</th>
+							<th>Last Edit</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -503,6 +504,9 @@
 											<xsl:value-of select="tokenize(res:binding[@name = 'orcid']/res:uri, '/')[last()]"/>
 										</a>
 									</xsl:if>
+								</td>
+								<td>
+									<xsl:value-of select="format-dateTime(res:binding[@name='update']/res:literal, '[D] [MNn] [Y0001]')"/>
 								</td>
 							</tr>
 						</xsl:for-each>
