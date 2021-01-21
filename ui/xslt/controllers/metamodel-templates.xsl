@@ -753,7 +753,7 @@
                     <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                 </xsl:when>
                 <xsl:when test="$api = 'getFindspots'">
-                    <triple s="?object" p="nmo:hasFindspot" o="?place"/>
+                    <triple s="?object" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                 </xsl:when>
             </xsl:choose>
 

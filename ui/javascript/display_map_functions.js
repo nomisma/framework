@@ -134,7 +134,7 @@ function initialize_map(id) {
 			fillColor = '#d86458';
 			break;
 			case 'find':
-			fillColor = '#a1d490';
+			fillColor = '#f98f0c';
 		}
 		
 		return new L.CircleMarker(latlng, {

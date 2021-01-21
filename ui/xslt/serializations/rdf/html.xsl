@@ -282,7 +282,7 @@
 										<td style="width:100px;padding-left:6px;">Mints</td>
 										<td style="background-color:#d86458;border:2px solid black;width:50px;"/>
 										<td style="width:100px;padding-left:6px;">Hoards</td>
-										<td style="background-color:#a1d490;border:2px solid black;width:50px;"/>
+										<td style="background-color:#f98f0c;border:2px solid black;width:50px;"/>
 										<td style="width:100px;padding-left:6px;">Finds</td>
 										<td>
 											<a href="{$display_path}map/{$id}">View fullscreen</a>

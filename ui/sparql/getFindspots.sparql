@@ -19,10 +19,8 @@ PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
 
 SELECT DISTINCT ?place ?label ?lat ?long WHERE {
 %STATEMENTS%
-  ?place geo:lat ?lat ; 
-    geo:long ?long .
-  OPTIONAL {?place foaf:name ?label}
-  OPTIONAL {?place rdfs:label ?label}
-  OPTIONAL {?nomismaURI geo:location ?place .
-    ?nomismaURI skos:prefLabel ?label FILTER langMatches(lang(?label), "en")}
+  ?place a crm:E53_Place ;
+    rdfs:label ?label ;
+    geo:location ?loc .
+?loc geo:lat ?lat ; geo:long ?long
 }
