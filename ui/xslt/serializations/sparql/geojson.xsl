@@ -346,6 +346,12 @@
 						else
 							$findType"/>
 				<xsl:text>"</xsl:text>
+				
+				<xsl:if test="res:binding[@name = 'count']">
+					<xsl:text>,"count":</xsl:text>
+					<xsl:value-of select="res:binding[@name='count']/res:literal"/>
+				</xsl:if>
+				
 				<xsl:if test="res:binding[@name = 'closingDate']">
 					<xsl:text>,"closing_date":"</xsl:text>
 					<xsl:value-of select="nomisma:normalizeDate(res:binding[@name='closingDate']/res:literal)"/>

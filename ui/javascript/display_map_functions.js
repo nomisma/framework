@@ -35,17 +35,6 @@ function initialize_map(id) {
         attribution: 'Powered by <a href="http://leafletjs.com/">Leaflet</a>. Map base: <a href="https://dh.gu.se/dare/" title="Digital Atlas of the Roman Empire, Department of Archaeology and Ancient History, Lund University, Sweden">DARE</a>, 2015 (cc-by-sa).'
     });
 	
-	//overlays
-	/*var heatmapLayer = new HeatmapOverlay({
-		"radius": .5,
-		"maxOpacity": .8,
-		"scaleRadius": true,
-		"useLocalExtrema": true,
-		latField: 'lat',
-		lngField: 'lng',
-		valueField: 'count'
-	});*/
-	
 	var map = new L.Map('mapcontainer', {
 		center: new L.LatLng(0, 0),
 		zoom: 4,
@@ -65,16 +54,43 @@ function initialize_map(id) {
 		pointToLayer: renderPoints
 	}).addTo(map);
 	
-	//add individual finds layer, but don't make visible
-	var findLayer = L.geoJson.ajax('../apis/getFindspots?id=' + id, {
+	//add individual finds layer, but don't make visible   
+	$.getJSON('../apis/getFindspots?id=' + id, function (data) {
+        var maxDensity = 0;
+        $.each(data.features, function (key, value) {
+            if (value.properties.hasOwnProperty('count') == true) {
+                if (value.properties.count !== undefined) {
+                    if (value.properties.count > maxDensity) {
+                        maxDensity = value.properties.count;
+                    }
+                }
+            }
+        });
+        
+        var findLayer = L.geoJson(data, {
+            onEachFeature: onEachFeature,
+            style: function (feature) {
+                if (feature.geometry.type == 'Polygon') {
+                    var fillColor = getFillColor(feature.properties.type);
+                    
+                    return {
+                        color: fillColor
+                    }
+                }
+            },
+            pointToLayer: function (feature, latlng) {
+                return renderFindspotPoints(feature, latlng, maxDensity);
+            }
+        }).addTo(map);
+        
+        var group = new L.featureGroup([findLayer, mintLayer, hoardLayer]);
+		map.fitBounds(group.getBounds());
+    });
+    
+	/*var findLayer = L.geoJson.ajax('../apis/getFindspots?id=' + id, {
 		onEachFeature: onEachFeature,
 		pointToLayer: renderPoints
-	}).addTo(map);
-	
-	//load heatmapLayer after JSON loading concludes
-/*	$.getJSON('../apis/heatmap?id=' + id, function (data) {
-		heatmapLayer.setData(data);
-	});*/
+	}).addTo(map);*/
 	
 	//add controls
 	var baseMaps = {
@@ -99,7 +115,6 @@ function initialize_map(id) {
 	} else {
 		overlayMaps[ 'Hoards'] = hoardLayer;
 		overlayMaps[ 'Finds'] = findLayer;
-		//overlayMaps[ 'Heatmap'] = heatmapLayer;
 	}
 	
 	L.control.layers(baseMaps, overlayMaps).addTo(map);
@@ -115,27 +130,17 @@ function initialize_map(id) {
 		map.fitBounds(group.getBounds());
 	}.bind(this));
 	
-	findLayer.on('data:loaded', function () {
+	/*findLayer.on('data:loaded', function () {
 		var group = new L.featureGroup([findLayer, mintLayer, hoardLayer]);
 		map.fitBounds(group.getBounds());
-	}.bind(this));
+	}.bind(this));*/
 	
 	
 	/*****
 	 * Features for manipulating layers
 	 *****/
 	function renderPoints(feature, latlng) {
-		var fillColor;
-		switch (feature.properties.type) {
-			case 'mint':
-			fillColor = '#6992fd';
-			break;
-			case 'hoard':
-			fillColor = '#d86458';
-			break;
-			case 'find':
-			fillColor = '#f98f0c';
-		}
+		var fillColor = getFillColor(feature.properties.type);
 		
 		return new L.CircleMarker(latlng, {
 			radius: 5,
@@ -146,6 +151,66 @@ function initialize_map(id) {
 			fillOpacity: 0.6
 		});
 	}
+	
+	function renderFindspotPoints(feature, latlng, maxDensity) {
+		var fillColor = getFillColor(feature.properties.type);
+        
+        if (feature.properties.hasOwnProperty('count')) {
+            grade = maxDensity / 5;
+            
+            var radius = 5;
+            if (feature.properties.count < Math.round(grade)) {
+                radius = 5;
+            } else if (feature.properties.count >= Math.round(grade) && feature.properties.count < Math.round(grade * 2)) {
+                radius = 10;
+            } else if (feature.properties.count >= Math.round(grade * 2) && feature.properties.count < Math.round(grade * 3)) {
+                radius = 15;
+            } else if (feature.properties.count >= Math.round(grade * 3) && feature.properties.count < Math.round(grade * 4)) {
+                radius = 20;
+            } else if (feature.properties.count >= Math.round(grade * 4)) {
+                radius = 25;
+            } else {
+                radius = 5;
+            }
+            
+            return new L.CircleMarker(latlng, {
+                radius: radius,
+                fillColor: fillColor,
+                color: "#000",
+                weight: 1,
+                opacity: 1,
+                fillOpacity: 0.6
+            });
+        } else {
+            return new L.CircleMarker(latlng, {
+                radius: 5,
+                fillColor: fillColor,
+                color: "#000",
+                weight: 1,
+                opacity: 1,
+                fillOpacity: 0.6
+            });
+        }
+	}
+	
+	function getFillColor (type) {
+        var fillColor;
+        switch (type) {
+            case 'mint':
+            fillColor = '#6992fd';
+            break;
+            case 'find':
+            fillColor = '#f98f0c';
+            break;
+            case 'hoard':
+            fillColor = '#d86458';
+            break;
+            default:
+            fillColor = '#efefef'
+        }
+        
+        return fillColor;
+    }
 	
 	function onEachFeature (feature, layer) {
 		var str;
@@ -168,6 +233,9 @@ function initialize_map(id) {
 					str += '<br/><b>Closing Date: </b>' + feature.properties.closing_date;
 				}
 			}
+			if (feature.hasOwnProperty('count') == true) {
+				str += '<br/><b>Count: </b>' + feature.properties.count;
+			}	
 		}
 		layer.bindPopup(str);
 	}
