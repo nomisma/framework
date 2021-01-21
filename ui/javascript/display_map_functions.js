@@ -86,11 +86,6 @@ function initialize_map(id) {
         var group = new L.featureGroup([findLayer, mintLayer, hoardLayer]);
 		map.fitBounds(group.getBounds());
     });
-    
-	/*var findLayer = L.geoJson.ajax('../apis/getFindspots?id=' + id, {
-		onEachFeature: onEachFeature,
-		pointToLayer: renderPoints
-	}).addTo(map);*/
 	
 	//add controls
 	var baseMaps = {
@@ -128,13 +123,7 @@ function initialize_map(id) {
 	hoardLayer.on('data:loaded', function () {
 		var group = new L.featureGroup([findLayer, mintLayer, hoardLayer]);
 		map.fitBounds(group.getBounds());
-	}.bind(this));
-	
-	/*findLayer.on('data:loaded', function () {
-		var group = new L.featureGroup([findLayer, mintLayer, hoardLayer]);
-		map.fitBounds(group.getBounds());
-	}.bind(this));*/
-	
+	}.bind(this));	
 	
 	/*****
 	 * Features for manipulating layers
