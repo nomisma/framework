@@ -222,7 +222,7 @@ function initialize_map(id) {
 					str += '<br/><b>Closing Date: </b>' + feature.properties.closing_date;
 				}
 			}
-			if (feature.hasOwnProperty('count') == true) {
+			if (feature.properties.hasOwnProperty('count') == true) {
 				str += '<br/><b>Count: </b>' + feature.properties.count;
 			}	
 		}
