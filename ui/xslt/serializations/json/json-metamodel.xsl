@@ -25,6 +25,11 @@
                 <xsl:text>:</xsl:text>
                 <xsl:apply-templates select="_object"/>
             </xsl:when>
+            <xsl:when test="@datatype = 'osgeo:asGeoJSON'">
+                <xsl:value-of select="concat('&#x022;', name(), '&#x022;')"/>
+                <xsl:text>:</xsl:text>
+                <xsl:value-of select="."/>
+            </xsl:when>
             <xsl:otherwise>
                 <!-- when the element is preceded by two underscores, prepend an @ character, e.g., for @id or @type -->
                 <xsl:choose>
