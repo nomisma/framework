@@ -61,6 +61,15 @@ function initialize_map(id) {
     //add hoards, but don't make visible by default
     var hoardLayer = L.geoJson.ajax('../apis/getHoards?id=' + id, {
         onEachFeature: onEachFeature,
+        style: function (feature) {
+            if (feature.geometry.type == 'Polygon') {
+                var fillColor = getFillColor(feature.properties.type);
+                
+                return {
+                    color: fillColor
+                }
+            }
+        },
         pointToLayer: renderPoints
     }).addTo(map);
     
