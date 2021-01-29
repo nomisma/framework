@@ -951,11 +951,11 @@ SELECT ?uri ?type WHERE {
 															<xforms:action ev:event="DOMActivate">
 																<xforms:var name="dataset" select="@rdf:about"/>
 																<!-- the TypeSeriesItem query deletes symbols and monograms -->
-																<xforms:var name="type"
+																<!--<xforms:var name="type"
 																	select="if (dcterms:type[@rdf:resource='http://nomisma.org/ontology#NumismaticObject']) then 'NumismaticObject' 
 																		else if (dcterms:type[@rdf:resource='http://nomisma.org/ontology#Hoard']) then 'Hoard' 
 																		else 'TypeSeriesItem'"/>
-																<xforms:setvalue ref="instance('control-instance')/concept_type" value="$type"/>
+																<xforms:setvalue ref="instance('control-instance')/concept_type" value="$type"/>-->
 																<xforms:setvalue ref="instance('control-instance')/dataset" value="$dataset"/>
 																<xforms:dispatch target="delete-dataset-dialog" name="fr-show"/>
 															</xforms:action>
@@ -1530,7 +1530,7 @@ SELECT ?uri ?type WHERE {
 						</xforms:case>
 					</xforms:switch>
 
-					<!--<fr:xforms-inspector/>-->
+					<fr:xforms-inspector/>
 				</div>
 			</div>
 		</div>
@@ -1570,11 +1570,25 @@ SELECT ?uri ?type WHERE {
 					</xforms:action>
 					<!-- if there is no namedGraph, then delete the dataset from the default graph by means of void:inDataset property -->
 					<xforms:action if="not(matches(instance('control-instance')/namedGraph, '^https?://'))">
-						<xforms:setvalue ref="instance('sparqlUpdate')"
-							value="replace(instance('sparqlUpdate-template')/query[@id=concat('delete-', instance('control-instance')/concept_type)], 'DATASET', instance('control-instance')/dataset)"/>
-					</xforms:action>
-					<!-- send SPARQL/Update -->
-					<xforms:send submission="update-graph"/>
+						<!-- be sure to delete multiple types of objects from a single dataset -->
+						<xforms:action if="instance('datasets')/*[@rdf:about = 'instance('control-instance')/dataset']/dcterms:type = 'http://nomisma.org/ontology#Hoard'">
+							<xforms:setvalue ref="instance('sparqlUpdate')"
+								value="replace(instance('sparqlUpdate-template')/query[@id = 'delete-Hoard'], 'DATASET', instance('control-instance')/dataset)"/>							
+							<xforms:send submission="update-graph"/>
+						</xforms:action>
+						
+						<xforms:action if="instance('datasets')/*[@rdf:about = 'instance('control-instance')/dataset']/dcterms:type = 'http://nomisma.org/ontology#TypeSeriesItem'">
+							<xforms:setvalue ref="instance('sparqlUpdate')"
+								value="replace(instance('sparqlUpdate-template')/query[@id = 'delete-TypeSeriesItem'], 'DATASET', instance('control-instance')/dataset)"/>							
+							<xforms:send submission="update-graph"/>
+						</xforms:action>
+						
+						<xforms:action if="instance('datasets')/*[@rdf:about = 'instance('control-instance')/dataset']/dcterms:type = 'http://nomisma.org/ontology#NumismaticObject'">
+							<xforms:setvalue ref="instance('sparqlUpdate')"
+								value="replace(instance('sparqlUpdate-template')/query[@id = 'delete-NumismaticObject'], 'DATASET', instance('control-instance')/dataset)"/>							
+							<xforms:send submission="update-graph"/>
+						</xforms:action>
+					</xforms:action>					
 					
 					<!-- then delete the void:Dataset object -->
 					<xforms:setvalue ref="instance('sparqlUpdate')"
