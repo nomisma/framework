@@ -307,9 +307,17 @@
 			<xsl:when test="res:binding[@name = 'poly']">
 				<_object>
 					<type>Feature</type>
-					<label>
-						<xsl:value-of select="res:binding[@name = 'label']/res:literal"/>
-					</label>
+					<label><xsl:value-of
+						select="
+						if (res:binding[@name = 'hoardLabel']/res:literal) then
+						res:binding[@name = 'hoardLabel']/res:literal
+						else
+						res:binding[@name = 'label']/res:literal"/></label>
+					<xsl:if test="res:binding[@name = 'hoard']/res:uri">
+						<id>
+							<xsl:value-of select="res:binding[@name = 'hoard']/res:uri"/>
+						</id>							
+					</xsl:if>
 					<geometry datatype="osgeo:asGeoJSON">
 						<xsl:value-of select="res:binding[@name = 'poly']/res:literal"/>
 					</geometry>
