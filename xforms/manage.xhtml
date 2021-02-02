@@ -1571,19 +1571,19 @@ SELECT ?uri ?type WHERE {
 					<!-- if there is no namedGraph, then delete the dataset from the default graph by means of void:inDataset property -->
 					<xforms:action if="not(matches(instance('control-instance')/namedGraph, '^https?://'))">
 						<!-- be sure to delete multiple types of objects from a single dataset -->
-						<xforms:action if="instance('datasets')/*[@rdf:about = 'instance('control-instance')/dataset']/dcterms:type = 'http://nomisma.org/ontology#Hoard'">
+						<xforms:action if="instance('datasets')/*[@rdf:about = instance('control-instance')/dataset]/dcterms:type/@rdf:resource = 'http://nomisma.org/ontology#Hoard'">
 							<xforms:setvalue ref="instance('sparqlUpdate')"
 								value="replace(instance('sparqlUpdate-template')/query[@id = 'delete-Hoard'], 'DATASET', instance('control-instance')/dataset)"/>							
 							<xforms:send submission="update-graph"/>
 						</xforms:action>
 						
-						<xforms:action if="instance('datasets')/*[@rdf:about = 'instance('control-instance')/dataset']/dcterms:type = 'http://nomisma.org/ontology#TypeSeriesItem'">
+						<xforms:action if="instance('datasets')/*[@rdf:about = instance('control-instance')/dataset]/dcterms:type/@rdf:resource = 'http://nomisma.org/ontology#TypeSeriesItem'">
 							<xforms:setvalue ref="instance('sparqlUpdate')"
 								value="replace(instance('sparqlUpdate-template')/query[@id = 'delete-TypeSeriesItem'], 'DATASET', instance('control-instance')/dataset)"/>							
 							<xforms:send submission="update-graph"/>
 						</xforms:action>
 						
-						<xforms:action if="instance('datasets')/*[@rdf:about = 'instance('control-instance')/dataset']/dcterms:type = 'http://nomisma.org/ontology#NumismaticObject'">
+						<xforms:action if="instance('datasets')/*[@rdf:about = instance('control-instance')/dataset]/dcterms:type/@rdf:resource = 'http://nomisma.org/ontology#NumismaticObject'">
 							<xforms:setvalue ref="instance('sparqlUpdate')"
 								value="replace(instance('sparqlUpdate-template')/query[@id = 'delete-NumismaticObject'], 'DATASET', instance('control-instance')/dataset)"/>							
 							<xforms:send submission="update-graph"/>
