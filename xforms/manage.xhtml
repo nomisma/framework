@@ -1405,10 +1405,10 @@ SELECT ?uri ?type WHERE {
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 											<strong>Alert:</strong> Publisher is required. </div>
 									</xforms:group>
-									<xforms:group ref=".[not(string(dcterms:license)) and not(dcterms:license[@rdf:resource castable as xs:anyURI])]">
+									<xforms:group ref=".[not(dcterms:license) and not(dcterms:rights)]">
 										<div class="alert-danger alert alert-box">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
-											<strong>Alert:</strong> Description is required. </div>
+											<strong>Alert:</strong> License or Rights Statement is required. </div>
 									</xforms:group>
 									<div>
 										<xforms:output ref="@rdf:about">
