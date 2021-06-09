@@ -116,6 +116,14 @@
 									<xsl:value-of select="res:binding[@name = 'label']/res:literal"/>
 								</a>
 								<dl class="dl-horizontal">
+									<xsl:if test="res:binding[@name = 'authority']/res:uri">
+										<dt>Authority</dt>
+										<dd>
+											<a href="{res:binding[@name='authority']/res:uri}">
+												<xsl:value-of select="res:binding[@name = 'authorityLabel']/res:literal"/>
+											</a>
+										</dd>
+									</xsl:if>
 									<xsl:if test="res:binding[@name = 'mint']/res:uri">
 										<dt>Mint</dt>
 										<dd>

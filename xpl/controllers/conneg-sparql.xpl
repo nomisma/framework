@@ -87,6 +87,16 @@
 		
 		<p:output name="data" id="content-type"/>
 	</p:processor>
+	
+	<!-- execute and serialize SPARQL query if there is a query, otherwise display the SPARQL query UI interface -->
+	<!--<p:choose href="#request">
+		<p:when test="string(/request/parameters/parameter[name='query']/value)">
+			
+		</p:when>
+		<p:otherwise>
+			
+		</p:otherwise>
+	</p:choose>-->
 
 	<!-- initiate SPARQL query -->
 	<p:processor name="oxf:pipeline">
@@ -102,6 +112,10 @@
 
 	<p:choose href="#url-data-checked">
 		<p:when test="/exceptions">
+			<!--<p:processor name="oxf:identity">
+				<p:input name="data" href="#url-data"/>
+				<p:output name="data" ref="data"/>
+			</p:processor>-->
 			<p:processor name="oxf:pipeline">
 				<p:input name="data" href="#url-data-checked"/>
 				<p:input name="config" href="error.xpl"/>
@@ -109,6 +123,10 @@
 			</p:processor>
 		</p:when>
 		<p:when test="//*/@status-code != '200'">
+			<!--<p:processor name="oxf:identity">
+				<p:input name="data" href="#url-data"/>
+				<p:output name="data" ref="data"/>
+			</p:processor>-->
 			<p:processor name="oxf:pipeline">
 				<p:input name="data" href="#url-data"/>
 				<p:input name="config" href="error.xpl"/>

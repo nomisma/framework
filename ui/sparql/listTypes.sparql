@@ -26,6 +26,8 @@ SELECT * WHERE {
    OPTIONAL {?coinType nmo:hasEndDate ?endDate}
    OPTIONAL {?coinType nmo:hasMint ?mint . 
    	?mint skos:prefLabel ?mintLabel FILTER(langMatches(lang(?mintLabel), "en"))}
+   OPTIONAL {?coinType nmo:hasAuthority ?authority . 
+   	?authority skos:prefLabel ?authorityLabel FILTER(langMatches(lang(?authorityLabel), "en"))}
    OPTIONAL {?coinType nmo:hasDenomination ?den . 
    	?den skos:prefLabel ?denLabel FILTER(langMatches(lang(?denLabel), "en"))}
-}
+} ORDER BY ?startDate
