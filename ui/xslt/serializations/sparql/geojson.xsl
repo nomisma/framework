@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Author: Ethan Gruber
+	Date: June 2021
+	Function: Serialize SPARQL query responses and/or RDF/XML for regions and mints into GeoJSON, both for individual mint/findspot/hoard APIs and the aggregated
+	.geojson response -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="http://www.w3.org/2005/sparql-results#"
 	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:nmo="http://nomisma.org/ontology#"
 	xmlns:dcterms="http://purl.org/dc/terms/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
@@ -7,44 +11,44 @@
 	<xsl:include href="../json/json-metamodel.xsl"/>
 	<xsl:include href="../../functions.xsl"/>
 
-	<xsl:param name="api" select="tokenize(doc('input:request')/request/request-url, '/')[last()]"/>
-	<xsl:param name="findType" select="
-			if ($api = 'getFindspots') then
-				'find'
-			else
-				if ($api = 'getHoards') then
-					'hoard'
-				else
-					''"/>
+	<xsl:param name="api" select="tokenize(doc('input:request')/request/request-url, '/')[last()]"/>	
 
-	<xsl:template match="/*[1]">
+	<xsl:template match="/">
 		<xsl:variable name="model" as="element()*">
 			<_object>
 				<type>FeatureCollection</type>
 				<features>
 					<_array>
-						<xsl:choose>
-							<xsl:when test="/content/rdf:RDF/nmo:Region">
-								<xsl:call-template name="region-features"/>
+						<xsl:choose>			
+							<!-- content template for nmo:Region, aggregating region RDF and SPARQL query for child mints -->
+							<xsl:when test="content">
+								<xsl:apply-templates select="content"/>
 							</xsl:when>
-							<xsl:when test="namespace-uri() = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'">
+							<!-- GeoJSON serialization for a concept in the .geojson URL or content negotiation -->
+							<xsl:when test="ignore">
+								<xsl:apply-templates select="ignore"/>
+							</xsl:when>
+							<!-- apply templates for RDF/XML for CONSTRUCT or DESCRIBE SPARQL queries or from the identity transform included for an API request for a mint -->
+							<xsl:when test="*[namespace-uri() = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#']">
 								<xsl:choose>
+									<!-- create JSON from a DESCRIBE/CONSTRUCT response -->
 									<xsl:when test="$api = 'query.json'">
 										<xsl:if test="count(//*[geo:lat and geo:long]) &gt; 0">
 											<!-- apply-templates only on those RDF objects that have coordinates -->
 											<xsl:apply-templates select="//*[geo:lat and geo:long]" mode="describe"/>
 										</xsl:if>
 									</xsl:when>
+									<!-- create JSON from a mint or region concept -->
 									<xsl:otherwise>
 										<xsl:choose>
-											<xsl:when test="geo:SpatialThing/osgeo:asGeoJSON">
-												<xsl:apply-templates select="geo:SpatialThing" mode="poly">
+											<xsl:when test="descendant::geo:SpatialThing/osgeo:asGeoJSON">
+												<xsl:apply-templates select="descendant::geo:SpatialThing" mode="poly">
 													<xsl:with-param name="uri" select="*[1]/@rdf:about"/>
 													<xsl:with-param name="label" select="*[1]/skos:prefLabel[@xml:lang = 'en']"/>
 												</xsl:apply-templates>
 											</xsl:when>
-											<xsl:when test="geo:SpatialThing/geo:lat and geo:SpatialThing/geo:long">
-												<xsl:apply-templates select="geo:SpatialThing" mode="point">
+											<xsl:when test="descendant::geo:SpatialThing[geo:lat and geo:long]">
+												<xsl:apply-templates select="descendant::geo:SpatialThing" mode="point">
 													<xsl:with-param name="uri" select="*[1]/@rdf:about"/>
 													<xsl:with-param name="label" select="*[1]/skos:prefLabel[@xml:lang = 'en']"/>
 												</xsl:apply-templates>
@@ -53,46 +57,54 @@
 									</xsl:otherwise>
 								</xsl:choose>
 							</xsl:when>
-							<xsl:when test="namespace-uri() = 'http://www.w3.org/2005/sparql-results#'">
-								<xsl:if test="count(descendant::res:result) &gt; 0">
-									<!-- evaluate API and construct the attributes according to GeoJSON-T -->
-
-									<xsl:choose>
-										<xsl:when test="$api = 'getFindspots' or $api = 'getMints' or $api = 'getHoards'">
-											<xsl:apply-templates select="descendant::res:result"/>
-										</xsl:when>
-										<xsl:when test="$api = 'query.json'">
-											<xsl:variable name="query" select="doc('input:request')/request/parameters/parameter[name = 'query']/value"/>
-
-											<!-- parse out the lat and long variables from the SPARQL query -->
-											<xsl:variable name="latParam">
-												<xsl:analyze-string select="$query" regex="geo:lat\s+\?([a-zA-Z0-9_]+)">
-													<xsl:matching-substring>
-														<xsl:value-of select="regex-group(1)"/>
-													</xsl:matching-substring>
-												</xsl:analyze-string>
-											</xsl:variable>
-											<xsl:variable name="longParam">
-												<xsl:analyze-string select="$query" regex="geo:long\s+\?([a-zA-Z0-9_]+)">
-
-													<xsl:matching-substring>
-														<xsl:value-of select="regex-group(1)"/>
-													</xsl:matching-substring>
-												</xsl:analyze-string>
-											</xsl:variable>
-
-											<!-- if lat and long are available, then apply templates for results with coordinates -->
-											<xsl:if test="string-length($latParam) &gt; 0 and string-length($longParam) &gt; 0">
-												<xsl:apply-templates
-													select="descendant::res:result[res:binding[@name = $latParam] and res:binding[@name = $longParam]]"
-													mode="query">
-													<xsl:with-param name="lat" select="$latParam"/>
-													<xsl:with-param name="long" select="$longParam"/>
-												</xsl:apply-templates>
-											</xsl:if>
-										</xsl:when>
-									</xsl:choose>
-								</xsl:if>
+							<!-- apply templates to SPARQL response -->
+							<xsl:when test="*[namespace-uri() = 'http://www.w3.org/2005/sparql-results#']">
+								<!-- evaluate API and construct the attributes according to GeoJSON-T -->		
+								<xsl:choose>
+									<xsl:when test="$api = 'getFindspots' or $api = 'getMints' or $api = 'getHoards'">
+										<xsl:variable name="type">
+											<xsl:choose>
+												<xsl:when test="$api = 'getMints'">mint</xsl:when>
+												<xsl:when test="$api = 'getHoards'">hoard</xsl:when>
+												<xsl:when test="$api = 'getFindspots'">findspot</xsl:when>
+											</xsl:choose>
+										</xsl:variable>
+										
+										<xsl:apply-templates select="res:sparql">
+											<xsl:with-param name="type" select="$type"/>
+										</xsl:apply-templates>
+									</xsl:when>
+									<xsl:when test="$api = 'query.json'">
+										<xsl:variable name="query" select="doc('input:request')/request/parameters/parameter[name = 'query']/value"/>
+										
+										<!-- parse out the lat and long variables from the SPARQL query -->
+										<xsl:variable name="latParam">
+											<xsl:analyze-string select="$query" regex="geo:lat\s+\?([a-zA-Z0-9_]+)">
+												<xsl:matching-substring>
+													<xsl:value-of select="regex-group(1)"/>
+												</xsl:matching-substring>
+											</xsl:analyze-string>
+										</xsl:variable>
+										<xsl:variable name="longParam">
+											<xsl:analyze-string select="$query" regex="geo:long\s+\?([a-zA-Z0-9_]+)">
+												
+												<xsl:matching-substring>
+													<xsl:value-of select="regex-group(1)"/>
+												</xsl:matching-substring>
+											</xsl:analyze-string>
+										</xsl:variable>
+										
+										<!-- if lat and long are available, then apply templates for results with coordinates -->
+										<xsl:if test="string-length($latParam) &gt; 0 and string-length($longParam) &gt; 0">
+											<xsl:apply-templates
+												select="descendant::res:result[res:binding[@name = $latParam] and res:binding[@name = $longParam]]"
+												mode="query">
+												<xsl:with-param name="lat" select="$latParam"/>
+												<xsl:with-param name="long" select="$longParam"/>
+											</xsl:apply-templates>
+										</xsl:if>
+									</xsl:when>
+								</xsl:choose>
 							</xsl:when>
 						</xsl:choose>
 					</_array>
@@ -101,6 +113,24 @@
 		</xsl:variable>
 
 		<xsl:apply-templates select="$model"/>
+	</xsl:template>
+
+	<!-- handle aggregations of models, for .geojson serialization for concepts that involve SPARQL queries -->
+	<xsl:template match="content">
+		<xsl:call-template name="region-features"/>
+	</xsl:template>
+	
+	<!-- ignore the RDF in the ignore root element, apply templates only to the three docs -->
+	<xsl:template match="ignore">
+		<xsl:apply-templates select="doc('input:mints')/*">
+			<xsl:with-param name="type">mint</xsl:with-param>
+		</xsl:apply-templates>
+		<xsl:apply-templates select="doc('input:hoards')/res:sparql">
+			<xsl:with-param name="type">hoard</xsl:with-param>
+		</xsl:apply-templates>
+		<xsl:apply-templates select="doc('input:findspots')/res:sparql">
+			<xsl:with-param name="type">findspot</xsl:with-param>
+		</xsl:apply-templates>
 	</xsl:template>
 
 	<!-- generate GeoJSON for id/ responses -->
@@ -188,9 +218,11 @@
 			</xsl:apply-templates>
 		</xsl:if>
 
-		<xsl:apply-templates select="descendant::res:result"/>
+		<xsl:apply-templates select="res:sparql">
+			<xsl:with-param name="type">mint</xsl:with-param>
+		</xsl:apply-templates>
 	</xsl:template>
-
+	
 	<!-- GeoJSON result for general SELECT SPARQL query lat/long -->
 	<xsl:template match="res:result" mode="query">
 		<xsl:param name="lat"/>
@@ -300,28 +332,39 @@
 	</xsl:template>
 
 	<!-- other GeoJSON API responses -->
+	<xsl:template match="res:sparql">
+		<xsl:param name="type"/>
+		
+		<xsl:apply-templates select="descendant::res:result">
+			<xsl:with-param name="type" select="$type"/>
+		</xsl:apply-templates>
+	</xsl:template>
+	
 	<xsl:template match="res:result">
-		
-		
+		<xsl:param name="type"/>
+
 		<xsl:choose>
 			<xsl:when test="res:binding[@name = 'poly']">
 				<_object>
 					<type>Feature</type>
-					<label><xsl:value-of
-						select="
-						if (res:binding[@name = 'hoardLabel']/res:literal) then
-						res:binding[@name = 'hoardLabel']/res:literal
-						else
-						res:binding[@name = 'label']/res:literal"/></label>
+					<label>
+						<xsl:value-of
+							select="
+								if (res:binding[@name = 'hoardLabel']/res:literal) then
+									res:binding[@name = 'hoardLabel']/res:literal
+								else
+									res:binding[@name = 'label']/res:literal"
+						/>
+					</label>
 					<xsl:if test="res:binding[@name = 'hoard']/res:uri">
 						<id>
 							<xsl:value-of select="res:binding[@name = 'hoard']/res:uri"/>
-						</id>							
+						</id>
 					</xsl:if>
 					<geometry datatype="osgeo:asGeoJSON">
 						<xsl:value-of select="res:binding[@name = 'poly']/res:literal"/>
 					</geometry>
-					
+
 					<properties>
 						<_object>
 							<toponym>
@@ -334,11 +377,7 @@
 								<xsl:value-of select="res:binding[@name = 'place']/res:uri"/>
 							</gazetteer_uri>
 							<type>
-								<xsl:value-of select="
-									if ($api = 'getMints') then
-									'region'
-									else
-									$findType"/>
+								<xsl:value-of select="$type"/>
 							</type>
 						</_object>
 					</properties>
@@ -347,60 +386,73 @@
 			<xsl:otherwise>
 				<_object>
 					<type>Feature</type>
-					<label><xsl:value-of
-						select="
-						if (res:binding[@name = 'hoardLabel']/res:literal) then
-						res:binding[@name = 'hoardLabel']/res:literal
-						else
-						res:binding[@name = 'label']/res:literal"/></label>
+					<label>
+						<xsl:value-of
+							select="
+								if (res:binding[@name = 'hoardLabel']/res:literal) then
+									res:binding[@name = 'hoardLabel']/res:literal
+								else
+									res:binding[@name = 'label']/res:literal"
+						/>
+					</label>
 					<xsl:if test="res:binding[@name = 'hoard']/res:uri">
 						<id>
 							<xsl:value-of select="res:binding[@name = 'hoard']/res:uri"/>
-						</id>							
+						</id>
 					</xsl:if>
 					<geometry>
 						<_object>
 							<type>Point</type>
 							<coordinates>
 								<_array>
-									<_><xsl:value-of select="res:binding[@name = 'long']/res:literal"/></_>
-									<_><xsl:value-of select="res:binding[@name = 'lat']/res:literal"/></_>
+									<_>
+										<xsl:value-of select="res:binding[@name = 'long']/res:literal"/>
+									</_>
+									<_>
+										<xsl:value-of select="res:binding[@name = 'lat']/res:literal"/>
+									</_>
 								</_array>
 							</coordinates>
-						</_object>						
+						</_object>
 					</geometry>
-					
+
 					<xsl:if test="res:binding[@name = 'closingDate']">
 						<when>
 							<_object>
 								<timespans>
 									<_array>
 										<_object>
-											<start><xsl:value-of select="nomisma:xsdToIso(res:binding[@name = 'closingDate']/res:literal)"/></start>
-											<end><xsl:value-of select="nomisma:xsdToIso(res:binding[@name = 'closingDate']/res:literal)"/></end>
+											<start>
+												<xsl:value-of select="nomisma:xsdToIso(res:binding[@name = 'closingDate']/res:literal)"/>
+											</start>
+											<end>
+												<xsl:value-of select="nomisma:xsdToIso(res:binding[@name = 'closingDate']/res:literal)"/>
+											</end>
 										</_object>
 									</_array>
 								</timespans>
 							</_object>
 						</when>
 					</xsl:if>
-					
+
 					<properties>
 						<_object>
-							<toponym><xsl:value-of select="res:binding[@name = 'label']/res:literal"/></toponym>
-							<gazetteer_label><xsl:value-of select="res:binding[@name = 'label']/res:literal"/></gazetteer_label>
-							<gazetteer_uri><xsl:value-of select="res:binding[@name = 'place']/res:uri"/></gazetteer_uri>
+							<toponym>
+								<xsl:value-of select="res:binding[@name = 'label']/res:literal"/>
+							</toponym>
+							<gazetteer_label>
+								<xsl:value-of select="res:binding[@name = 'label']/res:literal"/>
+							</gazetteer_label>
+							<gazetteer_uri>
+								<xsl:value-of select="res:binding[@name = 'place']/res:uri"/>
+							</gazetteer_uri>
 							<type>
-								<xsl:value-of select="
-									if ($api = 'getMints') then
-									'mint'
-									else
-									$findType"/>
+								<xsl:value-of select="$type"/>
 							</type>
 							<xsl:if test="res:binding[@name = 'count']">
 								<count>
 									<xsl:value-of select="res:binding[@name = 'count']/res:literal"/>
-								</count>								
+								</count>
 							</xsl:if>
 							<xsl:if test="res:binding[@name = 'closingDate']">
 								<closing_date>
@@ -408,7 +460,7 @@
 								</closing_date>
 							</xsl:if>
 						</_object>
-					</properties>					
+					</properties>
 				</_object>
 			</xsl:otherwise>
 		</xsl:choose>

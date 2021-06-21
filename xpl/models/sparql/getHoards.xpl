@@ -3,7 +3,7 @@
 	Author: Ethan Gruber
 	Date: June 2021
 	Function: Read the type of response, whether a nomisma ID, coin type URI, symbol URI, or symbol letter and type series in order to determine
-	the structure of the SPARQL query to submit to the endpoint in order to get findspots
+	the structure of the SPARQL query to submit to the endpoint in order to get hoards
 -->
 <p:config xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:oxf="http://www.orbeon.com/oxf/processors" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 
@@ -50,7 +50,7 @@
 	<p:processor name="oxf:url-generator">
 		<p:input name="config">
 			<config>
-				<url>oxf:/apps/nomisma/ui/sparql/getFindspots.sparql</url>
+				<url>oxf:/apps/nomisma/ui/sparql/getHoards.sparql</url>
 				<content-type>text/plain</content-type>
 				<encoding>utf-8</encoding>
 			</config>
@@ -165,7 +165,7 @@
 
 								<xsl:variable name="statements" as="element()*">
 									<xsl:call-template name="nomisma:getFindspotsStatements">
-										<xsl:with-param name="api">getFindspots</xsl:with-param>
+										<xsl:with-param name="api">getHoards</xsl:with-param>
 										<xsl:with-param name="type" select="$type"/>
 										<xsl:with-param name="id" select="$id"/>
 										<xsl:with-param name="letters"/>
@@ -230,7 +230,7 @@
 									<xsl:variable name="coinType" select="doc('input:request')/request/parameters/parameter[name='coinType']/value"/>
 
 									<xsl:call-template name="nomisma:getFindspotsStatements">
-										<xsl:with-param name="api">getFindspots</xsl:with-param>
+										<xsl:with-param name="api">getHoards</xsl:with-param>
 										<xsl:with-param name="type">nmo:TypeSeriesItem</xsl:with-param>
 										<xsl:with-param name="id" select="$coinType"/>
 										<xsl:with-param name="letters"/>
@@ -241,7 +241,7 @@
 									<xsl:variable name="uri" select="doc('input:request')/request/parameters/parameter[name='symbol']/value"/>
 
 									<xsl:call-template name="nomisma:getFindspotsStatements">
-										<xsl:with-param name="api">getFindspots</xsl:with-param>
+										<xsl:with-param name="api">getHoards</xsl:with-param>
 										<xsl:with-param name="type">nmo:Monogram</xsl:with-param>
 										<xsl:with-param name="id" select="$uri"/>
 										<xsl:with-param name="letters"/>
@@ -254,7 +254,7 @@
 									<xsl:variable name="typeSeries" select="doc('input:request')/request/parameters/parameter[name='typeSeries']"/>
 																		
 									<xsl:call-template name="nomisma:getFindspotsStatements">
-										<xsl:with-param name="api">getFindspots</xsl:with-param>
+										<xsl:with-param name="api">getHoards</xsl:with-param>
 										<xsl:with-param name="type">letter</xsl:with-param>
 										<xsl:with-param name="id"/>
 										<xsl:with-param name="letters" select="$letters"/>

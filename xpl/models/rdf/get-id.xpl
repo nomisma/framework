@@ -45,7 +45,10 @@
 											</xsl:when>
 											<xsl:when test="contains($pieces[last()], '.jsonld')">
 												<xsl:value-of select="substring-before($pieces[last()], '.jsonld')"/>
-											</xsl:when>				
+											</xsl:when>		
+											<xsl:when test="contains($pieces[last()], '.geojson')">
+												<xsl:value-of select="substring-before($pieces[last()], '.geojson')"/>
+											</xsl:when>
 											<xsl:when test="contains($pieces[last()], '.solr')">
 												<xsl:value-of select="substring-before($pieces[last()], '.solr')"/>
 											</xsl:when>

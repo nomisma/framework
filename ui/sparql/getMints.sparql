@@ -16,10 +16,10 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>
 PREFIX wordnet: <http://ontologi.es/WordNet/class/>
 PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
 
-SELECT DISTINCT ?place ?label ?lat ?long ?poly WHERE {
+SELECT DISTINCT ?place ?label ?lat ?long ?poly (count(?place) as ?count) WHERE {
 %STATEMENTS%
 ?place skos:prefLabel ?label . FILTER langMatches(lang(?label), "en").
 {?loc geo:lat ?lat ;
        geo:long ?long }
 UNION {?loc osgeo:asGeoJSON ?poly }
-}
+} GROUP BY ?place ?label ?lat ?long ?poly

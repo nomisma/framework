@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 	Author: Ethan Gruber
-	Date: June 2020
+	Date: June 2021
 	Function: Read the type of response, whether a nomisma ID, a symbol URI, or symbol letter and type series in order to determine
 	the structure of the SPARQL query to submit to the endpoint in order to get mints pertaining to that query.
 -->
@@ -26,11 +26,19 @@
 			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
 				xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 				<xsl:template match="/">
+					
+					<!-- evaluate the type by reading the URL pattern for .geojson serializations of Nomisma concepts vs. the API -->
 					<type>
 						<xsl:choose>
-							<xsl:when test="/request/parameters/parameter[name='id']/value">id</xsl:when>
-							<xsl:when test="/request/parameters/parameter[name='symbol']/value">symbol</xsl:when>
-							<xsl:when test="/request/parameters/parameter[name='letter']">letter</xsl:when>
+							<xsl:when test="tokenize(/request/request-url, '/')[last() - 1] = 'id'">id</xsl:when>
+							<xsl:when test="tokenize(/request/request-url, '/')[last() - 1] = 'symbol'">symbol</xsl:when>
+							<xsl:otherwise>
+								<xsl:choose>
+									<xsl:when test="/request/parameters/parameter[name='id']/value">id</xsl:when>
+									<xsl:when test="/request/parameters/parameter[name='symbol']/value">symbol</xsl:when>
+									<xsl:when test="/request/parameters/parameter[name='letter']">letter</xsl:when>
+								</xsl:choose>
+							</xsl:otherwise>
 						</xsl:choose>
 					</type>
 				</xsl:template>
@@ -109,8 +117,19 @@
 						<p:input name="config-xml" href=" ../../../config.xml"/>
 						<p:input name="config">
 							<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-								xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-								<xsl:param name="id" select="doc('input:request')/request/parameters/parameter[name='id']/value"/>
+								xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">								
+								
+								<xsl:param name="id">
+									<xsl:choose>
+										<xsl:when test="doc('input:request')/request/parameters/parameter[name='id']/value">
+											<xsl:value-of select="doc('input:request')/request/parameters/parameter[name='id']/value"/>
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:value-of select="replace(tokenize(doc('input:request')/request/request-url, '/')[last()], '.geojson', '')"/>
+										</xsl:otherwise>
+									</xsl:choose>
+								</xsl:param>
+								
 								<xsl:variable name="sparql_endpoint" select="doc('input:config-xml')/config/sparql_query"/>
 
 								<xsl:variable name="query"><![CDATA[PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -200,8 +219,19 @@ SELECT ?place ?label ?lat ?long WHERE {
 								<xsl:include href="../../../ui/xslt/controllers/metamodel-templates.xsl"/>
 								<xsl:include href="../../../ui/xslt/controllers/sparql-metamodel.xsl"/>
 
+								
+								<xsl:param name="id">
+									<xsl:choose>
+										<xsl:when test="doc('input:request')/request/parameters/parameter[name='id']/value">
+											<xsl:value-of select="doc('input:request')/request/parameters/parameter[name='id']/value"/>
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:value-of select="replace(tokenize(doc('input:request')/request/request-url, '/')[last()], '.geojson', '')"/>
+										</xsl:otherwise>
+									</xsl:choose>
+								</xsl:param>
+								
 								<xsl:variable name="sparql_endpoint" select="doc('input:config-xml')/config/sparql_query"/>
-								<xsl:param name="id" select="doc('input:request')/request/parameters/parameter[name='id']/value"/>
 								<xsl:variable name="type" select="/type"/>
 
 								<xsl:variable name="query" select="doc('input:query')"/>
