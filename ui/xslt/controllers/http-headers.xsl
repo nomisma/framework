@@ -52,7 +52,10 @@
 							<xsl:text>&gt;; rel="alternate"; type="application/ld+json"; profile="https://linked.art/ns/v1/linked-art.json", </xsl:text>
 							<xsl:text>&lt;</xsl:text>							
 							<xsl:value-of select="$objectURI"/>
-							<xsl:text>&gt;; rel="alternate"; type="application/vnd.google-earth.kml+xml"</xsl:text>
+							<xsl:text>&gt;; rel="alternate"; type="application/vnd.google-earth.kml+xml", </xsl:text>
+							<xsl:text>&lt;</xsl:text>							
+							<xsl:value-of select="$objectURI"/>
+							<xsl:text>&gt;; rel="alternate"; type="application/vnd.geo+json"</xsl:text>
 						</value>
 					</header>
 				</xsl:when>

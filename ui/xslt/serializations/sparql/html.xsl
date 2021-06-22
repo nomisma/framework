@@ -45,7 +45,8 @@
 				<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
 				<link rel="stylesheet" href="{$display_path}ui/css/style.css"/>
 				<xsl:if test="$hasGeo = true()">
-					<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css"/>
+					<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0/dist/leaflet.css"/>
+					<script type="text/javascript" src="https://unpkg.com/leaflet@1.0.0/dist/leaflet.js"/>
 					<link rel="stylesheet" href="{$display_path}ui/css/MarkerCluster.css"/>
 					<link rel="stylesheet" href="{$display_path}ui/css/MarkerCluster.Default.css"/>
 					<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"/>

@@ -40,20 +40,7 @@
 									</xsl:when>
 									<!-- create JSON from a mint or region concept -->
 									<xsl:otherwise>
-										<xsl:choose>
-											<xsl:when test="descendant::geo:SpatialThing/osgeo:asGeoJSON">
-												<xsl:apply-templates select="descendant::geo:SpatialThing" mode="poly">
-													<xsl:with-param name="uri" select="*[1]/@rdf:about"/>
-													<xsl:with-param name="label" select="*[1]/skos:prefLabel[@xml:lang = 'en']"/>
-												</xsl:apply-templates>
-											</xsl:when>
-											<xsl:when test="descendant::geo:SpatialThing[geo:lat and geo:long]">
-												<xsl:apply-templates select="descendant::geo:SpatialThing" mode="point">
-													<xsl:with-param name="uri" select="*[1]/@rdf:about"/>
-													<xsl:with-param name="label" select="*[1]/skos:prefLabel[@xml:lang = 'en']"/>
-												</xsl:apply-templates>
-											</xsl:when>
-										</xsl:choose>
+										<xsl:apply-templates select="rdf:RDF"/>
 									</xsl:otherwise>
 								</xsl:choose>
 							</xsl:when>
@@ -131,6 +118,24 @@
 		<xsl:apply-templates select="doc('input:findspots')/res:sparql">
 			<xsl:with-param name="type">findspot</xsl:with-param>
 		</xsl:apply-templates>
+	</xsl:template>
+	
+	<!-- RDF/XML template for mint -->
+	<xsl:template match="rdf:RDF">
+		<xsl:choose>
+			<xsl:when test="descendant::geo:SpatialThing/osgeo:asGeoJSON">
+				<xsl:apply-templates select="descendant::geo:SpatialThing" mode="poly">
+					<xsl:with-param name="uri" select="*[1]/@rdf:about"/>
+					<xsl:with-param name="label" select="*[1]/skos:prefLabel[@xml:lang = 'en']"/>
+				</xsl:apply-templates>
+			</xsl:when>
+			<xsl:when test="descendant::geo:SpatialThing[geo:lat and geo:long]">
+				<xsl:apply-templates select="descendant::geo:SpatialThing" mode="point">
+					<xsl:with-param name="uri" select="*[1]/@rdf:about"/>
+					<xsl:with-param name="label" select="*[1]/skos:prefLabel[@xml:lang = 'en']"/>
+				</xsl:apply-templates>
+			</xsl:when>
+		</xsl:choose>
 	</xsl:template>
 
 	<!-- generate GeoJSON for id/ responses -->
@@ -328,6 +333,7 @@
 			<xsl:when test="rdfs:label">
 				<xsl:value-of select="rdfs:label[1]"/>
 			</xsl:when>
+			<xsl:otherwise>[no label]</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
 
@@ -344,7 +350,7 @@
 		<xsl:param name="type"/>
 
 		<xsl:choose>
-			<xsl:when test="res:binding[@name = 'poly']">
+			<xsl:when test="res:binding[@name = 'poly'] or res:binding[@name = 'wkt'][contains(res:literal, 'POLYGON')]">
 				<_object>
 					<type>Feature</type>
 					<label>
@@ -361,9 +367,44 @@
 							<xsl:value-of select="res:binding[@name = 'hoard']/res:uri"/>
 						</id>
 					</xsl:if>
-					<geometry datatype="osgeo:asGeoJSON">
-						<xsl:value-of select="res:binding[@name = 'poly']/res:literal"/>
-					</geometry>
+					
+					<xsl:choose>
+						<xsl:when test="res:binding[@name = 'poly']">
+							<geometry datatype="osgeo:asGeoJSON">
+								<xsl:value-of select="res:binding[@name = 'poly']/res:literal"/>
+							</geometry>
+						</xsl:when>
+						<xsl:when test="res:binding[@name = 'wkt'][contains(res:literal, 'POLYGON')]">
+							<xsl:variable name="coordinates" select="normalize-space(substring-before(substring-after(res:binding[@name = 'wkt']/res:literal, '('), ')'))"/>
+							
+							<geometry>
+								<_object>
+									<type>Polygon</type>
+									<coordinates>
+										<_array>
+											<_array>
+												
+												<!-- tokenize WKT into coordinate pairs separated by commas -->
+												<xsl:for-each select="tokenize($coordinates, ',')">
+													<xsl:variable name="pair" select="normalize-space(.)"/>
+													
+													<_array>
+														<_>
+															<xsl:value-of select="substring-before($pair, ' ')"/>
+														</_>
+														<_>
+															<xsl:value-of select="substring-after($pair, ' ')"/>
+														</_>
+													</_array>
+												</xsl:for-each>
+											</_array>
+										</_array>
+										
+									</coordinates>
+								</_object>								
+							</geometry>
+						</xsl:when>
+					</xsl:choose>
 
 					<properties>
 						<_object>

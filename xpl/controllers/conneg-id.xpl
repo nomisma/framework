@@ -85,6 +85,7 @@
 					
 					<xsl:choose>
 						<xsl:when test="$content-type='application/ld+json'">json-ld</xsl:when>
+						<xsl:when test="$content-type='application/vnd.geo+json'">geojson</xsl:when>
 						<xsl:when test="$content-type='application/vnd.google-earth.kml+xml'">kml</xsl:when>
 						<xsl:when test="$content-type='application/rdf+xml' or $content-type='application/xml' or $content-type='text/xml'">xml</xsl:when>
 						<xsl:when test="$content-type='text/turtle'">turtle</xsl:when>
@@ -120,6 +121,13 @@
 			<p:processor name="oxf:pipeline">
 				<p:input name="data" href="#data"/>
 				<p:input name="config" href="../views/serializations/rdf/linkedart-json-ld.xpl"/>
+				<p:output name="data" ref="data"/>
+			</p:processor>
+		</p:when>
+		<p:when test="content-type='geojson'">
+			<p:processor name="oxf:pipeline">
+				<p:input name="data" href="#data"/>
+				<p:input name="config" href="../views/serializations/rdf/geojson.xpl"/>
 				<p:output name="data" ref="data"/>
 			</p:processor>
 		</p:when>

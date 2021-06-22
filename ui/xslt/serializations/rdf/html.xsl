@@ -112,8 +112,8 @@
 
 				<!-- include geographic js if there are mints or findspots to render -->
 				<xsl:if test="$hasMints = true() or $hasFindspots = true()">
-					<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css"/>
-					<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"/>
+					<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0/dist/leaflet.css"/>
+					<script type="text/javascript" src="https://unpkg.com/leaflet@1.0.0/dist/leaflet.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet.ajax.min.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/heatmap.min.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet-heatmap.js"/>
@@ -258,13 +258,7 @@
 									<a href="{$id}.kml">KML</a>
 								</li>
 								<li>
-									<a href="{$display_path}apis/getMints?id={$id}">geoJSON (mints)</a>
-								</li>
-								<li>
-									<a href="{$display_path}apis/getHoards?id={$id}">geoJSON (hoards)</a>
-								</li>
-								<li>
-									<a href="{$display_path}apis/getFindspots?id={$id}">geoJSON (finds)</a>
+									<a href="{$id}.geojson">GeoJSON</a>
 								</li>
 							</ul>
 						</xsl:if>

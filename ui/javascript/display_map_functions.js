@@ -14,6 +14,7 @@ function initialize_map(id) {
     var prefLabel = $('span[property="skos:prefLabel"]:lang(en)').text();
     var type = $('#type').text();
     var mapboxKey = $('#mapboxKey').text();
+    var url = id + ".geojson";
     
     //baselayers
     var mb_physical = L.tileLayer(
@@ -49,61 +50,57 @@ function initialize_map(id) {
         "Imperium": imperium
     };
     
-    var overlayMaps = {
-    };
+    //add controls
+    var layerControl = L.control.layers(baseMaps).addTo(map);
     
-    //add mintLayer from AJAX
-    var mintLayer = L.geoJson.ajax('../apis/getMints?id=' + id, {
-        onEachFeature: onEachFeature,
-        pointToLayer: renderPoints
-    }).addTo(map);
-    
-    //add hoards, but don't make visible by default
-    var hoardLayer = L.geoJson.ajax('../apis/getHoards?id=' + id, {
-        onEachFeature: onEachFeature,
-        style: function (feature) {
-            if (feature.geometry.type == 'Polygon') {
-                var fillColor = getFillColor(feature.properties.type);
-                
-                return {
-                    color: fillColor
-                }
-            }
-        },
-        pointToLayer: renderPoints
-    }).addTo(map);
-    
-    
-    //add baselayers
-    if (type == 'nmo:Mint' || type == 'nmo:Region') {
-        overlayMaps[prefLabel] = mintLayer;
-    } else {
-        overlayMaps[ 'Mints'] = mintLayer;
-    }
-    
-    if (type == 'nmo:Hoard') {
-        overlayMaps[prefLabel] = hoardLayer;
-        hoardLayer.addTo(map);
-    } else {
-        overlayMaps[ 'Hoards'] = hoardLayer;
-    }
-    
-    var controls = L.control.layers(baseMaps, overlayMaps).addTo(map);
-    
-    //add individual finds layer, but don't make visible
-    var findLayer = $.getJSON('../apis/getFindspots?id=' + id, function (data) {
-        var maxDensity = 0;
+    //add GeoJSON from AJAX
+    $.getJSON(url, function (data) {
+        var maxFindspotDensity = 0;
+        var maxMintDensity = 0;
+        
+        //split features into separate objects
+        var mints = {
+            "type": "FeatureCollection",
+            "features":[]
+        };
+        var hoards = {
+            "type": "FeatureCollection",
+            "features":[]
+        };
+        var findspots = {
+            "type": "FeatureCollection",
+            "features":[]
+        };
+        
         $.each(data.features, function (key, value) {
-            if (value.properties.hasOwnProperty('count') == true) {
+            if (value.properties.type == 'findspot' && value.properties.hasOwnProperty('count') == true) {
                 if (value.properties.count !== undefined) {
-                    if (value.properties.count > maxDensity) {
-                        maxDensity = value.properties.count;
+                    if (value.properties.count > maxFindspotDensity) {
+                        maxFindspotDensity = value.properties.count;
+                    }
+                }
+            } else if (value.properties.type == 'mint' && value.properties.hasOwnProperty('count') == true) {
+                if (value.properties.count !== undefined) {
+                    if (value.properties.count > maxMintDensity) {
+                        maxMintDensity = value.properties.count;
                     }
                 }
             }
+            
+            //populate objects
+            if (value.properties.type == 'mint') {
+                mints.features.push(value);
+            }
+            if (value.properties.type == 'hoard') {
+                hoards.features.push(value);
+            }
+            if (value.properties.type == 'findspot') {
+                findspots.features.push(value);
+            }
         });
         
-        var findLayer = L.geoJson(data, {
+        //create overlays for the three types of features
+        var mintLayer = L.geoJson(mints, {
             onEachFeature: onEachFeature,
             style: function (feature) {
                 if (feature.geometry.type == 'Polygon') {
@@ -115,55 +112,95 @@ function initialize_map(id) {
                 }
             },
             pointToLayer: function (feature, latlng) {
-                return renderFindspotPoints(feature, latlng, maxDensity);
+                return renderPoints(feature, latlng, maxFindspotDensity, maxMintDensity);
             }
         }).addTo(map);
         
-        controls.addOverlay(findLayer, 'Finds');
+        var hoardLayer = L.geoJson(hoards, {
+            onEachFeature: onEachFeature,
+            style: function (feature) {
+                if (feature.geometry.type == 'Polygon') {
+                    var fillColor = getFillColor(feature.properties.type);
+                    
+                    return {
+                        color: fillColor
+                    }
+                }
+            },
+            pointToLayer: function (feature, latlng) {
+                return renderPoints(feature, latlng, maxFindspotDensity, maxMintDensity);
+            }
+        }).addTo(map);
+        
+        var findLayer = L.geoJson(findspots, {
+            onEachFeature: onEachFeature,
+            style: function (feature) {
+                if (feature.geometry.type == 'Polygon') {
+                    var fillColor = getFillColor(feature.properties.type);
+                    
+                    return {
+                        color: fillColor
+                    }
+                }
+            },
+            pointToLayer: function (feature, latlng) {
+                return renderPoints(feature, latlng, maxFindspotDensity, maxMintDensity);
+            }
+        }).addTo(map);
+        
+        //add layers to controls
+        layerControl.addOverlay(mintLayer, 'Mints');
+        layerControl.addOverlay(hoardLayer, 'Hoards');
+        layerControl.addOverlay(findLayer, 'Finds');
         
         var group = new L.featureGroup([findLayer, mintLayer, hoardLayer]);
         map.fitBounds(group.getBounds());
-        
-        return findLayer;
     });
     
     
     
-    //zoom to groups on AJAX complete
-    mintLayer.on('data:loaded', function () {
-        var group = new L.featureGroup([mintLayer, hoardLayer]);
-        map.fitBounds(group.getBounds());
-    }.bind(this));
-    
-    hoardLayer.on('data:loaded', function () {
-        var group = new L.featureGroup([mintLayer, hoardLayer]);
-        map.fitBounds(group.getBounds());
-    }.bind(this));
-    
     /*****
      * Features for manipulating layers
      *****/
-    function renderPoints(feature, latlng) {
+    function renderPoints(feature, latlng, maxFindspotDensity, maxMintDensity) {
+        
         var fillColor = getFillColor(feature.properties.type);
         
-        return new L.CircleMarker(latlng, {
-            radius: 5,
-            fillColor: fillColor,
-            color: "#000",
-            weight: 1,
-            opacity: 1,
-            fillOpacity: 0.6
-        });
-    }
-    
-    function renderFindspotPoints(feature, latlng, maxDensity) {
-        var fillColor = getFillColor(feature.properties.type);
-        
-        if (feature.properties.hasOwnProperty('count')) {
-            grade = maxDensity / 5;
+        if (feature.properties.type == 'findspot' && feature.properties.hasOwnProperty('count')) {
+            grade = maxFindspotDensity / 5;
             
             var radius = 5;
-            if (feature.properties.count < Math.round(grade)) {
+            if (Math.round(grade) == 0) {
+                radius = 5;
+            } else if (feature.properties.count < Math.round(grade)) {
+                radius = 5;
+            } else if (feature.properties.count >= Math.round(grade) && feature.properties.count < Math.round(grade * 2)) {
+                radius = 10;
+            } else if (feature.properties.count >= Math.round(grade * 2) && feature.properties.count < Math.round(grade * 3)) {
+                radius = 15;
+            } else if (feature.properties.count >= Math.round(grade * 3) && feature.properties.count < Math.round(grade * 4)) {
+                radius = 20;
+            } else if (feature.properties.count >= Math.round(grade * 4)) {
+                radius = 25;
+            } else {
+                radius = 5;
+            }
+            
+            return new L.CircleMarker(latlng, {
+                radius: radius,
+                fillColor: fillColor,
+                color: "#000",
+                weight: 1,
+                opacity: 1,
+                fillOpacity: 0.6
+            });
+        } else if (feature.properties.type == 'mint' && feature.properties.hasOwnProperty('count')) {
+            grade = maxMintDensity / 5;
+            
+            var radius = 5;
+            if (Math.round(grade) == 0) {
+                radius = 5;
+            } else if (feature.properties.count < Math.round(grade)) {
                 radius = 5;
             } else if (feature.properties.count >= Math.round(grade) && feature.properties.count < Math.round(grade * 2)) {
                 radius = 10;

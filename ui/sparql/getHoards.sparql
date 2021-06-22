@@ -1,6 +1,7 @@
 PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX bio:	<http://purl.org/vocab/bio/0.1/>
 PREFIX crm:	<http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmgeo:  <http://www.ics.forth.gr/isl/CRMgeo/>
 PREFIX dcmitype:	<http://purl.org/dc/dcmitype/>
 PREFIX dcterms:	<http://purl.org/dc/terms/>
 PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
@@ -24,6 +25,6 @@ OPTIONAL {?hoard nmo:hasClosingDate ?closingDate}
 ?place a crm:E53_Place ;
     rdfs:label ?label ;
     geo:location ?loc .
-OPTIONAL {?loc geo:lat ?lat ; geo:long ?long}
-OPTIONAL {?loc osgeo:asGeoJSON ?poly}
+{?loc geo:lat ?lat ; geo:long ?long}
+UNION {?loc osgeo:asGeoJSON ?poly}
 }
