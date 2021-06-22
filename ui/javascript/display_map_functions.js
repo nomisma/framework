@@ -240,7 +240,7 @@ function initialize_map(id) {
             case 'mint':
             fillColor = '#6992fd';
             break;
-            case 'find':
+            case 'findspot':
             fillColor = '#f98f0c';
             break;
             case 'hoard':
