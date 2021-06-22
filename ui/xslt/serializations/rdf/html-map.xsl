@@ -102,6 +102,7 @@
 				<xsl:value-of select="$type"/>
 			</span>
 			<span id="mode">fullscreen</span>
+			<span id="path">../id/</span>
 		</div>
 	</xsl:template>
 </xsl:stylesheet>

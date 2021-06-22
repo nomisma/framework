@@ -14,7 +14,8 @@ function initialize_map(id) {
     var prefLabel = $('span[property="skos:prefLabel"]:lang(en)').text();
     var type = $('#type').text();
     var mapboxKey = $('#mapboxKey').text();
-    var url = id + ".geojson";
+    var path = $('#path').text();
+    var url = path + id + ".geojson";
     
     //baselayers
     var mb_physical = L.tileLayer(

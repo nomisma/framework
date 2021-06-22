@@ -357,6 +357,7 @@
 			<span id="base-query">
 				<xsl:value-of select="$base-query"/>
 			</span>
+			<span id="path"/>
 
 			<xsl:call-template name="field-template">
 				<xsl:with-param name="template" as="xs:boolean">true</xsl:with-param>
