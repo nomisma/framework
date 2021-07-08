@@ -7,10 +7,6 @@
 	<xsl:function name="nomisma:normalizeDate">
 		<xsl:param name="date"/>
 
-		<xsl:if test="substring($date, 1, 1) != '-' and number(substring($date, 1, 4)) &lt; 500">
-			<xsl:text>A.D. </xsl:text>
-		</xsl:if>
-
 		<xsl:choose>
 			<xsl:when test="$date castable as xs:date">
 				<xsl:value-of select="format-date($date, '[D] [MNn] [Y]')"/>
@@ -24,9 +20,14 @@
 			</xsl:when>
 		</xsl:choose>
 
-		<xsl:if test="substring($date, 1, 1) = '-'">
-			<xsl:text> B.C.</xsl:text>
-		</xsl:if>
+		<xsl:choose>
+			<xsl:when test="substring($date, 1, 1) = '-'">
+				<xsl:text> BCE</xsl:text>
+			</xsl:when>
+			<xsl:when test="substring($date, 1, 1) != '-' and number(substring($date, 1, 4)) &lt; 500">
+				<xsl:text> CE</xsl:text>
+			</xsl:when>
+		</xsl:choose>
 	</xsl:function>
 
 	<!-- convert XSD compliant date datatypes into ISO 8601 dates (e.g., 1 B.C., "-0001"^^xsd:gYear = "0000" in ISO 8601) -->
@@ -147,21 +148,21 @@
 
 		<xsl:value-of select="document($service)/response"/>
 	</xsl:function>
-	
+
 	<!-- ***** Functions for linked.art JSON-LD serialization ***** -->
 	<xsl:function name="nomisma:expandDate">
 		<xsl:param name="date"/>
 		<xsl:param name="range"/>
-	
-		
+
+
 		<!-- the data should be assumed to be XSD 1.0 compliant, which means that in order to make BC dates compliant to ISO 8601/XSD 1.1, 
 			a year should be added mathematically so that 1 BC is "0000" in the JSON output -->
 		<xsl:choose>
 			<xsl:when test="substring($date, 1, 1) = '-'">
-				
-				<xsl:variable name="pieces" select="tokenize(substring($date, 2), '-')"/>				
+
+				<xsl:variable name="pieces" select="tokenize(substring($date, 2), '-')"/>
 				<xsl:variable name="new-year" select="format-number((number($pieces[1]) * -1) + 1, '0000')"/>
-				
+
 				<xsl:value-of select="$new-year"/>
 				<xsl:if test="string($pieces[2])">
 					<xsl:value-of select="concat('-', $pieces[2])"/>
@@ -173,7 +174,95 @@
 			<xsl:otherwise>
 				<xsl:value-of select="$date"/>
 			</xsl:otherwise>
-		</xsl:choose>		
+		</xsl:choose>
+	</xsl:function>
+
+	<xsl:function name="nomisma:normalizeYear">
+		<xsl:param name="year"/>
+
+		<xsl:choose>
+			<xsl:when test="number($year) &lt;= 0">
+				<xsl:value-of select="abs(number($year))"/>
+				<xsl:text> BCE</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="number($year)"/>
+				<xsl:if test="number($year) &lt;= 400">
+					<xsl:text> CE</xsl:text>
+				</xsl:if>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:function>
+
+	<!-- turn rdf properties into human-readable labels. If a label for a particular label is not translated, the function will re-run in English -->
+	<xsl:function name="nomisma:normalizeCurie">
+		<xsl:param name="curie"/>
+		<xsl:param name="lang"/>
+
+		<xsl:choose>
+			<xsl:when test="$lang = 'fr'">
+				<xsl:choose>
+
+					<!-- properties -->
+					<xsl:when test="$curie = 'kon:hasShape'">Forme</xsl:when>
+
+					<xsl:otherwise>
+						<xsl:value-of select="nomisma:normalizeCurie($curie, 'en')"/>
+					</xsl:otherwise>
+				</xsl:choose>
+
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:choose>
+					<!-- classes -->
+					<xsl:when test="$curie = 'crm:E52_Time-Span'">Time Span</xsl:when>
+					<xsl:when test="$curie = 'crm:E4_Period'">Period</xsl:when>
+					<xsl:when test="$curie = 'nmo:CoinWear'">Coin Wear</xsl:when>
+					<xsl:when test="$curie = 'nmo:FieldOfNumismatics'">Field of Numismatics</xsl:when>
+					<xsl:when test="$curie = 'nmo:FindType'">Find Type</xsl:when>
+					<xsl:when test="$curie = 'nmo:NumismaticTerm'">Numismatic Term</xsl:when>
+					<xsl:when test="$curie = 'nmo:ObjectType'">Object Type</xsl:when>
+					<xsl:when test="$curie = 'nmo:PeculiarityOfProduction'">Peculiarity of Production</xsl:when>
+					<xsl:when test="$curie = 'nmo:ReferenceWork'">Reference Work</xsl:when>
+					<xsl:when test="$curie = 'nmo:SecondaryTreatment'">Secondary Treatment</xsl:when>
+					<xsl:when test="$curie = 'nmo:TypeSeries'">Type Series</xsl:when>
+					
+
+					<!-- properties -->
+					<xsl:when test="$curie = 'crm:P4_has_time-span'">Time Span</xsl:when>
+					<xsl:when test="$curie = 'crm:P7_took_place_at'">Production Place</xsl:when>
+					<xsl:when test="$curie = 'crm:P10_falls_within'">Period</xsl:when>
+					<xsl:when test="$curie = 'crm:P14_carried_out_by'">Artist</xsl:when>
+					<xsl:when test="$curie = 'crm:P32_used_general_technique'">Technique</xsl:when>
+					<xsl:when test="$curie = 'crm:P45_consists_of'">Material</xsl:when>
+					<xsl:when test="$curie = 'crm:P50_has_current_keeper'">Current Keeper</xsl:when>
+					<xsl:when test="$curie = 'crm:P106_is_composed_of'">Constituent Letters</xsl:when>
+					<xsl:when test="$curie = 'geo:lat'">Latitude</xsl:when>
+					<xsl:when test="$curie = 'geo:long'">Longitude</xsl:when>
+					<xsl:when test="$curie = 'dcterms:isPartOf'">Part Of</xsl:when>
+					<xsl:when test="$curie = 'dcterms:source'">Reference</xsl:when>
+					<xsl:when test="$curie = 'nmo:hasStartDate'">Start Date</xsl:when>
+					<xsl:when test="$curie = 'nmo:hasEndDate'">End Date</xsl:when>
+					<xsl:when test="$curie = 'org:role'">Role</xsl:when>
+					<xsl:when test="$curie = 'org:organization'">Organization</xsl:when>
+					<xsl:when test="$curie = 'osgeo:asGeoJSON'">GeoJSON</xsl:when>
+					<xsl:when test="$curie = 'skos:prefLabel'">Preferred Label</xsl:when>
+					<xsl:when test="$curie = 'skos:altLabel'">Alternate Label</xsl:when>
+					<xsl:when test="$curie = 'skos:broader'">Broader Concept</xsl:when>
+					<xsl:when test="$curie = 'skos:changeNote'">Change Note</xsl:when>
+					<xsl:when test="$curie = 'skos:closeMatch'">Close Match</xsl:when>
+					<xsl:when test="$curie = 'skos:exactMatch'">Exact Match</xsl:when>
+					<xsl:when test="$curie = 'skos:inScheme'">Concept Scheme</xsl:when>
+					<xsl:when test="$curie = 'skos:related'">Related Entity</xsl:when>
+
+					<xsl:otherwise>
+						<xsl:variable name="localName" select="substring-after($curie, ':')"/>
+
+						<xsl:value-of select="concat(upper-case(substring($localName, 1, 1)), substring($localName, 2))"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:function>
 
 	<!-- ********************************** TEMPLATES ************************************ -->

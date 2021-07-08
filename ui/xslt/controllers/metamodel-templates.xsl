@@ -927,5 +927,14 @@
             <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
         </statements>
     </xsl:template>
+    
+    <!-- get members of an organization (either people or other organizations) via org:hasMembership or get members of a dynasty via org:memberOf -->
+    <xsl:template name="nomisma:getMembers">
+        <xsl:param name="type"/>
+        <xsl:param name="id"/>
+        
+        
+        
+    </xsl:template>
 
 </xsl:stylesheet>

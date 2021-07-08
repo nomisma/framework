@@ -69,7 +69,7 @@
 					<div class="col-sm-3 col-md-3 pull-right">
 						<form class="navbar-form" role="search" action="{$display_path}browse" method="get">
 							<div class="input-group">
-								<input type="text" class="form-control" placeholder="Search" name="q" id="srch-term"/>
+								<input type="text" class="form-control" placeholder="Search IDs" name="q" id="srch-term"/>
 								<div class="input-group-btn">
 									<button class="btn btn-default" type="submit">
 										<i class="glyphicon glyphicon-search"/>

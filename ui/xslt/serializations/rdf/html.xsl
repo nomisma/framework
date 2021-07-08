@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Author: Ethan Gruber
+	Date modified: July 2021
+	Function: Serialize RDF into HTML. This applies to creating human readable pages out of RDF/XML for Nomisma IDs -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/"
 	xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/"
 	xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:org="http://www.w3.org/ns/org#" xmlns:nomisma="http://nomisma.org/"
-	xmlns:nmo="http://nomisma.org/ontology#" xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" xmlns:prov="http://www.w3.org/ns/prov#" xmlns:crmdig="http://www.ics.forth.gr/isl/CRMdig/"
-	exclude-result-prefixes="#all" version="2.0">
+	xmlns:nmo="http://nomisma.org/ontology#" xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" xmlns:prov="http://www.w3.org/ns/prov#"
+	xmlns:crmdig="http://www.ics.forth.gr/isl/CRMdig/" exclude-result-prefixes="#all" version="2.0">
 	<xsl:include href="../../templates.xsl"/>
 	<xsl:include href="../../functions.xsl"/>
 	<xsl:include href="html-templates.xsl"/>
 	<xsl:include href="../../vis-templates.xsl"/>
+	
+	<xsl:param name="lang">en</xsl:param>
 
 	<!-- config or other variables -->
 	<xsl:variable name="display_path">../</xsl:variable>
@@ -169,50 +174,11 @@
 	<xsl:template name="body">
 		<div class="container-fluid content">
 			<div class="row">
-				<div class="col-md-{if ($hasMints = true() or $hasFindspots = true()) then '6' else '9'}">
-					<xsl:if test="$hasTypes = true()">
-						<a href="#quant">Quantitative Analysis</a>
-					</xsl:if>
-					
-					<xsl:apply-templates select="/content/rdf:RDF/*[not(name() = 'dcterms:ProvenanceStatement')]" mode="type">
-						<xsl:with-param name="mode">record</xsl:with-param>
-					</xsl:apply-templates>
-					
-					<!-- separate template for Digital Images for symbols -->
-					<xsl:if test="/content//crmdig:D1_Digital_Object">
-						<div>
-							<h3>Digital Images</h3>
-							
-							<table class="table table-striped">
-								<thead>
-									<th style="width:120px">Image</th>
-									<th>Metadata</th>
-								</thead>
-								<tbody>
-									<xsl:apply-templates select="/content//crmdig:D1_Digital_Object"/>
-								</tbody>
-							</table>
-							
-						</div>
-					</xsl:if>
-
-					<!-- ProvenanceStatement is hidden by default -->
-					<xsl:if test="/content/rdf:RDF/dcterms:ProvenanceStatement">
-						<h3>
-							<xsl:text>Data Provenance</xsl:text>
-							<small>
-								<a href="#" class="toggle-button" id="toggle-provenance" title="Click to hide or show the provenance">
-									<span class="glyphicon glyphicon-triangle-right"/>
-								</a>
-							</small>
-						</h3>
-						<div style="display:none" id="provenance">
-							<xsl:apply-templates select="/content/rdf:RDF/*[name() = 'dcterms:ProvenanceStatement']" mode="type">
-								<xsl:with-param name="mode">record</xsl:with-param>
-							</xsl:apply-templates>
-						</div>
-					</xsl:if>
+				<div class="col-md-{if ($hasMints = true() or $hasFindspots = true()) then '6' else '9'}">				
+					<xsl:call-template name="rdf-display-structure"/>
 				</div>
+
+				<!-- data export and map -->
 				<div class="col-md-{if ($hasMints = true() or $hasFindspots = true()) then '6' else '3'}">
 					<div>
 						<h3>Export</h3>
@@ -375,6 +341,48 @@
 		</div>
 	</xsl:template>
 
+	<xsl:template name="rdf-display-structure">
+		<xsl:apply-templates select="/content/rdf:RDF/*[1]" mode="human-readable">
+			<xsl:with-param name="mode">record</xsl:with-param>
+		</xsl:apply-templates>
+		
+		<!-- separate template for Digital Images for symbols -->
+		<xsl:if test="/content//crmdig:D1_Digital_Object">
+			<div>
+				<h3>Digital Images</h3>
+				
+				<table class="table table-striped">
+					<thead>
+						<th style="width:120px">Image</th>
+						<th>Metadata</th>
+					</thead>
+					<tbody>
+						<xsl:apply-templates select="/content//crmdig:D1_Digital_Object"/>
+					</tbody>
+				</table>
+				
+			</div>
+		</xsl:if>
+		
+		<!-- ProvenanceStatement is hidden by default -->
+		<xsl:if test="/content/rdf:RDF/dcterms:ProvenanceStatement">
+			<h3>
+				<xsl:text>Data Provenance</xsl:text>
+				<small>
+					<a href="#" class="toggle-button" id="toggle-provenance" title="Click to hide or show the provenance">
+						<span class="glyphicon glyphicon-triangle-right"/>
+					</a>
+				</small>
+			</h3>
+			<div style="display:none" id="provenance">
+				<xsl:apply-templates select="/content/rdf:RDF/*[name() = 'dcterms:ProvenanceStatement']" mode="type">
+					<xsl:with-param name="hasObjects" select="false()" as="xs:boolean"/>
+					<xsl:with-param name="mode">record</xsl:with-param>
+				</xsl:apply-templates>
+			</div>
+		</xsl:if>
+	</xsl:template>
+
 	<!-- Related ID and spreadsheet templates for enhancing context of /editor pages -->
 	<xsl:template match="rdf:RDF" mode="spreadsheets">
 
@@ -501,7 +509,7 @@
 									</xsl:if>
 								</td>
 								<td>
-									<xsl:value-of select="format-dateTime(res:binding[@name='update']/res:literal, '[D] [MNn] [Y0001]')"/>
+									<xsl:value-of select="format-dateTime(res:binding[@name = 'update']/res:literal, '[D] [MNn] [Y0001]')"/>
 								</td>
 							</tr>
 						</xsl:for-each>

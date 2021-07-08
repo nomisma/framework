@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="#all" version="2.0">
+<!-- Author: Ethan Gruber
+	Date modified: July 2021
+	Function: Serialize Solr search results for Nomisma IDs into HTML -->
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:nomisma="http://nomisma.org/" exclude-result-prefixes="#all" version="2.0">
 	<xsl:include href="../../templates.xsl"/>
+	<xsl:include href="../../functions.xsl"/>
 
 	<!-- request params -->
 	<xsl:param name="q" select="doc('input:request')/request/parameters/parameter[name='q']/value"/>
@@ -14,6 +18,7 @@
 			<xsl:otherwise>0</xsl:otherwise>
 		</xsl:choose>
 	</xsl:param>
+	<xsl:param name="lang">en</xsl:param>
 
 	<xsl:variable name="start_var" as="xs:integer">
 		<xsl:choose>
@@ -118,8 +123,8 @@
 							<xsl:for-each select="arr[@name='type']/str">
 								<xsl:variable name="name" select="."/>
 
-								<a href="{concat($namespaces//namespace[@prefix=substring-before($name, ':')]/@uri, substring-after($name, ':'))}">
-									<xsl:value-of select="$name"/>
+								<a href="{concat($namespaces//namespace[@prefix=substring-before($name, ':')]/@uri, substring-after($name, ':'))}" title="{$name}">
+									<xsl:value-of select="nomisma:normalizeCurie($name, $lang)"/>									
 								</a>
 								<xsl:if test="not(position()=last())">
 									<xsl:text>, </xsl:text>
@@ -168,12 +173,14 @@
 						<select id="type_filter" class="form-control">
 							<option value="">Select Type...</option>
 							<xsl:for-each select="descendant::lst[@name='type']/int[not(@name='skos:Concept')]">
+								<xsl:sort select="substring-after(@name, ':')"/>
+								
 								<xsl:variable name="value" select="concat('type:&#x022;', @name, '&#x022;')"/>
 								<option value="{$value}">
 									<xsl:if test="contains($q, $value)">
 										<xsl:attribute name="selected">selected</xsl:attribute>
 									</xsl:if>
-									<xsl:value-of select="@name"/>
+									<xsl:value-of select="nomisma:normalizeCurie(@name, $lang)"/>
 								</option>
 							</xsl:for-each>
 						</select>
