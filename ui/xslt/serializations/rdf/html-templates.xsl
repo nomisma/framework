@@ -256,13 +256,15 @@
 	</xsl:template>
 
 	<xsl:template match="org:Membership" mode="human-readable">
-		<h5>Membership <xsl:value-of select="position()"/></h5>
-		<dl class="dl-horizontal">
-			<xsl:apply-templates select="org:role | org:organization" mode="human-readable"/>
-
-			<xsl:apply-templates select="nmo:hasStartDate" mode="human-readable"/>
-			<xsl:apply-templates select="nmo:hasEndDate" mode="human-readable"/>
-		</dl>
+		<div property="org:hasMembership">
+			<h5>Membership <xsl:value-of select="position()"/></h5>
+			<dl class="dl-horizontal" typeof="org:Membership">
+				<xsl:apply-templates select="org:role | org:organization" mode="human-readable"/>
+				
+				<xsl:apply-templates select="nmo:hasStartDate" mode="human-readable"/>
+				<xsl:apply-templates select="nmo:hasEndDate" mode="human-readable"/>
+			</dl>
+		</div>
 	</xsl:template>
 
 	<xsl:template match="skos:prefLabel" mode="prefLabel">
