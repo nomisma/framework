@@ -115,13 +115,12 @@
 
 				</div>
 			</xsl:if>
-			
+
 			<xsl:if test="crm:P106_is_composed_of">
 				<xsl:variable name="name">crm:P106_is_composed_of</xsl:variable>
-				
+
 				<dt>
-					<a href="{concat($namespaces//namespace[@prefix='crm']/@uri, 'P106_is_composed_of')}" title="crm:P106_is_composed_of"
-						>
+					<a href="{concat($namespaces//namespace[@prefix='crm']/@uri, 'P106_is_composed_of')}" title="crm:P106_is_composed_of">
 						<xsl:value-of select="nomisma:normalizeCurie('crm:P106_is_composed_of', $lang)"/>
 					</a>
 				</dt>
@@ -220,35 +219,43 @@
 
 		<xsl:apply-templates select="//geo:SpatialThing[@rdf:about = $uri]" mode="human-readable"/>
 	</xsl:template>
-	
+
 	<xsl:template match="bio:birth | bio:death" mode="human-readable">
 		<xsl:variable name="uri" select="@rdf:resource"/>
 		<xsl:variable name="class" select="concat(upper-case(substring(local-name(), 1, 1)), substring(local-name(), 2))"/>
-		
+
 		<xsl:apply-templates select="//*[local-name() = $class][@rdf:about = $uri]" mode="human-readable"/>
 	</xsl:template>
-	
+
 	<xsl:template match="bio:Birth | bio:Death" mode="human-readable">
 		<dt>
 			<a href="{concat(namespace-uri(), local-name())}" title="{name()}">
 				<xsl:value-of select="nomisma:normalizeCurie(name(), $lang)"/>
 			</a>
 		</dt>
-		
+
 		<xsl:apply-templates select="dcterms:date" mode="human-readable"/>
 	</xsl:template>
-	
+
 	<xsl:template match="dcterms:date" mode="human-readable">
 		<dd>
 			<span property="{name()}" content="{.}" datatype="{@rdf:datatype}">
 				<xsl:value-of select="nomisma:normalizeDate(.)"/>
-			</span>			
+			</span>
 		</dd>
 	</xsl:template>
 
 	<xsl:template match="geo:SpatialThing" mode="human-readable">
 		<div class="section">
 			<h4>Geospatial Data</h4>
+			
+			<strong>URI: </strong>
+			<code>
+				<a href="{@rdf:about}">
+					<xsl:value-of select="@rdf:about"/>
+				</a>
+			</code>
+			
 			<dl class="dl-horizontal">
 				<xsl:apply-templates select="geo:lat | geo:long | osgeo:asGeoJSON | dcterms:isPartOf" mode="human-readable"/>
 			</dl>
@@ -258,9 +265,19 @@
 	<xsl:template match="org:Membership" mode="human-readable">
 		<div property="org:hasMembership">
 			<h5>Membership <xsl:value-of select="position()"/></h5>
+
+			<strong>URI: </strong>
+			<code>
+				<a href="{@rdf:about}">
+					<xsl:value-of select="@rdf:about"/>
+				</a>
+			</code>
+
 			<dl class="dl-horizontal" typeof="org:Membership">
+
+
 				<xsl:apply-templates select="org:role | org:organization" mode="human-readable"/>
-				
+
 				<xsl:apply-templates select="nmo:hasStartDate" mode="human-readable"/>
 				<xsl:apply-templates select="nmo:hasEndDate" mode="human-readable"/>
 			</dl>
