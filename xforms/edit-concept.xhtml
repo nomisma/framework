@@ -2685,14 +2685,32 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 				<xxforms:dialog id="deprecate-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
 					<xforms:label>Deprecate ID</xforms:label>
 					<div>
-						<xforms:input ref="instance('control-instance')/atom-search"/>
-						<xforms:trigger>
-							<xforms:label>Search</xforms:label>
-							<!-- delete current options in the instance and initiate new query -->
-							<xforms:action ev:event="DOMActivate">
-								<xforms:send submission="query-feed"/>
-							</xforms:action>
-						</xforms:trigger>
+						<p>Search for an existing ID to forward. By default, this ID is usually the same RDF class.</p>
+						
+						<div>
+							<xforms:select1 ref="instance('control-instance')/atom-type">
+								<xforms:label>Type</xforms:label>
+								<xforms:itemset nodeset="instance('classes')/class">
+									<xforms:label ref="label"/>
+									<xforms:value ref="concat('&#x022;', type, '&#x022;')"/>
+								</xforms:itemset>
+							</xforms:select1>
+						</div>
+						
+						<div>
+							<xforms:input ref="instance('control-instance')/atom-search">
+								<xforms:label>Keyword</xforms:label>
+							</xforms:input>
+							
+							<xforms:trigger>
+								<xforms:label>Search</xforms:label>
+								<!-- delete current options in the instance and initiate new query -->
+								<xforms:action ev:event="DOMActivate">
+									<xforms:send submission="query-feed"/>
+								</xforms:action>
+							</xforms:trigger>
+						</div>
+						
 					</div>
 					<div style="width:400px;">
 						<xforms:group ref=".[count(instance('feed')//atom:entry) &gt; 0]">
