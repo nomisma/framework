@@ -3,7 +3,7 @@ The username and password must be set to interact with the Crossref API.
 API should be 'dev' or 'prod'. The URL is set within xpl/controllers/post-crossref.xpl based on this variable
 -->
 <crossref-config>
-    <api>prod</api>
-    <username>numis</username>
-    <password>ans_81</password>
+    <api>dev</api>
+    <username></username>
+    <password></password>
 </crossref-config>

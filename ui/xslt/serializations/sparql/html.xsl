@@ -6,6 +6,7 @@
 	<xsl:include href="../rdf/html-templates.xsl"/>
 
 	<xsl:param name="query" select="doc('input:request')/request/parameters/parameter[name = 'query']/value"/>
+	<xsl:param name="lang">en</xsl:param>
 
 	<xsl:variable name="display_path"/>
 
