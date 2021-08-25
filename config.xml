@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<title>Nomisma.org</title>
-	<url>http://localhost:8080/orbeon/nomisma/</url>
+	<url>http://nomisma.org/</url>
 	<sparql_query>http://localhost:8080/fuseki/nomisma/query</sparql_query>
 	<sparql_update>http://localhost:8080/fuseki/nomisma/update</sparql_update>
 	<sparql_store>http://localhost:8080/fuseki/nomisma/data</sparql_store>

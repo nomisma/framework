@@ -74,7 +74,7 @@
 			<!-- **************** BINDINGS ********************** -->
 			<xforms:bind nodeset="instance('form')">
 				<!--<xforms:bind nodeset="*" required="true()"></xforms:bind>-->
-				<xforms:bind nodeset="password" constraint=".= instance('control-instance')/confirm-password and matches(., '^([a-zA-Z0-9@*#!$%&amp;]{7,15})$')"></xforms:bind>
+				<xforms:bind nodeset="password" constraint=".= instance('control-instance')/confirm-password and matches(., '^([a-zA-Z0-9@*#!$%&amp;_-]{7,15})$')"></xforms:bind>
 			</xforms:bind>
 
 			<xforms:bind nodeset="instance('control-instance')">
