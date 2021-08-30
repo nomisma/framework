@@ -48,6 +48,7 @@
 			<class map="false" types="false">nmo:TypeSeries</class>
 			<class map="false" types="false">un:Uncertainty</class>
 			<class map="false" types="false">nmo:CoinWear</class>
+			<class map="true" types="true">wordnet:Deity</class>
 		</classes>
 	</xsl:variable>
 

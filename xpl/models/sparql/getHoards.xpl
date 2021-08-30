@@ -95,6 +95,7 @@
 								<class>foaf:Organization</class>
 								<class>foaf:Person</class>
 								<class>nmo:Region</class>
+								<class>wordnet:Deity</class>
 							</classes>
 						</xsl:variable>
 

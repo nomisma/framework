@@ -202,10 +202,31 @@
 								<class>foaf:Person</class>
 								<class>nmo:Region</class>
 								<class>nmo:TypeSeries</class>
+								<class>wordnet:Deity</class>
 							</classes>
 						</xsl:variable>
 
 						<xsl:variable name="hasFindspots" as="item()*">
+							<classes>
+								<class>nmo:Collection</class>
+								<class>nmo:Denomination</class>
+								<class>rdac:Family</class>
+								<class>nmo:Ethnic</class>
+								<class>foaf:Group</class>
+								<class>nmo:Hoard</class>
+								<class>nmo:Manufacture</class>
+								<class>nmo:Material</class>
+								<class>nmo:Mint</class>
+								<class>nmo:ObjectType</class>
+								<class>foaf:Organization</class>
+								<class>foaf:Person</class>
+								<class>nmo:Region</class>
+								<class>nmo:TypeSeries</class>
+								<class>wordnet:Deity</class>
+							</classes>
+						</xsl:variable>
+
+						<xsl:variable name="hasTypes" as="item()*">
 							<classes>
 								<class>nmo:Denomination</class>
 								<class>rdac:Family</class>
@@ -218,21 +239,8 @@
 								<class>foaf:Organization</class>
 								<class>foaf:Person</class>
 								<class>nmo:Region</class>
-							</classes>
-						</xsl:variable>
-
-						<xsl:variable name="hasTypes" as="item()*">
-							<classes>
-								<class>nmo:Denomination</class>
-								<class>rdac:Family</class>
-								<class>nmo:Ethnic</class>
-								<class>foaf:Group</class>
-								<class>nmo:Material</class>
-								<class>nmo:Mint</class>
-								<class>nmo:ObjectType</class>
-								<class>foaf:Organization</class>
-								<class>foaf:Person</class>
-								<class>nmo:Region</class>
+								<class>nmo:TypeSeries</class>
+								<class>wordnet:Deity</class>
 							</classes>
 						</xsl:variable>
 
@@ -423,6 +431,7 @@
 										<class prop="nmo:representsObjectType">nmo:ObjectType</class>
 										<class prop="?prop">foaf:Organization</class>
 										<class prop="?prop">foaf:Person</class>
+										<class prop="nmo:hasPortrait">wordnet:Deity</class>
 										<class prop="nmo:hasRegion">nmo:Region</class>
 									</classes>
 								</xsl:variable>
@@ -436,12 +445,36 @@ PREFIX nm:       <http://nomisma.org/id/>
 PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
 PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
-PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>]]>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX wordnet:	<http://ontologi.es/WordNet/class/>]]>
 									<xsl:choose>
 										<xsl:when test="$type='nmo:Hoard'"><![CDATA[ASK {nm:ID nmo:hasFindspot ?loc}]]></xsl:when>
 										<xsl:when test="$type='foaf:Person'"><![CDATA[ASK {
 {{ ?s PROP nm:ID }
 UNION {?s nmo:hasObverse ?obv .
+       ?obv nmo:hasPortrait nm:ID }
+UNION {?s nmo:hasReverse ?rev .
+       ?rev nmo:hasPortrait nm:ID }
+  }
+  
+{?object nmo:hasTypeSeriesItem ?s ;
+	a nmo:NumismaticObject ;
+  nmo:hasFindspot ?place }
+UNION { ?object nmo:hasTypeSeriesItem ?s;
+	dcterms:isPartOf ?hoard .
+  ?hoard a nmo:Hoard ;
+           nmo:hasFindspot ?place }
+UNION {?contents nmo:hasTypeSeriesItem ?s ;
+                  a dcmitype:Collection .
+  ?object dcterms:tableOfContents ?contents ;
+    nmo:hasFindspot ?place }
+UNION { ?contents PROP nm:ID ;
+                  a dcmitype:Collection .
+  ?object dcterms:tableOfContents ?contents ;
+    nmo:hasFindspot ?place }
+}]]></xsl:when>
+										<xsl:when test="$type='wordnet:Deity'"><![CDATA[ASK {
+{?s nmo:hasObverse ?obv .
        ?obv nmo:hasPortrait nm:ID }
 UNION {?s nmo:hasReverse ?rev .
        ?rev nmo:hasPortrait nm:ID }

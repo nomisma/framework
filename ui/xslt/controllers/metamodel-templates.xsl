@@ -24,6 +24,7 @@
             <class prop="?prop">foaf:Person</class>
             <class prop="nmo:hasRegion">nmo:Region</class>
             <class prop="dcterms:source">nmo:TypeSeries</class>
+            <class prop="nmo:hasPortrait">wordnet:Deity</class>
         </classes>
     </xsl:variable>
 
@@ -312,6 +313,24 @@
                         <group>
                             <triple s="nm:{$id}" p="org:hasMembership/org:organization" o="?place"/>
                         </group>
+                    </union>                    
+                    <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
+                    <triple s="?coinType" p="nmo:hasMint" o="?place"/>
+                    <minus>
+                        <triple s="?coinType" p="dcterms:isReplacedBy" o="?replaced"/>
+                    </minus>
+                    <triple s="?place" p="geo:location" o="?loc"/>
+                </xsl:when>
+                <xsl:when test="$type = 'wordnet:Deity'">
+                    <union>                        
+                        <group>
+                            <triple s="?obv" p="nmo:hasPortrait" o="nm:{$id}"/>
+                            <triple s="?coinType" p="nmo:hasObverse" o="?obv"/>
+                        </group>
+                        <group>
+                            <triple s="?rev" p="nmo:hasPortrait" o="nm:{$id}"/>
+                            <triple s="?coinType" p="nmo:hasReverse" o="?rev"/>
+                        </group>                        
                     </union>
                     <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
                     <triple s="?coinType" p="nmo:hasMint" o="?place"/>
@@ -445,6 +464,44 @@
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:call-template name="person-findspots">
+                                <xsl:with-param name="id" select="$id"/>
+                            </xsl:call-template>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+               
+                <xsl:when test="$type = 'wordnet:Deity'">                    
+                    <xsl:choose>
+                        <xsl:when test="$api = 'getHoards' or $api = 'heatmap'">
+                            <union>
+                                <group>
+                                    <xsl:call-template name="deity-findspots">
+                                        <xsl:with-param name="id" select="$id"/>
+                                    </xsl:call-template>
+                                    <triple s="?object" p="dcterms:isPartOf" o="?hoard"/>
+                                    <xsl:if test="$api = 'heatmap'">
+                                        <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
+                                    </xsl:if>
+                                </group>
+                                <xsl:if test="$api = 'heatmap'">
+                                    <group>
+                                        <xsl:call-template name="deity-findspots">
+                                            <xsl:with-param name="id" select="$id"/>
+                                        </xsl:call-template>
+                                        <triple s="?object" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
+                                    </group>
+                                </xsl:if>
+                                <group>
+                                    <xsl:call-template name="hoard-content-query">
+                                        <xsl:with-param name="api" select="$api"/>
+                                        <xsl:with-param name="id" select="$id"/>
+                                        <xsl:with-param name="type" select="$type"/>
+                                    </xsl:call-template>
+                                </group>
+                            </union>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:call-template name="deity-findspots">
                                 <xsl:with-param name="id" select="$id"/>
                             </xsl:call-template>
                         </xsl:otherwise>
@@ -777,6 +834,24 @@
                 <triple s="?coinType" p="nmo:hasReverse" o="?rev"/>
             </group>
         </union>
+        <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
+        <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>
+        <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
+    </xsl:template>
+    
+    <xsl:template name="deity-findspots">
+        <xsl:param name="id"/>
+        
+        <union>                        
+            <group>
+                <triple s="?obv" p="nmo:hasPortrait" o="nm:{$id}"/>
+                <triple s="?coinType" p="nmo:hasObverse" o="?obv"/>
+            </group>
+            <group>
+                <triple s="?rev" p="nmo:hasPortrait" o="nm:{$id}"/>
+                <triple s="?coinType" p="nmo:hasReverse" o="?rev"/>
+            </group>                        
+        </union>        
         <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
         <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>
         <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>

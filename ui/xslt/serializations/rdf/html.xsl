@@ -86,6 +86,7 @@
 			<class map="false" types="false">nmo:TypeSeries</class>
 			<class map="false" types="false">un:Uncertainty</class>
 			<class map="false" types="false">nmo:CoinWear</class>
+			<class map="true" types="true" prop="nmo:hasPortrait">wordnet:Deity</class>
 			<prop>nmo:hasAuthority</prop>
 			<prop>nmo:hasIssuer</prop>
 			<prop>portrait</prop>

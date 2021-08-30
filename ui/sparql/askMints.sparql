@@ -15,6 +15,7 @@ PREFIX spatial: <http://jena.apache.org/spatial#>
 PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>
 PREFIX wordnet: <http://ontologi.es/WordNet/class/>
 PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
+PREFIX wordnet:	<http://ontologi.es/WordNet/class/>
 
 ASK {
 %STATEMENTS%

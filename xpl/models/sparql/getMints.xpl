@@ -78,6 +78,7 @@
 								<class>foaf:Person</class>
 								<class>nmo:Region</class>
 								<class>nmo:TypeSeries</class>
+								<class>wordnet:Deity</class>
 							</classes>
 						</xsl:variable>
 
@@ -141,6 +142,7 @@ PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
 PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 PREFIX osgeo:	<http://data.ordnancesurvey.co.uk/ontology/geometry/>
 PREFIX org: <http://www.w3.org/ns/org#>
+PREFIX wordnet:	<http://ontologi.es/WordNet/class/>
 SELECT ?place ?label ?lat ?long WHERE {
   ?place skos:broader+ nm:ID ;
         geo:location ?loc ;
