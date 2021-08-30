@@ -960,6 +960,12 @@
                         <triple s="?coinType" p="nmo:hasReverse/nmo:hasPortrait" o="nm:{$id}"/>
                     </union>
                 </xsl:when>
+                <xsl:when test="$type = 'wordnet:Deity'">
+                    <union>
+                        <triple s="?coinType" p="nmo:hasObverse/nmo:hasPortrait" o="nm:{$id}"/>
+                        <triple s="?coinType" p="nmo:hasReverse/nmo:hasPortrait" o="nm:{$id}"/>
+                    </union>
+                </xsl:when>
                 <xsl:when test="$type = 'rdac:Family'">
                     <union>
                         <group>
