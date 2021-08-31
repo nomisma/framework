@@ -86,7 +86,7 @@
 			<class map="false" types="false">nmo:TypeSeries</class>
 			<class map="false" types="false">un:Uncertainty</class>
 			<class map="false" types="false">nmo:CoinWear</class>
-			<class map="true" types="true" prop="nmo:hasPortrait">wordnet:Deity</class>
+			<class map="true" types="true" dist="true" prop="deity">wordnet:Deity</class>
 			<prop>nmo:hasAuthority</prop>
 			<prop>nmo:hasIssuer</prop>
 			<prop>portrait</prop>
@@ -121,8 +121,6 @@
 					<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0/dist/leaflet.css"/>
 					<script type="text/javascript" src="https://unpkg.com/leaflet@1.0.0/dist/leaflet.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet.ajax.min.js"/>
-					<script type="text/javascript" src="{$display_path}ui/javascript/heatmap.min.js"/>
-					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet-heatmap.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/display_map_functions.js"/>
 				</xsl:if>
 

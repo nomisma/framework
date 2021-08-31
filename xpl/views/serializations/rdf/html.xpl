@@ -180,6 +180,26 @@
 			</p:choose>
 		</p:when>
 		<p:when test="/scheme = 'id'">
+			<!-- get ASK query from a text file on disk -->
+			<p:processor name="oxf:url-generator">
+				<p:input name="config">
+					<config>
+						<url>oxf:/apps/nomisma/ui/sparql/ask.sparql</url>
+						<content-type>text/plain</content-type>
+						<encoding>utf-8</encoding>
+					</config>
+				</p:input>
+				<p:output name="data" id="query"/>
+			</p:processor>
+			
+			<p:processor name="oxf:text-converter">
+				<p:input name="data" href="#query"/>
+				<p:input name="config">
+					<config/>
+				</p:input>
+				<p:output name="data" id="query-document"/>
+			</p:processor>
+			
 			<p:processor name="oxf:unsafe-xslt">
 				<p:input name="data" href="#data"/>
 				<p:input name="config">
@@ -291,27 +311,6 @@
 				</p:when>
 				<!-- apply alternate SPARQL query to get mints associated with a Hoard -->
 				<p:otherwise>
-
-					<!-- get query from a text file on disk -->
-					<p:processor name="oxf:url-generator">
-						<p:input name="config">
-							<config>
-								<url>oxf:/apps/nomisma/ui/sparql/askMints.sparql</url>
-								<content-type>text/plain</content-type>
-								<encoding>utf-8</encoding>
-							</config>
-						</p:input>
-						<p:output name="data" id="query"/>
-					</p:processor>
-
-					<p:processor name="oxf:text-converter">
-						<p:input name="data" href="#query"/>
-						<p:input name="config">
-							<config/>
-						</p:input>
-						<p:output name="data" id="query-document"/>
-					</p:processor>
-
 					<p:processor name="oxf:unsafe-xslt">
 						<p:input name="request" href="#request"/>
 						<p:input name="query" href="#query-document"/>
@@ -407,204 +406,39 @@
 					</p:processor>
 				</p:when>
 				<!-- execute SPARQL query for other classes of object -->
-				<p:otherwise>
+				<p:otherwise>					
 					<p:processor name="oxf:unsafe-xslt">
 						<p:input name="request" href="#request"/>
+						<p:input name="query" href="#query-document"/>
 						<p:input name="data" href="#type"/>
 						<p:input name="config-xml" href=" ../../../../config.xml"/>
 						<p:input name="config">
 							<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-								xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-								<xsl:variable name="id" select="tokenize(doc('input:request')/request/request-url, '/')[last()]"/>
+								xmlns:nomisma="http://nomisma.org/" exclude-result-prefixes="#all">
+								<xsl:include href="../../../../ui/xslt/controllers/metamodel-templates.xsl"/>
+								<xsl:include href="../../../../ui/xslt/controllers/sparql-metamodel.xsl"/>
+								
 								<xsl:variable name="sparql_endpoint" select="doc('input:config-xml')/config/sparql_query"/>
+								<xsl:variable name="id" select="tokenize(doc('input:request')/request/request-url, '/')[last()]"/>
 								<xsl:variable name="type" select="/type"/>
-
-								<xsl:variable name="classes" as="item()*">
-									<classes>
-										<class prop="nmo:hasDenomination">nmo:Denomination</class>
-										<class prop="?prop">rdac:Family</class>
-										<class prop="?prop">nmo:Ethnic</class>
-										<class prop="?prop">foaf:Group</class>
-										<class prop="nmo:hasManufacture">nmo:Manufacture</class>
-										<class prop="nmo:hasMaterial">nmo:Material</class>
-										<class prop="nmo:hasMint">nmo:Mint</class>
-										<class prop="nmo:representsObjectType">nmo:ObjectType</class>
-										<class prop="?prop">foaf:Organization</class>
-										<class prop="?prop">foaf:Person</class>
-										<class prop="nmo:hasPortrait">wordnet:Deity</class>
-										<class prop="nmo:hasRegion">nmo:Region</class>
-									</classes>
+								
+								<xsl:variable name="query" select="doc('input:query')"/>
+								
+								<xsl:variable name="statements" as="element()*">
+									<xsl:call-template name="nomisma:getFindspotsStatements">
+										<xsl:with-param name="type" select="$type"/>
+										<xsl:with-param name="id" select="$id"/>
+									</xsl:call-template>
 								</xsl:variable>
-
-								<!-- construct different queries for individual finds, hoards, and combined for heatmap -->
-								<xsl:variable name="query"><![CDATA[PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX dcterms:  <http://purl.org/dc/terms/>
-PREFIX dcmitype:	<http://purl.org/dc/dcmitype/>
-PREFIX org: <http://www.w3.org/ns/org#>
-PREFIX nm:       <http://nomisma.org/id/>
-PREFIX nmo:	<http://nomisma.org/ontology#>
-PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
-PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
-PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
-PREFIX wordnet:	<http://ontologi.es/WordNet/class/>]]>
-									<xsl:choose>
-										<xsl:when test="$type='nmo:Hoard'"><![CDATA[ASK {nm:ID nmo:hasFindspot ?loc}]]></xsl:when>
-										<xsl:when test="$type='foaf:Person'"><![CDATA[ASK {
-{{ ?s PROP nm:ID }
-UNION {?s nmo:hasObverse ?obv .
-       ?obv nmo:hasPortrait nm:ID }
-UNION {?s nmo:hasReverse ?rev .
-       ?rev nmo:hasPortrait nm:ID }
-  }
-  
-{?object nmo:hasTypeSeriesItem ?s ;
-	a nmo:NumismaticObject ;
-  nmo:hasFindspot ?place }
-UNION { ?object nmo:hasTypeSeriesItem ?s;
-	dcterms:isPartOf ?hoard .
-  ?hoard a nmo:Hoard ;
-           nmo:hasFindspot ?place }
-UNION {?contents nmo:hasTypeSeriesItem ?s ;
-                  a dcmitype:Collection .
-  ?object dcterms:tableOfContents ?contents ;
-    nmo:hasFindspot ?place }
-UNION { ?contents PROP nm:ID ;
-                  a dcmitype:Collection .
-  ?object dcterms:tableOfContents ?contents ;
-    nmo:hasFindspot ?place }
-}]]></xsl:when>
-										<xsl:when test="$type='wordnet:Deity'"><![CDATA[ASK {
-{?s nmo:hasObverse ?obv .
-       ?obv nmo:hasPortrait nm:ID }
-UNION {?s nmo:hasReverse ?rev .
-       ?rev nmo:hasPortrait nm:ID }
-  }
-  
-{?object nmo:hasTypeSeriesItem ?s ;
-	a nmo:NumismaticObject ;
-  nmo:hasFindspot ?place }
-UNION { ?object nmo:hasTypeSeriesItem ?s;
-	dcterms:isPartOf ?hoard .
-  ?hoard a nmo:Hoard ;
-           nmo:hasFindspot ?place }
-UNION {?contents nmo:hasTypeSeriesItem ?s ;
-                  a dcmitype:Collection .
-  ?object dcterms:tableOfContents ?contents ;
-    nmo:hasFindspot ?place }
-UNION { ?contents PROP nm:ID ;
-                  a dcmitype:Collection .
-  ?object dcterms:tableOfContents ?contents ;
-    nmo:hasFindspot ?place }
-}]]></xsl:when>
-										<xsl:when test="$type = 'foaf:Organization' or $type = 'foaf:Group'">
-											<![CDATA[ASK { 
-?person org:hasMembership/org:organization nm:ID .
-{ ?type ?prop ?person ;
-  	a nmo:TypeSeriesItem .
-  ?object nmo:hasTypeSeriesItem ?type ;
-	a nmo:NumismaticObject ;
-	nmo:hasFindspot ?findspot}
-UNION { ?type ?prop ?person ;
-  	a nmo:TypeSeriesItem .
-  ?object nmo:hasTypeSeriesItem ?type ;
-	a nmo:NumismaticObject ;
-    dcterms:isPartOf ?hoard .
-      ?hoard a nmo:Hoard ;
-               nmo:hasFindspot ?findspot}
-UNION {?type ?prop ?person ;
-      a nmo:TypeSeriesItem .
-    ?contents nmo:hasTypeSeriesItem ?type ;                 
-          a dcmitype:Collection.
-	?hoard dcterms:tableOfContents ?contents ;
-           nmo:hasFindspot ?findspot }
-UNION {?contents ?prop ?person ;
-          a dcmitype:Collection.
-	?hoard dcterms:tableOfContents ?contents ;
-           nmo:hasFindspot ?findspot}
-UNION {?contents nmo:hasAuthority nm:ID;
-      a dcmitype:Collection.
-	?hoard dcterms:tableOfContents ?contents ;
-           nmo:hasFindspot ?findspot}  
-}]]></xsl:when>
-										<xsl:when test="$type = 'rdac:Family'">
-											<![CDATA[ASK { 
-?person org:memberOf nm:ID .
-{ ?type ?prop ?person ;
-  	a nmo:TypeSeriesItem .
-  ?object nmo:hasTypeSeriesItem ?type ;
-	a nmo:NumismaticObject ;
-	nmo:hasFindspot ?findspot}
-UNION { ?type ?prop ?person ;
-  	a nmo:TypeSeriesItem .
-  ?object nmo:hasTypeSeriesItem ?type ;
-	a nmo:NumismaticObject ;
-    dcterms:isPartOf ?hoard .
-      ?hoard a nmo:Hoard ;
-               nmo:hasFindspot ?findspot}
-UNION {?type ?prop ?person ;
-      a nmo:TypeSeriesItem .
-    ?contents nmo:hasTypeSeriesItem ?type ;                 
-          a dcmitype:Collection.
-	?hoard dcterms:tableOfContents ?contents ;
-           nmo:hasFindspot ?findspot }
-UNION {?contents ?prop ?person ;
-          a dcmitype:Collection.
-	?hoard dcterms:tableOfContents ?contents ;
-           nmo:hasFindspot ?findspot}
-UNION {?contents nmo:hasAuthority nm:ID;
-      a dcmitype:Collection.
-	?hoard dcterms:tableOfContents ?contents ;
-           nmo:hasFindspot ?findspot}  
-}]]></xsl:when>
-										<xsl:otherwise>
-											<![CDATA[ASK {
-{ ?coinType PROP nm:ID ;
-  a nmo:TypeSeriesItem . 
- ?object nmo:hasTypeSeriesItem ?coinType ;
-  rdf:type nmo:NumismaticObject ;
-  nmo:hasFindspot ?place }
-  UNION { ?object PROP nm:ID ;
-  	rdf:type nmo:NumismaticObject ;
-  	nmo:hasFindspot ?place}
-  UNION{ ?coinType PROP nm:ID ;
-  a nmo:TypeSeriesItem .
-  ?object nmo:hasTypeSeriesItem ?coinType ;
-  rdf:type nmo:NumismaticObject ;
-  dcterms:isPartOf ?hoard .
-  ?hoard nmo:hasFindspot ?place }
-UNION { ?coinType PROP nm:ID ;
-  a nmo:TypeSeriesItem .
-?contents nmo:hasTypeSeriesItem ?coinType ;
-                  a dcmitype:Collection .
-  ?object dcterms:tableOfContents ?contents ;
-    nmo:hasFindspot ?place }
- UNION { ?contents PROP nm:ID ;
-                  a dcmitype:Collection .
-  ?object dcterms:tableOfContents ?contents ;
-    nmo:hasFindspot ?place }}]]>
-										</xsl:otherwise>
-									</xsl:choose>
+								
+								<xsl:variable name="statementsSPARQL">
+									<xsl:apply-templates select="$statements/*"/>
 								</xsl:variable>
-
-
-
+								
+								<xsl:variable name="service"
+									select="concat($sparql_endpoint, '?query=', encode-for-uri(replace($query, '%STATEMENTS%', $statementsSPARQL)), '&amp;output=xml')"/>
+								
 								<xsl:template match="/">
-									<xsl:variable name="service">
-										<xsl:choose>
-											<xsl:when test="$type='nmo:Hoard'">
-												<xsl:value-of
-													select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace($query, 'ID', $id))), '&amp;output=xml')"
-												/>
-											</xsl:when>
-											<xsl:otherwise>
-												<xsl:value-of
-													select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace(replace($query, 'ID', $id), 'PROP',
-											$classes//class[text()=$type]/@prop))), '&amp;output=xml')"
-												/>
-											</xsl:otherwise>
-										</xsl:choose>
-									</xsl:variable>
-
 									<config>
 										<url>
 											<xsl:value-of select="$service"/>
@@ -613,7 +447,7 @@ UNION { ?coinType PROP nm:ID ;
 										<encoding>utf-8</encoding>
 									</config>
 								</xsl:template>
-
+								
 							</xsl:stylesheet>
 						</p:input>
 						<p:output name="data" id="hasFindspots-url-generator-config"/>
@@ -670,27 +504,6 @@ UNION { ?coinType PROP nm:ID ;
 				</p:when>
 				<!-- execute SPARQL query for other classes of object -->
 				<p:otherwise>
-
-					<!-- get query from a text file on disk -->
-					<p:processor name="oxf:url-generator">
-						<p:input name="config">
-							<config>
-								<url>oxf:/apps/nomisma/ui/sparql/askTypes.sparql</url>
-								<content-type>text/plain</content-type>
-								<encoding>utf-8</encoding>
-							</config>
-						</p:input>
-						<p:output name="data" id="query"/>
-					</p:processor>
-
-					<p:processor name="oxf:text-converter">
-						<p:input name="data" href="#query"/>
-						<p:input name="config">
-							<config/>
-						</p:input>
-						<p:output name="data" id="query-document"/>
-					</p:processor>
-
 					<p:processor name="oxf:unsafe-xslt">
 						<p:input name="request" href="#request"/>
 						<p:input name="query" href="#query-document"/>

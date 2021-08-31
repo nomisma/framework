@@ -78,12 +78,24 @@
 					</xsl:analyze-string>
 				</xsl:when>
 				<xsl:when test="contains(., 'deity')">
-					<xsl:analyze-string select="." regex="deity\s&lt;(.*)&gt;">
-						<xsl:matching-substring>
-							<xsl:text>Deity: </xsl:text>
-							<xsl:value-of select="nomisma:getLabel(regex-group(1))"/>
-						</xsl:matching-substring>
-					</xsl:analyze-string>
+					<xsl:choose>
+						<xsl:when test="matches(., 'https?://')">
+							<xsl:analyze-string select="." regex="deity\s&lt;(.*)&gt;">
+								<xsl:matching-substring>
+									<xsl:text>Deity: </xsl:text>
+									<xsl:value-of select="nomisma:getLabel(regex-group(1))"/>
+								</xsl:matching-substring>
+							</xsl:analyze-string>
+						</xsl:when>
+						<xsl:when test="matches(., 'deity\snm:')">
+							<xsl:analyze-string select="." regex="deity\s(nm:.*)">
+								<xsl:matching-substring>
+									<xsl:text>Authority: </xsl:text>
+									<xsl:value-of select="nomisma:getLabel(regex-group(1))"/>
+								</xsl:matching-substring>
+							</xsl:analyze-string>
+						</xsl:when>
+					</xsl:choose>
 				</xsl:when>
 				<xsl:when test="contains(., 'authPerson')">
 					<xsl:analyze-string select="." regex="authPerson\s(nm:.*)">
