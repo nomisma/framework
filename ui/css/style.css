@@ -162,12 +162,11 @@ body{
 .ol-scale-line-inner{
     font-family: 'Lucida Grande', Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif;
 }
-.thumbImage,
-.flickrthumb{
-    margin: 5px;
-}
-.thumbImage > img{
+.side-thumbnail{
     max-width: 120px;
+}
+.combined-thumbnail{
+    max-width: 240px;
 }
 
 /*

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 	Author: Ethan Gruber
-	Date: June 2019
+	Date: August 2021
 	Function: interpret the RDF class and the ID snippet in order to generate the XML metamodel and execute a SPARQL query for coin types related to a particular concept
 -->
 <p:config xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:oxf="http://www.orbeon.com/oxf/processors" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -50,10 +50,31 @@
 
 				<xsl:param name="id" select="doc('input:request')/request/parameters/parameter[name='id']/value"/>
 				<xsl:param name="type" select="doc('input:request')/request/parameters/parameter[name='type']/value"/>
+				<xsl:param name="page" select="doc('input:request')/request/parameters/parameter[name='page']/value"/>
+				<xsl:param name="sort">
+					<xsl:choose>
+						<xsl:when test="string-length(doc('input:request')/request/parameters/parameter[name='sort']/value) &gt; 0">
+							<xsl:value-of select="doc('input:request')/request/parameters/parameter[name='sort']/value"/>
+						</xsl:when>
+						<xsl:otherwise>?startDate</xsl:otherwise>
+					</xsl:choose>
+				</xsl:param>
+				
+				<xsl:variable name="limit">10</xsl:variable>
+				<xsl:variable name="offset">
+					<xsl:choose>
+						<xsl:when test="string-length($page) &gt; 0 and $page castable as xs:integer and number($page) > 0">
+							<xsl:value-of select="($page - 1) * number($limit)"/>
+						</xsl:when>
+						<xsl:otherwise>0</xsl:otherwise>
+					</xsl:choose>
+				</xsl:variable>
 
 				<xsl:variable name="sparql_endpoint" select="/config/sparql_query"/>
 
-				<xsl:variable name="query" select="doc('input:query')"/>
+				<xsl:variable name="query">
+					<xsl:value-of select="concat(doc('input:query'), ' ORDER BY %SORT% OFFSET %OFFSET% LIMIT %LIMIT%')"/>
+				</xsl:variable>
 
 				<xsl:variable name="statements" as="element()*">
 					<xsl:call-template name="nomisma:listTypesStatements">
@@ -67,7 +88,7 @@
 				</xsl:variable>
 
 				<xsl:variable name="service"
-					select="concat($sparql_endpoint, '?query=', encode-for-uri(concat(replace($query, '%STATEMENTS%', $statementsSPARQL), ' LIMIT 10')), '&amp;output=xml')"> </xsl:variable>
+					select="concat($sparql_endpoint, '?query=', encode-for-uri(replace(replace(replace(replace($query, '%STATEMENTS%', $statementsSPARQL), '%LIMIT%', $limit), '%OFFSET%', $offset), '%SORT%', $sort)), '&amp;output=xml')"/>
 
 				<xsl:template match="/">
 					<config>

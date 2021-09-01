@@ -16,19 +16,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>
 PREFIX wordnet: <http://ontologi.es/WordNet/class/>
 PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
 
-SELECT * WHERE {
+SELECT (count(DISTINCT ?coinType) as ?count) WHERE {
 %STATEMENTS%
-?coinType skos:prefLabel ?label FILTER(langMatches(lang(?label), "en")) .
    MINUS {?coinType dcterms:isReplacedBy ?replaced}
    FILTER NOT EXISTS {?coinType skos:broader ?broader}
-   ?coinType dcterms:source ?source . 
-   	?source skos:prefLabel ?sourceLabel FILTER(langMatches(lang(?sourceLabel), "en"))
-   OPTIONAL {?coinType nmo:hasStartDate ?startDate}
-   OPTIONAL {?coinType nmo:hasEndDate ?endDate}
-   OPTIONAL {?coinType nmo:hasMint ?mint . 
-   	?mint skos:prefLabel ?mintLabel FILTER(langMatches(lang(?mintLabel), "en"))}
-   OPTIONAL {?coinType nmo:hasAuthority ?authority . 
-   	?authority skos:prefLabel ?authorityLabel FILTER(langMatches(lang(?authorityLabel), "en"))}
-   OPTIONAL {?coinType nmo:hasDenomination ?den . 
-   	?den skos:prefLabel ?denLabel FILTER(langMatches(lang(?denLabel), "en"))}
 }

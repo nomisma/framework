@@ -1,6 +1,6 @@
 /*******
 DISPLAY FUNCTIONS
-Modified: August 2016
+Modified: August 2021
 Function: These are javascript functions responsible for minor features on the HTML page for IDs,
 e.g., showing and hiding SPARQL query divs
  *******/
@@ -23,7 +23,7 @@ $(document).ready(function () {
         return false;
     });
     
-        //show/hide sections
+    //show/hide sections
     $('.toggle-button').click(function () {
         var div = $(this).attr('id').split('-')[1];
         $('#' + div).toggle();
@@ -40,7 +40,6 @@ $(document).ready(function () {
         return false;
     });
     
-    //listTypes
     $('.page-section').on('click', 'h3 small .toggle-button', function () {
         var div = $(this).attr('id').split('-')[1];
         $('#' + div + '-div').toggle();
@@ -70,6 +69,58 @@ $(document).ready(function () {
             $('#listTypes').html(data);
         });
     }
+    
+    //sorting
+    $('#listTypes').on('click', '#listTypes-div table thead tr th .sort-types', function () {
+        var path = '../';
+        var id = $('title').attr('id');
+        var type = $('#type').text();
+        var sort = unescape($(this).attr('href').split('=')[1]);
+        
+        //alert(sort);
+        
+        
+        $.get(path + 'ajax/listTypes', {
+            id: id, type: type, sort: sort
+        },
+        function (data) {
+            $('#listTypes').html(data);
+        });
+        
+        return false;
+    });
+    
+    //pagination
+    $('#listTypes').on('click', '.paging_div .page-nos .btn-toolbar .btn-group a.btn', function (event) {
+        var path = '../';
+        var id = $('title').attr('id');
+        var type = $('#type').text();
+        
+        urlParams = {
+            'id': id, 'type': type
+        };
+        
+        //parse the page and sort from the HTML link
+        var match,
+        pl = /\+/g, // Regex for replacing addition symbol with a space
+        search = /([^&=]+)=?([^&]*)/g,
+        decode = function (s) {
+            return decodeURIComponent(s.replace(pl, " "));
+        },
+        query = $(this).attr('href').substring(1);
+        
+        
+        compare = new Array();
+        while (match = search.exec(query)) {
+            urlParams[decode(match[1])] = decode(match[2]);
+        }
+        
+        $.get(path + 'ajax/listTypes', $.param(urlParams, true),
+        function (data) {
+            $('#listTypes').html(data);
+        });
+        return false;
+    });
     
     $('a.thumbImage').fancybox({
         type: 'image',

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Author: Ethan Gruber
-	Date: June 2019
+	Date: September 2021
 	Function: serialize SPARQL results for coin types associated with the given Nomisma concept into HTML. Call the numishareResults API to display related images 
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="http://www.w3.org/2005/sparql-results#"
@@ -11,9 +11,25 @@
 
 	<xsl:param name="id" select="doc('input:request')/request/parameters/parameter[name = 'id']/value"/>
 	<xsl:param name="type" select="doc('input:request')/request/parameters/parameter[name = 'type']/value"/>
+	<xsl:param name="sort" select="doc('input:request')/request/parameters/parameter[name = 'sort']/value"/>
+	<xsl:param name="page" as="xs:integer">
+		<xsl:choose>
+			<xsl:when
+				test="
+					string-length(doc('input:request')/request/parameters/parameter[name = 'page']/value) &gt; 0 and doc('input:request')/request/parameters/parameter[name = 'page']/value castable
+					as xs:integer and number(doc('input:request')/request/parameters/parameter[name = 'page']/value) > 0">
+				<xsl:value-of select="doc('input:request')/request/parameters/parameter[name = 'page']/value"/>
+			</xsl:when>
+			<xsl:otherwise>1</xsl:otherwise>
+		</xsl:choose>
+	</xsl:param>
 
 	<xsl:variable name="display_path">../</xsl:variable>
 	<xsl:variable name="query" select="doc('input:query')"/>
+
+	<xsl:variable name="limit" select="10"/>
+	<xsl:variable name="numFound" select="doc('input:typeCount')/descendant::res:binding[@name = 'count']/res:literal" as="xs:integer"/>
+
 
 	<xsl:template match="/">
 		<xsl:apply-templates select="/res:sparql"/>
@@ -84,6 +100,14 @@
 			</small>
 		</h3>
 
+		<xsl:if test="$numFound &gt; $limit">
+			<xsl:call-template name="pagination">
+				<xsl:with-param name="page" select="$page" as="xs:integer"/>
+				<xsl:with-param name="numFound" select="$numFound" as="xs:integer"/>
+				<xsl:with-param name="limit" select="$limit" as="xs:integer"/>
+			</xsl:call-template>
+		</xsl:if>
+
 		<div id="listTypes-div">
 			<div style="margin-bottom:10px;" class="control-row">
 				<a href="#" class="toggle-button btn btn-primary" id="toggle-listTypesQuery"><span class="glyphicon glyphicon-plus"/> View SPARQL for full
@@ -98,11 +122,70 @@
 			</pre>
 			</div>
 
-			<table class="table table-striped">
+			<table class="table table-striped table-responsive">
 				<thead>
 					<tr>
 						<th>Type</th>
-						<th>Type Series</th>
+						<th>
+							<xsl:text>Authority</xsl:text>
+							<xsl:choose>
+								<xsl:when test="$sort = '(!bound(?authorityLabel)) ASC(?authorityLabel)'">
+									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?authorityLabel)) DESC(?authorityLabel)')}">
+										<span class="glyphicon glyphicon-sort-by-alphabet-alt"/>
+									</a>
+								</xsl:when>
+								<xsl:otherwise>
+									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?authorityLabel)) ASC(?authorityLabel)')}">
+										<span class="glyphicon glyphicon-sort-by-alphabet"/>
+									</a>
+								</xsl:otherwise>
+							</xsl:choose>
+						</th>
+						<th>
+							<xsl:text>Mint</xsl:text>
+							<xsl:choose>
+								<xsl:when test="$sort = '(!bound(?mintLabel)) ASC(?mintLabel)'">
+									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?mintLabel)) DESC(?mintLabel)')}">
+										<span class="glyphicon glyphicon-sort-by-alphabet-alt"/>
+									</a>
+								</xsl:when>
+								<xsl:otherwise>
+									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?mintLabel)) ASC(?mintLabel)')}">
+										<span class="glyphicon glyphicon-sort-by-alphabet"/>
+									</a>
+								</xsl:otherwise>
+							</xsl:choose>
+						</th>
+						<th>
+							<xsl:text>Denomination</xsl:text>
+							<xsl:choose>
+								<xsl:when test="$sort = '(!bound(?denLabel)) ASC(?denLabel)'">
+									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?denLabel)) DESC(?denLabel)')}">
+										<span class="glyphicon glyphicon-sort-by-alphabet-alt"/>
+									</a>
+								</xsl:when>
+								<xsl:otherwise>
+									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?denLabel)) ASC(?denLabel)')}">
+										<span class="glyphicon glyphicon-sort-by-alphabet"/>
+									</a>
+								</xsl:otherwise>
+							</xsl:choose>
+						</th>
+						<th>
+							<xsl:text>Date</xsl:text>
+							<xsl:choose>
+								<xsl:when test="$sort = '(!bound(?startDate)) ASC(?startDate)' or not(string($sort))">
+									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?startDate)) DESC(?startDate)')}">
+										<span class="glyphicon glyphicon-sort-by-order-alt"/>
+									</a>
+								</xsl:when>
+								<xsl:otherwise>
+									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?startDate)) ASC(?startDate)')}">
+										<span class="glyphicon glyphicon-sort-by-order"/>
+									</a>
+								</xsl:otherwise>
+							</xsl:choose>
+						</th>
 						<th style="width:280px">Example</th>
 					</tr>
 				</thead>
@@ -115,45 +198,34 @@
 								<a href="{res:binding[@name='coinType']/res:uri}">
 									<xsl:value-of select="res:binding[@name = 'label']/res:literal"/>
 								</a>
-								<dl class="dl-horizontal">
-									<xsl:if test="res:binding[@name = 'authority']/res:uri">
-										<dt>Authority</dt>
-										<dd>
-											<a href="{res:binding[@name='authority']/res:uri}">
-												<xsl:value-of select="res:binding[@name = 'authorityLabel']/res:literal"/>
-											</a>
-										</dd>
-									</xsl:if>
-									<xsl:if test="res:binding[@name = 'mint']/res:uri">
-										<dt>Mint</dt>
-										<dd>
-											<a href="{res:binding[@name='mint']/res:uri}">
-												<xsl:value-of select="res:binding[@name = 'mintLabel']/res:literal"/>
-											</a>
-										</dd>
-									</xsl:if>
-									<xsl:if test="res:binding[@name = 'den']/res:uri">
-										<dt>Denomination</dt>
-										<dd>
-											<a href="{res:binding[@name='den']/res:uri}">
-												<xsl:value-of select="res:binding[@name = 'denLabel']/res:literal"/>
-											</a>
-										</dd>
-									</xsl:if>
-									<xsl:if test="res:binding[@name = 'startDate']/res:literal or res:binding[@name = 'endDate']/res:literal">
-										<dt>Date</dt>
-										<dd>
-											<xsl:value-of select="nomisma:normalizeDate(res:binding[@name = 'startDate']/res:literal)"/>
-											<xsl:if test="res:binding[@name = 'startDate']/res:literal and res:binding[@name = 'startDate']/res:literal"> - </xsl:if>
-											<xsl:value-of select="nomisma:normalizeDate(res:binding[@name = 'endDate']/res:literal)"/>
-										</dd>
-									</xsl:if>
-								</dl>
 							</td>
 							<td>
-								<a href="{res:binding[@name='source']/res:uri}">
-									<xsl:value-of select="res:binding[@name = 'sourceLabel']/res:literal"/>
-								</a>
+								<xsl:if test="res:binding[@name = 'authority']/res:uri">
+									<a href="{res:binding[@name='authority']/res:uri}">
+										<xsl:value-of select="res:binding[@name = 'authorityLabel']/res:literal"/>
+									</a>
+								</xsl:if>
+							</td>
+							<td>
+								<xsl:if test="res:binding[@name = 'mint']/res:uri">
+									<a href="{res:binding[@name='mint']/res:uri}">
+										<xsl:value-of select="res:binding[@name = 'mintLabel']/res:literal"/>
+									</a>
+								</xsl:if>
+							</td>
+							<td>
+								<xsl:if test="res:binding[@name = 'den']/res:uri">
+									<a href="{res:binding[@name='den']/res:uri}">
+										<xsl:value-of select="res:binding[@name = 'denLabel']/res:literal"/>
+									</a>
+								</xsl:if>
+							</td>
+							<td>
+								<xsl:if test="res:binding[@name = 'startDate']/res:literal or res:binding[@name = 'endDate']/res:literal">
+									<xsl:value-of select="nomisma:normalizeDate(res:binding[@name = 'startDate']/res:literal)"/>
+									<xsl:if test="res:binding[@name = 'startDate']/res:literal and res:binding[@name = 'startDate']/res:literal"> - </xsl:if>
+									<xsl:value-of select="nomisma:normalizeDate(res:binding[@name = 'endDate']/res:literal)"/>
+								</xsl:if>
 							</td>
 							<td class="text-right">
 								<xsl:apply-templates select="$sparqlResult//group[@id = $type_id]/descendant::object" mode="results"/>
@@ -174,11 +246,11 @@
 					<xsl:if test="$position &gt; 1">
 						<xsl:attribute name="style">display:none</xsl:attribute>
 					</xsl:if>
-					<img src="{obvThumb}"/>
+					<img src="{obvThumb}" class="side-thumbnail"/>
 				</a>
 			</xsl:when>
 			<xsl:when test="not(string(obvRef)) and string(obvThumb)">
-				<img src="{obvThumb}">
+				<img src="{obvThumb}" class="side-thumbnail">
 					<xsl:if test="$position &gt; 1">
 						<xsl:attribute name="style">display:none</xsl:attribute>
 					</xsl:if>
@@ -189,7 +261,7 @@
 					<xsl:if test="$position &gt; 1">
 						<xsl:attribute name="style">display:none</xsl:attribute>
 					</xsl:if>
-					<img src="{obvRef}" style="max-width:120px"/>
+					<img src="{obvRef}" class="side-thumbnail"/>
 				</a>
 			</xsl:when>
 		</xsl:choose>
@@ -200,11 +272,11 @@
 					<xsl:if test="$position &gt; 1">
 						<xsl:attribute name="style">display:none</xsl:attribute>
 					</xsl:if>
-					<img src="{revThumb}"/>
+					<img src="{revThumb}" class="side-thumbnail"/>
 				</a>
 			</xsl:when>
 			<xsl:when test="not(string(revRef)) and string(revThumb)">
-				<img src="{revThumb}">
+				<img src="{revThumb}" class="side-thumbnail">
 					<xsl:if test="$position &gt; 1">
 						<xsl:attribute name="style">display:none</xsl:attribute>
 					</xsl:if>
@@ -215,7 +287,7 @@
 					<xsl:if test="$position &gt; 1">
 						<xsl:attribute name="style">display:none</xsl:attribute>
 					</xsl:if>
-					<img src="{revRef}" style="max-width:120px"/>
+					<img src="{revRef}" class="side-thumbnail"/>
 				</a>
 			</xsl:when>
 		</xsl:choose>
@@ -226,11 +298,11 @@
 					<xsl:if test="$position &gt; 1">
 						<xsl:attribute name="style">display:none</xsl:attribute>
 					</xsl:if>
-					<img src="{comThumb}"/>
+					<img src="{comThumb}" class="combined-thumbnail"/>
 				</a>
 			</xsl:when>
 			<xsl:when test="not(string(comRef)) and string(comThumb)">
-				<img src="{comThumb}">
+				<img src="{comThumb}" class="combined-thumbnail">
 					<xsl:if test="$position &gt; 1">
 						<xsl:attribute name="style">display:none</xsl:attribute>
 					</xsl:if>
@@ -241,9 +313,127 @@
 					<xsl:if test="$position &gt; 1">
 						<xsl:attribute name="style">display:none</xsl:attribute>
 					</xsl:if>
-					<img src="{comRef}" style="max-width:240px"/>
+					<img src="{comRef}" class="combined-thumbnail"/>
 				</a>
 			</xsl:when>
 		</xsl:choose>
+	</xsl:template>
+
+	<xsl:template name="pagination">
+		<xsl:param name="page" as="xs:integer"/>
+		<xsl:param name="numFound" as="xs:integer"/>
+		<xsl:param name="limit" as="xs:integer"/>
+
+		<xsl:variable name="offset" select="($page - 1) * $limit" as="xs:integer"/>
+
+		<xsl:variable name="previous" select="$page - 1"/>
+		<xsl:variable name="current" select="$page"/>
+		<xsl:variable name="next" select="$page + 1"/>
+		<xsl:variable name="total" select="ceiling($numFound div $limit)"/>
+
+		<div class="col-md-12 paging_div">
+			<div class="col-md-6">
+				<xsl:variable name="startRecord" select="$offset + 1"/>
+				<xsl:variable name="endRecord">
+					<xsl:choose>
+						<xsl:when test="$numFound &gt; ($offset + $limit)">
+							<xsl:value-of select="$offset + $limit"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="$numFound"/>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:variable>
+				<p>Records <b><xsl:value-of select="$startRecord"/></b> to <b><xsl:value-of select="$endRecord"/></b> of <b><xsl:value-of select="$numFound"
+						/></b></p>
+			</div>
+			<!-- paging functionality -->
+			<div class="col-md-6 page-nos">
+				<div class="btn-toolbar" role="toolbar">
+					<div class="btn-group pull-right">
+						<!-- first page -->
+						<xsl:if test="$current &gt; 1">
+							<a class="btn btn-default" role="button" title="First" href="?page=1{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+								<span class="glyphicon glyphicon-fast-backward"/>
+								<xsl:text> 1</xsl:text>
+							</a>
+							<a class="btn btn-default" role="button" title="Previous"
+								href="?page={$current - 1}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+								<xsl:text>Previous </xsl:text>
+								<span class="glyphicon glyphicon-backward"/>
+							</a>
+						</xsl:if>
+						<xsl:if test="$current &gt; 5">
+							<button type="button" class="btn btn-default disabled">
+								<xsl:text>...</xsl:text>
+							</button>
+						</xsl:if>
+						<xsl:if test="$current &gt; 4">
+							<a class="btn btn-default" role="button" href="?page={$current - 3}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+								<xsl:value-of select="$current - 3"/>
+								<xsl:text> </xsl:text>
+							</a>
+						</xsl:if>
+						<xsl:if test="$current &gt; 3">
+							<a class="btn btn-default" role="button" href="?page={$current - 2}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+								<xsl:value-of select="$current - 2"/>
+								<xsl:text> </xsl:text>
+							</a>
+						</xsl:if>
+						<xsl:if test="$current &gt; 2">
+							<a class="btn btn-default" role="button" href="?page={$current - 1}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+								<xsl:value-of select="$current - 1"/>
+								<xsl:text> </xsl:text>
+							</a>
+						</xsl:if>
+						<!-- current page -->
+						<button type="button" class="btn btn-default active">
+							<b>
+								<xsl:value-of select="$current"/>
+							</b>
+						</button>
+						<xsl:if test="$total &gt; ($current + 1)">
+							<a class="btn btn-default" role="button" title="Next"
+								href="?page={$current + 1}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+								<xsl:value-of select="$current + 1"/>
+							</a>
+						</xsl:if>
+						<xsl:if test="$total &gt; ($current + 2)">
+							<a class="btn btn-default" role="button" title="Next"
+								href="?page={$current + 2}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+								<xsl:value-of select="$current + 2"/>
+							</a>
+						</xsl:if>
+						<xsl:if test="$total &gt; ($current + 3)">
+							<a class="btn btn-default" role="button" title="Next"
+								href="?page={$current + 3}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+								<xsl:value-of select="$current + 3"/>
+							</a>
+						</xsl:if>
+						<xsl:if test="$total &gt; ($current + 4)">
+							<button type="button" class="btn btn-default disabled">
+								<xsl:text>...</xsl:text>
+							</button>
+						</xsl:if>
+						<!-- last page -->
+						<xsl:if test="$current &lt; $total">
+							<a class="btn btn-default" role="button" title="Next"
+								href="?page={$current + 1}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+								<xsl:text>Next </xsl:text>
+								<span class="glyphicon glyphicon-forward"/>
+							</a>
+							<a class="btn btn-default" role="button" title="Last"
+								href="?page={$total}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+								<xsl:value-of select="$total"/>
+								<xsl:text> </xsl:text>
+								<span class="glyphicon glyphicon-fast-forward"/>
+							</a>
+						</xsl:if>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
 	</xsl:template>
 </xsl:stylesheet>
