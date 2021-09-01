@@ -92,7 +92,6 @@
 		<!-- HTML output -->
 		<h3>
 			<xsl:text>Associated Types </xsl:text>
-			<small>(max 10)</small>
 			<small>
 				<a href="#" class="toggle-button" id="toggle-listTypes" title="Click to hide or show the analysis form">
 					<span class="glyphicon glyphicon-triangle-bottom"/>
