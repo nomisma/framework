@@ -28,27 +28,28 @@
 
 	<xsl:variable name="classes" as="item()*">
 		<classes>
-			<class map="false" types="false">nmo:Collection</class>
-			<class map="true" types="true" prop="nmo:hasDenomination">nmo:Denomination</class>
-			<class map="true" types="true" prop="?prop">rdac:Family</class>
+			<class map="false" types="false" prop="nmo:hasCollection">nmo:Collection</class>
+			<class map="true" types="true" prop="nmo:hasDenomination" dist="true">nmo:Denomination</class>
+			<class map="true" types="true" prop="dynasty" dist="true">rdac:Family</class>
 			<class map="true" types="false">nmo:Ethnic</class>
 			<class map="false" types="false">nmo:FieldOfNumismatics</class>
 			<class map="true" types="false">nmo:Hoard</class>
-			<class map="true" types="true" prop="nmo:hasManufacture">nmo:Manufacture</class>
-			<class map="true" types="true" prop="nmo:hasMaterial">nmo:Material</class>
-			<class map="true" types="true" prop="nmo:hasMint">nmo:Mint</class>
+			<class map="true" types="true" prop="nmo:hasManufacture" dist="true">nmo:Manufacture</class>
+			<class map="true" types="true" prop="nmo:hasMaterial" dist="true">nmo:Material</class>
+			<class map="true" types="true" prop="nmo:hasMint" dist="true">nmo:Mint</class>
 			<class map="false" types="false">nmo:NumismaticTerm</class>
 			<class map="true" types="false">nmo:ObjectType</class>
-			<class map="true" types="true" prop="?prop">foaf:Group</class>
-			<class map="true" types="true" prop="?prop">foaf:Organization</class>
-			<class map="true" types="true" prop="?prop">foaf:Person</class>
+			<class map="true" types="true" prop="?prop" dist="true">foaf:Group</class>
+			<class map="true" types="true" prop="?prop" dist="true">foaf:Organization</class>
+			<class map="true" types="true" prop="?prop" dist="true">foaf:Person</class>
+			<class map="false" types="false">crm:E4_Period</class>
 			<class>nmo:ReferenceWork</class>
-			<class map="true" types="true" prop="nmo:hasRegion">nmo:Region</class>
+			<class map="true" types="true" prop="nmo:hasRegion" dist="true">nmo:Region</class>
 			<class map="false" types="false">org:Role</class>
 			<class map="false" types="false">nmo:TypeSeries</class>
 			<class map="false" types="false">un:Uncertainty</class>
 			<class map="false" types="false">nmo:CoinWear</class>
-			<class map="true" types="true">wordnet:Deity</class>
+			<class map="true" types="true" dist="true" prop="deity">wordnet:Deity</class>
 		</classes>
 	</xsl:variable>
 

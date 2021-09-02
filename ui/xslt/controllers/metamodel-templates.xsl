@@ -1008,6 +1008,17 @@
                             <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                         </xsl:if>
                     </group>
+                    <group>                        
+                        <triple s="?mint" p="skos:broader+" o="nm:{$id}"/> 
+                        <triple s="?coinType" p="nmo:hasMint" o="?mint"/>
+                        <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
+                        <triple s="?contents" p="nmo:hasTypeSeriesItem" o="?coinType"/>
+                        <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
+                        <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>
+                        <xsl:if test="$api = 'heatmap'">
+                            <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
+                        </xsl:if>
+                    </group>
                 </xsl:when>
             </xsl:choose>
         </group>
