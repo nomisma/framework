@@ -582,6 +582,43 @@
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:when>
+                <xsl:when test="$type = 'nmo:Region'">
+                    <xsl:choose>
+                        <xsl:when test="$api = 'getHoards' or $api = 'heatmap'">
+                            <union>
+                                <group>
+                                    <xsl:call-template name="region-findspots">
+                                        <xsl:with-param name="id" select="$id"/>
+                                    </xsl:call-template>
+                                    <triple s="?object" p="dcterms:isPartOf" o="?hoard"/>
+                                    <xsl:if test="$api = 'heatmap'">
+                                        <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
+                                    </xsl:if>
+                                </group>
+                                <xsl:if test="$api = 'heatmap'">
+                                    <group>
+                                        <xsl:call-template name="region-findspots">
+                                            <xsl:with-param name="id" select="$id"/>
+                                        </xsl:call-template>
+                                        <triple s="?object" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
+                                    </group>
+                                </xsl:if>
+                                <group>
+                                    <xsl:call-template name="hoard-content-query">
+                                        <xsl:with-param name="api" select="$api"/>
+                                        <xsl:with-param name="id" select="$id"/>
+                                        <xsl:with-param name="type" select="$type"/>
+                                    </xsl:call-template>
+                                </group>
+                            </union>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:call-template name="region-findspots">
+                                <xsl:with-param name="id" select="$id"/>
+                            </xsl:call-template>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
                 <xsl:when test="$type = 'nmo:TypeSeriesItem'">
                     <xsl:choose>
                         <xsl:when test="$api = 'getHoards' or $api = 'heatmap'">
@@ -892,6 +929,23 @@
         <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>
         <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
     </xsl:template>
+    
+    <xsl:template name="region-findspots">
+        <xsl:param name="id"/>
+        
+        <union>
+            <group>
+                <triple s="?coinType" p="nmo:hasRegion" o="nm:{$id}"/>
+            </group>
+            <group>
+                <triple s="?coinType" p="nmo:hasMint" o="?mint"/>
+                <triple s="?mint" p="skos:broader+" o="nm:{$id}"/>
+            </group>
+        </union>        
+        <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
+        <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>
+        <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
+    </xsl:template>
 
     <xsl:template name="hoard-content-query">
         <xsl:param name="api"/>
@@ -919,7 +973,7 @@
             </group>
             <!-- look for people related to orgs and dynasties only in the hoard contents -->
             <xsl:choose>
-                <xsl:when test="$type = 'foaf:Group' or 'foaf:Organization'">
+                <xsl:when test="$type = 'foaf:Group' or $type = 'foaf:Organization'">
                     <group>
                         <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
                         <triple s="?person" p="rdf:type" o="foaf:Person"/>
@@ -936,6 +990,18 @@
                         <triple s="?person" p="org:memberOf" o="nm:{$id}"/>
                         <triple s="?person" p="rdf:type" o="foaf:Person"/>
                         <triple s="?contents" p="nmo:hasAuthority" o="?person"/>
+                        <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
+                        <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>
+                        <xsl:if test="$api = 'heatmap'">
+                            <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
+                        </xsl:if>
+                    </group>
+                </xsl:when>
+                <!-- query for hoard contents that contain a mint that is a child/descendent of a region -->
+                <xsl:when test="$type = 'nmo:Region'">
+                    <group>
+                        <triple s="?mint" p="skos:broader+" o="nm:{$id}"/> 
+                        <triple s="?contents" p="nmo:hasMint" o="?mint"/>
                         <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
                         <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>
                         <xsl:if test="$api = 'heatmap'">

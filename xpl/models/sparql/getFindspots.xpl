@@ -84,6 +84,7 @@
 
 						<xsl:variable name="hasFindspots" as="item()*">
 							<classes>
+								<class>nmo:Collection</class>
 								<class>nmo:Denomination</class>
 								<class>rdac:Family</class>
 								<class>nmo:Ethnic</class>
