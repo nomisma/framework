@@ -65,7 +65,7 @@
 
 	<xsl:variable name="classes" as="item()*">
 		<classes>
-			<class map="false" types="false" prop="nmo:hasCollection">nmo:Collection</class>
+			<class map="true" types="false" prop="nmo:hasCollection">nmo:Collection</class>
 			<class map="true" types="true" prop="nmo:hasDenomination" dist="true">nmo:Denomination</class>
 			<class map="true" types="true" prop="dynasty" dist="true">rdac:Family</class>
 			<class map="true" types="false">nmo:Ethnic</class>
