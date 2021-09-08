@@ -101,7 +101,14 @@
 											<xsl:value-of select="doc('input:request')/request/parameters/parameter[name='id']/value"/>
 										</xsl:when>
 										<xsl:otherwise>
-											<xsl:value-of select="replace(tokenize(doc('input:request')/request/request-url, '/')[last()], '.geojson', '')"/>
+											<xsl:choose>
+												<xsl:when test="ends-with(doc('input:request')/request/request-url, '.geojson')">
+													<xsl:value-of select="replace(tokenize(doc('input:request')/request/request-url, '/')[last()], '.geojson', '')"/>
+												</xsl:when>
+												<xsl:when test="ends-with(doc('input:request')/request/request-url, '.kml')">
+													<xsl:value-of select="replace(tokenize(doc('input:request')/request/request-url, '/')[last()], '.kml', '')"/>
+												</xsl:when>
+											</xsl:choose>
 										</xsl:otherwise>
 									</xsl:choose>
 								</xsl:param>
@@ -203,7 +210,14 @@ SELECT ?place ?label ?lat ?long WHERE {
 											<xsl:value-of select="doc('input:request')/request/parameters/parameter[name='id']/value"/>
 										</xsl:when>
 										<xsl:otherwise>
-											<xsl:value-of select="replace(tokenize(doc('input:request')/request/request-url, '/')[last()], '.geojson', '')"/>
+											<xsl:choose>
+												<xsl:when test="ends-with(doc('input:request')/request/request-url, '.geojson')">
+													<xsl:value-of select="replace(tokenize(doc('input:request')/request/request-url, '/')[last()], '.geojson', '')"/>
+												</xsl:when>
+												<xsl:when test="ends-with(doc('input:request')/request/request-url, '.kml')">
+													<xsl:value-of select="replace(tokenize(doc('input:request')/request/request-url, '/')[last()], '.kml', '')"/>
+												</xsl:when>
+											</xsl:choose>
 										</xsl:otherwise>
 									</xsl:choose>
 								</xsl:param>
