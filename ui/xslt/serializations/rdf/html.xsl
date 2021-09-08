@@ -61,37 +61,7 @@
 			if (/content/res:sparql[3]/res:boolean = 'true') then
 				true()
 			else
-				false()"/>
-
-	<xsl:variable name="classes" as="item()*">
-		<classes>
-			<class map="true" types="false" prop="nmo:hasCollection">nmo:Collection</class>
-			<class map="true" types="true" prop="nmo:hasDenomination" dist="true">nmo:Denomination</class>
-			<class map="true" types="true" prop="dynasty" dist="true">rdac:Family</class>
-			<class map="true" types="false">nmo:Ethnic</class>
-			<class map="false" types="false">nmo:FieldOfNumismatics</class>
-			<class map="true" types="false">nmo:Hoard</class>
-			<class map="true" types="true" prop="nmo:hasManufacture" dist="true">nmo:Manufacture</class>
-			<class map="true" types="true" prop="nmo:hasMaterial" dist="true">nmo:Material</class>
-			<class map="true" types="true" prop="nmo:hasMint" dist="true">nmo:Mint</class>
-			<class map="false" types="false">nmo:NumismaticTerm</class>
-			<class map="true" types="false">nmo:ObjectType</class>
-			<class map="true" types="true" prop="?prop" dist="true">foaf:Group</class>
-			<class map="true" types="true" prop="?prop" dist="true">foaf:Organization</class>
-			<class map="true" types="true" prop="?prop" dist="true">foaf:Person</class>
-			<class map="false" types="false">crm:E4_Period</class>
-			<class>nmo:ReferenceWork</class>
-			<class map="true" types="true" prop="nmo:hasRegion" dist="true">nmo:Region</class>
-			<class map="false" types="false">org:Role</class>
-			<class map="false" types="false">nmo:TypeSeries</class>
-			<class map="false" types="false">un:Uncertainty</class>
-			<class map="false" types="false">nmo:CoinWear</class>
-			<class map="true" types="true" dist="true" prop="deity">wordnet:Deity</class>
-			<prop>nmo:hasAuthority</prop>
-			<prop>nmo:hasIssuer</prop>
-			<prop>portrait</prop>
-		</classes>
-	</xsl:variable>
+				false()"/>	
 
 	<xsl:variable name="prefix">
 		<xsl:for-each select="$namespaces/namespace">
@@ -102,7 +72,7 @@
 		</xsl:for-each>
 	</xsl:variable>
 
-	<xsl:variable name="base-query" select="concat($classes//class[text() = $type]/@prop, ' nm:', $id)"/>
+	<xsl:variable name="base-query" select="concat(/content/config/classes/class[text() = $type]/@prop, ' nm:', $id)"/>
 
 	<xsl:template match="/">
 		<html lang="en" prefix="{$prefix}" itemscope=""
@@ -125,7 +95,7 @@
 				</xsl:if>
 
 				<!-- add d3 if it is a graph-enabled class -->
-				<xsl:if test="$classes//class[text() = $type]/@dist = true()">
+				<xsl:if test="/content/config/classes/class[text() = $type]/@dist = true()">
 					<script type="text/javascript" src="https://d3plus.org/js/d3.js"/>
 					<script type="text/javascript" src="https://d3plus.org/js/d3plus.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/vis_functions.js"/>

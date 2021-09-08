@@ -202,90 +202,19 @@
 			
 			<p:processor name="oxf:unsafe-xslt">
 				<p:input name="data" href="#data"/>
+				<p:input name="config-xml" href="../../../../config.xml"/>
 				<p:input name="config">
 					<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
 						xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-
-						<xsl:variable name="hasMints" as="item()*">
-							<classes>
-								<class>nmo:Collection</class>
-								<class>nmo:Denomination</class>
-								<class>rdac:Family</class>
-								<class>nmo:Ethnic</class>
-								<class>foaf:Group</class>
-								<class>nmo:Hoard</class>
-								<class>nmo:Manufacture</class>
-								<class>nmo:Material</class>
-								<class>nmo:Mint</class>
-								<class>nmo:ObjectType</class>
-								<class>foaf:Organization</class>
-								<class>foaf:Person</class>
-								<class>nmo:Region</class>
-								<class>nmo:TypeSeries</class>
-								<class>wordnet:Deity</class>
-							</classes>
-						</xsl:variable>
-
-						<xsl:variable name="hasFindspots" as="item()*">
-							<classes>
-								<class>nmo:Collection</class>
-								<class>nmo:Denomination</class>
-								<class>rdac:Family</class>
-								<class>nmo:Ethnic</class>
-								<class>foaf:Group</class>
-								<class>nmo:Hoard</class>
-								<class>nmo:Manufacture</class>
-								<class>nmo:Material</class>
-								<class>nmo:Mint</class>
-								<class>nmo:ObjectType</class>
-								<class>foaf:Organization</class>
-								<class>foaf:Person</class>
-								<class>nmo:Region</class>
-								<class>nmo:TypeSeries</class>
-								<class>wordnet:Deity</class>
-							</classes>
-						</xsl:variable>
-
-						<xsl:variable name="hasTypes" as="item()*">
-							<classes>
-								<class>nmo:Denomination</class>
-								<class>rdac:Family</class>
-								<class>nmo:Ethnic</class>
-								<class>foaf:Group</class>
-								<class>nmo:Manufacture</class>
-								<class>nmo:Material</class>
-								<class>nmo:Mint</class>
-								<class>nmo:ObjectType</class>
-								<class>foaf:Organization</class>
-								<class>foaf:Person</class>
-								<class>nmo:Region</class>
-								<class>nmo:TypeSeries</class>
-								<class>wordnet:Deity</class>
-							</classes>
-						</xsl:variable>
-
+						
 						<xsl:variable name="type" select="/rdf:RDF/*[1]/name()"/>
 
 						<xsl:template match="/">
 							<type>
-								<xsl:attribute name="hasMints">
-									<xsl:choose>
-										<xsl:when test="$hasMints//class[text()=$type]">true</xsl:when>
-										<xsl:otherwise>false</xsl:otherwise>
-									</xsl:choose>
-								</xsl:attribute>
-								<xsl:attribute name="hasFindspots">
-									<xsl:choose>
-										<xsl:when test="$hasFindspots//class[text()=$type]">true</xsl:when>
-										<xsl:otherwise>false</xsl:otherwise>
-									</xsl:choose>
-								</xsl:attribute>
-								<xsl:attribute name="hasTypes">
-									<xsl:choose>
-										<xsl:when test="$hasTypes//class[text()=$type]">true</xsl:when>
-										<xsl:otherwise>false</xsl:otherwise>
-									</xsl:choose>
-								</xsl:attribute>
+								<xsl:attribute name="hasMints" select="doc('input:config-xml')//classes/class[text()=$type]/@mints"/>
+								<xsl:attribute name="hasFindspots" select="doc('input:config-xml')//classes/class[text()=$type]/@findspots"/>
+								<xsl:attribute name="hasTypes" select="doc('input:config-xml')//classes/class[text()=$type]/@types"/>
+								
 								<xsl:value-of select="$type"/>
 							</type>
 						</xsl:template>
@@ -298,7 +227,7 @@
 			<!-- ASK whether there are geographic coordinates for mints or findspots in order to generate a conditional for the map -->
 			<p:choose href="#type">
 				<!-- suppress any class of object for which we do not want to render a map -->
-				<p:when test="type/@hasMints = 'false'">
+				<p:when test="type/@hasMints = false()">
 					<p:processor name="oxf:identity">
 						<p:input name="data">
 							<sparql xmlns="http://www.w3.org/2005/sparql-results#">
@@ -394,7 +323,7 @@
 
 			<p:choose href="#type">
 				<!-- suppress any class of object for which we do not want to render a map -->
-				<p:when test="type/@hasFindspots = 'false'">
+				<p:when test="type/@hasFindspots = false()">
 					<p:processor name="oxf:identity">
 						<p:input name="data">
 							<sparql xmlns="http://www.w3.org/2005/sparql-results#">
@@ -491,7 +420,7 @@
 			<!-- ASK whether there are coin types associated with the concept -->
 			<p:choose href="#type">
 				<!-- suppress any class of object for which we do not want to render a map -->
-				<p:when test="type/@hasTypes = 'false'">
+				<p:when test="type/@hasTypes = false()">
 					<p:processor name="oxf:identity">
 						<p:input name="data">
 							<sparql xmlns="http://www.w3.org/2005/sparql-results#">

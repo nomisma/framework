@@ -26,33 +26,6 @@
 		</namespaces>
 	</xsl:variable>
 
-	<xsl:variable name="classes" as="item()*">
-		<classes>
-			<class map="true" types="false" prop="nmo:hasCollection">nmo:Collection</class>
-			<class map="true" types="true" prop="nmo:hasDenomination" dist="true">nmo:Denomination</class>
-			<class map="true" types="true" prop="dynasty" dist="true">rdac:Family</class>
-			<class map="true" types="false">nmo:Ethnic</class>
-			<class map="false" types="false">nmo:FieldOfNumismatics</class>
-			<class map="true" types="false">nmo:Hoard</class>
-			<class map="true" types="true" prop="nmo:hasManufacture" dist="true">nmo:Manufacture</class>
-			<class map="true" types="true" prop="nmo:hasMaterial" dist="true">nmo:Material</class>
-			<class map="true" types="true" prop="nmo:hasMint" dist="true">nmo:Mint</class>
-			<class map="false" types="false">nmo:NumismaticTerm</class>
-			<class map="true" types="false">nmo:ObjectType</class>
-			<class map="true" types="true" prop="?prop" dist="true">foaf:Group</class>
-			<class map="true" types="true" prop="?prop" dist="true">foaf:Organization</class>
-			<class map="true" types="true" prop="?prop" dist="true">foaf:Person</class>
-			<class map="false" types="false">crm:E4_Period</class>
-			<class>nmo:ReferenceWork</class>
-			<class map="true" types="true" prop="nmo:hasRegion" dist="true">nmo:Region</class>
-			<class map="false" types="false">org:Role</class>
-			<class map="false" types="false">nmo:TypeSeries</class>
-			<class map="false" types="false">un:Uncertainty</class>
-			<class map="false" types="false">nmo:CoinWear</class>
-			<class map="true" types="true" dist="true" prop="deity">wordnet:Deity</class>
-		</classes>
-	</xsl:variable>
-
 	<xsl:template match="/">
 		<html>
 			<head>
@@ -60,7 +33,7 @@
 				<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 				<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"/>
 
-				<xsl:if test="$classes//class[text()=$type]/@map=true()">
+				<xsl:if test="/content/config/classes/class[text()=$type]/@findspots = true() or /content/config/classes/class[text()=$type]/@mints = true()">
 					<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0/dist/leaflet.css"/>
 					<script type="text/javascript" src="https://unpkg.com/leaflet@1.0.0/dist/leaflet.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet.ajax.min.js"/>
@@ -78,11 +51,6 @@
 							height:100%;
 						}</style>
 				</xsl:if>
-				<!--<link rel="stylesheet" href="{$display_path}ui//css/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen"/>
-				<script type="text/javascript" src="{$display_path}ui//javascript/jquery.fancybox.pack.js?v=2.1.5"/>
-				<script type="text/javascript" src="{$display_path}ui/javascript/display_functions.js"/>-->
-				<!--<link rel="stylesheet" href="{$display_path}ui/css/style.css"/>-->
-
 			</head>
 			<body>
 				<xsl:call-template name="body"/>

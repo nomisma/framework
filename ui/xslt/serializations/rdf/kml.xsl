@@ -7,30 +7,7 @@
 	<xsl:variable name="id" select="tokenize(//rdf:RDF/*[1]/@rdf:about, '/')[last()]"/>
 	<xsl:variable name="type" select="/content/rdf:RDF/*[1]/name()"/>
 	<xsl:variable name="sparql_endpoint" select="/content/config/sparql_query"/>
-
-	<xsl:variable name="classes" as="item()*">
-		<classes>
-			<class map="false" types="false">nmo:Collection</class>
-			<class map="true" types="true" prop="nmo:hasDenomination">nmo:Denomination</class>
-			<class map="true" types="true" prop="?prop">rdac:Family</class>
-			<class map="true" types="false">nmo:Ethnic</class>
-			<class map="false" types="false">nmo:FieldOfNumismatics</class>
-			<class map="true" types="true" prop="nmo:hasManufacture">nmo:Manufacture</class>
-			<class map="true" types="true" prop="nmo:hasMaterial">nmo:Material</class>
-			<class map="true" types="true" prop="nmo:hasMint">nmo:Mint</class>
-			<class map="false" types="false">nmo:NumismaticTerm</class>
-			<class map="true" types="false">nmo:ObjectType</class>
-			<class map="true" types="true" prop="?prop">foaf:Organization</class>
-			<class map="true" types="true" prop="?prop">foaf:Person</class>
-			<class>nmo:ReferenceWork</class>
-			<class map="true" types="true" prop="nmo:hasRegion">nmo:Region</class>
-			<class map="false" types="false">org:Role</class>
-			<class map="false" types="false">nmo:TypeSeries</class>
-			<class map="false" types="false">un:Uncertainty</class>
-			<class map="false" types="false">nmo:CoinWear</class>
-		</classes>
-	</xsl:variable>
-
+	
 	<xsl:template match="/">
 		<xsl:apply-templates select="/content/rdf:RDF"/>
 	</xsl:template>
@@ -75,7 +52,7 @@
 					</xsl:with-param>
 				</xsl:apply-templates>
 
-				<xsl:if test="$classes//class[text()=$type]/@map=true()">
+				<xsl:if test="/content/config/classes/class[text()=$type]/@mints = true() or /content/config/classes/class[text()=$type]/@findspots = true()">
 					<xsl:call-template name="kml">
 						<xsl:with-param name="uri" select="*[1]/@rdf:about"/>
 					</xsl:call-template>
@@ -185,7 +162,7 @@ UNION { ?coinType PROP <URI> ;
 		</xsl:variable>
 		
 		<xsl:if test="string($query)">
-			<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace(replace($query, 'URI', $uri), 'PROP', $classes//class[text()=$type]/@prop))), '&amp;output=xml')"/>
+			<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace(replace($query, 'URI', $uri), 'PROP', /content/config/classes/class[text()=$type]/@prop))), '&amp;output=xml')"/>
 			
 			<xsl:apply-templates select="document($service)//res:result" mode="kml"/>
 		</xsl:if>

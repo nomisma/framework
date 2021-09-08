@@ -58,41 +58,16 @@
 
 			<p:processor name="oxf:unsafe-xslt">
 				<p:input name="data" href="#rdf"/>
+				<p:input name="config-xml" href="../../../config.xml"/>
 				<p:input name="config">
 					<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
 						xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-
-						<xsl:variable name="hasMints" as="item()*">
-							<classes>
-								<class>nmo:Collection</class>
-								<class>nmo:Denomination</class>
-								<class>rdac:Family</class>
-								<class>nmo:Ethnic</class>
-								<class>foaf:Group</class>
-								<class>nmo:Hoard</class>
-								<class>nmo:Manufacture</class>
-								<class>nmo:Material</class>
-								<class>nmo:Mint</class>
-								<class>nmo:ObjectType</class>
-								<class>foaf:Organization</class>
-								<class>foaf:Person</class>
-								<class>nmo:Region</class>
-								<class>nmo:TypeSeries</class>
-								<class>wordnet:Deity</class>
-							</classes>
-						</xsl:variable>
 
 						<xsl:variable name="type" select="/rdf:RDF/*[1]/name()"/>
 
 						<xsl:template match="/">
 							<type>
-								<xsl:attribute name="hasMints">
-									<xsl:choose>
-										<xsl:when test="$hasMints//class[text()=$type]">true</xsl:when>
-										<xsl:otherwise>false</xsl:otherwise>
-									</xsl:choose>
-								</xsl:attribute>
-
+								<xsl:attribute name="hasMints" select="doc('input:config-xml')//classes/class[text()=$type]/@mints"/>
 								<xsl:value-of select="$type"/>
 							</type>
 						</xsl:template>

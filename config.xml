@@ -12,9 +12,9 @@
 	<nuds_xsd_path>oxf:/NUDS/nuds.xsd</nuds_xsd_path>
 	<flickr_api_key>226cb53f91a6c1331adfb52c365584e9</flickr_api_key>
 	<mapboxKey>pk.eyJ1IjoiZXdnMTE4IiwiYSI6IjViNDRlMzgxMjkyMDg0MGIxYTNlMzlkMjk1ZTI5Yzg5In0.1FU6cKAs4-vPMroB_l_0lA</mapboxKey>
-	<google_analytics> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-		ga('create', 'UA-8722571-3', 'auto'); ga('send', 'pageview'); </google_analytics>
+	<google_analytics> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new
+		Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-8722571-3', 'auto'); ga('send', 'pageview'); </google_analytics>
 	<crossref>
 		<depositor_name>Nomisma.org</depositor_name>
 		<depositor_email>ewg4xuva@gmail.com</depositor_email>
@@ -33,7 +33,7 @@
 		<namespace prefix="crmarchaeo" uri="http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/"/>
 		<namespace prefix="crmdig" uri="http://www.ics.forth.gr/isl/CRMdig/"/>
 		<namespace prefix="crmgeo" uri="http://www.ics.forth.gr/isl/CRMgeo/"/>
-		<namespace prefix="crmsci" uri="http://www.ics.forth.gr/isl/CRMsci/"/>		
+		<namespace prefix="crmsci" uri="http://www.ics.forth.gr/isl/CRMsci/"/>
 		<namespace prefix="dcterms" uri="http://purl.org/dc/terms/" default="true"/>
 		<namespace prefix="dcmitype" uri="http://purl.org/dc/dcmitype/" default="true"/>
 		<namespace prefix="foaf" uri="http://xmlns.com/foaf/0.1/" default="true"/>
@@ -54,4 +54,28 @@
 		<namespace prefix="wordnet" uri="http://ontologi.es/WordNet/class/"/>
 		<namespace prefix="xsd" uri="http://www.w3.org/2001/XMLSchema#" default="true"/>
 	</namespaces>
+	<classes>
+		<class mints="true" findspots="true" types="false" dist="false" prop="nmo:hasCollection">nmo:Collection</class>
+		<class mints="true" findspots="true" types="true" dist="true" prop="nmo:hasDenomination">nmo:Denomination</class>
+		<class mints="true" findspots="true" types="true" dist="true" prop="dynasty">rdac:Family</class>
+		<class mints="true" findspots="true" types="false" dist="true" prop="nmo:hasAuthority">nmo:Ethnic</class>
+		<class mints="false" findspots="false" types="false" dist="false">nmo:FieldOfNumismatics</class>
+		<class mints="true" findspots="true" types="false">nmo:Hoard</class>
+		<class mints="true" findspots="true" types="true" prop="nmo:hasManufacture" dist="true">nmo:Manufacture</class>
+		<class mints="true" findspots="true" types="true" prop="nmo:hasMaterial" dist="true">nmo:Material</class>
+		<class mints="true" findspots="true" types="true" prop="nmo:hasMint" dist="true">nmo:Mint</class>
+		<class mints="false" findspots="false" types="false">nmo:NumismaticTerm</class>
+		<class mints="true" findspots="true" types="false" prop="nmo:representsObjectType">nmo:ObjectType</class>
+		<class mints="true" findspots="true" types="true" dist="true" prop="?prop">foaf:Group</class>
+		<class mints="true" findspots="true" types="true" dist="true" prop="?prop">foaf:Organization</class>
+		<class mints="true" findspots="true" types="true" dist="true" prop="?prop">foaf:Person</class>
+		<class mints="false" findspots="false" types="false" dist="false">crm:E4_Period</class>
+		<class mints="false" findspots="false" types="false" dist="false">nmo:ReferenceWork</class>
+		<class mints="true" findspots="true" types="true" dist="true" prop="nmo:hasRegion">nmo:Region</class>
+		<class mints="false" findspots="false" types="false" dist="false">org:Role</class>
+		<class mints="true" findspots="true" types="true" dist="false" prop="dcterms:source">nmo:TypeSeries</class>
+		<class mints="false" findspots="false" types="false" dist="false">un:Uncertainty</class>
+		<class mints="false" findspots="false" types="false" dist="false">nmo:CoinWear</class>
+		<class mints="true" findspots="true" types="true" dist="true" prop="deity">wordnet:Deity</class>
+	</classes>
 </config>
