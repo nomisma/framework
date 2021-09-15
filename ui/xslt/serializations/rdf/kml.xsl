@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/"
-	xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:foaf="http://xmlns.com/foaf/0.1/"
-	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" exclude-result-prefixes="#all" xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/"
-	xmlns:nmo="http://nomisma.org/ontology#" xmlns:kml="http://earth.google.com/kml/2.0" version="2.0">
+<xsl:stylesheet xmlns="http://earth.google.com/kml/2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:dcterms="http://purl.org/dc/terms/" xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:nm="http://nomisma.org/id/"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+	xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	xmlns:osgeo="http://data.ordnancesurvey.co.uk/ontology/geometry/" xmlns:nmo="http://nomisma.org/ontology#" xmlns:kml="http://earth.google.com/kml/2.0"
+	xmlns:saxon="http://saxon.sf.net/" exclude-result-prefixes="xsl xs dcterms res nm rdf rdfs skos foaf geo osgeo nmo kml saxon" version="2.0">
 
 	<!--<xsl:variable name="id" select="tokenize(//rdf:RDF/*[1]/@rdf:about, '/')[last()]"/>
 	<xsl:variable name="type" select="/content/rdf:RDF/*[1]/name()"/>-->
+
+	<xsl:output name="html" encoding="UTF-8" method="html" exclude-result-prefixes="#all"/>
 
 	<xsl:template match="/">
 		<kml xmlns="http://earth.google.com/kml/2.0">
@@ -44,7 +47,7 @@
 						<outline>1</outline>
 					</PolyStyle>
 				</Style>
-				
+
 				<xsl:apply-templates select="doc('input:mints')/*">
 					<xsl:with-param name="type">mint</xsl:with-param>
 				</xsl:apply-templates>
@@ -54,37 +57,19 @@
 				<xsl:apply-templates select="doc('input:findspots')/res:sparql">
 					<xsl:with-param name="type">findspot</xsl:with-param>
 				</xsl:apply-templates>
-				
-				<!--<xsl:apply-templates select="nmo:Mint|nmo:Region|nmo:Hoard">
-					<xsl:with-param name="lat">
-						<xsl:value-of select="geo:SpatialThing/geo:lat"/>
-					</xsl:with-param>
-					<xsl:with-param name="long">
-						<xsl:value-of select="geo:SpatialThing/geo:long"/>
-					</xsl:with-param>
-					<xsl:with-param name="polygon">
-						<xsl:value-of select="geo:SpatialThing/osgeo:asGeoJSON"/>
-					</xsl:with-param>
-				</xsl:apply-templates>-->
-				
-				<!--<xsl:if test="/content/config/classes/class[text()=$type]/@mints = true() or /content/config/classes/class[text()=$type]/@findspots = true()">
-					<xsl:call-template name="kml">
-						<xsl:with-param name="uri" select="*[1]/@rdf:about"/>
-					</xsl:call-template>
-				</xsl:if>-->
 			</Document>
 		</kml>
 	</xsl:template>
-	
+
 	<!-- RDF/XML template for mint -->
 	<xsl:template match="rdf:RDF">
 		<xsl:choose>
 			<xsl:when test="descendant::geo:SpatialThing/osgeo:asGeoJSON">
-				<xsl:apply-templates select="descendant::geo:SpatialThing" mode="poly">
+				<!--<xsl:apply-templates select="descendant::geo:SpatialThing" mode="poly">
 					<xsl:with-param name="uri" select="*[1]/@rdf:about"/>
-					<xsl:with-param name="type" select="*[1]/name()"></xsl:with-param>
+					<xsl:with-param name="type" select="*[1]/name()"/>
 					<xsl:with-param name="label" select="*[1]/skos:prefLabel[@xml:lang = 'en']"/>
-				</xsl:apply-templates>
+				</xsl:apply-templates>-->
 			</xsl:when>
 			<xsl:when test="descendant::geo:SpatialThing[geo:lat and geo:long]">
 				<xsl:apply-templates select="descendant::geo:SpatialThing" mode="point">
@@ -94,103 +79,50 @@
 			</xsl:when>
 		</xsl:choose>
 	</xsl:template>
-	
+
 	<!-- generate GeoJSON for id/ responses -->
 	<xsl:template match="geo:SpatialThing" mode="point">
 		<xsl:param name="uri"/>
 		<xsl:param name="type"/>
 		<xsl:param name="label"/>
-		
-		<Placemark xmlns="http://earth.google.com/kml/2.0">
+
+		<Placemark>
 			<name>
 				<xsl:value-of select="$label"/>
 			</name>
-			<!--<description>
-				<xsl:variable name="description">
-					<![CDATA[<a href="]]><xsl:value-of select="res:binding[@name='findspot']/res:uri"/><![CDATA[">]]><xsl:value-of
-						select="res:binding[@name='findspot']/res:uri"/><![CDATA[</a>]]>
+			<description>
+				<xsl:variable name="description" as="node()*">
+					<div xmlns="">
+						<b>Place: </b>
+						<a href="{$uri}">
+							<xsl:value-of select="$label"/>
+						</a>
+					</div>
 				</xsl:variable>
-				<xsl:value-of select="normalize-space($description)"/>
-			</description>-->
+
+				<xsl:value-of select="saxon:serialize($description, 'html')"/>
+			</description>
 			<styleUrl>
 				<xsl:choose>
 					<xsl:when test="$type = 'nmo:Hoard'">#hoard</xsl:when>
 					<xsl:otherwise>#mint</xsl:otherwise>
 				</xsl:choose>
 			</styleUrl>
-			
+
 			<Point>
 				<coordinates>
 					<xsl:value-of select="concat(geo:long, ',', geo:lat)"/>
 				</coordinates>
 			</Point>
-			
-			
 		</Placemark>
-		
-	</xsl:template>
 
-	<xsl:template match="nmo:Hoard | nmo:Mint | nmo:Region">
-		<xsl:param name="lat"/>
-		<xsl:param name="long"/>
-		<xsl:param name="polygon"/>
-		<xsl:variable name="type" select="name()"/>
-
-		<xsl:if test="(string($lat) and string($long)) or string($polygon)">
-			<Placemark xmlns="http://earth.google.com/kml/2.0">
-				<name>
-					<xsl:value-of select="skos:prefLabel[@xml:lang = 'en']"/>
-				</name>
-
-				<xsl:choose>
-					<xsl:when test="string($lat) and string($long)">
-						<xsl:choose>
-							<xsl:when test="$type = 'nmo:Mint' or $type = 'nmo:Region'">
-								<styleUrl>#mint</styleUrl>
-							</xsl:when>
-							<xsl:when test="$type = 'nmo:Hoard'">
-								<styleUrl>#hoard</styleUrl>
-							</xsl:when>
-						</xsl:choose>
-						<Point>
-							<coordinates>
-								<xsl:value-of select="concat($long, ',', $lat)"/>
-							</coordinates>
-						</Point>
-					</xsl:when>
-					<!-- temporarily suppress the polygon, conflicts with leaflet -->
-					<!--<xsl:when test="string($polygon)">
-						<styleUrl>#polygon</styleUrl>
-						<Polygon>
-							<outerBoundaryIs>
-								<LinearRing>
-									<tessellate>1</tessellate>
-									<coordinates>
-										<xsl:analyze-string regex="\[(\d[^\]]+)\]" select="$polygon">
-											<xsl:matching-substring>
-												<xsl:for-each select="regex-group(1)">
-													<xsl:value-of select="normalize-space(tokenize(., ',')[1])"/>
-													<xsl:text>, </xsl:text>
-													<xsl:value-of select="normalize-space(tokenize(., ',')[2])"/>
-													<xsl:text>, 0.00&#x000A;</xsl:text>
-												</xsl:for-each>
-											</xsl:matching-substring>
-										</xsl:analyze-string>
-									</coordinates>
-								</LinearRing>
-							</outerBoundaryIs>
-						</Polygon>
-					</xsl:when>-->
-				</xsl:choose>
-			</Placemark>
-		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="res:result">
 		<xsl:param name="type"/>
 
 
-		<Placemark xmlns="http://earth.google.com/kml/2.0">
+		<Placemark>
 			<name>
 				<xsl:value-of
 					select="
@@ -200,21 +132,32 @@
 							res:binding[@name = 'label']/res:literal"
 				/>
 			</name>
-			<!--<description>
-				<xsl:variable name="description">
-					<![CDATA[<a href="]]><xsl:value-of select="res:binding[@name='findspot']/res:uri"/><![CDATA[">]]><xsl:value-of
-						select="res:binding[@name='findspot']/res:uri"/><![CDATA[</a>]]>
+			<description>
+
+				<xsl:variable name="description" as="node()*">
+					<div xmlns="">
+						<xsl:if test="res:binding[@name = 'hoard']">
+							<b>Hoard: </b>
+							<a href="{res:binding[@name = 'hoard']/res:uri}">
+								<xsl:value-of select="res:binding[@name = 'hoardLabel']/res:literal"/>
+							</a>
+							<br/>
+						</xsl:if>
+						<b>Place: </b>
+						<a href="{res:binding[@name = 'place']/res:uri}">
+							<xsl:value-of select="res:binding[@name = 'label']/res:literal"/>
+						</a>
+					</div>
 				</xsl:variable>
-				<xsl:value-of select="normalize-space($description)"/>
-			</description>-->
+
+				<xsl:value-of select="saxon:serialize($description, 'html')"/>
+			</description>
 			<styleUrl>
 				<xsl:value-of select="concat('#', $type)"/>
 			</styleUrl>
-			
+
 			<xsl:choose>
-				<xsl:when test="res:binding[@name = 'poly'] or res:binding[@name = 'wkt'][contains(res:literal, 'POLYGON')]">
-					
-				</xsl:when>
+				<xsl:when test="res:binding[@name = 'poly'] or res:binding[@name = 'wkt'][contains(res:literal, 'POLYGON')]"> </xsl:when>
 				<xsl:otherwise>
 					<Point>
 						<coordinates>
@@ -223,88 +166,8 @@
 					</Point>
 				</xsl:otherwise>
 			</xsl:choose>
-			
-			
+
+
 		</Placemark>
 	</xsl:template>
-
-	<!--<xsl:template name="kml">
-		<xsl:param name="uri"/>
-
-		<xsl:variable name="query">
-			<![CDATA[PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
-PREFIX dcterms:  <http://purl.org/dc/terms/>
-PREFIX dcmitype:	<http://purl.org/dc/dcmitype/>
-PREFIX nm:       <http://nomisma.org/id/>
-PREFIX nmo:	<http://nomisma.org/ontology#>
-PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
-PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
-PREFIX rdfs:	<http://www.w3.org/2000/01/rdf-schema#>
-PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-SELECT DISTINCT ?findspot ?lat ?long ?name WHERE {
-{ ?coinType PROP <URI> ;
-  a nmo:TypeSeriesItem . 
- ?object nmo:hasTypeSeriesItem ?coinType ;
-  rdf:type nmo:NumismaticObject ;
-  nmo:hasFindspot ?findspot }
-UNION { ?coinType PROP <URI> ;
-  a nmo:TypeSeriesItem .
-  ?object nmo:hasTypeSeriesItem ?coinType ;
-  rdf:type nmo:NumismaticObject ;
-  dcterms:isPartOf ?hoard .
-  ?hoard nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within ?findspot }
-UNION { ?coinType PROP <URI> ;
-  a nmo:TypeSeriesItem .
-?contents nmo:hasTypeSeriesItem ?coinType ;
-                  a dcmitype:Collection .
-  ?object dcterms:tableOfContents ?contents ;
-    nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within ?findspot }
- UNION { ?contents PROP <URI> ;
-                  a dcmitype:Collection .
-  ?object dcterms:tableOfContents ?contents ;
-    nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within ?findspot }
-?object a ?type .
-?findspot a crm:E53_Place ;
-    rdfs:label ?label ;
-    geo:location ?loc .
-?loc geo:lat ?lat ; geo:long ?long
-}]]>
-		</xsl:variable>
-
-		<xsl:if test="string($query)">
-			<xsl:variable name="service"
-				select="concat($sparql_endpoint, '?query=', encode-for-uri(normalize-space(replace(replace($query, 'URI', $uri), 'PROP', /content/config/classes/class[text()=$type]/@prop))), '&amp;output=xml')"/>
-
-			<xsl:apply-templates select="document($service)//res:result" mode="kml"/>
-		</xsl:if>
-	</xsl:template>
-
-	<xsl:template match="res:result" mode="kml">
-		<xsl:variable name="label"
-			select="
-				if (string(res:binding[@name = 'name']/res:literal)) then
-					res:binding[@name = 'name']/res:literal
-				else
-					res:binding[@name = 'findspot']/res:uri"/>
-
-		<Placemark xmlns="http://earth.google.com/kml/2.0">
-			<name>
-				<xsl:value-of select="$label"/>
-			</name>
-			<description>
-				<xsl:variable name="description">
-					<![CDATA[<a href="]]><xsl:value-of select="res:binding[@name = 'findspot']/res:uri"/><![CDATA[">]]><xsl:value-of
-						select="res:binding[@name = 'findspot']/res:uri"/><![CDATA[</a>]]>
-				</xsl:variable>
-				<xsl:value-of select="normalize-space($description)"/>
-			</description>
-			<styleUrl>#findspot</styleUrl>
-			<Point>
-				<coordinates>
-					<xsl:value-of select="concat(res:binding[@name = 'long']/res:literal, ',', res:binding[@name = 'lat']/res:literal)"/>
-				</coordinates>
-			</Point>
-		</Placemark>
-	</xsl:template>-->
 </xsl:stylesheet>

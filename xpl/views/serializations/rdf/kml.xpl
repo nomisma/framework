@@ -42,17 +42,17 @@
 		<p:input name="findspots" href="#findspots"/>
 		<p:input name="data" href="aggregate('ignore', #data)"/>		
 		<p:input name="config" href="../../../../ui/xslt/serializations/rdf/kml.xsl"/>
-		<p:output name="data" ref="data"/>		
+		<p:output name="data" id="model"/>		
 	</p:processor>
 
-	<!--<p:processor name="oxf:xml-serializer">
+	<p:processor name="oxf:xml-serializer">
 		<p:input name="data" href="#model"/>
 		<p:input name="config">
 			<config>
-				<!-\-<content-type>application/xml</content-type>-\->
+				<!--<content-type>application/xml</content-type>-->
 				<content-type>application/vnd.google-earth.kml+xml</content-type>
 			</config>
 		</p:input>
 		<p:output name="data" ref="data"/>
-	</p:processor>-->
+	</p:processor>
 </p:config>
