@@ -51,7 +51,7 @@
 				<h1>Datasets</h1>
 				<xsl:choose>
 					<xsl:when test="count(descendant::res:result) &gt; 0">
-						<table class="table table-striped">
+						<table class="table table-striped table-responsive">
 							<thead>
 								<tr>
 									<th>Dataset</th>
