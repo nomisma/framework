@@ -51,30 +51,32 @@
 				<h1>Datasets</h1>
 				<xsl:choose>
 					<xsl:when test="count(descendant::res:result) &gt; 0">
-						<table class="table table-striped table-responsive">
-							<thead>
-								<tr>
-									<th>Dataset</th>
-									<th>Description</th>
-									<th>Publisher</th>
-									<th class="text-center">License</th>
-									<th class="text-center">Count</th>
-									<th class="text-center">Data Dump</th>									
-								</tr>
-							</thead>
-							<tbody>			
-								<xsl:for-each select="distinct-values(descendant::res:result/res:binding[@name='dataset']/res:uri)">
-									<xsl:variable name="uri" select="."/>
-									<xsl:variable name="result" as="element()*">
-										<xsl:copy-of select="$datasets//res:result[res:binding[@name='dataset']/res:uri = $uri][1]"/>
-									</xsl:variable>
-																		
-									<xsl:apply-templates select="$result">
-										<xsl:with-param name="dumps" select="$datasets//res:result[res:binding[@name='dataset']/res:uri = $uri]/res:binding[@name='dump']/res:uri"/>
-									</xsl:apply-templates>
-								</xsl:for-each>								
-							</tbody>
-						</table>
+						<div class="table-responsive">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>Dataset</th>
+										<th>Description</th>
+										<th>Publisher</th>
+										<th class="text-center">License</th>
+										<th class="text-center">Count</th>
+										<th class="text-center">Data Dump</th>									
+									</tr>
+								</thead>
+								<tbody>			
+									<xsl:for-each select="distinct-values(descendant::res:result/res:binding[@name='dataset']/res:uri)">
+										<xsl:variable name="uri" select="."/>
+										<xsl:variable name="result" as="element()*">
+											<xsl:copy-of select="$datasets//res:result[res:binding[@name='dataset']/res:uri = $uri][1]"/>
+										</xsl:variable>
+										
+										<xsl:apply-templates select="$result">
+											<xsl:with-param name="dumps" select="$datasets//res:result[res:binding[@name='dataset']/res:uri = $uri]/res:binding[@name='dump']/res:uri"/>
+										</xsl:apply-templates>
+									</xsl:for-each>								
+								</tbody>
+							</table>
+						</div>						
 					</xsl:when>
 					<xsl:otherwise>
 						<p>No datasets available in the SPARQL endpoint.</p>
