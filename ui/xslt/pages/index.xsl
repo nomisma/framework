@@ -42,8 +42,8 @@
 							<h4>Nomisma Linked Data</h4>
 							<table class="table-dl">
 								<tr>
-									<td>
-										<img src="{$display_path}ui/images/nomisma.png"/>
+									<td class="media">
+										<img src="{$display_path}ui/images/nomisma-round.svg"/>
 									</td>
 									<td>
 										<strong>Linked Data: </strong>
@@ -56,7 +56,7 @@
 							<h4>Pelagios Annotations</h4>
 							<table class="table-dl">
 								<tr>
-									<td>
+									<td class="media">
 										<a href="http://commons.pelagios.org/">
 											<img src="{$display_path}ui/images/pelagios.png"/>
 										</a>
@@ -76,7 +76,7 @@
 						<h3>Atom Feed</h3>
 						<table class="table-dl">
 							<tr>
-								<td>
+								<td class="media">
 									<a href="feed/">
 										<img src="{$display_path}ui/images/atom-large.png"/>
 									</a>
