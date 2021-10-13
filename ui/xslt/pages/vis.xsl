@@ -35,8 +35,8 @@
 				<!-- bootstrap -->
 				<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 				<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
-				<script type="text/javascript" src="https://d3plus.org/js/d3.js"/>
-				<script type="text/javascript" src="https://d3plus.org/js/d3plus.js"/>
+				<script type="text/javascript" src="{$display_path}ui/javascript/d3.min.js"/>
+				<script type="text/javascript" src="{$display_path}ui/javascript/d3plus.min.js"/>
 				<script type="text/javascript" src="{$display_path}ui/javascript/vis_functions.js"/>
 				
 				<link rel="stylesheet" type="text/css" href="{$display_path}ui/css/style.css"/>
