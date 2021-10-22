@@ -81,7 +81,9 @@
 
 	<xsl:template match="res:result" mode="render-date">
 		<xsl:value-of select="nomisma:normalizeYear(res:binding[@name = 'begin']/res:literal)"/>
-		<xsl:text>–</xsl:text>
+		<xsl:if test="res:binding[@name = 'begin'] and res:binding[@name = 'end']">
+			<xsl:text>–</xsl:text>
+		</xsl:if>		
 		<xsl:value-of select="nomisma:normalizeYear(res:binding[@name = 'end']/res:literal)"/>
 		
 		<xsl:if test="not(position() = last())">
