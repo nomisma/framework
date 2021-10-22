@@ -70,6 +70,19 @@ $(document).ready(function () {
         });
     }
     
+    if ($('#listAgents').length > 0) {
+        var path = '../';
+        var id = $('title').attr('id');
+        var type = $('#type').text();
+        
+        $.get(path + 'ajax/listAgents', {
+            id: id
+        },
+        function (data) {
+            $('#listAgents').html(data);
+        });
+    }
+    
     //sorting
     $('#listTypes').on('click', '#listTypes-div table thead tr th .sort-types', function () {
         var path = '../';

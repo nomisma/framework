@@ -236,6 +236,15 @@
 							</div>
 						</div>
 					</xsl:if>
+					
+					<xsl:if test="$type = 'foaf:Organization'">
+						<div class="row">
+							<div class="col-md-12 page-section">
+								<hr/>
+								<div id="listAgents"/>
+							</div>
+						</div>
+					</xsl:if>
 
 					<!-- display quantitative analysis template if there are coin types associated with the concept -->
 					<xsl:if test="$hasTypes = true()">
