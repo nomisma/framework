@@ -55,11 +55,14 @@
 		<namespace prefix="xsd" uri="http://www.w3.org/2001/XMLSchema#" default="true"/>
 	</namespaces>
 	<classes>
+		<class mints="false" findspots="false" types="false" dist="false">nmo:CoinWear</class>
 		<class mints="true" findspots="true" types="false" dist="false" prop="nmo:hasCollection">nmo:Collection</class>
+		<class mints="false" findspots="false" types="false" dist="false">nmo:Corrosion</class>
 		<class mints="true" findspots="true" types="true" dist="true" prop="nmo:hasDenomination">nmo:Denomination</class>
 		<class mints="true" findspots="true" types="true" dist="true" prop="dynasty">rdac:Family</class>
 		<class mints="true" findspots="true" types="false" dist="true" prop="nmo:hasAuthority">nmo:Ethnic</class>
 		<class mints="false" findspots="false" types="false" dist="false">nmo:FieldOfNumismatics</class>
+		<class mints="false" findspots="false" types="false" dist="false">nmo:FindType</class>
 		<class mints="true" findspots="true" types="false">nmo:Hoard</class>
 		<class mints="true" findspots="true" types="true" prop="nmo:hasManufacture" dist="true">nmo:Manufacture</class>
 		<class mints="true" findspots="true" types="true" prop="nmo:hasMaterial" dist="true">nmo:Material</class>
@@ -68,14 +71,15 @@
 		<class mints="true" findspots="true" types="false" prop="nmo:representsObjectType">nmo:ObjectType</class>
 		<class mints="true" findspots="true" types="true" dist="true" prop="?prop">foaf:Group</class>
 		<class mints="true" findspots="true" types="true" dist="true" prop="?prop">foaf:Organization</class>
+		<class mints="false" findspots="false" types="false" dist="false">nmo:PeculiarityOfProduction</class>
 		<class mints="true" findspots="true" types="true" dist="true" prop="?prop">foaf:Person</class>
 		<class mints="false" findspots="false" types="false" dist="false">crm:E4_Period</class>
 		<class mints="false" findspots="false" types="false" dist="false">nmo:ReferenceWork</class>
 		<class mints="true" findspots="true" types="true" dist="true" prop="nmo:hasRegion">nmo:Region</class>
 		<class mints="false" findspots="false" types="false" dist="false">org:Role</class>
+		<class mints="false" findspots="false" types="false" dist="false">nmo:SecondaryTreatment</class>
 		<class mints="true" findspots="true" types="true" dist="false" prop="dcterms:source">nmo:TypeSeries</class>
-		<class mints="false" findspots="false" types="false" dist="false">un:Uncertainty</class>
-		<class mints="false" findspots="false" types="false" dist="false">nmo:CoinWear</class>
+		<class mints="false" findspots="false" types="false" dist="false">un:Uncertainty</class>		
 		<class mints="true" findspots="true" types="true" dist="true" prop="deity">wordnet:Deity</class>
 	</classes>
 </config>
