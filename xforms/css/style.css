@@ -9,13 +9,13 @@
 .orbeon .xforms-label {
 	font-weight: bold;
 	display: inline-block;
-	min-width: 9em
+	min-width: 12em
 }
 .orbeon .xforms-select1-appearance-full .xforms-label {
 	vertical-align: top
 }
 .orbeon .xforms-input input[type=text], .orbeon .xforms-textarea textarea, .orbeon .xforms-select1 select {
-	width: 25em;
+	width: 30em;
 	margin-bottom: 2px;
 }
 .orbeon .checkbox input {
@@ -57,8 +57,14 @@
 .xxforms-dialog-body>a, .xxforms-dialog-body>span {
 	width:100px;
 }
+#simple-captcha input {
+    width:10em;
+}
 .xbl-component {
 	margin:5px 0;
+}
+h1, h2, h3, h4, h5, h6 {
+	display:inline;
 }
 /*
   ****************************************
