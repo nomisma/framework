@@ -91,12 +91,6 @@
 					<a href="#e1">List of all Roman Emperors</a>
 				</li>
 				<li>
-					<a href="#e2">All hoards found within 50 km of Goranu, Romania</a>
-				</li>
-				<li>
-					<a href="#e3">All mints found within 50 km of Athens</a>
-				</li>
-				<li>
 					<a href="#e4">All weights of Augustan denarii</a>
 				</li>
 				<li>
@@ -111,13 +105,15 @@
 				<li>
 					<a href="#e8">All findspots for RIC Augustus 1A</a>
 				</li>
+				<li>
+					<a href="#e9">All coins found in Northamptonshire, ordered chronologically by issue</a>
+				</li>
 			</ul>
 
 			<h2>Querying within Nomisma.org Concepts</h2>
 			<div id="e1">
 				<h3>List of all Roman Emperors</h3>
-				<pre><![CDATA[
-PREFIX rdf:		<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+				<pre><![CDATA[PREFIX rdf:		<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:		<http://purl.org/dc/terms/>
 PREFIX foaf:		<http://xmlns.com/foaf/0.1/>
 PREFIX nm:		<http://nomisma.org/id/>
@@ -134,61 +130,10 @@ FILTER(langMatches(lang(?label), "EN"))
 } ]]>
 </pre>
 			</div>
-			<h2>Spatial Queries</h2>
-			<p>The Apache Fuseki triplestore and SPARQL endpoint has been extended to support spatial queries by interacting with a Solr search index. For
-				further documentation for spatial queries in SPARQL, see <a href="http://jena.apache.org/documentation/query/spatial-query.html"
-					>http://jena.apache.org/documentation/query/spatial-query.html</a></p>
-			<div id="e2">
-				<h3>All hoards found within 50 km of Goranu, Romania</h3>
-				<p>The format of spatial:nearby is (lat long distance 'unit')</p>
-				<pre><![CDATA[
-PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX dcterms:	<http://purl.org/dc/terms/>
-PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
-PREFIX nm:	<http://nomisma.org/id/>
-PREFIX nmo:	<http://nomisma.org/ontology#>
-PREFIX spatial: <http://jena.apache.org/spatial#>
-PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
-
-SELECT * WHERE {
-   ?loc spatial:nearby (45.10523 24.38431 50 'km') .
-   ?hoard nmo:hasFindspot ?loc ;
-          a nmo:Hoard ;
-          dcterms:title ?label .
-          OPTIONAL {?hoard nmo:hasClosingDate ?date}
-  FILTER langMatches (lang(?label), 'en')
-}]]>
-</pre>
-			</div>
-			<div id="e3">
-				<h3>All mints found within 50 km of Athens</h3>
-				<p>The format of spatial:nearby is (lat long distance 'unit').</p>
-				<pre><![CDATA[
-PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX dcterms:	<http://purl.org/dc/terms/>
-PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
-PREFIX nm:	<http://nomisma.org/id/>
-PREFIX nmo:	<http://nomisma.org/ontology#>
-PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
-PREFIX spatial: <http://jena.apache.org/spatial#>
-PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
-
-SELECT * WHERE {
-   ?loc spatial:nearby (37.974722 23.7225 50 'km') ;
-        geo:lat ?lat ;
-        geo:long ?long .
-   ?mint geo:location ?loc ;
-         skos:prefLabel ?label ;
-         a nmo:Mint
-  FILTER langMatches (lang(?label), 'en')
-}]]>
-</pre>
-			</div>
 			<h2>Querying Coins linked to Nomisma.org Concepts</h2>
 			<div id="e4">
 				<h3>All weights of Augustan denarii</h3>
-				<pre><![CDATA[
-PREFIX rdf:		<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+				<pre><![CDATA[PREFIX rdf:		<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:		<http://purl.org/dc/terms/>
 PREFIX nm:		<http://nomisma.org/id/>
 PREFIX nmo:		<http://nomisma.org/ontology#>
@@ -204,8 +149,7 @@ SELECT ?type ?weight WHERE {
 			</div>
 			<div id="e5">
 				<h3>Average weight of Augustan denarii</h3>
-				<pre><![CDATA[
-PREFIX rdf:		<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+				<pre><![CDATA[PREFIX rdf:		<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:		<http://purl.org/dc/terms/>
 PREFIX nm:		<http://nomisma.org/id/>
 PREFIX nmo:		<http://nomisma.org/ontology#>
@@ -223,8 +167,7 @@ SELECT (AVG(xsd:decimal(?weight)) AS ?average) WHERE {
 			<div id="e6">
 				<h3>Coins of RIC Augustus 1A and 1B</h3>
 				<p>This will also gather measurements data, source collecton (with English label), and thumbnail/references images.</p>
-				<pre><![CDATA[
-PREFIX rdf:		<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+				<pre><![CDATA[PREFIX rdf:		<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:		<http://purl.org/dc/terms/>
 PREFIX nm:		<http://nomisma.org/id/>
 PREFIX nmo:		<http://nomisma.org/ontology#>
@@ -256,8 +199,7 @@ SELECT ?object ?type ?diameter ?weight ?axis ?type ?collection ?obvThumb ?revThu
 			</div>
 			<div id="e7">
 				<h3>Average Diameter of RIC Augustus 1A</h3>
-				<pre><![CDATA[
-PREFIX rdf:		<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+				<pre><![CDATA[PREFIX rdf:		<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:		<http://purl.org/dc/terms/>
 PREFIX nm:		<http://nomisma.org/id/>
 PREFIX nmo:		<http://nomisma.org/ontology#>
@@ -271,8 +213,9 @@ SELECT (AVG(xsd:decimal(?diameter)) AS ?average) WHERE {
 			</div>
 			<div id="e8">
 				<h3>All findspots for RIC Augustus 1A</h3>
-				<pre><![CDATA[
-PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+				<p>This will query all coins with individual finds and all coins linked to hoards or hoards with contents containing Augustus 1A. This query
+					makes use of the current Nomisma findspot data model (implemented April 2020).</p>
+				<pre><![CDATA[PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcmitype:	<http://purl.org/dc/dcmitype/>
 PREFIX dcterms:  <http://purl.org/dc/terms/>
 PREFIX nm:       <http://nomisma.org/id/>
@@ -281,8 +224,9 @@ PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
 PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
 PREFIX rdfs:	<http://www.w3.org/2000/01/rdf-schema#>
+PREFIX crm:	<http://www.cidoc-crm.org/cidoc-crm/>
 
-SELECT ?object ?title ?findspot ?hoard ?placeName ?hoardLabel ?lat ?long ?type ?burial WHERE {
+SELECT ?object ?title ?findspot ?placeName ?hoard ?hoardLabel ?lat ?long ?type ?burial WHERE {
 { ?object a nmo:NumismaticObject ;
  nmo:hasTypeSeriesItem <http://numismatics.org/ocre/id/ric.1(2).aug.1A>}
 UNION { ?broader skos:broader+ <http://numismatics.org/ocre/id/ric.1(2).aug.1A> .
@@ -291,23 +235,48 @@ UNION { ?broader skos:broader+ <http://numismatics.org/ocre/id/ric.1(2).aug.1A> 
 UNION { ?contents a dcmitype:Collection ; 
   nmo:hasTypeSeriesItem <http://numismatics.org/ocre/id/ric.1(2).aug.1A> .
 ?object dcterms:tableOfContents ?contents }
-?object dcterms:title ?title .			
-{ ?object nmo:hasFindspot ?findspot }
-  UNION { ?object dcterms:isPartOf ?hoard .
+?object dcterms:title|skos:prefLabel ?title .			
+{ ?object nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within ?findspot }
+UNION { ?object dcterms:isPartOf ?hoard .
         ?hoard a nmo:Hoard ;
         skos:prefLabel ?hoardLabel ;
-        nmo:hasFindspot ?findspot .
+        nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within ?findspot .
    		OPTIONAL {?hoard nmo:hasClosingDate ?burial . FILTER isLiteral(?burial)}
         OPTIONAL {?hoard nmo:hasClosingDate ?closing .
                  ?closing nmo:hasEndDate ?burial}}
-?findspot geo:lat ?lat .
-?findspot geo:long ?long .
-OPTIONAL {?findspot foaf:name ?placeName}
-OPTIONAL {?findspot rdfs:label ?placeName}
-OPTIONAL {?findspot skos:prefLabel ?placeName FILTER(langMatches(lang(?placeName), "en"))}
-OPTIONAL { ?object rdf:type ?type } 
+?findspot rdfs:label ?placeName ;
+          geo:location ?loc .
+?loc geo:lat ?lat ;
+     geo:long ?long .
+OPTIONAL { ?object rdf:type ?type FILTER (?type != skos:Concept)} 
 OPTIONAL { ?object nmo:hasClosingDate ?burial . FILTER isLiteral(?burial) }}]]>
 </pre>
+			</div>
+			<div id="e9">
+				<h3>All coins found in Northamptonshire, ordered chronologically by issue</h3>
+				<p>This query uses property paths to look for children of (crm:P89_falls_within) of the Wikidata URI for Northamptonshire, England
+					(http://www.wikidata.org/entity/Q23115).</p>
+
+				<pre><![CDATA[PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX dcmitype: <http://purl.org/dc/dcmitype/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX nm: <http://nomisma.org/id/>
+PREFIX nmo: <http://nomisma.org/ontology#>
+PREFIX org: <http://www.w3.org/ns/org#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?coin ?type ?date ?place WHERE {
+?coin nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within ?place ;
+      nmo:hasTypeSeriesItem ?type ;
+      a nmo:NumismaticObject .
+?place crm:P89_falls_within+ <http://www.wikidata.org/entity/Q23115> .
+?type nmo:hasEndDate ?date .
+} ORDER BY ASC(?date) LIMIT 100]]></pre>
 			</div>
 		</page>
 		<page stub="contribute" label="How to Contribute Data">
@@ -343,8 +312,9 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial . FILTER isLiteral(?burial) }}]]>
 				made instead of a dcterms:license link.</p>
 			<h2>Data Dump Model</h2>
 			<p>The data dump model should conform to the standards established by Nomisma.org, including the use of the Nomisma ontology where applicable.</p>
-			<h3>Physical Coins</h3>
-			<pre><code class="language-markup"><![CDATA[<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/"       
+			<div class="section">
+				<h3>Physical Coins</h3>
+				<pre><code class="language-markup"><![CDATA[<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/"       
 	xmlns:void="http://rdfs.org/ns/void#"
 	xmlns:nmo="http://nomisma.org/ontology#"					
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -374,31 +344,32 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial . FILTER isLiteral(?burial) }}]]>
 	</rdf:Description>
 </rdf:RDF>]]></code></pre>
 
-			<p>The title, publisher, and identifier are required, as is nmo:hasTypeSeriesItem. nmo:hasCollection is recommended for physical specimens. Before
-				submitting your data to nomisma, please contact the administrators to create a URI for your collection. A physical specimen must be carry the
-				nmo:NumismaticObject class. Finally, each object must contain a void:inDataset property linking to the URI of the void:Dataset in the VoID
-				metadata RDF.</p>
-			<p>There are several fields which are particular to physical objects (and not hoards): nmo:hasAxis, nmo:hasDiameter, nmo:hasWeight, and
-				obverse/reverse thumbnail and references images (to be added as necessary). Thumbnails and reference images that represent sides of coins should
-				be contained in the data objects linked with the nmo:hasObverse and nmo:hasReverse properties. If they are not contained in the nmo:hasObverse
-				or nmo:hasReverse, it is assumed that the images include both the obverse and reverse sides of the coin. None of these fields is required,
-				though the measurements can be used for quantitative analyses. The measurements should be associated with xsd:decimal for weights and diameters,
-				xsd:integer for axis (unless the source data uses fractional numbers for axes). The dcterms:isPartOf property is used to link a coin to a coin
-				hoard that has a published URI.</p>
-			<h4 id="iiif">IIIF Integration</h4>
-			<p>The Nomisma RDF model has been extended to follow the Europeana Data Model <a
-					href="http://pro.europeana.eu/files/Europeana_Professional/Share_your_data/Technical_requirements/EDM_profiles/IIIFtoEDM_profile_042016.pdf"
-					>specifications</a> for defining IIIF images and services. Essentially, this requires additional triples about the reference image
-				(foaf:depiction), which should be defined as an edm:WebResource. This edm:WebResource should link to a JSON-LD IIIF manifest or information
-				object (dcterms:isReferencedBy) and the URI for the service (with the svcs:has_service property). The service should include several triples
-				that defines it as a IIIF image service.</p>
-			<p><strong>Note:</strong> The JSON-LD IIIF link in the edm:WebResource should be either:</p>
-			<ul>
-				<li>If the image represents either the obverse or reverse, the link should point to the info.json for the image</li>
-				<li>If the image depicts both the obverse and reverse simultaneously (as is the standard for British Museum and Harvard Art Museums
-					photographs), the link should be the full IIIF manifest.</li>
-			</ul>
-			<pre><code class="language-markup"><![CDATA[
+				<p>The title, publisher, and identifier are required, as is nmo:hasTypeSeriesItem. nmo:hasCollection is recommended for physical specimens.
+					Before submitting your data to nomisma, please contact the administrators to create a URI for your collection. A physical specimen must be
+					carry the nmo:NumismaticObject class. Finally, each object must contain a void:inDataset property linking to the URI of the void:Dataset in
+					the VoID metadata RDF.</p>
+				<p>There are several fields which are particular to physical objects (and not hoards): nmo:hasAxis, nmo:hasDiameter, nmo:hasWeight, and
+					obverse/reverse thumbnail and references images (to be added as necessary). Thumbnails and reference images that represent sides of coins
+					should be contained in the data objects linked with the nmo:hasObverse and nmo:hasReverse properties. If they are not contained in the
+					nmo:hasObverse or nmo:hasReverse, it is assumed that the images include both the obverse and reverse sides of the coin. None of these fields
+					is required, though the measurements can be used for quantitative analyses. The measurements should be associated with xsd:decimal for
+					weights and diameters, xsd:integer for axis (unless the source data uses fractional numbers for axes). The dcterms:isPartOf property is used
+					to link a coin to a coin hoard that has a published URI.</p>
+				<div class="section">
+					<h4 id="iiif">IIIF Integration</h4>
+					<p>The Nomisma RDF model has been extended to follow the Europeana Data Model <a
+							href="http://pro.europeana.eu/files/Europeana_Professional/Share_your_data/Technical_requirements/EDM_profiles/IIIFtoEDM_profile_042016.pdf"
+							>specifications</a> for defining IIIF images and services. Essentially, this requires additional triples about the reference image
+						(foaf:depiction), which should be defined as an edm:WebResource. This edm:WebResource should link to a JSON-LD IIIF manifest or
+						information object (dcterms:isReferencedBy) and the URI for the service (with the svcs:has_service property). The service should include
+						several triples that defines it as a IIIF image service.</p>
+					<p><strong>Note:</strong> The JSON-LD IIIF link in the edm:WebResource should be either:</p>
+					<ul>
+						<li>If the image represents either the obverse or reverse, the link should point to the info.json for the image</li>
+						<li>If the image depicts both the obverse and reverse simultaneously (as is the standard for British Museum and Harvard Art Museums
+							photographs), the link should be the full IIIF manifest.</li>
+					</ul>
+					<pre><code class="language-markup"><![CDATA[
 <edm:WebResource rdf:about="https://rucore.libraries.rutgers.edu/api/iiif/image/2.0/rutgers-lib:45878;PTIF-1/full/600,/0/default.jpg">
     <svcs:has_service rdf:resource="https://rucore.libraries.rutgers.edu/api/iiif/image/2.0/rutgers-lib:45878;PTIF-1"/>
     <dcterms:isReferencedBy rdf:resource="https://rucore.libraries.rutgers.edu/api/iiif/image/2.0/rutgers-lib:45878;PTIF-1/info.json"/>
@@ -408,29 +379,84 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial . FILTER isLiteral(?burial) }}]]>
     <doap:implements rdf:resource="http://iiif.io/api/image/2/level1.json"/>
 </svcs:Service>]]></code></pre>
 
-			<p>Be sure to include the following XML namespaces/prefixes in your RDF:</p>
+					<p>Be sure to include the following XML namespaces/prefixes in your RDF:</p>
 
-			<kbd>PREFIX edm: &lt;http://www.europeana.eu/schemas/edm/&gt;</kbd>
-			<br/>
-			<kbd>PREFIX svcs: &lt;http://rdfs.org/sioc/services#&gt;</kbd>
-			<br/>
-			<kbd>PREFIX doap: &lt;http://usefulinc.com/ns/doap#&gt;</kbd>
+					<kbd>PREFIX edm: &lt;http://www.europeana.eu/schemas/edm/&gt;</kbd>
+					<br/>
+					<kbd>PREFIX svcs: &lt;http://rdfs.org/sioc/services#&gt;</kbd>
+					<br/>
+					<kbd>PREFIX doap: &lt;http://usefulinc.com/ns/doap#&gt;</kbd>
+				</div>
 
-			<h4>Findspots for individual finds (not hoards)</h4>
-			<p>Findspots can expressed with nmo:hasFindspot in the following way:</p>
-			<pre><code class="language-markup"><![CDATA[<nmo:hasFindspot>
-	<rdf:Description xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
-		<geo:lat>37.689444</geo:lat>
-		<geo:long>26.943056</geo:long>
-		<dcterms:isPartOf rdf:resource="http://sws.geonames.org/670093/"/>
-	</rdf:Description>
-</nmo:hasFindspot>]]></code></pre>
-			<p>Note that a findspot always occurs <i>within</i> the spatial limitations of the gazetteer URI. The findspot is never precisely the place defined
-				by the URI, even if the latitude and longitude within the spatial boundaries of the place URI are unknown. Allowable gazetteers are Wikidata,
-				Geonames, the Getty Thesaurus of Geographic Names, Ordnance Survey, and the Pleiades Gazetteer of Ancient Names.</p>
+				<div class="section">
+					<h4>Findspot</h4>
+					<p>The findspot model is based upon the ARIADNE archaeological specification, using a combination of existing Nomisma RDF properties and
+						classes in combination with CIDOC-CRM properties. A coin is found by an event which may have occurred on a known date or date range and
+						a place. In an archaeological excavation or a find reported to an portable antiquities service, the very specific coordinates by be
+						presented. Regardless of whether the specific coordinates are known or able to be made public, the findspot occurs <i>within</i> the
+						place defined by a Gazetteer URI. Allowable gazetteers are Wikidata, Geonames, the Getty Thesaurus of Geographic Names, Ordnance Survey,
+						and the Pleiades Gazetteer of Ancient Names. Upon ingestion into Nomisma.org, these URIs will automatically be reconciled to Wikidata
+						Entity URIs, when applicable, and the geographic coordinates, hierarchy, and skos:closeMatch URIs will also be extracted via SPARQL from
+						Wikidata.</p>
 
-			<h3>Hoards</h3>
-			<pre><code class="language-markup"><![CDATA[<rdf:RDF xmlns:nmo="http://nomisma.org/ontology#" 
+					<p>When the findspot conforms to one of the aforementioned URI schemes, the crm:E53_Place and its spatial extent do not have to be
+						explicitly included in the RDF export, since these will be programmatically extracted from Wikidata.org to improve consistency across
+						harvested datasets. The crm:E53_Place that defines the gazetteer URI includes two properties (in the WGS84 geo ontology and CIDOC-CRM)
+						pointing to the same node for the spatial expression, which bears two RDF classes. This model is dually compatible with CIDOC-CRM and
+						the more common WGS84 geo ontology.</p>
+					<pre><code class="language-markup"><![CDATA[<nmo:NumismaticObject rdf:about="https://finds.org.uk/database/artefacts/record/id/1018642">        
+        <nmo:hasFindspot>
+            <nmo:Find>
+                <crm:P7_took_place_at>
+                    <crm:E53_Place>
+                        <rdfs:label xml:lang="en">Hollingbourne</rdfs:label>
+                        <crm:P89_falls_within rdf:resource="http://www.wikidata.org/entity/Q9199209"/>
+                    </crm:E53_Place>
+                </crm:P7_took_place_at>
+            </nmo:Find>
+        </nmo:hasFindspot>
+    </nmo:NumismaticObject>
+    <crm:E53_Place rdf:about="http://www.wikidata.org/entity/Q9199209">
+        <rdfs:label>Hollingbourne</rdfs:label>
+        <crm:P89_falls_within rdf:resource="http://www.wikidata.org/entity/Q737114"/>
+        <skos:closeMatch rdf:resource="http://sws.geonames.org/2646748"/>
+        <skos:closeMatch rdf:resource="http://data.ordnancesurvey.co.uk/id/4000000074547229"/>
+        <skos:closeMatch rdf:resource="http://sws.geonames.org/7295882"/>
+        <skos:closeMatch rdf:resource="http://data.ordnancesurvey.co.uk/id/7000000000018330"/>
+        <geo:location rdf:resource="http://www.wikidata.org/entity/Q9199209#this"/>
+        <crm:P168_place_is_defined_by rdf:resource="http://www.wikidata.org/entity/Q9199209#this"/>
+    </crm:E53_Place>
+    <geo:SpatialThing rdf:about="http://www.wikidata.org/entity/Q9199209#this">
+        <rdf:type rdf:resource="http://www.ics.forth.gr/isl/CRMgeo/SP5_Geometric_Place_Expression"/>
+        <crmgeo:Q9_is_expressed_in_terms_of rdf:resource="http://www.wikidata.org/entity/Q215848"/>
+        <geo:lat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">51.2675</geo:lat>
+        <geo:long rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.641111111</geo:long>
+        <crmgeo:asWKT rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral">Point(0.641111111 51.2675)</crmgeo:asWKT>
+    </geo:SpatialThing>]]></code></pre>
+
+					<p>The above model can be described as follows:</p>
+
+					<p>A coin was found (nmo:hasFindspot, repurposing an existing property to stand in for crmsci:O19i_was_object_found_by from ARIADNE), which
+						is represented by the event of an nmo:Find (equivalent to crmsci:S19_Encounter_Event). <i>From this point, the model conforms to
+							CIDOC-CRM</i>. The Find took place at (crm:P7_took_place_at) a place (crm:E53_Place). This place is often amorphous. We don't
+						necessarily know the precise place on earth where the coin was found. In the event that we do, we can insert the
+						crm:P168_place_is_defined_by and geo:location properties here to point to precise coordinates. The rdfs:label can be any human-readable
+						label, such as "Farmer Jones' field." Usually the rdfs:label is the gazetteer preferred label. This blank node of an E53_Place exists
+						within the broader geographic concept defined by the gazetteer URI (crm:P89_falls_within). This gazetteer URI can be the
+						lowest-geographic level known, from a Pleiades URI for a temple to the country.</p>
+
+					<ul>
+						<li>The nmo:Find can accommodate any other CIDOC-CRM properties available to a CRM Event class, such as dates.</li>
+						<li>In the event that two coins were found during the same finding event, it may be necessary to give the nmo:Find a reusable URI,
+							instead of using a blank node that will not be able to connect multiple coins found at the same time.</li>
+					</ul>
+				</div>
+			</div>
+
+
+			<div class="section">
+				<h3>Hoards</h3>
+				<pre><code class="language-markup"><![CDATA[<rdf:RDF xmlns:nmo="http://nomisma.org/ontology#" 
          xmlns:dcterms="http://purl.org/dc/terms/"
          xmlns:void="http://rdfs.org/ns/void#"
          xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
@@ -442,7 +468,16 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial . FILTER isLiteral(?burial) }}]]>
          xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
     <nmo:Hoard rdf:about="http://numismatics.org/chrr/id/SCU">
         <dcterms:title xml:lang="en">Scurta (Romania; SCU)</dcterms:title>
-        <nmo:hasFindspot rdf:resource="http://numismatics.org/chrr/id/SCU#this"/>
+        <nmo:hasFindspot>
+        	<nmo:Find>
+        		<crm:P7_took_place_at>
+        			<crm:E53_Place>
+        				<rdfs:label xml:lang="en">Scurta, Romania</rdfs:label>
+        				<crm:P89_falls_within rdf:resource="https://sws.geonames.org/663431/" />
+        			</crm:E53_Place>
+        		</crm:P7_took_place_at>
+        	</nmo:Find>
+        </nmo:hasFindspot>
         <nmo:hasClosingDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">0014</nmo:hasClosingDate>
         <dcterms:tableOfContents rdf:resource="http://numismatics.org/chrr/id/SCU#contents"/>
         <void:inDataset rdf:resource="http://numismatics.org/chrr/"/>
@@ -459,24 +494,30 @@ OPTIONAL { ?object nmo:hasClosingDate ?burial . FILTER isLiteral(?burial) }}]]>
         <nmo:hasTypeSeriesItem rdf:resource="http://numismatics.org/ocre/id/ric.1(2).aug.541"/>
         <nmo:hasTypeSeriesItem rdf:resource="http://numismatics.org/ocre/id/ric.1(2).aug.340"/>
     </dcmitype:Collection>
-    <geo:SpatialThing rdf:about="http://numismatics.org/chrr/id/SCU#this">
-        <geo:lat>46.10391</geo:lat>
-        <geo:long>26.19728</geo:long>
-        <foaf:name>Valea Scurtă (Romania)</foaf:name>
-        <dcterms:isPartOf rdf:resource="http://sws.geonames.org/663431/"/>
+    <crm:E53_Place rdf:about="https://sws.geonames.org/257598/">
+    	<rdfs:label>Matala (Greece)</rdfs:label>
+    	<crm:P2_has_type rdf:resource="http://vocab.getty.edu/aat/300008347" />
+    	geo:location rdf:resource="https://sws.geonames.org/257598/#this" />
+    	<crm:P168_place_is_defined_by rdf:resource="https://sws.geonames.org/257598/#this" />
+    </crm:E53_Place>
+    <geo:SpatialThing rdf:about="https://sws.geonames.org/663431/#this">
+    	<rdf:type rdf:resource="http://www.ics.forth.gr/isl/CRMgeo/SP5_Geometric_Place_Expression" />
+    	<crmgeo:Q9_is_expressed_in_terms_of rdf:resource="http://www.wikidata.org/entity/Q215848" />
+    	<geo:lat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">46.10391</geo:lat>
+    	<geo:long rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">26.19728</geo:long>
+    	<crmgeo:asWKT rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral">POINT (26.19728 46.10391)</crmgeo:asWKT>
     </geo:SpatialThing>
 </rdf:RDF>]]></code></pre>
-			<p>Like physical coins, the dcterms:title, and dcterms:identifier are required, and the resource must carry the nmo:Hoard class. Similarly, the
-				void:inDataset property is required in the nmo:Hoard object to link to the void:Dataset URI.</p>
-			<p>Presently, the hoard model is very simple and does not contain all the information stored in the database or NUDS XML record. The nmo:Hoard
-				object should link to a dcmitype:Collection, which merely contains a list of associated TypeSeriesItems (linked with the nmo:hasTypeSeriesItem
-				property). These records are meant to facilitate basic mapping and timelines in OCRE and CRRO. We anticipate enhancing the hoard model over the
-				coming year.</p>
-			<p>The nmo:hasClosingDate is optional, but if it is a year, it should conform to the rdf:datatype, xsd:gYear (four digit number, padded with zeroes.
-				Negative numbers represent B.C. dates).</p>
-			<p>The nmo:hasFindspot may be expressed, as with physical coins above, with an rdf:resource or the W3C geo ontology. The nmo:hasFindspot is not
-				explicitly required, but without it, the hoard will not appear in maps in OCRE and CRRO. However, if a findspot is absent, and the
-				nmo:hasClosingDate is present, the hoard will still appear in the timeline in the OCRE coin type record page. </p>
+				<p>Like physical coins, the dcterms:title, and dcterms:identifier are required, and the resource must carry the nmo:Hoard class. Similarly, the
+					void:inDataset property is required in the nmo:Hoard object to link to the void:Dataset URI.</p>
+				<p>Presently, the hoard model is very simple and does not contain all the information stored in the database or NUDS XML record. The nmo:Hoard
+					object should link to a dcmitype:Collection, which merely contains a list of associated TypeSeriesItems (linked with the
+					nmo:hasTypeSeriesItem property). These records are meant to facilitate basic mapping and timelines in OCRE and CRRO. We anticipate enhancing
+					the hoard model over the coming year.</p>
+				<p>The nmo:hasClosingDate is optional, but if it is a year, it should conform to the rdf:datatype, xsd:gYear (four digit number, padded with
+					zeroes. Negative numbers represent B.C. dates).</p>
+				<p>The nmo:hasFindspot should be expressed like the example of an individual find, above.</p>
+			</div>
 		</page>
 	</documentation>
 	<apis>
