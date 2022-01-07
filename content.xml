@@ -214,7 +214,7 @@ SELECT (AVG(xsd:decimal(?diameter)) AS ?average) WHERE {
 			<div id="e8">
 				<h3>All findspots for RIC Augustus 1A</h3>
 				<p>This will query all coins with individual finds and all coins linked to hoards or hoards with contents containing Augustus 1A. This query
-					makes use of the current Nomisma findspot data model (implemented April 2020).</p>
+					makes use of the current Nomisma findspot data model (implemented April 2020). See <a href="http://nomisma.org/documentation/contribute">documentation</a> for further details.</p>
 				<pre><![CDATA[PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcmitype:	<http://purl.org/dc/dcmitype/>
 PREFIX dcterms:  <http://purl.org/dc/terms/>
@@ -432,7 +432,8 @@ SELECT ?coin ?type ?date ?place WHERE {
         <geo:lat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">51.2675</geo:lat>
         <geo:long rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.641111111</geo:long>
         <crmgeo:asWKT rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral">Point(0.641111111 51.2675)</crmgeo:asWKT>
-    </geo:SpatialThing>]]></code></pre>
+    </geo:SpatialThing>
+</nmo:NumismaticObject>]]></code></pre>
 
 					<p>The above model can be described as follows:</p>
 
