@@ -269,6 +269,7 @@
 					<property label="Constituent Symbol(s)" constraint="crm:E37_Mark|nmo:Monogram">crm:P106_is_composed_of</property>
 					<property label="Dynasty" constraint="foaf:Person">org:memberOf</property>
 					<property label="End Date">nmo:hasEndDate</property>
+					<property label="Equivalent Deity" constraint="wordnet:Deity">skos:related</property>
 					<property label="Exact Match" exclude="nmo:Mint">skos:exactMatch</property>
 					<property label="Field of Numismatics">dcterms:isPartOf</property>
 					<property label="GeoJSON Polygon" constraint="nmo:Mint|nmo:Region">osgeo:asGeoJSON</property>
@@ -279,7 +280,7 @@
 					<property label="Longitude" constraint="nmo:Mint">geo:long</property>
 					<property label="Organization" constraint="foaf:Person|foaf:Organization">org:organization</property>
 					<property label="Role" constraint="foaf:Person|foaf:Organization">org:role</property>
-					<property label="Scope Note">skos:scopeNote</property>
+					<property label="Scope Note">skos:scopeNote</property>					
 					<property label="See Also">rdfs:seeAlso</property>
 					<property label="Source">dcterms:source</property>
 					<property label="Start Date">nmo:hasStartDate</property>
@@ -1433,27 +1434,39 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 																<xforms:insert if="not(contains($value, instance('control-instance')/conceptScheme_uri))"
 																	context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
 																	origin="xforms:element('error', concat($mapping, ' does not link to a Nomisma URI: ', $value))"/>
+																
 																<xforms:action if="contains($value, instance('control-instance')/conceptScheme_uri)">
-																	<!-- if the URI space is nm:, then test whether the URI has already been validated via SPARQL. If not, then submit a SPARQL query -->
-																	<xforms:action if="instance('nomisma-ids')/id[@uri=$value and @mapping=$mapping] = false()"
-																		context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
-																		origin="xforms:element('error', concat($mapping, ' links to a non-existent Nomisma URI or the URI is a different class: ', $value))"/>
-																	<xforms:action if="not(instance('nomisma-ids')/id[@uri=$value and @mapping=$mapping])">
-
-																		<!-- set the SPARQL query to evaluate whether the URI is an nmo:Mint -->
-																		<xforms:setvalue ref="instance('sparqlQuery')"
-																			value="concat(instance('sparql-templates')/prefix, ' ', replace(replace(instance('sparql-templates')/query[@id='ask'], 'URI', $value), 'CLASS', 'nmo:Mint'))"/>
-																		<xforms:send submission="submit-sparqlQuery"/>
-
-																		<!-- if the SPARQL query concludes successfully, then create an entry in nomisma-ids and display an error if the ASK if false -->
-																		<xforms:action ev:event="xforms-submit-done">
-																			<xforms:insert context="instance('nomisma-ids')" nodeset="./child::node()[last()]"
-																				origin="xforms:element('id', (xforms:attribute('uri', $value), xforms:attribute('mapping', $mapping), data(instance('sparqlResponse')/descendant::res:boolean)))"/>
-																			<xforms:insert if="instance('sparqlResponse')/descendant::res:boolean = 'false'"
-																				context="instance('validation-model')/record[last()]"
-																				nodeset="./child::node()[last()]"
-																				origin="xforms:element('error', concat($mapping, ' links to a non-existent Nomisma URI or the URI is a different class: ', $value))"
-																			/>
+																	
+																	<!-- enable skos:related without URI validation for deities, e.g., nm:zeus skos:related nm:jupiter, as these
+																		concepts may be created in the same sheet in any order -->																	
+																	<xforms:action if="instance('control-instance')/type = 'wordnet:Deity'">
+																		<xforms:insert context="instance('nomisma-ids')" nodeset="./child::node()[last()]"
+																			origin="xforms:element('id', (xforms:attribute('uri', $value), xforms:attribute('mapping', $mapping), true()))"/>
+																	</xforms:action>
+																	
+																	<!-- perform SPARQL query for other classes -->
+																	<xforms:action if="not(instance('control-instance')/type = 'wordnet:Deity')">
+																		<!-- if the URI space is nm:, then test whether the URI has already been validated via SPARQL. If not, then submit a SPARQL query -->
+																		<xforms:action if="instance('nomisma-ids')/id[@uri=$value and @mapping=$mapping] = false()"
+																			context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
+																			origin="xforms:element('error', concat($mapping, ' links to a non-existent Nomisma URI or the URI is a different class: ', $value))"/>
+																		<xforms:action if="not(instance('nomisma-ids')/id[@uri=$value and @mapping=$mapping])">
+																			
+																			<!-- set the SPARQL query to evaluate whether the URI is an nmo:Mint -->
+																			<xforms:setvalue ref="instance('sparqlQuery')"
+																				value="concat(instance('sparql-templates')/prefix, ' ', replace(replace(instance('sparql-templates')/query[@id='ask'], 'URI', $value), 'CLASS', 'nmo:Mint'))"/>
+																			<xforms:send submission="submit-sparqlQuery"/>
+																			
+																			<!-- if the SPARQL query concludes successfully, then create an entry in nomisma-ids and display an error if the ASK if false -->
+																			<xforms:action ev:event="xforms-submit-done">
+																				<xforms:insert context="instance('nomisma-ids')" nodeset="./child::node()[last()]"
+																					origin="xforms:element('id', (xforms:attribute('uri', $value), xforms:attribute('mapping', $mapping), data(instance('sparqlResponse')/descendant::res:boolean)))"/>
+																				<xforms:insert if="instance('sparqlResponse')/descendant::res:boolean = 'false'"
+																					context="instance('validation-model')/record[last()]"
+																					nodeset="./child::node()[last()]"
+																					origin="xforms:element('error', concat($mapping, ' links to a non-existent Nomisma URI or the URI is a different class: ', $value))"
+																				/>
+																			</xforms:action>
 																		</xforms:action>
 																	</xforms:action>
 																</xforms:action>
@@ -1694,14 +1707,25 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 														</xforms:action>
 													</xforms:action>
 
-													<!-- insert template for uncertain match: there can only be one in a record, and it will not be overwritten -->
+													
 													<xforms:action if="$mapping = 'skos:related'">
-														<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
-															origin="instance('uncertain-match-template')" if="not(instance('rdf')/*[1]/skos:related)"/>
-
-														<!-- set the value -->
-														<xforms:setvalue ref="instance('rdf')/*[1]/skos:related/rdf:Description/rdf:value/@rdf:resource"
-															value="$value"/>
+														
+														<!-- insert skos:related to equivalent deity, dependent upon class -->
+														<xforms:action if="instance('control-instance')/type = 'wordnet:Deity'">
+															<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
+																origin="xforms:element('skos:related', (xforms:attribute('rdf:resource', $value), ''))"
+																if="not(instance('rdf')/*[1]/skos:related[@rdf:resource = $value])"/>
+														</xforms:action>
+														
+														<xforms:action if="not(instance('control-instance')/type = 'wordnet:Deity')">
+															<!-- insert template for uncertain match: there can only be one in a record, and it will not be overwritten -->
+															<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
+																origin="instance('uncertain-match-template')" if="not(instance('rdf')/*[1]/skos:related)"/>
+															
+															<!-- set the value -->
+															<xforms:setvalue ref="instance('rdf')/*[1]/skos:related/rdf:Description/rdf:value/@rdf:resource"
+																value="$value"/>
+														</xforms:action>
 													</xforms:action>
 
 													<!-- create geo:location and geo:SpatialThing if there a geo:lat -->
