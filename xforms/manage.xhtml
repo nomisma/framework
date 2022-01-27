@@ -996,8 +996,10 @@ WHERE {
 				<!-- insert the list of supplementary datasets bound to named graphs -->
 				<xforms:setvalue ref="instance('sparqlQuery')" value="instance('sparql-templates')/query[@id='get-namedGraphs']"/>
 				<xforms:send submission="submit-sparqlQuery"/>
-				<xforms:delete nodeset="instance('namedGraphs')/*"/>
-				<xforms:insert context="instance('namedGraphs')" origin="instance('sparqlResponse')/*"/>
+				<xforms:action ev:event="xforms-submit-done">
+					<xforms:delete nodeset="instance('namedGraphs')/*"/>
+					<xforms:insert context="instance('namedGraphs')" origin="instance('sparqlResponse')/*"/>
+				</xforms:action>
 			</xforms:action>
 		</xforms:model>
 	</head>
@@ -1872,7 +1874,7 @@ WHERE {
 						</xforms:case>
 					</xforms:switch>
 
-					<!--<fr:xforms-inspector/>-->
+					<fr:xforms-inspector/>
 				</div>
 			</div>
 		</div>
