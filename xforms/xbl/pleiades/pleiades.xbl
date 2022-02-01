@@ -1,4 +1,4 @@
-<xbl:xbl xmlns="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxforms="http://orbeon.org/oxf/xml/xforms"
+<xbl:xbl xmlns="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxf="http://orbeon.org/oxf/xml/xforms"
 	xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:xxbl="http://orbeon.org/oxf/xml/xbl" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:rss="http://purl.org/rss/1.0/" xmlns:nomisma="https://github.com/nomisma">
 	<xbl:binding id="nomisma-pleiades" element="nomisma|pleiades">
@@ -7,15 +7,15 @@
 				<xbl:content includes="xforms|label,xforms|help,xforms|hint,xforms|alert"/>
 				<xforms:group xxbl:scope="inner">
 					<xforms:var name="binding" as="node()?">
-						<xxforms:sequence select="." xxbl:scope="outer"/>
+						<xxf:sequence select="." xxbl:scope="outer"/>
 					</xforms:var>
 					<xforms:trigger appearance="minimal">
 						<xforms:label><span class="glyphicon glyphicon-search"/>Pleiades</xforms:label>
 						<xforms:action ev:event="DOMActivate">
-							<xxforms:show dialog="pleiades-dialog"/>
+							<xxf:show dialog="pleiades-dialog"/>
 						</xforms:action>
 					</xforms:trigger>
-					<xxforms:dialog id="pleiades-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
+					<xxf:dialog id="pleiades-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
 						<xforms:label>Query Pleiades</xforms:label>
 						<div>
 							<xforms:input ref="instance('control-instance')/query">
@@ -65,7 +65,7 @@
 									</xforms:action>-->
 
 									<!-- close dialog -->
-									<xxforms:hide dialog="pleiades-dialog"/>
+									<xxf:hide dialog="pleiades-dialog"/>
 								</xforms:action>
 							</xforms:trigger>
 						</xforms:group>
@@ -83,7 +83,7 @@
 								</xforms:trigger>
 							</div>
 						</xforms:group>
-					</xxforms:dialog>
+					</xxf:dialog>
 
 					<!-- ***************** MODEL ***************-->
 					<xforms:model id="pleiades-model">
@@ -104,11 +104,11 @@
 							<rdf:RDF/>
 						</xforms:instance>
 
-						<xforms:instance id="lat-template" xxforms:exclude-result-prefixes="#all">
+						<xforms:instance id="lat-template" xxf:exclude-result-prefixes="#all">
 							<geo:lat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal"/>
 						</xforms:instance>
 
-						<xforms:instance id="long-template" xxforms:exclude-result-prefixes="#all">
+						<xforms:instance id="long-template" xxf:exclude-result-prefixes="#all">
 							<geo:long rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal"/>
 						</xforms:instance>
 

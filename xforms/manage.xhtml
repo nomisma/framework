@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxf="http://orbeon.org/oxf/xml/xforms" xmlns:xi="http://www.w3.org/2001/XInclude"
 	xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:void="http://rdfs.org/ns/void#"
 	xmlns:dcterms="http://purl.org/dc/terms/" xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" xmlns:nmo="http://nomisma.org/ontology#"
 	xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:edm="http://www.europeana.eu/schemas/edm/"
@@ -20,7 +20,7 @@
 
 		<xforms:model>
 			<!-- ***** RDF templates ***** -->
-			<xforms:instance id="rdf" xxforms:exclude-result-prefixes="#default xhtml xforms xs ev xxforms fr res xi nomisma">
+			<xforms:instance id="rdf" xxf:exclude-result-prefixes="#default xhtml xforms xs ev xxforms fr res xi nomisma">
 				<rdf:RDF xmlns="" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/" xmlns:nmo="http://nomisma.org/ontology#"
 					xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 					xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
@@ -29,7 +29,7 @@
 					xmlns:svcs="http://rdfs.org/sioc/services#" xmlns:doap="http://usefulinc.com/ns/doap#"/>
 			</xforms:instance>
 
-			<xforms:instance id="void-rdf" xxforms:exclude-result-prefixes="#default xhtml xforms xs ev xxforms fr res xi nomisma">
+			<xforms:instance id="void-rdf" xxf:exclude-result-prefixes="#default xhtml xforms xs ev xxforms fr res xi nomisma">
 				<rdf:RDF xmlns="" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/" xmlns:nmo="http://nomisma.org/ontology#"
 					xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 					xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
@@ -46,7 +46,7 @@
 				</rdf:RDF>
 			</xforms:instance>
 
-			<xforms:instance id="places" xxforms:exclude-result-prefixes="#default xhtml xforms xs ev xxforms fr res xi nomisma">
+			<xforms:instance id="places" xxf:exclude-result-prefixes="#default xhtml xforms xs ev xxforms fr res xi nomisma">
 				<rdf:RDF xmlns="" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:void="http://rdfs.org/ns/void#"
 					xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/"
 					xmlns:edm="http://www.europeana.eu/schemas/edm/" xmlns:dcterms="http://purl.org/dc/terms/"
@@ -56,20 +56,20 @@
 			</xforms:instance>
 
 			<!-- RDF templates for harvesting -->
-			<xforms:instance id="object" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="object" xxf:exclude-result-prefixes="#all">
 				<nmo:NumismaticObject xmlns="" rdf:about="" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nmo="http://nomisma.org/ontology#"
 					xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:edm="http://www.europeana.eu/schemas/edm/" xmlns:svcs="http://rdfs.org/sioc/services#"
 					xmlns:doap="http://usefulinc.com/ns/doap#"> </nmo:NumismaticObject>
 			</xforms:instance>
 
-			<xforms:instance id="webresource-template" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="webresource-template" xxf:exclude-result-prefixes="#all">
 				<edm:WebResource rdf:about="">
 					<svcs:has_service rdf:resource=""/>
 					<dcterms:isReferencedBy rdf:resource=""/>
 				</edm:WebResource>
 			</xforms:instance>
 
-			<xforms:instance id="service-template" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="service-template" xxf:exclude-result-prefixes="#all">
 				<svcs:Service rdf:about="">
 					<dcterms:conformsTo rdf:resource="http://iiif.io/api/image"/>
 					<doap:implements rdf:resource="http://iiif.io/api/image/2/level1.json"/>
@@ -77,11 +77,11 @@
 			</xforms:instance>
 
 			<!-- place names for findspot harvesting -->
-			<xforms:instance id="place-template" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="place-template" xxf:exclude-result-prefixes="#all">
 				<crm:E53_Place rdf:about=""/>
 			</xforms:instance>
 
-			<xforms:instance id="spatialThing-template" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="spatialThing-template" xxf:exclude-result-prefixes="#all">
 				<crmgeo:SP5_Geometric_Place_Expression rdf:about="">
 					<rdf:type rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
 					<crmgeo:Q9_is_expressed_in_terms_of rdf:resource="http://www.wikidata.org/entity/Q215848"/>
@@ -92,35 +92,35 @@
 			</xforms:instance>
 
 			<!-- errors or warnings -->
-			<xforms:instance id="warnings" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="warnings" xxf:exclude-result-prefixes="#all">
 				<warnings xmlns=""></warnings>
 			</xforms:instance>
 
-			<xforms:instance id="errors" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="errors" xxf:exclude-result-prefixes="#all">
 				<errors xmlns=""></errors>
 			</xforms:instance>
 
 			<!-- Concordance URIs -->
-			<xforms:instance id="mappings" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="mappings" xxf:exclude-result-prefixes="#all">
 				<mappings xmlns=""></mappings>
 			</xforms:instance>
 
 			<!-- Matches made to findspots -->
-			<xforms:instance id="findspot-matches" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="findspot-matches" xxf:exclude-result-prefixes="#all">
 				<findspots xmlns=""></findspots>
 			</xforms:instance>
 
 			<!-- Linked Art JSON-LD instance -->
-			<xforms:instance id="json" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="json" xxf:exclude-result-prefixes="#all">
 				<json></json>
 			</xforms:instance>
 
 			<!-- config and controls -->
-			<xforms:instance id="config" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="config" xxf:exclude-result-prefixes="#all">
 				<xi:include href="../config.xml"/>
 			</xforms:instance>
 
-			<xforms:instance id="control-instance" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="control-instance" xxf:exclude-result-prefixes="#all">
 				<controls xmlns="">
 					<status></status>
 					<void_uri></void_uri>
@@ -156,7 +156,7 @@
 			</xforms:instance>
 
 			<!-- Wikidata properties -->
-			<xforms:instance id="wikidata-properties" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="wikidata-properties" xxf:exclude-result-prefixes="#all">
 				<props xmlns="">
 					<prop namespace="vocab.getty.edu">P1667</prop>
 					<prop namespace="sws.geonames.org">P1566</prop>
@@ -166,11 +166,11 @@
 			</xforms:instance>
 
 			<!-- download CSV -->
-			<xforms:instance id="csv" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="csv" xxf:exclude-result-prefixes="#all">
 				<csv xmlns=""></csv>
 			</xforms:instance>
 
-			<xforms:instance id="csv-download" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="csv-download" xxf:exclude-result-prefixes="#all">
 				<csv xmlns="" filename="places.csv" mediatype="text/csv"></csv>
 			</xforms:instance>
 
@@ -183,7 +183,7 @@
 				<rdf:RDF/>
 			</xforms:instance>
 
-			<xforms:instance id="collections" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="collections" xxf:exclude-result-prefixes="#all">
 				<collections xmlns=""></collections>
 			</xforms:instance>
 
@@ -562,7 +562,7 @@ WHERE {
 							value="instance('control-instance')/symbol_count + count(instance('rdf')//nmo:Monogram) + count(instance('rdf')//crm:E37_Mark)"/>
 
 						<xforms:action
-							xxforms:iterate="distinct-values(instance('rdf')//nmo:hasFindspot/descendant::crm:P89_falls_within/@rdf:resource)[position() &lt; 25]">
+							xxf:iterate="distinct-values(instance('rdf')//nmo:hasFindspot/descendant::crm:P89_falls_within/@rdf:resource)[position() &lt; 25]">
 							<xforms:var name="uri" select="."/>
 							<xforms:setvalue ref="instance('control-instance')/gazetteer_uri" value="$uri"/>
 
@@ -621,7 +621,7 @@ WHERE {
 					<xforms:action if="instance('control-instance')/mode = 'import'">
 						<!-- after the RDF dump is loaded and the findspot places have been reconciled to Wikidata, then replace
 														non Wikidata URIs associated with findspots -->
-						<xforms:action xxforms:iterate="instance('rdf')//nmo:hasFindspot/descendant::crm:P89_falls_within">
+						<xforms:action xxf:iterate="instance('rdf')//nmo:hasFindspot/descendant::crm:P89_falls_within">
 							<xforms:var name="uri" select="context()/@rdf:resource"/>
 
 							<xforms:action
@@ -699,7 +699,7 @@ WHERE {
 							</xforms:action>
 
 							<!-- perform a hierarchical Wikidata SPARQL query in order to generate E53_Places for each parent of the Q entity -->
-							<xforms:action xxforms:iterate="instance('sparqlResponse')//skos:broader">
+							<xforms:action xxf:iterate="instance('sparqlResponse')//skos:broader">
 								<xforms:var name="parentURI" select="data(@rdf:resource)"/>
 
 								<xforms:insert context="instance('places')/crm:E53_Place[@rdf:about = $q_entity]" nodeset="./child::node()[last()]"
@@ -769,7 +769,7 @@ WHERE {
 				<!-- iterate through each JSON Human-Made-Object at the level of each API call -->
 				<xforms:action ev:event="xforms-submit-done">
 					<!-- iterate through all id elements in order to convert Getty curies into full URIs -->
-					<xforms:action xxforms:iterate="instance('json')//id">
+					<xforms:action xxf:iterate="instance('json')//id">
 						<xforms:var name="val" select="normalize-space(data(context()))"/>
 						<xforms:var name="uri"
 							select="if (starts-with($val, 'aat:') or starts-with($val, 'ulan:') or starts-with($val, 'tgn:')) then concat('http://vocab.getty.edu/', substring-before($val, ':'), '/', substring-after($val, ':'))
@@ -779,7 +779,7 @@ WHERE {
 					</xforms:action>
 
 					<!-- extract all possible URIs and execute SPARQL queries to get their Nomisma.org exactMatch, if applicable -->
-					<xforms:action xxforms:iterate="distinct-values(instance('json')//current_owner/id)">
+					<xforms:action xxf:iterate="distinct-values(instance('json')//current_owner/id)">
 						<xforms:var name="uri" select="normalize-space(data(context()))"/>
 
 						<!-- perform lookup only if the URI hasn't already been mapped (applicable for eventual API pagination) -->
@@ -803,7 +803,7 @@ WHERE {
 					</xforms:action>
 
 					<!-- interate through all HMOs in the JSON-LD response that are not sides of a coin -->
-					<xforms:action xxforms:iterate="instance('json')/descendant-or-self::node()[type='HumanMadeObject' and not(ancestor::part)]">
+					<xforms:action xxf:iterate="instance('json')/descendant-or-self::node()[type='HumanMadeObject' and not(ancestor::part)]">
 						<!-- use the home page link when available, otherwise use the URI for the HMO -->
 						<xforms:var name="objectURI"
 							select="if (context()/subject_of/_[classified_as/_/id = 'http://vocab.getty.edu/aat/300266277'])
@@ -812,7 +812,7 @@ WHERE {
 						<xforms:setvalue ref="instance('object')/@rdf:about" value="$objectURI"/>
 
 						<!-- Identifiers: Title and Accession number -->
-						<xforms:action xxforms:iterate="context()/identified_by/_">
+						<xforms:action xxf:iterate="context()/identified_by/_">
 							<xforms:var name="content" select="data(context()/content)"/>
 
 							<xforms:action if="context()/classified_as/_/id = 'http://vocab.getty.edu/aat/300404670'">
@@ -826,7 +826,7 @@ WHERE {
 						</xforms:action>
 
 						<!-- iterate through types in order to parse the shape -->
-						<xforms:action xxforms:iterate="context()/classified_as/_[classified_as/_/id = 'http://vocab.getty.edu/aat/300067209']">
+						<xforms:action xxf:iterate="context()/classified_as/_[classified_as/_/id = 'http://vocab.getty.edu/aat/300067209']">
 							<xforms:var name="uri" select="context()/id"/>
 
 							<xforms:insert context="instance('object')" nodeset="./child::node()[last()]"
@@ -834,7 +834,7 @@ WHERE {
 						</xforms:action>
 
 						<!-- insert and convert dimensions to metric -->
-						<xforms:action xxforms:iterate="context()/dimension/_">
+						<xforms:action xxf:iterate="context()/dimension/_">
 
 							<!-- ensure that the value is numeric -->
 							<xforms:action if="context()/value castable as xs:decimal">
@@ -891,7 +891,7 @@ WHERE {
 							as="xs:boolean"/>
 
 						<!-- digital images -->
-						<xforms:action xxforms:iterate="context()//representation">
+						<xforms:action xxf:iterate="context()//representation">
 							<xforms:var name="side"
 								select="if (context()/parent::node()/classified_as/_/id = 'http://vocab.getty.edu/aat/300190703') then 'obverse'
 								else if (context()/parent::node()/classified_as/_/id = 'http://vocab.getty.edu/aat/300190692') then 'reverse' else 'combined'"/>
@@ -1041,7 +1041,7 @@ WHERE {
 								<xforms:setvalue ref="instance('control-instance')/hoard_count" value="0"/>
 								<xforms:setvalue ref="instance('control-instance')/symbol_count" value="0"/>
 
-								<xxforms:show dialog="lookup-dialog"/>
+								<xxf:show dialog="lookup-dialog"/>
 							</xforms:action>
 						</xforms:trigger>
 						<xforms:trigger appearance="minimal">
@@ -1052,7 +1052,7 @@ WHERE {
 								<xforms:send submission="submit-sparqlQuery"/>
 
 								<xforms:action ev:event="xforms-submit-done">
-									<xforms:action xxforms:iterate="instance('sparqlResponse')//res:result">
+									<xforms:action xxf:iterate="instance('sparqlResponse')//res:result">
 										<xforms:var name="uri" select="data(context()/res:binding[@name='uri']/res:uri)"/>
 										<xforms:var name="label" select="data(context()/res:binding[@name='label']/res:literal)"/>
 
@@ -1069,26 +1069,6 @@ WHERE {
 
 					<xforms:switch>
 						<xforms:case id="default">
-
-							<!--<xforms:trigger>
-								<xforms:label>Delete</xforms:label>
-								<xforms:action ev:event="DOMActivate">
-									<xforms:setvalue ref="instance('control-instance')/dataset">http://localhost:8080/orbeon/igch/</xforms:setvalue>
-									<!-\- first delete the objects associated with the dataset, linked by void:inDataset -\->
-									<xforms:setvalue ref="instance('sparqlUpdate')"
-										value="replace(instance('sparqlUpdate-template')/query[@id='delete-Hoard'], 'DATASET', instance('control-instance')/dataset)"/>
-									<xforms:send submission="update-graph"/>
-									<!-\- then delete the void:Dataset object -\->
-									<xforms:setvalue ref="instance('sparqlUpdate')"
-										value="replace(instance('sparqlUpdate-template')/query[@id='delete-metadata'], 'DATASET', instance('control-instance')/dataset)"/>
-									<xforms:send submission="update-graph"/>
-									<!-\- resubmit SPARQL query for void:Datasets to reset the table -\->
-									<xforms:setvalue ref="instance('sparqlQuery')" value="instance('sparql-templates')/query[@id='get-datasets']"/>
-									<xforms:send submission="submit-sparqlQuery"/>
-									<xforms:delete nodeset="instance('datasets')/*"/>
-									<xforms:insert context="instance('datasets')" origin="instance('sparqlResponse')/*"/>
-								</xforms:action>
-							</xforms:trigger>-->
 
 							<xforms:group ref="instance('datasets')">
 								<xforms:group ref=".[count(void:Dataset|*[rdf:type/@rdf:resource = 'http://rdfs.org/ns/void#Dataset']) &gt; 0]">
@@ -1166,7 +1146,7 @@ WHERE {
 											<xforms:label>Add a dataset.</xforms:label>
 											<xforms:action ev:event="DOMActivate">
 												<xforms:setvalue ref="instance('control-instance')/void_uri"/>
-												<xxforms:show dialog="lookup-dialog"/>
+												<xxf:show dialog="lookup-dialog"/>
 											</xforms:action>
 										</xforms:trigger></p>
 								</xforms:group>
@@ -1695,7 +1675,7 @@ WHERE {
 										<xforms:action ev:event="DOMActivate">
 											<xforms:setvalue ref="instance('control-instance')/mode">validate</xforms:setvalue>
 
-											<xforms:action xxforms:iterate="instance('void-rdf')/*[local-name()='Dataset']/void:dataDump">
+											<xforms:action xxf:iterate="instance('void-rdf')/*[local-name()='Dataset']/void:dataDump">
 												<xforms:setvalue ref="instance('control-instance')/dump_uri" value="context()/@rdf:resource"/>
 												<xforms:send submission="load-dump"/>
 											</xforms:action>
@@ -1713,7 +1693,7 @@ WHERE {
 
 												<!-- generate the CSV instance of non-matching places to download -->
 												<xforms:insert nodeset="instance('csv')"
-													origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/places-to-csv.xpl', 'data', instance('warnings'), 'data')"/>
+													origin="xxf:call-xpl('oxf:/apps/nomisma/xpl/xforms/places-to-csv.xpl', 'data', instance('warnings'), 'data')"/>
 												<xforms:setvalue ref="instance('csv-download')"
 													value="saxon:string-to-base64Binary(saxon:serialize(instance('csv'), 'text'), 'UTF-8')"/>
 
@@ -1745,7 +1725,7 @@ WHERE {
 														then instance('void-rdf')/*[local-name()='Dataset']/sd:namedGraph/sd:NamedGraph/sd:name/@rdf:resource 
 														else 'default'"/>
 
-												<xforms:action xxforms:iterate="instance('void-rdf')/*[local-name()='Dataset']/void:dataDump">
+												<xforms:action xxf:iterate="instance('void-rdf')/*[local-name()='Dataset']/void:dataDump">
 													<xforms:setvalue ref="instance('control-instance')/dump_uri" value="context()/@rdf:resource"/>
 													<xforms:send submission="load-dump"/>
 
@@ -1768,6 +1748,7 @@ WHERE {
 												<xforms:send submission="submit-sparqlQuery"/>
 												<xforms:delete nodeset="instance('datasets')/*"/>
 												<xforms:insert context="instance('datasets')" origin="instance('sparqlResponse')/*"/>
+												<xforms:delete nodeset="instance('sparqlResponse')/*"/>
 
 												<!-- insert the list of supplementary datasets bound to named graphs -->
 												<xforms:setvalue ref="instance('sparqlQuery')" value="instance('sparql-templates')/query[@id='get-namedGraphs']"/>
@@ -1859,7 +1840,7 @@ WHERE {
 								</xforms:trigger>
 
 
-								<xforms:output ref="instance('csv-download')" appearance="xxforms:download">
+								<xforms:output ref="instance('csv-download')" appearance="xxf:download">
 									<xforms:label><span class="glyphicon glyphicon-download-alt"></span> Download CSV</xforms:label>
 									<xforms:mediatype ref="instance('csv-download')/@mediatype"/>
 									<xforms:filename ref="instance('csv-download')/@filename"/>
@@ -1882,7 +1863,7 @@ WHERE {
 		</div>
 		<!-- *********** DIALOGS *********** -->
 		<!-- this is the dialog for looking up a VoID RDF metadata object -->
-		<xxforms:dialog id="lookup-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
+		<xxf:dialog id="lookup-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
 			<xforms:label>Load VoID RDF</xforms:label>
 			<p>Insert the URI for VoID metadata RDF.</p>
 			<div>
@@ -1894,14 +1875,15 @@ WHERE {
 						<xforms:send submission="load-void"/>
 						<xforms:action ev:event="xforms-submit-done">
 							<xforms:toggle case="validate-void"/>
-							<xforms:setvalue ref="instance('control-instance')/validate-trigger" value="true()" if="xxforms:valid(instance('void-rdf'), true())"
+							<xforms:setvalue ref="instance('control-instance')/validate-trigger" value="true()" if="xxf:valid(instance('void-rdf'), true())"
 							/>
 						</xforms:action>
-						<xxforms:hide dialog="lookup-dialog"/>
+						<xxf:hide dialog="lookup-dialog"/>
 					</xforms:action>
 				</xforms:trigger>
 			</div>
-		</xxforms:dialog>
+		</xxf:dialog>
+		
 		<!-- dialog to confirm deletion of a void:Dataset and associated objects -->
 		<fr:alert-dialog id="delete-dataset-dialog">
 			<fr:label>Delete Dataset</fr:label>
@@ -1941,11 +1923,14 @@ WHERE {
 					<xforms:setvalue ref="instance('sparqlUpdate')"
 						value="replace(instance('sparqlUpdate-template')/query[@id='delete-metadata'], 'DATASET', instance('control-instance')/dataset)"/>
 					<xforms:send submission="update-graph"/>
+					
 					<!-- resubmit SPARQL query for void:Datasets to reset the table -->
 					<xforms:setvalue ref="instance('sparqlQuery')" value="instance('sparql-templates')/query[@id='get-datasets']"/>
 					<xforms:send submission="submit-sparqlQuery"/>
 					<xforms:delete nodeset="instance('datasets')/*"/>
 					<xforms:insert context="instance('datasets')" origin="instance('sparqlResponse')/*"/>
+					<xforms:delete nodeset="instance('sparqlResponse')/*"/>
+					
 					<!-- insert the list of supplementary datasets bound to named graphs -->
 					<xforms:setvalue ref="instance('sparqlQuery')" value="instance('sparql-templates')/query[@id='get-namedGraphs']"/>
 					<xforms:send submission="submit-sparqlQuery"/>
@@ -1957,6 +1942,7 @@ WHERE {
 				<fr:label>No</fr:label>
 			</fr:negative-choice>
 		</fr:alert-dialog>
+		
 		<fr:alert-dialog id="import-dataset-dialog">
 			<fr:label>Import Dataset</fr:label>
 			<fr:message>Are you certain you wish to import this dataset without reconciling outlying places to Wikidata?</fr:message>
@@ -1975,7 +1961,7 @@ WHERE {
 							value="if (instance('void-rdf')/*[local-name()='Dataset']/sd:namedGraph/sd:NamedGraph/sd:name) 
 							then instance('void-rdf')/*[local-name()='Dataset']/sd:namedGraph/sd:NamedGraph/sd:name/@rdf:resource 
 							else 'default'"
-						/> <xforms:action xxforms:iterate="instance('void-rdf')/*[local-name()='Dataset']/void:dataDump">
+						/> <xforms:action xxf:iterate="instance('void-rdf')/*[local-name()='Dataset']/void:dataDump">
 							<xforms:setvalue ref="instance('control-instance')/dump_uri" value="context()/@rdf:resource"/>
 							<xforms:send submission="load-dump"/>
 							<!-- delete any hard-coded findspot places or coordinates within the dump (defer to Wikidata API workflow) -->
@@ -1992,6 +1978,8 @@ WHERE {
 						<xforms:send submission="submit-sparqlQuery"/>
 						<xforms:delete nodeset="instance('datasets')/*"/>
 						<xforms:insert context="instance('datasets')" origin="instance('sparqlResponse')/*"/>
+						<xforms:delete nodeset="instance('sparqlResponse')/*"/>
+						
 						<!-- insert the list of supplementary datasets bound to named graphs -->
 						<xforms:setvalue ref="instance('sparqlQuery')" value="instance('sparql-templates')/query[@id='get-namedGraphs']"/>
 						<xforms:send submission="submit-sparqlQuery"/>
@@ -2004,34 +1992,6 @@ WHERE {
 				<fr:label>No</fr:label>
 			</fr:negative-choice>
 		</fr:alert-dialog>
-		<!--<fr:alert-dialog id="refresh-dataset-dialog">
-			<fr:label>Refresh Dataset</fr:label>
-			<fr:message>Refreshing the dataset may take several minutes. Continue?</fr:message>
-			<fr:positive-choice>
-				<fr:label>Yes</fr:label>
-				<xforms:action ev:event="DOMActivate">
-					<!-\- first delete the objects associated with the dataset, linked by void:inDataset -\->
-					<xforms:setvalue ref="instance('sparqlUpdate')"
-						value="replace(instance('sparqlUpdate-template')/query[@id=concat('delete-', instance('control-instance')/concept_type)], 'DATASET', instance('control-instance')/dataset)"/>
-					<xforms:send submission="update-graph"/>
-					<!-\- then fetch the new data dump -\->
-					<xforms:action ev:event="xforms-submit-done">
-						<xforms:action xxforms:iterate="instance('sparqlResponse')//void:Dataset[@rdf:about=instance('control-instance')/dataset]/void:dataDump">
-							<xforms:setvalue ref="instance('control-instance')/dump_uri" value="context()/@rdf:resource"/>
-							<xforms:send submission="load-dump"/>
-							<xforms:send submission="post-dump" ev:event="xforms-submit-done"/>
-						</xforms:action>
-						<!-\- resubmit SPARQL query for void:Datasets to reset the table -\->
-						<xforms:setvalue ref="instance('sparqlQuery')" value="instance('sparql-templates')/query[@id='get-datasets']"/>
-						<xforms:send submission="submit-sparqlQuery"/>
-						<xforms:delete nodeset="instance('datasets')/*"/>
-						<xforms:insert context="instance('datasets')" origin="instance('sparqlResponse')/*"/>
-					</xforms:action>
-				</xforms:action>
-			</fr:positive-choice>
-			<fr:negative-choice>
-				<fr:label>No</fr:label>
-			</fr:negative-choice>
-		</fr:alert-dialog>-->
+		
 	</body>
 </html>

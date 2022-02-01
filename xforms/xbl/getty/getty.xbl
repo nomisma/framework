@@ -1,5 +1,5 @@
 <xbl:xbl xmlns="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events"
-	xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xxf="http://orbeon.org/oxf/xml/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xbl="http://www.w3.org/ns/xbl"
 	xmlns:xxbl="http://orbeon.org/oxf/xml/xbl" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:nomisma="https://github.com/nomisma" xmlns:res="http://www.w3.org/2005/sparql-results#">
 	<xbl:binding id="nomisma-getty" element="nomisma|getty">
@@ -8,7 +8,7 @@
 				<xbl:content includes="xforms|label,xforms|help,xforms|hint,xforms|alert"/>
 				<xforms:group xxbl:scope="inner">
 					<xforms:var name="binding" as="node()?">
-						<xxforms:sequence select="." xxbl:scope="outer"/>
+						<xxf:sequence select="." xxbl:scope="outer"/>
 					</xforms:var>
 					<xforms:group ref=".[count($binding//@rdf:resource[contains(., 'vocab.getty.edu/')]) = 0]">
 						<xforms:trigger appearance="minimal">
@@ -44,12 +44,12 @@
 									</xforms:action>
 									<xforms:delete context="instance('getty-options')/*"/>
 									<xforms:send submission="query-getty"/>
-									<xxforms:show dialog="getty-results-dialog"/>
+									<xxf:show dialog="getty-results-dialog"/>
 								</xforms:action>
 								<!-- else, just show search dialog -->
 								<xforms:action
 									if="not(count($binding//@rdf:resource[contains(., 'vocab.getty.edu/')]) = 0 and string-length($binding/skos:prefLabel[@xml:lang='en']) &gt; 0)">
-									<xxforms:show dialog="getty-search-dialog"/>
+									<xxf:show dialog="getty-search-dialog"/>
 								</xforms:action>
 							</xforms:action>
 						</xforms:trigger>
@@ -57,13 +57,13 @@
 
 
 					<!-- separate search and results dialog for recentering -->
-					<xxforms:dialog id="getty-search-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
+					<xxf:dialog id="getty-search-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
 						<xforms:label>Query Getty</xforms:label>
 						<div>
 							<xforms:input ref="instance('control-instance')/getty-search"/>
 							<xforms:trigger>
 								<xforms:action ev:event="DOMActivate">
-									<xxforms:hide dialog="getty-search-dialog"/>
+									<xxf:hide dialog="getty-search-dialog"/>
 									<xforms:var name="search_text" select="string-join(tokenize(instance('control-instance')/getty-search, ' '), ' AND ')"/>
 									<xforms:var name="type" select="$binding/name()"/>
 									<xforms:var name="scheme"
@@ -85,14 +85,14 @@
 									</xforms:action>
 									<xforms:delete context="instance('getty-options')/*"/>
 									<xforms:send submission="query-getty"/>
-									<xxforms:show dialog="getty-results-dialog"/>
+									<xxf:show dialog="getty-results-dialog"/>
 								</xforms:action>
 								<xforms:label>Search</xforms:label>
 							</xforms:trigger>
 						</div>
-					</xxforms:dialog>
+					</xxf:dialog>
 
-					<xxforms:dialog id="getty-results-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
+					<xxf:dialog id="getty-results-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
 						<xforms:label>Query Getty</xforms:label>
 						<div>
 							<xforms:input ref="instance('control-instance')/getty-search"/>
@@ -164,7 +164,7 @@
 								<xforms:trigger>
 									<xforms:label>Add Selected</xforms:label>
 									<xforms:action ev:event="DOMActivate">
-										<xforms:action xxforms:iterate="instance('getty-options')/option[@select=true()]">
+										<xforms:action xxf:iterate="instance('getty-options')/option[@select=true()]">
 											<xforms:var name="resource" select="context()/@link"/>
 											<xforms:var name="property" select="if ($binding/name()='nmo:Mint') then 'skos:closeMatch' else 'skos:exactMatch'"/>
 											<xforms:action if="not($binding/*[name()=$property][@rdf:resource=$resource])">
@@ -172,12 +172,12 @@
 													origin="xforms:element($property, xforms:attribute('rdf:resource', $resource))"/>
 											</xforms:action>
 										</xforms:action>
-										<xxforms:hide dialog="getty-results-dialog"/>
+										<xxf:hide dialog="getty-results-dialog"/>
 									</xforms:action>
 								</xforms:trigger>
 							</xforms:group>
 						</div>
-					</xxforms:dialog>
+					</xxf:dialog>
 					<!--<xforms:output ref="instance('sparqlQuery')"/>
 					<fr:xforms-inspector xmlns:fr="http://orbeon.org/oxf/xml/form-runner"/>-->
 					<!-- ***************** MODEL ***************-->
@@ -253,7 +253,7 @@ luc:term "SEARCH_QUERY"} LIMIT 25]]>
 							<sparql xmlns="http://www.w3.org/2005/sparql-results#"/>
 						</xforms:instance>
 
-						<xforms:instance id="getty-options" xxforms:exclude-result-prefixes="#all">
+						<xforms:instance id="getty-options" xxf:exclude-result-prefixes="#all">
 							<options xmlns=""/>
 						</xforms:instance>
 
@@ -288,7 +288,7 @@ luc:term "SEARCH_QUERY"} LIMIT 25]]>
 								<xforms:setvalue if="$total &gt; 0 and $total &lt;= 25" ref="instance('control-instance')/search-results" value="concat('Displaying ', $total, ' result(s).')"/>
 								<xforms:setvalue if="$total &gt; 25" ref="instance('control-instance')/search-results" value="concat('Displaying first 25 of ', $total, ' result(s).')"/>
 								
-								<xforms:action xxforms:iterate="instance('getty-response')//res:result">
+								<xforms:action xxf:iterate="instance('getty-response')//res:result">
 									<xforms:var name="link" select="context()/res:binding[@name='c']/res:uri"/>
 									<xforms:var name="title" select="context()/res:binding[@name='label']/res:literal"/>
 									<xforms:var name="scopeNote" select="context()/res:binding[@name='scopeNote']/res:literal"/>

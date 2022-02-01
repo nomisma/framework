@@ -1,5 +1,5 @@
 <xbl:xbl xmlns="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events"
-	xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xxf="http://orbeon.org/oxf/xml/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xbl="http://www.w3.org/ns/xbl"
 	xmlns:xxbl="http://orbeon.org/oxf/xml/xbl" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 	xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:nomisma="https://github.com/nomisma">
 	<xbl:binding id="nomisma-bm" element="nomisma|bm">
@@ -8,7 +8,7 @@
 				<xbl:content includes="xforms|label,xforms|help,xforms|hint,xforms|alert"/>
 				<xforms:group xxbl:scope="inner">
 					<xforms:var name="binding" as="node()?">
-						<xxforms:sequence select="." xxbl:scope="outer"/>
+						<xxf:sequence select="." xxbl:scope="outer"/>
 					</xforms:var>
 					<xforms:group ref=".[count($binding//@rdf:resource[contains(., 'britishmuseum.org')]) = 0]">
 						<xforms:trigger appearance="minimal">
@@ -26,19 +26,19 @@
 										instance('bm-facets')//facet[@type=$type]/text()))"/>
 									<xforms:delete context="instance('bm-options')/*"/>
 									<xforms:send submission="query-bm"/>
-									<xxforms:show dialog="bm-dialog"/>
+									<xxf:show dialog="bm-dialog"/>
 								</xforms:action>
 								<!-- else, just show search dialog -->
 								<xforms:action
 									if="not(count($binding//@rdf:resource[contains(., 'britishmuseum.org')]) = 0 and string-length($binding/skos:prefLabel[@xml:lang='en']) &gt; 0)">
-									<xxforms:show dialog="bm-dialog"/>
+									<xxf:show dialog="bm-dialog"/>
 								</xforms:action>
 							</xforms:action>
 						</xforms:trigger>
 					</xforms:group>
 
 
-					<xxforms:dialog id="bm-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
+					<xxf:dialog id="bm-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
 						<xforms:label>Query British Museum</xforms:label>
 						<div>
 							<xforms:input ref="instance('control-instance')/bm-search"/>
@@ -79,13 +79,13 @@
 											origin="xforms:element($property, xforms:attribute('rdf:resource',
 											instance('control-instance')/uri))"
 											if="not($binding/*[name()=$property][@rdf:resource=instance('control-instance')/uri])"/>
-										<xxforms:hide dialog="bm-dialog"/>
+										<xxf:hide dialog="bm-dialog"/>
 									</xforms:action>
 								</xforms:trigger>
 							</div>
 						</xforms:group>
 
-					</xxforms:dialog>
+					</xxf:dialog>
 					<!-- ***************** MODEL ***************-->
 					<xforms:model id="bm-model">
 						<!-- instances -->
@@ -168,7 +168,7 @@ FILTER regex(?label, "^SEARCH_QUERY", "i" )} LIMIT 25]]>
 									value="concat('Displaying first 25 of ', $total, ' result(s).')"/>
 
 
-								<xforms:action xxforms:iterate="instance('bm-response')//res:result">
+								<xforms:action xxf:iterate="instance('bm-response')//res:result">
 									<xforms:var name="link" select="context()/res:binding[@name='c']/res:uri"/>
 									<xforms:var name="title" select="context()/res:binding[@name='label']/res:literal"/>
 									<xforms:insert context="instance('bm-options')" nodeset="./child::node()[last()]"

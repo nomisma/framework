@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxf="http://orbeon.org/oxf/xml/xforms" xmlns:xi="http://www.w3.org/2001/XInclude"
 	xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:nm="http://nomisma.org/id/" xmlns:nmo="http://nomisma.org/ontology#"
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2008/05/skos#" xmlns:foaf="http://xmlns.com/foaf/0.1/"
 	xmlns:dcterms="http://purl.org/dc/terms/">
@@ -15,11 +15,11 @@
 		<link rel="stylesheet" href="/apps/nomisma/xforms/css/style.css" />
 
 		<xforms:model>
-			<xforms:instance id="rdf" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="rdf" xxf:exclude-result-prefixes="#all">
 				<rdf:RDF/>
 			</xforms:instance>
 
-			<xforms:instance id="config" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="config" xxf:exclude-result-prefixes="#all">
 				<xi:include href="../config.xml"/>
 			</xforms:instance>
 

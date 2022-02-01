@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms"
 	xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ev="http://www.w3.org/2001/xml-events"
-	xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:xxf="http://orbeon.org/oxf/xml/xforms" xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:xi="http://www.w3.org/2001/XInclude"
 	xmlns:dcterms="http://purl.org/dc/terms/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:org="http://www.w3.org/ns/org#"
 	xmlns:crossref="http://www.crossref.org/schema/4.4.0" xmlns:prov="http://www.w3.org/ns/prov#">
@@ -17,20 +17,20 @@
 
 		<!-- model -->
 		<xforms:model>
-			<xforms:instance id="rdf" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="rdf" xxf:exclude-result-prefixes="#all">
 				<rdf:RDF/>
 			</xforms:instance>
 
-			<xforms:instance id="config" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="config" xxf:exclude-result-prefixes="#all">
 				<xi:include href="../config.xml"/>
 			</xforms:instance>
 
 			<!-- crossref authentication stored in XML file -->
-			<xforms:instance id="crossref-config" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="crossref-config" xxf:exclude-result-prefixes="#all">
 				<xi:include href="../crossref-config.xml"/>
 			</xforms:instance>
 
-			<xforms:instance id="control-instance" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="control-instance" xxf:exclude-result-prefixes="#all">
 				<controls xmlns="">
 					<id></id>
 					<uri></uri>
@@ -101,11 +101,11 @@ BIND (<URI> as ?concept)
 			</xforms:instance>
 
 			<!-- DOI/Crossref templates -->
-			<xforms:instance id="crossref" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="crossref" xxf:exclude-result-prefixes="#all">
 				<doi_batch xmlns=""></doi_batch>
 			</xforms:instance>
 
-			<xforms:instance id="crossref-form-data" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="crossref-form-data" xxf:exclude-result-prefixes="#all">
 				<formData xmlns="">
 					<operation>doMDUpload</operation>
 					<login_id></login_id>
@@ -168,7 +168,7 @@ BIND (<URI> as ?concept)
 					<xforms:setvalue ref="instance('save-config')/url"
 						value="concat(instance('control-instance')/concept_path,  instance('control-instance')/id, '.rdf')"/>
 					<xforms:insert nodeset="instance('dump')"
-						origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('rdf'), instance('save-config')), 'data')"/>
+						origin="xxf:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('rdf'), instance('save-config')), 'data')"/>
 
 					<!-- delete graph from triplestore, then repost updates -->
 					<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-template'), 'URI', instance('rdf')/*[1]/@rdf:about)"/>
@@ -191,7 +191,7 @@ BIND (<URI> as ?concept)
 					<!-- serialize the instance XML into a file in /tmp -->
 					<xforms:setvalue ref="instance('save-crossref-config')/url">file:///tmp/crossref.xml</xforms:setvalue>
 					<xforms:insert nodeset="instance('dump')"
-						origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-crossref.xpl', ('doc', 'configuration'), (instance('crossref'), instance('save-crossref-config')), 'data')"/>
+						origin="xxf:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-crossref.xpl', ('doc', 'configuration'), (instance('crossref'), instance('save-crossref-config')), 'data')"/>
 
 					<!-- post data to Crossref API -->
 					<xforms:send submission="post-crossref"/>
@@ -204,7 +204,7 @@ BIND (<URI> as ?concept)
 				<xforms:message ev:event="xforms-submit-error" level="modal">Error writing or posting /tmp/crossref.xml to the Crossref API.</xforms:message>
 				
 				<xforms:action ev:event="xforms-submit-done">
-					<xforms:action xxforms:iterate="instance('sparqlResponse')//res:result[not(res:binding[@name = 'doi'])]">
+					<xforms:action xxf:iterate="instance('sparqlResponse')//res:result[not(res:binding[@name = 'doi'])]">
 						<xforms:setvalue ref="instance('control-instance')/uri" value="context()/res:binding[@name = 'editor']/res:uri"/>
 						<xforms:setvalue ref="instance('control-instance')/id" value="tokenize(instance('control-instance')/uri, '/')[last()]"/>
 						<xforms:setvalue ref="instance('control-instance')/doi"

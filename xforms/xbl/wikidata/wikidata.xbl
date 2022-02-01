@@ -1,5 +1,5 @@
 <xbl:xbl xmlns="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:xxbl="http://orbeon.org/oxf/xml/xbl" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+	xmlns:xxf="http://orbeon.org/oxf/xml/xforms" xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:xxbl="http://orbeon.org/oxf/xml/xbl" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
 	xmlns:nomisma="https://github.com/nomisma">
 	<xbl:binding id="nomisma-wikidata" element="nomisma|wikidata">
@@ -8,7 +8,7 @@
 				<xbl:content includes="xforms|label,xforms|help,xforms|hint,xforms|alert"/>
 				<xforms:group xxbl:scope="inner">
 					<xforms:var name="binding" as="node()?">
-						<xxforms:sequence select="." xxbl:scope="outer"/>
+						<xxf:sequence select="." xxbl:scope="outer"/>
 					</xforms:var>
 
 					<xforms:group ref="$binding">
@@ -18,10 +18,10 @@
 						<xforms:trigger appearance="minimal">
 							<xforms:label><span class="glyphicon glyphicon-search"/>Wikidata</xforms:label>
 							<xforms:action ev:event="DOMActivate">
-								<xxforms:show dialog="import-wikidata-dialog"/>
+								<xxf:show dialog="import-wikidata-dialog"/>
 							</xforms:action>
 						</xforms:trigger>
-						<xxforms:dialog id="import-wikidata-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
+						<xxf:dialog id="import-wikidata-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
 							<xforms:label>Import Data from Wikidata</xforms:label>
 							<div>
 								<xforms:input ref="instance('control-instance')/wiki-labels">
@@ -78,7 +78,7 @@
 															$dbpedia-uri), ''))"/>
 
 														<!-- import new labels, but only ones that follow the two-digit ISO standard -->
-														<xforms:action xxforms:iterate="instance('wikidata')//entity/labels/label[string-length(@language) = 2]"
+														<xforms:action xxf:iterate="instance('wikidata')//entity/labels/label[string-length(@language) = 2]"
 															if="instance('control-instance')/wiki-labels=true()">
 															<xforms:var name="lang" select="data(context()/@language)"/>
 															<xforms:var name="label" select="data(context()/@value)"/>
@@ -87,7 +87,7 @@
 														</xforms:action>
 
 														<!-- iterate through claims with matching properties to link to external vocabulary systems -->
-														<xforms:action xxforms:iterate="instance('wikidata')//entity/claims/property[@id='P214' or @id='P227' or @id='P213' or @id='P268' or @id='P269'
+														<xforms:action xxf:iterate="instance('wikidata')//entity/claims/property[@id='P214' or @id='P227' or @id='P213' or @id='P268' or @id='P269'
 															or @id='P646' or @id='P245' or @id='P1014' or @id='P1566' or @id='P1667' or @id='P1900']" if="instance('control-instance')/wiki-links=true()">
 															<xforms:var name="property" select="data(context()/@id)"/>
 															<xforms:var name="id" select="replace(data(context()/descendant::mainsnak[1]/datavalue/@value), ' ', '')"/>
@@ -130,7 +130,7 @@
 												</xforms:action>
 
 												<!-- close dialog -->
-												<xxforms:hide dialog="import-wikidata-dialog"/>
+												<xxf:hide dialog="import-wikidata-dialog"/>
 											</xforms:action>
 										</xforms:action>
 									</xforms:action>
@@ -140,7 +140,7 @@
 								<div class="alert alert-warning" role="alert" style="margin-top:10px"><b><span class="glyphicon glyphicon-exclamation-sign"/>Warning:</b> Wikipedia URL is not
 									valid.</div>
 							</xforms:group>
-						</xxforms:dialog>
+						</xxf:dialog>
 					</xforms:group>
 
 					<!-- ***************** MODEL ***************-->
@@ -179,11 +179,11 @@
 							</properties>
 						</xforms:instance>
 
-						<xforms:instance id="lat-template" xxforms:exclude-result-prefixes="#all">
+						<xforms:instance id="lat-template" xxf:exclude-result-prefixes="#all">
 							<geo:lat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal"/>
 						</xforms:instance>
 
-						<xforms:instance id="long-template" xxforms:exclude-result-prefixes="#all">
+						<xforms:instance id="long-template" xxf:exclude-result-prefixes="#all">
 							<geo:long rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal"/>
 						</xforms:instance>
 

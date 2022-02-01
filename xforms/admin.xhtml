@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxf="http://orbeon.org/oxf/xml/xforms" xmlns:xi="http://www.w3.org/2001/XInclude"
 	xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:nm="http://nomisma.org/id/" xmlns:owl="http://www.w3.org/2002/07/owl#"
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2008/05/skos#" xmlns:foaf="http://xmlns.com/foaf/0.1/">
 	<head>
@@ -14,11 +14,11 @@
 		<link rel="stylesheet" href="/apps/nomisma/xforms/css/style.css" />
 
 		<xforms:model>
-			<xforms:instance id="rdf" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="rdf" xxf:exclude-result-prefixes="#all">
 				<rdf:RDF/>
 			</xforms:instance>
 
-			<xforms:instance id="config" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="config" xxf:exclude-result-prefixes="#all">
 				<xi:include href="../config.xml"/>
 			</xforms:instance>
 
@@ -106,23 +106,23 @@ DELETE {?s ?p ?o} WHERE {
 			</xforms:instance>
 
 			<!-- Solr instances -->
-			<xforms:instance id="addIndex" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="addIndex" xxf:exclude-result-prefixes="#all">
 				<add xmlns=""></add>
 			</xforms:instance>
-			<xforms:instance id="sendCommit" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="sendCommit" xxf:exclude-result-prefixes="#all">
 				<commit></commit>
 			</xforms:instance>
-			<xforms:instance id="deleteId" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="deleteId" xxf:exclude-result-prefixes="#all">
 				<delete xmlns="">
 					<id></id>
 				</delete>
 			</xforms:instance>
-			<xforms:instance id="deleteAll" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="deleteAll" xxf:exclude-result-prefixes="#all">
 				<delete xmlns="">
 					<query>*:*</query>
 				</delete>
 			</xforms:instance>
-			<xforms:instance id="optimizeIndex" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="optimizeIndex" xxf:exclude-result-prefixes="#all">
 				<optimize></optimize>
 			</xforms:instance>
 
@@ -567,7 +567,7 @@ DELETE {?s ?p ?o} WHERE {
 					<xforms:setvalue ref="instance('delete-config')/delete/url"
 						value="concat(instance('control-instance')/concept_path, instance('control-instance')/id, '.rdf')"/>
 					<xforms:insert nodeset="instance('dump')"
-						origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/delete-id.xpl', 'configuration', instance('delete-config'), 'data')"/>
+						origin="xxf:call-xpl('oxf:/apps/nomisma/xpl/xforms/delete-id.xpl', 'configuration', instance('delete-config'), 'data')"/>
 					<xforms:setvalue ref="instance('control-instance')/status">ID successfully deleted from system.</xforms:setvalue>
 					<!-- reset the search -->
 					<xforms:setvalue ref="instance('control-instance')/page">1</xforms:setvalue>

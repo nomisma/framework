@@ -1,5 +1,5 @@
 <xbl:xbl xmlns="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xxf="http://orbeon.org/oxf/xml/xforms" xmlns:xbl="http://www.w3.org/ns/xbl"
 	xmlns:xxbl="http://orbeon.org/oxf/xml/xbl" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:nomisma="https://github.com/nomisma" xmlns:srw="http://www.loc.gov/zing/srw/"
 	xmlns:viaf="http://viaf.org/viaf/terms#">
@@ -9,7 +9,7 @@
 				<xbl:content includes="xforms|label,xforms|help,xforms|hint,xforms|alert"/>
 				<xforms:group xxbl:scope="inner">
 					<xforms:var name="binding" as="node()?">
-						<xxforms:sequence select="." xxbl:scope="outer"/>
+						<xxf:sequence select="." xxbl:scope="outer"/>
 					</xforms:var>
 					<xforms:var name="type" select="$binding/name()"/>
 					<xforms:trigger appearance="minimal">
@@ -17,11 +17,11 @@
 						<xforms:action ev:event="DOMActivate">
 							<xforms:setvalue ref="instance('control-instance')/viaf-field"
 								value="if ($type='foaf:Person') then 'local.personalNames' else 'local.corporateNames'"/>
-							<xxforms:show dialog="viaf-dialog"/>
+							<xxf:show dialog="viaf-dialog"/>
 						</xforms:action>
 					</xforms:trigger>
 
-					<xxforms:dialog id="viaf-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
+					<xxf:dialog id="viaf-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
 						<xforms:label>Query VIAF</xforms:label>
 						<div>
 							<xforms:input ref="instance('control-instance')/viaf-query">
@@ -72,7 +72,7 @@
 							<xforms:trigger>
 								<xforms:label>Add Selected</xforms:label>
 								<xforms:action ev:event="DOMActivate">
-									<xforms:action xxforms:iterate="instance('viaf-options')/option[@select=true()]">
+									<xforms:action xxf:iterate="instance('viaf-options')/option[@select=true()]">
 										<xforms:var name="resource" select="context()/@link"/>
 										<xforms:setvalue ref="instance('control-instance')/viaf-id" value="$resource"/>
 										<xforms:action if="not($binding/skos:exactMatch[@rdf:resource=$resource])">
@@ -82,7 +82,7 @@
 										<xforms:send submission="get-viaf-rdf"/>
 										<!-- process owl:sameAs links provided by VIAF -->
 										<xforms:action ev:event="xforms-submit-done"
-											xxforms:iterate="instance('viaf-rdf')/rdf:Description[@rdf:about=instance('control-instance')/viaf-id]/owl:sameAs">
+											xxf:iterate="instance('viaf-rdf')/rdf:Description[@rdf:about=instance('control-instance')/viaf-id]/owl:sameAs">
 											<xforms:var name="resource" select="context()/@rdf:resource"/>
 											<xforms:action if="not($binding/skos:exactMatch[@rdf:resource=$resource])">
 												<xforms:insert context="$binding" nodeset="./child::node()[last()]"
@@ -91,11 +91,11 @@
 											</xforms:action>
 										</xforms:action>
 									</xforms:action>
-									<xxforms:hide dialog="viaf-dialog"/>
+									<xxf:hide dialog="viaf-dialog"/>
 								</xforms:action>
 							</xforms:trigger>
 						</xforms:group>
-					</xxforms:dialog>
+					</xxf:dialog>
 					<!-- ***************** MODEL ***************-->
 					<xforms:model id="viaf-model">
 						<!-- instances -->
@@ -150,7 +150,7 @@
 								<xforms:setvalue if="$total &gt; 100" ref="instance('control-instance')/search-results"
 									value="concat('Displaying first 100 of ', $total, ' result(s).')"/>
 
-								<xforms:action xxforms:iterate="instance('viaf-response')//srw:record">
+								<xforms:action xxf:iterate="instance('viaf-response')//srw:record">
 									<xforms:var name="link" select="concat('http://viaf.org/viaf/', descendant::viaf:viafID)"/>
 									<xforms:var name="title" select="descendant::viaf:data[viaf:sources/viaf:s='LC']/viaf:text"/>
 									<xforms:insert context="instance('viaf-options')" nodeset="./child::node()[last()]"

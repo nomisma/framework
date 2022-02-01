@@ -1,5 +1,5 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ev="http://www.w3.org/2001/xml-events"
-	xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:xi="http://www.w3.org/2001/XInclude">
+	xmlns:xxf="http://orbeon.org/oxf/xml/xforms" xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:xi="http://www.w3.org/2001/XInclude">
 	<head>
 		<title>Nomisma: Sign Up</title>
 		<link rel="stylesheet" href="/fr/style/bootstrap/css/bootstrap.css" type="text/css" />
@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="/apps/nomisma/xforms/css/style.css" />
 
 		<xforms:model>
-			<xforms:instance id="form" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="form" xxf:exclude-result-prefixes="#all">
 				<form xmlns="">
 					<name></name>
 					<email></email>
@@ -19,7 +19,7 @@
 				</form>
 			</xforms:instance>
 
-			<xforms:instance id="login" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="login" xxf:exclude-result-prefixes="#all">
 				<login xmlns="">
 					<email></email>
 					<password></password>
@@ -35,7 +35,7 @@
 				</controls>
 			</xforms:instance>
 
-			<xforms:instance id="config" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="config" xxf:exclude-result-prefixes="#all">
 				<xi:include href="../config.xml"></xi:include>
 			</xforms:instance>
 
@@ -47,7 +47,7 @@
 				</config>
 			</xforms:instance>
 
-			<xforms:instance id="email" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="email" xxf:exclude-result-prefixes="#all">
 				<email xmlns=""></email>
 			</xforms:instance>
 			
@@ -94,9 +94,9 @@
 
 			<!-- **************** MODEL-CONSTRUCT-DONE ********************** -->
 			<xforms:action ev:event="xforms-model-construct-done">
-				<xforms:action if="string(xxforms:get-request-parameter('auth'))">
-					<xforms:setvalue ref="instance('load-config')/url" value="concat('oxf:/apps/nomisma/auth/', xxforms:get-request-parameter('auth'), '.xml')"></xforms:setvalue>
-					<xforms:insert nodeset="instance('email')" origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/load-auth.xpl', 'file', instance('load-config'), 'data')"></xforms:insert>
+				<xforms:action if="string(xxf:get-request-parameter('auth'))">
+					<xforms:setvalue ref="instance('load-config')/url" value="concat('oxf:/apps/nomisma/auth/', xxf:get-request-parameter('auth'), '.xml')"></xforms:setvalue>
+					<xforms:insert nodeset="instance('email')" origin="xxf:call-xpl('oxf:/apps/nomisma/xpl/xforms/load-auth.xpl', 'file', instance('load-config'), 'data')"></xforms:insert>
 
 					<!-- if loading the XML does not result in an error -->
 					<xforms:action if="instance('email')/local-name() = 'email'">
@@ -165,7 +165,7 @@
 									<xforms:setvalue ref="instance('email-input')/to/email" value="instance('config')/admin_email_to"/>
 									<xforms:setvalue ref="instance('email-input')/to/name" value="instance('config')/admin_email_to"/>
 									<xforms:insert nodeset="instance('dump')"
-										origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/send-email.xpl', 'email-input', instance('email-input'), 'data')"/>-->
+										origin="xxf:call-xpl('oxf:/apps/nomisma/xpl/xforms/send-email.xpl', 'email-input', instance('email-input'), 'data')"/>-->
 									<!-- toggle success case -->
 									<xforms:toggle case="success"/>
 								</xforms:action>

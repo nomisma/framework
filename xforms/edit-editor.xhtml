@@ -1,5 +1,5 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxforms="http://orbeon.org/oxf/xml/xforms"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxf="http://orbeon.org/oxf/xml/xforms"
 	xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:dcterms="http://purl.org/dc/terms/"
 	xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:org="http://www.w3.org/ns/org#" xmlns:prov="http://www.w3.org/ns/prov#">
@@ -16,7 +16,7 @@
 
 		<!-- model -->
 		<xforms:model>
-			<xforms:instance id="doc" xxforms:exclude-result-prefixes="#default xhtml xforms xs ev xxforms fr res xi nomisma atom">
+			<xforms:instance id="doc" xxf:exclude-result-prefixes="#default xhtml xforms xs ev xxforms fr res xi nomisma atom">
 				<rdf:RDF xmlns="" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/" xmlns:nmo="http://nomisma.org/ontology#"
 					xmlns:prov="http://www.w3.org/ns/prov#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 					xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
@@ -30,11 +30,11 @@
 				</rdf:RDF>
 			</xforms:instance>
 
-			<xforms:instance id="config" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="config" xxf:exclude-result-prefixes="#all">
 				<xi:include href="../config.xml"/>
 			</xforms:instance>
 
-			<xforms:instance id="control-instance" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="control-instance" xxf:exclude-result-prefixes="#all">
 				<controls xmlns="">
 					<id></id>
 					<idValid>false</idValid>
@@ -89,26 +89,26 @@
 
 			<!-- ******** RDF PROPERTY TEMPLATES ******** -->
 			<!-- skos -->
-			<xforms:instance id="exactMatch-template" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="exactMatch-template" xxf:exclude-result-prefixes="#all">
 				<skos:exactMatch rdf:resource=""/>
 			</xforms:instance>
 
-			<xforms:instance id="memberOf-template" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="memberOf-template" xxf:exclude-result-prefixes="#all">
 				<org:memberOf rdf:resource=""/>
 			</xforms:instance>
 
 			<!-- provenance -->
-			<xforms:instance id="changeNote-template" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="changeNote-template" xxf:exclude-result-prefixes="#all">
 				<skos:changeNote rdf:resource=""/>
 			</xforms:instance>
 
-			<xforms:instance id="provenance-template" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="provenance-template" xxf:exclude-result-prefixes="#all">
 				<dcterms:ProvenanceStatement rdf:about="">
 					<foaf:topic rdf:resource=""/>
 				</dcterms:ProvenanceStatement>
 			</xforms:instance>
 
-			<xforms:instance id="activity-template" xxforms:exclude-result-prefixes="#all">
+			<xforms:instance id="activity-template" xxf:exclude-result-prefixes="#all">
 				<prov:Activity>
 					<prov:atTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"/>
 					<prov:wasAssociatedWith rdf:resource=""/>
@@ -240,11 +240,11 @@ BIND (<URI> as ?concept)
 			<!-- **************** MODEL-CONSTRUCT-DONE ********************** -->
 			<xforms:action ev:event="xforms-model-construct-done">
 				<!-- set username -->
-				<xforms:setvalue ref="instance('control-instance')/username" value="xxforms:get-remote-user()"/>
+				<xforms:setvalue ref="instance('control-instance')/username" value="xxf:get-remote-user()"/>
 
 				<!-- load RDF file from a conceptScheme dependent on the request parameter used -->
-				<xforms:action if="string(xxforms:get-request-parameter('id'))">
-					<xforms:setvalue ref="instance('control-instance')/id" value="xxforms:get-request-parameter('id')"/>
+				<xforms:action if="string(xxf:get-request-parameter('id'))">
+					<xforms:setvalue ref="instance('control-instance')/id" value="xxf:get-request-parameter('id')"/>
 					<xforms:setvalue ref="instance('control-instance')/conceptScheme">editor</xforms:setvalue>
 					<xforms:send submission="load-rdf"/>
 				</xforms:action>
@@ -369,7 +369,7 @@ BIND (<URI> as ?concept)
 														<xforms:setvalue ref="instance('save-config')/url"
 															value="concat(instance('control-instance')/concept_path,  instance('control-instance')/id, '.rdf')"/>
 														<xforms:insert nodeset="instance('dump')"
-															origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('doc'), instance('save-config')), 'data')"/>
+															origin="xxf:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('doc'), instance('save-config')), 'data')"/>
 
 														<!-- delete graph from triplestore, then repost updates -->
 														<xforms:setvalue ref="instance('sparqlUpdate')"
@@ -382,7 +382,7 @@ BIND (<URI> as ?concept)
 															value="digest(normalize-space(saxon:serialize(instance('doc'), 'xml')), 'MD5', 'hex')"/>
 
 														<!-- set session id-->
-														<xforms:setvalue ref="instance('control-instance')/session-id" value="xxforms:document-id()"/>
+														<xforms:setvalue ref="instance('control-instance')/session-id" value="xxf:document-id()"/>
 													</xforms:action>
 												</xforms:action>
 
@@ -392,7 +392,7 @@ BIND (<URI> as ?concept)
 													<xforms:setvalue ref="instance('save-config')/url"
 														value="concat(instance('control-instance')/concept_path,  instance('control-instance')/id, '.rdf')"/>
 													<xforms:insert nodeset="instance('dump')"
-														origin="xxforms:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('doc'), instance('save-config')), 'data')"/>
+														origin="xxf:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('doc'), instance('save-config')), 'data')"/>
 
 													<!-- delete graph from triplestore, then repost updates -->
 													<xforms:setvalue ref="instance('sparqlUpdate')"
@@ -403,7 +403,7 @@ BIND (<URI> as ?concept)
 													<!-- set new-id to false -->
 													<xforms:setvalue ref="instance('control-instance')/new-id" value="false()"/>
 													<!-- set session id to prevent Modify events from being inserted after the initial save -->
-													<xforms:setvalue ref="instance('control-instance')/session-id" value="xxforms:document-id()"/>
+													<xforms:setvalue ref="instance('control-instance')/session-id" value="xxf:document-id()"/>
 													<!-- set new hash -->
 													<xforms:setvalue ref="instance('control-instance')/content_before_hash"
 														value="digest(normalize-space(saxon:serialize(instance('doc'), 'xml')), 'MD5', 'hex')"/>
