@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import sys
 from rdflib import Graph, plugin
 from rdflib.serializer import Serializer

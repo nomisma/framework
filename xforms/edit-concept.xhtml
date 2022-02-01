@@ -484,14 +484,14 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 					<xforms:bind nodeset="crm:P165i_is_incorporated_in">
 						<xforms:bind nodeset="crmdig:D1_Digital_Object">
 							<xforms:bind nodeset="@rdf:about" required="true()" type="xs:anyURI"
-								constraint="matches(., 'https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$')"/>
+								constraint="matches(., '^https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$')"/>
 						</xforms:bind>
 					</xforms:bind>
 					<xforms:bind nodeset="crm:P190_has_symbolic_content" required="true()" constraint="string-length(normalize-space(.)) = 1"/>
 
 					<!-- @rdf:resource -->
 					<xforms:bind nodeset="//@rdf:resource" required="true()" type="xs:anyURI"
-						constraint="matches(., 'https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$')"/>
+						constraint="matches(., '^https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$')"/>
 				</xforms:bind>
 				<!-- geographic -->
 				<xforms:bind nodeset="geo:SpatialThing" constraint="(geo:lat and geo:long) or osgeo:asGeoJSON">
