@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
 import sys
+import xml.etree.ElementTree as ET
 from rdflib import Graph, plugin
 from rdflib.serializer import Serializer
 
-#get argument
-format = sys.argv[1]
-inFile = "file:///usr/local/projects/nomisma/dump/nomisma.org.rdf"
+
+url = sys.argv[1]
+format = sys.argv[2]
 
 graph = Graph()
 
-print("Parsing RDF/XML")
-graph.parse(inFile, format='application/rdf+xml')
-print("Parsing finished")
+graph.parse(url, format='application/rdf+xml')
 
 context = {"bio": "http://purl.org/vocab/bio/0.1/",
 "crm": "http://www.cidoc-crm.org/cidoc-crm/",
@@ -39,12 +38,8 @@ context = {"bio": "http://purl.org/vocab/bio/0.1/",
 "wordnet": "http://ontologi.es/WordNet/class/",
 "xsd": "http://www.w3.org/2001/XMLSchema#"}
 
-#conditional to handle alternate serializations
-if format == 'json':
-    print("Serializing to JSON-LD")
-    graph.serialize(destination="file:///usr/local/projects/nomisma/dump/nomisma.org.jsonld", context=context, format='json-ld', indent=4)
+
+if format == 'jsonld':
+    print(graph.serialize(format='json-ld', context=context, indent=4))
 elif format == 'ttl':
-    print("Serializing to TTL")
-    graph.serialize(destination="file:///usr/local/projects/nomisma/dump/nomisma.org.ttl", format='text/turtle')
-else: 
-    print("Invalid format\n")
+    print(graph.serialize(format='text/turtle'))
