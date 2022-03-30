@@ -51,10 +51,10 @@
 				<title>nomisma.org: Browse</title>
 				<meta name="viewport" content="width=device-width, initial-scale=1"/>
 				<!-- bootstrap -->
-				<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"/>
+				<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"/>
 				<script type="text/javascript" src="{$display_path}ui/javascript/result_functions.js"/>
-				<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
-				<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
+				<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+				<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
 				<link rel="stylesheet" href="{$display_path}ui/css/style.css"/>
 				<link rel="alternate" type="application/atom+xml" href="{$feed_url}"/>
 				<!-- opensearch compliance -->

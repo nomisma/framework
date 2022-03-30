@@ -8,10 +8,10 @@
 			<head>
 				<title>nomisma.org</title>
 				<meta name="viewport" content="width=device-width, initial-scale=1"/>
-				<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"/>
+				<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"/>
 				<!-- bootstrap -->
-				<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
-				<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
+				<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+				<script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
 				<link rel="stylesheet" href="{$display_path}ui/css/style.css"/>
 				<!-- google analytics -->
 				<xsl:if test="string(//config/google_analytics)">
@@ -95,7 +95,7 @@
 
 						<div class="media">
 							<a href="http://numismatics.org" title="http://numismatics.org" rel="nofollow">
-								<img src="http://nomisma.org/ui/images/ans_large.png" alt="http://numismatics.org"/>
+								<img src="https://nomisma.org/ui/images/ans_large.png" alt="http://numismatics.org"/>
 							</a>
 						</div>
 						<div class="media">
@@ -113,12 +113,12 @@
 								</a>-->
 						<div class="media">
 							<a href="http://finds.org.uk/" title="http://finds.org.uk/" rel="nofollow">
-								<img src="http://finds.org.uk/images/logos/pas.gif" alt="http://finds.org.uk/"/>
+								<img src="https://finds.org.uk/images/logos/pas.gif" alt="http://finds.org.uk/"/>
 							</a>
 						</div>
 						<div class="media">
 							<a href="http://www.britishmuseum.org/" title="http://www.britishmuseum.org/" rel="nofollow">
-								<img src="http://finds.org.uk/images/logos/bm_logo.png" alt="http://www.britishmuseum.org/"/>
+								<img src="https://finds.org.uk/images/logos/bm_logo.png" alt="http://www.britishmuseum.org/"/>
 							</a>
 						</div>
 						<div class="media">
@@ -128,7 +128,7 @@
 						</div>
 						<div class="media">
 							<a href="http://www.ahrc.ac.uk/" title="http://www.ahrc.ac.uk/" rel="nofollow">
-								<img src="http://archaeologydataservice.ac.uk/images/logos/org34.png" alt="http://www.ahrc.ac.uk/"/>
+								<img src="https://archaeologydataservice.ac.uk/images/logos/org34.png" alt="http://www.ahrc.ac.uk/"/>
 							</a>
 						</div>
 						<div class="media">

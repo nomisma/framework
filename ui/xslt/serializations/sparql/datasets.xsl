@@ -14,10 +14,10 @@
 				<title>nomisma.org: Datasets</title>
 				<meta name="viewport" content="width=device-width, initial-scale=1"/>
 				<!-- bootstrap -->
-				<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"/>
+				<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"/>
 				<script type="text/javascript" src="{$display_path}ui/javascript/result_functions.js"/>
-				<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
-				<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
+				<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+				<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
 				<link rel="stylesheet" href="{$display_path}ui/css/style.css"/>
 				<!-- google analytics -->
 				<xsl:if test="string(//config/google_analytics)">
@@ -112,22 +112,22 @@
 								<xsl:when test="matches($license, '^https?://opendatacommons.org/licenses/by/')">ODC-by</xsl:when>
 								<xsl:when test="matches($license, '^https?://opendatacommons.org/licenses/pddl/')">ODC-PDDL</xsl:when>
 								<xsl:when test="matches($license, '^https?://creativecommons.org/licenses/by/')">
-									<img src="http://i.creativecommons.org/l/by/3.0/88x31.png" alt="CC BY" title="CC BY"/>
+									<img src="https://i.creativecommons.org/l/by/3.0/88x31.png" alt="CC BY" title="CC BY"/>
 								</xsl:when>
 								<xsl:when test="matches($license, '^https?://creativecommons.org/licenses/by-nd/')">
-									<img src="http://i.creativecommons.org/l/by-nd/3.0/88x31.png" alt="CC BY-ND" title="CC BY-ND"/>
+									<img src="https://i.creativecommons.org/l/by-nd/3.0/88x31.png" alt="CC BY-ND" title="CC BY-ND"/>
 								</xsl:when>
 								<xsl:when test="matches($license, '^https?://creativecommons.org/licenses/by-nc-sa/')">
-									<img src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" alt="CC BY-NC-SA" title="CC BY-NC-SA"/>
+									<img src="https://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" alt="CC BY-NC-SA" title="CC BY-NC-SA"/>
 								</xsl:when>
 								<xsl:when test="matches($license, '^https?://creativecommons.org/licenses/by-sa/')">
-									<img src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" alt="CC BY-SA" title="CC BY-SA"/>
+									<img src="https://i.creativecommons.org/l/by-sa/3.0/88x31.png" alt="CC BY-SA" title="CC BY-SA"/>
 								</xsl:when>
 								<xsl:when test="matches($license, '^https?://creativecommons.org/licenses/by-nc/')">
-									<img src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" alt="CC BY-NC" title="CC BY-NC"/>
+									<img src="https://i.creativecommons.org/l/by-nc/3.0/88x31.png" alt="CC BY-NC" title="CC BY-NC"/>
 								</xsl:when>
 								<xsl:when test="matches($license, '^https?://creativecommons.org/licenses/by-nc-nd/')">
-									<img src="http://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png" alt="CC BY-NC-ND" title="CC BY-NC-ND"/>
+									<img src="https://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png" alt="CC BY-NC-ND" title="CC BY-NC-ND"/>
 								</xsl:when>
 								<xsl:otherwise>
 									<xsl:value-of select="res:binding[@name='license']/res:uri"/>

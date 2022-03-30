@@ -31,7 +31,7 @@
 			<head>
 				<title id="{$id}">nomisma.org: <xsl:value-of select="$id"/> (map)</title>
 				<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-				<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"/>
+				<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"/>
 
 				<xsl:if test="/content/config/classes/class[text()=$type]/@findspots = true() or /content/config/classes/class[text()=$type]/@mints = true()">
 					<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0/dist/leaflet.css"/>

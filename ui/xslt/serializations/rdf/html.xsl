@@ -81,10 +81,10 @@
 			<head>
 				<title id="{$id}">nomisma.org: <xsl:value-of select="$id"/></title>
 				<meta name="viewport" content="width=device-width, initial-scale=1"/>
-				<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"/>
+				<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"/>
 				<!-- bootstrap -->
-				<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
-				<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
+				<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+				<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
 
 				<!-- include geographic js if there are mints or findspots to render -->
 				<xsl:if test="$hasMints = true() or $hasFindspots = true()">

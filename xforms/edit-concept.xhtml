@@ -14,15 +14,15 @@
 		<link rel="stylesheet" href="/fr/style/bootstrap/css/bootstrap.css" type="text/css" />
 		<link rel="stylesheet" href="/fr/style/form-runner-bootstrap-override.css" type="text/css" />
 
-		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-		<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+		<script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		<link rel="shortcut icon" href="/ops/images/orbeon-icon-16.ico" />
 		<link rel="icon" href="/ops/images/orbeon-icon-16.png" type="image/png" />
 		<link rel="stylesheet" href="/apps/nomisma/xforms/css/style.css" />
 
 		<!-- mapping -->
-		<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"></script>
-		<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.9&amp;sensor=false"></script>
+		<script type="text/javascript" src="https://www.openlayers.org/api/OpenLayers.js"></script>
+		<script type="text/javascript" src="https://maps.google.com/maps/api/js?v=3.9&amp;sensor=false"></script>
 		<script type="text/javascript" src="/apps/nomisma/xforms/javascript/georeference.js"></script>
 
 		<!-- model -->
@@ -1302,18 +1302,22 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 												<!-- perform CRUD for new IDs -->
 												<xforms:action if="instance('control-instance')/new-id = true()">
 													<!-- save file to the filesystem -->
+													
+													
 													<xforms:setvalue ref="instance('save-config')/url"
 														value="concat(instance('control-instance')/concept_path,  instance('control-instance')/id, '.rdf')"/>
 													<xforms:insert nodeset="instance('dump')"
 														origin="xxf:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('doc'), instance('save-config')), 'data')"/>
 
-													<!-- delete graph from triplestore, then repost updates -->
+													
+
+													<!--<!-\- delete graph from triplestore, then repost updates -\->
 													<xforms:setvalue ref="instance('sparqlUpdate')"
 														value="replace(instance('sparqlUpdate-template'), 'URI', instance('doc')/*[1]/@rdf:about)"/>
 													<xforms:send submission="delete-graph"/>
 													<xforms:send submission="post-new"/>
 
-													<!-- post to Solr, if it isn't deprecated. otherwise delete from Solr -->
+													<!-\- post to Solr, if it isn't deprecated. otherwise delete from Solr -\->
 													<xforms:action if="instance('doc')/*[1]/dcterms:isReplacedBy">
 														<xforms:setvalue ref="instance('deleteId')/id" value="instance('control-instance')/id"/>
 														<xforms:send submission="delete-id-from-solr"/>
@@ -1324,13 +1328,13 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 														<xforms:send submission="post-solr-doc"/>
 													</xforms:action>
 
-													<!-- set new-id to false -->
+													<!-\- set new-id to false -\->
 													<xforms:setvalue ref="instance('control-instance')/new-id" value="false()"/>
-													<!-- set session id to prevent Modify events from being inserted after the initial save -->
+													<!-\- set session id to prevent Modify events from being inserted after the initial save -\->
 													<xforms:setvalue ref="instance('control-instance')/session-id" value="xxf:document-id()"/>
-													<!-- set new hash -->
+													<!-\- set new hash -\->
 													<xforms:setvalue ref="instance('control-instance')/content_before_hash"
-														value="digest(normalize-space(saxon:serialize(instance('doc'), 'xml')), 'MD5', 'hex')"/>
+														value="digest(normalize-space(saxon:serialize(instance('doc'), 'xml')), 'MD5', 'hex')"/>-->
 												</xforms:action>
 											</xforms:action>
 										</xforms:trigger>
@@ -2796,6 +2800,6 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 				</div>
 			</div>
 		</div>
-		<!--<fr:xforms-inspector/>-->
+		<fr:xforms-inspector/>
 	</body>
 </html>

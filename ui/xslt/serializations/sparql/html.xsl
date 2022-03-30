@@ -40,17 +40,16 @@
 				<title>nomisma.org: SPARQL Results</title>
 				<meta name="viewport" content="width=device-width, initial-scale=1"/>
 				<!-- bootstrap -->
-				<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"/>
+				<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"/>
 				<script type="text/javascript" src="{$display_path}ui/javascript/result_functions.js"/>
-				<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
-				<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
+				<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+				<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
 				<link rel="stylesheet" href="{$display_path}ui/css/style.css"/>
 				<xsl:if test="$hasGeo = true()">
 					<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0/dist/leaflet.css"/>
 					<script type="text/javascript" src="https://unpkg.com/leaflet@1.0.0/dist/leaflet.js"/>
 					<link rel="stylesheet" href="{$display_path}ui/css/MarkerCluster.css"/>
-					<link rel="stylesheet" href="{$display_path}ui/css/MarkerCluster.Default.css"/>
-					<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"/>
+					<link rel="stylesheet" href="{$display_path}ui/css/MarkerCluster.Default.css"/>					
 					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet.markercluster.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet.ajax.min.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/sparql_map_functions.js"/>
