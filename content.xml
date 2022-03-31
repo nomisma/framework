@@ -214,7 +214,8 @@ SELECT (AVG(xsd:decimal(?diameter)) AS ?average) WHERE {
 			<div id="e8">
 				<h3>All findspots for RIC Augustus 1A</h3>
 				<p>This will query all coins with individual finds and all coins linked to hoards or hoards with contents containing Augustus 1A. This query
-					makes use of the current Nomisma findspot data model (implemented April 2020). See <a href="http://nomisma.org/documentation/contribute">documentation</a> for further details.</p>
+					makes use of the current Nomisma findspot data model (implemented April 2020). See <a href="http://nomisma.org/documentation/contribute"
+						>documentation</a> for further details.</p>
 				<pre><![CDATA[PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcmitype:	<http://purl.org/dc/dcmitype/>
 PREFIX dcterms:  <http://purl.org/dc/terms/>
@@ -525,6 +526,8 @@ SELECT ?coin ?type ?date ?place WHERE {
 		<h1>Documentation</h1>
 		<p>This page contains documentation for using web services provided by Nomisma and how to access machine readable serializations through REST and
 			content negotiation.</p>
+		<p>Note that all APIs, including the SPARQL endpoint, are also accessible securely through https URLs. HTTP URLs are not automatically forwarded to
+			HTTPS due to unpredictable downstream effects by Nomisma data and web service consumers.</p>
 		<ul>
 			<li>
 				<a href="#apis">APIs</a>
