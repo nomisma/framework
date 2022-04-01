@@ -782,7 +782,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 
 											<!-- set the concept_path based on conceptScheme -->
 											<xforms:setvalue ref="instance('control-instance')/concept_path"
-												value="concat(instance('config')/data_path, '/', instance('control-instance')/conceptScheme, '/')"/>
+												value="concat('file:', instance('config')/absolute_data_path, '/', instance('control-instance')/conceptScheme, '/')"/>
 
 											<!-- load spreadsheet JSON metadata -->
 											<xforms:setvalue ref="instance('control-instance')/sheets_api_url"
@@ -2031,7 +2031,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 										<xforms:send submission="post-rdf"/>
 										<!-- save the spreadsheet RDF to disk -->
 										<xforms:setvalue ref="instance('save-config')/url"
-											value="concat(instance('config')/data_path, '/spreadsheets/spreadsheets.rdf')"/>
+											value="concat('file:', instance('config')/absolute_data_path, '/spreadsheets/spreadsheets.rdf')"/>
 										<xforms:insert nodeset="instance('dump')"
 											origin="xxf:call-xpl('oxf:/apps/nomisma/xpl/xforms/save-id.xpl', ('doc', 'configuration'), (instance('spreadsheet-rdf'), instance('save-config')), 'data')"/>
 

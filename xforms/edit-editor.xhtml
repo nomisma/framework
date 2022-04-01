@@ -227,7 +227,7 @@ BIND (<URI> as ?concept)
 
 					<!-- set the concept_path based on conceptScheme -->
 					<xforms:setvalue ref="instance('control-instance')/concept_path"
-						value="concat(instance('config')/data_path, '/', instance('control-instance')/conceptScheme, '/')"/>
+						value="concat('file:', instance('config')/absolute_data_path, '/', instance('control-instance')/conceptScheme, '/')"/>
 
 					<!-- set URI -->
 					<xforms:setvalue ref="instance('control-instance')/uri"
@@ -309,7 +309,7 @@ BIND (<URI> as ?concept)
 										
 										<!-- set the concept_path based on conceptScheme -->
 										<xforms:setvalue ref="instance('control-instance')/concept_path"
-											value="concat(instance('config')/data_path, '/', instance('control-instance')/conceptScheme, '/')"/>
+											value="concat('file:', instance('config')/absolute_data_path, '/', instance('control-instance')/conceptScheme, '/')"/>
 										
 										<!-- set URI -->
 										<xforms:setvalue ref="instance('control-instance')/uri"

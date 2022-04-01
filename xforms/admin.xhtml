@@ -138,6 +138,10 @@ DELETE {?s ?p ?o} WHERE {
 					</delete>
 				</config>
 			</xforms:instance>
+			
+			<xforms:instance id="dump">
+				<dump xmlns=""></dump>
+			</xforms:instance>
 
 			<!-- ************* SPARQL SUBMISSIONS **********************-->
 			<xforms:submission id="delete-graph" action="{instance('config')/sparql_update}" ref="instance('sparqlUpdate')" serialization="text/plain"
@@ -388,7 +392,8 @@ DELETE {?s ?p ?o} WHERE {
 																<xforms:trigger appearance="minimal">
 																	<xforms:label value="concat(instance('config')/url, $conceptScheme, '/', $id)"/>
 																	<xforms:action ev:event="DOMActivate">
-																		<xforms:load show="new" resource="{instance('config')/url}{$conceptScheme}/{encode-for-uri($id)}"/>
+																		<xforms:load show="new"
+																			resource="{instance('config')/url}{$conceptScheme}/{encode-for-uri($id)}"/>
 																	</xforms:action>
 																</xforms:trigger>
 															</dd>
@@ -416,8 +421,8 @@ DELETE {?s ?p ?o} WHERE {
 																	value="concat('http://nomisma.org/', instance('control-instance')/conceptScheme, '/')"/>
 																<!-- set the concept_path based on conceptScheme -->
 																<xforms:setvalue ref="instance('control-instance')/concept_path"
-																	value="concat(instance('config')/data_path, '/', instance('control-instance')/conceptScheme, '/')"
-																/> <xforms:setvalue ref="instance('sparqlUpdate')"
+																	value="concat(instance('config')/data_path, '/', instance('control-instance')/conceptScheme, '/')"/>
+																<xforms:setvalue ref="instance('sparqlUpdate')"
 																	value="replace(instance('sparqlUpdate-templates')/query[@id='delete-id'], 'URI', concat(instance('control-instance')/conceptScheme_uri, $id))"/>
 																<xforms:send submission="delete-graph"/>
 																<!-- then get the current RDF/XML and post it -->
@@ -441,8 +446,8 @@ DELETE {?s ?p ?o} WHERE {
 																	value="concat('http://nomisma.org/', instance('control-instance')/conceptScheme, '/')"/>
 																<!-- set the concept_path based on conceptScheme -->
 																<xforms:setvalue ref="instance('control-instance')/concept_path"
-																	value="concat(instance('config')/data_path, '/', instance('control-instance')/conceptScheme, '/')"
-																/> <xforms:dispatch target="delete-id" name="fr-show"/>
+																	value="concat(instance('config')/data_path, '/', instance('control-instance')/conceptScheme, '/')"/>
+																<xforms:dispatch target="delete-id" name="fr-show"/>
 															</xforms:action>
 														</xforms:trigger>
 													</td>
@@ -524,7 +529,7 @@ DELETE {?s ?p ?o} WHERE {
 								</xforms:trigger>
 							</li>
 						</ul>
-					</div>					
+					</div>
 				</div>
 			</div>
 		</div>
@@ -597,6 +602,6 @@ DELETE {?s ?p ?o} WHERE {
 			<fr:negative-choice>
 				<fr:label>No</fr:label>
 			</fr:negative-choice>
-		</fr:alert-dialog>		
+		</fr:alert-dialog>
 	</body>
 </html>
