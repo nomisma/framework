@@ -4,26 +4,25 @@
   ****************************************
  */
 body{
-    background-color: #F8F8F8;
+    font-size: 16px;
+    background-color: #6e87cd;
 }
 .nav{
     margin-top: 10px;
 }
 .navbar{
     margin-bottom: 0;
+    border-bottom: 4px solid #254aa5;
 }
-/*
-  .navbar-brand {
-  background: url('../images/nomisma.png') no-repeat left center;
-  width:100%;
-  }
- */
-.row{
+.content{
     background-color: white;
 }
+.section{
+    margin-bottom: 25px;
+}
 .highlight{
-    background-color: #F7F7F9;
-    border: 1px solid #E1E1E8;
+    background-color: #F8F8F8;
+    border: 1px solid #e7e7e7;
     border-radius: 4px;
     margin-bottom: 14px;
     padding: 9px 14px;
@@ -35,8 +34,32 @@ body{
 .table-dl td{
     padding: 5px;
 }
-.section {
-    margin-bottom:20px;
+.card{
+    height: 320px;
+    margin: 15px;
+    padding: 15px;
+    background-color: #F8F8F8;
+    border: 1px solid #e7e7e7;
+    border-radius: 4px;
+}
+.truncate{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+}
+a {
+    color: #6e87cd;
+}
+a:hover {
+    color: #254aa5
+}
+
+.nomisma-banner {
+    width: 100%;
+    border-bottom: 4px solid #254aa5;
 }
 /*
   ***************************************
@@ -49,6 +72,21 @@ body{
 .media img{
     height: 48px;
     margin: 5px;
+}
+/*
+  ***************************************
+  FOOTER
+  ***************************************
+ */
+#footer{
+    padding: 10px 0;
+    border-top: 4px solid #254aa5;
+    text-align: center;
+    color:white;
+}
+#footer a {
+    color:white;
+    text-decoration: underline;
 }
 /*
   ***************************************
@@ -77,16 +115,6 @@ body{
 }
 .description dl dd {
     margin-left: 1em;
-}
-/*
-  ***************************************
-  FOOTER
-  ***************************************
- */
-#footer{
-    padding: 10px 0;
-    border-top: 1px solid #e7e7e7;
-    text-align: center;
 }
 /*
   ***************************************

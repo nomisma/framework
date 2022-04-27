@@ -229,15 +229,20 @@
 					<!-- classes -->
 					<xsl:when test="$curie = 'crm:E52_Time-Span'">Time Span</xsl:when>
 					<xsl:when test="$curie = 'crm:E4_Period'">Period</xsl:when>
+					<xsl:when test="$curie = 'crm:E28_Symbolic_Object'">Die</xsl:when>
+					<xsl:when test="$curie = 'crm:E37_Mark'">Symbol</xsl:when>
 					<xsl:when test="$curie = 'nmo:CoinWear'">Coin Wear</xsl:when>
 					<xsl:when test="$curie = 'nmo:FieldOfNumismatics'">Field of Numismatics</xsl:when>
 					<xsl:when test="$curie = 'nmo:FindType'">Find Type</xsl:when>
-					<xsl:when test="$curie = 'nmo:NumismaticTerm'">Numismatic Term</xsl:when>
+					<xsl:when test="$curie = 'nmo:Monogram'">Monogram</xsl:when>
+					<xsl:when test="$curie = 'nmo:NumismaticObject'">Numismatic Object</xsl:when>
+					<xsl:when test="$curie = 'nmo:NumismaticTerm'">Numismatic Term</xsl:when>					
 					<xsl:when test="$curie = 'nmo:ObjectType'">Object Type</xsl:when>
 					<xsl:when test="$curie = 'nmo:PeculiarityOfProduction'">Peculiarity of Production</xsl:when>
 					<xsl:when test="$curie = 'nmo:ReferenceWork'">Reference Work</xsl:when>
 					<xsl:when test="$curie = 'nmo:SecondaryTreatment'">Secondary Treatment</xsl:when>
 					<xsl:when test="$curie = 'nmo:TypeSeries'">Type Series</xsl:when>
+					<xsl:when test="$curie = 'nmo:TypeSeriesItem'">Coin Type</xsl:when>
 					
 
 					<!-- properties -->

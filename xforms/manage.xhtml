@@ -324,12 +324,18 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
 CONSTRUCT {?uri rdf:type void:Dataset ; 
   dcterms:publisher ?publisher; 
   dcterms:title ?title ; 
+  dcterms:description ?description ;
+  dcterms:license ?license ;
+  dcterms:rights ?rights ;
   void:dataDump ?dump ;
   dcterms:type ?type }
 WHERE {   
   ?uri a void:Dataset ; 
   	void:dataDump ?dump ; 
-  	dcterms:publisher | dcterms:publisher/skos:prefLabel ?publisher FILTER (isLiteral(?publisher)) .
+  	dcterms:description ?description FILTER (lang(?description) = "" || langMatches(lang(?description), "en")) .
+  	OPTIONAL {?uri dcterms:rights ?rights }
+    OPTIONAL {?uri dcterms:license ?license }
+  	?uri dcterms:publisher | dcterms:publisher/skos:prefLabel ?publisher FILTER (isLiteral(?publisher)) .
   ?uri dcterms:title ?title FILTER (lang(?title) = "" || langMatches(lang(?title), "en")).
   { SELECT DISTINCT ?uri ?type WHERE {
       ?coins void:inDataset ?uri ;

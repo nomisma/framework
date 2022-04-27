@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	XPL handling SPARQL queries from Fuseki	
+	Author: Ethan Gruber
+	Date modified: April 2022
+	Function: Submit a SPARQL query to generate a list of external datasets aggregated into Nomisma.org
 -->
 <p:config xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:oxf="http://www.orbeon.com/oxf/processors">
 
@@ -26,21 +28,36 @@
 				<!-- config variables -->
 				<xsl:variable name="sparql_endpoint" select="/config/sparql_query"/>
 				
-				<xsl:variable name="query"><![CDATA[ PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+				<xsl:variable name="query"><![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dcterms:	<http://purl.org/dc/terms/>
-PREFIX rdfs:	<http://www.w3.org/2000/01/rdf-schema#>
 PREFIX void:	<http://rdfs.org/ns/void#>
-
-SELECT ?dataset ?title ?description ?publisher ?license ?rights ?dump ?count WHERE {
-?dataset a void:Dataset ; 
- dcterms:title ?title FILTER (lang(?title) = "" || langMatches(lang(?title), "en")) .
- ?dataset dcterms:publisher ?publisher ; 
- void:dataDump ?dump ;
- dcterms:description ?description FILTER (lang(?description) = "" || langMatches(lang(?description), "en")) .
- OPTIONAL {?dataset dcterms:rights ?rights }
- OPTIONAL {?dataset dcterms:license ?license }
- { SELECT ?dataset ( count(?object) as ?count ) { ?object void:inDataset ?dataset } GROUP BY ?dataset }
- } ORDER BY ASC(?publisher) ASC(?title)]]>
+PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
+PREFIX dcmitype: <http://purl.org/dc/dcmitype/>
+CONSTRUCT {?uri rdf:type void:Dataset ; 
+  dcterms:publisher ?publisher; 
+  dcterms:title ?title ; 
+  dcterms:description ?description ;
+  dcterms:license ?license ;
+  dcterms:rights ?rights ;
+  dcterms:type ?type ;  
+  void:dataDump ?dump ;
+  dcterms:hasPart [a dcmitype:Collection ;
+                   dcterms:type ?type;
+                   void:entities ?count]}
+WHERE {   
+  ?uri a void:Dataset ; 
+  	void:dataDump ?dump ; 
+  	dcterms:description ?description FILTER (lang(?description) = "" || langMatches(lang(?description), "en")) .
+  	OPTIONAL {?uri dcterms:rights ?rights }
+    OPTIONAL {?uri dcterms:license ?license }
+  	?uri dcterms:publisher | dcterms:publisher/skos:prefLabel ?publisher FILTER (isLiteral(?publisher)) .
+  ?uri dcterms:title ?title FILTER (lang(?title) = "" || langMatches(lang(?title), "en")).
+  { SELECT ?uri ?type  (count(?object) as ?count ) WHERE {
+      ?object void:inDataset ?uri ;
+             rdf:type ?type FILTER (?type != skos:Concept)
+    } GROUP BY ?uri ?type
+  }
+} ORDER BY ASC(?publisher) ASC(?title)]]>
 				</xsl:variable>
 
 				<xsl:variable name="service" select="concat($sparql_endpoint, '?query=', encode-for-uri($query), '&amp;output=xml')"/>

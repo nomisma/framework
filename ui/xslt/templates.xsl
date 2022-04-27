@@ -12,8 +12,8 @@
 						<span class="icon-bar"/>
 						<span class="icon-bar"/>
 					</button>
-					<a class="navbar-brand logo-nav" href="{$display_path}./">
-						<img style="height:32px" src="{$display_path}ui/images/nomisma-horizontal.svg" alt="nomisma.org"/>
+					<a class="navbar-brand logo-nav" href="{$display_path}">
+						<img style="height: 32px;" src="{$display_path}ui/images/nomisma-horizontal.svg" alt="nomisma.org"/>
 					</a>
 				</div>
 				<div class="navbar-collapse collapse">
@@ -21,8 +21,25 @@
 						<li>
 							<a href="{$display_path}browse">Browse IDs</a>
 						</li>
+						<li>
+							<a href="{$display_path}about">About</a>
+						</li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Research Tools <b class="caret"/></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Who We Are <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="{$display_path}about/scientific_committee">Scientific Committee</a>
+								</li>
+								<li>
+									<a href="{$display_path}about/working_groups">Working Groups</a>
+								</li>
+								<li>
+									<a href="{$display_path}editor/">Editors</a>
+								</li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Research Tools <b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li>
 									<a href="{$display_path}research/distribution">Typological Distribution</a>
@@ -31,55 +48,61 @@
 									<a href="{$display_path}research/metrical">Measurement Analysis</a>
 								</li>
 							</ul>
-						</li>
-						<li>
-							<a href="{$display_path}apis">APIs</a>
-						</li>
+						</li>                
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"/></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
 							<ul class="dropdown-menu">
+								<li>
+									<a href="{$display_path}ontology">Ontology</a>
+								</li>
 								<li>
 									<a href="{$display_path}nuds">Numismatic Description Schema (NUDS)</a>
 								</li>
-								<xsl:for-each select="//config/documentation/page">
-									<li>
-										<a href="{$display_path}documentation/{@stub}">
-											<xsl:value-of select="@label"/>
-										</a>
-									</li>
-								</xsl:for-each>
+								<li>
+									<a href="{$display_path}documentation/apis">APIs</a>
+								</li>
+								<li>
+									<a href="{$display_path}documentation/contribute">Contribute Data</a>
+								</li>                                                
+								<li>
+									<a href="https://www.zotero.org/groups/4411268/digital_numismatics">Digital Numismatics Bibliography</a>
+								</li>
+								<li>
+									<a href="{$display_path}documentation/sparql">SPARQL Examples</a>
+								</li>
 							</ul>
 						</li>						
+						
+						
 						<li>
-							<a href="{$display_path}ontology">Ontology</a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Get Data <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="{$display_path}data">Overview</a>
+								</li>
+								<li>
+									<a href="{$display_path}datasets">Partner Datasets</a>
+								</li>
+								<li>
+									<a href="{$display_path}sparql">SPARQL</a>
+								</li>                       
+							</ul>
+							
 						</li>
-						<li>
-							<a href="{$display_path}sparql">SPARQL</a>
-						</li>
-						<li>
-							<a href="{$display_path}datasets">Datasets</a>
-						</li>
-						<!--<li>
-							<a href="{$display_path}project/">Project Namespaces</a>
-						</li>-->
-						<!--<li>
-							<a href="{$display_path}flickr">Flickr Machine Tags</a>
-						</li>-->
 					</ul>
 					<div class="col-sm-3 col-md-3 pull-right">
 						<form class="navbar-form" role="search" action="{$display_path}browse" method="get">
 							<div class="input-group">
-								<input type="text" class="form-control" placeholder="Search IDs" name="q" id="srch-term"/>
+								<input type="text" class="form-control" placeholder="Search IDs" name="q" id="srch-term"></input>
 								<div class="input-group-btn">
 									<button class="btn btn-default" type="submit">
-										<i class="glyphicon glyphicon-search"/>
+										<i class="glyphicon glyphicon-search"></i>
 									</button>
 								</div>
 							</div>
 						</form>
 					</div>
 				</div>
-				<!--/.nav-collapse -->
 			</div>
 		</div>
 	</xsl:template>
@@ -87,7 +110,7 @@
 	<xsl:template name="footer">
 		<div id="footer">
 			<div class="container-fluid">
-				<p class="text-muted"><a href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0"
+				<p><a href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0"
 							src="https://i.creativecommons.org/l/by/3.0/88x31.png"/></a><br/>Unless specified otherwise, content in <a href="http://nomisma.org"
 						xmlns:dc="http://purl.org/dc/elements/1.1/">Nomisma.org</a> is licensed under a <a xmlns:cc="http://creativecommons.org/ns#" href="http://creativecommons.org/licenses/by/3.0/"
 						>Creative Commons Attribution 3.0 License</a>.</p>
