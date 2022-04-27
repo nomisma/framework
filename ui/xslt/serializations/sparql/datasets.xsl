@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Author: Ethan Gruber
+	Date modified: April 2022
+	Function: Serialize SPARQL CONSTRUCT for datasets into a more useful interface -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:void="http://rdfs.org/ns/void#"
 	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:res="http://www.w3.org/2005/sparql-results#" exclude-result-prefixes="#all" version="2.0">
@@ -55,6 +58,21 @@
 						</li>
 						<li>
 							<a href="#E28_Conceptual_Object">Dies</a>
+						</li>						
+					</ul>
+					
+					<ul class="list-inline">
+						<li>
+							<strong>Download datset list: </strong>
+						</li>
+						<li>
+							<a href="./query?query={encode-for-uri(doc('input:query'))}&amp;output=xml">RDF/XML</a>
+						</li>
+						<li>
+							<a href="./query?query={encode-for-uri(doc('input:query'))}&amp;output=text">Turtle</a>
+						</li>
+						<li>
+							<a href="./query?query={encode-for-uri(doc('input:query'))}&amp;output=json">JSON-LD</a>
 						</li>						
 					</ul>
 

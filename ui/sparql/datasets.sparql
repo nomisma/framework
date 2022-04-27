@@ -1,0 +1,30 @@
+PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dcterms:	<http://purl.org/dc/terms/>
+PREFIX void:	<http://rdfs.org/ns/void#>
+PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
+PREFIX dcmitype: <http://purl.org/dc/dcmitype/>
+CONSTRUCT {?uri rdf:type void:Dataset ; 
+  dcterms:publisher ?publisher; 
+  dcterms:title ?title ; 
+  dcterms:description ?description ;
+  dcterms:license ?license ;
+  dcterms:rights ?rights ;
+  dcterms:type ?type ;  
+  void:dataDump ?dump ;
+  dcterms:hasPart [a dcmitype:Collection ;
+                   dcterms:type ?type;
+                   void:entities ?count]}
+WHERE {   
+  ?uri a void:Dataset ; 
+  	void:dataDump ?dump ; 
+  	dcterms:description ?description FILTER (lang(?description) = "" || langMatches(lang(?description), "en")) .
+  	OPTIONAL {?uri dcterms:rights ?rights }
+    OPTIONAL {?uri dcterms:license ?license }
+  	?uri dcterms:publisher | dcterms:publisher/skos:prefLabel ?publisher FILTER (isLiteral(?publisher)) .
+  ?uri dcterms:title ?title FILTER (lang(?title) = "" || langMatches(lang(?title), "en")).
+  { SELECT ?uri ?type  (count(?object) as ?count ) WHERE {
+      ?object void:inDataset ?uri ;
+             rdf:type ?type FILTER (?type != skos:Concept)
+    } GROUP BY ?uri ?type
+  }
+} ORDER BY ASC(?publisher) ASC(?title)
