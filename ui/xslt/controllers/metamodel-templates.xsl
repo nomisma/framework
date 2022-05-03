@@ -363,7 +363,7 @@
                             <triple s="?coinType" p="nmo:hasAuthority" o="nm:{$id}"/>
                         </group>
                         <group>
-                            <triple s="?coinType" p="nmo:hasAuthority" o="?person"/>
+                            <triple s="?coinType" p="nmo:hasAuthority|nmo:hasIssuer" o="?person"/>
                             <triple s="?person" p="a" o="foaf:Person"/>
                             <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
                         </group>
