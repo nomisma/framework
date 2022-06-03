@@ -984,10 +984,24 @@
             <!-- look for people related to orgs and dynasties only in the hoard contents -->
             <xsl:choose>
                 <xsl:when test="$type = 'foaf:Group' or $type = 'foaf:Organization'">
+                    <!-- query organizations that appear directly in contents -->
                     <group>
                         <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
                         <triple s="?person" p="rdf:type" o="foaf:Person"/>
                         <triple s="?contents" p="nmo:hasAuthority" o="?person"/>
+                        <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
+                        <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>
+                        <xsl:if test="$api = 'heatmap'">
+                            <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
+                        </xsl:if>
+                    </group>
+                    <!-- query types related to organizations that appear in contents -->
+                    <group>
+                        <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
+                        <triple s="?person" p="rdf:type" o="foaf:Person"/>
+                        <triple s="?type" p="nmo:hasIssuer" o="?person"/>
+                        <triple s="?type" p="a" o="nmo:TypeSeriesItem"/>
+                        <triple s="?contents" p="nmo:hasTypeSeriesItem" o="?type"/>
                         <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
                         <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>
                         <xsl:if test="$api = 'heatmap'">
