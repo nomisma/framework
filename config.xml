@@ -55,6 +55,7 @@
 		<namespace prefix="xsd" uri="http://www.w3.org/2001/XMLSchema#" default="true"/>
 	</namespaces>
 	<classes>
+		<class mints="false" findspots="false" types="false" dist="false">nmo:Authenticity</class>
 		<class mints="false" findspots="false" types="false" dist="false">nmo:CoinWear</class>
 		<class mints="true" findspots="true" types="false" dist="false" prop="nmo:hasCollection">nmo:Collection</class>
 		<class mints="false" findspots="false" types="false" dist="false">nmo:Corrosion</class>
@@ -69,6 +70,7 @@
 		<class mints="true" findspots="true" types="true" prop="nmo:hasMint" dist="true">nmo:Mint</class>
 		<class mints="false" findspots="false" types="false">nmo:NumismaticTerm</class>
 		<class mints="true" findspots="true" types="false" prop="nmo:representsObjectType">nmo:ObjectType</class>
+		<class mints="true" findspots="true" types="true" dist="false">nmo:Shape</class>
 		<class mints="true" findspots="true" types="true" dist="true" prop="?prop">foaf:Group</class>
 		<class mints="true" findspots="true" types="true" dist="true" prop="?prop">foaf:Organization</class>
 		<class mints="false" findspots="false" types="false" dist="false">nmo:PeculiarityOfProduction</class>

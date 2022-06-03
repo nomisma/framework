@@ -38,7 +38,7 @@
 		<xsl:if test="string($q)">q=<xsl:value-of select="$q"/><xsl:if test="string($sort)">&amp;</xsl:if></xsl:if>
 		<xsl:if test="string($sort)">sort=<xsl:value-of select="$sort"/></xsl:if>
 	</xsl:variable>
-	<xsl:variable name="display_path"/>
+	<xsl:variable name="display_path">./</xsl:variable>
 
 	<!-- definition of namespaces for turning in solr type field URIs into abbreviations -->
 	<xsl:variable name="namespaces" as="node()*">

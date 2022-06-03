@@ -231,6 +231,7 @@
 					<xsl:when test="$curie = 'crm:E4_Period'">Period</xsl:when>
 					<xsl:when test="$curie = 'crm:E28_Symbolic_Object'">Die</xsl:when>
 					<xsl:when test="$curie = 'crm:E37_Mark'">Symbol</xsl:when>
+					<xsl:when test="$curie = 'nmo:Authenticity'">Authenticity</xsl:when>
 					<xsl:when test="$curie = 'nmo:CoinWear'">Coin Wear</xsl:when>
 					<xsl:when test="$curie = 'nmo:FieldOfNumismatics'">Field of Numismatics</xsl:when>
 					<xsl:when test="$curie = 'nmo:FindType'">Find Type</xsl:when>
