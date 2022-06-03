@@ -363,14 +363,15 @@
                             <triple s="?coinType" p="nmo:hasAuthority" o="nm:{$id}"/>
                         </group>
                         <group>
-                            <triple s="?coinType" p="nmo:hasAuthority" o="?person"/>
-                            <triple s="?person" p="a" o="foaf:Person"/>
                             <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
+                            <triple s="?person" p="a" o="foaf:Person"/>
+                            <triple s="?coinType" p="nmo:hasAuthority" o="?person"/>                            
+                            
                         </group>
                         <group>
-                            <triple s="?coinType" p="nmo:hasIssuer" o="?person"/>
-                            <triple s="?person" p="a" o="foaf:Person"/>
                             <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
+                            <triple s="?person" p="a" o="foaf:Person"/>
+                            <triple s="?coinType" p="nmo:hasIssuer" o="?person"/>
                         </group>
                     </union>
                     <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
