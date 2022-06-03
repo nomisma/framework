@@ -33,7 +33,7 @@
 			if (tokenize(doc('input:request')/request/request-url, '/')[last()] != 'ontology') then
 				'../'
 			else
-				''"/>
+				'./'"/>
 
 	<xsl:variable name="namespaces" as="item()*">
 		<namespaces>

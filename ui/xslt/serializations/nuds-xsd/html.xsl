@@ -3,7 +3,7 @@
 	xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="#all" version="2.0">
 	<xsl:include href="../../templates.xsl"/>
 
-	<xsl:variable name="display_path"/>
+	<xsl:variable name="display_path">./</xsl:variable>
 
 	<xsl:template match="/">
 		<html lang="en">
