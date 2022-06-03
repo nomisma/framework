@@ -929,6 +929,11 @@
                 <triple s="?person" p="a" o="foaf:Person"/>
                 <triple s="?coinType" p="nmo:hasAuthority" o="?person"/>
             </group>
+            <group>
+                <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
+                <triple s="?person" p="a" o="foaf:Person"/>
+                <triple s="?coinType" p="nmo:hasIssuer" o="?person"/>
+            </group>
         </union>
         <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
         <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>
