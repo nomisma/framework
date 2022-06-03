@@ -8,7 +8,7 @@
 	<xsl:param name="query" select="doc('input:request')/request/parameters/parameter[name = 'query']/value"/>
 	<xsl:param name="lang">en</xsl:param>
 
-	<xsl:variable name="display_path"/>
+	<xsl:variable name="display_path">./</xsl:variable>
 
 	<xsl:variable name="namespaces" as="node()*">
 		<xsl:copy-of select="//config/namespaces"/>
