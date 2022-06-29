@@ -1902,6 +1902,7 @@ WHERE {
 						<xforms:setvalue ref="instance('sparqlUpdate')"
 							value="replace(instance('sparqlUpdate-template')/query[@id = 'delete-namedGraph'], '%GRAPH%', instance('control-instance')/namedGraph)"
 						/>
+						<xforms:send submission="update-graph"/>
 					</xforms:action>
 					<!-- if there is no namedGraph, then delete the dataset from the default graph by means of void:inDataset property -->
 					<xforms:action if="not(matches(instance('control-instance')/namedGraph, '^https?://'))">
