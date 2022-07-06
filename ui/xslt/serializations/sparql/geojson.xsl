@@ -463,10 +463,10 @@
 								<timespans>
 									<_array>
 										<_object>
-											<start>
+											<start datatype="xs:gYear">
 												<xsl:value-of select="nomisma:xsdToIso(res:binding[@name = 'closingDate']/res:literal)"/>
 											</start>
-											<end>
+											<end datatype="xs:gYear">
 												<xsl:value-of select="nomisma:xsdToIso(res:binding[@name = 'closingDate']/res:literal)"/>
 											</end>
 										</_object>
@@ -496,7 +496,7 @@
 								</count>
 							</xsl:if>
 							<xsl:if test="res:binding[@name = 'closingDate']">
-								<closing_date>
+								<closing_date datatype="xs:gYear">
 									<xsl:value-of select="nomisma:normalizeDate(res:binding[@name = 'closingDate']/res:literal)"/>
 								</closing_date>
 							</xsl:if>
