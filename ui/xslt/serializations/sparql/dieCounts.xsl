@@ -27,19 +27,31 @@
 								<xsl:with-param name="side">obverse</xsl:with-param>
 								<xsl:with-param name="n" select="//res:sparql[1]//res:binding[@name = 'count']/res:literal" as="xs:integer"/>
 								<xsl:with-param name="d" select="//res:sparql[2]//res:binding[@name = 'count']/res:literal" as="xs:integer"/>
-								<xsl:with-param name="d1" select="//res:sparql[3]//res:binding[@name = 'dieCount']/res:literal" as="xs:integer"/>
+								<xsl:with-param name="d1" select="//res:sparql[3]//res:binding[@name = 'dieCount']/res:literal" as="xs:integer"/>	
+								<xsl:with-param name="f" as="element()*">
+									<f>
+										<xsl:copy-of select="//res:sparql[4]"/>
+									</f>									
+								</xsl:with-param>
 							</xsl:call-template>
 						</obverse>
 						<reverse>
+							
 							<xsl:call-template name="calculate">
 								<xsl:with-param name="side">reverse</xsl:with-param>
-								<xsl:with-param name="n" select="//res:sparql[4]//res:binding[@name = 'count']/res:literal" as="xs:integer"/>
-								<xsl:with-param name="d" select="//res:sparql[5]//res:binding[@name = 'count']/res:literal" as="xs:integer"/>
-								<xsl:with-param name="d1" select="//res:sparql[6]//res:binding[@name = 'dieCount']/res:literal" as="xs:integer"/>
+								<xsl:with-param name="n" select="//res:sparql[5]//res:binding[@name = 'count']/res:literal" as="xs:integer"/>
+								<xsl:with-param name="d" select="//res:sparql[6]//res:binding[@name = 'count']/res:literal" as="xs:integer"/>
+								<xsl:with-param name="d1" select="//res:sparql[7]//res:binding[@name = 'dieCount']/res:literal" as="xs:integer"/>
+								<xsl:with-param name="f" as="element()*">
+									<f>
+										<xsl:copy-of select="//res:sparql[8]"/>
+									</f>									
+								</xsl:with-param>
 							</xsl:call-template>
 						</reverse>
+						
 					</_object>
-				</data>				
+				</data>
 			</_object>
 		</xsl:variable>
 
@@ -51,6 +63,7 @@
 		<xsl:param name="n"/>
 		<xsl:param name="d"/>
 		<xsl:param name="d1"/>
+		<xsl:param name="f"/>
 
 		<_object>
 			<n>
@@ -62,9 +75,8 @@
 			<d1>
 				<xsl:value-of select="$d1"/>
 			</d1>
-			<xsl:if test="$n &gt; 0">	
-				
-				<!-- apply calculation based on API scheme -->				
+			<xsl:if test="$n &gt; 0">				
+				<!-- apply calculation based on API scheme -->
 				<xsl:choose>
 					<xsl:when test="$api = 'esty'">
 						<xsl:call-template name="calculate_esty">
@@ -75,27 +87,48 @@
 					</xsl:when>
 				</xsl:choose>
 				
-			</xsl:if>			
+				<xsl:apply-templates select="$f//res:sparql" mode="frequencies"/>
+			</xsl:if>
 		</_object>
-
 	</xsl:template>
-	
+
+	<!-- render frequencies SPARQL query into JSON -->
+	<xsl:template match="res:sparql" mode="frequencies">
+		<frequencies>
+			<_array>
+				<xsl:apply-templates select="descendant::res:result" mode="frequencies"/>
+			</_array>
+		</frequencies>
+	</xsl:template>
+
+	<xsl:template match="res:result" mode="frequencies">
+		<_object>
+			<frequency>
+				<xsl:value-of select="res:binding[@name = 'frequency']/res:literal"/>
+			</frequency>
+			<dies>
+				<xsl:value-of select="res:binding[@name = 'dieCount']/res:literal"/>
+			</dies>
+		</_object>
+	</xsl:template>
+
+	<!-- ***** CALCULATION TEMPLATES ***** -->
 	<!-- Esty 2011, with p = 1 from addendum document -->
 	<xsl:template name="calculate_esty">
 		<xsl:param name="n"/>
 		<xsl:param name="d"/>
 		<xsl:param name="d1"/>
-		
-		<!-- Coverage (estimated) = 1 - ($d1 divided by $n), formula 1, Esty 2006 -->		
+
+		<!-- Coverage (estimated) = 1 - ($d1 divided by $n), formula 1, Esty 2006 -->
 		<xsl:variable name="c_est" select="1 - ($d1 div $n)"/>
-		
+
 		<!-- Total dies (estimated) = ($d divided by $c_est) * (1 + ($d1 divided by pd)), where p is 1 according to Esty 2011 -->
 		<xsl:variable name="d_est" select="round(($d div $c_est) * (1 + ($d1 div $d)))"/>
-		
+
 		<!-- calculate the minimum and maximum confidence interval, formula 4 in Esty 2011 -->
 		<xsl:variable name="d_min" select="$d_est - math:power((2 * $d_est) div $n, 2) - (((2 * $d_est) div $n) * math:sqrt(2 * $d_est))"/>
 		<xsl:variable name="d_max" select="$d_est - math:power((2 * $d_est) div $n, 2) + (((2 * $d_est) div $n) * math:sqrt(2 * $d_est))"/>
-		
+
 		<c_est>
 			<xsl:value-of select="$c_est"/>
 		</c_est>
@@ -108,8 +141,7 @@
 		<d_max>
 			<xsl:value-of select="round($d_max)"/>
 		</d_max>
-		
-	</xsl:template>
 
+	</xsl:template>
 
 </xsl:stylesheet>
