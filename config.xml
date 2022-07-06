@@ -14,7 +14,7 @@
 	<googleKey>AIzaSyBhYaQMy4Y75bdoiHMKn5R_Bv76llL0tII</googleKey>
 	<google_analytics> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new
 		Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-8722571-3', 'auto'); ga('send', 'pageview'); </google_analytics>	
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-8722571-3', 'auto'); ga('send', 'pageview'); </google_analytics>
 	<crossref>
 		<depositor_name>Nomisma.org</depositor_name>
 		<depositor_email>ewg4xuva@gmail.com</depositor_email>
@@ -81,7 +81,14 @@
 		<class mints="false" findspots="false" types="false" dist="false">org:Role</class>
 		<class mints="false" findspots="false" types="false" dist="false">nmo:SecondaryTreatment</class>
 		<class mints="true" findspots="true" types="true" dist="false" prop="dcterms:source">nmo:TypeSeries</class>
-		<class mints="false" findspots="false" types="false" dist="false">un:Uncertainty</class>		
+		<class mints="false" findspots="false" types="false" dist="false">un:Uncertainty</class>
 		<class mints="true" findspots="true" types="true" dist="true" prop="deity">wordnet:Deity</class>
 	</classes>
+	<dieStudy_formulas>
+		<formula>
+			<id>esty</id>
+			<title>Esty 2011</title>
+			<reference>Warren G. Esty, The Geometric Model for Estimating the Number of Dies (2011), with p = 1 according to addendum.</reference>
+		</formula>
+	</dieStudy_formulas>
 </config>

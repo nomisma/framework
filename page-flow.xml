@@ -97,6 +97,10 @@
 	<page path="/nomisma/apis/regionHierarchy" model="xpl/models/sparql/regionHierarchy.xpl" view="xpl/views/serializations/sparql/regionHierarchy.xpl"/>
 	<page path="/nomisma/apis/numishareResults" model="xpl/models/sparql/numishareResults.xpl" view="xpl/views/serializations/sparql/numishareResults.xpl"/>
 	
+	<!-- die count APIs -->
+	<page path="/nomisma/apis/dieCounts/(esty)" view="xpl/controllers/dieCounts.xpl"/>
+	<page path="/nomisma/apis/dieCounts$" model="xpl/models/sparql/get-die-studies.xpl" view="xpl/views/serializations/sparql/get-die-studies.xpl"/>
+	
 	<!-- OpenRefine reconciliation services -->	
 	<page path="/nomisma/apis/reconcile/preview" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/reconcile-preview-html.xpl"/>
 	<service path="/nomisma/apis/reconcile/suggest/entity" model="xpl/models/solr/reconcile-suggest.xpl" view="xpl/views/serializations/solr/reconcile-json.xpl" public-methods="GET HEAD POST" />
