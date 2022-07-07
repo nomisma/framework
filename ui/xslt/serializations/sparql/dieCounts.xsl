@@ -87,22 +87,33 @@
 					</xsl:when>
 				</xsl:choose>
 				
-				<xsl:apply-templates select="$f//res:sparql" mode="frequencies"/>
+				<xsl:apply-templates select="$f//res:sparql" mode="frequencies">
+					<xsl:with-param name="side" select="$side"/>
+				</xsl:apply-templates>
 			</xsl:if>
 		</_object>
 	</xsl:template>
 
 	<!-- render frequencies SPARQL query into JSON -->
 	<xsl:template match="res:sparql" mode="frequencies">
+		<xsl:param name="side"/>
+		
 		<frequencies>
 			<_array>
-				<xsl:apply-templates select="descendant::res:result" mode="frequencies"/>
+				<xsl:apply-templates select="descendant::res:result" mode="frequencies">
+					<xsl:with-param name="side" select="$side"/>
+				</xsl:apply-templates>
 			</_array>
 		</frequencies>
 	</xsl:template>
 
 	<xsl:template match="res:result" mode="frequencies">
+		<xsl:param name="side"/>
+		
 		<_object>
+			<side>
+				<xsl:value-of select="$side"/>
+			</side>
 			<frequency>
 				<xsl:value-of select="res:binding[@name = 'frequency']/res:literal"/>
 			</frequency>
