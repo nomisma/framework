@@ -44,7 +44,7 @@
 				<_array>
 					<xsl:for-each select="doc('input:config-xml')//dieStudy_formulas/formula">
 						<_>
-							<xsl:value-of select="concat($url, '/', id, '?dieStudy=', encode-for-uri($dieStudy), '&amp;type=', encode-for-uri($type))"/>
+							<xsl:value-of select="concat($url, id, '?dieStudy=', encode-for-uri($dieStudy), '&amp;type=', encode-for-uri($type))"/>
 						</_>
 					</xsl:for-each>
 				</_array>
