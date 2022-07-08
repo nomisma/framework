@@ -74,7 +74,7 @@
 				<xsl:value-of select="reference"/>
 			</reference>
 			<url>
-				<xsl:value-of select="concat($url, '/', id)"/>
+				<xsl:value-of select="concat($url, 'apis/', id)"/>
 			</url>
 		</_object>
 	</xsl:template>
