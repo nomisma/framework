@@ -5,7 +5,7 @@
 	<xsl:include href="../../functions.xsl"/>
 
 	<!-- URL parameters -->
-	<xsl:param name="url" select="doc('input:request')/request/request-url"/>
+	<xsl:param name="url" select="doc('input:config-xml')/config/url"/>
 
 	<xsl:template match="/">
 		<!-- construct an object that conforms to JSend JSON response format: https://github.com/omniti-labs/jsend -->
