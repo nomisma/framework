@@ -264,6 +264,10 @@
 			<xforms:instance id="exactMatch-template" xxf:exclude-result-prefixes="#all">
 				<skos:exactMatch rdf:resource=""/>
 			</xforms:instance>
+			
+			<xforms:instance id="related-template" xxf:exclude-result-prefixes="#all">
+				<skos:related rdf:resource=""/>
+			</xforms:instance>
 
 			<xforms:instance id="scopeNote-template" xxf:exclude-result-prefixes="#all">
 				<skos:scopeNote xml:lang=""/>
@@ -841,6 +845,14 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										<xforms:label>
 											<span class="glyphicon glyphicon-plus"></span>Exact Match</xforms:label>
 										<xforms:insert ev:event="DOMActivate" origin="instance('exactMatch-template')" context="."
+											nodeset="./child::node()[last()]"/>
+									</xforms:trigger>
+								</li>
+								<li>
+									<xforms:trigger appearance="minimal">
+										<xforms:label>
+											<span class="glyphicon glyphicon-plus"></span>Related Concept</xforms:label>
+										<xforms:insert ev:event="DOMActivate" origin="instance('related-template')" context="."
 											nodeset="./child::node()[last()]"/>
 									</xforms:trigger>
 								</li>
@@ -1599,7 +1611,21 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 													</xforms:trigger>
 												</div>
 											</xforms:repeat>
-											<xforms:group ref="skos:related">
+											<xforms:repeat nodeset="skos:related[@rdf:resource]">
+												<div>
+													<xforms:input ref="@rdf:resource">
+														<xforms:label>Related Concept</xforms:label>
+														<xforms:alert>Required, must be URI</xforms:alert>
+													</xforms:input>
+													<xforms:trigger appearance="minimal">
+														<xforms:delete ev:event="DOMActivate" context="."/>
+														<xforms:label>
+															<span class="glyphicon glyphicon-remove"></span>
+														</xforms:label>
+													</xforms:trigger>
+												</div>
+											</xforms:repeat>
+											<xforms:group ref="skos:related[rdf:Description]">
 												<div>
 													<xforms:output ref="rdf:Description/rdf:value/@rdf:resource">
 														<xforms:label>Uncertain Match</xforms:label>
