@@ -1,0 +1,33 @@
+PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX dcterms:  <http://purl.org/dc/terms/>
+PREFIX dcmitype:  <http://purl.org/dc/dcmitype/>
+PREFIX foaf:  <http://xmlns.com/foaf/0.1/>
+PREFIX geo:  <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX nm:  <http://nomisma.org/id/>
+PREFIX nmo:  <http://nomisma.org/ontology#>
+PREFIX org:  <http://www.w3.org/ns/org#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos:  <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+PREFIX osgeo:	<http://data.ordnancesurvey.co.uk/ontology/geometry/>
+
+SELECT ?place ?label ?definition ?source ?sourceLabel ?lat ?long ?geojson (group_concat(DISTINCT ?exactMatch) as ?exactMatches) (group_concat(DISTINCT ?closeMatch) as ?closeMatches) (group_concat(DISTINCT ?broader) as ?broaders) (group_concat(DISTINCT ?broaderLabel) as ?broaderLabels) (group_concat(DISTINCT ?related) as ?periods) WHERE {
+  {?place a nmo:Mint}
+  UNION {?place a nmo:Region}
+  ?place skos:prefLabel ?label FILTER (langMatches(lang(?label), "en"))
+  OPTIONAL {?place skos:definition ?definition FILTER (langMatches(lang(?definition), "en"))}
+  ?place geo:location ?loc.
+  OPTIONAL {?loc geo:lat ?lat ;
+                 geo:long ?long }
+  OPTIONAL {?loc osgeo:asGeoJSON ?geojson}
+  OPTIONAL {?place dcterms:isPartOf ?field}
+  OPTIONAL {?place skos:closeMatch ?closeMatch}
+  OPTIONAL {?place skos:exactMatch ?exactMatch}
+  OPTIONAL {?place skos:broader ?broader .
+            ?broader skos:prefLabel ?broaderLabel FILTER (langMatches(lang(?broaderLabel), "en"))}
+  OPTIONAL {?place dcterms:source ?source .
+            ?source skos:prefLabel ?sourceLabel FILTER (langMatches(lang(?sourceLabel), "en"))}
+  OPTIONAL {?place dcterms:isPartOf/skos:related ?related FILTER (contains(str(?related), "n2t.net"))}
+  FILTER NOT EXISTS {?place dcterms:isReplacedBy ?replace}     
+} GROUP BY ?place ?label ?definition ?source ?sourceLabel ?lat ?long ?geojson ORDER BY ASC(?label) LIMIT 10
