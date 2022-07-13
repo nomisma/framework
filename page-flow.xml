@@ -115,8 +115,9 @@
 	<page path="/nomisma/ajax/getSparqlFacets" model="xpl/models/sparql/getSparqlFacets.xpl" view="xpl/views/serializations/sparql/getSparqlFacets.xpl"/>
 	
 	<!-- **** DATA DUMPS **** -->	
-	<page path="/nomisma/pelagios.void.rdf" view="dump/pelagios.void.rdf"/>
-	<page path="/nomisma/pelagios.rdf" model="xpl/models/solr/pelagios.xpl" view="xpl/views/serializations/solr/pelagios.xpl"/>
+	<!--<page path="/nomisma/pelagios.void.rdf" view="dump/pelagios.void.rdf"/>
+	<page path="/nomisma/pelagios.rdf" model="xpl/models/solr/pelagios.xpl" view="xpl/views/serializations/solr/pelagios.xpl"/>-->
+	<page path="/nomisma/linked-places.json" model="xpl/models/sparql/aggregate-places.xpl" view="xpl/views/serializations/sparql/linked-places.xpl"/>
 	<page path="/nomisma/nomisma.org.rdf" view="xpl/controllers/serialize-dump.xpl"/>
 	<page path="/nomisma/nomisma.org.jsonld" view="xpl/controllers/serialize-dump.xpl"/>
 	<page path="/nomisma/nomisma.org.ttl" view="xpl/controllers/serialize-dump.xpl"/>

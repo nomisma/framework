@@ -294,10 +294,10 @@
 			</xsl:when>		
 			
 			<xsl:when test="number($val) or $val = '0'">
-				<xsl:choose>
+				<xsl:choose>					
 					<xsl:when test="@datatype = 'xs:string'">
 						<xsl:value-of select="concat('&#x022;', replace($val, '&#x022;', '\\&#x022;'), '&#x022;')"/>
-					</xsl:when>
+					</xsl:when>					
 					<xsl:when test="@datatype = 'xs:integer'">
 						<xsl:value-of select="$val"/>
 					</xsl:when>
@@ -308,6 +308,9 @@
 						<xsl:value-of select="$val"/>
 					</xsl:otherwise>
 				</xsl:choose>
+			</xsl:when>
+			<xsl:when test="@datatype = 'json'">
+				<xsl:value-of select="$val"/>
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:value-of select="concat('&#x022;', replace($val, '&#x022;', '\\&#x022;'), '&#x022;')"/>

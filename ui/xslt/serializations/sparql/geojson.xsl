@@ -195,7 +195,7 @@
 			<id>
 				<xsl:value-of select="$uri"/>
 			</id>
-			<geometry datatype="osgeo:asGeoJSON">
+			<geometry datatype="json">
 				<xsl:value-of select="osgeo:asGeoJSON"/>
 			</geometry>
 			<properties>
@@ -370,7 +370,7 @@
 					
 					<xsl:choose>
 						<xsl:when test="res:binding[@name = 'poly']">
-							<geometry datatype="osgeo:asGeoJSON">
+							<geometry datatype="json">
 								<xsl:value-of select="res:binding[@name = 'poly']/res:literal"/>
 							</geometry>
 						</xsl:when>
