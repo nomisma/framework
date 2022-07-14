@@ -12,11 +12,12 @@ PREFIX skos:  <http://www.w3.org/2004/02/skos/core#>
 PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
 PREFIX osgeo:	<http://data.ordnancesurvey.co.uk/ontology/geometry/>
 
-SELECT ?place ?label ?definition ?source ?sourceLabel ?lat ?long ?geojson (group_concat(DISTINCT ?exactMatch) as ?exactMatches) (group_concat(DISTINCT ?closeMatch) as ?closeMatches) (group_concat(DISTINCT ?broader) as ?broaders) (group_concat(DISTINCT ?broaderLabel) as ?broaderLabels) (group_concat(DISTINCT ?related) as ?periods) WHERE {
+SELECT ?place ?label ?definition ?type ?source ?sourceLabel ?lat ?long ?geojson (group_concat(DISTINCT ?exactMatch) as ?exactMatches) (group_concat(DISTINCT ?closeMatch) as ?closeMatches) (group_concat(DISTINCT ?broader) as ?broaders) (group_concat(DISTINCT ?broaderLabel) as ?broaderLabels) (group_concat(DISTINCT ?related) as ?periods) WHERE {
   {?place a nmo:Mint}
   UNION {?place a nmo:Region}
   ?place skos:prefLabel ?label FILTER (langMatches(lang(?label), "en"))
   OPTIONAL {?place skos:definition ?definition FILTER (langMatches(lang(?definition), "en"))}
+  ?place rdf:type ?type FILTER (?type != skos:Concept)
   ?place geo:location ?loc.
   OPTIONAL {?loc geo:lat ?lat ;
                  geo:long ?long }
@@ -28,6 +29,6 @@ SELECT ?place ?label ?definition ?source ?sourceLabel ?lat ?long ?geojson (group
             ?broader skos:prefLabel ?broaderLabel FILTER (langMatches(lang(?broaderLabel), "en"))}
   OPTIONAL {?place dcterms:source ?source .
             ?source skos:prefLabel ?sourceLabel FILTER (langMatches(lang(?sourceLabel), "en"))}
-  OPTIONAL {?place dcterms:isPartOf/skos:related ?related FILTER (contains(str(?related), "n2t.net"))}
+  OPTIONAL {?place dcterms:isPartOf/skos:related ?related}
   FILTER NOT EXISTS {?place dcterms:isReplacedBy ?replace}     
-} GROUP BY ?place ?label ?definition ?source ?sourceLabel ?lat ?long ?geojson ORDER BY ASC(?label) LIMIT 10
+} GROUP BY ?place ?label ?definition ?type ?source ?sourceLabel ?lat ?long ?geojson ORDER BY ASC(?label)

@@ -61,6 +61,40 @@
 					</_object>
 				</_array>
 			</names>
+			
+			<types>
+				<_array>
+					<_object>
+						<xsl:choose>
+							<xsl:when test="res:binding[@name = 'type']/res:uri = 'http://nomisma.org/ontology#Region'">
+								<identifier>http://vocab.getty.edu/aat/300182722</identifier>
+								<label>regions (geographic)</label>
+								<sourceLabels>
+									<_array>
+										<_object>
+											<label>regions (geographic)</label>
+											<lang>en</lang>
+										</_object>
+									</_array>
+								</sourceLabels>
+							</xsl:when>
+							<xsl:when test="res:binding[@name = 'type']/res:uri = 'http://nomisma.org/ontology#Mint'">
+								<identifier>http://vocab.getty.edu/aat/300008347</identifier>
+								<label>inhabited place</label>
+								<sourceLabels>
+									<_array>
+										<_object>
+											<label>inhabited place</label>
+											<lang>en</lang>
+										</_object>
+									</_array>
+								</sourceLabels>
+							</xsl:when>
+						</xsl:choose>
+					</_object>
+				</_array>
+			</types>
+			
 			<xsl:if test="res:binding[@name = 'definition']">
 				<descriptions>
 					<_array>
@@ -73,10 +107,10 @@
 					</_array>
 				</descriptions>
 			</xsl:if>
-			
-				<xsl:choose>
-					<xsl:when test="res:binding[@name = 'lat'] and res:binding[@name = 'long']">
-						<geometry>
+
+			<xsl:choose>
+				<xsl:when test="res:binding[@name = 'lat'] and res:binding[@name = 'long']">
+					<geometry>
 						<_object>
 							<type>Point</type>
 							<coordinates>
@@ -93,17 +127,35 @@
 								<xsl:value-of
 									select="concat('POINT(', res:binding[@name = 'long']/res:literal, ' ', res:binding[@name = 'lat']/res:literal, ')')"/>
 							</geowkt>
-						</_object>	
-						</geometry>
-					</xsl:when>
-					<xsl:when test="res:binding[@name = 'geojson']">
-						<geometry datatype="json">
-							<xsl:value-of select="res:binding[@name = 'geojson']/res:literal"/>
-						</geometry>
-					</xsl:when>
-				</xsl:choose>
+						</_object>
+					</geometry>
+				</xsl:when>
+				<xsl:when test="res:binding[@name = 'geojson']">
+					<geometry datatype="json">
+						<xsl:value-of select="res:binding[@name = 'geojson']/res:literal"/>
+					</geometry>
+				</xsl:when>
+			</xsl:choose>
 			
-
+			<when>
+				<_object>
+					<xsl:if test="res:binding[@name = 'periods']">
+						<periods>
+							<_array>
+								<xsl:for-each select="tokenize(res:binding[@name = 'periods']/res:literal, ' ')">
+									<_object>
+										<__id>
+											<xsl:value-of select="."/>
+										</__id>
+									</_object>
+								</xsl:for-each>
+							</_array>
+						</periods>
+					</xsl:if>
+				</_object>
+			</when>
+							
+			<!-- associated URIs -->
 			<xsl:if test="res:binding[@name = 'closeMatches'] or res:binding[@name = 'exactMatches']">
 				<links>
 					<_array>
