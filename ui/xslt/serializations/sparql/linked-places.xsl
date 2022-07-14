@@ -100,7 +100,7 @@
 					<_array>
 						<_object>
 							<value>
-								<xsl:value-of select="res:binding[@name = 'definition']/res:literal"/>
+								<xsl:value-of select="normalize-space(res:binding[@name = 'definition']/res:literal)"/>
 							</value>
 							<lang>en</lang>
 						</_object>
