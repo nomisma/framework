@@ -370,9 +370,12 @@
 					
 					<xsl:choose>
 						<xsl:when test="res:binding[@name = 'poly']">
-							<geometry datatype="json">
-								<xsl:value-of select="res:binding[@name = 'poly']/res:literal"/>
-							</geometry>
+							<xsl:if test="not(contains(res:binding[@name = 'poly']/res:literal, '[,]'))">
+								<geometry datatype="json">
+									<xsl:value-of select="res:binding[@name = 'poly']/res:literal"/>
+								</geometry>
+							</xsl:if>
+							
 						</xsl:when>
 						<xsl:when test="res:binding[@name = 'wkt'][contains(res:literal, 'POLYGON')]">
 							<xsl:variable name="coordinates" select="normalize-space(substring-before(substring-after(res:binding[@name = 'wkt']/res:literal, '('), ')'))"/>
