@@ -62,6 +62,8 @@
 					</code>
 				</p>
 			</xsl:if>
+			
+			<xsl:apply-templates select="foaf:thumbnail"/>
 
 
 			<xsl:if test="skos:prefLabel">
@@ -591,25 +593,17 @@
 	</xsl:template>
 
 	<!-- display thumbnail -->
-	<xsl:template match="foaf:thumbnail" mode="list-item">
-		<xsl:variable name="name" select="name()"/>
-		<dt>
-			<a href="{concat($namespaces//namespace[@prefix=substring-before($name, ':')]/@uri, substring-after($name, ':'))}" title="{name()}">
-				<xsl:value-of select="name()"/>
-			</a>
-		</dt>
-		<dd>
-			<xsl:choose>
-				<xsl:when test="../foaf:homepage">
-					<a href="{../foaf:homepage/@rdf:resource}">
-						<img src="{@rdf:resource}" rel="{name()}" alt="Logo" style="max-width:100%"/>
-					</a>
-				</xsl:when>
-				<xsl:otherwise>
-					<img src="{@rdf:resource}" rel="{name()}" alt="Logo" style="max-width:100%"/>
-				</xsl:otherwise>
-			</xsl:choose>
-		</dd>
+	<xsl:template match="foaf:thumbnail">
+		<xsl:choose>
+			<xsl:when test="../foaf:homepage">
+				<a href="{../foaf:homepage/@rdf:resource}">
+					<img src="{@rdf:resource}" rel="{name()}" alt="Logo" style="max-width:200px;max-height:60px"/>
+				</a>
+			</xsl:when>
+			<xsl:otherwise>
+				<img src="{@rdf:resource}" rel="{name()}" alt="Logo" style="max-width:200px;max-height:60px"/>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 
 	<!-- alternative display for constituent letters above -->
