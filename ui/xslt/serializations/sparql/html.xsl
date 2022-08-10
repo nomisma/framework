@@ -243,14 +243,22 @@
 				<xsl:when test="res:uri">
 					<xsl:variable name="uri" select="res:uri"/>
 					<a href="{res:uri}">
+						<!-- display images -->
 						<xsl:choose>
-							<xsl:when test="$namespaces//namespace[contains($uri, @uri)]">
-								<xsl:value-of
-									select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"
-								/>
+							<xsl:when test="ends-with($uri, '.svg') or ends-with($uri, '.jpg') or ends-with($uri, '.png')">
+								<img src="{$uri}" title="{$uri}" alt="Graphical representation of {$uri}"/>
 							</xsl:when>
 							<xsl:otherwise>
-								<xsl:value-of select="$uri"/>
+								<xsl:choose>
+									<xsl:when test="$namespaces//namespace[contains($uri, @uri)]">
+										<xsl:value-of
+											select="replace($uri, $namespaces//namespace[contains($uri, @uri)]/@uri, concat($namespaces//namespace[contains($uri, @uri)]/@prefix, ':'))"
+										/>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:value-of select="$uri"/>
+									</xsl:otherwise>
+								</xsl:choose>
 							</xsl:otherwise>
 						</xsl:choose>
 					</a>
