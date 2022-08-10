@@ -246,7 +246,7 @@
 						<!-- display images -->
 						<xsl:choose>
 							<xsl:when test="ends-with($uri, '.svg') or ends-with($uri, '.jpg') or ends-with($uri, '.png')">
-								<img src="{$uri}" title="{$uri}" alt="Graphical representation of {$uri}"/>
+								<img src="{$uri}" title="{$uri}" alt="Graphical representation of {$uri}" style="max-width:48px"/>
 							</xsl:when>
 							<xsl:otherwise>
 								<xsl:choose>
