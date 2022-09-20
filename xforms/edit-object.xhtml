@@ -1,0 +1,295 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xxf="http://orbeon.org/oxf/xml/xforms"
+	xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:org="http://www.w3.org/ns/org#" xmlns:prov="http://www.w3.org/ns/prov#"
+	xmlns:nmo="http://nomisma.org/ontology#" xmlns:res="http://www.w3.org/2005/sparql-results#">
+	<head>
+		<title>nomisma.org: edit object</title>
+		<link rel="stylesheet" href="/fr/style/bootstrap/css/bootstrap.css" type="text/css" />
+		<link rel="stylesheet" href="/fr/style/form-runner-bootstrap-override.css" type="text/css" />
+
+		<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+		<script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<link rel="shortcut icon" href="/ops/images/orbeon-icon-16.ico" />
+		<link rel="icon" href="/ops/images/orbeon-icon-16.png" type="image/png" />
+		<link rel="stylesheet" href="/apps/nomisma/xforms/css/style.css" />
+
+		<!-- model -->
+		<xforms:model>
+			<xforms:instance id="rdf" xxf:exclude-result-prefixes="#default xhtml xforms xs ev xxf fr res xi nomisma atom">
+				<rdf:RDF/>
+			</xforms:instance>
+
+			<xforms:instance id="config" xxf:exclude-result-prefixes="#all">
+				<xi:include href="../config.xml"/>
+			</xforms:instance>
+
+			<xforms:instance id="control-instance" xxf:exclude-result-prefixes="#all">
+				<controls xmlns="">
+					<uri></uri>
+					<search-trigger>false</search-trigger>
+					<oldType_uri></oldType_uri>
+					<newType_uri></newType_uri>
+					<newType_valid></newType_valid>
+					<status></status>
+				</controls>
+			</xforms:instance>
+			
+			<!-- ********** REST RESPONSES ********** -->
+			<!-- sparql queries -->
+			<xforms:instance id="sparqlQuery">
+				<query></query>
+			</xforms:instance>
+
+			<xforms:instance id="sparqlQuery-template">
+				<query><![CDATA[PREFIX nmo:  <http://nomisma.org/ontology#>			
+SELECT ?type WHERE {
+  <%COIN%> a nmo:NumismaticObject ;
+            nmo:hasTypeSeriesItem ?type
+}]]></query>
+			</xforms:instance>
+
+			<!-- preloaded instances -->
+			<xforms:instance id="sparqlResponse">
+				<sparql xmlns="http://www.w3.org/2005/sparql-results#"/>
+			</xforms:instance>
+
+			<!-- sparql update -->
+			<xforms:instance id="sparqlUpdate-template">
+				<query><![CDATA[PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX nmo:	<http://nomisma.org/ontology#>
+%OP% DATA { <%COIN%> nmo:hasTypeSeriesItem <%TYPE%> }
+]]></query>
+			</xforms:instance>
+
+			<xforms:instance id="sparqlUpdate">
+				<query></query>
+			</xforms:instance>
+
+			<!-- **************** BINDINGS ********************** -->
+			<xforms:bind nodeset="instance('control-instance')">
+				<xforms:bind nodeset="uri" required="true()" constraint="matches(., '^https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$')"/>
+				<xforms:bind nodeset="search-trigger" id="search-trigger" as="xs:boolean" readonly="not(matches(../uri, '^https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$'))"/>
+				<xforms:bind nodeset="newType_uri" required="true()" constraint="matches(., '^https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$')"/>				
+			</xforms:bind>
+
+			<!-- ************* SPARQL SUBMISSIONS **********************-->
+			<!-- SPARQL queries -->
+			<xforms:submission id="submit-sparqlQuery" action="{instance('config')/sparql_query}?query={encode-for-uri(instance('sparqlQuery'))}&amp;output=xml"
+				ref="instance('sparqlResponse')" replace="instance" method="get">
+				<xforms:message ev:event="xforms-submit-error" level="modal">SPARQL query failed.</xforms:message>
+
+				<!-- toggle cases depending of whether there is a response -->
+				<xforms:action ev:event="xforms-submit-done">
+					<xforms:action if="count(instance('sparqlResponse')//res:result) = 0">
+						<xforms:toggle case="results-false"/>
+					</xforms:action>
+					<xforms:action if="count(instance('sparqlResponse')//res:result) &gt; 0">
+						<xforms:toggle case="results-true"/>
+					</xforms:action>
+				</xforms:action>
+			</xforms:submission>
+
+			<xforms:submission id="update-graph" action="{instance('config')/sparql_update}" ref="instance('sparqlUpdate')" serialization="text/plain"
+				replace="none" method="post" mediatype="application/sparql-update">
+				<xforms:action ev:event="xforms-submit-error">
+					<xforms:message level="modal">SPARQL update failed.</xforms:message>
+				</xforms:action>
+				
+			</xforms:submission>
+
+			<!-- ************* TYPE VALIDATION **********************-->
+			<xforms:submission id="load-type" serialization="none" method="get" action="{instance('control-instance')/newType_uri}" replace="instance"
+				instance="rdf">
+
+				<!-- submit a request to a type URI for the RDF. This won't work outside of Numishare types yet -->
+				<xforms:header>
+					<xforms:name>Accept</xforms:name>
+					<xforms:value>application/rdf+xml</xforms:value>
+				</xforms:header>
+
+				<!-- if there's an error (no RDF/XML), then set to invalid -->
+				<xforms:action ev:event="xforms-submit-error">
+					<xforms:setvalue ref="instance('control-instance')/newType_valid">false</xforms:setvalue>
+				</xforms:action>
+
+				<!-- if the RDF/XML is not a nmo:TypeSeriesItem, then set to invalid -->
+				<xforms:action ev:event="xforms-submit-done">
+					<xforms:setvalue ref="instance('control-instance')/newType_valid" if="instance('rdf')/nmo:TypeSeriesItem">true</xforms:setvalue>
+					<xforms:setvalue ref="instance('control-instance')/newType_valid" if="not(instance('rdf')/nmo:TypeSeriesItem)">false</xforms:setvalue>
+				</xforms:action>
+			</xforms:submission>
+
+			<!-- **************** MODEL-CONSTRUCT-DONE ********************** -->
+			<!--<xforms:action ev:event="xforms-model-construct-done">
+				<!-\- set username -\->
+				<xforms:setvalue ref="instance('control-instance')/username" value="xxf:get-remote-user()"/>				
+			</xforms:action>-->
+		</xforms:model>
+	</head>
+
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<p><a href="../"><span class="glyphicon glyphicon-arrow-left"></span>Return to Admin</a></p>
+					<xforms:group ref=".[string-length(instance('control-instance')/status) &gt; 0]">
+						<div class="alert-success alert-box alert">
+							<span class="glyphicon glyphicon-info-sign"></span>
+							<strong>Status:</strong>
+							<xforms:output ref="instance('control-instance')/status"/>
+						</div>
+					</xforms:group>
+
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<h1>Edit Object Type</h1>
+					
+					<p>This interface should be used sparingly to replace type attribution errors for coins that can't easily be corrected by 
+						curators and reingested into Nomisma via direct RDF imports or intermediary spreadsheets that contain type URIs.
+					For example, the PAS and British Museum data were scripted from text-based type references into URIs and are more likely to contain 
+					errors that are complicated to correct in Nomisma.</p>
+
+					<xforms:switch>
+						<xforms:case id="coin-lookup">
+							<div>
+								<xforms:input ref="instance('control-instance')/uri">
+									<xforms:label>Object URI</xforms:label>
+									<xforms:alert>Must be URI</xforms:alert>
+								</xforms:input>
+
+								<xforms:trigger bind="search-trigger">
+									<xforms:label>Search</xforms:label>
+									<xforms:action ev:event="DOMActivate">
+										<xforms:setvalue ref="instance('sparqlQuery')"
+											value="replace(instance('sparqlQuery-template'), '%COIN%', instance('control-instance')/uri)"/>
+										<xforms:send submission="submit-sparqlQuery"/>
+									</xforms:action>
+								</xforms:trigger>
+							</div>
+
+						</xforms:case>
+						<xforms:case id="results-false">
+							<div>
+								<h2>Results</h2>
+
+								<div class="alert-danger alert-box alert">
+									<span class="glyphicon glyphicon-exclamation-sign"></span>
+									<strong>Alert:</strong> No object associated with this URI has type URIs.</div>
+
+								<xforms:trigger>
+									<xforms:label>Restart</xforms:label>
+									<xforms:action ev:event="DOMActivate">
+										<xforms:setvalue ref="instance('control-instance')/uri"/>
+										<xforms:toggle case="coin-lookup"/>
+									</xforms:action>
+								</xforms:trigger>
+							</div>
+						</xforms:case>
+						<xforms:case id="results-true">
+							<div>
+								<h2>Results</h2>
+
+								<div>
+									<h3>
+										<xforms:output ref="instance('control-instance')/uri"/>
+									</h3>
+								</div>
+
+								<xforms:repeat nodeset="instance('sparqlResponse')//res:result">
+									<div>
+										<xforms:output ref="res:binding[@name='type']/res:uri">
+											<xforms:label>Type URI</xforms:label>
+										</xforms:output>
+										<xforms:trigger appearance="minimal">
+											<xforms:label><span class="glyphicon glyphicon-refresh"></span> replace URI</xforms:label>
+											<xforms:action ev:event="DOMActivate">					
+												<xforms:var name="uri" select="res:binding[@name='type']/res:uri"/>
+												<xforms:setvalue ref="instance('control-instance')/oldType_uri" value="$uri"/>
+												<xxf:show dialog="lookup-dialog"/>
+											</xforms:action>
+										</xforms:trigger>
+									</div>
+								</xforms:repeat>
+							</div>
+						</xforms:case>
+					</xforms:switch>
+				</div>
+			</div>
+		</div>
+		
+		<!-- dialog for querying, validating, and replacing the type URI -->
+		<xxf:dialog id="lookup-dialog" appearance="full" level="modal" close="true" draggable="true" visible="false">
+			<h3>Type Lookup</h3> <div>
+				<xforms:input ref="instance('control-instance')/newType_uri">
+					<xforms:label>Type URI</xforms:label>
+				</xforms:input>
+
+				<xforms:trigger>
+					<xforms:label>Search</xforms:label>
+					<xforms:action ev:event="DOMActivate">
+						<xforms:send submission="load-type"/>
+					</xforms:action>
+				</xforms:trigger>
+			</div>
+			
+			<!-- execute SPARQL/Update query to replace URI if the type URI is valid -->
+			<xforms:group ref=".[instance('control-instance')/newType_valid[. = 'true']]">
+				<p>Found type <strong><xforms:output ref="instance('rdf')/nmo:TypeSeriesItem/skos:prefLabel[@xml:lang = 'en']"/></strong>. Is this correct?</p> <xforms:trigger>
+					<xforms:label>Update</xforms:label>
+					
+					<xforms:action ev:event="DOMActivate">
+						<xforms:setvalue ref="instance('sparqlUpdate')"
+							value="replace(replace(replace(instance('sparqlUpdate-template'), '%COIN%', instance('control-instance')/uri), '%TYPE%', instance('control-instance')/oldType_uri), '%OP%', 'DELETE')"/>
+						<xforms:send submission="update-graph"/>
+						
+						<xforms:setvalue ref="instance('sparqlUpdate')"
+							value="replace(replace(replace(instance('sparqlUpdate-template'), '%COIN%', instance('control-instance')/uri), '%TYPE%', instance('rdf')/nmo:TypeSeriesItem/@rdf:about), '%OP%', 'INSERT')"/>
+						<xforms:send submission="update-graph"/>
+						
+						<xforms:action ev:event="xforms-submit-done">
+							<xforms:setvalue ref="instance('control-instance')/status">Object nmo:hasTypeSeriesItem updated.</xforms:setvalue>
+							
+							<!-- reset controls and case -->
+							<xforms:setvalue ref="instance('control-instance')/uri"/>
+							<xforms:setvalue ref="instance('control-instance')/oldType_uri"/>
+							<xforms:setvalue ref="instance('control-instance')/newType_uri"/>
+							<xforms:toggle case="coin-lookup"/>
+						</xforms:action>
+						
+						<!-- reset dialog -->					
+						<xxf:hide dialog="lookup-dialog"/>
+					</xforms:action>
+				</xforms:trigger> 
+				
+				<xforms:trigger>
+					<xforms:label>Cancel</xforms:label>
+					<xforms:action ev:event="DOMActivate">
+						<xforms:setvalue ref="instance('control-instance')/newType_uri"/>
+						<xforms:setvalue ref="instance('control-instance')/newType_valid"/>
+						<xxf:hide dialog="lookup-dialog"/>
+					</xforms:action>
+				</xforms:trigger>
+				
+			</xforms:group>
+			
+			<!-- cancel dialog if invalid -->
+			<xforms:group ref=".[instance('control-instance')/newType_valid[. = 'false']]">
+				<p>URI is invalid or the URI is not an nmo:TypeSeriesItem</p> <xforms:trigger>
+					<xforms:label>Cancel</xforms:label>
+					<xforms:action ev:event="DOMActivate">
+						<xforms:setvalue ref="instance('control-instance')/newType_uri"/>
+						<xforms:setvalue ref="instance('control-instance')/newType_valid"/>
+						<xxf:hide dialog="lookup-dialog"/>
+					</xforms:action>
+				</xforms:trigger>
+			</xforms:group>
+		
+		</xxf:dialog>
+		
+		<!--<fr:xforms-inspector/>-->
+	</body>
+</html>
