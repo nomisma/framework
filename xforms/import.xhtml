@@ -1404,7 +1404,10 @@ PREFIX wordnet:	<http://ontologi.es/WordNet/class/>]]></prefix>
 																	otherwise, it will be assumed the mapping is skos:broader and the target class is the same as the source class.
 																	-->
 																			<xforms:var name="class"
-																				select="if($mapping = 'dcterms:isPartOf') then 'nmo:FieldOfNumismatics' else if (instance('control-instance')/type = 'foaf:Person' and $mapping='org:memberOf') then 'rdac:Family' else if ((instance('control-instance')/type = 'foaf:Person' or instance('control-instance')/type = 'foaf:Organization') and $mapping='org:role') then 'org:Role' else instance('control-instance')/type"/>
+																				select="if($mapping = 'dcterms:isPartOf') then 'nmo:FieldOfNumismatics' 
+																				else if (instance('control-instance')/type = 'foaf:Person' and $mapping='org:memberOf') then 'rdac:Family' 
+																				else if ((instance('control-instance')/type = 'foaf:Person' or instance('control-instance')/type = 'foaf:Organization') and $mapping='org:role') then 'org:Role' 
+																				else instance('control-instance')/type"/>
 
 																			<!-- for linking People to foaf:Organization/nmo:Mint -->
 																			<xforms:setvalue ref="instance('sparqlQuery')"
@@ -1423,7 +1426,7 @@ PREFIX wordnet:	<http://ontologi.es/WordNet/class/>]]></prefix>
 
 																			<!-- all other ASK queries -->
 																			<xforms:setvalue ref="instance('sparqlQuery')"
-																				if="not(instance('control-instance')/type = 'foaf:Person' and $mapping='org:organization') and not(instance('control-instance')/type = 'nmo:Mint' and $mapping='skos:broader')"
+																				if="not(instance('control-instance')/type = 'foaf:Person' and $mapping='org:organization') and not(instance('control-instance')/type = 'nmo:Mint' and $mapping='skos:broader') and not(instance('control-instance')/type = 'wordnet:Deity' and $mapping='skos:broader')"
 																				value="concat(instance('sparql-templates')/prefix, ' ', replace(replace(instance('sparql-templates')/query[@id='ask'], 'URI', $value), 'CLASS', $class))"/>
 
 																			<xforms:send submission="submit-sparqlQuery"/>
