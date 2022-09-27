@@ -390,9 +390,11 @@ PREFIX nmo:	<http://nomisma.org/ontology#>
 PREFIX org:	<http://www.w3.org/ns/org#>
 PREFIX rdac:	<http://www.rdaregistry.info/Elements/c/>
 PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>
-PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
+PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
+PREFIX wordnet:	<http://ontologi.es/WordNet/class/>]]></prefix>
 					<query id="ask">ASK {&lt;URI&gt; rdf:type CLASS}</query>
 					<query id="ask-person">ASK {&lt;URI&gt; rdf:type ?type . FILTER (?type = nmo:Mint || ?type = foaf:Organization)} </query>
+					<query id="ask-deity">ASK {&lt;URI&gt; rdf:type ?type . FILTER (?type = foaf:Group || ?type = wordnet:Deity)} </query>
 					<query id="ask-mint">ASK {&lt;URI&gt; rdf:type ?type . FILTER (?type = nmo:Mint || ?type = nmo:Region)} </query>
 					<query id="editor">SELECT ?uri ?label WHERE {?uri a foaf:Person ; skos:inScheme &lt;http://nomisma.org/editor/&gt; ; skos:prefLabel ?label}
 						ORDER BY ?label</query>
@@ -1395,6 +1397,7 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 																			if="not(instance('sheet')/row[cell[@name=instance('mappings')/mapping[@to='id']/@from] = $id])">
 																			<!-- if the $mapping is dcterms:isPartOf, then the target will be an nmo:FieldOfNumismatics;
 																	else if the $mapping is skos:broader and the class is an nmo:Mint, then the skos:broader will be nmo:Region;
+																	if the $mapping is skos:broader and the class is wordnet:Deity, then the target entity must be either a wordnet:Deity or foaf:Group;
 																	if the $mapping is org:memberOf and the class is foaf:Person, then the target entity must be a dynasty (rdac:Family);
 																	if the $mapping is an org:organization and class is a foaf:Person, then the target entity must be an organization (foaf:Organization) or mint (nmo:Mint), set by separate SPARQL query template;
 																	if the $mapping is an org:role, the class must be either a foaf:Person or foaf:Organization, and the target must be a foaf:Organization;
@@ -1412,6 +1415,11 @@ PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>]]></prefix>
 																			<xforms:setvalue ref="instance('sparqlQuery')"
 																				if="instance('control-instance')/type = 'nmo:Mint' and $mapping='skos:broader'"
 																				value="concat(instance('sparql-templates')/prefix, ' ', replace(instance('sparql-templates')/query[@id='ask-mint'], 'URI', $value))"/>
+																			
+																			<!-- for linking Deities to other Deities or Groups -->
+																			<xforms:setvalue ref="instance('sparqlQuery')"
+																				if="instance('control-instance')/type = 'wordnet:Deity' and $mapping='skos:broader'"
+																				value="concat(instance('sparql-templates')/prefix, ' ', replace(instance('sparql-templates')/query[@id='ask-deity'], 'URI', $value))"/>
 
 																			<!-- all other ASK queries -->
 																			<xforms:setvalue ref="instance('sparqlQuery')"
