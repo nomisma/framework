@@ -80,6 +80,8 @@
 						<xsl:text>, </xsl:text>
 						<a href="{concat($url, $path, '.ttl')}">TTL</a></p>
 					
+					<p>See the <a href="https://nomisma.hypotheses.org/category/nomisma-org-cookbook">Nomisma Cookbook</a> for further documentation on properties and classes within the ontology, with example models.</p>
+					
 					<!-- version history -->
 					<div>
 						<xsl:apply-templates select="/content/directory"/>
