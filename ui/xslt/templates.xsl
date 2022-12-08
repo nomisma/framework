@@ -56,6 +56,9 @@
 									<a href="{$display_path}ontology">Ontology</a>
 								</li>
 								<li>
+									<a href="https://nomisma.hypotheses.org/the-nomisma-org-cookbook">Cookbook</a>
+								</li>
+								<li>
 									<a href="{$display_path}nuds">Numismatic Description Schema (NUDS)</a>
 								</li>
 								<li>
