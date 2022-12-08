@@ -76,11 +76,11 @@
 							</a>
 						</dt>
 						<dd>
-							<xsl:apply-templates select="skos:prefLabel[lang('en') or lang('fr') or lang('de') or lang('el') or lang('it') or lang('es')]"
+							<xsl:apply-templates select="skos:prefLabel[lang('en') or lang('fr') or lang('de') or lang('el') or lang('it') or lang('es') or not(@xml:lang)]"
 								mode="prefLabel"/>
 
 							<!-- additional labels -->
-							<xsl:if test="skos:prefLabel[not(lang('en') or lang('fr') or lang('de') or lang('el') or lang('it') or lang('es'))]">
+							<xsl:if test="skos:prefLabel[not(lang('en') or lang('fr') or lang('de') or lang('el') or lang('it') or lang('es') or not(@xml:lang))]">
 								<span style="margin-left:20px">
 									<i>Additional labels</i>
 									<a href="#" class="toggle-button" id="toggle-prefLabels" title="Click to hide or show additional labels">
@@ -90,7 +90,7 @@
 							</xsl:if>
 							<div style="display:none" id="prefLabels">
 								<xsl:apply-templates
-									select="skos:prefLabel[not(lang('en') or lang('fr') or lang('de') or lang('el') or lang('it') or lang('es'))]"
+									select="skos:prefLabel[not(lang('en') or lang('fr') or lang('de') or lang('el') or lang('it') or lang('es') or not(@xml:lang))]"
 									mode="prefLabel">
 									<xsl:sort select="@xml:lang"/>
 								</xsl:apply-templates>
