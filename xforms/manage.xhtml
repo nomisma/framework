@@ -521,6 +521,12 @@ WHERE {
 					<xforms:name>User-Agent</xforms:name>
 					<xforms:value>XForms/Nomisma.org</xforms:value>
 				</xforms:header>
+	
+				<xforms:action ev:event="xforms-submit-done">
+					<xforms:action xxf:iterate="instance('void-rdf')//@rdf:resource">
+						<xforms:setvalue ref="." value="normalize-space(.)"/>
+					</xforms:action>
+				</xforms:action>
 
 				<xforms:action ev:event="xforms-submit-error">
 					<!-- if the mime-type is not a type of XML, then check to see if the event('body') is RDF (an application/octet-stream attachment from ContentDM) -->
@@ -1962,7 +1968,8 @@ WHERE {
 					<xforms:insert context="instance('void-rdf')/*[local-name()='Dataset']" nodeset="./child::node()[last()]"
 						origin="xforms:element('dcterms:date', current-dateTime())"/>
 					<!-- push VoID RDF into triplestore -->
-					<xforms:send submission="post-void"/> <xforms:action ev:event="xforms-submit-done">
+					<xforms:send submission="post-void"/>
+					<xforms:action ev:event="xforms-submit-done">
 						<!-- set the namedGraph, if applicable -->
 						<xforms:setvalue ref="instance('control-instance')/namedGraph"
 							value="if (instance('void-rdf')/*[local-name()='Dataset']/sd:namedGraph/sd:NamedGraph/sd:name) 
