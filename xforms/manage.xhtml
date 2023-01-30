@@ -574,7 +574,7 @@ WHERE {
 							value="instance('control-instance')/symbol_count + count(instance('rdf')//nmo:Monogram) + count(instance('rdf')//crm:E37_Mark)"/>
 
 						<xforms:action
-							xxf:iterate="distinct-values(instance('rdf')//nmo:hasFindspot/descendant::crm:P89_falls_within/@rdf:resource)[position() &lt; 25]">
+							xxf:iterate="distinct-values(instance('rdf')//nmo:hasFindspot/descendant::crm:P89_falls_within/@rdf:resource)">
 							<xforms:var name="uri" select="."/>
 							<xforms:setvalue ref="instance('control-instance')/gazetteer_uri" value="$uri"/>
 
@@ -598,7 +598,7 @@ WHERE {
 									<!-- if the URI is in the Nomisma.org SPARQL endpoint, add it to the findspot-matches instance -->
 									<xforms:action if="count(instance('sparqlResponse')//res:result) &gt; 0">
 										<xforms:insert context="instance('findspot-matches')" nodeset="./child::node()[last()]"
-											origin="xforms:element('findspot', (xforms:attribute('matches', instance('sparqlResponse')//res:result[1]/res:binding[@name='uri']/res:uri), $uri))"
+											origin="xforms:element('findspot', (xforms:attribute('matches', data(instance('sparqlResponse')//res:result[1]/res:binding[@name='uri']/res:uri)), $uri))"
 										/>
 									</xforms:action>
 
@@ -709,6 +709,14 @@ WHERE {
 								<xforms:setvalue ref="instance('places')/crmgeo:SP5_Geometric_Place_Expression[last()]/geo:lat"
 									value="tokenize(substring-before(substring-after($coords, '('), ')'), ' ')[2]"/>
 							</xforms:action>
+							
+							<!-- insert findspot concordance into matches instance to prevent further lookups for this URI -->							
+							<xforms:insert context="instance('findspot-matches')" nodeset="./child::node()[last()]"
+								origin="xforms:element('findspot', (xforms:attribute('matches', $q_entity), data(instance('control-instance')/gazetteer_uri)))"
+								if="string(instance('control-instance')/gazetteer_uri)"/>
+							
+							<xforms:insert context="instance('findspot-matches')" nodeset="./child::node()[last()]" origin="xforms:element('findspot', $q_entity)"
+								if="not(string(instance('control-instance')/gazetteer_uri))"/>
 
 							<!-- perform a hierarchical Wikidata SPARQL query in order to generate E53_Places for each parent of the Q entity -->
 							<xforms:action xxf:iterate="instance('sparqlResponse')//skos:broader">
@@ -723,17 +731,12 @@ WHERE {
 										value="replace(instance('sparql-templates')/query[@id='query-wikidata-match'], '%STATEMENT%', concat('BIND (wd:', tokenize($parentURI, '/')[last()], ' as ?place)'))"
 										if="matches($parentURI, '^http://www.wikidata.org/entity/Q[0-9]+$')"/>
 
+									<!-- blank gazetteer_uri first before looking up parent concepts -->
+									<xforms:setvalue ref="instance('control-instance')/gazetteer_uri"/>
 									<xforms:send submission="query-wikidata"/>
 								</xforms:action>
 							</xforms:action>
 						</xforms:action>
-
-						<!-- insert findspot concordance into matches instance to prevent further lookups for this URI -->
-						<xforms:insert context="instance('findspot-matches')" nodeset="./child::node()[last()]" origin="xforms:element('findspot', $q_entity)"
-							if="$q_entity = instance('control-instance')/gazetteer_uri"/>
-						<xforms:insert context="instance('findspot-matches')" nodeset="./child::node()[last()]"
-							origin="xforms:element('findspot', (xforms:attribute('matches', $q_entity), data(instance('control-instance')/gazetteer_uri)))"
-							if="not($q_entity = instance('control-instance')/gazetteer_uri)"/>
 
 					</xforms:action>
 
