@@ -20,7 +20,7 @@
 	</xsl:template>
 
 	<xsl:template match="content" mode="xml">
-		<group id="{tokenize(identifier, '/')[last()]}">
+		<group id="{identifier}">
 			<!-- display counts -->
 			<xsl:apply-templates select="res:sparql[1]/res:results" mode="counts"/>
 

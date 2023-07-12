@@ -173,7 +173,7 @@
 				</thead>
 				<tbody>
 					<xsl:for-each select="descendant::res:result">
-						<xsl:variable name="type_id" select="substring-after(res:binding[@name = 'coinType']/res:uri, 'id/')"/>
+						<xsl:variable name="type_uri" select="res:binding[@name = 'coinType']/res:uri"/>
 
 						<tr>
 							<td>
@@ -212,7 +212,7 @@
 								</xsl:if>
 							</td>
 							<td class="text-right">
-								<xsl:apply-templates select="$sparqlResult//group[@id = $type_id]/descendant::object" mode="results"/>
+								<xsl:apply-templates select="$sparqlResult//group[@id = $type_uri]/descendant::object" mode="results"/>
 							</td>
 						</tr>
 					</xsl:for-each>
