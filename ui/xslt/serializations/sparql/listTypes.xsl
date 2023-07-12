@@ -46,34 +46,17 @@
 				</xsl:for-each>
 			</type_series_items>
 		</xsl:variable>
-
-		<xsl:variable name="type_series" as="element()*">
-			<list>
-				<xsl:for-each select="distinct-values(descendant::res:result/res:binding[@name = 'coinType']/substring-before(res:uri, 'id/'))">
-					<xsl:variable name="uri" select="."/>
-					<type_series uri="{$uri}">
-						<xsl:for-each select="$type_series_items//item[starts-with(., $uri)]">
-							<item>
-								<xsl:value-of select="substring-after(., 'id/')"/>
-							</item>
-						</xsl:for-each>
-					</type_series>
-				</xsl:for-each>
-			</list>
-		</xsl:variable>
+		
+		
 
 		<!-- use the Numishare Results API to display example coins -->
 		<xsl:variable name="sparqlResult" as="element()*">
+			<xsl:variable name="ids" select="string-join($type_series_items//item, '|')"/>
+			
 			<response>
-				<xsl:for-each select="$type_series//type_series">
-					<xsl:variable name="baseUri" select="concat(@uri, 'id/')"/>
-					<xsl:variable name="ids" select="string-join(item, '|')"/>
-
-					<xsl:variable name="service"
-						select="concat('http://localhost:8080/orbeon/nomisma/apis/numishareResults?identifiers=', encode-for-uri($ids), '&amp;baseUri=',
-						encode-for-uri($baseUri))"/>
-					<xsl:copy-of select="document($service)/response/*"/>
-				</xsl:for-each>
+				<xsl:variable name="service"
+					select="concat('http://localhost:8080/orbeon/nomisma/apis/numishareResults?identifiers=', encode-for-uri($ids))"/>
+				<xsl:copy-of select="document($service)/response/*"/>
 			</response>
 		</xsl:variable>
 
