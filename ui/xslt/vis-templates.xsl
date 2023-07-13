@@ -470,7 +470,7 @@
 					<prop value="nmo:hasMint" class="nmo:Mint">Mint</prop>
 					<prop value="nmo:representsObjectType" class="nmo:ObjectType">Object Type</prop>
 					<prop value="portrait" class="">Portrait</prop>
-					<prop value="region" class="region">Region</prop>
+					<prop value="nmo:hasRegion" class="nmo:Region">Region</prop>
 				</properties>
 			</xsl:variable>
 
@@ -707,7 +707,7 @@
 				<prop value="nmo:hasMint" class="nmo:Mint">Mint</prop>
 				<prop value="nmo:representsObjectType" class="nmo:ObjectType">ObjectType</prop>
 				<prop value="portrait" class="">Portrait</prop>
-				<prop value="region" class="region">Region</prop>
+				<prop value="nmo:hasRegion" class="nmo:Region">Region</prop>
 			</properties>
 		</xsl:variable>
 

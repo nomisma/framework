@@ -38,6 +38,17 @@
             <xsl:variable name="property" select="substring-before(normalize-space(.), ' ')"/>
             <xsl:variable name="object" select="substring-after(normalize-space(.), ' ')"/>
             <xsl:choose>
+                <xsl:when test="$property = 'nmo:hasRegion'">
+                    <union>
+                        <group>
+                            <triple s="{$subject}" p="nmo:hasRegion" o="{$object}"/>
+                        </group>
+                        <group>
+                            <triple s="{$subject}" p="nmo:hasMint" o="?mint"/>
+                            <triple s="?mint" p="skos:broader+" o="{$object}"/>
+                        </group>
+                    </union>
+                </xsl:when>
                 <xsl:when test="$property = 'portrait' or $property = 'deity'">
                     <union>
                         <triple s="{$subject}" p="nmo:hasObverse/nmo:hasPortrait" o="{$object}"/>
@@ -231,7 +242,7 @@
                 <triple s="{$object}" p="a" o="{$distClass}"/>
             </xsl:when>
 
-            <xsl:when test="$dist = 'region'">
+            <xsl:when test="$dist = 'nmo:hasRegion'">
                 <union>
                     <group>
                         <triple s="?coinType" p="nmo:hasRegion" o="{$object}"/>
