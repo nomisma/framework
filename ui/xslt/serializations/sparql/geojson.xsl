@@ -112,7 +112,7 @@
 		<xsl:apply-templates select="doc('input:mints')/*">
 			<xsl:with-param name="type">mint</xsl:with-param>
 		</xsl:apply-templates>
-		<xsl:apply-templates select="doc('input:hoards')/res:sparql">
+		<xsl:apply-templates select="doc('input:hoards')/*">
 			<xsl:with-param name="type">hoard</xsl:with-param>
 		</xsl:apply-templates>
 		<xsl:apply-templates select="doc('input:findspots')/res:sparql">

@@ -52,8 +52,8 @@
 				true()
 			else
 				false()"/>
-	<xsl:variable name="hasFindspots" as="xs:boolean" select="
-			if (/content/res:sparql[2]/res:boolean = 'true') then
+	<xsl:variable name="hasFindspots" as="xs:boolean" select="if (descendant::nmo:hasFindspot) then true() 
+			else if (/content/res:sparql[2]/res:boolean = 'true') then
 				true()
 			else
 				false()"/>
