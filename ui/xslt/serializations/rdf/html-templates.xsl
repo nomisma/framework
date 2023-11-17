@@ -276,8 +276,9 @@
 			</code>
 
 			<dl class="dl-horizontal" typeof="org:Membership">
-
-
+				<xsl:apply-templates select="rdfs:label[@xml:lang = 'en']" mode="human-readable"/>
+				<xsl:apply-templates select="rdfs:label[not(@xml:lang = 'en')]" mode="human-readable"/>
+				
 				<xsl:apply-templates select="org:role | org:organization" mode="human-readable"/>
 
 				<xsl:apply-templates select="nmo:hasStartDate" mode="human-readable"/>
@@ -300,7 +301,7 @@
 		</xsl:if>
 	</xsl:template>
 
-	<xsl:template match="skos:definition" mode="human-readable">
+	<xsl:template match="skos:definition | rdfs:label" mode="human-readable">
 		<dt>
 			<xsl:value-of select="@xml:lang"/>
 		</dt>
