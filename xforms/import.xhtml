@@ -1507,27 +1507,31 @@ PREFIX wordnet:	<http://ontologi.es/WordNet/class/>]]></prefix>
 
 																	<xforms:action if="contains($value, instance('control-instance')/conceptScheme_uri)">
 
-																		<!-- enable skos:related without URI validation for deities, e.g., nm:zeus skos:related nm:jupiter, as these
-																		concepts may be created in the same sheet in any order -->
-																		<xforms:action if="instance('control-instance')/type = 'wordnet:Deity'">
+
+																		<!-- look in the spreadsheet to see if this ID exists -->
+																		<xforms:var name="id" select="tokenize($value, '/')[last()]"/>
+																		<xforms:action
+																			if="instance('sheet')/row[cell[@name=instance('mappings')/mapping[@to='id']/@from] = $id]">
 																			<xforms:insert context="instance('nomisma-ids')" nodeset="./child::node()[last()]"
 																				origin="xforms:element('id', (xforms:attribute('uri', $value), xforms:attribute('mapping', $mapping), true()))"
 																			/>
 																		</xforms:action>
-
-																		<!-- perform SPARQL query for other classes -->
-																		<xforms:action if="not(instance('control-instance')/type = 'wordnet:Deity')">
+																		
+																		<!-- if not, execute SPARQL query -->
+																		<xforms:action
+																			if="not(instance('sheet')/row[cell[@name=instance('mappings')/mapping[@to='id']/@from] = $id])">																			
+																			
 																			<!-- if the URI space is nm:, then test whether the URI has already been validated via SPARQL. If not, then submit a SPARQL query -->
 																			<xforms:action if="instance('nomisma-ids')/id[@uri=$value and @mapping=$mapping] = false()"
 																				context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
 																				origin="xforms:element('error', concat($mapping, ' links to a non-existent Nomisma URI or the URI is a different class: ', $value))"/>
 																			<xforms:action if="not(instance('nomisma-ids')/id[@uri=$value and @mapping=$mapping])">
-
+																				
 																				<!-- set the SPARQL query to evaluate whether the URI is an nmo:Mint -->
 																				<xforms:setvalue ref="instance('sparqlQuery')"
-																					value="concat(instance('sparql-templates')/prefix, ' ', replace(replace(instance('sparql-templates')/query[@id='ask'], 'URI', $value), 'CLASS', 'nmo:Mint'))"/>
+																					value="concat(instance('sparql-templates')/prefix, ' ', replace(replace(instance('sparql-templates')/query[@id='ask'], 'URI', $value), 'CLASS', instance('control-instance')/type))"/>
 																				<xforms:send submission="submit-sparqlQuery"/>
-
+																				
 																				<!-- if the SPARQL query concludes successfully, then create an entry in nomisma-ids and display an error if the ASK if false -->
 																				<xforms:action ev:event="xforms-submit-done">
 																					<xforms:insert context="instance('nomisma-ids')" nodeset="./child::node()[last()]"
