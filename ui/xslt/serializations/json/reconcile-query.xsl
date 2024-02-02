@@ -33,7 +33,7 @@
     </xsl:template>
     
     <xsl:template match="query">
-        <xsl:variable name="frag" select="replace(., '/', '')"/>
+        <xsl:variable name="frag" select="encode-for-uri(replace(., '/', ''))"/>
         
         <xsl:text>(text:(</xsl:text>
         <xsl:value-of select="$frag"/>
