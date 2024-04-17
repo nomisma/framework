@@ -11,7 +11,7 @@
         </xsl:variable>
         
         <xsl:text>q=</xsl:text>
-        <xsl:value-of select="encode-for-uri($query)"/>       
+        <xsl:value-of select="$query"/>       
         
         <!-- construct limit -->
         <xsl:text>&amp;rows=</xsl:text>
