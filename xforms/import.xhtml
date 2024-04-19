@@ -1963,7 +1963,7 @@ PREFIX wordnet:	<http://ontologi.es/WordNet/class/>]]></prefix>
 												
 												<!-- only create the membership if there's a required role -->
 												
-												<xforms:if test="string-length($role) &gt; 0">
+												<xforms:action if="string-length($role) &gt; 0">
 													<xforms:var name="membershipString" select="concat($org, ';', $role, ';', $startDate, ';', $endDate)"/>
 													
 													<!-- generate an ID which should be the same on repeated uploads if the metadata elements are identical -->
@@ -2021,7 +2021,7 @@ PREFIX wordnet:	<http://ontologi.es/WordNet/class/>]]></prefix>
 														</xforms:action>
 														
 													</xforms:action>
-												</xforms:if>
+												</xforms:action>
 											</xforms:action>
 
 
