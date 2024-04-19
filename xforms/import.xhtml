@@ -1988,9 +1988,11 @@ PREFIX wordnet:	<http://ontologi.es/WordNet/class/>]]></prefix>
 														<xforms:var name="value" select="normalize-space(data($row/cell[@name = $from]))"/>
 														
 														<xforms:action if="$mapping='org:role' or $mapping='org:organization'">
-															<xforms:insert context="instance('rdf')/org:Membership[@rdf:about=$membershipUri]" nodeset="./child::node()[last()]"
-																origin="xforms:element($mapping, (xforms:attribute('rdf:resource', $value), ''))"
-																if="not(instance('rdf')/org:Membership[@rdf:about=$membershipUri]/*[name()=$mapping])"/>
+															<xforms:action if="string-length($value) &gt; 0">
+																<xforms:insert context="instance('rdf')/org:Membership[@rdf:about=$membershipUri]" nodeset="./child::node()[last()]"
+																	origin="xforms:element($mapping, (xforms:attribute('rdf:resource', $value), ''))"
+																	if="not(instance('rdf')/org:Membership[@rdf:about=$membershipUri]/*[name()=$mapping])"/>
+															</xforms:action>
 														</xforms:action>
 														
 														<xforms:action if="$mapping = 'nmo:hasStartDate' or $mapping='nmo:hasEndDate'">
@@ -2013,10 +2015,12 @@ PREFIX wordnet:	<http://ontologi.es/WordNet/class/>]]></prefix>
 														</xforms:action>
 														
 														<xforms:action if="$mapping = 'rdfs:label'">
-															<xforms:var name="lang" select="@lang"/>
-															<xforms:insert context="instance('rdf')/org:Membership[@rdf:about=$membershipUri]"
-																origin="xforms:element($mapping, (xforms:attribute('xml:lang', $lang), $value))"
-																if="not(instance('rdf')/org:Membership[@rdf:about=$membershipUri]/rdfs:label[name()=$mapping][@xml:lang=$lang])"/>
+															<xforms:action if="string-length($value) &gt; 0">
+																<xforms:var name="lang" select="@lang"/>
+																<xforms:insert context="instance('rdf')/org:Membership[@rdf:about=$membershipUri]"
+																	origin="xforms:element($mapping, (xforms:attribute('xml:lang', $lang), $value))"
+																	if="not(instance('rdf')/org:Membership[@rdf:about=$membershipUri]/rdfs:label[name()=$mapping][@xml:lang=$lang])"/>
+															</xforms:action>															
 														</xforms:action>
 														
 													</xforms:action>
