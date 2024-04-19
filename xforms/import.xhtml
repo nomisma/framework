@@ -1960,64 +1960,68 @@ PREFIX wordnet:	<http://ontologi.es/WordNet/class/>]]></prefix>
 												<xforms:var name="role" select="normalize-space(data($row/cell[@name=context()/mapping[@to='org:role']/@from]))"/>
 												<xforms:var name="startDate" select="normalize-space(data($row/cell[@name=context()/mapping[@to='nmo:hasStartDate']/@from]))"/>
 												<xforms:var name="endDate" select="normalize-space(data($row/cell[@name=context()/mapping[@to='nmo:hasEndDate']/@from]))"/>
-
-												<xforms:var name="membershipString" select="concat($org, ';', $role, ';', $startDate, ';', $endDate)"/>
-
-												<!-- generate an ID which should be the same on repeated uploads if the metadata elements are identical -->
-												<xforms:var name="membershipUri" select="concat($uri, '#membership_', digest(string($membershipString), 'MD5', 'hex'))"/>
-
-												<!-- create the org:Membership, if necessary -->
-												<xforms:action if="not(instance('rdf')/org:Membership[@rdf:about=$membershipUri])">
-													<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
-														origin="xforms:element('org:hasMembership', (xforms:attribute('rdf:resource', $membershipUri), ''))"/>
-
-													<xforms:insert context="instance('rdf')" nodeset="./child::node()[last()]"
-														origin="xforms:element('org:Membership', (xforms:attribute('rdf:about', $membershipUri), ''))"/>
-													<!-- insert a foaf:focus into org:Membership -->
-													<xforms:insert context="instance('rdf')/org:Membership[@rdf:about=$membershipUri]" nodeset="./child::node()[last()]"
-														origin="xforms:element('foaf:topic', (xforms:attribute('rdf:resource', $uri), ''))"
-														if="not(instance('rdf')/org:Membership[@rdf:about=$membershipUri]/foaf:focus)"/>
-												</xforms:action>
-
-												<!-- insert the properties based on available mappings -->
-												<xforms:action xxf:iterate="context()/mapping">
-													<xforms:var name="from" select="@from"/>
-													<xforms:var name="mapping" select="@to"/>
-													<xforms:var name="value" select="normalize-space(data($row/cell[@name = $from]))"/>
-
-													<xforms:action if="$mapping='org:role' or $mapping='org:organization'">
+												
+												<!-- only create the membership if there's a required role -->
+												
+												<xforms:if test="string($role)">
+													<xforms:var name="membershipString" select="concat($org, ';', $role, ';', $startDate, ';', $endDate)"/>
+													
+													<!-- generate an ID which should be the same on repeated uploads if the metadata elements are identical -->
+													<xforms:var name="membershipUri" select="concat($uri, '#membership_', digest(string($membershipString), 'MD5', 'hex'))"/>
+													
+													<!-- create the org:Membership, if necessary -->
+													<xforms:action if="not(instance('rdf')/org:Membership[@rdf:about=$membershipUri])">
+														<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
+															origin="xforms:element('org:hasMembership', (xforms:attribute('rdf:resource', $membershipUri), ''))"/>
+														
+														<xforms:insert context="instance('rdf')" nodeset="./child::node()[last()]"
+															origin="xforms:element('org:Membership', (xforms:attribute('rdf:about', $membershipUri), ''))"/>
+														<!-- insert a foaf:focus into org:Membership -->
 														<xforms:insert context="instance('rdf')/org:Membership[@rdf:about=$membershipUri]" nodeset="./child::node()[last()]"
-															origin="xforms:element($mapping, (xforms:attribute('rdf:resource', $value), ''))"
-															if="not(instance('rdf')/org:Membership[@rdf:about=$membershipUri]/*[name()=$mapping])"/>
+															origin="xforms:element('foaf:topic', (xforms:attribute('rdf:resource', $uri), ''))"
+															if="not(instance('rdf')/org:Membership[@rdf:about=$membershipUri]/foaf:focus)"/>
 													</xforms:action>
-
-													<xforms:action if="$mapping = 'nmo:hasStartDate' or $mapping='nmo:hasEndDate'">
-														<!-- evaluate the format of the date -->
-														<xforms:action if="$value castable as xs:integer or $value castable as xs:gYear">
+													
+													<!-- insert the properties based on available mappings -->
+													<xforms:action xxf:iterate="context()/mapping">
+														<xforms:var name="from" select="@from"/>
+														<xforms:var name="mapping" select="@to"/>
+														<xforms:var name="value" select="normalize-space(data($row/cell[@name = $from]))"/>
+														
+														<xforms:action if="$mapping='org:role' or $mapping='org:organization'">
 															<xforms:insert context="instance('rdf')/org:Membership[@rdf:about=$membershipUri]" nodeset="./child::node()[last()]"
-																origin="xforms:element($mapping, (xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#gYear'), format-number(number($value), '0000')))"
+																origin="xforms:element($mapping, (xforms:attribute('rdf:resource', $value), ''))"
 																if="not(instance('rdf')/org:Membership[@rdf:about=$membershipUri]/*[name()=$mapping])"/>
 														</xforms:action>
-														<xforms:action if="$value castable as xs:gYearMonth">
-															<xforms:insert context="instance('rdf')/org:Membership[@rdf:about=$membershipUri]" nodeset="./child::node()[last()]"
-																origin="xforms:element($mapping, (xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#gYearMonth'), $value))"
-																if="not(instance('rdf')/org:Membership[@rdf:about=$membershipUri]/*[name()=$mapping])"/>
+														
+														<xforms:action if="$mapping = 'nmo:hasStartDate' or $mapping='nmo:hasEndDate'">
+															<!-- evaluate the format of the date -->
+															<xforms:action if="$value castable as xs:integer or $value castable as xs:gYear">
+																<xforms:insert context="instance('rdf')/org:Membership[@rdf:about=$membershipUri]" nodeset="./child::node()[last()]"
+																	origin="xforms:element($mapping, (xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#gYear'), format-number(number($value), '0000')))"
+																	if="not(instance('rdf')/org:Membership[@rdf:about=$membershipUri]/*[name()=$mapping])"/>
+															</xforms:action>
+															<xforms:action if="$value castable as xs:gYearMonth">
+																<xforms:insert context="instance('rdf')/org:Membership[@rdf:about=$membershipUri]" nodeset="./child::node()[last()]"
+																	origin="xforms:element($mapping, (xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#gYearMonth'), $value))"
+																	if="not(instance('rdf')/org:Membership[@rdf:about=$membershipUri]/*[name()=$mapping])"/>
+															</xforms:action>
+															<xforms:action if="$value castable as xs:date">
+																<xforms:insert context="instance('rdf')/org:Membership[@rdf:about=$membershipUri]" nodeset="./child::node()[last()]"
+																	origin="xforms:element($mapping, (xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#date'), $value))"
+																	if="not(instance('rdf')/org:Membership[@rdf:about=$membershipUri]/*[name()=$mapping])"/>
+															</xforms:action>
 														</xforms:action>
-														<xforms:action if="$value castable as xs:date">
-															<xforms:insert context="instance('rdf')/org:Membership[@rdf:about=$membershipUri]" nodeset="./child::node()[last()]"
-																origin="xforms:element($mapping, (xforms:attribute('rdf:datatype', 'http://www.w3.org/2001/XMLSchema#date'), $value))"
-																if="not(instance('rdf')/org:Membership[@rdf:about=$membershipUri]/*[name()=$mapping])"/>
+														
+														<xforms:action if="$mapping = 'rdfs:label'">
+															<xforms:var name="lang" select="@lang"/>
+															<xforms:insert context="instance('rdf')/org:Membership[@rdf:about=$membershipUri]"
+																origin="xforms:element($mapping, (xforms:attribute('xml:lang', $lang), $value))"
+																if="not(instance('rdf')/org:Membership[@rdf:about=$membershipUri]/rdfs:label[name()=$mapping][@xml:lang=$lang])"/>
 														</xforms:action>
+														
 													</xforms:action>
-
-													<xforms:action if="$mapping = 'rdfs:label'">
-														<xforms:var name="lang" select="@lang"/>
-														<xforms:insert context="instance('rdf')/org:Membership[@rdf:about=$membershipUri]"
-															origin="xforms:element($mapping, (xforms:attribute('xml:lang', $lang), $value))"
-															if="not(instance('rdf')/org:Membership[@rdf:about=$membershipUri]/rdfs:label[name()=$mapping][@xml:lang=$lang])"/>
-													</xforms:action>
-
-												</xforms:action>
+												</xforms:if>
 											</xforms:action>
 
 
