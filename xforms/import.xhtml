@@ -1961,9 +1961,8 @@ PREFIX wordnet:	<http://ontologi.es/WordNet/class/>]]></prefix>
 												<xforms:var name="startDate" select="normalize-space(data($row/cell[@name=context()/mapping[@to='nmo:hasStartDate']/@from]))"/>
 												<xforms:var name="endDate" select="normalize-space(data($row/cell[@name=context()/mapping[@to='nmo:hasEndDate']/@from]))"/>
 												
-												<!-- only create the membership if there's a required role -->
-												
-												<xforms:action if="string-length($role) &gt; 0">
+												<!-- only create the membership if there's a role or an org -->												
+												<xforms:action if="string-length($role) &gt; 0 or string-length($org) &gt; 0">
 													<xforms:var name="membershipString" select="concat($org, ';', $role, ';', $startDate, ';', $endDate)"/>
 													
 													<!-- generate an ID which should be the same on repeated uploads if the metadata elements are identical -->
