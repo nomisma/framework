@@ -296,6 +296,10 @@
 			<xforms:instance id="seeAlso-template" xxf:exclude-result-prefixes="#all">
 				<rdfs:seeAlso rdf:resource=""/>
 			</xforms:instance>
+			
+			<xforms:instance id="rdfs_label-template" xxf:exclude-result-prefixes="#all">
+				<rdfs:label xml:lang=""/>
+			</xforms:instance>
 
 			<xforms:instance id="memberOf-template" xxf:exclude-result-prefixes="#all">
 				<org:memberOf rdf:resource=""/>
@@ -518,6 +522,11 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 					<!-- forbid duplicate URIs for membership -->
 					<xforms:bind nodeset="@rdf:about" required="true()" type="xs:anyURI"
 						constraint="count(distinct-values(ancestor::rdf:RDF/org:Membership/@rdf:about)) = count(ancestor::rdf:RDF/org:Membership/@rdf:about)"/>
+					<xforms:bind nodeset="rdfs:label" required="true()">
+						<xforms:bind nodeset="@xml:lang"
+							constraint="string-length(.) &gt; 0 and count(parent::node()/parent::node()/rdfs:label[@xml:lang='en']) = 1 and count(parent::node()/parent::node()/rdfs:label/@xml:lang) = count(distinct-values(parent::node()/parent::node()/rdfs:label/@xml:lang))"
+						/>
+					</xforms:bind>
 					<xforms:bind nodeset="nmo:hasStartDate" type="xs:gYear" required="true()"/>
 					<xforms:bind nodeset="nmo:hasEndDate" type="xs:gYear" required="true()"/>
 					<!-- @rdf:resource -->
@@ -2281,11 +2290,22 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											</small>
 										</h3>
 										<xforms:group ref=".[count(ancestor::rdf:RDF/org:Membership[@rdf:about=$uri]) != 1]">
+											<xforms:group
+												ref=".[count(rdfs:label/@xml:lang) &gt; count(skos:prefLabel/@xml:lang[not(preceding::rdfs:label/@xml:lang = .)])]">
+												<div class="alert-danger alert alert-box">
+													<span class="glyphicon glyphicon-exclamation-sign"></span>
+													<strong>Alert:</strong> Preferred label languages must be unique. </div>
+											</xforms:group>
 											<div class="alert-danger alert alert-box">
 												<span class="glyphicon glyphicon-exclamation-sign"></span>
 												<strong>Alert:</strong> There cannot be multiple memberships with identical URIs.</div>
 										</xforms:group>
 										<div class="trigger_container">
+											<xforms:trigger appearance="minimal">
+												<xforms:label>
+													<span class="glyphicon glyphicon-plus"></span>Role Label</xforms:label>
+												<xforms:insert ev:event="DOMActivate" origin="instance('rdfs_label-template')" context="." nodeset="./child::node()[last()]"/>
+											</xforms:trigger>
 											<xforms:group ref=".[count(nmo:hasStartDate) = 0]">
 												<xforms:trigger appearance="minimal">
 													<xforms:label>
@@ -2316,6 +2336,27 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											</xforms:group>
 										</div>
 										<!-- role -->
+										
+										<xforms:repeat nodeset="rdfs:label">
+											<div>
+												<xforms:input ref=".">
+													<xforms:label>Role label</xforms:label>
+													<xforms:alert>Must not be blank</xforms:alert>
+												</xforms:input>
+												<xforms:select1 ref="@xml:lang">
+													<xforms:item>
+														<xforms:label>Select...</xforms:label>
+														<xforms:value/>
+													</xforms:item>
+													<xforms:itemset nodeset="instance('languages')/language">
+														<xforms:label ref="."/>
+														<xforms:value ref="@value"/>
+													</xforms:itemset>
+													<xforms:alert>Required; English label most occur once.</xforms:alert>
+												</xforms:select1>
+											</div>
+										</xforms:repeat>
+										
 										<xforms:group ref="org:role">
 											<div>
 												<xforms:select1 ref="@rdf:resource">
