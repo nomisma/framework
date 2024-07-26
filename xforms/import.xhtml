@@ -1240,12 +1240,12 @@ PREFIX wordnet:	<http://ontologi.es/WordNet/class/>]]></prefix>
 																<xforms:insert if="$lang = 'en' and not(string($value))" context="instance('validation-model')/record[last()]"
 																	nodeset="./child::node()[last()]" origin="xforms:element('error', 'English definition must contain a value.')"/>
 															</xforms:action>
-															<xforms:action if="$mapping = 'rdfs:label'">
+															<!--<xforms:action if="$mapping = 'rdfs:label'">
 																<xforms:var name="lang" select="instance('mappings')//mapping[@from=$from]/@lang"/>
 																<xforms:insert if="$lang = 'en' and not(string($value))" context="instance('validation-model')/record[last()]"
 																	nodeset="./child::node()[last()]"
 																	origin="xforms:element('error', 'English membership label must contain a value.')"/>
-															</xforms:action>
+															</xforms:action>-->
 															<!-- validate coordinates -->
 															<xforms:action if="$mapping = 'geo:lat'">
 																<xforms:insert if="string-length($value) &gt; 0 and not($value castable as xs:decimal)"
