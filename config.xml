@@ -60,6 +60,7 @@
 		<class mints="true" findspots="true" types="false" dist="false" prop="nmo:hasCollection">nmo:Collection</class>
 		<class mints="false" findspots="false" types="false" dist="false">nmo:Corrosion</class>
 		<class mints="true" findspots="true" types="true" dist="true" prop="nmo:hasDenomination">nmo:Denomination</class>
+		<class mints="false" findspots="false" types="false" dist="false">nmo:DepositionType</class>
 		<class mints="true" findspots="true" types="true" dist="true" prop="dynasty">rdac:Family</class>
 		<class mints="true" findspots="true" types="false" dist="true" prop="nmo:hasAuthority">nmo:Ethnic</class>
 		<class mints="false" findspots="false" types="false" dist="false">nmo:FieldOfNumismatics</class>
