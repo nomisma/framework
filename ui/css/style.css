@@ -140,6 +140,9 @@ a:hover {
     width: 20em;
     display: inline;
 }
+.symbol-graphic {
+    height: 80px;
+}
 /*
   ***************************************
   SPARQL

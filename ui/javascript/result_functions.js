@@ -4,6 +4,7 @@ $(document).ready(function () {
 		var type = $('#type_filter').val();
 		var role = $('#role_filter').val();
 		var field = $('#field_filter').val();
+		var conceptScheme = $('#conceptScheme_filter').val();
 		var text = $('#search_text').val();
 		
 		if (type.length > 0) {
@@ -11,6 +12,9 @@ $(document).ready(function () {
 		}
 		if (field.length > 0) {
 			query.push(field);
+		}
+		if (conceptScheme.length > 0) {
+			query.push(conceptScheme);
 		}
 		if (text.length > 0) {
 			query.push(text);

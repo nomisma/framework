@@ -2,18 +2,19 @@
 <!-- Author: Ethan Gruber
 	Date modified: July 2021
 	Function: Serialize Solr search results for Nomisma IDs into HTML -->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:nomisma="http://nomisma.org/" exclude-result-prefixes="#all" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:nomisma="http://nomisma.org/" exclude-result-prefixes="#all"
+	version="2.0">
 	<xsl:include href="../../templates.xsl"/>
 	<xsl:include href="../../functions.xsl"/>
 
 	<!-- request params -->
-	<xsl:param name="q" select="doc('input:request')/request/parameters/parameter[name='q']/value"/>
+	<xsl:param name="q" select="doc('input:request')/request/parameters/parameter[name = 'q']/value"/>
 	<xsl:param name="rows">100</xsl:param>
-	<xsl:param name="sort" select="doc('input:request')/request/parameters/parameter[name='sort']/value"/>
+	<xsl:param name="sort" select="doc('input:request')/request/parameters/parameter[name = 'sort']/value"/>
 	<xsl:param name="start">
 		<xsl:choose>
-			<xsl:when test="string(doc('input:request')/request/parameters/parameter[name='start']/value)">
-				<xsl:value-of select="doc('input:request')/request/parameters/parameter[name='start']/value"/>
+			<xsl:when test="string(doc('input:request')/request/parameters/parameter[name = 'start']/value)">
+				<xsl:value-of select="doc('input:request')/request/parameters/parameter[name = 'start']/value"/>
 			</xsl:when>
 			<xsl:otherwise>0</xsl:otherwise>
 		</xsl:choose>
@@ -31,7 +32,7 @@
 
 	<!-- variables -->
 	<xsl:variable name="tokenized_q" select="tokenize($q, ' AND ')"/>
-	<xsl:variable name="numFound" select="//result[@name='response']/@numFound" as="xs:integer"/>
+	<xsl:variable name="numFound" select="//result[@name = 'response']/@numFound" as="xs:integer"/>
 	<xsl:variable name="feed_url">
 		<xsl:text>feed/</xsl:text>
 		<xsl:if test="string($q) or string($sort)">?</xsl:if>
@@ -62,7 +63,7 @@
 				<meta name="totalResults" content="{$numFound}"/>
 				<meta name="startIndex" content="{$start_var}"/>
 				<meta name="itemsPerPage" content="{$rows}"/>
-				
+
 				<!-- google analytics -->
 				<xsl:if test="string(//config/google_analytics)">
 					<script type="text/javascript">
@@ -105,47 +106,73 @@
 	<xsl:template match="doc">
 		<div class="result-doc">
 			<h4>
-				<a href="{tokenize(str[@name='conceptScheme'], '/')[4]}/{str[@name='id']}" title="{if(string(str[@name='prefLabel'])) then str[@name='prefLabel'] else str[@name='id']}">
-					<xsl:value-of select="if(string(str[@name='prefLabel'])) then str[@name='prefLabel'] else str[@name='id']"/>
+				<a href="{tokenize(str[@name='conceptScheme'], '/')[4]}/{str[@name='id']}"
+					title="{if(string(str[@name='prefLabel'])) then str[@name='prefLabel'] else str[@name='id']}">
+					<xsl:value-of select="
+							if (string(str[@name = 'prefLabel'])) then
+								str[@name = 'prefLabel']
+							else
+								str[@name = 'id']"/>
 				</a>
 			</h4>
-			<xsl:if test="string(str[@name='definition']) or not(contains($q, 'type'))">
+			
+			
+			<xsl:if test="string(str[@name = 'definition']) or not(contains($q, 'type'))">
 				<dl class="dl-horizontal">
-					<xsl:if test="string(str[@name='definition'])">
+					<xsl:if test="string(str[@name = 'definition'])">
 						<dt>Definition</dt>
 						<dd>
-							<xsl:value-of select="str[@name='definition']"/>
+							<xsl:value-of select="str[@name = 'definition']"/>
 						</dd>
 					</xsl:if>
 					<xsl:if test="not(contains($q, 'type'))">
 						<dt>Type</dt>
 						<dd>
-							<xsl:for-each select="arr[@name='type']/str">
+							<xsl:for-each select="arr[@name = 'type']/str">
 								<xsl:variable name="name" select="."/>
-
+								
 								<a href="{concat($namespaces//namespace[@prefix=substring-before($name, ':')]/@uri, substring-after($name, ':'))}" title="{$name}">
-									<xsl:value-of select="nomisma:normalizeCurie($name, $lang)"/>									
+									<xsl:value-of select="nomisma:normalizeCurie($name, $lang)"/>
 								</a>
-								<xsl:if test="not(position()=last())">
+								<xsl:if test="not(position() = last())">
 									<xsl:text>, </xsl:text>
 								</xsl:if>
 							</xsl:for-each>
 						</dd>
 					</xsl:if>
+					<xsl:if test="string(str[@name = 'conceptScheme'])">
+						<dt>Concept Scheme</dt>
+						<dd>
+							<a href="{str[@name='conceptScheme']}">
+								<xsl:value-of select="str[@name = 'conceptScheme']"/>
+							</a>
+						</dd>
+					</xsl:if>
 					<xsl:if test="contains($sort, 'created')">
 						<dt>Creation Date</dt>
 						<dd>
-							<xsl:value-of select="date[@name='created_timestamp']"/>
+							<xsl:value-of select="date[@name = 'created_timestamp']"/>
 						</dd>
 					</xsl:if>
 					<xsl:if test="contains($sort, 'modified')">
 						<dt>Modification Date</dt>
 						<dd>
-							<xsl:value-of select="date[@name='modified_timestamp']"/>
+							<xsl:value-of select="date[@name = 'modified_timestamp']"/>
+						</dd>
+					</xsl:if>
+					<xsl:if test="arr[@name = 'symbol_image_uri']">
+						<dt>Image</dt>
+						<dd>
+							<xsl:for-each select="arr[@name = 'symbol_image_uri']/str">
+								<a href="{.}">
+									<img src="{.}" alt="SVG graphic representing {parent::node()/str[@name = 'id']}" class="symbol-graphic"/>
+								</a>
+							</xsl:for-each>
 						</dd>
 					</xsl:if>
 				</dl>
 			</xsl:if>
+			
 		</div>
 	</xsl:template>
 
@@ -157,7 +184,9 @@
 					<input type="text" class="form-control" id="search_text" placeholder="Keyword"/>
 					<a href="#" id="toggle-filters" class="toggle-button" title="More Filters" style="margin-left:10px;">
 						<xsl:text>Filters</xsl:text>
-						<span class="glyphicon glyphicon-triangle-{if (not(contains($q, 'type:')) and not(contains($q, '_facet:')) and not(string($sort))) then 'right' else 'bottom'}"/>
+						<span
+							class="glyphicon glyphicon-triangle-{if (not(contains($q, 'type:')) and not(contains($q, '_facet:')) and not(string($sort))) then 'right' else 'bottom'}"
+						/>
 					</a>
 				</div>
 			</div>
@@ -172,15 +201,33 @@
 					<div class="col-sm-10">
 						<select id="type_filter" class="form-control">
 							<option value="">Select Type...</option>
-							<xsl:for-each select="descendant::lst[@name='type']/int[not(@name='skos:Concept')]">
+							<xsl:for-each select="descendant::lst[@name = 'type']/int[not(@name = 'skos:Concept')]">
 								<xsl:sort select="substring-after(@name, ':')"/>
-								
+
 								<xsl:variable name="value" select="concat('type:&#x022;', @name, '&#x022;')"/>
 								<option value="{$value}">
 									<xsl:if test="contains($q, $value)">
 										<xsl:attribute name="selected">selected</xsl:attribute>
 									</xsl:if>
 									<xsl:value-of select="nomisma:normalizeCurie(@name, $lang)"/>
+								</option>
+							</xsl:for-each>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="filter_type" class="col-sm-2 control-label">Concept Scheme</label>
+					<div class="col-sm-10">
+						<select id="conceptScheme_filter" class="form-control">
+							<option value="">Select Type...</option>
+							<xsl:for-each select="descendant::lst[@name = 'conceptScheme']/int">
+								<xsl:sort select="substring-after(@name, ':')"/>								
+								<xsl:variable name="value" select="concat('conceptScheme:&#x022;', @name, '&#x022;')"/>
+								<option value="{$value}">
+									<xsl:if test="contains($q, $value)">
+										<xsl:attribute name="selected">selected</xsl:attribute>
+									</xsl:if>
+									<xsl:value-of select="@name"/>
 								</option>
 							</xsl:for-each>
 						</select>
@@ -197,7 +244,7 @@
 								<xsl:attribute name="disabled">disabled</xsl:attribute>
 							</xsl:if>
 							<option value="">Select Role...</option>
-							<xsl:for-each select="descendant::lst[@name='role_facet']/int">
+							<xsl:for-each select="descendant::lst[@name = 'role_facet']/int">
 								<xsl:variable name="value" select="concat('role_facet:&#x022;', @name, '&#x022;')"/>
 								<option value="{$value}">
 									<xsl:if test="contains($q, $value)">
@@ -215,7 +262,7 @@
 					<div class="col-sm-10">
 						<select id="field_filter" class="form-control">
 							<option value="">Select Field...</option>
-							<xsl:for-each select="descendant::lst[@name='field_facet']/int">
+							<xsl:for-each select="descendant::lst[@name = 'field_facet']/int">
 								<xsl:variable name="value" select="concat('field_facet:&#x022;', @name, '&#x022;')"/>
 								<option value="{$value}">
 									<xsl:if test="contains($q, $value)">
@@ -307,7 +354,7 @@
 		</xsl:variable>
 
 		<xsl:variable name="next">
-			<xsl:value-of select="$start_var+$rows"/>
+			<xsl:value-of select="$start_var + $rows"/>
 		</xsl:variable>
 
 		<xsl:variable name="previous">
@@ -359,7 +406,8 @@
 								<a class="btn btn-default" title="First" href="browse?q={encode-for-uri($q)}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
 									<span class="glyphicon glyphicon-fast-backward"/>
 								</a>
-								<a class="btn btn-default" title="Previous" href="browse?q={encode-for-uri($q)}&amp;start={$previous}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+								<a class="btn btn-default" title="Previous"
+									href="browse?q={encode-for-uri($q)}&amp;start={$previous}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
 									<span class="glyphicon glyphicon-backward"/>
 								</a>
 							</xsl:when>
@@ -367,7 +415,8 @@
 								<a class="btn btn-default disabled" title="First" href="browse?q={encode-for-uri($q)}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
 									<span class="glyphicon glyphicon-fast-backward"/>
 								</a>
-								<a class="btn btn-default disabled" title="Previous" href="browse?q={encode-for-uri($q)}&amp;start={$previous}{if (string($sort)) then concat('&amp;sort=', $sort) else
+								<a class="btn btn-default disabled" title="Previous"
+									href="browse?q={encode-for-uri($q)}&amp;start={$previous}{if (string($sort)) then concat('&amp;sort=', $sort) else
 									''}">
 									<span class="glyphicon glyphicon-backward"/>
 								</a>
@@ -382,18 +431,22 @@
 						<!-- next page -->
 						<xsl:choose>
 							<xsl:when test="$numFound - $start_var &gt; $rows">
-								<a class="btn btn-default" title="Next" href="browse?q={encode-for-uri($q)}&amp;start={$next}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+								<a class="btn btn-default" title="Next"
+									href="browse?q={encode-for-uri($q)}&amp;start={$next}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
 									<span class="glyphicon glyphicon-forward"/>
 								</a>
-								<a class="btn btn-default" href="browse?q={encode-for-uri($q)}&amp;start={($total * $rows) - $rows}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+								<a class="btn btn-default"
+									href="browse?q={encode-for-uri($q)}&amp;start={($total * $rows) - $rows}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
 									<span class="glyphicon glyphicon-fast-forward"/>
 								</a>
 							</xsl:when>
 							<xsl:otherwise>
-								<a class="btn btn-default disabled" title="Next" href="browse?q={encode-for-uri($q)}&amp;start={$next}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+								<a class="btn btn-default disabled" title="Next"
+									href="browse?q={encode-for-uri($q)}&amp;start={$next}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
 									<span class="glyphicon glyphicon-forward"/>
 								</a>
-								<a class="btn btn-default disabled" href="browse?q={encode-for-uri($q)}&amp;start={($total * $rows) - $rows}{if (string($sort)) then concat('&amp;sort=', $sort) else
+								<a class="btn btn-default disabled"
+									href="browse?q={encode-for-uri($q)}&amp;start={($total * $rows) - $rows}{if (string($sort)) then concat('&amp;sort=', $sort) else
 									''}">
 									<span class="glyphicon glyphicon-fast-forward"/>
 								</a>
@@ -446,7 +499,7 @@
 	?membership org:role <]]><xsl:value-of select="substring-after($value, '|')"/><![CDATA[>]]></xsl:when>
 						<xsl:when test="$field = 'field_facet'"><![CDATA[dcterms:isPartOf <]]><xsl:value-of select="substring-after($value, '|')"/><![CDATA[>]]></xsl:when>
 					</xsl:choose>
-					<xsl:if test="not(position()=last())"> ;&#x000a;</xsl:if>
+					<xsl:if test="not(position() = last())"> ;&#x000a;</xsl:if>
 				</xsl:for-each>
 			</xsl:if>
 

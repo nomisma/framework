@@ -49,9 +49,9 @@
 					</xsl:for-each>
 					
 					<!-- add the fq parameter for the HTML browse page -->
-					<xsl:if test="tokenize(doc('input:request')/request/request-uri, '/')[last()] = 'browse' and not(string($fq))">
+					<!--<xsl:if test="tokenize(doc('input:request')/request/request-uri, '/')[last()] = 'browse' and not(string($fq))">
 						<xsl:value-of select="concat('&amp;fq=', encode-for-uri('conceptScheme:&#x022;http://nomisma.org/id/&#x022;'))"/>
-					</xsl:if>
+					</xsl:if>-->
 				</xsl:variable>
 
 				<!-- config variables -->
@@ -61,11 +61,11 @@
 					<xsl:choose>
 						<xsl:when test="string($q)">
 							<xsl:value-of select="concat($solr-url, '?q=', encode-for-uri($q), '&amp;sort=', encode-for-uri($sort), '&amp;start=',$start,
-								'&amp;rows=100&amp;facet=true&amp;facet.field=type&amp;facet.field=role_facet&amp;facet.field=field_facet&amp;facet.sort=index&amp;facet.limit=-1&amp;facet.mincount=1', $other-params)"/>
+								'&amp;rows=100&amp;facet=true&amp;facet.field=type&amp;facet.field=role_facet&amp;facet.field=field_facet&amp;facet.field=conceptScheme&amp;facet.sort=index&amp;facet.limit=-1&amp;facet.mincount=1', $other-params)"/>
 						</xsl:when>
 						<xsl:otherwise>
 							<xsl:value-of select="concat($solr-url, '?q=*:*&amp;sort=', encode-for-uri($sort), '&amp;start=',$start,
-								'&amp;rows=100&amp;facet=true&amp;facet.field=type&amp;facet.field=role_facet&amp;facet.field=field_facet&amp;facet.sort=index&amp;facet.limit=-1&amp;facet.mincount=1', $other-params)"/>
+								'&amp;rows=100&amp;facet=true&amp;facet.field=type&amp;facet.field=role_facet&amp;facet.field=field_facet&amp;facet.field=conceptScheme&amp;facet.sort=index&amp;facet.limit=-1&amp;facet.mincount=1', $other-params)"/>
 						</xsl:otherwise>
 					</xsl:choose>
 				</xsl:variable>

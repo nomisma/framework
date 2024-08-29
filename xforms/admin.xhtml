@@ -32,6 +32,8 @@
 					<save-trigger></save-trigger>
 					<status></status>
 					<solr-query>*:*</solr-query>
+					<type-query></type-query>
+					<conceptScheme-query></conceptScheme-query>
 					<page>1</page>
 					<dump></dump>
 					<crossref-api>https://test.crossref.org/servlet/deposit</crossref-api>
@@ -203,7 +205,7 @@ DELETE {?s ?p ?o} WHERE {
 
 			<!-- query solr to populate the list -->
 			<xforms:submission id="query-solr" serialization="none" method="get"
-				action="{instance('config')/solr_published}select/?q={instance('control-instance')/solr-query}&amp;rows=100&amp;start={(instance('control-instance')/page - 1) * 100}&amp;fl=id,type,definition,prefLabel"
+				action="{instance('config')/solr_published}select/?q={instance('control-instance')/solr-query}&amp;rows=100&amp;start={(instance('control-instance')/page - 1) * 100}&amp;fl=id,type,conceptScheme,definition,prefLabel&amp;facet.sort=index&amp;facet=true&amp;facet.field=type&amp;facet.field=conceptScheme"
 				replace="instance" instance="solr-response">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Solr is inaccessible. Please check Solr configuration.</xforms:message>
 			</xforms:submission>
@@ -264,11 +266,15 @@ DELETE {?s ?p ?o} WHERE {
 							<xforms:var name="total" select="ceiling($numFound div $rows)"/>
 							<div class="row">
 								<div class="col-md-12">
-									<xforms:input ref="instance('control-instance')/solr-query"/>
+									<xforms:input ref="instance('control-instance')/solr-query">
+										<xforms:label>Term</xforms:label>
+									</xforms:input>
 									<xforms:trigger>
 										<xforms:label>Search</xforms:label>
 										<xforms:action ev:event="DOMActivate">
 											<xforms:setvalue ref="instance('control-instance')/page">1</xforms:setvalue>
+											<xforms:setvalue ref="instance('control-instance')/solr-query" value="concat(instance('control-instance')/solr-query, (if (string(instance('control-instance')/type-query)) then concat(' AND type:&#x022;', instance('control-instance')/type-query, '&#x022;') else ''), 
+												(if (string(instance('control-instance')/conceptScheme-query)) then concat(' AND conceptScheme:&#x022;', instance('control-instance')/conceptScheme-query, '&#x022;') else ''))"/>											
 											<xforms:send submission="query-solr"/>
 										</xforms:action>
 									</xforms:trigger>
@@ -277,11 +283,40 @@ DELETE {?s ?p ?o} WHERE {
 											<xforms:label>Clear</xforms:label>
 											<xforms:action ev:event="DOMActivate">
 												<xforms:setvalue ref="instance('control-instance')/solr-query">*:*</xforms:setvalue>
+												<xforms:setvalue ref="instance('control-instance')/type-query"/>
+												<xforms:setvalue ref="instance('control-instance')/conceptScheme-query"/>
 												<xforms:setvalue ref="instance('control-instance')/page">1</xforms:setvalue>
 												<xforms:send submission="query-solr"/>
 											</xforms:action>
 										</xforms:trigger>
 									</xforms:group>
+									
+									<div>
+										<xforms:select1 ref="instance('control-instance')/type-query">
+											<xforms:label>Type</xforms:label>
+											<xforms:item>
+												<xforms:label>Select...</xforms:label>
+												<xforms:value/>
+											</xforms:item>
+											<xforms:itemset nodeset="xxf:sort(instance('solr-response')//lst[@name='type']/int, substring-after(@name, ':'), 'text', 'ascending')">												
+												<xforms:label ref="substring-after(@name, ':')"/>
+												<xforms:value ref="@name"/>
+											</xforms:itemset>
+										</xforms:select1>
+									</div>
+									<div>
+										<xforms:select1 ref="instance('control-instance')/conceptScheme-query">
+											<xforms:label>Concept Scheme</xforms:label>
+											<xforms:item>
+												<xforms:label>Select...</xforms:label>
+												<xforms:value/>
+											</xforms:item>
+											<xforms:itemset nodeset="instance('solr-response')//lst[@name='conceptScheme']/int">
+												<xforms:label ref="@name"/>
+												<xforms:value ref="@name"/>
+											</xforms:itemset>
+										</xforms:select1>
+									</div>
 								</div>
 							</div>
 							<!-- pagination -->
@@ -479,7 +514,7 @@ DELETE {?s ?p ?o} WHERE {
 							</xforms:group>
 						</xforms:group>
 					</xforms:group>
-					<!--<fr:xforms-inspector/>-->
+					<fr:xforms-inspector/>
 				</div>
 				<div class="col-md-3">
 					<h2>Actions</h2>
