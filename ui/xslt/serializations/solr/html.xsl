@@ -612,7 +612,7 @@
 							<xsl:value-of select="concat('rdf:type ', $value)"/>
 						</xsl:when>
 						<xsl:when test="$field = 'conceptScheme'">
-							<xsl:value-of select="concat('skos:inScheme &#x022;', $value, '&#x022;')"/>
+							<xsl:value-of select="concat('skos:inScheme &gt;', $value, '&lt;')"/>
 						</xsl:when>
 						<xsl:when test="$field = 'letter_facet'">
 							<xsl:value-of select="concat('crm:P106_is_composed_of &#x022;', $value, '&#x022;')"/>
