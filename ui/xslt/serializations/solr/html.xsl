@@ -585,6 +585,7 @@
 			<xsl:if test="not($frags[contains(., 'type:')])">
 				<xsl:text> ?type</xsl:text>
 			</xsl:if>
+			
 			<!-- display lat and long if applicable -->
 			<xsl:if test="$frags[. = 'type:&#x022;nmo:Mint&#x022;']">
 				<xsl:text> ?lat ?long</xsl:text>
@@ -592,7 +593,7 @@
 
 			<xsl:text> WHERE {&#x000a;</xsl:text>
 			<!-- ensure that only Nomisma IDs are returned -->
-			<xsl:text>FILTER strStarts(str(?uri), "http://nomisma.org/id/") .&#x000a;</xsl:text>
+			<xsl:text>FILTER strStarts(str(?uri), "http://nomisma.org/") .&#x000a;</xsl:text>
 			<xsl:text>?uri skos:prefLabel ?label FILTER langMatches(lang(?label), "en") .&#x000a;</xsl:text>
 			<xsl:text>OPTIONAL {?uri skos:definition ?definition FILTER langMatches(lang(?definition), "en")}&#x000a;</xsl:text>
 			<!-- display the type of concept if the type isn't in the query -->
@@ -609,6 +610,12 @@
 					<xsl:choose>
 						<xsl:when test="$field = 'type'">
 							<xsl:value-of select="concat('rdf:type ', $value)"/>
+						</xsl:when>
+						<xsl:when test="$field = 'conceptScheme'">
+							<xsl:value-of select="concat('skos:inScheme &#x022;', $value, '&#x022;')"/>
+						</xsl:when>
+						<xsl:when test="$field = 'letter_facet'">
+							<xsl:value-of select="concat('crm:P106_is_composed_of &#x022;', $value, '&#x022;')"/>
 						</xsl:when>
 						<xsl:when test="$field = 'role_facet'"><![CDATA[org:hasMembership ?membership . 
 	?membership org:role <]]><xsl:value-of select="substring-after($value, '|')"/><![CDATA[>]]></xsl:when>
