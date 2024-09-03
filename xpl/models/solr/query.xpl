@@ -61,11 +61,11 @@
 					<xsl:choose>
 						<xsl:when test="string($q)">
 							<xsl:value-of select="concat($solr-url, '?q=', encode-for-uri($q), '&amp;sort=', encode-for-uri($sort), '&amp;start=',$start,
-								'&amp;rows=100&amp;facet=true&amp;facet.field=type&amp;facet.field=role_facet&amp;facet.field=field_facet&amp;facet.field=conceptScheme&amp;facet.sort=index&amp;facet.limit=-1&amp;facet.mincount=1', $other-params)"/>
+								'&amp;rows=100&amp;facet=true&amp;facet.field=type&amp;facet.field=role_facet&amp;facet.field=field_facet&amp;facet.field=conceptScheme&amp;facet.field=letter_facet&amp;facet.sort=index&amp;facet.limit=-1&amp;facet.mincount=1', $other-params)"/>
 						</xsl:when>
 						<xsl:otherwise>
 							<xsl:value-of select="concat($solr-url, '?q=*:*&amp;sort=', encode-for-uri($sort), '&amp;start=',$start,
-								'&amp;rows=100&amp;facet=true&amp;facet.field=type&amp;facet.field=role_facet&amp;facet.field=field_facet&amp;facet.field=conceptScheme&amp;facet.sort=index&amp;facet.limit=-1&amp;facet.mincount=1', $other-params)"/>
+								'&amp;rows=100&amp;facet=true&amp;facet.field=type&amp;facet.field=role_facet&amp;facet.field=field_facet&amp;facet.field=conceptScheme&amp;facet.field=letter_facet&amp;facet.sort=index&amp;facet.limit=-1&amp;facet.mincount=1', $other-params)"/>
 						</xsl:otherwise>
 					</xsl:choose>
 				</xsl:variable>

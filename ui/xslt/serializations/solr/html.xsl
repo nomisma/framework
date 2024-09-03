@@ -11,6 +11,7 @@
 	<xsl:param name="q" select="doc('input:request')/request/parameters/parameter[name = 'q']/value"/>
 	<xsl:param name="rows">100</xsl:param>
 	<xsl:param name="sort" select="doc('input:request')/request/parameters/parameter[name = 'sort']/value"/>
+	<xsl:param name="layout" select="doc('input:request')/request/parameters/parameter[name = 'layout']/value"/>
 	<xsl:param name="start">
 		<xsl:choose>
 			<xsl:when test="string(doc('input:request')/request/parameters/parameter[name = 'start']/value)">
@@ -91,7 +92,20 @@
 						<xsl:when test="$numFound &gt; 0">
 							<xsl:call-template name="export"/>
 							<xsl:call-template name="paging"/>
-							<xsl:apply-templates select="descendant::doc"/>
+
+
+							<xsl:choose>
+								<xsl:when test="$layout = 'grid'">
+									<div class="row">
+										<xsl:apply-templates select="descendant::doc" mode="grid"/>
+									</div>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:apply-templates select="descendant::doc"/>
+								</xsl:otherwise>
+							</xsl:choose>
+
+
 							<xsl:call-template name="paging"/>
 						</xsl:when>
 						<xsl:otherwise>
@@ -115,8 +129,8 @@
 								str[@name = 'id']"/>
 				</a>
 			</h4>
-			
-			
+
+
 			<xsl:if test="string(str[@name = 'definition']) or not(contains($q, 'type'))">
 				<dl class="dl-horizontal">
 					<xsl:if test="string(str[@name = 'definition'])">
@@ -130,7 +144,7 @@
 						<dd>
 							<xsl:for-each select="arr[@name = 'type']/str">
 								<xsl:variable name="name" select="."/>
-								
+
 								<a href="{concat($namespaces//namespace[@prefix=substring-before($name, ':')]/@uri, substring-after($name, ':'))}" title="{$name}">
 									<xsl:value-of select="nomisma:normalizeCurie($name, $lang)"/>
 								</a>
@@ -170,9 +184,63 @@
 							</xsl:for-each>
 						</dd>
 					</xsl:if>
+					<xsl:if test="arr[@name = 'letter_facet']">
+						<dt>Constituent Letters</dt>
+						<dd>
+							<xsl:for-each select="arr[@name = 'letter_facet']/str">
+								<xsl:if test="position() = last()">
+									<xsl:text> and</xsl:text>
+								</xsl:if>
+								<xsl:if test="position() &gt; 1">
+									<xsl:text> </xsl:text>
+								</xsl:if>
+								<xsl:value-of select="."/>
+								<xsl:if test="not(position() = last()) and (count(../str) &gt; 2)">
+									<xsl:text>,</xsl:text>
+								</xsl:if>
+							</xsl:for-each>
+						</dd>
+					</xsl:if>
 				</dl>
 			</xsl:if>
-			
+
+		</div>
+	</xsl:template>
+
+	<xsl:template match="doc" mode="grid">
+		<div class="col-md-3 col-sm-6 col-lg-2 monogram" style="height:240px">
+			<div class="text-center">
+
+
+				<a href="{tokenize(str[@name='conceptScheme'], '/')[4]}/{str[@name='id']}">
+					<img src="{arr[@name = 'symbol_image_uri']/str[1]}" alt="Symbol image" style="max-height:180px;max-width:100%"/>
+				</a>
+			</div>
+			<a href="{tokenize(str[@name='conceptScheme'], '/')[4]}/{str[@name='id']}" title="{if(string(str[@name='prefLabel'])) then str[@name='prefLabel'] else str[@name='id']}">
+				<xsl:value-of select="
+						if (string(str[@name = 'prefLabel'])) then
+							str[@name = 'prefLabel']
+						else
+							str[@name = 'id']"/>
+			</a>
+
+			<xsl:if test="arr[@name = 'letter_facet']">
+				<dt>Constituent Letters</dt>
+				<dd>
+					<xsl:for-each select="arr[@name = 'letter_facet']/str">
+						<xsl:if test="position() = last()">
+							<xsl:text> and</xsl:text>
+						</xsl:if>
+						<xsl:if test="position() &gt; 1">
+							<xsl:text> </xsl:text>
+						</xsl:if>
+						<xsl:value-of select="."/>
+						<xsl:if test="not(position() = last()) and (count(../str) &gt; 2)">
+							<xsl:text>,</xsl:text>
+						</xsl:if>
+					</xsl:for-each>
+				</dd>
+			</xsl:if>
 		</div>
 	</xsl:template>
 
@@ -220,16 +288,18 @@
 					<div class="col-sm-10">
 						<select id="conceptScheme_filter" class="form-control">
 							<option value="">Select Type...</option>
-							<xsl:for-each select="descendant::lst[@name = 'conceptScheme']/int">
-								<xsl:sort select="substring-after(@name, ':')"/>								
-								<xsl:variable name="value" select="concat('conceptScheme:&#x022;', @name, '&#x022;')"/>
-								<option value="{$value}">
-									<xsl:if test="contains($q, $value)">
-										<xsl:attribute name="selected">selected</xsl:attribute>
-									</xsl:if>
-									<xsl:value-of select="@name"/>
-								</option>
-							</xsl:for-each>
+							<option value="conceptScheme:&#x022;http://nomisma.org/id/&#x022;">
+								<xsl:if test="contains($q, 'http://nomisma.org/id/')">
+									<xsl:attribute name="selected">selected</xsl:attribute>
+								</xsl:if>
+								http://nomisma.org/id/
+							</option>
+							<option value="conceptScheme:&#x022;http://nomisma.org/symbol/&#x022;">
+								<xsl:if test="contains($q, 'http://nomisma.org/symbol/')">
+									<xsl:attribute name="selected">selected</xsl:attribute>
+								</xsl:if>
+								http://nomisma.org/symbol/
+							</option>
 						</select>
 					</div>
 				</div>
@@ -321,6 +391,11 @@
 				</div>
 			</div>
 
+			<!-- display letter filters for queries of the symbol namespace alone -->
+			<xsl:if test="contains($q, 'conceptScheme:&#x022;http://nomisma.org/symbol/&#x022;')">
+				<xsl:apply-templates select="descendant::lst[@name = 'letter_facet'][count(int) &gt; 0]"/>
+			</xsl:if>
+
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<button id="search_button" class="btn btn-default">
@@ -334,6 +409,9 @@
 			</div>
 
 			<input name="q" type="hidden"/>
+			<xsl:if test="$layout = 'grid' and contains($q, 'conceptScheme:&#x022;http://nomisma.org/symbol/&#x022;')">
+				<input type="hidden" name="layout" value="grid"/>
+			</xsl:if>
 			<input name="sort" type="hidden">
 				<xsl:if test="not(string($sort))">
 					<xsl:attribute name="disabled">disabled</xsl:attribute>
@@ -344,6 +422,24 @@
 	</xsl:template>
 
 	<xsl:template name="paging">
+		<xsl:variable name="params" as="node()*">
+			<params>
+				<xsl:if test="string($q)">
+					<param>q=<xsl:value-of select="encode-for-uri($q)"/></param>
+				</xsl:if>
+				<xsl:if test="string($start)">
+					<param>start=<xsl:value-of select="$start"/></param>
+				</xsl:if>
+				<xsl:if test="string($sort)">
+					<param>sort=<xsl:value-of select="$sort"/></param>
+				</xsl:if>
+				<xsl:if test="not(string($layout))">
+					<param>layout=grid</param>
+				</xsl:if>
+			</params>
+		</xsl:variable>
+
+
 		<xsl:variable name="start_var" as="xs:integer">
 			<xsl:choose>
 				<xsl:when test="string($start)">
@@ -401,6 +497,25 @@
 			<div class="col-md-6 page-nos">
 				<div class="btn-toolbar" role="toolbar">
 					<div class="btn-group" style="float:right">
+
+						<!-- only enable grid layout only for symbols -->
+						<xsl:if test="contains($q, 'conceptScheme:&#x022;http://nomisma.org/symbol/&#x022;')">
+							<a class="btn btn-default" style="margin-right:10px" title="List layout"
+								href="browse{if (count($params//param) &gt; 0) then concat('?', string-join($params//param, '&amp;')) else ''}">
+								<xsl:if test="not($layout = 'grid')">
+									<xsl:attribute name="disabled">disabled</xsl:attribute>
+								</xsl:if>
+								<span class="glyphicon glyphicon-th-list"/>
+							</a>
+							<a class="btn btn-default" style="margin-right:10px" title="Grid layout"
+								href="browse{if (count($params//param) &gt; 0) then concat('?', string-join($params//param, '&amp;')) else ''}">
+								<xsl:if test="$layout = 'grid'">
+									<xsl:attribute name="disabled">disabled</xsl:attribute>
+								</xsl:if>
+								<span class="glyphicon glyphicon-th"/>
+							</a>
+						</xsl:if>
+
 						<xsl:choose>
 							<xsl:when test="$start_var &gt;= $rows">
 								<a class="btn btn-default" title="First" href="browse?q={encode-for-uri($q)}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
@@ -530,6 +645,47 @@
 			</div>
 
 		</div>
+	</xsl:template>
+
+	<!-- ********** LETTER TEMPLATES *********** -->
+	<!-- Greek 880-1023 (https://codepoints.net/greek_and_coptic) -->
+	<!-- Latin 33-591  -->
+
+	<xsl:template match="lst[@name = 'letter_facet']">
+		<div class="form-group letter_div">
+			<div class="col-sm-offset-2 col-sm-10">
+				<h3>Constituent Letters</h3>
+
+				<xsl:if test="int[string-to-codepoints(@name) &gt;= 33 and string-to-codepoints(@name) &lt;= 591]">
+					<div id="symbol-container">
+						<h4>Latin</h4>
+						<xsl:apply-templates select="int[string-to-codepoints(@name) &gt;= 33 and string-to-codepoints(@name) &lt;= 591]" mode="glyph"/>
+					</div>
+				</xsl:if>
+
+				<xsl:if test="int[string-to-codepoints(@name) &gt;= 880 and string-to-codepoints(@name) &lt;= 1023]">
+					<div id="symbol-container">
+						<h4>Greek</h4>
+						<xsl:apply-templates select="int[string-to-codepoints(@name) &gt;= 880 and string-to-codepoints(@name) &lt;= 1023]" mode="glyph"/>
+					</div>
+				</xsl:if>
+
+			</div>
+		</div>
+	</xsl:template>
+
+	<xsl:template match="int" mode="glyph">
+		<xsl:variable name="active" as="xs:boolean">
+			<xsl:choose>
+				<xsl:when test="contains($q, concat('letter_facet:', @name))">true</xsl:when>
+				<xsl:otherwise>false</xsl:otherwise>
+			</xsl:choose>
+
+		</xsl:variable>
+
+		<button class="btn btn-default letter-button {if ($active = true()) then 'active' else ''}">
+			<xsl:value-of select="@name"/>
+		</button>
 	</xsl:template>
 
 </xsl:stylesheet>

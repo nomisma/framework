@@ -143,6 +143,11 @@ a:hover {
 .symbol-graphic {
     height: 80px;
 }
+/* Letter facets */
+
+.letter-button{
+    margin-right: 5px;
+}
 /*
   ***************************************
   SPARQL
