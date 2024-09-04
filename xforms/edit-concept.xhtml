@@ -931,13 +931,20 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 							<li>
 								<xforms:trigger appearance="minimal">
 									<xforms:label>
-										<span class="glyphicon glyphicon-plus"></span>Bibliographic Reference</xforms:label>
+										<span class="glyphicon glyphicon-plus"></span>Bibliographic Reference (Nomisma)</xforms:label>
 									<xforms:action ev:event="DOMActivate">
 										<xforms:setvalue ref="instance('control-instance')/atom-type">("nmo:TypeSeries" OR
 											"nmo:ReferenceWork")</xforms:setvalue>
 										<xforms:setvalue ref="instance('control-instance')/link-property">dcterms:source</xforms:setvalue>
 										<xxf:show dialog="atom-dialog"/>
 									</xforms:action>
+								</xforms:trigger>
+							</li>
+							<li>
+								<xforms:trigger appearance="minimal">
+									<xforms:label>
+										<span class="glyphicon glyphicon-plus"></span>Bibliographic Reference (External)</xforms:label>
+									<xforms:insert ev:event="DOMActivate" origin="instance('source-template')" context="." nodeset="./child::node()[last()]"/>
 								</xforms:trigger>
 							</li>
 							<li>
@@ -1651,15 +1658,29 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 													</xforms:trigger>
 												</div>
 											</xforms:group>
-											<xforms:repeat nodeset="dcterms:source">
+											<xforms:repeat nodeset="dcterms:source[contains(@rdf:resource, 'nomisma.org')]">
 												<div>
 													<xforms:output ref="@rdf:resource">
-														<xforms:label>Reference</xforms:label>
+														<xforms:label>Reference (Nomisma)</xforms:label>
 													</xforms:output>
 													<xforms:trigger appearance="minimal">
 														<xforms:action ev:event="DOMActivate">
 															<xforms:delete context="."/>
 														</xforms:action>
+														<xforms:label>
+															<span class="glyphicon glyphicon-remove"></span>
+														</xforms:label>
+													</xforms:trigger>
+												</div>
+											</xforms:repeat>
+											<xforms:repeat nodeset="dcterms:source[not(contains(@rdf:resource, 'nomisma.org'))]">
+												<div>
+													<xforms:input ref="@rdf:resource">
+														<xforms:label>Reference (External)</xforms:label>
+														<xforms:alert>Required, must be URL</xforms:alert>
+													</xforms:input>
+													<xforms:trigger appearance="minimal">
+														<xforms:delete ev:event="DOMActivate" context="."/>
 														<xforms:label>
 															<span class="glyphicon glyphicon-remove"></span>
 														</xforms:label>
