@@ -68,7 +68,7 @@
 														<xforms:var name="mapping" select="if ($type = 'nmo:Mint') then 'skos:closeMatch' else 'skos:exactMatch'"/>
 
 														<!-- insert the wikidata, dpbedia URI -->
-														<xforms:var name="wikidata-uri" select="concat('https://www.wikidata.org/entity/', instance('wikidata')//entity/@id)"/>
+														<xforms:var name="wikidata-uri" select="concat('http://www.wikidata.org/entity/', instance('wikidata')//entity/@id)"/>
 														<xforms:insert context="$binding" nodeset="./child::node()[last()]" if="not($binding/*[name()=$mapping][@rdf:resource=$wikidata-uri])"
 															origin="xforms:element($mapping, (xforms:attribute('rdf:resource', $wikidata-uri), ''))"/>
 
