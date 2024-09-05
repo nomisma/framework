@@ -49,9 +49,13 @@ $(document).ready(function () {
         }
     });
     
-    /*$('#reset-letters').click(function () {
-    
-    });*/
+    //clear selected letters
+    $('#clear_letter_button').click(function () {
+        $('.letter-button').each(function () {
+            $(this).removeClass('active');
+        });
+        return false;
+    });
     
     //disable inputs, reset form
     $('#clear-query').click(function () {
@@ -62,12 +66,12 @@ $(document).ready(function () {
     
     $('.toggle-button').click(function () {
         var div_id = $(this).attr('id').split('-')[1] + '-div';
-        if ($(this).children('span').hasClass('glyphicon-triangle-bottom')) {
-            $(this).children('span').removeClass('glyphicon-triangle-bottom');
-            $(this).children('span').addClass('glyphicon-triangle-right');
+        if ($(this).children('span#toggle-glyphicon').hasClass('glyphicon-triangle-bottom')) {
+            $(this).children('span#toggle-glyphicon').removeClass('glyphicon-triangle-bottom');
+            $(this).children('span#toggle-glyphicon').addClass('glyphicon-triangle-right');
         } else {
-            $(this).children('span').removeClass('glyphicon-triangle-right');
-            $(this).children('span').addClass('glyphicon-triangle-bottom');
+            $(this).children('span#toggle-glyphicon').removeClass('glyphicon-triangle-right');
+            $(this).children('span#toggle-glyphicon').addClass('glyphicon-triangle-bottom');
         }
         $('#' + div_id).toggle('fast');
         return false;

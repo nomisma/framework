@@ -251,9 +251,10 @@
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="search_text" placeholder="Keyword"/>
 					<a href="#" id="toggle-filters" class="toggle-button" title="More Filters" style="margin-left:10px;">
-						<xsl:text>Filters</xsl:text>
+						<span class="glyphicon glyphicon-filter"></span>							
+						<xsl:text> Filters</xsl:text>
 						<span
-							class="glyphicon glyphicon-triangle-{if (not(contains($q, 'type:')) and not(contains($q, '_facet:')) and not(string($sort))) then 'right' else 'bottom'}"
+							class="glyphicon glyphicon-triangle-{if (not(contains($q, 'type:')) and not(contains($q, '_facet:')) and not(string($sort))) then 'right' else 'bottom'}" id="toggle-glyphicon"
 						/>
 					</a>
 				</div>
@@ -291,15 +292,11 @@
 							<option value="conceptScheme:&#x022;http://nomisma.org/id/&#x022;">
 								<xsl:if test="contains($q, 'http://nomisma.org/id/')">
 									<xsl:attribute name="selected">selected</xsl:attribute>
-								</xsl:if>
-								http://nomisma.org/id/
-							</option>
+								</xsl:if> http://nomisma.org/id/ </option>
 							<option value="conceptScheme:&#x022;http://nomisma.org/symbol/&#x022;">
 								<xsl:if test="contains($q, 'http://nomisma.org/symbol/')">
 									<xsl:attribute name="selected">selected</xsl:attribute>
-								</xsl:if>
-								http://nomisma.org/symbol/
-							</option>
+								</xsl:if> http://nomisma.org/symbol/ </option>
 						</select>
 					</div>
 				</div>
@@ -394,6 +391,15 @@
 			<!-- display letter filters for queries of the symbol namespace alone -->
 			<xsl:if test="contains($q, 'conceptScheme:&#x022;http://nomisma.org/symbol/&#x022;')">
 				<xsl:apply-templates select="descendant::lst[@name = 'letter_facet'][count(int) &gt; 0]"/>
+
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button id="clear_letter_button" class="btn btn-default">
+							<span class="glyphicon glyphicon-refresh"/>
+							<xsl:text> Reset letters</xsl:text>
+						</button>
+					</div>
+				</div>
 			</xsl:if>
 
 			<div class="form-group">
@@ -585,7 +591,7 @@
 			<xsl:if test="not($frags[contains(., 'type:')])">
 				<xsl:text> ?type</xsl:text>
 			</xsl:if>
-			
+
 			<!-- display lat and long if applicable -->
 			<xsl:if test="$frags[. = 'type:&#x022;nmo:Mint&#x022;']">
 				<xsl:text> ?lat ?long</xsl:text>
