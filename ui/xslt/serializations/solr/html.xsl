@@ -213,7 +213,7 @@
 
 
 				<a href="{tokenize(str[@name='conceptScheme'], '/')[4]}/{str[@name='id']}">
-					<img src="{arr[@name = 'symbol_image_uri']/str[1]}" alt="Symbol image" style="max-height:180px;max-width:100%"/>
+					<img src="{arr[@name = 'symbol_image_uri']/str[1]}" alt="Symbol image" style="height:180px;max-width:100%"/>
 				</a>
 			</div>
 			<a href="{tokenize(str[@name='conceptScheme'], '/')[4]}/{str[@name='id']}" title="{if(string(str[@name='prefLabel'])) then str[@name='prefLabel'] else str[@name='id']}">
