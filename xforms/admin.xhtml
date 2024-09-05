@@ -205,7 +205,7 @@ DELETE {?s ?p ?o} WHERE {
 
 			<!-- query solr to populate the list -->
 			<xforms:submission id="query-solr" serialization="none" method="get"
-				action="{instance('config')/solr_published}select/?q={instance('control-instance')/solr-query}&amp;rows=100&amp;start={(instance('control-instance')/page - 1) * 100}&amp;fl=id,type,conceptScheme,definition,prefLabel&amp;facet.sort=index&amp;facet=true&amp;facet.field=type&amp;facet.field=conceptScheme"
+				action="{instance('config')/solr_published}select/?q={instance('control-instance')/solr-query}&amp;rows=100&amp;start={(instance('control-instance')/page - 1) * 100}&amp;fl=id,type,conceptScheme,definition,prefLabel,symbol_image_uri&amp;facet.sort=index&amp;facet=true&amp;facet.field=type&amp;facet.field=conceptScheme"
 				replace="instance" instance="solr-response">
 				<xforms:message ev:event="xforms-submit-error" level="modal">Solr is inaccessible. Please check Solr configuration.</xforms:message>
 			</xforms:submission>
@@ -434,13 +434,23 @@ DELETE {?s ?p ?o} WHERE {
 															</dd>
 															<dt>Definition</dt>
 															<dd><xforms:output value="str[@name='definition']"/></dd>
-															<xforms:repeat nodeset="arr[@name='type']/str">
-																<dt>Type</dt>
-																<dd>
+															<dt>Type</dt>
+															<dd>
+																<xforms:repeat nodeset="arr[@name='type']/str[not(. = 'skos:Concept')]">
 																	<xforms:output ref="."/>
+																	<xforms:group ref=".[not(position() = last())]">
+																		<span>, </span>
+																	</xforms:group>
+																</xforms:repeat>
+															</dd>
+															<xforms:group ref=".[arr[@name = 'symbol_image_uri']]">
+																<dt>Image</dt>
+																<dd>
+																	<xforms:repeat nodeset="arr[@name = 'symbol_image_uri']/str">
+																		<img src="{.}" alt="SVG graphic" class="symbol-graphic" style="height:80px;margin-right:10px"/>
+																	</xforms:repeat>
 																</dd>
-															</xforms:repeat>
-
+															</xforms:group>															
 														</dl>
 													</td>
 													<td class="text-center">
