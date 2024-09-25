@@ -25,7 +25,7 @@ $(document).ready(function () {
         
         $('.letter-button').each(function () {
             if ($(this).hasClass('active')) {
-                query.push('letter_facet:' + $(this).text());
+                query.push('letter_facet:%22' + $(this).text() + '%22');
             }
         });
         

@@ -5,6 +5,10 @@
 	xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:nomisma="http://nomisma.org/"
 	xmlns:org="http://www.w3.org/ns/org#" xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" xmlns:crmdig="http://www.ics.forth.gr/isl/CRMdig/"
 	exclude-result-prefixes="#all" version="2.0">
+	
+	<xsl:strip-space elements="*"/>
+	<xsl:output method="xml" encoding="UTF-8" indent="yes"/>
+	
 	<xsl:include href="solr-templates.xsl"/>
 
 	<xsl:variable name="data_path" select="/content/config/data_path"/>
