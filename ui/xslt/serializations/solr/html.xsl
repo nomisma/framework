@@ -188,7 +188,7 @@
 						<dt>Constituent Letters</dt>
 						<dd>
 							<xsl:for-each select="arr[@name = 'letter_facet']/str">
-								<xsl:if test="position() = last()">
+								<xsl:if test="position() = last() and not(position() = 1)">
 									<xsl:text> and</xsl:text>
 								</xsl:if>
 								<xsl:if test="position() &gt; 1">
@@ -228,7 +228,7 @@
 				<dt>Constituent Letters</dt>
 				<dd>
 					<xsl:for-each select="arr[@name = 'letter_facet']/str">
-						<xsl:if test="position() = last()">
+						<xsl:if test="position() = last() and not(position() = 1)">
 							<xsl:text> and</xsl:text>
 						</xsl:if>
 						<xsl:if test="position() &gt; 1">

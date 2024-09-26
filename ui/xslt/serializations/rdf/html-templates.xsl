@@ -128,10 +128,12 @@
 				</dt>
 				<dd>
 					<xsl:for-each select="crm:P106_is_composed_of">
-						<xsl:if test="position() = last()">
+						<xsl:if test="position() = last() and not(position() = 1)">
 							<xsl:text> and</xsl:text>
 						</xsl:if>
-						<xsl:text> </xsl:text>
+						<xsl:if test="position() &gt; 1">
+							<xsl:text> </xsl:text>
+						</xsl:if>
 						<xsl:choose>
 							<xsl:when test="@rdf:resource">
 								<a href="{@rdf:resource}">
