@@ -70,35 +70,17 @@ PREFIX org:	<http://www.w3.org/ns/org#>
 PREFIX prov:	<http://www.w3.org/ns/prov#>
 PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
 DELETE {?s ?p ?o} WHERE {
-  { ?concept a skos:Concept;
-                   skos:inScheme ?scheme . FILTER strStarts(str(?scheme), "http://nomisma.org/")
-    ?concept skos:changeNote ?prov .
+  ?concept a skos:Concept;
+	skos:inScheme <%SCHEME%>
+  {?concept skos:changeNote ?prov .
     ?prov ?hasActivity ?s .
 	?s a prov:Activity . ?s ?p ?o}
-  UNION {
-    ?concept a skos:Concept;
-                   skos:inScheme ?scheme . FILTER strStarts(str(?scheme), "http://nomisma.org/")
-    ?concept org:hasMembership ?s . ?s ?p ?o}
-  UNION {
-    ?concept a skos:Concept;
-                   skos:inScheme ?scheme . FILTER strStarts(str(?scheme), "http://nomisma.org/")
-    ?concept skos:related ?s . ?s ?p ?o}
-  UNION {
-    ?concept a skos:Concept;
-                   skos:inScheme ?scheme . FILTER strStarts(str(?scheme), "http://nomisma.org/")
-    ?concept crm:P165i_is_incorporated_in ?s . ?s ?p ?o}
-  UNION {
-    ?concept a skos:Concept;
-                   skos:inScheme ?scheme . FILTER strStarts(str(?scheme), "http://nomisma.org/")
-    ?concept skos:changeNote ?s . ?s ?p ?o}
-  UNION {
-    ?concept a skos:Concept;
-                   skos:inScheme ?scheme . FILTER strStarts(str(?scheme), "http://nomisma.org/")
-    ?concept geo:location ?s . ?s ?p ?o}    
-  UNION {   	
-    ?s a skos:Concept;
-                   skos:inScheme ?scheme . FILTER strStarts(str(?scheme), "http://nomisma.org/") . ?s ?p ?o
-  }
+  UNION { ?concept org:hasMembership ?s . ?s ?p ?o }
+  UNION { ?concept skos:related ?s . ?s ?p ?o}
+  UNION { ?concept crm:P165i_is_incorporated_in ?s . ?s ?p ?o}
+  UNION { ?concept skos:changeNote ?s . ?s ?p ?o}
+  UNION { ?concept geo:location ?s . ?s ?p ?o}    
+  UNION {?concept ?p ?o . ?s ?p ?o . FILTER (?s = ?concept) }
 }]]></query>
 				</queries>
 
@@ -591,9 +573,16 @@ DELETE {?s ?p ?o} WHERE {
 			<fr:positive-choice>
 				<fr:label>Yes</fr:label>
 				<xforms:action ev:event="DOMActivate">
-					<!-- first delete all Nomisma concepts -->
-					<xforms:setvalue ref="instance('sparqlUpdate')" value="instance('sparqlUpdate-templates')/query[@id='delete-all-ids']"/>
+					<!-- first delete all Nomisma concepts, one scheme at a time -->										
+					<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-templates')/query[@id='delete-all-ids'], '%SCHEME%', 'http://nomisma.org/id/')"/>
 					<xforms:send submission="delete-graph"/>
+					
+					<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-templates')/query[@id='delete-all-ids'], '%SCHEME%', 'http://nomisma.org/symbol/')"/>
+					<xforms:send submission="delete-graph"/>
+					
+					<xforms:setvalue ref="instance('sparqlUpdate')" value="replace(instance('sparqlUpdate-templates')/query[@id='delete-all-ids'], '%SCHEME%', 'http://nomisma.org/editor/')"/>
+					<xforms:send submission="delete-graph"/>
+					
 					<!-- then get the current RDF/XML and post it -->
 					<xforms:action ev:event="xforms-submit-done">
 						<xforms:send submission="load-all-rdf"/>
