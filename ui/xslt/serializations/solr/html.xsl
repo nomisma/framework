@@ -690,7 +690,7 @@
 	<xsl:template match="int" mode="glyph">
 		<xsl:variable name="active" as="xs:boolean">
 			<xsl:choose>
-				<xsl:when test="contains($q, concat('letter_facet:', @name))">true</xsl:when>
+				<xsl:when test="contains($q, concat('letter_facet:&#x022;', @name, '&#x022;'))">true</xsl:when>
 				<xsl:otherwise>false</xsl:otherwise>
 			</xsl:choose>
 
