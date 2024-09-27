@@ -91,6 +91,7 @@
 	<page path="/nomisma/apis/getMints" model="xpl/models/sparql/getMints.xpl" view="xpl/views/serializations/sparql/geojson.xpl"/>
 	<page path="/nomisma/apis/getFindspots" model="xpl/models/sparql/getFindspots.xpl" view="xpl/views/serializations/sparql/geojson.xpl"/>
 	<page path="/nomisma/apis/getHoards" model="xpl/models/sparql/getHoards.xpl" view="xpl/views/serializations/sparql/geojson.xpl"/>
+	<page path="/nomisma/apis/getSymbolLinks" model="xpl/models/sparql/getSymbolLinks.xpl" view="xpl/views/serializations/sparql/d3plus-graph-json.xpl"/>
 	<page path="/nomisma/apis/query\.json" model="xpl/models/sparql/query.xpl" view="xpl/views/serializations/sparql/geojson.xpl"/>
 	<page path="/nomisma/apis/query\.kml" model="xpl/models/sparql/query.xpl" view="xpl/views/serializations/sparql/kml.xpl"/>
 	<page path="/nomisma/apis/heatmap" model="xpl/models/sparql/getFindspots.xpl" view="xpl/views/serializations/sparql/heatmap.xpl"/>	

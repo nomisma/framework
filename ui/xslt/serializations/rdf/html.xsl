@@ -100,6 +100,12 @@
 					<script type="text/javascript" src="{$display_path}ui/javascript/d3plus.min.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/vis_functions.js"/>
 				</xsl:if>
+				
+				<xsl:if test="$type = 'nmo:Monogram' or $type = 'crm:E37_Mark'">
+					<script type="text/javascript" src="{$display_path}ui/javascript/d3.min.js"/>
+					<script type="text/javascript" src="{$display_path}ui/javascript/d3plus-network.full.min.js"/>
+					<script type="text/javascript" src="{$display_path}ui/javascript/network_functions.js"/>					
+				</xsl:if>
 
 				<link rel="stylesheet" href="{$display_path}ui//css/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen"/>
 				<script type="text/javascript" src="{$display_path}ui//javascript/jquery.fancybox.pack.js?v=2.1.5"/>
@@ -227,6 +233,28 @@
 			<!-- optional contexts -->
 			<xsl:choose>
 				<xsl:when test="$scheme = 'id' or $scheme = 'symbol'">
+					
+					<xsl:if test="$scheme = 'symbol'">
+						<div class="section">
+							<h3>Network Graph</h3>
+							<div style="margin:10px 0">
+								<table>
+									<tbody>
+										<tr>
+											<td style="background-color:#a8a8a8;border:2px solid black;width:50px;"/>
+											<td style="width:100px">This Symbol</td>
+											<td style="background-color:#6985c6;border:2px solid black;width:50px;"/>
+											<td style="width:100px">Immediate Link</td>
+											<td style="background-color:#b3c9fc;border:2px solid black;width:50px;"/>
+											<td style="width:100px">Secondary Link</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="network-graph hidden" id="{generate-id()}"/>
+						</div>
+					</xsl:if>					
+					
 					<!-- list of associated coin types and example coins -->
 					<xsl:if test="$hasTypes = true()">
 						<div class="row">
@@ -300,6 +328,9 @@
 			</span>
 			<span id="base-query">
 				<xsl:value-of select="$base-query"/>
+			</span>
+			<span id="conceptURI">
+				<xsl:value-of select="$conceptURI"/>
 			</span>
 			<span id="path"/>
 

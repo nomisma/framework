@@ -1233,5 +1233,41 @@
 
 
     </xsl:template>
+    
+    <!-- query the other monograms associated with a particular monogram -->
+    <xsl:template name="nomisma:querySymbolRelations">
+        <xsl:param name="uri"/>
+        
+        <bind statement="&lt;{$uri}&gt;" variable="?symbol"/>
+        
+        <union>
+            <group>
+                <triple s="?side" p="nmo:hasControlmark" o="?symbol"/>
+            </group>
+            <group>
+                <triple s="?side" p="nmo:hasControlmark" o="?match"/>
+                <triple s="?match" p="^skos:exactMatch" o="?symbol"/>
+            </group>
+        </union>        
+        
+        <triple s="?type" p="nmo:hasObverse|nmo:hasReverse" o="?side"/>
+        
+        <union>
+            <group>
+                <triple s="?side" p="nmo:hasControlmark" o="?altSymbol"/>
+            </group>
+            <group>
+                <triple s="?side" p="nmo:hasControlmark" o="?altMatch"/>
+                <triple s="?altMatch" p="^skos:exactMatch" o="?altSymbol"/>
+            </group>
+        </union>
+        
+        <filter>?altSymbol != ?symbol &amp;&amp; contains(str(?altSymbol), "http://nomisma.org/symbol")</filter>
+        
+        <triple s="?symbol" p="skos:prefLabel" o="?symbolLabel"/>
+        <triple s="?symbol" p="crm:P165i_is_incorporated_in" o="?symbolImage"/>
+        <triple s="?altSymbol" p="skos:prefLabel" o="?altSymbolLabel"/>
+        <triple s="?altSymbol" p="crm:P165i_is_incorporated_in" o="?altSymbolImage"/>
+    </xsl:template>
 
 </xsl:stylesheet>
