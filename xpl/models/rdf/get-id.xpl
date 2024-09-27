@@ -82,6 +82,9 @@
 										<xsl:when test="$scheme = 'map'">
 											<xsl:value-of select="concat(/config/data_path, '/id/', $doc, '.rdf')"/>
 										</xsl:when>
+										<xsl:when test="$scheme = 'symbolmap'">
+											<xsl:value-of select="concat(/config/data_path, '/symbol/', $doc, '.rdf')"/>
+										</xsl:when>
 										<xsl:otherwise>
 											<xsl:value-of select="concat(/config/data_path, '/', $scheme, '/', $doc, '.rdf')"/>
 										</xsl:otherwise>

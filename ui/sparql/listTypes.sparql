@@ -20,7 +20,6 @@ SELECT * WHERE {
 %STATEMENTS%
 ?coinType skos:prefLabel ?label FILTER(langMatches(lang(?label), "en")) .
    MINUS {?coinType dcterms:isReplacedBy ?replaced}
-   FILTER NOT EXISTS {?coinType skos:broader ?broader}
    ?coinType dcterms:source ?source . 
    	?source skos:prefLabel ?sourceLabel FILTER(langMatches(lang(?sourceLabel), "en"))
    OPTIONAL {?coinType nmo:hasStartDate ?startDate}

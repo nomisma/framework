@@ -4,8 +4,8 @@
     Function: XSLT templates that construct the XML metamodel used in various contexts for SPARQL queries. 
     The sparql-metamodel.xsl stylesheet converts this XML model into text for the SPARQL endpoint
 -->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:nomisma="http://nomisma.org/"
-    exclude-result-prefixes="#all" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:nomisma="http://nomisma.org/" exclude-result-prefixes="#all"
+    version="2.0">
 
     <!-- default properties associated with the various classes of RDF for Nomisma concepts -->
     <xsl:variable name="classes" as="item()*">
@@ -229,8 +229,7 @@
                 </union>
             </xsl:when>
             <xsl:when test="$dist = 'portrait' or $dist = 'deity'">
-                <xsl:variable name="distClass"
-                    select="
+                <xsl:variable name="distClass" select="
                         if ($dist = 'portrait') then
                             'foaf:Person'
                         else
@@ -324,7 +323,7 @@
                         <group>
                             <triple s="nm:{$id}" p="org:hasMembership/org:organization" o="?place"/>
                         </group>
-                    </union>                    
+                    </union>
                     <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
                     <triple s="?coinType" p="nmo:hasMint" o="?place"/>
                     <minus>
@@ -333,7 +332,7 @@
                     <triple s="?place" p="geo:location" o="?loc"/>
                 </xsl:when>
                 <xsl:when test="$type = 'wordnet:Deity'">
-                    <union>                        
+                    <union>
                         <group>
                             <triple s="?obv" p="nmo:hasPortrait" o="nm:{$id}"/>
                             <triple s="?coinType" p="nmo:hasObverse" o="?obv"/>
@@ -341,7 +340,7 @@
                         <group>
                             <triple s="?rev" p="nmo:hasPortrait" o="nm:{$id}"/>
                             <triple s="?coinType" p="nmo:hasReverse" o="?rev"/>
-                        </group>                        
+                        </group>
                     </union>
                     <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
                     <triple s="?coinType" p="nmo:hasMint" o="?place"/>
@@ -376,8 +375,8 @@
                         <group>
                             <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
                             <triple s="?person" p="a" o="foaf:Person"/>
-                            <triple s="?coinType" p="nmo:hasAuthority" o="?person"/>                            
-                            
+                            <triple s="?coinType" p="nmo:hasAuthority" o="?person"/>
+
                         </group>
                         <group>
                             <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
@@ -390,6 +389,43 @@
                     <minus>
                         <triple s="?coinType" p="dcterms:isReplacedBy" o="?replaced"/>
                     </minus>
+                    <triple s="?place" p="geo:location" o="?loc"/>
+                </xsl:when>
+                <xsl:when test="$type = 'symbol'">
+                    <!-- when the symbol HTTP request parameter is a full URI, then execute a SPARQL query for symbols their children -->                    
+                    <xsl:choose>
+                        <xsl:when test="matches($id, '^https?://')">
+                            <select variables="?side">
+                                <union>
+                                    <group>
+                                        <triple s="?side" p="nmo:hasControlmark" o="&lt;{$id}&gt;"/>
+                                    </group>
+                                    <group>
+                                        <triple s="?children" p="skos:broader+" o="&lt;{$id}&gt;"/>
+                                        <triple s="?side" p="nmo:hasControlmark" o="?children"/>
+                                    </group>
+                                </union>
+                            </select>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <union>
+                                <group>
+                                    <triple s="?side" p="nmo:hasControlmark" o="&lt;http://nomisma.org/symbol/{$id}&gt;"/>
+                                </group>
+                                <group>
+                                    <triple s="?side" p="nmo:hasControlmark" o="?symbol"/>
+                                    <triple s="?symbol" p="^skos:exactMatch" o="&lt;http://nomisma.org/symbol/{$id}&gt;"/>
+                                </group>
+                            </union>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    
+                    <triple s="?coinType" p="nmo:hasObverse|nmo:hasReverse" o="?side"/>
+                    <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
+                    <filter_not_exists>
+                        <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
+                    </filter_not_exists>
+                    <triple s="?coinType" p="nmo:hasMint|nmo:hasMint/rdf:value" o="?place"/>
                     <triple s="?place" p="geo:location" o="?loc"/>
                 </xsl:when>
                 <!-- when the query type is for constituent letters from a monogram, then construct a different sort of query than typical ID queries -->
@@ -407,7 +443,7 @@
                     <triple s="?monogram" p="crm:P106_is_composed_of" o="{$letter-query}"/>
                     <triple s="?side" p="nmo:hasControlmark" o="?monogram"/>
                     <triple s="?coinType" p="nmo:hasObverse|nmo:hasReverse" o="?side"/>
-                    <triple s="?coinType" p="rdf:type" o="?TypeSeriesItem"/>
+                    <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
                     <!-- type series -->
                     <xsl:choose>
                         <xsl:when test="count($typeSeries//value) = 1">
@@ -486,8 +522,8 @@
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:when>
-               
-                <xsl:when test="$type = 'wordnet:Deity'">                    
+
+                <xsl:when test="$type = 'wordnet:Deity'">
                     <xsl:choose>
                         <xsl:when test="$api = 'getHoards' or $api = 'heatmap'">
                             <union>
@@ -671,23 +707,38 @@
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:when>
-                <xsl:when test="$type = 'nmo:Monogram' or $type = 'crm:E37_Mark' or $type = 'letter'">
+                <xsl:when test="$type = 'symbol' or $type = 'letter'">
 
                     <xsl:choose>
                         <!-- Monograms and other E37_Marks utilize a sub-select query to get all coin type sides
                             connected to the URI or and children concepts of the URI -->
-                        <xsl:when test="$type = 'nmo:Monogram' or $type = 'crm:E37_Mark'">
-                            <select variables="?side">
-                                <union>
-                                    <group>
-                                        <triple s="?side" p="nmo:hasControlmark" o="&lt;{$id}&gt;"/>
-                                    </group>
-                                    <group>
-                                        <triple s="?children" p="skos:broader+" o="&lt;{$id}&gt;"/>
-                                        <triple s="?side" p="nmo:hasControlmark" o="?children"/>
-                                    </group>
-                                </union>
-                            </select>
+                        <xsl:when test="$type = 'symbol'">
+                            <xsl:choose>
+                                <xsl:when test="matches($id, '^https?://')">
+                                    <select variables="?side">
+                                        <union>
+                                            <group>
+                                                <triple s="?side" p="nmo:hasControlmark" o="&lt;{$id}&gt;"/>
+                                            </group>
+                                            <group>
+                                                <triple s="?children" p="skos:broader+" o="&lt;{$id}&gt;"/>
+                                                <triple s="?side" p="nmo:hasControlmark" o="?children"/>
+                                            </group>
+                                        </union>
+                                    </select>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <union>
+                                        <group>
+                                            <triple s="?side" p="nmo:hasControlmark" o="&lt;http://nomisma.org/symbol/{$id}&gt;"/>
+                                        </group>
+                                        <group>
+                                            <triple s="?side" p="nmo:hasControlmark" o="?symbol"/>
+                                            <triple s="?symbol" p="^skos:exactMatch" o="&lt;http://nomisma.org/symbol/{$id}&gt;"/>
+                                        </group>
+                                    </union>
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </xsl:when>
                         <!-- when querying for 1 or more letters that are constituent parts of a monogram, then form the query -->
                         <xsl:when test="$type = 'letter'">
@@ -713,6 +764,11 @@
                             <union>
                                 <group>
                                     <triple s="?coinType" p="nmo:hasObverse|nmo:hasReverse" o="?side"/>
+                                    <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
+                                    <filter_not_exists>
+                                        <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
+                                    </filter_not_exists>
+                                    
                                     <!-- for letters, be sure to include a possible UNION query of type series -->
                                     <xsl:if test="$type = 'letter'">
                                         <xsl:choose>
@@ -740,6 +796,10 @@
                                 <xsl:if test="$api = 'heatmap'">
                                     <group>
                                         <triple s="?coinType" p="nmo:hasObverse|nmo:hasReverse" o="?side"/>
+                                        <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
+                                        <filter_not_exists>
+                                            <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
+                                        </filter_not_exists>
                                         <xsl:if test="$type = 'letter'">
                                             <xsl:choose>
                                                 <xsl:when test="count($typeSeries//value) = 1">
@@ -763,6 +823,10 @@
                                 </xsl:if>
                                 <group>
                                     <triple s="?coinType" p="nmo:hasObverse|nmo:hasReverse" o="?side"/>
+                                    <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
+                                    <filter_not_exists>
+                                        <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
+                                    </filter_not_exists>
                                     <xsl:if test="$type = 'letter'">
                                         <xsl:choose>
                                             <xsl:when test="count($typeSeries//value) = 1">
@@ -790,6 +854,10 @@
                         </xsl:when>
                         <xsl:otherwise>
                             <triple s="?coinType" p="nmo:hasObverse|nmo:hasReverse" o="?side"/>
+                            <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
+                            <filter_not_exists>
+                                <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
+                            </filter_not_exists>
                             <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>
                             <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
                         </xsl:otherwise>
@@ -892,11 +960,11 @@
         <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>
         <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
     </xsl:template>
-    
+
     <xsl:template name="deity-findspots">
         <xsl:param name="id"/>
-        
-        <union>                        
+
+        <union>
             <group>
                 <triple s="?obv" p="nmo:hasPortrait" o="nm:{$id}"/>
                 <triple s="?coinType" p="nmo:hasObverse" o="?obv"/>
@@ -904,8 +972,8 @@
             <group>
                 <triple s="?rev" p="nmo:hasPortrait" o="nm:{$id}"/>
                 <triple s="?coinType" p="nmo:hasReverse" o="?rev"/>
-            </group>                        
-        </union>        
+            </group>
+        </union>
         <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
         <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>
         <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
@@ -951,10 +1019,10 @@
         <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>
         <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
     </xsl:template>
-    
+
     <xsl:template name="region-findspots">
         <xsl:param name="id"/>
-        
+
         <union>
             <group>
                 <triple s="?coinType" p="nmo:hasRegion" o="nm:{$id}"/>
@@ -963,7 +1031,7 @@
                 <triple s="?coinType" p="nmo:hasMint" o="?mint"/>
                 <triple s="?mint" p="skos:broader+" o="nm:{$id}"/>
             </group>
-        </union>        
+        </union>
         <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
         <triple s="?object" p="nmo:hasTypeSeriesItem" o="?coinType"/>
         <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
@@ -1036,7 +1104,7 @@
                 <!-- query for hoard contents that contain a mint that is a child/descendent of a region -->
                 <xsl:when test="$type = 'nmo:Region'">
                     <group>
-                        <triple s="?mint" p="skos:broader+" o="nm:{$id}"/> 
+                        <triple s="?mint" p="skos:broader+" o="nm:{$id}"/>
                         <triple s="?contents" p="nmo:hasMint" o="?mint"/>
                         <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
                         <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>
@@ -1044,8 +1112,8 @@
                             <triple s="?hoard" p="nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within" o="?place"/>
                         </xsl:if>
                     </group>
-                    <group>                        
-                        <triple s="?mint" p="skos:broader+" o="nm:{$id}"/> 
+                    <group>
+                        <triple s="?mint" p="skos:broader+" o="nm:{$id}"/>
                         <triple s="?coinType" p="nmo:hasMint" o="?mint"/>
                         <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
                         <triple s="?contents" p="nmo:hasTypeSeriesItem" o="?coinType"/>
@@ -1072,12 +1140,18 @@
                         <triple s="?coinType" p="nmo:hasObverse/nmo:hasPortrait" o="nm:{$id}"/>
                         <triple s="?coinType" p="nmo:hasReverse/nmo:hasPortrait" o="nm:{$id}"/>
                     </union>
+                    <filter_not_exists>
+                        <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
+                    </filter_not_exists>
                 </xsl:when>
                 <xsl:when test="$type = 'wordnet:Deity'">
                     <union>
                         <triple s="?coinType" p="nmo:hasObverse/nmo:hasPortrait" o="nm:{$id}"/>
                         <triple s="?coinType" p="nmo:hasReverse/nmo:hasPortrait" o="nm:{$id}"/>
                     </union>
+                    <filter_not_exists>
+                        <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
+                    </filter_not_exists>
                 </xsl:when>
                 <xsl:when test="$type = 'rdac:Family'">
                     <union>
@@ -1090,6 +1164,9 @@
                             <triple s="?person" p="org:memberOf" o="nm:{$id}"/>
                         </group>
                     </union>
+                    <filter_not_exists>
+                        <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
+                    </filter_not_exists>
                 </xsl:when>
                 <xsl:when test="$type = 'foaf:Organization' or $type = 'foaf:Group' or $type = 'nmo:Ethnic'">
                     <union>
@@ -1107,6 +1184,9 @@
                             <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
                         </group>
                     </union>
+                    <filter_not_exists>
+                        <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
+                    </filter_not_exists>
                 </xsl:when>
                 <xsl:when test="$type = 'nmo:Region'">
                     <union>
@@ -1118,22 +1198,40 @@
                             <triple s="?mint" p="skos:broader+" o="nm:{$id}"/>
                         </group>
                     </union>
+                    <filter_not_exists>
+                        <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
+                    </filter_not_exists>
+                </xsl:when>
+                <xsl:when test="$type = 'nmo:Monogram' or $type = 'crm:E37_Mark' or $type = 'symbol'">
+                    <union>
+                        <group>
+                            <triple s="?side" p="nmo:hasControlmark" o="&lt;http://nomisma.org/symbol/{$id}&gt;"/>
+                        </group>
+                        <group>
+                            <triple s="?side" p="nmo:hasControlmark" o="?symbol"/>
+                            <triple s="?symbol" p="^skos:exactMatch" o="&lt;http://nomisma.org/symbol/{$id}&gt;"/>
+                        </group>
+                    </union>
+                    <triple s="?coinType" p="nmo:hasObverse|nmo:hasReverse" o="?side"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <triple s="?coinType" p="{$classes//class[text()=$type]/@prop}" o="nm:{$id}"/>
+                    <filter_not_exists>
+                        <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
+                    </filter_not_exists>
                 </xsl:otherwise>
-            </xsl:choose>
+            </xsl:choose>            
             <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
         </statements>
     </xsl:template>
-    
+
     <!-- get members of an organization (either people or other organizations) via org:hasMembership or get members of a dynasty via org:memberOf -->
     <xsl:template name="nomisma:getMembers">
         <xsl:param name="type"/>
         <xsl:param name="id"/>
-        
-        
-        
+
+
+
     </xsl:template>
 
 </xsl:stylesheet>

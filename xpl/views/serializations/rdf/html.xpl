@@ -39,17 +39,7 @@
 	</p:processor>
 
 	<!-- evaluate editor vs. id concept scheme -->
-	<p:choose href="#scheme">
-		<p:when test="/scheme = 'symbol'">
-			<!-- Jan. 2020: just serialize the RDF into HTML without further content -->
-			
-			<p:processor name="oxf:unsafe-xslt">
-				<p:input name="request" href="#request"/>
-				<p:input name="data" href="aggregate('content', #data, ../../../../config.xml)"/>
-				<p:input name="config" href="../../../../ui/xslt/serializations/rdf/html.xsl"/>
-				<p:output name="data" id="model"/>
-			</p:processor>
-		</p:when>		
+	<p:choose href="#scheme">				
 		<p:when test="/scheme = 'editor'">
 
 			<!-- get the type of the RDF fragment in the editor namespace -->
@@ -179,7 +169,7 @@
 				</p:when>
 			</p:choose>
 		</p:when>
-		<p:when test="/scheme = 'id'">
+		<p:when test="/scheme = 'id' or /scheme = 'symbol'">
 			<!-- get ASK query from a text file on disk -->
 			<p:processor name="oxf:url-generator">
 				<p:input name="config">
@@ -215,7 +205,12 @@
 								<xsl:attribute name="hasFindspots" select="doc('input:config-xml')//classes/class[text()=$type]/@findspots"/>
 								<xsl:attribute name="hasTypes" select="doc('input:config-xml')//classes/class[text()=$type]/@types"/>
 								
-								<xsl:value-of select="$type"/>
+								<xsl:choose>
+									<xsl:when test="$type = 'nmo:Monogram' or $type = 'crm:E37_Mark'">symbol</xsl:when>
+									<xsl:otherwise>
+										<xsl:value-of select="$type"/>
+									</xsl:otherwise>
+								</xsl:choose>
 							</type>
 						</xsl:template>
 

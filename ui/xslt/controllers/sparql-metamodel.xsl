@@ -31,6 +31,12 @@
 		<xsl:text>}&#x0A;</xsl:text>
 	</xsl:template>
 	
+	<xsl:template match="filter_not_exists">
+		<xsl:text>FILTER NOT EXISTS {</xsl:text>
+		<xsl:apply-templates select="triple"/>
+		<xsl:text>}&#x0A;</xsl:text>
+	</xsl:template>
+	
 	<xsl:template match="optional">
 		<xsl:text>OPTIONAL {</xsl:text>
 		<xsl:apply-templates select="optional|triple"/>

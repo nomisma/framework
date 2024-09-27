@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 	Author: Ethan Gruber
-	Date: June 2021
-	Function: Read the type of response, whether a nomisma ID, coin type URI, symbol URI, or symbol letter and type series in order to determine
+	Date: September 2024
+	Function: Read the type of response, whether a nomisma ID, coin type URI, symbol ID/URI, or symbol letter and type series in order to determine
 	the structure of the SPARQL query to submit to the endpoint in order to get hoards
 -->
 <p:config xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:oxf="http://www.orbeon.com/oxf/processors" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -225,12 +225,28 @@
 									</xsl:call-template>
 								</xsl:when>
 								<xsl:when test="$type = 'symbol'">
-									<xsl:variable name="uri" select="doc('input:request')/request/parameters/parameter[name='symbol']/value"/>
+									<xsl:variable name="id">
+										<xsl:choose>
+											<xsl:when test="doc('input:request')/request/parameters/parameter[name='symbol']/value">
+												<xsl:value-of select="doc('input:request')/request/parameters/parameter[name='symbol']/value"/>
+											</xsl:when>
+											<xsl:otherwise>
+												<xsl:choose>
+													<xsl:when test="ends-with(doc('input:request')/request/request-url, '.geojson')">
+														<xsl:value-of select="replace(tokenize(doc('input:request')/request/request-url, '/')[last()], '.geojson', '')"/>
+													</xsl:when>
+													<xsl:when test="ends-with(doc('input:request')/request/request-url, '.kml')">
+														<xsl:value-of select="replace(tokenize(doc('input:request')/request/request-url, '/')[last()], '.kml', '')"/>
+													</xsl:when>
+												</xsl:choose>
+											</xsl:otherwise>
+										</xsl:choose>
+									</xsl:variable>
 
 									<xsl:call-template name="nomisma:getFindspotsStatements">
 										<xsl:with-param name="api">getHoards</xsl:with-param>
-										<xsl:with-param name="type">nmo:Monogram</xsl:with-param>
-										<xsl:with-param name="id" select="$uri"/>
+										<xsl:with-param name="type">symbol</xsl:with-param>
+										<xsl:with-param name="id" select="$id"/>
 										<xsl:with-param name="letters"/>
 										<xsl:with-param name="typeSeries"/>
 									</xsl:call-template>

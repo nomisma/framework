@@ -19,5 +19,4 @@ PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
 SELECT (count(DISTINCT ?coinType) as ?count) WHERE {
 %STATEMENTS%
    MINUS {?coinType dcterms:isReplacedBy ?replaced}
-   FILTER NOT EXISTS {?coinType skos:broader ?broader}
 }

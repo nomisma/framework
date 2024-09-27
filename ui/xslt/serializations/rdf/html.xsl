@@ -214,7 +214,7 @@
 										<td style="background-color:#f98f0c;border:2px solid black;width:50px;"/>
 										<td style="width:100px;padding-left:6px;">Finds</td>
 										<td>
-											<a href="{$display_path}map/{$id}">View fullscreen</a>
+											<a href="{$display_path}{if ($type = 'nmo:Monogram' or $type = 'crm:E37_Mark') then 'symbol' else ''}map/{$id}">View fullscreen</a>
 										</td>
 									</tr>
 								</tbody>

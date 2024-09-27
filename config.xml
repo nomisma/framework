@@ -69,10 +69,12 @@
 		<class mints="true" findspots="true" types="true" prop="nmo:hasManufacture" dist="true">nmo:Manufacture</class>
 		<class mints="true" findspots="true" types="true" prop="nmo:hasMaterial" dist="true">nmo:Material</class>
 		<class mints="true" findspots="true" types="true" prop="nmo:hasMint" dist="true">nmo:Mint</class>
+		<class mints="true" findspots="true" types="true" dist="false" prop="controlmark">nmo:Monogram</class>
 		<class mints="false" findspots="false" types="false">nmo:NumismaticTerm</class>
 		<class mints="true" findspots="true" types="false" prop="nmo:representsObjectType">nmo:ObjectType</class>
 		<class mints="true" findspots="true" types="true" dist="false">nmo:Shape</class>
 		<class mints="true" findspots="true" types="true" dist="true" prop="?prop">foaf:Group</class>
+		<class mints="true" findspots="true" types="true" dist="false" prop="controlmark">crm:E37_Mark</class>
 		<class mints="true" findspots="true" types="true" dist="true" prop="?prop">foaf:Organization</class>
 		<class mints="false" findspots="false" types="false" dist="false">nmo:PeculiarityOfProduction</class>
 		<class mints="true" findspots="true" types="true" dist="true" prop="?prop">foaf:Person</class>

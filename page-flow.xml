@@ -70,7 +70,7 @@
 	
 	<!-- map page -->
 	<!--<page path="/nomisma/map" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/html-map.xpl"/>-->
-	<page path="/nomisma/map/(.*)" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/html-map.xpl"/>
+	<page path="/nomisma/(map|symbolmap)/(.*)" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/html-map.xpl"/>
 	
 	<!-- SPARQL -->
 	<page path="/nomisma/query" view="xpl/controllers/conneg-sparql.xpl"/>
