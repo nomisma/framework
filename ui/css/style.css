@@ -121,6 +121,10 @@ a:hover {
   PAGINATION/SEARCH RESULTS
   ***************************************
  */
+ #resultMap{
+    width: 600px;
+    height: 400px;
+}
 .result-doc{
     margin: 10px 0;
     padding: 10px 0;

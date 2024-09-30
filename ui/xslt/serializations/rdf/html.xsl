@@ -100,22 +100,26 @@
 					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet.ajax.min.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/display_map_functions.js"/>
 				</xsl:if>
+				
+				<!-- load d3 for network graph and/or distribution vis -->
+				<xsl:if test="/content/config/classes/class[text() = $type]/@dist = true() or $hasGraph = true()">
+					<script type="text/javascript" src="{$display_path}ui/javascript/d3.min.js"/>
+				</xsl:if>
 
 				<!-- add d3 if it is a graph-enabled class -->
-				<xsl:if test="/content/config/classes/class[text() = $type]/@dist = true()">
-					<script type="text/javascript" src="{$display_path}ui/javascript/d3.min.js"/>
+				<xsl:if test="/content/config/classes/class[text() = $type]/@dist = true()">					
 					<script type="text/javascript" src="{$display_path}ui/javascript/d3plus.min.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/vis_functions.js"/>
 				</xsl:if>
-
-				<xsl:if test="$type = 'nmo:Monogram' or $type = 'crm:E37_Mark'">
-					<script type="text/javascript" src="{$display_path}ui/javascript/d3.min.js"/>
+				
+				<!-- load d3 network functions if applicable -->
+				<xsl:if test="$hasGraph = true()">
 					<script type="text/javascript" src="{$display_path}ui/javascript/d3plus-network.full.min.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/network_functions.js"/>
 				</xsl:if>
 
-				<link rel="stylesheet" href="{$display_path}ui//css/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen"/>
-				<script type="text/javascript" src="{$display_path}ui//javascript/jquery.fancybox.pack.js?v=2.1.5"/>
+				<link rel="stylesheet" href="{$display_path}ui/css/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen"/>
+				<script type="text/javascript" src="{$display_path}ui/javascript/jquery.fancybox.pack.js?v=2.1.5"/>
 				<script type="text/javascript" src="{$display_path}ui/javascript/display_functions.js"/>
 				<link rel="stylesheet" href="{$display_path}ui/css/style.css"/>
 
@@ -329,7 +333,7 @@
 			</span>
 			<span id="conceptURI">
 				<xsl:value-of select="$conceptURI"/>
-			</span>
+			</span>			
 			<span id="path"/>
 
 			<xsl:call-template name="field-template">

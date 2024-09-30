@@ -53,10 +53,19 @@
 				<title>nomisma.org: Browse</title>
 				<meta name="viewport" content="width=device-width, initial-scale=1"/>
 				<!-- bootstrap -->
-				<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"/>
-				<script type="text/javascript" src="{$display_path}ui/javascript/result_functions.js"/>
+				<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"/>				
 				<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 				<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
+
+				<xsl:if test="$numFound &gt; 0 and contains($q, 'letter_facet')">
+					<link rel="stylesheet" href="{$display_path}ui/css/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen"/>
+					<script type="text/javascript" src="{$display_path}ui/javascript/jquery.fancybox.pack.js?v=2.1.5"/>
+					<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0/dist/leaflet.css"/>
+					<script type="text/javascript" src="https://unpkg.com/leaflet@1.0.0/dist/leaflet.js"/>
+					<script type="text/javascript" src="{$display_path}ui/javascript/leaflet.ajax.min.js"/>
+				</xsl:if>
+				
+				<script type="text/javascript" src="{$display_path}ui/javascript/result_functions.js"/>
 				<link rel="stylesheet" href="{$display_path}ui/css/style.css"/>
 				<link rel="alternate" type="application/atom+xml" href="{$feed_url}"/>
 				<!-- opensearch compliance -->
@@ -85,14 +94,18 @@
 		<div class="container-fluid content">
 			<div class="row">
 				<div class="col-md-12">
-					<h1>Browse Nomisma IDs</h1>
+					<h1>Browse Nomisma IDs <xsl:if test="$numFound &gt; 0 and contains($q, 'http://nomisma.org/symbol/')">
+							<small>
+								<a href="#resultMap" id="map_results">View Map</a>
+							</small>
+						</xsl:if>
+					</h1>
 
 					<xsl:call-template name="filter"/>
 					<xsl:choose>
 						<xsl:when test="$numFound &gt; 0">
 							<xsl:call-template name="export"/>
 							<xsl:call-template name="paging"/>
-
 
 							<xsl:choose>
 								<xsl:when test="$layout = 'grid'">
@@ -105,8 +118,11 @@
 								</xsl:otherwise>
 							</xsl:choose>
 
-
 							<xsl:call-template name="paging"/>
+							
+							<div style="display:none">
+								<div id="resultMap"/>
+							</div>
 						</xsl:when>
 						<xsl:otherwise>
 							<p>No results found for this query. <a href="../browse">Clear search</a>.</p>
@@ -114,6 +130,22 @@
 					</xsl:choose>
 				</div>
 			</div>
+		</div>
+		
+		<div class="hidden">
+			<span id="mapboxKey">
+				<xsl:value-of select="//config/mapboxKey"/>
+			</span>
+			<span id="letters">
+				<xsl:for-each select="tokenize($q, 'AND')[contains(., 'letter_facet')]">
+					<xsl:variable name="frag" select="normalize-space(.)"/>
+					
+					<xsl:value-of select="replace(substring-after($frag, ':'), '&#x022;', '')"/>
+					<xsl:if test="not(position() = last())">
+						<xsl:text>,</xsl:text>
+					</xsl:if>
+				</xsl:for-each>
+			</span>
 		</div>
 	</xsl:template>
 
@@ -251,11 +283,11 @@
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="search_text" placeholder="Keyword"/>
 					<a href="#" id="toggle-filters" class="toggle-button" title="More Filters" style="margin-left:10px;">
-						<span class="glyphicon glyphicon-filter"></span>							
+						<span class="glyphicon glyphicon-filter"/>
 						<xsl:text> Filters</xsl:text>
 						<span
-							class="glyphicon glyphicon-triangle-{if (not(contains($q, 'type:')) and not(contains($q, '_facet:')) and not(string($sort))) then 'right' else 'bottom'}" id="toggle-glyphicon"
-						/>
+							class="glyphicon glyphicon-triangle-{if (not(contains($q, 'type:')) and not(contains($q, '_facet:')) and not(string($sort))) then 'right' else 'bottom'}"
+							id="toggle-glyphicon"/>
 					</a>
 				</div>
 			</div>
