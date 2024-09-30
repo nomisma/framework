@@ -99,6 +99,7 @@ $(document).ready(function () {
             if ($('#resultMap').html().length == 0) {
                 $('#resultMap').html('');
                 initialize_map(urlParams);
+                return false
             }
         }
     });
