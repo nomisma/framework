@@ -1,30 +1,35 @@
 /*******
 FORCED NETWORK GRAPH FUNCTIONS FOR D3PLUS
-Modified: June 2021
+Modified: September 2024
 Function: These are the functions for generating a forced network graph for die and type pages when a die study is actived.
  *******/
 $(document).ready(function () {
     var path = '../';
+    var urlParams = {
+        'uri': $('#conceptURI').text(),
+        'id': $('.network-graph').attr('id'),
+        'level': 1
+    };
     
     /**** RENDER CHART ****/
-    $('.network-graph').each(function () {
-        var id = $(this).attr('id');
+    renderNetworkGraph(path, urlParams);
+    
+    $('#render-graph').click(function(){
+        urlParams['level'] = $('#graph-level').val();
+        console.log(urlParams);
+        $('#' + urlParams['id']).html('');        
+        renderNetworkGraph(path, urlParams);
         
-        var urlParams = {
-        };
-        
-        urlParams['uri'] = $('#conceptURI').text();
-        
-        renderNetworkGraph(id, path, urlParams);
+        return false;
     });
 });
 
 //initiate a call to the getDieLinks JSON API and parse the resulting object into a d3plus Network
-function renderNetworkGraph(id, path, urlParams) {
+function renderNetworkGraph(path, urlParams) {
     
     //alert(urlParams);
-    $('#' + id).removeClass('hidden');
-    $('#' + id).height(600);
+    $('#' + urlParams['id']).removeClass('hidden');
+    $('#' + urlParams['id']).height(600);
     
     $.get(path + 'apis/getSymbolLinks', $.param(urlParams, true),
     function (data) {
@@ -81,6 +86,6 @@ function renderNetworkGraph(id, path, urlParams) {
             }
         }).on("click", function (node) {
             window.location.href = node.uri;
-        }).select('#' + id).render();
+        }).select('#' + urlParams['id']).render();
     });
 }

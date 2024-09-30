@@ -5,14 +5,14 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/"
 	xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/"
-	xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:org="http://www.w3.org/ns/org#" xmlns:nomisma="http://nomisma.org/"
-	xmlns:nmo="http://nomisma.org/ontology#" xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" xmlns:prov="http://www.w3.org/ns/prov#"
-	xmlns:crmdig="http://www.ics.forth.gr/isl/CRMdig/" exclude-result-prefixes="#all" version="2.0">
+	xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:org="http://www.w3.org/ns/org#" xmlns:nomisma="http://nomisma.org/" xmlns:nmo="http://nomisma.org/ontology#"
+	xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" xmlns:prov="http://www.w3.org/ns/prov#" xmlns:crmdig="http://www.ics.forth.gr/isl/CRMdig/" exclude-result-prefixes="#all"
+	version="2.0">
 	<xsl:include href="../../templates.xsl"/>
 	<xsl:include href="../../functions.xsl"/>
 	<xsl:include href="html-templates.xsl"/>
 	<xsl:include href="../../vis-templates.xsl"/>
-	
+
 	<xsl:param name="lang">en</xsl:param>
 
 	<!-- config or other variables -->
@@ -20,8 +20,7 @@
 	<xsl:param name="mode">record</xsl:param>
 	<xsl:variable name="type" select="/content/rdf:RDF/*[1]/name()"/>
 	<xsl:variable name="conceptURI" select="/content/rdf:RDF/*[1]/@rdf:about"/>
-	<xsl:variable name="id"
-		select="
+	<xsl:variable name="id" select="
 			if ($type = 'skos:ConceptScheme') then
 				tokenize($conceptURI, '/')[last() - 1]
 			else
@@ -52,16 +51,24 @@
 				true()
 			else
 				false()"/>
-	<xsl:variable name="hasFindspots" as="xs:boolean" select="if (descendant::nmo:hasFindspot) then true() 
-			else if (/content/res:sparql[2]/res:boolean = 'true') then
+	<xsl:variable name="hasFindspots" as="xs:boolean" select="
+			if (descendant::nmo:hasFindspot) then
 				true()
 			else
-				false()"/>
+				if (/content/res:sparql[2]/res:boolean = 'true') then
+					true()
+				else
+					false()"/>
 	<xsl:variable name="hasTypes" as="xs:boolean" select="
 			if (/content/res:sparql[3]/res:boolean = 'true') then
 				true()
 			else
-				false()"/>	
+				false()"/>
+	<xsl:variable name="hasGraph" as="xs:boolean" select="
+			if (/content/res:sparql[4]/res:boolean = 'true') then
+				true()
+			else
+				false()"/>
 
 	<xsl:variable name="prefix">
 		<xsl:for-each select="$namespaces/namespace">
@@ -100,11 +107,11 @@
 					<script type="text/javascript" src="{$display_path}ui/javascript/d3plus.min.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/vis_functions.js"/>
 				</xsl:if>
-				
+
 				<xsl:if test="$type = 'nmo:Monogram' or $type = 'crm:E37_Mark'">
 					<script type="text/javascript" src="{$display_path}ui/javascript/d3.min.js"/>
 					<script type="text/javascript" src="{$display_path}ui/javascript/d3plus-network.full.min.js"/>
-					<script type="text/javascript" src="{$display_path}ui/javascript/network_functions.js"/>					
+					<script type="text/javascript" src="{$display_path}ui/javascript/network_functions.js"/>
 				</xsl:if>
 
 				<link rel="stylesheet" href="{$display_path}ui//css/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen"/>
@@ -149,7 +156,7 @@
 	<xsl:template name="body">
 		<div class="container-fluid content">
 			<div class="row">
-				<div class="col-md-{if ($hasMints = true() or $hasFindspots = true()) then '6' else '9'}">				
+				<div class="col-md-{if ($hasMints = true() or $hasFindspots = true()) then '6' else '9'}">
 					<xsl:call-template name="rdf-display-structure"/>
 				</div>
 
@@ -226,6 +233,11 @@
 								</tbody>
 							</table>
 						</div>
+						
+						<xsl:if test="$hasGraph = true()">
+							<hr/>							
+							<xsl:call-template name="graph-template"/>
+						</xsl:if>
 					</xsl:if>
 				</div>
 			</div>
@@ -234,27 +246,13 @@
 			<xsl:choose>
 				<xsl:when test="$scheme = 'id' or $scheme = 'symbol'">
 					
-					<xsl:if test="$scheme = 'symbol'">
-						<div class="section">
-							<h3>Network Graph</h3>
-							<div style="margin:10px 0">
-								<table>
-									<tbody>
-										<tr>
-											<td style="background-color:#a8a8a8;border:2px solid black;width:50px;"/>
-											<td style="width:100px">This Symbol</td>
-											<td style="background-color:#6985c6;border:2px solid black;width:50px;"/>
-											<td style="width:100px">Immediate Link</td>
-											<td style="background-color:#b3c9fc;border:2px solid black;width:50px;"/>
-											<td style="width:100px">Secondary Link</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="network-graph hidden" id="{generate-id()}"/>
-						</div>
-					</xsl:if>					
-					
+					<!-- display network graph below metadata, if no map -->
+					<xsl:if test="$hasMints = false() and $hasFindspots = false()">
+						<xsl:if test="$hasGraph = true()">
+							<xsl:call-template name="graph-template"/>
+						</xsl:if>						
+					</xsl:if>
+
 					<!-- list of associated coin types and example coins -->
 					<xsl:if test="$hasTypes = true()">
 						<div class="row">
@@ -264,7 +262,7 @@
 							</div>
 						</div>
 					</xsl:if>
-					
+
 					<xsl:if test="$type = 'foaf:Organization'">
 						<div class="row">
 							<div class="col-md-12 page-section">
@@ -354,12 +352,12 @@
 		<xsl:apply-templates select="/content/rdf:RDF/*[1]" mode="human-readable">
 			<xsl:with-param name="mode">record</xsl:with-param>
 		</xsl:apply-templates>
-		
+
 		<!-- separate template for Digital Images for symbols -->
 		<xsl:if test="/content//crmdig:D1_Digital_Object">
 			<div>
 				<h3>Digital Images</h3>
-				
+
 				<table class="table table-striped">
 					<thead>
 						<th style="width:120px">Image</th>
@@ -369,10 +367,10 @@
 						<xsl:apply-templates select="/content//crmdig:D1_Digital_Object"/>
 					</tbody>
 				</table>
-				
+
 			</div>
 		</xsl:if>
-		
+
 		<!-- ProvenanceStatement is hidden by default -->
 		<xsl:if test="/content/rdf:RDF/dcterms:ProvenanceStatement">
 			<h3>
@@ -439,8 +437,7 @@
 		<xsl:choose>
 			<xsl:when test="$count &gt; 25">
 				<p>This is a partial list of <strong>25</strong> of <strong><xsl:value-of select="$count"/></strong> IDs created or updated by this editor (<a
-						href="{$display_path}query?query={encode-for-uri(replace(replace($query, '%URI%', $conceptURI), ' %LIMIT%', ''))}&amp;output=csv"
-						title="Download list">
+						href="{$display_path}query?query={encode-for-uri(replace(replace($query, '%URI%', $conceptURI), ' %LIMIT%', ''))}&amp;output=csv" title="Download list">
 						<span class="glyphicon glyphicon-download"/> Download list</a>):</p>
 			</xsl:when>
 			<xsl:otherwise>
@@ -525,6 +522,38 @@
 					</tbody>
 				</table>
 			</div>
+		</div>
+	</xsl:template>
+	
+	<xsl:template name="graph-template">
+		<div class="section">
+			<h3>Network Graph</h3>
+			<div style="margin:10px 0">
+				<table style="width:100%">
+					<tbody>
+						<tr>
+							<td style="background-color:#a8a8a8;border:2px solid black;width:50px;"/>
+							<td style="width:100px">This Symbol</td>
+							<td style="background-color:#6985c6;border:2px solid black;width:50px;"/>
+							<td style="width:100px">Immediate</td>
+							<td style="background-color:#b3c9fc;border:2px solid black;width:50px;"/>
+							<td style="width:100px">Secondary</td>
+							<td>
+								<form class="form-inline">
+									<b>Viewing: </b>
+									<select name="level" id="graph-level" class="form-control">
+										<option value="1">Intermediate</option>
+										<option value="2">Secondary</option>
+									</select>
+									<button class="btn btn-default" id="render-graph">Render</button>
+								</form>
+								
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="network-graph hidden" id="{generate-id()}"/>
 		</div>
 	</xsl:template>
 </xsl:stylesheet>

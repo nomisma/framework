@@ -18,6 +18,32 @@
 		<p:output name="data" id="request"/>
 	</p:processor>
 	
+	<p:processor name="oxf:unsafe-xslt">
+		<p:input name="data" href="#request"/>
+		<p:input name="config">
+			<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+				xmlns:nomisma="http://nomisma.org/">
+				
+				<xsl:template match="/">
+					<level>
+						<xsl:choose>
+							<xsl:when test="number(/request/parameters/parameter[name='level']/value)">
+								<xsl:choose>
+									<xsl:when test="/request/parameters/parameter[name='level']/value &gt; 2">1</xsl:when>
+									<xsl:otherwise>
+										<xsl:value-of select="/request/parameters/parameter[name='level']/value"/>
+									</xsl:otherwise>
+								</xsl:choose>
+							</xsl:when>
+							<xsl:otherwise>1</xsl:otherwise>
+						</xsl:choose>
+					</level>
+				</xsl:template>
+			</xsl:stylesheet>
+		</p:input>
+		<p:output name="data" id="level"/>
+	</p:processor>
+	
 	<!-- load SPARQL query from disk -->
 	<p:processor name="oxf:url-generator">
 		<p:input name="config">
@@ -53,30 +79,43 @@
 		<p:output name="data" id="uri"/>
 	</p:processor>
 	
-	<p:processor name="oxf:pipeline">						
-		<p:input name="data" href=" ../../../config.xml"/>
-		<p:input name="request" href="#request"/>
-		<p:input name="query" href="#query-document"/>		
-		<p:input name="uri" href="#uri"/>
-		<p:input name="config" href="query-symbol-relations.xpl"/>
-		<p:output name="data" id="initial-response"/>
-	</p:processor>
-	
-	<!-- iterate through each symbol URI connected with the initial query and execute a SPARQL query -->
-	<p:for-each href="#initial-response" select="//res:binding[@name = 'altSymbol']/res:uri" root="response" id="sparql-response">
-		<p:processor name="oxf:pipeline">						
-			<p:input name="data" href=" ../../../config.xml"/>
-			<p:input name="request" href="#request"/>
-			<p:input name="query" href="#query-document"/>		
-			<p:input name="uri" href="current()"/>
-			<p:input name="config" href="query-symbol-relations.xpl"/>
-			<p:output name="data" ref="sparql-response"/>
-		</p:processor>
-	</p:for-each>
-	
-	<p:processor name="oxf:identity">
-		<p:input name="data" href="aggregate('content', #initial-response, #sparql-response)"/>
-		<p:output name="data" ref="data"/>
-	</p:processor>
-	
+	<!-- enable the output of immediate or secondary relationship nodes, but not more than that -->
+	<p:choose href="#level">
+		<p:when test="/level = 1">
+			<p:processor name="oxf:pipeline">						
+				<p:input name="data" href=" ../../../config.xml"/>
+				<p:input name="request" href="#request"/>
+				<p:input name="query" href="#query-document"/>		
+				<p:input name="uri" href="#uri"/>
+				<p:input name="config" href="query-symbol-relations.xpl"/>
+				<p:output name="data" ref="data"/>
+			</p:processor>
+		</p:when>
+		<p:otherwise>
+			<p:processor name="oxf:pipeline">						
+				<p:input name="data" href=" ../../../config.xml"/>
+				<p:input name="request" href="#request"/>
+				<p:input name="query" href="#query-document"/>		
+				<p:input name="uri" href="#uri"/>
+				<p:input name="config" href="query-symbol-relations.xpl"/>
+				<p:output name="data" id="initial-response"/>
+			</p:processor>
+			
+			<p:for-each href="#initial-response" select="//res:binding[@name = 'altSymbol']/res:uri" root="response" id="sparql-response">
+				<p:processor name="oxf:pipeline">						
+					<p:input name="data" href=" ../../../config.xml"/>
+					<p:input name="request" href="#request"/>
+					<p:input name="query" href="#query-document"/>		
+					<p:input name="uri" href="current()"/>
+					<p:input name="config" href="query-symbol-relations.xpl"/>
+					<p:output name="data" ref="sparql-response"/>
+				</p:processor>
+			</p:for-each>
+			
+			<p:processor name="oxf:identity">
+				<p:input name="data" href="aggregate('content', #initial-response, #sparql-response)"/>
+				<p:output name="data" ref="data"/>
+			</p:processor>
+		</p:otherwise>
+	</p:choose>
 </p:config>

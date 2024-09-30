@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 	Author: Ethan Gruber
-	Date Last Modified: August 2020
+	Date Last Modified: September 2024
 	Function: Serialize an RDF snippet into HTML, including conditionals to execute other SPARQL queries to enhance page context with maps, example types, etc.
 -->
 <p:config xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:oxf="http://www.orbeon.com/oxf/processors" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -204,6 +204,12 @@
 								<xsl:attribute name="hasMints" select="doc('input:config-xml')//classes/class[text()=$type]/@mints"/>
 								<xsl:attribute name="hasFindspots" select="doc('input:config-xml')//classes/class[text()=$type]/@findspots"/>
 								<xsl:attribute name="hasTypes" select="doc('input:config-xml')//classes/class[text()=$type]/@types"/>
+								<xsl:attribute name="hasGraph">
+									<xsl:choose>
+										<xsl:when test="$type = 'nmo:Monogram' or $type = 'crm:E37_Mark'">true</xsl:when>
+										<xsl:otherwise>false</xsl:otherwise>
+									</xsl:choose>
+								</xsl:attribute>								
 								
 								<xsl:choose>
 									<xsl:when test="$type = 'nmo:Monogram' or $type = 'crm:E37_Mark'">symbol</xsl:when>
@@ -509,11 +515,33 @@
 					</p:choose>
 				</p:otherwise>
 			</p:choose>
+			
+			<p:choose href="#type">
+				<!-- suppress any class of object for which we do not want to render a map -->
+				<p:when test="type/@hasGraph = false()">
+					<p:processor name="oxf:identity">
+						<p:input name="data">
+							<sparql xmlns="http://www.w3.org/2005/sparql-results#">
+								<head/>
+								<boolean>false</boolean>
+							</sparql>
+						</p:input>
+						<p:output name="data" id="hasGraph"/>
+					</p:processor>
+				</p:when>
+				<p:otherwise>
+					<p:processor name="oxf:pipeline">						
+						<p:input name="data" href=" ../../../../config.xml"/>
+						<p:input name="config" href="../../../models/sparql/ask-symbol-relations.xpl"/>
+						<p:output name="data" id="hasGraph"/>
+					</p:processor>
+				</p:otherwise>
+			</p:choose>
 
 			<!-- aggregate models and serialize into HTML -->
 			<p:processor name="oxf:unsafe-xslt">
 				<p:input name="request" href="#request"/>
-				<p:input name="data" href="aggregate('content', #data, ../../../../config.xml, #hasMints, #hasFindspots, #hasTypes)"/>
+				<p:input name="data" href="aggregate('content', #data, ../../../../config.xml, #hasMints, #hasFindspots, #hasTypes, #hasGraph)"/>
 				<p:input name="config" href="../../../../ui/xslt/serializations/rdf/html.xsl"/>
 				<p:output name="data" id="model"/>
 			</p:processor>
