@@ -16,7 +16,6 @@ $(document).ready(function () {
     
     $('#render-graph').click(function(){
         urlParams['level'] = $('#graph-level').val();
-        console.log(urlParams);
         $('#' + urlParams['id']).html('');        
         renderNetworkGraph(path, urlParams);
         
