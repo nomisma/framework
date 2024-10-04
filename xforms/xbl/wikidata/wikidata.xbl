@@ -88,7 +88,7 @@
 
 														<!-- iterate through claims with matching properties to link to external vocabulary systems -->
 														<xforms:action xxf:iterate="instance('wikidata')//entity/claims/property[@id='P214' or @id='P227' or @id='P213' or @id='P268' or @id='P269'
-															or @id='P646' or @id='P245' or @id='P1014' or @id='P1566' or @id='P1667' or @id='P1900']" if="instance('control-instance')/wiki-links=true()">
+															or @id='P245' or @id='P1014' or @id='P1566' or @id='P1667' or @id='P1900' or @id='P13030']" if="instance('control-instance')/wiki-links=true()">
 															<xforms:var name="property" select="data(context()/@id)"/>
 															<xforms:var name="id" select="replace(data(context()/descendant::mainsnak[1]/datavalue/@value), ' ', '')"/>
 															<xforms:var name="uri" select="concat(instance('wikidata-properties')/property[@id=$property], $id)"/>
@@ -171,11 +171,11 @@
 								<property id="P245">http://vocab.getty.edu/ulan/</property>
 								<property id="P268">http://catalogue.bnf.fr/ark:/12148/cb</property>
 								<property id="P269">http://www.idref.fr/</property>
-								<property id="P646">https://www.freebase.com</property>
 								<property id="P1014">http://vocab.getty.edu/aat/</property>
 								<property id="P1566">http://sws.geonames.org/</property>
 								<property id="P1667">http://vocab.getty.edu/tgn/</property>
 								<property id="P1900">http://www.eagle-network.eu/voc/</property>
+								<property id="P13030">https://ikmk.smb.museum/ndp/</property>
 							</properties>
 						</xforms:instance>
 
