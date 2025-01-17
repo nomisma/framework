@@ -139,6 +139,24 @@ function initialize_map() {
     var mapboxKey = $('#mapboxKey').text();
     var path = $('#path').text();
     
+    //get updated GeoJSON upon submit click
+    $('.visualize-submit').click(function () {
+        var formId = $(this).closest('form').attr('id');
+        var query = $('#' + formId).children('input[name=compare]').val();
+        
+        var url = path + "apis/query.geojson?query=" + query;
+        pointLayer.refresh(url);
+        
+        //close window
+        $.fancybox.close();
+        
+        return false;
+    });
+    
+    $('#close').click(function () {
+        $.fancybox.close();
+    });
+    
     //baselayers
     var mb_physical = L.tileLayer(
     'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -199,7 +217,7 @@ function initialize_map() {
         var group = new L.featureGroup([pointLayer]);
         map.fitBounds(group.getBounds());
     }.bind(this));
-
+    
     L.Control.Button = L.Control.extend({
         options: {
             position: 'topleft'
@@ -211,24 +229,6 @@ function initialize_map() {
             L.DomEvent.on(button, 'click', function () {
                 $.fancybox({
                     'href': '#map_filters'
-                });
-                
-                $('#close').click(function () {
-                    $.fancybox.close();
-                });
-                
-                //get updated GeoJSON upon submit click
-                $('.visualize-submit').click(function () {
-                    var formId = $(this).closest('form').attr('id');
-                    var query = $('#' + formId).children('input[name=compare]').val();
-                    
-                    var url = path + "apis/query.geojson?query=" + query;
-                    pointLayer.refresh(url);
-                    
-                    //close window
-                    $.fancybox.close();
-                    
-                    return false;
                 });
             });
             
@@ -287,7 +287,7 @@ function initialize_map() {
     }
     
     function renderPopup (feature, layer) {
-    
+        
         var str;
         //individual finds
         if (feature.properties.hasOwnProperty('gazetteer_uri') == false) {
