@@ -94,7 +94,7 @@
 		<div class="container-fluid content">
 			<div class="row">
 				<div class="col-md-12">
-					<h1>Browse Nomisma IDs <xsl:if test="$numFound &gt; 0 and contains($q, 'http://nomisma.org/symbol/')">
+					<h1>Browse Nomisma IDs <xsl:if test="$numFound &gt; 0 and contains($q, 'letter_facet')">
 							<small>
 								<a href="#resultMap" id="map_results">View Map</a>
 							</small>

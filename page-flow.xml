@@ -53,6 +53,7 @@
 	<page path="/nomisma/nuds" model="xpl/models/xsd/nuds.xpl" view="xpl/views/serializations/nuds-xsd/html.xpl"/>
 	<page path="/nomisma/ontology" model="xpl/models/rdf/get-rdf-ontology-current.xpl" view="xpl/controllers/conneg-ontology.xpl"/>
 	<page path="/nomisma/ontology/(\d+)$" model="xpl/models/rdf/get-rdf-ontology.xpl" view="xpl/controllers/conneg-ontology.xpl"/>
+	<page path="/nomisma/discover" view="xpl/views/pages/discover.xpl"/>
 	
 	<!-- **** SERIALIZATIONS **** -->
 	<!-- Solr -->
@@ -91,10 +92,11 @@
 	<page path="/nomisma/apis/getMints" model="xpl/models/sparql/getMints.xpl" view="xpl/views/serializations/sparql/geojson.xpl"/>
 	<page path="/nomisma/apis/getFindspots" model="xpl/models/sparql/getFindspots.xpl" view="xpl/views/serializations/sparql/geojson.xpl"/>
 	<page path="/nomisma/apis/getHoards" model="xpl/models/sparql/getHoards.xpl" view="xpl/views/serializations/sparql/geojson.xpl"/>
+	<page path="/nomisma/apis/query\.geojson" model="xpl/models/sparql/geoQuery.xpl" view="xpl/views/serializations/sparql/geojson.xpl"/>
 	<page path="/nomisma/apis/getSymbolLinks" model="xpl/models/sparql/getSymbolLinks.xpl" view="xpl/views/serializations/sparql/d3plus-graph-json.xpl"/>
 	<page path="/nomisma/apis/query\.json" model="xpl/models/sparql/query.xpl" view="xpl/views/serializations/sparql/geojson.xpl"/>
 	<page path="/nomisma/apis/query\.kml" model="xpl/models/sparql/query.xpl" view="xpl/views/serializations/sparql/kml.xpl"/>
-	<page path="/nomisma/apis/heatmap" model="xpl/models/sparql/getFindspots.xpl" view="xpl/views/serializations/sparql/heatmap.xpl"/>	
+	<!--<page path="/nomisma/apis/heatmap" model="xpl/models/sparql/getFindspots.xpl" view="xpl/views/serializations/sparql/heatmap.xpl"/>-->	
 	<page path="/nomisma/apis/getRdf" model="xpl/models/rdf/aggregate-ids.xpl" view="xpl/views/serializations/apis/getRdf.xpl"/>
 	<page path="/nomisma/apis/regionHierarchy" model="xpl/models/sparql/regionHierarchy.xpl" view="xpl/views/serializations/sparql/regionHierarchy.xpl"/>
 	<page path="/nomisma/apis/numishareResults" model="xpl/models/sparql/numishareResults.xpl" view="xpl/views/serializations/sparql/numishareResults.xpl"/>

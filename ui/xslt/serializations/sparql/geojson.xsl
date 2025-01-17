@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Author: Ethan Gruber
-	Date: June 2021
+	Date: January 2025
 	Function: Serialize SPARQL query responses and/or RDF/XML for regions and mints into GeoJSON, both for individual mint/findspot/hoard APIs and the aggregated
 	.geojson response -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="http://www.w3.org/2005/sparql-results#"
@@ -23,6 +23,9 @@
 							<!-- content template for nmo:Region, aggregating region RDF and SPARQL query for child mints -->
 							<xsl:when test="content">
 								<xsl:apply-templates select="content"/>
+							</xsl:when>
+							<xsl:when test="discover">
+								<xsl:apply-templates select="discover"/>
 							</xsl:when>
 							<!-- GeoJSON serialization for a concept in the .geojson URL or content negotiation -->
 							<xsl:when test="ignore">
@@ -105,6 +108,18 @@
 	<!-- handle aggregations of models, for .geojson serialization for concepts that involve SPARQL queries -->
 	<xsl:template match="content">
 		<xsl:call-template name="region-features"/>
+	</xsl:template>
+	
+	<xsl:template match="discover">
+		<xsl:apply-templates select="res:sparql[1]">
+			<xsl:with-param name="type">mint</xsl:with-param>
+		</xsl:apply-templates>
+		<xsl:apply-templates select="res:sparql[2]">
+			<xsl:with-param name="type">hoard</xsl:with-param>
+		</xsl:apply-templates>
+		<xsl:apply-templates select="res:sparql[3]">
+			<xsl:with-param name="type">findspot</xsl:with-param>
+		</xsl:apply-templates>
 	</xsl:template>
 	
 	<!-- ignore the RDF in the ignore root element, apply templates only to the three docs -->
@@ -341,13 +356,17 @@
 	<xsl:template match="res:sparql">
 		<xsl:param name="type"/>
 		
+		<xsl:variable name="max" select="max(descendant::res:binding[@name = 'count']/res:literal)"/>
+		
 		<xsl:apply-templates select="descendant::res:result">
 			<xsl:with-param name="type" select="$type"/>
+			<xsl:with-param name="max" select="$max"/>
 		</xsl:apply-templates>
 	</xsl:template>
 	
 	<xsl:template match="res:result">
 		<xsl:param name="type"/>
+		<xsl:param name="max"/>
 
 		<xsl:choose>
 			<xsl:when test="res:binding[@name = 'poly'] or res:binding[@name = 'wkt'][contains(res:literal, 'POLYGON')]">
@@ -423,6 +442,14 @@
 							<type>
 								<xsl:value-of select="$type"/>
 							</type>
+							<xsl:if test="res:binding[@name = 'count']">
+								<count>
+									<xsl:value-of select="res:binding[@name = 'count']/res:literal"/>
+								</count>
+								<radius>
+									<xsl:value-of select="nomisma:getGrade(res:binding[@name = 'count']/res:literal, $max)"/>
+								</radius>
+							</xsl:if>
 						</_object>
 					</properties>
 				</_object>
@@ -497,6 +524,9 @@
 								<count>
 									<xsl:value-of select="res:binding[@name = 'count']/res:literal"/>
 								</count>
+								<radius>
+									<xsl:value-of select="nomisma:getGrade(res:binding[@name = 'count']/res:literal, $max)"/>
+								</radius>								
 							</xsl:if>
 							<xsl:if test="res:binding[@name = 'closingDate']">
 								<closing_date datatype="xs:gYear">
@@ -509,4 +539,22 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
+	
+	<xsl:function name="nomisma:getGrade">
+		<xsl:param name="count"/>
+		<xsl:param name="max"/>
+		
+		<xsl:variable name="grade" select="$max div 5"/>
+		
+		<xsl:choose>
+			<xsl:when test="floor($grade) = 0">5</xsl:when>
+			<xsl:when test="$count &lt; floor($grade)">5</xsl:when>
+			<xsl:when test="$count &gt; floor($grade) and $count &lt; (floor($grade) * 2)">10</xsl:when>
+			<xsl:when test="$count &gt; (floor($grade) * 2) and $count &lt; (floor($grade) * 3)">15</xsl:when>
+			<xsl:when test="$count &gt; (floor($grade) * 3) and $count &lt; (floor($grade) * 4)">20</xsl:when>
+			<xsl:when test="$count &gt; (floor($grade) * 4)">25</xsl:when>
+			<xsl:otherwise>5</xsl:otherwise>
+		</xsl:choose>
+	</xsl:function>
+	
 </xsl:stylesheet>

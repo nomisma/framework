@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 	Author: Ethan Gruber
-	Date: September 2024
+	Date: January 2025
 	Function: Read the type of response, whether a nomisma ID, coin type URI, symbol ID/URI, or symbol letter and type series in order to determine
 	the structure of the SPARQL query to submit to the endpoint in order to get hoards
 -->
@@ -35,7 +35,8 @@
 									<xsl:when test="/request/parameters/parameter[name='id']/value">id</xsl:when>
 									<xsl:when test="/request/parameters/parameter[name='coinType']/value">coinType</xsl:when>
 									<xsl:when test="/request/parameters/parameter[name='symbol']/value">symbol</xsl:when>
-									<xsl:when test="/request/parameters/parameter[name='letter']">letter</xsl:when>
+									<xsl:when test="/request/parameters/parameter[name='letter']/value">letter</xsl:when>
+									<xsl:when test="/request/parameters/parameter[name='query']/value">query</xsl:when>
 								</xsl:choose>
 							</xsl:otherwise>
 						</xsl:choose>
@@ -156,6 +157,7 @@
 										<xsl:with-param name="type" select="$type"/>
 										<xsl:with-param name="id" select="$id"/>
 										<xsl:with-param name="letters"/>
+										<xsl:with-param name="q"/>
 									</xsl:call-template>
 								</xsl:variable>
 
@@ -222,6 +224,7 @@
 										<xsl:with-param name="id" select="$coinType"/>
 										<xsl:with-param name="letters"/>
 										<xsl:with-param name="typeSeries"/>
+										<xsl:with-param name="q"/>
 									</xsl:call-template>
 								</xsl:when>
 								<xsl:when test="$type = 'symbol'">
@@ -249,12 +252,13 @@
 										<xsl:with-param name="id" select="$id"/>
 										<xsl:with-param name="letters"/>
 										<xsl:with-param name="typeSeries"/>
+										<xsl:with-param name="q"/>
 									</xsl:call-template>
 								</xsl:when>
 								
 								<xsl:when test="$type = 'letter'">
-									<xsl:variable name="letters" select="doc('input:request')/request/parameters/parameter[name='letter']"/>
-									<xsl:variable name="typeSeries" select="doc('input:request')/request/parameters/parameter[name='typeSeries']"/>
+									<xsl:variable name="letters" select="doc('input:request')/request/parameters/parameter[name='letter']/value"/>
+									<xsl:variable name="typeSeries" select="doc('input:request')/request/parameters/parameter[name='typeSeries']/value"/>
 																		
 									<xsl:call-template name="nomisma:getFindspotsStatements">
 										<xsl:with-param name="api">getHoards</xsl:with-param>
@@ -262,6 +266,7 @@
 										<xsl:with-param name="id"/>
 										<xsl:with-param name="letters" select="$letters"/>
 										<xsl:with-param name="typeSeries" select="$typeSeries"/>
+										<xsl:with-param name="q"/>
 									</xsl:call-template>
 								</xsl:when>
 							</xsl:choose>
@@ -294,7 +299,66 @@
 				<p:input name="config" href="#url-generator-config"/>
 				<p:output name="data" ref="data"/>
 			</p:processor>
+		</p:when>		
+		<p:when test="/type = 'query'">
+			<!-- generate the SPARQL query -->
+			<p:processor name="oxf:unsafe-xslt">
+				<p:input name="request" href="#request"/>
+				<p:input name="query" href="#sparql-query-document"/>
+				<p:input name="data" href=" ../../../config.xml"/>
+				<p:input name="config">
+					<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+						xmlns:nomisma="http://nomisma.org/" exclude-result-prefixes="#all">
+						<xsl:include href="../../../ui/xslt/controllers/metamodel-templates.xsl"/>
+						<xsl:include href="../../../ui/xslt/controllers/sparql-metamodel.xsl"/>
+						
+						<!-- config, SPARQL query variables -->
+						<xsl:variable name="sparql_endpoint" select="/config/sparql_query"/>
+						<xsl:variable name="query" select="doc('input:query')"/>
+						
+						<!-- evaluate the concept type and formulate the specific variables in order to construct the SPARQL query -->
+						<xsl:variable name="statements" as="element()*">
+							<xsl:variable name="q" select="doc('input:request')/request/parameters/parameter[name='query']/value"/>
+							
+							<xsl:call-template name="nomisma:getFindspotsStatements">
+								<xsl:with-param name="api">getHoards</xsl:with-param>
+								<xsl:with-param name="type">query</xsl:with-param>
+								<xsl:with-param name="q" select="$q"/>
+								<xsl:with-param name="id"/>
+								<xsl:with-param name="letters"/>
+								<xsl:with-param name="typeSeries"/>
+							</xsl:call-template>
+						</xsl:variable>
+						
+						<xsl:variable name="statementsSPARQL">
+							<xsl:apply-templates select="$statements/*"/>
+						</xsl:variable>
+						
+						<xsl:variable name="service"
+							select="concat($sparql_endpoint, '?query=', encode-for-uri(replace($query, '%STATEMENTS%', $statementsSPARQL)), '&amp;output=xml')"/>
+						
+						<xsl:template match="/">
+							<config>
+								<url>
+									<xsl:value-of select="$service"/>
+								</url>
+								<content-type>application/xml</content-type>
+								<encoding>utf-8</encoding>
+							</config>
+						</xsl:template>
+						
+					</xsl:stylesheet>
+				</p:input>
+				<p:output name="data" id="url-generator-config"/>
+			</p:processor>
+			
+			<!-- execute SPARQL query -->
+			<p:processor name="oxf:url-generator">
+				<p:input name="config" href="#url-generator-config"/>
+				<p:output name="data" ref="data"/>
+			</p:processor>
 		</p:when>
+		
 	</p:choose>
 
 </p:config>

@@ -193,6 +193,7 @@ a:hover {
     width: 100%;
     height: 400px;
 }
+
 .map-fullscreen{
     width: 100%;
     height: 100%;
@@ -212,6 +213,31 @@ a:hover {
     max-width: 240px;
 }
 
+/*
+  ***************************************
+  DISCOVER MAPS INTERFACE
+  ***************************************
+*/
+.map-discover{
+    width: 100%;
+    height: 800px;
+}
+#filterButton
+{
+    width: 30px;
+    height: 30px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    display: block;
+    padding: 3px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.65);
+    cursor: auto;
+    text-align: center;
+    background-color: #FFFFFF;
+}
 /*
   ***************************************
   VISUALIZATION FORM
