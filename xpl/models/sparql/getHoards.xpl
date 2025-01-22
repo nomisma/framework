@@ -158,6 +158,7 @@
 										<xsl:with-param name="id" select="$id"/>
 										<xsl:with-param name="letters"/>
 										<xsl:with-param name="q"/>
+										<xsl:with-param name="numericType"/>
 									</xsl:call-template>
 								</xsl:variable>
 
@@ -225,6 +226,7 @@
 										<xsl:with-param name="letters"/>
 										<xsl:with-param name="typeSeries"/>
 										<xsl:with-param name="q"/>
+										<xsl:with-param name="numericType"/>
 									</xsl:call-template>
 								</xsl:when>
 								<xsl:when test="$type = 'symbol'">
@@ -253,6 +255,7 @@
 										<xsl:with-param name="letters"/>
 										<xsl:with-param name="typeSeries"/>
 										<xsl:with-param name="q"/>
+										<xsl:with-param name="numericType"/>
 									</xsl:call-template>
 								</xsl:when>
 								
@@ -267,6 +270,7 @@
 										<xsl:with-param name="letters" select="$letters"/>
 										<xsl:with-param name="typeSeries" select="$typeSeries"/>
 										<xsl:with-param name="q"/>
+										<xsl:with-param name="numericType"/>
 									</xsl:call-template>
 								</xsl:when>
 							</xsl:choose>
@@ -319,11 +323,18 @@
 						<!-- evaluate the concept type and formulate the specific variables in order to construct the SPARQL query -->
 						<xsl:variable name="statements" as="element()*">
 							<xsl:variable name="q" select="doc('input:request')/request/parameters/parameter[name='query']/value"/>
+							<xsl:variable name="numericType">
+								<xsl:choose>
+									<xsl:when test="doc('input:request')/request/parameters/parameter[name='numericType']/value = 'object'">object</xsl:when>
+									<xsl:otherwise>coinType</xsl:otherwise>
+								</xsl:choose>
+							</xsl:variable>
 							
 							<xsl:call-template name="nomisma:getFindspotsStatements">
 								<xsl:with-param name="api">getHoards</xsl:with-param>
 								<xsl:with-param name="type">query</xsl:with-param>
 								<xsl:with-param name="q" select="$q"/>
+								<xsl:with-param name="numericType" select="$numericType"/>
 								<xsl:with-param name="id"/>
 								<xsl:with-param name="letters"/>
 								<xsl:with-param name="typeSeries"/>

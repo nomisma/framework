@@ -233,6 +233,7 @@ SELECT ?place ?label ?lat ?long WHERE {
 										<xsl:with-param name="type" select="$type"/>
 										<xsl:with-param name="id" select="$id"/>
 										<xsl:with-param name="q"/>
+										<xsl:with-param name="numericType"/>
 										<xsl:with-param name="letters"/>
 										<xsl:with-param name="typeSeries"/>
 									</xsl:call-template>
@@ -327,6 +328,7 @@ SELECT ?place ?label ?lat ?long WHERE {
 								<xsl:with-param name="type">symbol</xsl:with-param>
 								<xsl:with-param name="id" select="$id"/>
 								<xsl:with-param name="q"/>
+								<xsl:with-param name="numericType"/>
 								<xsl:with-param name="letters"/>
 								<xsl:with-param name="typeSeries"/>
 							</xsl:call-template>
@@ -404,6 +406,7 @@ SELECT ?place ?label ?lat ?long WHERE {
 								<xsl:with-param name="type">letter</xsl:with-param>
 								<xsl:with-param name="id"/>
 								<xsl:with-param name="q"/>
+								<xsl:with-param name="numericType"/>
 								<xsl:with-param name="letters" select="$letters"/>
 								<xsl:with-param name="typeSeries" select="$typeSeries"/>
 							</xsl:call-template>
@@ -471,6 +474,12 @@ SELECT ?place ?label ?lat ?long WHERE {
 						
 						<xsl:variable name="sparql_endpoint" select="/config/sparql_query"/>
 						<xsl:variable name="q" select="doc('input:request')/request/parameters/parameter[name='query']/value"/>		
+						<xsl:variable name="numericType">
+							<xsl:choose>
+								<xsl:when test="doc('input:request')/request/parameters/parameter[name='numericType']/value = 'object'">object</xsl:when>
+								<xsl:otherwise>coinType</xsl:otherwise>
+							</xsl:choose>
+						</xsl:variable>
 						
 						<xsl:variable name="query" select="doc('input:query')"/>
 						
@@ -479,6 +488,7 @@ SELECT ?place ?label ?lat ?long WHERE {
 								<xsl:with-param name="type">query</xsl:with-param>
 								<xsl:with-param name="q" select="$q"/>
 								<xsl:with-param name="id"/>
+								<xsl:with-param name="numericType" select="$numericType"/>
 								<xsl:with-param name="letters"/>
 								<xsl:with-param name="typeSeries"/>
 							</xsl:call-template>

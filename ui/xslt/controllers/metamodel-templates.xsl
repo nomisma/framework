@@ -262,6 +262,7 @@
         <xsl:param name="type"/>
         <xsl:param name="id"/>
         <xsl:param name="q"/>
+        <xsl:param name="numericType"/>
         <xsl:param name="letters"/>
         <xsl:param name="typeSeries"/>
 
@@ -464,16 +465,51 @@
                     <triple s="?place" p="geo:location" o="?loc"/>
                 </xsl:when>
                 <xsl:when test="$type = 'query'">
-                    <xsl:call-template name="nomisma:filterToMetamodel">
-                        <xsl:with-param name="filter" select="$q"/>
-                        <xsl:with-param name="subject">?coinType</xsl:with-param>
-                    </xsl:call-template>
+                    <xsl:choose>
+                        <xsl:when test="$numericType = 'object'">
+                            <!-- create UNION query between types that meet the query and objects that meet the query -->
+                            
+                            <union>
+                                <group>
+                                    <xsl:call-template name="nomisma:filterToMetamodel">
+                                        <xsl:with-param name="filter" select="$q"/>
+                                        <xsl:with-param name="subject">?coinType</xsl:with-param>
+                                    </xsl:call-template>
+                                    
+                                    <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
+                                    <filter_not_exists>
+                                        <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
+                                    </filter_not_exists>
+                                    
+                                    <triple s="?coin" p="nmo:hasTypeSeriesItem" o="?coinType"/>
+                                    <triple s="?coin" p="rdf:type" o="nmo:NumismaticObject"/>
+                                    <triple s="?coinType" p="nmo:hasMint|nmo:hasMint/rdf:value" o="?place"/>
+                                </group>
+                                <group>
+                                    <xsl:call-template name="nomisma:filterToMetamodel">
+                                        <xsl:with-param name="filter" select="$q"/>
+                                        <xsl:with-param name="subject">?coin</xsl:with-param>
+                                    </xsl:call-template>   
+                                    <triple s="?coin" p="rdf:type" o="nmo:NumismaticObject"/>
+                                    <triple s="?coin" p="nmo:hasMint|nmo:hasMint/rdf:value" o="?place"/>
+                                </group>
+                            </union>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:call-template name="nomisma:filterToMetamodel">
+                                <xsl:with-param name="filter" select="$q"/>
+                                <xsl:with-param name="subject">?coinType</xsl:with-param>
+                            </xsl:call-template>
+                            
+                            <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
+                            <filter_not_exists>
+                                <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
+                            </filter_not_exists>
+                            
+                            <triple s="?coinType" p="nmo:hasMint|nmo:hasMint/rdf:value" o="?place"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                     
-                    <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
-                    <filter_not_exists>
-                        <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
-                    </filter_not_exists>
-                    <triple s="?coinType" p="nmo:hasMint|nmo:hasMint/rdf:value" o="?place"/>
                     <triple s="?place" p="geo:location" o="?loc"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -496,6 +532,7 @@
         <xsl:param name="letters"/>
         <xsl:param name="typeSeries"/>
         <xsl:param name="q"/>
+        <xsl:param name="numericType"/>
 
         <statements>
             <xsl:choose>
@@ -791,7 +828,7 @@
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:when>
-                <xsl:when test="$type = 'query'">                    
+                <xsl:when test="$type = 'query'">         
                     <union>
                         <group>
                             <!-- get objects that fit the query via explicit properties in the nmo:NumismaticObject -->
@@ -799,6 +836,7 @@
                                 <xsl:with-param name="filter" select="$q"/>
                                 <xsl:with-param name="subject">?object</xsl:with-param>
                             </xsl:call-template>
+                            <triple s="?object" p="rdf:type" o="nmo:NumismaticObject"/>
                             <xsl:if test="$api = 'getHoards'">
                                 <triple s="?object" p="dcterms:isPartOf" o="?hoard"/>
                             </xsl:if>
@@ -819,7 +857,7 @@
                                 <triple s="?object" p="dcterms:isPartOf" o="?hoard"/>
                             </xsl:if>
                         </group>
-                    </union>
+                    </union>                    
                 </xsl:when>
                 <xsl:otherwise>
                     <union>

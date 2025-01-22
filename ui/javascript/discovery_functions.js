@@ -4,6 +4,26 @@ $(document).ready(function () {
     var path = $('#path').text();
     
     /**** FORM MANIPULATION AND VALIDATION ****/
+    //on changing between viewing all points for one query or comparing queries for one geographic category
+    $('input[type=radio][name=compareBy]').change(function() {
+        var formId = $(this).closest('form').attr('id');
+    
+        if ($(this).val() == 'all') {        
+            //hide all controls related to adding multiple queries            
+            $('.remove-dataset').addClass('hidden');
+            $('.add-compare').addClass('hidden');            
+                        
+            //remove all compare containers except for the first one
+            $('.compare-master-container').children('.compare-container').not(':first').remove();
+        } else {
+            //show controls for adding compare queries            
+            $('.remove-dataset').removeClass('hidden');
+            $('.add-compare').removeClass('hidden');
+        }
+        
+        validate(formId);
+    });
+    
     //when clicking the add-filter link, insert a new filter template into the filter container
     $('.add-filter').click(function () {
         var container = $(this).closest('form').find('.filter-container');
@@ -22,9 +42,10 @@ $(document).ready(function () {
     /***COMPARE***/
     //add dataset for comparison
     $('.add-compare').click(function () {
-        var container = $(this).closest('form').find('.compare-master-container');
+        var container = $(this).closest('form').find('.compare-master-container');        
         var formId = $(this).closest('form').attr('id');
-        $('#compare-container-template').clone().removeAttr('id').appendTo(container);
+        $('#compare-container-template').clone().removeAttr('id').appendTo(container);        
+        
         
         //automatically insert a property-object query pair
         $('#field-template').clone().removeAttr('id').appendTo('.compare-master-container .compare-container:last');
@@ -143,9 +164,13 @@ function initialize_map() {
     $('.visualize-submit').click(function () {
         var formId = $(this).closest('form').attr('id');
         var query = $('#' + formId).children('input[name=compare]').val();
+        var numericType = $('#' + formId).find('input[name=numericType]:checked').val();
         
-        var url = path + "apis/query.geojson?query=" + query;
-        pointLayer.refresh(url);
+        //var url = path + "apis/query.geojson?query=" + query + "&numericType=" + numericType;
+        
+        mintLayer.refresh(path + "apis/getMints?query=" + query + "&numericType=" + numericType);
+        findspotLayer.refresh(path + "apis/getFindspots?query=" + query + "&numericType=" + numericType);
+        hoardLayer.refresh(path + "apis/getHoards?query=" + query + "&numericType=" + numericType);
         
         //close window
         $.fancybox.close();
@@ -157,6 +182,8 @@ function initialize_map() {
         $.fancybox.close();
     });
     
+    
+    //LEAFLET SETUP    
     //baselayers
     var mb_physical = L.tileLayer(
     'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -190,9 +217,39 @@ function initialize_map() {
         "Imperium": imperium
     };
     
-    var url = path + "apis/query.geojson?query=nmo:hasDenomination nm:obol";
+    var mintLayer = L.geoJson.ajax('', {
+        onEachFeature: renderPopup,
+        style: function (feature) {
+            if (feature.geometry.type == 'Polygon') {
+                var fillColor = getFillColor(feature.properties.type);
+                
+                return {
+                    color: fillColor
+                }
+            }
+        },
+        pointToLayer: function (feature, latlng) {
+            return renderPoints(feature, latlng);
+        }
+    }).addTo(map);
     
-    var pointLayer = L.geoJson.ajax('', {
+    var findspotLayer = L.geoJson.ajax('', {
+        onEachFeature: renderPopup,
+        style: function (feature) {
+            if (feature.geometry.type == 'Polygon') {
+                var fillColor = getFillColor(feature.properties.type);
+                
+                return {
+                    color: fillColor
+                }
+            }
+        },
+        pointToLayer: function (feature, latlng) {
+            return renderPoints(feature, latlng);
+        }
+    }).addTo(map);
+    
+    var hoardLayer = L.geoJson.ajax('', {
         onEachFeature: renderPopup,
         style: function (feature) {
             if (feature.geometry.type == 'Polygon') {
@@ -209,12 +266,22 @@ function initialize_map() {
     }).addTo(map);
     
     var overlayMaps = {
-        'Points': pointLayer
-    };
+        'Mints': mintLayer,
+        'Findspots': findspotLayer,
+        'Hoards': hoardLayer
+    };    
     
     //zoom to groups on AJAX complete
-    pointLayer.on('data:loaded', function () {
-        var group = new L.featureGroup([pointLayer]);
+    mintLayer.on('data:loaded', function () {
+        var group = new L.featureGroup([mintLayer, findspotLayer, hoardLayer]);
+        map.fitBounds(group.getBounds());
+    }.bind(this));
+    findspotLayer.on('data:loaded', function () {
+        var group = new L.featureGroup([mintLayer, findspotLayer, hoardLayer]);
+        map.fitBounds(group.getBounds());
+    }.bind(this));
+    hoardLayer.on('data:loaded', function () {
+        var group = new L.featureGroup([mintLayer, findspotLayer, hoardLayer]);
         map.fitBounds(group.getBounds());
     }.bind(this));
     
