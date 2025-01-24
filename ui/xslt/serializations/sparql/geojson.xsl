@@ -27,6 +27,9 @@
 							<xsl:when test="discover">
 								<xsl:apply-templates select="discover"/>
 							</xsl:when>
+							<xsl:when test="compare">
+								<xsl:apply-templates select="compare"/>
+							</xsl:when>
 							<!-- GeoJSON serialization for a concept in the .geojson URL or content negotiation -->
 							<xsl:when test="ignore">
 								<xsl:apply-templates select="ignore"/>
@@ -120,6 +123,25 @@
 		<xsl:apply-templates select="res:sparql[3]">
 			<xsl:with-param name="type">findspot</xsl:with-param>
 		</xsl:apply-templates>
+	</xsl:template>
+	
+	<xsl:template match="compare">
+		<xsl:apply-templates select="res:sparql">
+			<xsl:with-param name="type">
+				<xsl:choose>
+					<xsl:when test="doc('input:request')/request/parameters/parameter[name = 'type']/value">
+						<xsl:value-of select="doc('input:request')/request/parameters/parameter[name = 'type']/value"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:choose>
+							<xsl:when test="$api = 'getMints'">mint</xsl:when>
+							<xsl:when test="$api = 'getHoards'">hoard</xsl:when>
+							<xsl:when test="$api = 'getFindspots'">findspot</xsl:when>
+						</xsl:choose>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:with-param>
+		</xsl:apply-templates>		
 	</xsl:template>
 	
 	<!-- ignore the RDF in the ignore root element, apply templates only to the three docs -->
@@ -357,16 +379,19 @@
 		<xsl:param name="type"/>
 		
 		<xsl:variable name="max" select="max(descendant::res:binding[@name = 'count']/res:literal)"/>
+		<xsl:variable name="position" select="position()"/>
 		
 		<xsl:apply-templates select="descendant::res:result">
 			<xsl:with-param name="type" select="$type"/>
 			<xsl:with-param name="max" select="$max"/>
+			<xsl:with-param name="position" select="$position"/>
 		</xsl:apply-templates>
 	</xsl:template>
 	
 	<xsl:template match="res:result">
 		<xsl:param name="type"/>
 		<xsl:param name="max"/>
+		<xsl:param name="position"/>
 
 		<xsl:choose>
 			<xsl:when test="res:binding[@name = 'poly'] or res:binding[@name = 'wkt'][contains(res:literal, 'POLYGON')]">
@@ -450,6 +475,11 @@
 									<xsl:value-of select="nomisma:getGrade(res:binding[@name = 'count']/res:literal, $max)"/>
 								</radius>
 							</xsl:if>
+							<xsl:if test="doc('input:request')/request/parameters/parameter[name='compare']">
+								<compareGroup>
+									<xsl:value-of select="$position"/>
+								</compareGroup>
+							</xsl:if>
 						</_object>
 					</properties>
 				</_object>
@@ -532,6 +562,11 @@
 								<closing_date datatype="xs:gYear">
 									<xsl:value-of select="nomisma:normalizeDate(res:binding[@name = 'closingDate']/res:literal)"/>
 								</closing_date>
+							</xsl:if>
+							<xsl:if test="doc('input:request')/request/parameters/parameter[name='compare']">
+								<compareGroup>
+									<xsl:value-of select="$position"/>
+								</compareGroup>
 							</xsl:if>
 						</_object>
 					</properties>

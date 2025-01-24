@@ -180,6 +180,7 @@
 					<a href="#" class="add-compare-field" title="Add Query Field"><span class="glyphicon glyphicon-plus"/>Add Query Field</a>
 				</small>
 			</h4>
+			
 			<div class="empty-query-alert alert alert-box alert-danger hidden">
 				<span class="glyphicon glyphicon-exclamation-sign"/>
 				<strong>Alert:</strong> There must be at least one field in the group query.</div>
@@ -188,6 +189,8 @@
 				<strong>Alert:</strong> There must not be more than one from or to date.</div>
 			<!-- if this xsl:template isn't an HTML template used by Javascript (generated in DOM from the compare request parameter), then pre-populate the query fields -->
 
+			<input type="color" value="#ff0000" name="color" class="hidden" disabled="disabled"/>
+			
 			<xsl:if test="$template = false()">
 				<xsl:call-template name="field-template">
 					<xsl:with-param name="template" as="xs:boolean">false</xsl:with-param>

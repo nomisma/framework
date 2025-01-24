@@ -37,6 +37,7 @@
 									<xsl:when test="/request/parameters/parameter[name='symbol']/value">symbol</xsl:when>
 									<xsl:when test="/request/parameters/parameter[name='letter']/value">letter</xsl:when>
 									<xsl:when test="/request/parameters/parameter[name='query']/value">query</xsl:when>
+									<xsl:when test="/request/parameters/parameter[name='compare']">compare</xsl:when>
 								</xsl:choose>
 							</xsl:otherwise>
 						</xsl:choose>
@@ -369,7 +370,82 @@
 				<p:output name="data" ref="data"/>
 			</p:processor>
 		</p:when>
-		
+		<p:when test="/type = 'compare'">
+			<!-- iterate through compare request parameters and execute a SPARQL query for each -->
+			<p:for-each href="#request" select="/request/parameters/parameter[name='compare']/value" root="compare" id="compare">
+				
+				<!-- generate the SPARQL query -->
+				<p:processor name="oxf:unsafe-xslt">
+					<p:input name="request" href="#request"/>
+					<p:input name="query-string" href="current()"/>
+					<p:input name="query" href="#sparql-query-document"/>
+					<p:input name="data" href=" ../../../config.xml"/>
+					<p:input name="config">
+						<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+							xmlns:nomisma="http://nomisma.org/" exclude-result-prefixes="#all">
+							<xsl:include href="../../../ui/xslt/controllers/metamodel-templates.xsl"/>
+							<xsl:include href="../../../ui/xslt/controllers/sparql-metamodel.xsl"/>
+							
+							<xsl:variable name="sparql_endpoint" select="/config/sparql_query"/>
+							<xsl:variable name="q" select="doc('input:query-string')"/>	
+							
+							<xsl:variable name="numericType">
+								<xsl:choose>
+									<xsl:when test="doc('input:request')/request/parameters/parameter[name='numericType']/value = 'object'">object</xsl:when>
+									<xsl:otherwise>coinType</xsl:otherwise>
+								</xsl:choose>
+							</xsl:variable>
+							
+							<xsl:variable name="query" select="doc('input:query')"/>
+							
+							<xsl:variable name="statements" as="element()*">
+								<xsl:call-template name="nomisma:getFindspotsStatements">
+									<xsl:with-param name="api">getHoards</xsl:with-param>
+									<xsl:with-param name="type">query</xsl:with-param>
+									<xsl:with-param name="q" select="$q"/>
+									<xsl:with-param name="id"/>
+									<xsl:with-param name="numericType" select="$numericType"/>
+									<xsl:with-param name="letters"/>
+									<xsl:with-param name="typeSeries"/>
+								</xsl:call-template>
+							</xsl:variable>
+							
+							<xsl:variable name="statementsSPARQL">
+								<xsl:apply-templates select="$statements/*"/>
+							</xsl:variable>
+							
+							<xsl:variable name="service"
+								select="concat($sparql_endpoint, '?query=', encode-for-uri(replace($query, '%STATEMENTS%', $statementsSPARQL)), '&amp;output=xml')"> </xsl:variable>
+							
+							<xsl:template match="/">
+								<config>
+									<url>
+										<xsl:value-of select="$service"/>
+									</url>
+									<content-type>application/xml</content-type>
+									<encoding>utf-8</encoding>
+								</config>
+							</xsl:template>
+							
+						</xsl:stylesheet>
+					</p:input>
+					<p:output name="data" id="url-generator-config"/>
+				</p:processor>
+				
+				<!-- execute SPARQL query -->
+				<p:processor name="oxf:url-generator">
+					<p:input name="config" href="#url-generator-config"/>
+					<p:output name="data" ref="compare"/>
+				</p:processor>
+				
+			</p:for-each>
+			
+			<p:processor name="oxf:identity">
+				<p:input name="data" href="#compare"/>
+				<p:output name="data" ref="data"/>
+			</p:processor>
+			
+		</p:when>
 	</p:choose>
 
 </p:config>
