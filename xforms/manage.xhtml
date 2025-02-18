@@ -683,11 +683,13 @@ WHERE {
 							<xforms:insert context="instance('places')/crm:E53_Place[@rdf:about = $q_entity]" nodeset="./child::node()[last()]"
 								origin="xforms:element('skos:inScheme', xforms:attribute('rdf:resource', 'http://www.wikidata.org/entity/'))"/>
 
-							<!-- reset value of Geonames to append forward slash because Wikidata SPARQL will not concatenate it -->
-							<xforms:setvalue
-								ref="instance('places')/crm:E53_Place[@rdf:about = $q_entity]/skos:closeMatch[contains(@rdf:resource, 'sws.geonames.org')]/@rdf:resource"
-								value="concat(instance('places')/crm:E53_Place[@rdf:about = $q_entity]/skos:closeMatch[contains(@rdf:resource, 'sws.geonames.org')]/@rdf:resource, '/')"
-								if="not(ends-with(instance('places')/crm:E53_Place[@rdf:about = $q_entity]/skos:closeMatch[contains(@rdf:resource, 'sws.geonames.org')]/@rdf:resource, '/'))"/>
+							<!-- reset value of Geonames to append forward slash because Wikidata SPARQL will not concatenate it. Must iterate through closeMatch since a Wikidata concept may link to the populated and administrative Geonames place -->
+							
+							<xforms:action xxf:iterate="instance('places')/crm:E53_Place[@rdf:about = $q_entity]/skos:closeMatch[contains(@rdf:resource, 'sws.geonames.org')]">
+								<xforms:var name="uri" select="data(@rdf:resource)"/>
+								
+								<xforms:setvalue ref="@rdf:resource" value="concat($uri, '/')" if="not(ends-with($uri, '/'))"/>
+							</xforms:action>
 
 							<!-- if there are coordinates and the place has a subtype of human settlement/archaeological site, insert the geo: and crm: properties and the spatialThing template -->
 							<xforms:action
