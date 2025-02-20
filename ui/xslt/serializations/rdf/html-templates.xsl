@@ -158,8 +158,11 @@
 					<h4>Roles</h4>
 
 					<xsl:for-each select="org:hasMembership">
+						<xsl:variable name="position" select="position()"/>
 						<xsl:variable name="uri" select="@rdf:resource"/>
-						<xsl:apply-templates select="//org:Membership[@rdf:about = $uri]" mode="human-readable"/>
+						<xsl:apply-templates select="//org:Membership[@rdf:about = $uri]" mode="human-readable">
+							<xsl:with-param name="position" select="$position"/>
+						</xsl:apply-templates>
 					</xsl:for-each>
 				</div>
 			</xsl:if>
@@ -267,8 +270,10 @@
 	</xsl:template>
 
 	<xsl:template match="org:Membership" mode="human-readable">
+		<xsl:param name="position"/>
+		
 		<div property="org:hasMembership">
-			<h5>Membership <xsl:value-of select="position()"/></h5>
+			<h5>Membership <xsl:value-of select="$position"/></h5>
 
 			<strong>URI: </strong>
 			<code>
