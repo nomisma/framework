@@ -111,13 +111,13 @@
 						<th>
 							<xsl:text>Authority</xsl:text>
 							<xsl:choose>
-								<xsl:when test="$sort = '(!bound(?authorityLabel)) ASC(?authorityLabel)'">
-									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?authorityLabel)) DESC(?authorityLabel)')}">
+								<xsl:when test="$sort = '(!bound(?authorityLabels)) ASC(?authorityLabels)'">
+									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?authorityLabels)) DESC(?authorityLabels)')}">
 										<span class="glyphicon glyphicon-sort-by-alphabet-alt"/>
 									</a>
 								</xsl:when>
 								<xsl:otherwise>
-									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?authorityLabel)) ASC(?authorityLabel)')}">
+									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?authorityLabels)) ASC(?authorityLabels)')}">
 										<span class="glyphicon glyphicon-sort-by-alphabet"/>
 									</a>
 								</xsl:otherwise>
@@ -126,13 +126,13 @@
 						<th>
 							<xsl:text>Mint</xsl:text>
 							<xsl:choose>
-								<xsl:when test="$sort = '(!bound(?mintLabel)) ASC(?mintLabel)'">
-									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?mintLabel)) DESC(?mintLabel)')}">
+								<xsl:when test="$sort = '(!bound(?mintLabels)) ASC(?mintLabels)'">
+									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?mintLabels)) DESC(?mintLabels)')}">
 										<span class="glyphicon glyphicon-sort-by-alphabet-alt"/>
 									</a>
 								</xsl:when>
 								<xsl:otherwise>
-									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?mintLabel)) ASC(?mintLabel)')}">
+									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?mintLabels)) ASC(?mintLabels)')}">
 										<span class="glyphicon glyphicon-sort-by-alphabet"/>
 									</a>
 								</xsl:otherwise>
@@ -141,13 +141,13 @@
 						<th>
 							<xsl:text>Denomination</xsl:text>
 							<xsl:choose>
-								<xsl:when test="$sort = '(!bound(?denLabel)) ASC(?denLabel)'">
-									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?denLabel)) DESC(?denLabel)')}">
+								<xsl:when test="$sort = '(!bound(?denLabels)) ASC(?denLabels)'">
+									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?denLabels)) DESC(?denLabels)')}">
 										<span class="glyphicon glyphicon-sort-by-alphabet-alt"/>
 									</a>
 								</xsl:when>
 								<xsl:otherwise>
-									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?denLabel)) ASC(?denLabel)')}">
+									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?denLabels)) ASC(?denLabels)')}">
 										<span class="glyphicon glyphicon-sort-by-alphabet"/>
 									</a>
 								</xsl:otherwise>
@@ -182,24 +182,51 @@
 								</a>
 							</td>
 							<td>
-								<xsl:if test="res:binding[@name = 'authority']/res:uri">
-									<a href="{res:binding[@name='authority']/res:uri}">
-										<xsl:value-of select="res:binding[@name = 'authorityLabel']/res:literal"/>
-									</a>
+								<xsl:if test="res:binding[@name = 'authorities']/res:literal">
+									<xsl:variable name="authorityLabels" select="res:binding[@name='authorityLabels']/res:literal"/>
+									
+									<xsl:for-each select="tokenize(res:binding[@name = 'authorities']/res:literal, '\|')">
+										<xsl:variable name="position" select="position()"/>
+										
+										<a href="{.}">
+											<xsl:value-of select="tokenize($authorityLabels, '\|')[$position]"/>
+										</a>
+										<xsl:if test="not(position() = last())">
+											<xsl:text>, </xsl:text>
+										</xsl:if>
+									</xsl:for-each>
 								</xsl:if>
 							</td>
 							<td>
-								<xsl:if test="res:binding[@name = 'mint']/res:uri">
-									<a href="{res:binding[@name='mint']/res:uri}">
-										<xsl:value-of select="res:binding[@name = 'mintLabel']/res:literal"/>
-									</a>
+								<xsl:if test="res:binding[@name = 'mints']/res:literal">
+									<xsl:variable name="mintLabels" select="res:binding[@name='mintLabels']/res:literal"/>
+									
+									<xsl:for-each select="tokenize(res:binding[@name = 'mints']/res:literal, '\|')">
+										<xsl:variable name="position" select="position()"/>
+										
+										<a href="{.}">
+											<xsl:value-of select="tokenize($mintLabels, '\|')[$position]"/>
+										</a>
+										<xsl:if test="not(position() = last())">
+											<xsl:text>, </xsl:text>
+										</xsl:if>
+									</xsl:for-each>
 								</xsl:if>
 							</td>
 							<td>
-								<xsl:if test="res:binding[@name = 'den']/res:uri">
-									<a href="{res:binding[@name='den']/res:uri}">
-										<xsl:value-of select="res:binding[@name = 'denLabel']/res:literal"/>
-									</a>
+								<xsl:if test="res:binding[@name = 'dens']/res:literal">
+									<xsl:variable name="denLabels" select="res:binding[@name='denLabels']/res:literal"/>
+									
+									<xsl:for-each select="tokenize(res:binding[@name = 'dens']/res:literal, '\|')">
+										<xsl:variable name="position" select="position()"/>
+										
+										<a href="{.}">
+											<xsl:value-of select="tokenize($denLabels, '\|')[$position]"/>
+										</a>
+										<xsl:if test="not(position() = last())">
+											<xsl:text>, </xsl:text>
+										</xsl:if>
+									</xsl:for-each>
 								</xsl:if>
 							</td>
 							<td>

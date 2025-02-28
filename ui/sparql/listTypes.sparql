@@ -16,7 +16,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>
 PREFIX wordnet: <http://ontologi.es/WordNet/class/>
 PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
 
-SELECT * WHERE {
+SELECT ?coinType ?label ?source ?sourceLabel ?startDate ?endDate (GROUP_CONCAT(?mint;separator='|') as ?mints) (GROUP_CONCAT(?mintLabel;separator='|') as ?mintLabels) (GROUP_CONCAT(?authority;separator='|') as ?authorities) (GROUP_CONCAT(?authorityLabel;separator='|') as ?authorityLabels) (GROUP_CONCAT(?den;separator='|') as ?dens) (GROUP_CONCAT(?denLabel;separator='|') as ?denLabels) WHERE {
 %STATEMENTS%
 ?coinType skos:prefLabel ?label FILTER(langMatches(lang(?label), "en")) .
    MINUS {?coinType dcterms:isReplacedBy ?replaced}
@@ -30,4 +30,4 @@ SELECT * WHERE {
    	?authority skos:prefLabel ?authorityLabel FILTER(langMatches(lang(?authorityLabel), "en"))}
    OPTIONAL {?coinType nmo:hasDenomination ?den . 
    	?den skos:prefLabel ?denLabel FILTER(langMatches(lang(?denLabel), "en"))}
-}
+} GROUP BY ?coinType ?label ?source ?sourceLabel ?startDate ?endDate
