@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- *************************** eXist URL *********************************
-The exist-url variable is referenced  by XForms web forms interact with the eXist database 
-default: "/exist/rest/db/"
-
-Note: do not forget trailing / after db!
--->
-<exist-url>http://localhost:8080/orbeon/exist/rest/db/</exist-url>

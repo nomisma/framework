@@ -415,7 +415,7 @@ DELETE {?s ?p ?o} WHERE {
 																</xforms:trigger>
 															</dd>
 															<dt>Definition</dt>
-															<dd><xforms:output value="str[@name='definition']"/></dd>
+															<dd><xforms:output value="arr[@name='definition']/str"/></dd>
 															<dt>Type</dt>
 															<dd>
 																<xforms:repeat nodeset="arr[@name='type']/str[not(. = 'skos:Concept')]">

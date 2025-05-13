@@ -54,7 +54,7 @@
 				<xsl:value-of select="str[@name='prefLabel']"/>
 			</title>
 			<summary>
-				<xsl:value-of select="str[@name='definition']"/>
+				<xsl:value-of select="arr[@name='definition']/str"/>
 			</summary>
 			<link rel="canonical" type="text/html" href="{$uri}"/>
 			<link rel="alternate" type="application/ld+json" href="{$uri}.jsonld"/>

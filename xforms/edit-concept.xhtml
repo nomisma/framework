@@ -1005,18 +1005,16 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 								<li>
 									<h4>Miscellaneous</h4>
 								</li>
-								<xforms:group ref=".[$type='rdac:Family' or $type='nmo:Mint']">
-									<xforms:group ref=".[count(nmo:hasStartDate) = 0]">
-										<li>
-											<xforms:trigger appearance="minimal">
-												<xforms:label>
-													<span class="glyphicon glyphicon-plus"></span>Start Date</xforms:label>
-												<xforms:insert ev:event="DOMActivate" origin="instance('hasStartDate-template')" context="."
-													nodeset="./child::node()[last()]"/>
-											</xforms:trigger>
-										</li>
-									</xforms:group>
-									<xforms:group ref=".[count(nmo:hasEndDate) = 0]">
+								<xforms:group ref=".[($type='rdac:Family' or $type='nmo:Mint') and count(nmo:hasStartDate) = 0]">
+									<li>
+										<xforms:trigger appearance="minimal">
+											<xforms:label>
+												<span class="glyphicon glyphicon-plus"></span>Start Date</xforms:label>
+											<xforms:insert ev:event="DOMActivate" origin="instance('hasStartDate-template')" context="."
+												nodeset="./child::node()[last()]"/>
+										</xforms:trigger>
+									</li>
+									<xforms:group ref=".[($type='rdac:Family' or $type='nmo:Mint') and count(nmo:hasEndDate) = 0]">
 										<li>
 											<xforms:trigger appearance="minimal">
 												<xforms:label>
@@ -1027,17 +1025,15 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										</li>
 									</xforms:group>
 								</xforms:group>
-								<xforms:group ref=".[$type='nmo:Collection']">
-									<xforms:group ref=".[count(foaf:thumbnail) = 0]">
-										<li>
-											<xforms:trigger appearance="minimal">
-												<xforms:label>
-													<span class="glyphicon glyphicon-plus"></span>Thumbnail</xforms:label>
-												<xforms:insert ev:event="DOMActivate" origin="instance('thumbnail-template')" context="."
-													nodeset="./child::node()[last()]"/>
-											</xforms:trigger>
-										</li>
-									</xforms:group>
+								<xforms:group ref=".[count(foaf:thumbnail) = 0 and $type = 'nmo:Collection']">
+									<li>
+										<xforms:trigger appearance="minimal">
+											<xforms:label>
+												<span class="glyphicon glyphicon-plus"></span>Thumbnail</xforms:label>
+											<xforms:insert ev:event="DOMActivate" origin="instance('thumbnail-template')" context="."
+												nodeset="./child::node()[last()]"/>
+										</xforms:trigger>
+									</li>
 								</xforms:group>
 							</xforms:group>
 
@@ -2708,8 +2704,8 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 								<xforms:value>&#x022;rdac:Family&#x022;</xforms:value>
 							</xforms:item>-->
 								<xforms:item>
-									<xforms:label>Mint</xforms:label>
-									<xforms:value>&#x022;nmo:Mint&#x022;</xforms:value>
+									<xforms:label>Group</xforms:label>
+									<xforms:value>&#x022;foaf:Group&#x022;</xforms:value>
 								</xforms:item>
 							</xforms:select1>
 						</div>
