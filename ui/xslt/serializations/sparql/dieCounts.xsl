@@ -137,8 +137,8 @@
 		<xsl:variable name="d_est" select="round(($d div $c_est) * (1 + ($d1 div $d)))"/>
 
 		<!-- calculate the minimum and maximum confidence interval, formula 4 in Esty 2011 -->
-		<xsl:variable name="d_min" select="$d_est - math:power((2 * $d_est) div $n, 2) - (((2 * $d_est) div $n) * math:sqrt(2 * $d_est))"/>
-		<xsl:variable name="d_max" select="$d_est - math:power((2 * $d_est) div $n, 2) + (((2 * $d_est) div $n) * math:sqrt(2 * $d_est))"/>
+		<xsl:variable name="d_min" select="$d_est + math:power((2 * $d_est) div $n, 2) - (((2 * $d_est) div $n) * math:sqrt(2 * $d_est))"/>
+		<xsl:variable name="d_max" select="$d_est + math:power((2 * $d_est) div $n, 2) + (((2 * $d_est) div $n) * math:sqrt(2 * $d_est))"/>
 
 		<c_est>
 			<xsl:value-of select="$c_est"/>
