@@ -123,7 +123,7 @@
 			<xforms:instance id="control-instance" xxf:exclude-result-prefixes="#all">
 				<controls xmlns="">
 					<status></status>
-					<void_uri></void_uri>
+					<void_uri>https://change.csad.ox.ac.uk/sitefinds/assets/data/VoID.rdf</void_uri>
 					<dump_uri></dump_uri>
 					<mode>validate</mode>
 					<dataset></dataset>
@@ -551,8 +551,94 @@ WHERE {
 
 				<xforms:action ev:event="xforms-submit-error">
 					<!-- if the mime-type is not a type of XML, then check to see if the event('body') is RDF (an application/octet-stream attachment from ContentDM) -->
-					<xforms:action if="event('body')/*/namespace-uri() = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'">
+					<xforms:action if="event('body')/*/namespace-uri() = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'">						
 						<xforms:insert context="instance('rdf')" origin="event('body')/rdf:RDF/*"/>
+						
+						<!-- evaluate the findspot URIs and align them with Wikidata -->
+						<xforms:action if="instance('control-instance')/mode = 'validate'">
+							
+							<!-- set instance counts for report -->
+							<xforms:setvalue ref="instance('control-instance')/object_count"
+								value="instance('control-instance')/object_count + count(instance('rdf')//nmo:NumismaticObject)"/>
+							<xforms:setvalue ref="instance('control-instance')/type_count"
+								value="instance('control-instance')/type_count + count(instance('rdf')//nmo:TypeSeriesItem)"/>
+							<xforms:setvalue ref="instance('control-instance')/hoard_count"
+								value="instance('control-instance')/hoard_count + count(instance('rdf')//nmo:Hoard)"/>
+							<xforms:setvalue ref="instance('control-instance')/symbol_count"
+								value="instance('control-instance')/symbol_count + count(instance('rdf')//nmo:Monogram) + count(instance('rdf')//crm:E37_Mark)"/>
+							
+							<xforms:action
+								xxf:iterate="distinct-values(instance('rdf')//nmo:hasFindspot/descendant::crm:P89_falls_within/@rdf:resource)">
+								<xforms:var name="uri" select="."/>
+								
+								<xforms:setvalue ref="instance('control-instance')/gazetteer_uri" value="$uri"/>
+								
+								<!-- only parse gazetteer URIs from Getty TGN, Wikidata, Geonames, Ordnance Survey, or Pleiades -->
+								<xforms:action
+									if="matches($uri, 'https?://') and (contains($uri, 'vocab.getty.edu/tgn/') or contains($uri, 'wikidata.org') or contains($uri, 'sws.geonames.org') or contains($uri, 'data.ordnancesurvey.co.uk') or contains($uri, 'pleiades.stoa.org'))">
+									
+									<!-- if the findspot URI is not found in the matches instances, then execute a SPARQL query to see if the Place exists 
+								in the Nomisma SPARQL endpoint already -->
+									<xforms:action if="not(instance('findspot-matches')/findspot = $uri)">
+										
+										<!-- evaluate the URI to determine which SPARQL query to submit -->
+										<xforms:setvalue ref="instance('sparqlQuery')"
+											value="replace(instance('sparql-templates')/query[@id='ask-wikidata-match'], '%MATCH%', $uri)"
+											if="matches($uri, '^http://www.wikidata.org/entity/Q[0-9]+$')"/>
+										<xforms:setvalue ref="instance('sparqlQuery')"
+											value="replace(instance('sparql-templates')/query[@id='get-wikidata-match'], '%MATCH%', $uri)"
+											if="not(matches($uri, '^http://www.wikidata.org/entity/Q[0-9]+$'))"/>
+										<xforms:send submission="submit-sparqlQuery"/>
+										
+										<!-- if the URI is in the Nomisma.org SPARQL endpoint, add it to the findspot-matches instance -->
+										<xforms:action if="count(instance('sparqlResponse')//res:result) &gt; 0">
+											<xforms:insert context="instance('findspot-matches')" nodeset="./child::node()[last()]"
+												origin="xforms:element('findspot', (xforms:attribute('matches', data(instance('sparqlResponse')//res:result[1]/res:binding[@name='uri']/res:uri)), $uri))"
+											/>
+										</xforms:action>
+										
+										<xforms:action if="instance('sparqlResponse')//res:boolean = true()">
+											<xforms:insert context="instance('findspot-matches')" nodeset="./child::node()[last()]"
+												origin="xforms:element('findspot', $uri)"/>
+										</xforms:action>
+										
+										<!-- if the URI isn't in the Nomisma.org SPARQL endpoint, then execute Wikidata SPARQL queries to generate E53_Place nodes, coordinates, and hierarchy -->
+										<xforms:action
+											if="(not(matches($uri, '^http://www.wikidata.org/entity/Q[0-9]+$')) and count(instance('sparqlResponse')//res:result) = 0) or
+											(matches($uri, '^http://www.wikidata.org/entity/Q[0-9]+$') and instance('sparqlResponse')//res:boolean = false())">
+											
+											<xforms:var name="id"
+												select="if (contains($uri, 'sws.geonames.org')) then tokenize($uri, '/')[last() - 1] else tokenize($uri, '/')[last()]"/>
+											<xforms:var name="namespace" select="tokenize($uri, '/')[3]"/>
+											<xforms:var name="prop" select="instance('wikidata-properties')/prop[@namespace = $namespace]"/>
+											
+											<!-- set the SPARQL query, depending on URI -->
+											<xforms:setvalue ref="instance('sparqlQuery')"
+												value="replace(instance('sparql-templates')/query[@id='query-wikidata-match'], '%STATEMENT%', concat('?place wdt:', $prop, ' &#x022;', $id, '&#x022;'))"
+												if="not(matches($uri, '^http://www.wikidata.org/entity/Q[0-9]+$'))"/>
+											<xforms:setvalue ref="instance('sparqlQuery')"
+												value="replace(instance('sparql-templates')/query[@id='query-wikidata-match'], '%STATEMENT%', concat('BIND (wd:', $id, ' as ?place)'))"
+												if="matches($uri, '^http://www.wikidata.org/entity/Q[0-9]+$')"/>
+											<xforms:send submission="query-wikidata"/>
+										</xforms:action>
+									</xforms:action>
+								</xforms:action>
+							</xforms:action>
+						</xforms:action>
+						<xforms:action if="instance('control-instance')/mode = 'import'">
+							<!-- after the RDF dump is loaded and the findspot places have been reconciled to Wikidata, then replace
+														non Wikidata URIs associated with findspots -->
+							<xforms:action xxf:iterate="instance('rdf')//nmo:hasFindspot/descendant::crm:P89_falls_within">
+								<xforms:var name="uri" select="context()/@rdf:resource"/>
+								
+								<xforms:action
+									if="matches($uri, 'https?://') and (contains($uri, 'vocab.getty.edu/tgn/') or contains($uri, 'sws.geonames.org') or contains($uri, 'data.ordnancesurvey.co.uk') or contains($uri, 'pleiades.stoa.org'))">
+									
+									<xforms:setvalue ref="context()/@rdf:resource" value="instance('findspot-matches')/findspot[. = $uri]/@matches"
+										if="instance('findspot-matches')/findspot[. = $uri]/@matches"/>
+								</xforms:action>
+							</xforms:action>
+						</xforms:action>
 					</xforms:action>
 					<xforms:action if="not(event('body')/*/namespace-uri() = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#')">
 						<xforms:message level="modal">Unable to load VoID dump.</xforms:message>
@@ -576,6 +662,7 @@ WHERE {
 						<xforms:action
 							xxf:iterate="distinct-values(instance('rdf')//nmo:hasFindspot/descendant::crm:P89_falls_within/@rdf:resource)">
 							<xforms:var name="uri" select="."/>
+							
 							<xforms:setvalue ref="instance('control-instance')/gazetteer_uri" value="$uri"/>
 
 							<!-- only parse gazetteer URIs from Getty TGN, Wikidata, Geonames, Ordnance Survey, or Pleiades -->
@@ -1661,6 +1748,13 @@ WHERE {
 												</xforms:output>
 											</div>
 										</xforms:group>
+										<xforms:repeat nodeset="void:dataDump">
+											<div>
+												<xforms:output ref="@rdf:resource">
+													<xforms:label>Dump URL</xforms:label>
+												</xforms:output>
+											</div>
+										</xforms:repeat>
 									</div>
 									
 
@@ -1693,7 +1787,7 @@ WHERE {
 											<xforms:setvalue ref="instance('control-instance')/mode">validate</xforms:setvalue>
 
 											<xforms:action xxf:iterate="instance('void-rdf')/*[local-name()='Dataset']/void:dataDump">
-												<xforms:setvalue ref="instance('control-instance')/dump_uri" value="context()/@rdf:resource"/>
+												<xforms:setvalue ref="instance('control-instance')/dump_uri" value="context()/@rdf:resource"/>												
 												<xforms:send submission="load-dump"/>
 											</xforms:action>
 
