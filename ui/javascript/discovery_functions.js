@@ -176,16 +176,16 @@ function initialize_map() {
     //get updated GeoJSON upon submit click
     $('.visualize-submit').click(function () {
         var formId = $(this).closest('form').attr('id');
-        var numericType = $('#' + formId).find('input[name=numericType]:checked').val();        
+        var numericType = $('#' + formId).find('input[name=numericType]:checked').val();
         var compareBy = $('#' + formId).find('input[name=compareBy]:checked').val();
         
         if (compareBy == 'all') {
             var query = $('#' + formId).children('input[name=compare]').val();
             var url = path + "apis/query.geojson?query=" + query + "&numericType=" + numericType;
         } else {
-            var queries = [];
-            $('#' + formId).children('input[name=compare]').each(function(){
-               queries.push("compare=" + $(this).val());
+            var queries =[];
+            $('#' + formId).children('input[name=compare]').each(function () {
+                queries.push("compare=" + $(this).val());
             });
             
             var url = path + "apis/query.geojson?" + queries.join('&') + "&numericType=" + numericType + "&type=" + compareBy;
@@ -284,6 +284,13 @@ function initialize_map() {
     });
     var control = new L.Control.Button()
     control.addTo(map);
+    
+    L.control.Legend({
+        position: "bottomleft",
+        symbolWidth: 24,
+        symbolHeight: 24,
+        legends: JSON.parse($('#legend').text())
+    }).addTo(map);
     
     //add controls
     var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);

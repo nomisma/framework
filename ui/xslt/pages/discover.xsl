@@ -40,8 +40,10 @@
 
 				<!-- leaflet and map functions -->
 				<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0/dist/leaflet.css"/>
+				<link rel="stylesheet" href="{$display_path}ui/css/leaflet.legend.css"/>
 				<script type="text/javascript" src="https://unpkg.com/leaflet@1.0.0/dist/leaflet.js"/>
 				<script type="text/javascript" src="{$display_path}ui/javascript/leaflet.ajax.min.js"/>
+				<script type="text/javascript" src="{$display_path}ui/javascript/leaflet.legend.js"/>
 				<script type="text/javascript" src="{$display_path}ui/javascript/discovery_functions.js"/>
 				<script type="text/javascript" src="{$display_path}ui/javascript/facet_functions.js"/>
 
@@ -156,7 +158,11 @@
 
 			<xsl:call-template name="ajax-loader-template"/>
 
-
+			<span id="legend">
+				<xsl:text>[{"label": "Mint", "type": "rectangle", "fillColor": "#6992fd", "color": "black","weight": 1}, 
+				{"label": "Hoard", "type": "rectangle", "fillColor": "#d86458", "color": "black", "weight": 1},
+				{"label": "Findspot", "type":"rectangle", "fillColor": "#f98f0c", "color": "black", "weight": 1}]</xsl:text>
+			</span>
 		</div>
 	</xsl:template>
 
@@ -180,7 +186,7 @@
 					<a href="#" class="add-compare-field" title="Add Query Field"><span class="glyphicon glyphicon-plus"/>Add Query Field</a>
 				</small>
 			</h4>
-			
+
 			<div class="empty-query-alert alert alert-box alert-danger hidden">
 				<span class="glyphicon glyphicon-exclamation-sign"/>
 				<strong>Alert:</strong> There must be at least one field in the group query.</div>
@@ -190,7 +196,7 @@
 			<!-- if this xsl:template isn't an HTML template used by Javascript (generated in DOM from the compare request parameter), then pre-populate the query fields -->
 
 			<input type="color" value="#ff0000" name="color" class="hidden" disabled="disabled"/>
-			
+
 			<xsl:if test="$template = false()">
 				<xsl:call-template name="field-template">
 					<xsl:with-param name="template" as="xs:boolean">false</xsl:with-param>
