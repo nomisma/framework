@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Author: Ethan Gruber
-    Date: June 2019
+    Date: May 2025
     Function: XSLT templates that construct the XML metamodel used in various contexts for SPARQL queries. 
     The sparql-metamodel.xsl stylesheet converts this XML model into text for the SPARQL endpoint
 -->
@@ -14,6 +14,7 @@
             <class prop="nmo:hasDenomination">nmo:Denomination</class>
             <class prop="nmo:hasAuthority">nmo:Ethnic</class>
             <class prop="nmo:hasAuthority">rdac:Family</class>
+            <class prop="dcterms:isPartOf">nmo:FieldOfNumismatics</class>
             <class prop="nmo:hasAuthority">foaf:Group</class>
             <class prop="dcterms:isPartOf">nmo:Hoard</class>
             <class prop="nmo:hasManufacture">nmo:Manufacture</class>
@@ -166,6 +167,28 @@
                         </xsl:choose>
                     </xsl:if>
                 </xsl:when>
+                <xsl:when test="$property = 'fon'">
+                    
+                    <!-- extract dcterms:isPartOf either from the type-source-fon relationship or find coins with explicit fon -->
+                    <xsl:choose>
+                        <xsl:when test="$subject = '?coinType'">
+                            <triple s="{$subject}" p="dcterms:source" o="?source"/>
+                            <triple s="?source" p="dcterms:isPartOf" o="{$object}"/>
+                        </xsl:when>
+                        <xsl:when test="$subject = '?coin'">
+                            <union>
+                                <group>
+                                    <triple s="?coin" p="nmo:hasTypeSeriesItem" o="?coinType"/>
+                                    <triple s="?coinType" p="dcterms:source" o="?source"/>
+                                    <triple s="?source" p="dcterms:isPartOf" o="{$object}"/>
+                                </group>
+                                <group>
+                                    <triple s="?coin" p="dcterms:isPartOf" o="{$object}"/>
+                                </group>
+                            </union> 
+                        </xsl:when>
+                    </xsl:choose>
+                </xsl:when>
                 <xsl:when test="$property = 'nmo:hasTypeSeriesItem'">
                     <!-- get the measurements for all coins connected with a given type or any of its subtypes -->
                     <union>
@@ -240,7 +263,10 @@
                 </union>
                 <triple s="{$object}" p="a" o="{$distClass}"/>
             </xsl:when>
-
+            <xsl:when test="$dist = 'fon'">
+                <triple s="?coinType" p="dcterms:source" o="?source"/>
+                <triple s="?source" p="dcterms:isPartOf" o="{$object}"/>
+            </xsl:when>
             <xsl:when test="$dist = 'nmo:hasRegion'">
                 <union>
                     <group>
@@ -857,6 +883,17 @@
                                 <triple s="?object" p="dcterms:isPartOf" o="?hoard"/>
                             </xsl:if>
                         </group>
+                        
+                        <!-- -include hoard contents -->
+                        <xsl:if test="$api = 'getHoards'">
+                            <group>
+                                <xsl:call-template name="hoard-content-query">
+                                    <xsl:with-param name="api" select="$api"/>
+                                    <xsl:with-param name="q" select="$q"/>
+                                    <xsl:with-param name="type" select="$type"/>
+                                </xsl:call-template>
+                            </group>
+                        </xsl:if>                        
                     </union>                    
                 </xsl:when>
                 <xsl:otherwise>
@@ -1007,70 +1044,101 @@
         <xsl:param name="api"/>
         <xsl:param name="id"/>
         <xsl:param name="type"/>
-
-        <group>
-            <group>
-                <triple s="?coinType" p="{$classes//class[text()=$type]/@prop}" o="nm:{$id}"/>
-                <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
-                <triple s="?contents" p="nmo:hasTypeSeriesItem" o="?coinType"/>
-                <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
-                <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>                
-            </group>
-            <group>
-                <triple s="?contents" p="{$classes//class[text()=$type]/@prop}" o="nm:{$id}"/>
-                <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
-                <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>                
-            </group>
-            <!-- look for people related to orgs and dynasties only in the hoard contents -->
-            <xsl:choose>
-                <xsl:when test="$type = 'foaf:Group' or $type = 'foaf:Organization'">
-                    <!-- query organizations that appear directly in contents -->
+        <xsl:param name="q"/>
+        
+        <xsl:choose>
+            <xsl:when test="$type = 'query'">
+                <group>
+                    <!-- get typological attributes which are part of a coin type found within the hoard contents -->
+                    <xsl:call-template name="nomisma:filterToMetamodel">
+                        <xsl:with-param name="filter" select="$q"/>
+                        <xsl:with-param name="subject">?coinType</xsl:with-param>
+                    </xsl:call-template>
+                    <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
+                    <filter_not_exists>
+                        <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
+                    </filter_not_exists>
+                    <triple s="?contents" p="nmo:hasTypeSeriesItem" o="?coinType"/>
+                    <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
+                    <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>
+                </group>
+                <group>
+                    <!-- get the typological attributes which are explicit within the hoard contents -->
+                    <xsl:call-template name="nomisma:filterToMetamodel">
+                        <xsl:with-param name="filter" select="$q"/>
+                        <xsl:with-param name="subject">?contents</xsl:with-param>
+                    </xsl:call-template>
+                    <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
+                    <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>
+                </group>
+            </xsl:when>
+            <xsl:otherwise>
+                <group>
                     <group>
-                        <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
-                        <triple s="?person" p="rdf:type" o="foaf:Person"/>
-                        <triple s="?contents" p="nmo:hasAuthority" o="?person"/>
-                        <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
-                        <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>                        
-                    </group>
-                    <!-- query types related to organizations that appear in contents -->
-                    <group>
-                        <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
-                        <triple s="?person" p="rdf:type" o="foaf:Person"/>
-                        <triple s="?type" p="nmo:hasIssuer" o="?person"/>
-                        <triple s="?type" p="a" o="nmo:TypeSeriesItem"/>
-                        <triple s="?contents" p="nmo:hasTypeSeriesItem" o="?type"/>
-                        <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
-                        <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>                        
-                    </group>
-                </xsl:when>
-                <xsl:when test="$type = 'rdac:Family'">
-                    <group>
-                        <triple s="?person" p="org:memberOf" o="nm:{$id}"/>
-                        <triple s="?person" p="rdf:type" o="foaf:Person"/>
-                        <triple s="?contents" p="nmo:hasAuthority" o="?person"/>
-                        <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
-                        <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>                        
-                    </group>
-                </xsl:when>
-                <!-- query for hoard contents that contain a mint that is a child/descendent of a region -->
-                <xsl:when test="$type = 'nmo:Region'">
-                    <group>
-                        <triple s="?mint" p="skos:broader+" o="nm:{$id}"/>
-                        <triple s="?contents" p="nmo:hasMint" o="?mint"/>
-                        <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
-                        <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>                        
-                    </group>
-                    <group>
-                        <triple s="?mint" p="skos:broader+" o="nm:{$id}"/>
-                        <triple s="?coinType" p="nmo:hasMint" o="?mint"/>
+                        <triple s="?coinType" p="{$classes//class[text()=$type]/@prop}" o="nm:{$id}"/>
                         <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
                         <triple s="?contents" p="nmo:hasTypeSeriesItem" o="?coinType"/>
                         <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
-                        <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>                        
+                        <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>                
                     </group>
-                </xsl:when>
-            </xsl:choose>
-        </group>
+                    <group>
+                        <triple s="?contents" p="{$classes//class[text()=$type]/@prop}" o="nm:{$id}"/>
+                        <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
+                        <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>                
+                    </group>
+                    <!-- look for people related to orgs and dynasties only in the hoard contents -->
+                    <xsl:choose>
+                        <xsl:when test="$type = 'foaf:Group' or $type = 'foaf:Organization'">
+                            <!-- query organizations that appear directly in contents -->
+                            <group>
+                                <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
+                                <triple s="?person" p="rdf:type" o="foaf:Person"/>
+                                <triple s="?contents" p="nmo:hasAuthority" o="?person"/>
+                                <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
+                                <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>                        
+                            </group>
+                            <!-- query types related to organizations that appear in contents -->
+                            <group>
+                                <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
+                                <triple s="?person" p="rdf:type" o="foaf:Person"/>
+                                <triple s="?type" p="nmo:hasIssuer" o="?person"/>
+                                <triple s="?type" p="a" o="nmo:TypeSeriesItem"/>
+                                <triple s="?contents" p="nmo:hasTypeSeriesItem" o="?type"/>
+                                <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
+                                <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>                        
+                            </group>
+                        </xsl:when>
+                        <xsl:when test="$type = 'rdac:Family'">
+                            <group>
+                                <triple s="?person" p="org:memberOf" o="nm:{$id}"/>
+                                <triple s="?person" p="rdf:type" o="foaf:Person"/>
+                                <triple s="?contents" p="nmo:hasAuthority" o="?person"/>
+                                <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
+                                <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>                        
+                            </group>
+                        </xsl:when>
+                        <!-- query for hoard contents that contain a mint that is a child/descendent of a region -->
+                        <xsl:when test="$type = 'nmo:Region'">
+                            <group>
+                                <triple s="?mint" p="skos:broader+" o="nm:{$id}"/>
+                                <triple s="?contents" p="nmo:hasMint" o="?mint"/>
+                                <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
+                                <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>                        
+                            </group>
+                            <group>
+                                <triple s="?mint" p="skos:broader+" o="nm:{$id}"/>
+                                <triple s="?coinType" p="nmo:hasMint" o="?mint"/>
+                                <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
+                                <triple s="?contents" p="nmo:hasTypeSeriesItem" o="?coinType"/>
+                                <triple s="?contents" p="rdf:type" o="dcmitype:Collection"/>
+                                <triple s="?hoard" p="dcterms:tableOfContents" o="?contents"/>                        
+                            </group>
+                        </xsl:when>
+                    </xsl:choose>
+                </group>
+            </xsl:otherwise>
+        </xsl:choose>
+        
     </xsl:template>
 
     <xsl:template name="nomisma:listTypesStatements">
