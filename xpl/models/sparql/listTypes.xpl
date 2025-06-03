@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 	Author: Ethan Gruber
-	Date: September 2024
+	Date: June 2025
 	Function: interpret the RDF class and the ID snippet in order to generate the XML metamodel and execute a SPARQL query for coin types related to a particular concept
 -->
 <p:config xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:oxf="http://www.orbeon.com/oxf/processors" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -48,6 +48,7 @@
 				<xsl:include href="../../../ui/xslt/controllers/metamodel-templates.xsl"/>
 				<xsl:include href="../../../ui/xslt/controllers/sparql-metamodel.xsl"/>
 
+				<xsl:param name="q" select="doc('input:request')/request/parameters/parameter[name='query']/value"/>
 				<xsl:param name="id" select="doc('input:request')/request/parameters/parameter[name='id']/value"/>
 				<xsl:param name="type" select="doc('input:request')/request/parameters/parameter[name='type']/value"/>
 				<xsl:param name="page" select="doc('input:request')/request/parameters/parameter[name='page']/value"/>
@@ -80,6 +81,7 @@
 					<xsl:call-template name="nomisma:listTypesStatements">
 						<xsl:with-param name="type" select="$type"/>
 						<xsl:with-param name="id" select="$id"/>
+						<xsl:with-param name="q" select="$q"/>
 					</xsl:call-template>
 				</xsl:variable>
 

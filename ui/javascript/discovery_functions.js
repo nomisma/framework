@@ -165,6 +165,94 @@ $(document).ready(function () {
         var formId = $(this).closest('form').attr('id');
         validate(formId);
     });
+    
+    //AJAX results
+    //sorting
+    $('#ajaxList').on('click', '#ajaxList-div table thead tr th .sort-types', function () {
+        urlParams = {
+        };
+        
+        //parse the page and sort from the HTML link
+        var match,
+        pl = /\+/g, // Regex for replacing addition symbol with a space
+        search = /([^&=]+)=?([^&]*)/g,
+        decode = function (s) {
+            return decodeURIComponent(s.replace(pl, " "));
+        },
+        query = $(this).attr('href').substring(1);
+        
+        compare = new Array();
+        while (match = search.exec(query)) {
+            urlParams[decode(match[1])] = decode(match[2]);
+        }
+        
+        $. get (path + 'ajax/listTypes', $.param(urlParams, true),
+        function (data) {
+            $('#ajaxList').html(data);
+        });
+        
+        return false;
+    });
+    
+    //paginating ajax results
+    $('#ajaxList').on('click', '.paging_div .page-nos .btn-toolbar .btn-group a.btn', function (event) {
+        urlParams = {
+        };
+        
+        //parse the page and sort from the HTML link
+        var match,
+        pl = /\+/g, // Regex for replacing addition symbol with a space
+        search = /([^&=]+)=?([^&]*)/g,
+        decode = function (s) {
+            return decodeURIComponent(s.replace(pl, " "));
+        },
+        query = $(this).attr('href').substring(1);
+        
+        compare = new Array();
+        while (match = search.exec(query)) {
+            urlParams[decode(match[1])] = decode(match[2]);
+        }
+        
+        $. get (path + 'ajax/listTypes', $.param(urlParams, true),
+        function (data) {
+            $('#ajaxList').html(data);
+        });
+        return false;
+    });
+    
+    //show/hide sections
+    $('#ajaxList').on('click', 'h3 small .toggle-button', function () {
+        var div = $(this).attr('id').split('-')[1];
+        $('#' + div + '-div').toggle();
+        
+        //replace minus with plus and vice versa
+        var span = $(this).children('span');
+        if (span.attr('class').indexOf('right') > 0) {
+            span.removeClass('glyphicon-triangle-right');
+            span.addClass('glyphicon-triangle-bottom');
+        } else {
+            span.removeClass('glyphicon-triangle-bottom');
+            span.addClass('glyphicon-triangle-right');
+        }
+        return false;
+    });
+    
+    //toggle divs to be hidden or shown (SPARQL query)
+    $('#ajaxList').on('click', '.control-row .toggle-button', function () {
+        var div = $(this).attr('id').split('-')[1];
+        $('#' + div + '-div').toggle();
+        
+        //replace minus with plus and vice versa
+        var span = $(this).children('span');
+        if (span.attr('class').indexOf('minus') > 0) {
+            span.removeClass('glyphicon-minus');
+            span.addClass('glyphicon-plus');
+        } else {
+            span.removeClass('glyphicon-plus');
+            span.addClass('glyphicon-minus');
+        }
+        return false;
+    });
 });
 
 function initialize_map() {
@@ -180,8 +268,17 @@ function initialize_map() {
         var compareBy = $('#' + formId).find('input[name=compareBy]:checked').val();
         
         if (compareBy == 'all') {
+            $('#ajaxList').html('');
             var query = $('#' + formId).children('input[name=compare]').val();
             var url = path + "apis/query.geojson?query=" + query + "&numericType=" + numericType;
+            
+            //display ajax results
+            $. get (path + 'ajax/listTypes', {
+                query: query
+            },
+            function (data) {
+                $('#ajaxList').html(data);
+            });
         } else {
             var queries =[];
             $('#' + formId).children('input[name=compare]').each(function () {

@@ -56,8 +56,8 @@ $(document).ready(function () {
         return false;
     });
     
-    //if there is a div with a id=listTypes, then initiate ajax call
-    if ($('#listTypes').length > 0) {
+    //if there is a div with a id=ajaxList, then initiate ajax call
+    if ($('#ajaxList').length > 0) {
         var path = '../';
         var id = $('title').attr('id');
         var type = $('#type').text();
@@ -66,7 +66,7 @@ $(document).ready(function () {
             id: id, type: type
         },
         function (data) {
-            $('#listTypes').html(data);
+            $('#ajaxList').html(data);
         });
     }
     
@@ -84,7 +84,7 @@ $(document).ready(function () {
     }
     
     //sorting
-    $('#listTypes').on('click', '#listTypes-div table thead tr th .sort-types', function () {
+    $('#ajaxList').on('click', '#ajaxList-div table thead tr th .sort-types', function () {
         var path = '../';
         var id = $('title').attr('id');
         var type = $('#type').text();
@@ -97,14 +97,14 @@ $(document).ready(function () {
             id: id, type: type, sort: sort
         },
         function (data) {
-            $('#listTypes').html(data);
+            $('#ajaxList').html(data);
         });
         
         return false;
     });
     
     //pagination
-    $('#listTypes').on('click', '.paging_div .page-nos .btn-toolbar .btn-group a.btn', function (event) {
+    $('#ajaxList').on('click', '.paging_div .page-nos .btn-toolbar .btn-group a.btn', function (event) {
         var path = '../';
         var id = $('title').attr('id');
         var type = $('#type').text();
@@ -130,7 +130,7 @@ $(document).ready(function () {
         
         $.get(path + 'ajax/listTypes', $.param(urlParams, true),
         function (data) {
-            $('#listTypes').html(data);
+            $('#ajaxList').html(data);
         });
         return false;
     });

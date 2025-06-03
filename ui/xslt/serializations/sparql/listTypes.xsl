@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Author: Ethan Gruber
-	Date: September 2021
+	Date: June 2025
 	Function: serialize SPARQL results for coin types associated with the given Nomisma concept into HTML. Call the numishareResults API to display related images 
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="http://www.w3.org/2005/sparql-results#"
@@ -9,6 +9,7 @@
 	<xsl:include href="../../controllers/metamodel-templates.xsl"/>
 	<xsl:include href="../../controllers/sparql-metamodel.xsl"/>
 
+	<xsl:param name="q" select="doc('input:request')/request/parameters/parameter[name = 'query']/value"/>
 	<xsl:param name="id" select="doc('input:request')/request/parameters/parameter[name = 'id']/value"/>
 	<xsl:param name="type" select="doc('input:request')/request/parameters/parameter[name = 'type']/value"/>
 	<xsl:param name="sort" select="doc('input:request')/request/parameters/parameter[name = 'sort']/value"/>
@@ -24,7 +25,12 @@
 		</xsl:choose>
 	</xsl:param>
 
-	<xsl:variable name="display_path">../</xsl:variable>
+	<xsl:variable name="display_path">
+		<xsl:choose>
+			<xsl:when test="string($query)"/>
+			<xsl:otherwise>../</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
 	<xsl:variable name="query" select="doc('input:query')"/>
 
 	<xsl:variable name="limit" select="10"/>
@@ -63,6 +69,7 @@
 		<!-- dynamically generate SPARQL query based on the template, given the $type and $id -->
 		<xsl:variable name="statements" as="element()*">
 			<xsl:call-template name="nomisma:listTypesStatements">
+				<xsl:with-param name="q" select="$q"/>
 				<xsl:with-param name="type" select="$type"/>
 				<xsl:with-param name="id" select="$id"/>
 			</xsl:call-template>
@@ -76,7 +83,7 @@
 		<h3>
 			<xsl:text>Associated Types </xsl:text>
 			<small>
-				<a href="#" class="toggle-button" id="toggle-listTypes" title="Click to hide or show the analysis form">
+				<a href="#" class="toggle-button" id="toggle-ajaxList" title="Click to hide or show the analysis form">
 					<span class="glyphicon glyphicon-triangle-bottom"/>
 				</a>
 			</small>
@@ -90,15 +97,15 @@
 			</xsl:call-template>
 		</xsl:if>
 
-		<div id="listTypes-div">
+		<div id="ajaxList-div">
 			<div style="margin-bottom:10px;" class="control-row">
-				<a href="#" class="toggle-button btn btn-primary" id="toggle-listTypesQuery"><span class="glyphicon glyphicon-plus"/> View SPARQL for full
+				<a href="#" class="toggle-button btn btn-primary" id="toggle-ajaxListQuery"><span class="glyphicon glyphicon-plus"/> View SPARQL for full
 					query</a>
 				<a href="{$display_path}query?query={encode-for-uri(replace($query, '%STATEMENTS%', $statementsSPARQL))}&amp;output=csv" title="Download CSV"
 					class="btn btn-primary" style="margin-left:10px">
 					<span class="glyphicon glyphicon-download"/>Download CSV</a>
 			</div>
-			<div id="listTypesQuery-div" style="display:none">
+			<div id="ajaxListQuery-div" style="display:none">
 				<pre>
 				<xsl:value-of select="replace($query, '%STATEMENTS%', $statementsSPARQL)"/>
 			</pre>
@@ -112,12 +119,12 @@
 							<xsl:text>Authority</xsl:text>
 							<xsl:choose>
 								<xsl:when test="$sort = '(!bound(?authorityLabels)) ASC(?authorityLabels)'">
-									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?authorityLabels)) DESC(?authorityLabels)')}">
+									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?authorityLabels)) DESC(?authorityLabels)')}{if (string($q)) then concat('&amp;query=', $q) else ''}">
 										<span class="glyphicon glyphicon-sort-by-alphabet-alt"/>
 									</a>
 								</xsl:when>
 								<xsl:otherwise>
-									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?authorityLabels)) ASC(?authorityLabels)')}">
+									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?authorityLabels)) ASC(?authorityLabels)')}{if (string($q)) then concat('&amp;query=', $q) else ''}">
 										<span class="glyphicon glyphicon-sort-by-alphabet"/>
 									</a>
 								</xsl:otherwise>
@@ -127,12 +134,12 @@
 							<xsl:text>Mint</xsl:text>
 							<xsl:choose>
 								<xsl:when test="$sort = '(!bound(?mintLabels)) ASC(?mintLabels)'">
-									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?mintLabels)) DESC(?mintLabels)')}">
+									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?mintLabels)) DESC(?mintLabels)')}{if (string($q)) then concat('&amp;query=', $q) else ''}">
 										<span class="glyphicon glyphicon-sort-by-alphabet-alt"/>
 									</a>
 								</xsl:when>
 								<xsl:otherwise>
-									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?mintLabels)) ASC(?mintLabels)')}">
+									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?mintLabels)) ASC(?mintLabels)')}{if (string($q)) then concat('&amp;query=', $q) else ''}">
 										<span class="glyphicon glyphicon-sort-by-alphabet"/>
 									</a>
 								</xsl:otherwise>
@@ -142,12 +149,12 @@
 							<xsl:text>Denomination</xsl:text>
 							<xsl:choose>
 								<xsl:when test="$sort = '(!bound(?denLabels)) ASC(?denLabels)'">
-									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?denLabels)) DESC(?denLabels)')}">
+									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?denLabels)) DESC(?denLabels)')}{if (string($q)) then concat('&amp;query=', $q) else ''}">
 										<span class="glyphicon glyphicon-sort-by-alphabet-alt"/>
 									</a>
 								</xsl:when>
 								<xsl:otherwise>
-									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?denLabels)) ASC(?denLabels)')}">
+									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?denLabels)) ASC(?denLabels)')}{if (string($q)) then concat('&amp;query=', $q) else ''}">
 										<span class="glyphicon glyphicon-sort-by-alphabet"/>
 									</a>
 								</xsl:otherwise>
@@ -157,12 +164,12 @@
 							<xsl:text>Date</xsl:text>
 							<xsl:choose>
 								<xsl:when test="$sort = '(!bound(?startDate)) ASC(?startDate)' or not(string($sort))">
-									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?startDate)) DESC(?startDate)')}">
+									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?startDate)) DESC(?startDate)')}{if (string($q)) then concat('&amp;query=', $q) else ''}">
 										<span class="glyphicon glyphicon-sort-by-order-alt"/>
 									</a>
 								</xsl:when>
 								<xsl:otherwise>
-									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?startDate)) ASC(?startDate)')}">
+									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?startDate)) ASC(?startDate)')}{if (string($q)) then concat('&amp;query=', $q) else ''}">
 										<span class="glyphicon glyphicon-sort-by-order"/>
 									</a>
 								</xsl:otherwise>
@@ -364,12 +371,12 @@
 					<div class="btn-group pull-right">
 						<!-- first page -->
 						<xsl:if test="$current &gt; 1">
-							<a class="btn btn-default" role="button" title="First" href="?page=1{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+							<a class="btn btn-default" role="button" title="First" href="?page=1{if (string($sort)) then concat('&amp;sort=', $sort) else ''}{if (string($q)) then concat('&amp;query=', $q) else ''}">
 								<span class="glyphicon glyphicon-fast-backward"/>
 								<xsl:text> 1</xsl:text>
 							</a>
 							<a class="btn btn-default" role="button" title="Previous"
-								href="?page={$current - 1}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+								href="?page={$current - 1}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}{if (string($q)) then concat('&amp;query=', $q) else ''}">
 								<xsl:text>Previous </xsl:text>
 								<span class="glyphicon glyphicon-backward"/>
 							</a>
@@ -380,19 +387,19 @@
 							</button>
 						</xsl:if>
 						<xsl:if test="$current &gt; 4">
-							<a class="btn btn-default" role="button" href="?page={$current - 3}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+							<a class="btn btn-default" role="button" href="?page={$current - 3}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}{if (string($q)) then concat('&amp;query=', $q) else ''}">
 								<xsl:value-of select="$current - 3"/>
 								<xsl:text> </xsl:text>
 							</a>
 						</xsl:if>
 						<xsl:if test="$current &gt; 3">
-							<a class="btn btn-default" role="button" href="?page={$current - 2}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+							<a class="btn btn-default" role="button" href="?page={$current - 2}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}{if (string($q)) then concat('&amp;query=', $q) else ''}">
 								<xsl:value-of select="$current - 2"/>
 								<xsl:text> </xsl:text>
 							</a>
 						</xsl:if>
 						<xsl:if test="$current &gt; 2">
-							<a class="btn btn-default" role="button" href="?page={$current - 1}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+							<a class="btn btn-default" role="button" href="?page={$current - 1}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}{if (string($q)) then concat('&amp;query=', $q) else ''}">
 								<xsl:value-of select="$current - 1"/>
 								<xsl:text> </xsl:text>
 							</a>
@@ -405,19 +412,19 @@
 						</button>
 						<xsl:if test="$total &gt; ($current + 1)">
 							<a class="btn btn-default" role="button" title="Next"
-								href="?page={$current + 1}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+								href="?page={$current + 1}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}{if (string($q)) then concat('&amp;query=', $q) else ''}">
 								<xsl:value-of select="$current + 1"/>
 							</a>
 						</xsl:if>
 						<xsl:if test="$total &gt; ($current + 2)">
 							<a class="btn btn-default" role="button" title="Next"
-								href="?page={$current + 2}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+								href="?page={$current + 2}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}{if (string($q)) then concat('&amp;query=', $q) else ''}">
 								<xsl:value-of select="$current + 2"/>
 							</a>
 						</xsl:if>
 						<xsl:if test="$total &gt; ($current + 3)">
 							<a class="btn btn-default" role="button" title="Next"
-								href="?page={$current + 3}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+								href="?page={$current + 3}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}{if (string($q)) then concat('&amp;query=', $q) else ''}">
 								<xsl:value-of select="$current + 3"/>
 							</a>
 						</xsl:if>
@@ -429,12 +436,12 @@
 						<!-- last page -->
 						<xsl:if test="$current &lt; $total">
 							<a class="btn btn-default" role="button" title="Next"
-								href="?page={$current + 1}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+								href="?page={$current + 1}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}{if (string($q)) then concat('&amp;query=', $q) else ''}">
 								<xsl:text>Next </xsl:text>
 								<span class="glyphicon glyphicon-forward"/>
 							</a>
 							<a class="btn btn-default" role="button" title="Last"
-								href="?page={$total}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}">
+								href="?page={$total}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}{if (string($q)) then concat('&amp;query=', $q) else ''}">
 								<xsl:value-of select="$total"/>
 								<xsl:text> </xsl:text>
 								<span class="glyphicon glyphicon-fast-forward"/>

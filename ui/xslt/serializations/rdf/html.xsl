@@ -262,7 +262,7 @@
 						<div class="row">
 							<div class="col-md-12 page-section">
 								<hr/>
-								<div id="listTypes"/>
+								<div id="ajaxList"/>
 							</div>
 						</div>
 					</xsl:if>

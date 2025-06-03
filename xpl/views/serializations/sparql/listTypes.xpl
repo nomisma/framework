@@ -50,6 +50,7 @@
 				<xsl:include href="../../../../ui/xslt/controllers/metamodel-templates.xsl"/>
 				<xsl:include href="../../../../ui/xslt/controllers/sparql-metamodel.xsl"/>
 				
+				<xsl:param name="q" select="doc('input:request')/request/parameters/parameter[name='query']/value"/>
 				<xsl:param name="id" select="doc('input:request')/request/parameters/parameter[name='id']/value"/>
 				<xsl:param name="type" select="doc('input:request')/request/parameters/parameter[name='type']/value"/>				
 				
@@ -63,6 +64,7 @@
 					<xsl:call-template name="nomisma:listTypesStatements">
 						<xsl:with-param name="type" select="$type"/>
 						<xsl:with-param name="id" select="$id"/>
+						<xsl:with-param name="q" select="$q"/>
 					</xsl:call-template>
 				</xsl:variable>
 				

@@ -1144,96 +1144,111 @@
     <xsl:template name="nomisma:listTypesStatements">
         <xsl:param name="type"/>
         <xsl:param name="id"/>
+        <xsl:param name="q"/>
 
+
+        <!-- construct a query based on individual components or use the $id parameter for type lists for Nomisma ID pages -->
         <statements>
             <xsl:choose>
-                <xsl:when test="$type = 'foaf:Person'">
-                    <union>
-                        <triple s="?coinType" p="?prop" o="nm:{$id}"/>
-                        <triple s="?coinType" p="nmo:hasObverse/nmo:hasPortrait" o="nm:{$id}"/>
-                        <triple s="?coinType" p="nmo:hasReverse/nmo:hasPortrait" o="nm:{$id}"/>
-                    </union>
-                    <filter_not_exists>
-                        <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
-                    </filter_not_exists>
-                </xsl:when>
-                <xsl:when test="$type = 'wordnet:Deity'">
-                    <union>
-                        <triple s="?coinType" p="nmo:hasObverse/nmo:hasPortrait" o="nm:{$id}"/>
-                        <triple s="?coinType" p="nmo:hasReverse/nmo:hasPortrait" o="nm:{$id}"/>
-                    </union>
-                    <filter_not_exists>
-                        <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
-                    </filter_not_exists>
-                </xsl:when>
-                <xsl:when test="$type = 'rdac:Family'">
-                    <union>
-                        <group>
-                            <triple s="?coinType" p="nmo:hasAuthority" o="nm:{$id}"/>
-                        </group>
-                        <group>
-                            <triple s="?coinType" p="nmo:hasAuthority" o="?person"/>
-                            <triple s="?person" p="a" o="foaf:Person"/>
-                            <triple s="?person" p="org:memberOf" o="nm:{$id}"/>
-                        </group>
-                    </union>
-                    <filter_not_exists>
-                        <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
-                    </filter_not_exists>
-                </xsl:when>
-                <xsl:when test="$type = 'foaf:Organization' or $type = 'foaf:Group' or $type = 'nmo:Ethnic'">
-                    <union>
-                        <group>
-                            <triple s="?coinType" p="nmo:hasAuthority" o="nm:{$id}"/>
-                        </group>
-                        <group>
-                            <triple s="?coinType" p="nmo:hasAuthority" o="?person"/>
-                            <triple s="?person" p="a" o="foaf:Person"/>
-                            <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
-                        </group>
-                        <group>
-                            <triple s="?coinType" p="nmo:hasIssuer" o="?person"/>
-                            <triple s="?person" p="a" o="foaf:Person"/>
-                            <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
-                        </group>
-                    </union>
-                    <filter_not_exists>
-                        <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
-                    </filter_not_exists>
-                </xsl:when>
-                <xsl:when test="$type = 'nmo:Region'">
-                    <union>
-                        <group>
-                            <triple s="?coinType" p="nmo:hasRegion" o="nm:{$id}"/>
-                        </group>
-                        <group>
-                            <triple s="?coinType" p="nmo:hasMint" o="?mint"/>
-                            <triple s="?mint" p="skos:broader+" o="nm:{$id}"/>
-                        </group>
-                    </union>
-                    <filter_not_exists>
-                        <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
-                    </filter_not_exists>
-                </xsl:when>
-                <xsl:when test="$type = 'nmo:Monogram' or $type = 'crm:E37_Mark' or $type = 'symbol'">
-                    <union>
-                        <group>
-                            <triple s="?side" p="nmo:hasControlmark" o="&lt;http://nomisma.org/symbol/{$id}&gt;"/>
-                        </group>
-                        <group>
-                            <triple s="?side" p="nmo:hasControlmark" o="?symbol"/>
-                            <triple s="?symbol" p="^skos:exactMatch" o="&lt;http://nomisma.org/symbol/{$id}&gt;"/>
-                        </group>
-                    </union>
-                    <triple s="?coinType" p="nmo:hasObverse|nmo:hasReverse" o="?side"/>
+                <xsl:when test="string($q)">
+                    <xsl:call-template name="nomisma:filterToMetamodel">
+                        <xsl:with-param name="filter" select="$q"/>
+                        <xsl:with-param name="subject">?coinType</xsl:with-param>
+                    </xsl:call-template>
                 </xsl:when>
                 <xsl:otherwise>
-                    <triple s="?coinType" p="{$classes//class[text()=$type]/@prop}" o="nm:{$id}"/>
-                    <filter_not_exists>
-                        <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
-                    </filter_not_exists>
+                    <xsl:choose>
+                        <xsl:when test="$type = 'foaf:Person'">
+                            <union>
+                                <triple s="?coinType" p="?prop" o="nm:{$id}"/>
+                                <triple s="?coinType" p="nmo:hasObverse/nmo:hasPortrait" o="nm:{$id}"/>
+                                <triple s="?coinType" p="nmo:hasReverse/nmo:hasPortrait" o="nm:{$id}"/>
+                            </union>
+                            <filter_not_exists>
+                                <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
+                            </filter_not_exists>
+                        </xsl:when>
+                        <xsl:when test="$type = 'wordnet:Deity'">
+                            <union>
+                                <triple s="?coinType" p="nmo:hasObverse/nmo:hasPortrait" o="nm:{$id}"/>
+                                <triple s="?coinType" p="nmo:hasReverse/nmo:hasPortrait" o="nm:{$id}"/>
+                            </union>
+                            <filter_not_exists>
+                                <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
+                            </filter_not_exists>
+                        </xsl:when>
+                        <xsl:when test="$type = 'rdac:Family'">
+                            <union>
+                                <group>
+                                    <triple s="?coinType" p="nmo:hasAuthority" o="nm:{$id}"/>
+                                </group>
+                                <group>
+                                    <triple s="?coinType" p="nmo:hasAuthority" o="?person"/>
+                                    <triple s="?person" p="a" o="foaf:Person"/>
+                                    <triple s="?person" p="org:memberOf" o="nm:{$id}"/>
+                                </group>
+                            </union>
+                            <filter_not_exists>
+                                <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
+                            </filter_not_exists>
+                        </xsl:when>
+                        <xsl:when test="$type = 'foaf:Organization' or $type = 'foaf:Group' or $type = 'nmo:Ethnic'">
+                            <union>
+                                <group>
+                                    <triple s="?coinType" p="nmo:hasAuthority" o="nm:{$id}"/>
+                                </group>
+                                <group>
+                                    <triple s="?coinType" p="nmo:hasAuthority" o="?person"/>
+                                    <triple s="?person" p="a" o="foaf:Person"/>
+                                    <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
+                                </group>
+                                <group>
+                                    <triple s="?coinType" p="nmo:hasIssuer" o="?person"/>
+                                    <triple s="?person" p="a" o="foaf:Person"/>
+                                    <triple s="?person" p="org:hasMembership/org:organization" o="nm:{$id}"/>
+                                </group>
+                            </union>
+                            <filter_not_exists>
+                                <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
+                            </filter_not_exists>
+                        </xsl:when>
+                        <xsl:when test="$type = 'nmo:Region'">
+                            <union>
+                                <group>
+                                    <triple s="?coinType" p="nmo:hasRegion" o="nm:{$id}"/>
+                                </group>
+                                <group>
+                                    <triple s="?coinType" p="nmo:hasMint" o="?mint"/>
+                                    <triple s="?mint" p="skos:broader+" o="nm:{$id}"/>
+                                </group>
+                            </union>
+                            <filter_not_exists>
+                                <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
+                            </filter_not_exists>
+                        </xsl:when>
+                        <xsl:when test="$type = 'nmo:Monogram' or $type = 'crm:E37_Mark' or $type = 'symbol'">
+                            <union>
+                                <group>
+                                    <triple s="?side" p="nmo:hasControlmark" o="&lt;http://nomisma.org/symbol/{$id}&gt;"/>
+                                </group>
+                                <group>
+                                    <triple s="?side" p="nmo:hasControlmark" o="?symbol"/>
+                                    <triple s="?symbol" p="^skos:exactMatch" o="&lt;http://nomisma.org/symbol/{$id}&gt;"/>
+                                </group>
+                            </union>
+                            <triple s="?coinType" p="nmo:hasObverse|nmo:hasReverse" o="?side"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <triple s="?coinType" p="{$classes//class[text()=$type]/@prop}" o="nm:{$id}"/>
+                            <filter_not_exists>
+                                <triple s="?coinType" p="dcterms:isReplacedBy" o="?replacement"/>
+                            </filter_not_exists>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:otherwise>
-            </xsl:choose>            
+            </xsl:choose>
+            
+                        
             <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
         </statements>
     </xsl:template>
