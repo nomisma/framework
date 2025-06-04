@@ -44,6 +44,7 @@
 				<script type="text/javascript" src="https://unpkg.com/leaflet@1.0.0/dist/leaflet.js"/>
 				<script type="text/javascript" src="{$display_path}ui/javascript/leaflet.ajax.min.js"/>
 				<script type="text/javascript" src="{$display_path}ui/javascript/leaflet.legend.js"/>
+				<script type="text/javascript" src="{$display_path}ui/javascript/leaflet-iiif.js"/>
 				<script type="text/javascript" src="{$display_path}ui/javascript/discovery_functions.js"/>
 				<script type="text/javascript" src="{$display_path}ui/javascript/facet_functions.js"/>
 
@@ -158,6 +159,11 @@
 			</xsl:call-template>
 
 			<xsl:call-template name="ajax-loader-template"/>
+
+			<!-- IIIF -->
+			<span id="manifest"/>
+			<div class="iiif-container-template" style="width:100%;height:100%"/>
+			<div id="iiif-window" style="width:600px;height:600px;display:none"/>
 
 			<span id="legend">
 				<xsl:text>[{"label": "Mint", "type": "rectangle", "fillColor": "#6992fd", "color": "black","weight": 1}, 

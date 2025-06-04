@@ -238,6 +238,15 @@ a:hover {
     text-align: center;
     background-color: #FFFFFF;
 }
+/* gallery image container */
+.gi_c {
+    margin: 5px 0;
+    text-align: center;
+}
+/* gallery image */
+.gi {
+    padding: 0px 5px;
+}
 /*
   ***************************************
   VISUALIZATION FORM

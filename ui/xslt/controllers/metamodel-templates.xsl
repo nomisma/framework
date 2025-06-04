@@ -1140,6 +1140,30 @@
         </xsl:choose>
         
     </xsl:template>
+    
+    <!-- generate a UNION query of numismatic objects with explicit properties conforming to the query and also the coins associated with types related to the query -->
+    <xsl:template name="nomisma:listObjectsStatements">
+        <xsl:param name="q"/>
+       
+        <union>            
+            <group>
+                <xsl:call-template name="nomisma:filterToMetamodel">
+                    <xsl:with-param name="filter" select="$q"/>
+                    <xsl:with-param name="subject">?coin</xsl:with-param>
+                </xsl:call-template>
+                <triple s="?coin" p="rdf:type" o="nmo:NumismaticObject"/>
+            </group>
+            <group>
+                <xsl:call-template name="nomisma:filterToMetamodel">
+                    <xsl:with-param name="filter" select="$q"/>
+                    <xsl:with-param name="subject">?coinType</xsl:with-param>
+                </xsl:call-template>
+                <triple s="?coinType" p="rdf:type" o="nmo:TypeSeriesItem"/>
+                <triple s="?coin" p="nmo:hasTypeSeriesItem" o="?coinType"/>
+                <triple s="?coin" p="rdf:type" o="nmo:NumismaticObject"/>
+            </group>
+        </union>
+    </xsl:template>
 
     <xsl:template name="nomisma:listTypesStatements">
         <xsl:param name="type"/>

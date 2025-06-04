@@ -1,0 +1,77 @@
+PREFIX rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX bio:	<http://purl.org/vocab/bio/0.1/>
+PREFIX crm:	<http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX dcmitype:	<http://purl.org/dc/dcmitype/>
+PREFIX dcterms:	<http://purl.org/dc/terms/>
+PREFIX foaf:	<http://xmlns.com/foaf/0.1/>
+PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX nm:	<http://nomisma.org/id/>
+PREFIX nmo:	<http://nomisma.org/ontology#>
+PREFIX org:	<http://www.w3.org/ns/org#>
+PREFIX osgeo:	<http://data.ordnancesurvey.co.uk/ontology/geometry/>
+PREFIX rdac:	<http://www.rdaregistry.info/Elements/c/>
+PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
+PREFIX spatial: <http://jena.apache.org/spatial#>
+PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>
+PREFIX wordnet: <http://ontologi.es/WordNet/class/>
+PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>
+PREFIX edm: <http://www.europeana.eu/schemas/edm/>
+PREFIX void:	<http://rdfs.org/ns/void#>
+PREFIX rdfs:	<http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?coin ?title (group_concat(?identifier; separator="||") as ?identifiers) ?startDate ?endDate (GROUP_CONCAT(?mint;separator='|') as ?mints) (GROUP_CONCAT(?mintLabel;separator='|') as ?mintLabels) (GROUP_CONCAT(?authority;separator='|') as ?authorities) (GROUP_CONCAT(?authorityLabel;separator='|') as ?authorityLabels) (GROUP_CONCAT(?den;separator='|') as ?dens) (GROUP_CONCAT(?denLabel;separator='|') as ?denLabels) (GROUP_CONCAT(?type;separator='|') as ?types) (GROUP_CONCAT(?typeLabel;separator='|') as ?typeLabels) ?findUri ?findspot ?hoard ?collection ?publisher ?dataset ?datasetTitle ?weight ?diameter ?obvThumb ?revThumb ?obvRef ?revRef ?comThumb ?comRef ?obvManifest ?revManifest ?comManifest WHERE {
+%STATEMENTS%
+OPTIONAL {
+    {?coin nmo:hasTypeSeriesItem/nmo:hasStartDate ?startDate}
+    UNION {?coin nmo:hasStartDate ?startDate}
+}
+OPTIONAL {
+    {?coin nmo:hasTypeSeriesItem/nmo:hasEndDate ?endDate}
+    UNION {?coin nmo:hasEndDate ?endDate}
+}
+OPTIONAL {
+    {?coin nmo:hasTypeSeriesItem/nmo:hasMint ?mint} 
+    UNION {?coin nmo:hasMint ?mint}
+   	?mint skos:prefLabel ?mintLabel FILTER(langMatches(lang(?mintLabel), "en"))}
+OPTIONAL {
+    {?coin nmo:hasTypeSeriesItem/nmo:hasMint ?mint} 
+    UNION {?coin nmo:hasMint ?mint}
+   	?mint skos:prefLabel ?mintLabel FILTER(langMatches(lang(?mintLabel), "en"))}
+OPTIONAL {
+    {?coin nmo:hasTypeSeriesItem/nmo:hasAuthority ?authority} 
+    UNION {?coin nmo:hasAuthority ?authority}
+   	?authority skos:prefLabel ?authorityLabel FILTER(langMatches(lang(?authorityLabel), "en"))}
+OPTIONAL {
+    {?coin nmo:hasTypeSeriesItem/nmo:hasDenomination ?den} 
+    UNION {?coin nmo:hasDenomination ?den}
+   	?den skos:prefLabel ?denLabel FILTER(langMatches(lang(?denLabel), "en"))}
+OPTIONAL {
+    ?coin nmo:hasTypeSeriesItem ?type .
+    ?type skos:prefLabel ?typeLabel FILTER(langMatches(lang(?typeLabel), "en"))}
+?coin dcterms:title ?title .
+OPTIONAL { ?coin dcterms:identifier ?identifier}
+OPTIONAL { ?coin nmo:hasCollection ?colUri .
+?colUri skos:prefLabel ?collection FILTER(langMatches(lang(?collection), "en"))}
+?coin void:inDataset ?dataset .
+?dataset dcterms:publisher ?publisher FILTER (lang(?publisher) = "" || langMatches(lang(?publisher), "en")) .
+?dataset dcterms:title ?datasetTitle FILTER (lang(?datasetTitle) = "" || langMatches(lang(?datasetTitle), "en")) .
+OPTIONAL{ ?coin nmo:hasFindspot/crm:P7_took_place_at/crm:P89_falls_within ?findUri .
+  ?findUri a crm:E53_Place ;
+  rdfs:label ?findspot }
+OPTIONAL {?coin dcterms:isPartOf ?hoard .
+ ?hoard a nmo:Hoard ;
+ 	skos:prefLabel ?findspot FILTER(langMatches(lang(?findspot), "en")) }
+OPTIONAL { ?coin nmo:hasWeight ?weight }
+OPTIONAL { ?coin nmo:hasDiameter ?diameter }
+OPTIONAL { ?coin foaf:thumbnail ?comThumb }
+OPTIONAL { ?coin foaf:depiction ?comRef 
+	OPTIONAL { ?comRef dcterms:isReferencedBy ?comManifest }}
+OPTIONAL { ?coin nmo:hasObverse/foaf:thumbnail ?obvThumb }
+OPTIONAL { ?coin nmo:hasObverse ?obverse .
+?obverse foaf:depiction ?obvRef
+	OPTIONAL { ?obvRef dcterms:isReferencedBy ?obvManifest }}
+OPTIONAL { ?coin nmo:hasReverse/foaf:thumbnail ?revThumb }
+OPTIONAL { ?coin nmo:hasReverse ?reverse .
+?reverse foaf:depiction ?revRef 
+	OPTIONAL { ?revRef dcterms:isReferencedBy ?revManifest }}
+} GROUP BY ?coin ?title ?startDate ?endDate ?findUri ?findspot ?hoard ?collection ?publisher ?dataset ?datasetTitle ?weight ?diameter ?obvThumb ?revThumb ?obvRef ?revRef ?comThumb ?comRef ?obvManifest ?revManifest ?comManifest
