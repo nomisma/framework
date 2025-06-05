@@ -22,6 +22,9 @@
 							<a href="{$display_path}browse">Browse IDs</a>
 						</li>
 						<li>
+							<a href="{$display_path}discover">Discover</a>
+						</li>
+						<li>
 							<a href="{$display_path}about">About</a>
 						</li>
 						<li class="dropdown">
@@ -41,6 +44,9 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Research Tools <b class="caret"></b></a>
 							<ul class="dropdown-menu">
+								<li>
+									<a href="{$display_path}discover">Discover</a>
+								</li>
 								<li>
 									<a href="{$display_path}research/distribution">Typological Distribution</a>
 								</li>

@@ -436,7 +436,7 @@ function initialize_map() {
     var query = '';
     
     if (params.length > 0) {
-        var query = path + 'apis/query.geojson?' + params;
+        query = path + 'apis/query.geojson?' + params;
         
         var numericType = $('#numericType').text();
         if (numericType == 'object') {
@@ -450,6 +450,8 @@ function initialize_map() {
         function (data) {
             $('#ajaxList').html(data);
         });
+    } else {
+        query = path + 'apis/getMints?query=';
     }
     
     var pointLayer = L.geoJson.ajax(query, {
@@ -611,7 +613,13 @@ function initialize_map() {
             }
             //display a link to update the ajaxList
             if (feature.properties.type == 'mint') {
-                var href = '?query=' + query + '; nmo:hasMint ' + feature.properties.gazetteer_uri.replace("http://nomisma.org/id/", "nm:");
+                if (typeof query != 'undefined') {
+                    var href = '?query=' + query + '; nmo:hasMint ' + feature.properties.gazetteer_uri.replace("http://nomisma.org/id/", "nm:");
+                } else {
+                    var href = '?query=nmo:hasMint ' + feature.properties.gazetteer_uri.replace("http://nomisma.org/id/", "nm:");
+                }
+                
+                
                 str += '<br/><a href="' + href + '" class="updateMap">View</a> results from this mint.';
             }
         }
