@@ -15,8 +15,7 @@
 	<xsl:param name="sort" select="doc('input:request')/request/parameters/parameter[name = 'sort']/value"/>
 	<xsl:param name="page" as="xs:integer">
 		<xsl:choose>
-			<xsl:when
-				test="
+			<xsl:when test="
 					string-length(doc('input:request')/request/parameters/parameter[name = 'page']/value) &gt; 0 and doc('input:request')/request/parameters/parameter[name = 'page']/value castable
 					as xs:integer and number(doc('input:request')/request/parameters/parameter[name = 'page']/value) > 0">
 				<xsl:value-of select="doc('input:request')/request/parameters/parameter[name = 'page']/value"/>
@@ -52,16 +51,15 @@
 				</xsl:for-each>
 			</type_series_items>
 		</xsl:variable>
-		
-		
+
+
 
 		<!-- use the Numishare Results API to display example coins -->
 		<xsl:variable name="sparqlResult" as="element()*">
 			<xsl:variable name="ids" select="string-join($type_series_items//item, '|')"/>
-			
+
 			<response>
-				<xsl:variable name="service"
-					select="concat('http://localhost:8080/orbeon/nomisma/apis/numishareResults?identifiers=', encode-for-uri($ids))"/>
+				<xsl:variable name="service" select="concat('http://localhost:8080/orbeon/nomisma/apis/numishareResults?identifiers=', encode-for-uri($ids))"/>
 				<xsl:copy-of select="document($service)/response/*"/>
 			</response>
 		</xsl:variable>
@@ -89,170 +87,184 @@
 			</small>
 		</h3>
 
-		<xsl:if test="$numFound &gt; $limit">
-			<xsl:call-template name="pagination">
-				<xsl:with-param name="page" select="$page" as="xs:integer"/>
-				<xsl:with-param name="numFound" select="$numFound" as="xs:integer"/>
-				<xsl:with-param name="limit" select="$limit" as="xs:integer"/>
-			</xsl:call-template>
-		</xsl:if>
+		<xsl:choose>
+			<xsl:when test="$numFound &gt; 0">
+				<xsl:if test="$numFound &gt; $limit">
+					<xsl:call-template name="pagination">
+						<xsl:with-param name="page" select="$page" as="xs:integer"/>
+						<xsl:with-param name="numFound" select="$numFound" as="xs:integer"/>
+						<xsl:with-param name="limit" select="$limit" as="xs:integer"/>
+					</xsl:call-template>
+				</xsl:if>
 
-		<div id="ajaxList-div">
-			<div style="margin-bottom:10px;" class="control-row">
-				<a href="#" class="toggle-button btn btn-primary" id="toggle-ajaxListQuery"><span class="glyphicon glyphicon-plus"/> View SPARQL for full
-					query</a>
-				<a href="{$display_path}query?query={encode-for-uri(replace($query, '%STATEMENTS%', $statementsSPARQL))}&amp;output=csv" title="Download CSV"
-					class="btn btn-primary" style="margin-left:10px">
-					<span class="glyphicon glyphicon-download"/>Download CSV</a>
-			</div>
-			<div id="ajaxListQuery-div" style="display:none">
-				<pre>
+				<div id="ajaxList-div">
+					<div style="margin-bottom:10px;" class="control-row">
+						<a href="#" class="toggle-button btn btn-primary" id="toggle-ajaxListQuery"><span class="glyphicon glyphicon-plus"/> View SPARQL for full query</a>
+						<a href="{$display_path}query?query={encode-for-uri(replace($query, '%STATEMENTS%', $statementsSPARQL))}&amp;output=csv" title="Download CSV"
+							class="btn btn-primary" style="margin-left:10px">
+							<span class="glyphicon glyphicon-download"/>Download CSV</a>
+					</div>
+					<div id="ajaxListQuery-div" style="display:none">
+						<pre>
 				<xsl:value-of select="replace($query, '%STATEMENTS%', $statementsSPARQL)"/>
 			</pre>
-			</div>
+					</div>
 
-			<table class="table table-striped table-responsive">
-				<thead>
-					<tr>
-						<th>Type</th>
-						<th>
-							<xsl:text>Authority</xsl:text>
-							<xsl:choose>
-								<xsl:when test="$sort = '(!bound(?authorityLabels)) ASC(?authorityLabels)'">
-									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?authorityLabels)) DESC(?authorityLabels)')}{if (string($q)) then concat('&amp;query=', $q) else ''}">
-										<span class="glyphicon glyphicon-sort-by-alphabet-alt"/>
-									</a>
-								</xsl:when>
-								<xsl:otherwise>
-									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?authorityLabels)) ASC(?authorityLabels)')}{if (string($q)) then concat('&amp;query=', $q) else ''}">
-										<span class="glyphicon glyphicon-sort-by-alphabet"/>
-									</a>
-								</xsl:otherwise>
-							</xsl:choose>
-						</th>
-						<th>
-							<xsl:text>Mint</xsl:text>
-							<xsl:choose>
-								<xsl:when test="$sort = '(!bound(?mintLabels)) ASC(?mintLabels)'">
-									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?mintLabels)) DESC(?mintLabels)')}{if (string($q)) then concat('&amp;query=', $q) else ''}">
-										<span class="glyphicon glyphicon-sort-by-alphabet-alt"/>
-									</a>
-								</xsl:when>
-								<xsl:otherwise>
-									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?mintLabels)) ASC(?mintLabels)')}{if (string($q)) then concat('&amp;query=', $q) else ''}">
-										<span class="glyphicon glyphicon-sort-by-alphabet"/>
-									</a>
-								</xsl:otherwise>
-							</xsl:choose>
-						</th>
-						<th>
-							<xsl:text>Denomination</xsl:text>
-							<xsl:choose>
-								<xsl:when test="$sort = '(!bound(?denLabels)) ASC(?denLabels)'">
-									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?denLabels)) DESC(?denLabels)')}{if (string($q)) then concat('&amp;query=', $q) else ''}">
-										<span class="glyphicon glyphicon-sort-by-alphabet-alt"/>
-									</a>
-								</xsl:when>
-								<xsl:otherwise>
-									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?denLabels)) ASC(?denLabels)')}{if (string($q)) then concat('&amp;query=', $q) else ''}">
-										<span class="glyphicon glyphicon-sort-by-alphabet"/>
-									</a>
-								</xsl:otherwise>
-							</xsl:choose>
-						</th>
-						<th>
-							<xsl:text>Date</xsl:text>
-							<xsl:choose>
-								<xsl:when test="$sort = '(!bound(?startDate)) ASC(?startDate)' or not(string($sort))">
-									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?startDate)) DESC(?startDate)')}{if (string($q)) then concat('&amp;query=', $q) else ''}">
-										<span class="glyphicon glyphicon-sort-by-order-alt"/>
-									</a>
-								</xsl:when>
-								<xsl:otherwise>
-									<a class="sort-types" href="?sort={encode-for-uri('(!bound(?startDate)) ASC(?startDate)')}{if (string($q)) then concat('&amp;query=', $q) else ''}">
-										<span class="glyphicon glyphicon-sort-by-order"/>
-									</a>
-								</xsl:otherwise>
-							</xsl:choose>
-						</th>
-						<th style="width:280px">Example</th>
-					</tr>
-				</thead>
-				<tbody>
-					<xsl:for-each select="descendant::res:result">
-						<xsl:variable name="type_uri" select="res:binding[@name = 'coinType']/res:uri"/>
+					<table class="table table-striped table-responsive">
+						<thead>
+							<tr>
+								<th>Type</th>
+								<th>
+									<xsl:text>Authority</xsl:text>
+									<xsl:choose>
+										<xsl:when test="$sort = '(!bound(?authorityLabels)) ASC(?authorityLabels)'">
+											<a class="sort-types"
+												href="?sort={encode-for-uri('(!bound(?authorityLabels)) DESC(?authorityLabels)')}{if (string($q)) then concat('&amp;query=', $q) else ''}">
+												<span class="glyphicon glyphicon-sort-by-alphabet-alt"/>
+											</a>
+										</xsl:when>
+										<xsl:otherwise>
+											<a class="sort-types"
+												href="?sort={encode-for-uri('(!bound(?authorityLabels)) ASC(?authorityLabels)')}{if (string($q)) then concat('&amp;query=', $q) else ''}">
+												<span class="glyphicon glyphicon-sort-by-alphabet"/>
+											</a>
+										</xsl:otherwise>
+									</xsl:choose>
+								</th>
+								<th>
+									<xsl:text>Mint</xsl:text>
+									<xsl:choose>
+										<xsl:when test="$sort = '(!bound(?mintLabels)) ASC(?mintLabels)'">
+											<a class="sort-types"
+												href="?sort={encode-for-uri('(!bound(?mintLabels)) DESC(?mintLabels)')}{if (string($q)) then concat('&amp;query=', $q) else ''}">
+												<span class="glyphicon glyphicon-sort-by-alphabet-alt"/>
+											</a>
+										</xsl:when>
+										<xsl:otherwise>
+											<a class="sort-types"
+												href="?sort={encode-for-uri('(!bound(?mintLabels)) ASC(?mintLabels)')}{if (string($q)) then concat('&amp;query=', $q) else ''}">
+												<span class="glyphicon glyphicon-sort-by-alphabet"/>
+											</a>
+										</xsl:otherwise>
+									</xsl:choose>
+								</th>
+								<th>
+									<xsl:text>Denomination</xsl:text>
+									<xsl:choose>
+										<xsl:when test="$sort = '(!bound(?denLabels)) ASC(?denLabels)'">
+											<a class="sort-types"
+												href="?sort={encode-for-uri('(!bound(?denLabels)) DESC(?denLabels)')}{if (string($q)) then concat('&amp;query=', $q) else ''}">
+												<span class="glyphicon glyphicon-sort-by-alphabet-alt"/>
+											</a>
+										</xsl:when>
+										<xsl:otherwise>
+											<a class="sort-types"
+												href="?sort={encode-for-uri('(!bound(?denLabels)) ASC(?denLabels)')}{if (string($q)) then concat('&amp;query=', $q) else ''}">
+												<span class="glyphicon glyphicon-sort-by-alphabet"/>
+											</a>
+										</xsl:otherwise>
+									</xsl:choose>
+								</th>
+								<th>
+									<xsl:text>Date</xsl:text>
+									<xsl:choose>
+										<xsl:when test="$sort = '(!bound(?startDate)) ASC(?startDate)' or not(string($sort))">
+											<a class="sort-types"
+												href="?sort={encode-for-uri('(!bound(?startDate)) DESC(?startDate)')}{if (string($q)) then concat('&amp;query=', $q) else ''}">
+												<span class="glyphicon glyphicon-sort-by-order-alt"/>
+											</a>
+										</xsl:when>
+										<xsl:otherwise>
+											<a class="sort-types"
+												href="?sort={encode-for-uri('(!bound(?startDate)) ASC(?startDate)')}{if (string($q)) then concat('&amp;query=', $q) else ''}">
+												<span class="glyphicon glyphicon-sort-by-order"/>
+											</a>
+										</xsl:otherwise>
+									</xsl:choose>
+								</th>
+								<th style="width:280px">Example</th>
+							</tr>
+						</thead>
+						<tbody>
+							<xsl:for-each select="descendant::res:result">
+								<xsl:variable name="type_uri" select="res:binding[@name = 'coinType']/res:uri"/>
 
-						<tr>
-							<td>
-								<a href="{res:binding[@name='coinType']/res:uri}">
-									<xsl:value-of select="res:binding[@name = 'label']/res:literal"/>
-								</a>
-							</td>
-							<td>
-								<xsl:if test="res:binding[@name = 'authorities']/res:literal">
-									<xsl:variable name="authorityLabels" select="res:binding[@name='authorityLabels']/res:literal"/>
-									
-									<xsl:for-each select="tokenize(res:binding[@name = 'authorities']/res:literal, '\|')">
-										<xsl:variable name="position" select="position()"/>
-										
-										<a href="{.}">
-											<xsl:value-of select="tokenize($authorityLabels, '\|')[$position]"/>
+								<tr>
+									<td>
+										<a href="{res:binding[@name='coinType']/res:uri}">
+											<xsl:value-of select="res:binding[@name = 'label']/res:literal"/>
 										</a>
-										<xsl:if test="not(position() = last())">
-											<xsl:text>, </xsl:text>
+									</td>
+									<td>
+										<xsl:if test="res:binding[@name = 'authorities']/res:literal">
+											<xsl:variable name="authorityLabels" select="res:binding[@name = 'authorityLabels']/res:literal"/>
+
+											<xsl:for-each select="distinct-values(tokenize(res:binding[@name = 'authorities']/res:literal, '\|'))">
+												<xsl:variable name="position" select="position()"/>
+
+												<a href="{.}">
+													<xsl:value-of select="tokenize($authorityLabels, '\|')[$position]"/>
+												</a>
+												<xsl:if test="not(position() = last())">
+													<xsl:text>, </xsl:text>
+												</xsl:if>
+											</xsl:for-each>
 										</xsl:if>
-									</xsl:for-each>
-								</xsl:if>
-							</td>
-							<td>
-								<xsl:if test="res:binding[@name = 'mints']/res:literal">
-									<xsl:variable name="mintLabels" select="res:binding[@name='mintLabels']/res:literal"/>
-									
-									<xsl:for-each select="tokenize(res:binding[@name = 'mints']/res:literal, '\|')">
-										<xsl:variable name="position" select="position()"/>
-										
-										<a href="{.}">
-											<xsl:value-of select="tokenize($mintLabels, '\|')[$position]"/>
-										</a>
-										<xsl:if test="not(position() = last())">
-											<xsl:text>, </xsl:text>
+									</td>
+									<td>
+										<xsl:if test="res:binding[@name = 'mints']/res:literal">
+											<xsl:variable name="mintLabels" select="res:binding[@name = 'mintLabels']/res:literal"/>
+
+											<xsl:for-each select="distinct-values(tokenize(res:binding[@name = 'mints']/res:literal, '\|'))">
+												<xsl:variable name="position" select="position()"/>
+
+												<a href="{.}">
+													<xsl:value-of select="tokenize($mintLabels, '\|')[$position]"/>
+												</a>
+												<xsl:if test="not(position() = last())">
+													<xsl:text>, </xsl:text>
+												</xsl:if>
+											</xsl:for-each>
 										</xsl:if>
-									</xsl:for-each>
-								</xsl:if>
-							</td>
-							<td>
-								<xsl:if test="res:binding[@name = 'dens']/res:literal">
-									<xsl:variable name="denLabels" select="res:binding[@name='denLabels']/res:literal"/>
-									
-									<xsl:for-each select="tokenize(res:binding[@name = 'dens']/res:literal, '\|')">
-										<xsl:variable name="position" select="position()"/>
-										
-										<a href="{.}">
-											<xsl:value-of select="tokenize($denLabels, '\|')[$position]"/>
-										</a>
-										<xsl:if test="not(position() = last())">
-											<xsl:text>, </xsl:text>
+									</td>
+									<td>
+										<xsl:if test="res:binding[@name = 'dens']/res:literal">
+											<xsl:variable name="denLabels" select="res:binding[@name = 'denLabels']/res:literal"/>
+
+											<xsl:for-each select="distinct-values(tokenize(res:binding[@name = 'dens']/res:literal, '\|'))">
+												<xsl:variable name="position" select="position()"/>
+
+												<a href="{.}">
+													<xsl:value-of select="tokenize($denLabels, '\|')[$position]"/>
+												</a>
+												<xsl:if test="not(position() = last())">
+													<xsl:text>, </xsl:text>
+												</xsl:if>
+											</xsl:for-each>
 										</xsl:if>
-									</xsl:for-each>
-								</xsl:if>
-							</td>
-							<td>
-								<xsl:if test="res:binding[@name = 'startDate']/res:literal or res:binding[@name = 'endDate']/res:literal">
-									<xsl:value-of select="nomisma:normalizeDate(res:binding[@name = 'startDate']/res:literal)"/>
-									<xsl:if test="res:binding[@name = 'startDate']/res:literal and res:binding[@name = 'startDate']/res:literal">
-										<xsl:text>–</xsl:text>
-									</xsl:if>
-									<xsl:value-of select="nomisma:normalizeDate(res:binding[@name = 'endDate']/res:literal)"/>
-								</xsl:if>
-							</td>
-							<td class="text-right">
-								<xsl:apply-templates select="$sparqlResult//group[@id = $type_uri]/descendant::object" mode="results"/>
-							</td>
-						</tr>
-					</xsl:for-each>
-				</tbody>
-			</table>
-		</div>
+									</td>
+									<td>
+										<xsl:if test="res:binding[@name = 'startDate']/res:literal or res:binding[@name = 'endDate']/res:literal">
+											<xsl:value-of select="nomisma:normalizeDate(res:binding[@name = 'startDate']/res:literal)"/>
+											<xsl:if test="res:binding[@name = 'startDate']/res:literal and res:binding[@name = 'startDate']/res:literal">
+												<xsl:text>–</xsl:text>
+											</xsl:if>
+											<xsl:value-of select="nomisma:normalizeDate(res:binding[@name = 'endDate']/res:literal)"/>
+										</xsl:if>
+									</td>
+									<td class="text-right">
+										<xsl:apply-templates select="$sparqlResult//group[@id = $type_uri]/descendant::object" mode="results"/>
+									</td>
+								</tr>
+							</xsl:for-each>
+						</tbody>
+					</table>
+				</div>
+			</xsl:when>
+			<xsl:otherwise>
+				<p>No results found for query.</p>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 
 	<xsl:template match="object" mode="results">
@@ -362,8 +374,7 @@
 						</xsl:otherwise>
 					</xsl:choose>
 				</xsl:variable>
-				<p>Records <b><xsl:value-of select="$startRecord"/></b> to <b><xsl:value-of select="$endRecord"/></b> of <b><xsl:value-of select="$numFound"
-						/></b></p>
+				<p>Records <b><xsl:value-of select="$startRecord"/></b> to <b><xsl:value-of select="$endRecord"/></b> of <b><xsl:value-of select="$numFound"/></b></p>
 			</div>
 			<!-- paging functionality -->
 			<div class="col-md-6 page-nos">
@@ -371,7 +382,8 @@
 					<div class="btn-group pull-right">
 						<!-- first page -->
 						<xsl:if test="$current &gt; 1">
-							<a class="btn btn-default" role="button" title="First" href="?page=1{if (string($sort)) then concat('&amp;sort=', $sort) else ''}{if (string($q)) then concat('&amp;query=', $q) else ''}">
+							<a class="btn btn-default" role="button" title="First"
+								href="?page=1{if (string($sort)) then concat('&amp;sort=', $sort) else ''}{if (string($q)) then concat('&amp;query=', $q) else ''}">
 								<span class="glyphicon glyphicon-fast-backward"/>
 								<xsl:text> 1</xsl:text>
 							</a>
@@ -387,19 +399,22 @@
 							</button>
 						</xsl:if>
 						<xsl:if test="$current &gt; 4">
-							<a class="btn btn-default" role="button" href="?page={$current - 3}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}{if (string($q)) then concat('&amp;query=', $q) else ''}">
+							<a class="btn btn-default" role="button"
+								href="?page={$current - 3}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}{if (string($q)) then concat('&amp;query=', $q) else ''}">
 								<xsl:value-of select="$current - 3"/>
 								<xsl:text> </xsl:text>
 							</a>
 						</xsl:if>
 						<xsl:if test="$current &gt; 3">
-							<a class="btn btn-default" role="button" href="?page={$current - 2}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}{if (string($q)) then concat('&amp;query=', $q) else ''}">
+							<a class="btn btn-default" role="button"
+								href="?page={$current - 2}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}{if (string($q)) then concat('&amp;query=', $q) else ''}">
 								<xsl:value-of select="$current - 2"/>
 								<xsl:text> </xsl:text>
 							</a>
 						</xsl:if>
 						<xsl:if test="$current &gt; 2">
-							<a class="btn btn-default" role="button" href="?page={$current - 1}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}{if (string($q)) then concat('&amp;query=', $q) else ''}">
+							<a class="btn btn-default" role="button"
+								href="?page={$current - 1}{if (string($sort)) then concat('&amp;sort=', $sort) else ''}{if (string($q)) then concat('&amp;query=', $q) else ''}">
 								<xsl:value-of select="$current - 1"/>
 								<xsl:text> </xsl:text>
 							</a>

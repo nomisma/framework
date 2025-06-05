@@ -65,6 +65,7 @@
 										
 										<xsl:apply-templates select="res:sparql">
 											<xsl:with-param name="type" select="$type"/>
+											<xsl:with-param name="regionQuery" select="contains(doc('input:request')/request/parameters/parameter[name = 'query']/value, 'nmo:hasRegion')"/>
 										</xsl:apply-templates>
 									</xsl:when>
 									<xsl:when test="$api = 'query.json'">
@@ -116,6 +117,7 @@
 	<xsl:template match="discover">
 		<xsl:apply-templates select="res:sparql[1]">
 			<xsl:with-param name="type">mint</xsl:with-param>
+			<xsl:with-param name="regionQuery" select="contains(doc('input:request')/request/parameters/parameter[name = 'query']/value, 'nmo:hasRegion')"/>
 		</xsl:apply-templates>
 		<xsl:apply-templates select="res:sparql[2]">
 			<xsl:with-param name="type">hoard</xsl:with-param>
@@ -141,6 +143,7 @@
 					</xsl:otherwise>
 				</xsl:choose>
 			</xsl:with-param>
+			<xsl:with-param name="regionQuery" select="contains(doc('input:request')/request/parameters/parameter[name = 'query']/value, 'nmo:hasRegion')"/>
 		</xsl:apply-templates>		
 	</xsl:template>
 	
@@ -377,6 +380,7 @@
 	<!-- other GeoJSON API responses -->
 	<xsl:template match="res:sparql">
 		<xsl:param name="type"/>
+		<xsl:param name="regionQuery"/>
 		
 		<xsl:variable name="max" select="max(descendant::res:binding[@name = 'count']/res:literal)"/>
 		<xsl:variable name="position" select="position()"/>
@@ -385,6 +389,7 @@
 			<xsl:with-param name="type" select="$type"/>
 			<xsl:with-param name="max" select="$max"/>
 			<xsl:with-param name="position" select="$position"/>
+			<xsl:with-param name="regionQuery" select="$regionQuery"/>
 		</xsl:apply-templates>
 	</xsl:template>
 	
@@ -392,6 +397,7 @@
 		<xsl:param name="type"/>
 		<xsl:param name="max"/>
 		<xsl:param name="position"/>
+		<xsl:param name="regionQuery"/>
 
 		<xsl:choose>
 			<xsl:when test="res:binding[@name = 'poly'] or res:binding[@name = 'wkt'][contains(res:literal, 'POLYGON')]">
@@ -469,7 +475,15 @@
 							</type>
 							<xsl:if test="res:binding[@name = 'count']">
 								<count>
-									<xsl:value-of select="res:binding[@name = 'count']/res:literal"/>
+									<xsl:choose>
+										<xsl:when test="$regionQuery = true()">
+											<xsl:text>Approximately </xsl:text>
+											<xsl:value-of select="ceiling(number(res:binding[@name = 'count']/res:literal) div 2)"/>
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:value-of select="res:binding[@name = 'count']/res:literal"/>
+										</xsl:otherwise>
+									</xsl:choose>									
 								</count>
 								<radius>
 									<xsl:value-of select="nomisma:getGrade(res:binding[@name = 'count']/res:literal, $max)"/>
@@ -552,7 +566,15 @@
 							</type>
 							<xsl:if test="res:binding[@name = 'count']">
 								<count>
-									<xsl:value-of select="res:binding[@name = 'count']/res:literal"/>
+									<xsl:choose>
+										<xsl:when test="$regionQuery = true()">
+											<xsl:text>Approximately </xsl:text>
+											<xsl:value-of select="ceiling(number(res:binding[@name = 'count']/res:literal) div 2)"/>
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:value-of select="res:binding[@name = 'count']/res:literal"/>
+										</xsl:otherwise>
+									</xsl:choose>									
 								</count>
 								<radius>
 									<xsl:value-of select="nomisma:getGrade(res:binding[@name = 'count']/res:literal, $max)"/>

@@ -3,7 +3,7 @@ $(document).ready(function () {
     
     var path = $('#path').text();
     
-    /**** FORM MANIPULATION AND VALIDATION ****/
+    /***** FORM MANIPULATION AND VALIDATION *****/
     //on changing between viewing all points for one query or comparing queries for one geographic category
     $('input[type=radio][name=compareBy]').change(function () {
         var formId = $(this).closest('form').attr('id');
@@ -47,7 +47,7 @@ $(document).ready(function () {
         return false;
     });
     
-    /***COMPARE***/
+    /***** COMPARE *****/
     //add dataset for comparison
     $('.add-compare').click(function () {
         var container = $(this).closest('form').find('.compare-master-container');
@@ -166,7 +166,7 @@ $(document).ready(function () {
         validate(formId);
     });
     
-    //AJAX results
+    /***** AJAX RESULTS *****/
     //sorting
     $('#ajaxList').on('click', '#ajaxList-div table thead tr th .sort-types', function () {
         urlParams = {
@@ -268,7 +268,18 @@ $(document).ready(function () {
         return false;
     });
     
-    //IMAGE POPUPS
+    /***** PERMALINK *****/
+    $('#permalink').click(function () {
+        var url = window.location.href.split('?')[0] + '?' + $(this).attr('href').split('?')[1];
+        navigator.clipboard.writeText(url);
+        
+        $('#permalink-tooltip').fadeIn(3);
+        $('#permalink-tooltip').fadeOut();
+        
+        return false;
+    });
+    
+    /***** IMAGE POPUPS WITHIN AJAX RESULTS *****/
     $('a.thumbImage').fancybox({
         type: 'image',
         beforeShow: function () {
@@ -331,7 +342,6 @@ $(document).ready(function () {
 });
 
 function initialize_map() {
-    var prefLabel = $('span[property="skos:prefLabel"]:lang(en)').text();
     var type = $('#type').text();
     var mapboxKey = $('#mapboxKey').text();
     var path = $('#path').text();
@@ -341,11 +351,12 @@ function initialize_map() {
         var formId = $(this).closest('form').attr('id');
         var numericType = $('#' + formId).find('input[name=numericType]:checked').val();
         var compareBy = $('#' + formId).find('input[name=compareBy]:checked').val();
+        var url = '';
         
         if (compareBy == 'all') {
             $('#ajaxList').html('');
             var query = $('#' + formId).children('input[name=compare]').val();
-            var url = path + "apis/query.geojson?query=" + query + "&numericType=" + numericType;
+            url = path + "apis/query.geojson?query=" + query + "&numericType=" + numericType;
             
             if (numericType == 'object') {
                 var api = 'listObjects';
@@ -366,10 +377,15 @@ function initialize_map() {
                 queries.push("compare=" + $(this).val());
             });
             
-            var url = path + "apis/query.geojson?" + queries.join('&') + "&numericType=" + numericType + "&type=" + compareBy;
+            $('#ajaxList').html('');
+            url = path + "apis/query.geojson?" + queries.join('&') + "&numericType=" + numericType + "&type=" + compareBy;
         }
         
         pointLayer.refresh(url);
+        
+        //update permalink
+        $('#permalink').attr('href', 'discover?' + url.split('?')[1]);
+        $('#permalink').parent('p').removeClass('hidden');
         
         //close window
         $.fancybox.close();
@@ -380,7 +396,6 @@ function initialize_map() {
     $('#close').click(function () {
         $.fancybox.close();
     });
-    
     
     //LEAFLET SETUP
     //baselayers
@@ -416,7 +431,28 @@ function initialize_map() {
         "Imperium": imperium
     };
     
-    var pointLayer = L.geoJson.ajax('', {
+    //get params, if applicable
+    var params = $('#permalink').attr('href').split('?')[1];
+    var query = '';
+    
+    if (params.length > 0) {
+        var query = path + 'apis/query.geojson?' + params;
+        
+        var numericType = $('#numericType').text();
+        if (numericType == 'object') {
+            var api = 'listObjects';
+        } else if (numericType == 'coinType') {
+            var api = 'listTypes';
+        }
+        
+        //get AJAX results
+        $. get (path + 'ajax/' + api + '?' + params,
+        function (data) {
+            $('#ajaxList').html(data);
+        });
+    }
+    
+    var pointLayer = L.geoJson.ajax(query, {
         onEachFeature: renderPopup,
         style: function (feature) {
             if (feature.geometry.type == 'Polygon') {
@@ -473,6 +509,24 @@ function initialize_map() {
     //add controls
     var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
     
+    /***** UPDATING MAP FROM LEAFLET POPUP  *****/
+    map.on('popupopen', function () {
+        $('.updateMap').click(function () {
+            var numericType = $('#geoForm').find('input[name=numericType]:checked').val();
+            if (numericType == 'object') {
+                var api = 'listObjects';
+            } else if (numericType == 'coinType') {
+                var api = 'listTypes';
+            }
+            
+            $. get (path + 'ajax/' + api + $(this).attr('href'),
+            function (data) {
+                $('#ajaxList').html(data);
+            });
+            return false;
+        });
+    });
+    
     /*****
      * Features for manipulating layers
      *****/
@@ -524,6 +578,14 @@ function initialize_map() {
     
     function renderPopup (feature, layer) {
         
+        //get the query for the appropriate compare group, if applicable
+        if (feature.properties.hasOwnProperty('compareGroup')) {
+            var compareIndex = feature.properties.compareGroup - 1;
+            var query = $('#geoForm').find('input[name=compare]').eq(compareIndex).val();
+        } else {
+            var query = $('#geoForm').find('input[name=compare]').val();
+        }
+        
         var str;
         //individual finds
         if (feature.properties.hasOwnProperty('gazetteer_uri') == false) {
@@ -546,6 +608,11 @@ function initialize_map() {
             }
             if (feature.properties.hasOwnProperty('count') == true) {
                 str += '<br/><b>Count: </b>' + feature.properties.count;
+            }
+            //display a link to update the ajaxList
+            if (feature.properties.type == 'mint') {
+                var href = '?query=' + query + '; nmo:hasMint ' + feature.properties.gazetteer_uri.replace("http://nomisma.org/id/", "nm:");
+                str += '<br/><a href="' + href + '" class="updateMap">View</a> results from this mint.';
             }
         }
         layer.bindPopup(str);

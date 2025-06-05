@@ -72,13 +72,57 @@
 			<div class="row">
 				<div class="col-md-12 page-section">
 					<h2>Discover</h2>
-					<div id="mapcontainer" class="map-discover">
-						<!--<div class="leaflet-bottom leaflet-right">
-							<button id="filterButton">
-								<span class="glyphicon glyphicon-filter"/>
-							</button>
-						</div>-->
+					<div class="col-md-6">
+						<p>Click on the <span class="glyphicon glyphicon-filter"/> icon to filter the map based on a query.</p>
 					</div>
+					<div class="col-md-6 text-right">
+						
+						<xsl:variable name="params" as="element()*">
+							<params>
+								<xsl:if test="string(doc('input:request')/request/parameters/parameter[name = 'query']/value)">
+									<query>
+										<xsl:value-of select="doc('input:request')/request/parameters/parameter[name = 'query']/value"/>
+									</query>										
+								</xsl:if>
+								<xsl:if test="string($numericType)">
+									<numericType>
+										<xsl:value-of select="$numericType"/>
+									</numericType>
+								</xsl:if>
+								<xsl:if test="string(doc('input:request')/request/parameters/parameter[name = 'type']/value)">
+									<type>
+										<xsl:value-of select="doc('input:request')/request/parameters/parameter[name = 'type']/value"/>
+									</type>									
+								</xsl:if>
+								<xsl:for-each select="doc('input:request')/request/parameters/parameter[name = 'compare']">
+									<compare>
+										<xsl:value-of select="value"/>
+									</compare>
+								</xsl:for-each>
+							</params>
+						</xsl:variable>
+						
+						<xsl:variable name="paramString">
+							<xsl:for-each select="$params/*">
+								<xsl:value-of select="name()"/>
+								<xsl:text>=</xsl:text>
+								<xsl:value-of select="."/>
+								<xsl:if test="not(position() = last())">
+									<xsl:text>&amp;</xsl:text>
+								</xsl:if>
+							</xsl:for-each>
+						</xsl:variable>
+						
+						<p>
+							<xsl:if test="not(string($paramString))">
+								<xsl:attribute name="class">hidden</xsl:attribute>
+							</xsl:if>							
+							
+							<a href="discover?{$paramString}" id="permalink"><span class="glyphicon glyphicon-link"/> Copy Link</a>
+							<span style="display:none" id="permalink-tooltip"> copied</span>
+						</p>
+					</div>
+					<div id="mapcontainer" class="map-discover"/>					
 					<div id="ajaxList"/>
 				</div>
 			</div>
@@ -159,6 +203,10 @@
 			</xsl:call-template>
 
 			<xsl:call-template name="ajax-loader-template"/>
+			
+			<span id="numericType">
+				<xsl:value-of select="$numericType"/>
+			</span>
 
 			<!-- IIIF -->
 			<span id="manifest"/>
