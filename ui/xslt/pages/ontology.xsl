@@ -92,7 +92,7 @@
 						<h3>Classes</h3>
 						<xsl:apply-templates select="descendant::owl:Class[starts-with(@rdf:about, 'http://nomisma.org/')]"/>
 						<h3>Properties</h3>
-						<xsl:apply-templates select="descendant::owl:ObjectProperty[starts-with(@rdf:about, 'http://nomisma.org/')]"/>
+						<xsl:apply-templates select="descendant::owl:ObjectProperty[starts-with(@rdf:about, 'http://nomisma.org/')]|descendant::rdf:Property[starts-with(@rdf:about, 'http://nomisma.org/')]"/>
 					</div>
 				</div>
 			</div>
