@@ -128,7 +128,7 @@
 			</div>
 
 			<div style="display:none">
-				<div id="map_filters" style="min-width:800px;">
+				<div id="map_filters">
 					<form role="form" id="geoForm" class="quant-form" method="get">
 						<h2>Filters</h2>
 						<a href="#" class="add-compare hidden"><span class="glyphicon glyphicon-plus"/>Add query for Comparison</a>

@@ -140,7 +140,7 @@
 	</xsl:template>
 
 	<!-- styling for classes and properties -->
-	<xsl:template match="owl:Class | owl:ObjectProperty">
+	<xsl:template match="owl:Class | owl:ObjectProperty | rdf:Property">
 		<xsl:variable name="uri" select="@rdf:about"/>
 		<xsl:variable name="curie"
 			select="
