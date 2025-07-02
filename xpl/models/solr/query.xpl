@@ -35,9 +35,15 @@
 							<xsl:value-of select="doc('input:request')/request/parameters/parameter[name='sort']/value"/>
 						</xsl:when>
 						<xsl:otherwise>
-							<xsl:if test="contains(doc('input:request')/request/request-uri, '/feed/')">
-								<xsl:text>modified_timestamp desc</xsl:text>
-							</xsl:if>
+							<xsl:choose>
+								<xsl:when test="contains(doc('input:request')/request/request-uri, '/feed/')">
+									<xsl:text>modified_timestamp desc</xsl:text>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:text>conceptScheme asc, created_timestamp asc</xsl:text>
+								</xsl:otherwise>
+							</xsl:choose>
+							
 						</xsl:otherwise>
 					</xsl:choose>
 				</xsl:param>
