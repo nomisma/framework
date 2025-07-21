@@ -92,7 +92,7 @@
 						<h3>Classes</h3>
 						<xsl:apply-templates select="descendant::owl:Class[starts-with(@rdf:about, 'http://nomisma.org/')]"/>
 						<h3>Properties</h3>
-						<xsl:apply-templates select="descendant::owl:ObjectProperty[starts-with(@rdf:about, 'http://nomisma.org/')]|descendant::rdf:Property[starts-with(@rdf:about, 'http://nomisma.org/')]"/>
+						<xsl:apply-templates select="descendant::rdf:Property[starts-with(@rdf:about, 'http://nomisma.org/')]"/>
 					</div>
 				</div>
 			</div>
@@ -140,7 +140,7 @@
 	</xsl:template>
 
 	<!-- styling for classes and properties -->
-	<xsl:template match="owl:Class | owl:ObjectProperty | rdf:Property">
+	<xsl:template match="owl:Class | rdf:Property">
 		<xsl:variable name="uri" select="@rdf:about"/>
 		<xsl:variable name="curie"
 			select="
@@ -191,11 +191,11 @@
 							</dd>
 						</xsl:if>
 					</xsl:if>
-					<xsl:if test="self::owl:ObjectProperty">
-						<xsl:if test="//owl:ObjectProperty[rdfs:subPropertyOf/@rdf:resource = $uri]">
+					<xsl:if test="self::rdf:Property">
+						<xsl:if test="//rdf:Property[rdfs:subPropertyOf/@rdf:resource = $uri]">
 							<dt>has subproperties</dt>
 							<dd>
-								<xsl:apply-templates select="//rdfs:subPropertyOf[@rdf:resource = $uri]/parent::owl:ObjectProperty" mode="relation"/>
+								<xsl:apply-templates select="//rdfs:subPropertyOf[@rdf:resource = $uri]/parent::rdf:Property" mode="relation"/>
 							</dd>
 						</xsl:if>
 						<xsl:if test="rdfs:subPropertyOf">
@@ -231,7 +231,7 @@
 	</xsl:template>
 
 	<!-- links that are related to classes and properties -->
-	<xsl:template match="rdfs:subClassOf | rdfs:subPropertyOf | rdfs:domain | rdfs:range | owl:Class | owl:ObjectProperty" mode="relation">
+	<xsl:template match="rdfs:subClassOf | rdfs:subPropertyOf | rdfs:domain | rdfs:range | owl:Class | rdf:Property" mode="relation">
 		<xsl:variable name="uri" select="
 				if (@rdf:resource) then
 					@rdf:resource
