@@ -605,6 +605,10 @@ PREFIX wordnet:	<http://ontologi.es/WordNet/class/>]]></prefix>
 			<xforms:submission id="get-wikidata" serialization="none" method="get"
 				action="https://www.wikidata.org/w/api.php?action=wbgetentities&amp;ids={instance('control-instance')/wiki-id}&amp;titles={instance('control-instance')/wiki-title}&amp;sites={instance('control-instance')/wiki-lang}wiki&amp;format=xml"
 				instance="wikidata" replace="instance">
+				<xforms:header>
+					<xforms:name>User-Agent</xforms:name>
+					<xforms:value>XForms/Nomisma.org</xforms:value>
+				</xforms:header>				
 				<xforms:message ev:event="xforms-submit-error" level="modal">Unable to get data from Wikidata.</xforms:message>
 				<xforms:action ev:event="xforms-submit-done">
 					<!-- process wikidata XML if the entity has an @id and it starts with Q -->
