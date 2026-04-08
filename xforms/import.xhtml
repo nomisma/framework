@@ -269,6 +269,7 @@
 					<property label="Nomisma ID">id</property>
 					<property label="Preferred Label">skos:prefLabel</property>
 					<property label="Definition">skos:definition</property>
+					<property label="Additional Class">rdf:type</property>
 					<property label="Alternate Concept" constraint="nmo:Mint">prov:alternateOf</property>
 					<property label="Alternative Label">skos:altLabel</property>
 					<property label="Birth" constraint="foaf:Person">bio:birth</property>
@@ -1358,7 +1359,7 @@ PREFIX wordnet:	<http://ontologi.es/WordNet/class/>]]></prefix>
 
 															<!-- URI validation -->
 															<xforms:action
-																if="$mapping='skos:exactMatch' or $mapping='skos:closeMatch' or $mapping='dcterms:source' or $mapping = 'crm:P165i_is_incorporated_in' or $mapping = 'image_creator' or $mapping = 'image_license'">
+																if="$mapping='skos:exactMatch' or $mapping='skos:closeMatch' or $mapping='dcterms:source' or $mapping = 'crm:P165i_is_incorporated_in' or $mapping = 'image_creator' or $mapping = 'image_license' or $mapping = 'rdf:type'">
 																<xforms:var name="isValid" select="matches($value, 'https?://(-\.)?([^\s/?\.#]+\.?)+(/[^\s]*)?$')"/>
 																<xforms:insert if="string-length($value) &gt; 0 and (not($value castable as xs:anyURI) or $isValid = false())"
 																	context="instance('validation-model')/record[last()]" nodeset="./child::node()[last()]"
@@ -1700,7 +1701,7 @@ PREFIX wordnet:	<http://ontologi.es/WordNet/class/>]]></prefix>
 													</xforms:action>
 													<!-- create URIs for the following simple mappings that go into the skos:Concept object -->
 													<xforms:action
-														if="$mapping = 'skos:exactMatch' or $mapping='skos:closeMatch' or $mapping='foaf:homepage' or $mapping='rdfs:seeAlso' or $mapping='dcterms:isPartOf' or $mapping='dcterms:source' or $mapping='org:memberOf' or $mapping='skos:broader' or $mapping='skos:narrower' or $mapping='prov:alternateOf'">
+														if="$mapping = 'skos:exactMatch' or $mapping='skos:closeMatch' or $mapping='foaf:homepage' or $mapping='rdfs:seeAlso' or $mapping='dcterms:isPartOf' or $mapping='dcterms:source' or $mapping='org:memberOf' or $mapping='skos:broader' or $mapping='skos:narrower' or $mapping='prov:alternateOf' or $mapping = 'rdf:type'">
 														<!-- clear wiki control instance values -->
 														<xforms:setvalue ref="instance('control-instance')/wiki-id"/>
 														<xforms:setvalue ref="instance('control-instance')/wiki-title"/>
