@@ -68,6 +68,7 @@
 	<page path="/nomisma/(id|editor|symbol)/(.*)\.solr" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/solr.xpl"/>
 	<page path="/nomisma/(id|symbol)/(.*)\.geojson" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/geojson.xpl"/>
 	<page path="/nomisma/(id|editor|symbol)/(.*)" model="xpl/models/rdf/get-id.xpl" view="xpl/controllers/conneg-id.xpl"/>	
+	<page path="/nomisma/data/(id|editor|symbol)/(.*)" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/linkedart-json-ld.xpl"/>
 	
 	<!-- map page -->
 	<!--<page path="/nomisma/map" model="xpl/models/rdf/get-id.xpl" view="xpl/views/serializations/rdf/html-map.xpl"/>-->

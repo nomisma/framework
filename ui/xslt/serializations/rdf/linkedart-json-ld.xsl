@@ -78,8 +78,8 @@
 					<_object>
 						<xsl:choose>
 							<xsl:when test="$type = 'nmo:Mint'">
-								<id>http://nomisma.org/id/mint</id>
-								<_label>Mint</_label>
+								<id>http://vocab.getty.edu/aat/300008347</id>
+								<_label>inhabited places</_label>
 							</xsl:when>
 							<xsl:when test="$type = 'nmo:Region'">
 								<id>http://vocab.getty.edu/aat/300182722</id>
@@ -146,10 +146,10 @@
 							<_object>
 								<type>TimeSpan</type>
 								<begin_of_the_begin>
-									<xsl:value-of select="nomisma:expandDate($dates[1], 'begin')"/>
+									<xsl:value-of select="nomisma:expandDatetoDateTime($dates[1], 'begin')"/>
 								</begin_of_the_begin>
 								<end_of_the_end>
-									<xsl:value-of select="nomisma:expandDate($dates[1], 'end')"/>
+									<xsl:value-of select="nomisma:expandDatetoDateTime($dates[1], 'end')"/>
 								</end_of_the_end>
 							</_object>
 						</timespan>
@@ -174,10 +174,10 @@
 							<_object>
 								<type>TimeSpan</type>
 								<begin_of_the_begin>
-									<xsl:value-of select="nomisma:expandDate($dates[last()], 'begin')"/>
+									<xsl:value-of select="nomisma:expandDatetoDateTime($dates[last()], 'begin')"/>
 								</begin_of_the_begin>
 								<end_of_the_end>
-									<xsl:value-of select="nomisma:expandDate($dates[last()], 'end')"/>
+									<xsl:value-of select="nomisma:expandDatetoDateTime($dates[last()], 'end')"/>
 								</end_of_the_end>
 							</_object>
 						</timespan>
@@ -196,19 +196,27 @@
 		</xsl:if>
 
 		<xsl:if test="skos:broader">
-			<part_of>
+			<xsl:variable name="element">
+				<xsl:choose>
+					<xsl:when test="$type = 'foaf:Person' or $type = 'foaf:Group' or $type = 'foaf:Organization' or $type = 'rdac:Family'">member_of</xsl:when>
+					<xsl:when test="$type = 'nmo:Mint' or $type = 'nmo:Region'">part_of</xsl:when>
+					<xsl:otherwise>broader</xsl:otherwise>
+				</xsl:choose>
+			</xsl:variable>
+			
+			<xsl:element name="{$element}">
 				<_array>
 					<xsl:apply-templates select="skos:broader"/>
 				</_array>
-			</part_of>
+			</xsl:element>
 		</xsl:if>
 
 		<xsl:if test="skos:exactMatch or skos:closeMatch">
-			<exact_match>
+			<equivalent>
 				<_array>
 					<xsl:apply-templates select="skos:exactMatch | skos:closeMatch"/>
 				</_array>
-			</exact_match>
+			</equivalent>
 		</xsl:if>
 
 		<xsl:if test="/content/rdf:RDF/org:Membership[org:organization] or org:memberOf">
@@ -368,15 +376,17 @@
 				<id>
 					<xsl:value-of select="@rdf:about"/>
 				</id>
-				<type>Death</type>
+				<type>
+					<xsl:value-of select="local-name()"/>
+				</type>
 				<timespan>
 					<_object>
 						<type>TimeSpan</type>
 						<begin_of_the_begin>
-							<xsl:value-of select="nomisma:expandDate(dcterms:date, 'begin')"/>
+							<xsl:value-of select="nomisma:expandDatetoDateTime(dcterms:date, 'begin')"/>
 						</begin_of_the_begin>
 						<end_of_the_end>
-							<xsl:value-of select="nomisma:expandDate(dcterms:date, 'end')"/>
+							<xsl:value-of select="nomisma:expandDatetoDateTime(dcterms:date, 'end')"/>
 						</end_of_the_end>
 					</_object>
 				</timespan>
