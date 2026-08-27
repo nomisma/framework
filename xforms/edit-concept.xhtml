@@ -20,11 +20,6 @@
 		<link rel="icon" href="/ops/images/orbeon-icon-16.png" type="image/png" />
 		<link rel="stylesheet" href="/apps/nomisma/xforms/css/style.css" />
 
-		<!-- mapping -->
-		<script type="text/javascript" src="https://www.openlayers.org/api/OpenLayers.js"></script>
-		<script type="text/javascript" src="https://maps.google.com/maps/api/js?v=3.9&amp;sensor=false"></script>
-		<script type="text/javascript" src="/apps/nomisma/xforms/javascript/georeference.js"></script>
-
 		<!-- model -->
 		<xforms:model>
 			<xforms:instance id="doc" xxf:exclude-result-prefixes="#default xhtml xforms xs ev xxf fr res xi nomisma atom">
@@ -68,13 +63,6 @@
 					<content_before_hash></content_before_hash>
 					<content_after_hash></content_after_hash>
 					<session-id></session-id>
-					<geo>
-						<type></type>
-						<hasFeature></hasFeature>
-						<lat>0</lat>
-						<long>0</long>
-						<geoJSON></geoJSON>
-					</geo>
 					<fons></fons>
 				</controls>
 			</xforms:instance>
@@ -92,7 +80,13 @@
 					<url></url>
 					<content-type>text/plain</content-type>
 					<make-directories>false</make-directories>
-					<append>false</append>
+					<append>false</append><geo>
+						<type></type>
+						<hasFeature></hasFeature>
+						<lat>0</lat>
+						<long>0</long>
+						<geoJSON></geoJSON>
+					</geo>
 				</config>
 			</xforms:instance>
 
@@ -1013,17 +1007,17 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 											<xforms:insert ev:event="DOMActivate" origin="instance('hasStartDate-template')" context="."
 												nodeset="./child::node()[last()]"/>
 										</xforms:trigger>
+									</li>									
+								</xforms:group>
+								<xforms:group ref=".[($type='rdac:Family' or $type='nmo:Mint') and count(nmo:hasEndDate) = 0]">
+									<li>
+										<xforms:trigger appearance="minimal">
+											<xforms:label>
+												<span class="glyphicon glyphicon-plus"></span>End Date</xforms:label>
+											<xforms:insert ev:event="DOMActivate" origin="instance('hasEndDate-template')" context="."
+												nodeset="./child::node()[last()]"/>
+										</xforms:trigger>
 									</li>
-									<xforms:group ref=".[($type='rdac:Family' or $type='nmo:Mint') and count(nmo:hasEndDate) = 0]">
-										<li>
-											<xforms:trigger appearance="minimal">
-												<xforms:label>
-													<span class="glyphicon glyphicon-plus"></span>End Date</xforms:label>
-												<xforms:insert ev:event="DOMActivate" origin="instance('hasEndDate-template')" context="."
-													nodeset="./child::node()[last()]"/>
-											</xforms:trigger>
-										</li>
-									</xforms:group>
 								</xforms:group>
 								<xforms:group ref=".[count(foaf:thumbnail) = 0 and $type = 'nmo:Collection']">
 									<li>
@@ -1808,7 +1802,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 														<xforms:label>Start Date</xforms:label>
 														<xforms:alert>Must conform to xsd:gYear</xforms:alert>
 													</xforms:input>
-													<xforms:output value="if (number(.) &lt; 0) then concat($year, ' B.C.') else concat('A.D. ', $year)"/>
+													<xforms:output value="if (number(.) &lt; 0) then concat($year, ' BCE') else concat($year, ' CE')"/>
 													<xforms:trigger appearance="minimal">
 														<xforms:delete ev:event="DOMActivate" context="."/>
 														<xforms:label>
@@ -1824,7 +1818,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 														<xforms:label>End Date</xforms:label>
 														<xforms:alert>Must conform to xsd:gYear</xforms:alert>
 													</xforms:input>
-													<xforms:output value="if (number(.) &lt; 0) then concat($year, ' B.C.') else concat('A.D. ', $year)"/>
+													<xforms:output value="if (number(.) &lt; 0) then concat($year, ' BCE') else concat($year, ' CE')"/>
 													<xforms:trigger appearance="minimal">
 														<xforms:delete ev:event="DOMActivate" context="."/>
 														<xforms:label>
@@ -1987,8 +1981,6 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 															<xforms:action ev:event="DOMActivate">
 																<xforms:delete nodeset="instance('doc')/*[1]/geo:location"/>
 																<xforms:delete nodeset="."/>
-																<xforms:setvalue ref="instance('control-instance')/geo/type"/>
-																<xforms:setvalue ref="instance('control-instance')/geo/hasFeature" value="false()"/>
 															</xforms:action>
 															<xforms:label>
 																<span class="glyphicon glyphicon-remove"></span>
@@ -2025,39 +2017,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 										</div>
 										<div class="row">
 											<div class="col-md-4">
-												<xforms:select1 ref="instance('control-instance')/geo/type" appearance="full">
-													<xforms:item>
-														<xforms:label>point</xforms:label>
-														<xforms:value>point</xforms:value>
-													</xforms:item>
-													<xforms:item>
-														<xforms:label>polygon</xforms:label>
-														<xforms:value>polygon</xforms:value>
-													</xforms:item>
-													<xforms:action ev:event="xforms-value-changed">
-														<!-- insert elements, if necessary -->
-														<xforms:var name="type" select="."/>
-														<xforms:action if="$type='point'">
-															<xforms:delete nodeset="instance('doc')/geo:SpatialThing/osgeo:asGeoJSON"/>
-															<!-- insert geo:lat and geo:long if they do not exist -->
-															<xforms:action if="not(instance('doc')/geo:SpatialThing/geo:lat)">
-																<xforms:insert context="instance('doc')/geo:SpatialThing" origin="instance('long-template')"/>
-																<xforms:insert context="instance('doc')/geo:SpatialThing" origin="instance('lat-template')"/>
-															</xforms:action>
-														</xforms:action>
-														<xforms:action if="$type='polygon'">
-															<xforms:delete nodeset="instance('doc')/geo:SpatialThing/geo:lat"/>
-															<xforms:delete nodeset="instance('doc')/geo:SpatialThing/geo:long"/>
-															<!-- insert geo:lat and geo:long if they do not exist -->
-															<xforms:action if="not(instance('doc')/geo:SpatialThing/osgeo:asGeoJSON)">
-																<xforms:insert context="instance('doc')/geo:SpatialThing"
-																	origin="instance('asGeoJSON-template')"/>
-															</xforms:action>
-														</xforms:action>
-														<!-- initialize openlayers -->
-														<xxf:script>init();</xxf:script>
-													</xforms:action>
-												</xforms:select1>
+												
 												<xforms:group ref="geo:lat">
 													<div>
 														<xforms:input ref=".">
@@ -2111,11 +2071,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 													</div>
 												</xforms:group>
 											</div>
-											<div class="col-md-8">
-												<xforms:group ref=".[string(instance('control-instance')/geo/type)]">
-													<div id="map"></div>
-												</xforms:group>
-											</div>
+											
 										</div>
 										<hr />
 									</div>
@@ -2412,7 +2368,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 													<xforms:label>Start Date</xforms:label>
 													<xforms:alert>Must conform to xsd:gYear</xforms:alert>
 												</xforms:input>
-												<xforms:output value="if (number(.) &lt; 0) then concat($year, ' B.C.') else concat('A.D. ', $year)"/>
+												<xforms:output value="if (number(.) &lt; 0) then concat($year, ' BCE') else concat($year, ' CE')"/>
 												<xforms:trigger appearance="minimal">
 													<xforms:delete ev:event="DOMActivate" context="."/>
 													<xforms:label>
@@ -2428,7 +2384,7 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 													<xforms:label>End Date</xforms:label>
 													<xforms:alert>Must conform to xsd:gYear</xforms:alert>
 												</xforms:input>
-												<xforms:output value="if (number(.) &lt; 0) then concat($year, ' B.C.') else concat('A.D. ', $year)"/>
+												<xforms:output value="if (number(.) &lt; 0) then concat($year, ' BCE') else concat($year, ' CE')"/>
 												<xforms:trigger appearance="minimal">
 													<xforms:delete ev:event="DOMActivate" context="."/>
 													<xforms:label>
