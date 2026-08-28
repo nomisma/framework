@@ -186,6 +186,9 @@
 							<li>
 								<a href="{$id}.jsonld">JSON-LD</a>
 							</li>
+							<li>
+								<a href="{$display_path}data/id/{$id}">Linked Art JSON-LD</a>
+							</li>
 						</ul>
 
 						<!-- insert a DataCite XML link for an editor with IDs -->
