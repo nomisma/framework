@@ -87,7 +87,7 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Get Data <b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li>
-									<a href="{$display_path}data">Overview</a>
+									<a href="{$display_path}get-data">Overview</a>
 								</li>
 								<li>
 									<a href="{$display_path}datasets">Partner Datasets</a>
