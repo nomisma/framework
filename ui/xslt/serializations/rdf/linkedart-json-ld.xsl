@@ -387,20 +387,9 @@
 	<xsl:template match="geo:SpatialThing">
 		<xsl:choose>
 			<xsl:when test="geo:lat and geo:long">
-				<approximated_by>
-					<_array>
-						<_object>
-							<id>
-								<xsl:value-of select="@rdf:about"/>
-							</id>
-							<type>Place</type>
-							<_label>Coordinates</_label>
-							<defined_by>
-								<xsl:value-of select="concat('POINT(', geo:long, ' ', geo:lat, ')')"/>
-							</defined_by>
-						</_object>
-					</_array>
-				</approximated_by>
+				<defined_by>
+					<xsl:value-of select="concat('POINT(', geo:long, ' ', geo:lat, ')')"/>
+				</defined_by>
 			</xsl:when>
 		</xsl:choose>
 	</xsl:template>
