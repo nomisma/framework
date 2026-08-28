@@ -38,7 +38,8 @@
 	***************** -->
 	<!-- **** PAGES **** -->
 	
-	<!-- **** STATIC, DEPRECATED BY JEKYLL **** -->	
+	<!-- **** STATIC, DEPRECATED BY JEKYLL **** -->
+	<page path="/nomisma/data" view="xpl/views/pages/static.xpl"/>
 	<page path="/nomisma/sparql" view="xpl/views/pages/sparql.xpl"/> <!-- SPARQL page has been replaced with Jekyll, but should remain here -->
 	<page path="/nomisma/apis" view="xpl/views/pages/static.xpl"/>
 	<page path="/nomisma/documentation/(.*)" view="xpl/views/pages/static.xpl"/>
