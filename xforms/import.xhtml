@@ -339,7 +339,7 @@
 					<property id="P268">http://catalogue.bnf.fr/ark:/12148/cb</property>
 					<property id="P269">http://www.idref.fr/</property>					
 					<property id="P1014">http://vocab.getty.edu/aat/</property>
-					<property id="P1566">http://www.geonames.org/</property>
+					<property id="P1566">https://sws.geonames.org/</property>
 					<property id="P1667">http://vocab.getty.edu/tgn/</property>
 					<property id="P1900">http://www.eagle-network.eu/voc/</property>
 					<property id="P13030">https://ikmk.smb.museum/ndp/</property>
@@ -640,7 +640,7 @@ PREFIX wordnet:	<http://ontologi.es/WordNet/class/>]]></prefix>
 								or @id='P245' or @id='P1014' or @id='P1566' or @id='P1667' or @id='P1900' or @id='P13030']">
 								<xforms:var name="property" select="data(context()/@id)"/>
 								<xforms:var name="id" select="replace(data(context()/descendant::mainsnak[1]/datavalue/@value), ' ', '')"/>
-								<xforms:var name="uri" select="concat(instance('wikidata-properties')/property[@id=$property], $id)"/>
+								<xforms:var name="uri" select="if ($property = 'P1566') then concat(instance('wikidata-properties')/property[@id=$property], $id, '/') else concat(instance('wikidata-properties')/property[@id=$property], $id)"/>
 
 								<xforms:insert context="instance('rdf')/*[1]" nodeset="./child::node()[last()]"
 									if="not(instance('rdf')/*[1]/*[name()=$mapping][@rdf:resource=$uri])"
