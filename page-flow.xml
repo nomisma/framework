@@ -39,7 +39,11 @@
 	<!-- **** PAGES **** -->
 	
 	<!-- **** STATIC, DEPRECATED BY JEKYLL **** -->
-	<page path="/nomisma/data" view="xpl/views/pages/static.xpl"/>
+	<page path="/nomisma/data">
+		<action>
+			<result page="/nomisma/data/" instance-passing="redirect"/>
+		</action>
+	</page>
 	<page path="/nomisma/sparql" view="xpl/views/pages/sparql.xpl"/> <!-- SPARQL page has been replaced with Jekyll, but should remain here -->
 	<page path="/nomisma/apis" view="xpl/views/pages/static.xpl"/>
 	<page path="/nomisma/documentation/(.*)" view="xpl/views/pages/static.xpl"/>
