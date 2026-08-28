@@ -5,10 +5,9 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:nomisma="http://nomisma.org/"
 	xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
-	xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:org="http://www.w3.org/ns/org#"
-	xmlns:nmo="http://nomisma.org/ontology#" xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" xmlns:prov="http://www.w3.org/ns/prov#"
-	xmlns:rdac="http://www.rdaregistry.info/Elements/c/" xmlns:bio="http://purl.org/vocab/bio/0.1/" xmlns:crmdig="http://www.ics.forth.gr/isl/CRMdig/"
-	exclude-result-prefixes="#all" version="2.0">
+	xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:res="http://www.w3.org/2005/sparql-results#" xmlns:org="http://www.w3.org/ns/org#" xmlns:nmo="http://nomisma.org/ontology#"
+	xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" xmlns:prov="http://www.w3.org/ns/prov#" xmlns:rdac="http://www.rdaregistry.info/Elements/c/"
+	xmlns:bio="http://purl.org/vocab/bio/0.1/" xmlns:crmdig="http://www.ics.forth.gr/isl/CRMdig/" exclude-result-prefixes="#all" version="2.0">
 	<xsl:include href="../json/json-metamodel.xsl"/>
 	<xsl:include href="../../functions.xsl"/>
 
@@ -19,13 +18,11 @@
 	<!-- get dynasty/organization and skos:broader RDF -->
 	<xsl:variable name="rdf" as="element()*">
 		<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:nm="http://nomisma.org/id/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-			xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-			xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:org="http://www.w3.org/ns/org#"
-			xmlns:nomisma="http://nomisma.org/" xmlns:nmo="http://nomisma.org/ontology#">
+			xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+			xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:org="http://www.w3.org/ns/org#" xmlns:nomisma="http://nomisma.org/" xmlns:nmo="http://nomisma.org/ontology#">
 			<xsl:variable name="id-param">
-				<xsl:for-each
-					select="
-						distinct-values(descendant::org:memberOf/@rdf:resource | descendant::org:organization/@rdf:resource | descendant::skos:broader/@rdf:resource)">
+				<xsl:for-each select="
+						distinct-values(descendant::org:memberOf/@rdf:resource | descendant::org:organization/@rdf:resource | descendant::skos:broader/@rdf:resource | descendant::org:role/@rdf:resource)">
 					<xsl:value-of select="substring-after(., 'id/')"/>
 					<xsl:if test="not(position() = last())">
 						<xsl:text>|</xsl:text>
@@ -66,10 +63,10 @@
 		</type>
 		<_label>
 			<xsl:value-of select="
-				if (rdfs:label) then
-				rdfs:label
-				else
-				skos:prefLabel[@xml:lang = 'en']"/>
+					if (rdfs:label) then
+						rdfs:label
+					else
+						skos:prefLabel[@xml:lang = 'en']"/>
 		</_label>
 
 		<xsl:if test="$type = 'nmo:Mint' or $type = 'nmo:Region'">
@@ -87,6 +84,14 @@
 							</xsl:when>
 						</xsl:choose>
 					</_object>
+				</_array>
+			</classified_as>
+		</xsl:if>
+
+		<xsl:if test="/content/rdf:RDF/org:Membership[org:role]">
+			<classified_as>
+				<_array>
+					<xsl:apply-templates select="//org:Membership[org:role]" mode="occupation"/>
 				</_array>
 			</classified_as>
 		</xsl:if>
@@ -203,7 +208,7 @@
 					<xsl:otherwise>broader</xsl:otherwise>
 				</xsl:choose>
 			</xsl:variable>
-			
+
 			<xsl:element name="{$element}">
 				<_array>
 					<xsl:apply-templates select="skos:broader"/>
@@ -222,7 +227,7 @@
 		<xsl:if test="/content/rdf:RDF/org:Membership[org:organization] or org:memberOf">
 			<member_of>
 				<_array>
-					<xsl:apply-templates select="//org:Membership[org:organization] | org:memberOf"/>
+					<xsl:apply-templates select="//org:Membership[org:organization] | org:memberOf" mode="membership"/>
 				</_array>
 			</member_of>
 		</xsl:if>
@@ -231,8 +236,8 @@
 		<xsl:apply-templates select="/content/rdf:RDF/geo:SpatialThing"/>
 	</xsl:template>
 
-	<!-- groups and dynasties -->
-	<xsl:template match="org:Membership">
+	<!-- memberships: groups and dynasties -->
+	<xsl:template match="org:Membership" mode="membership">
 		<xsl:if test="not(org:organization/@rdf:resource = preceding::org:Membership/org:organization/@rdf:resource)">
 			<xsl:variable name="uri" select="org:organization/@rdf:resource"/>
 
@@ -240,12 +245,13 @@
 		</xsl:if>
 	</xsl:template>
 
-	<xsl:template match="org:memberOf">
+	<xsl:template match="org:memberOf" mode="membership">
 		<xsl:variable name="uri" select="@rdf:resource"/>
 
 		<xsl:apply-templates select="$rdf//*[@rdf:about = $uri]" mode="membership"/>
 	</xsl:template>
 
+	<!-- membership organizations -->
 	<xsl:template match="*" mode="membership">
 		<_object>
 			<type>Group</type>
@@ -273,6 +279,36 @@
 								<_label>dynasties</_label>
 							</xsl:when>
 						</xsl:choose>
+					</_object>
+				</_array>
+			</classified_as>
+		</_object>
+	</xsl:template>
+
+	<!-- occupations: extract org:roles -->
+	<xsl:template match="org:Membership" mode="occupation">
+		<xsl:if test="not(org:role/@rdf:resource = preceding::org:Membership/org:role/@rdf:resource)">
+			<xsl:variable name="uri" select="org:role/@rdf:resource"/>
+
+			<xsl:apply-templates select="$rdf//*[@rdf:about = $uri]" mode="occupation"/>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="*" mode="occupation">
+		<_object>
+			<type>Type</type>
+			<id>
+				<xsl:value-of select="@rdf:about"/>
+			</id>
+			<_label>
+				<xsl:value-of select="skos:prefLabel[@xml:lang = 'en']"/>
+			</_label>
+			<classified_as>
+				<_array>
+					<_object>
+						<type>Type</type>
+						<id>http://vocab.getty.edu/aat/300263369</id>
+						<_label>Occupation</_label>
 					</_object>
 				</_array>
 			</classified_as>

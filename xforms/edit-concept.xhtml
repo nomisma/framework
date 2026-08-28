@@ -502,6 +502,17 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 						</xforms:bind>
 					</xforms:bind>
 					<xforms:bind nodeset="crm:P190_has_symbolic_content" required="true()" constraint="string-length(normalize-space(.)) = 1"/>
+					
+					<!-- specific patterns for matching URIs -->
+					<xforms:bind nodeset="skos:closeMatch">
+						<xforms:bind nodeset="@rdf:resource[contains(., 'geonames.org')]" constraint="matches(., 'https://sws.geonames.org/(\d+)/$')"/>
+						<xforms:bind nodeset="@rdf:resource[contains(., 'wikidata.org')]" constraint="matches(., 'http://www.wikidata.org/entity/Q(\d+)$')"/>
+					</xforms:bind>
+					
+					<xforms:bind nodeset="skos:exactMatch">
+						<xforms:bind nodeset="@rdf:resource[contains(., 'geonames.org')]" constraint="matches(., 'https://sws.geonames.org/(\d+)/$')"/>
+						<xforms:bind nodeset="@rdf:resource[contains(., 'wikidata.org')]" constraint="matches(., 'http://www.wikidata.org/entity/Q(\d+)$')"/>
+					</xforms:bind>
 
 					<!-- @rdf:resource -->
 					<xforms:bind nodeset="//@rdf:resource" required="true()" type="xs:anyURI"
@@ -1605,6 +1616,13 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 															<span class="glyphicon glyphicon-remove"></span>
 														</xforms:label>
 													</xforms:trigger>
+													
+													<xforms:group ref=".[contains(@rdf:resource, 'wikidata') and not(matches(@rdf:resource, 'http://www.wikidata.org/entity/Q(\d+)$'))]">
+														<span class="text-danger">Wikidata URI must conform to 'http://www.wikidata.org/entity/Q[integer]'</span>
+													</xforms:group>
+													<xforms:group ref=".[contains(@rdf:resource, 'geonames') and not(matches(@rdf:resource, 'https://sws.geonames.org/(\d+)/$'))]">
+														<span class="text-danger">Geonames URI must conform to 'https://sws.geonames.org/[integer]/' (note trailing forward slash)</span>
+													</xforms:group>
 												</div>
 											</xforms:repeat>
 											<xforms:repeat nodeset="skos:closeMatch">
@@ -1619,6 +1637,13 @@ PREFIX un:	<http://www.owl-ontologies.com/Ontology1181490123.owl#>]]></prefix>
 															<span class="glyphicon glyphicon-remove"></span>
 														</xforms:label>
 													</xforms:trigger>
+													
+													<xforms:group ref=".[contains(@rdf:resource, 'wikidata') and not(matches(@rdf:resource, 'http://www.wikidata.org/entity/Q(\d+)$'))]">
+														<span class="text-danger">Wikidata URI must conform to 'http://www.wikidata.org/entity/Q[integer]'</span>
+													</xforms:group>
+													<xforms:group ref=".[contains(@rdf:resource, 'geonames') and not(matches(@rdf:resource, 'https://sws.geonames.org/(\d+)/$'))]">
+														<span class="text-danger">Geonames URI must conform to 'https://sws.geonames.org/[integer]/' (note trailing forward slash)</span>
+													</xforms:group>
 												</div>
 											</xforms:repeat>
 											<xforms:repeat nodeset="skos:related[@rdf:resource]">
