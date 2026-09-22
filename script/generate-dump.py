@@ -85,6 +85,7 @@ def main():
            encoding='utf-8',
            xml_declaration=True)
     
+    os.chmod("/usr/local/projects/nomisma/dump/nomisma.org.rdf", stat.S_IROTH)
     print("Wrote RDF/XML")
     
     #generate TTL and JSON-LD
@@ -95,11 +96,13 @@ def main():
     
     print("Serializing to JSON-LD")
     graph.serialize(destination="file:///usr/local/projects/nomisma/dump/nomisma.org.jsonld", context=context, format='json-ld', indent=4)
+    os.chmod("/usr/local/projects/nomisma/dump/nomisma.org.jsonld", stat.S_IROTH)
     
     print("Serializing to TTL")
     graph.serialize(destination="file:///usr/local/projects/nomisma/dump/nomisma.org.ttl", format='text/turtle')
+    os.chmod("/usr/local/projects/nomisma/dump/nomisma.org.ttl", stat.S_IROTH)
     
-    os.chmod("/usr/local/projects/nomisma/dump/*", stat.S_IROTH)
+    
 
 if __name__=="__main__":
     main()
