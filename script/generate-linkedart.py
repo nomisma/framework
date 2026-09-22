@@ -7,11 +7,14 @@ Function: Linked Art JSON-LD representation of Nomisma concepts
 """
 
 import sys, json, argparse
+from edtf import parse_edtf, text_to_edtf, struct_time_to_date
 from shapely.geometry import shape
 from rdflib import Graph, URIRef, Namespace
 from rdflib.namespace import RDF, XSD, SKOS, RDFS, DCTERMS, FOAF, ORG
 
+BIO = Namespace("http://purl.org/vocab/bio/0.1/")
 CRM = Namespace('http://www.cidoc-crm.org/cidoc-crm/')
+CRMDIG = Namespace("http://www.ics.forth.gr/isl/CRMdig/")
 NMO = Namespace('http://nomisma.org/ontology#')
 GEO = Namespace("http://www.w3.org/2003/01/geo/wgs84_pos#")
 WORDNET = Namespace("http://ontologi.es/WordNet/class/")
@@ -39,7 +42,7 @@ def main():
     g.bind("wordnet", WORDNET)
     g.bind("rdac", RDAC)
     
-    g.parse("/usr/local/projects/nomisma-data/id/rome.rdf", format='application/rdf+xml')
+    g.parse("/usr/local/projects/nomisma-data/id/augustus.rdf", format='application/rdf+xml')
     print("Parsing finished")
     
     for concept in g.subjects(RDF.type, SKOS.Concept):
@@ -129,21 +132,111 @@ def main():
                 entity["classified_as"] = classified_as
                 
             
+            memberships = []
+            occupations = []
+            
             for s, p, o in g.triples((concept, None, None)):
+                
+                #parse geography
                 if p == GEO.location:
-                    spatialThing = o
-                    for s, p, o in g.triples((spatialThing, None, None)):
+                    node = o
+                    for s, p, o in g.triples((node, None, None)):
                         if p == GEO.lat:
                             lat = str(o)
                         if p == GEO.long:
                             long = str(o)
                         if p == OSGEO.asGeoJSON:
-                            geoJson = str(o)
-                        
-                    if lat and long:
+                            geoJson = json.loads(str(o))
+                    
+                    if 'lat' in locals() and 'long' in locals():
                         entity["defined_by"] = f"POINT({long} {lat})"
+                        del lat, long
+                    elif 'geoJson' in locals():
+                        geo = shape(geoJson)
+                        # format geometry coordinates as WKT
+                        wkt = geo.wkt
+                        entity["defined_by"] = wkt
+                        del geoJson
+                
+                #birth and death dates
+                elif p == BIO.birth:
+                    node = o
+                    for date in g.objects(node, DCTERMS.date):
+                        
+                        if date[0:1] == "-":
+                            bce = True
+                            date = date[1:]
+                        else:
+                            bce = False
+                        
+                        e = parse_edtf(date)
+                        fromDate = struct_time_to_date(e.lower_strict())
+                        toDate = struct_time_to_date(e.upper_strict())
+                        if bce == True:
+                            fromDate = "-" + str(fromDate) + "T00:00:00Z"
+                            toDate = "-" + str(toDate) + "T23:59:59Z"
+                        else:
+                            fromDate = str(fromDate) + "T00:00:00Z"
+                            toDate = str(toDate) + "T23:59:59Z"
+                        
+                        entity["born"] = {
+                            "id": str(o),
+                            "type": "Birth",
+                            "timespan": {
+                                "type": "TimeSpan",
+                                "begin_of_the_begin": fromDate,
+                                "end_of_the_end": toDate
+                            }
+                        }
+                        del date
+                        
+                elif p == BIO.death:
+                    node = o
+                    for date in g.objects(node, DCTERMS.date):
+                        
+                        if date[0:1] == "-":
+                            bce = True
+                            date = date[1:]
+                        else:
+                            bce = False
+                        
+                        e = parse_edtf(date)
+                        fromDate = struct_time_to_date(e.lower_strict())
+                        toDate = struct_time_to_date(e.upper_strict())
+                        if bce == True:
+                            fromDate = "-" + str(fromDate) + "T00:00:00Z"
+                            toDate = "-" + str(toDate) + "T23:59:59Z"
+                        else:
+                            fromDate = str(fromDate) + "T00:00:00Z"
+                            toDate = str(toDate) + "T23:59:59Z"
+                        
+                        entity["died"] = {
+                            "id": str(o),
+                            "type": "Death",
+                            "timespan": {
+                                "type": "TimeSpan",
+                                "begin_of_the_begin": fromDate,
+                                "end_of_the_end": toDate
+                            }
+                        }
+                        del date
+                        
+                elif p == ORG.memberOf:
+                    memberships.append(str(o))
+                
+                #extract occupations and membership organizations from org:Membership
+                elif p == ORG.hasMembership:
+                    node = object
+                    for s, p, o in g.triples((node, None, None)):
+                        if p == ORG.role:
+                            occupations.append(str(o))
+                        elif p == ORG.organization:
+                            memberships.append(str(o))
+                        
             
-            
+            if len(memberships) > 0:
+                for org in memberships:
+                    
     
             response.append(entity)
     
