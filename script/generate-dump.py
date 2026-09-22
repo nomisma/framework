@@ -6,7 +6,7 @@ Date: September 2026
 Function: Generate RDF/XML dump by aggregating triples from directories and then output TTL and JSON-LD
 """
 
-import sys, glob
+import sys, glob, os, stat
 import xml.etree.ElementTree as ET
 from rdflib import Graph, plugin
 from rdflib.serializer import Serializer
@@ -99,7 +99,7 @@ def main():
     print("Serializing to TTL")
     graph.serialize(destination="file:///usr/local/projects/nomisma/dump/nomisma.org.ttl", format='text/turtle')
     
-    
+    os.chmod("/usr/local/projects/nomisma/dump/*", stat.S_IROTH)
 
 if __name__=="__main__":
     main()

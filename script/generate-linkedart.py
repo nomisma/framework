@@ -6,7 +6,8 @@ Date: September 2026
 Function: Linked Art JSON-LD representation of Nomisma concepts
 """
 
-import sys, json
+import sys, json, argparse
+from shapely.geometry import shape
 from rdflib import Graph, URIRef, Namespace
 from rdflib.namespace import RDF, XSD, SKOS, RDFS, DCTERMS, FOAF, ORG
 
@@ -15,6 +16,7 @@ NMO = Namespace('http://nomisma.org/ontology#')
 GEO = Namespace("http://www.w3.org/2003/01/geo/wgs84_pos#")
 WORDNET = Namespace("http://ontologi.es/WordNet/class/")
 RDAC = Namespace("http://www.rdaregistry.info/Elements/c/")
+OSGEO = Namespace("http://data.ordnancesurvey.co.uk/ontology/geometry/")
 
 def main():    
     
@@ -33,6 +35,7 @@ def main():
     g.bind("crm", CRM)
     g.bind("nmo", NMO)
     g.bind("geo", GEO)
+    g.bind("osgeo", OSGEO)
     g.bind("wordnet", WORDNET)
     g.bind("rdac", RDAC)
     
@@ -54,14 +57,18 @@ def main():
                 entity["type"] = "Person"
             elif (FOAF.Group in g.objects(concept, RDF.type)) == True or (FOAF.Organization in g.objects(concept, RDF.type)) == True or (RDAC.Family in g.objects(concept, RDF.type)) == True:
                 entity["type"] = "Group"
+            elif (FOAF.Agent in g.objects(concept, RDF.type)) == True:
+                entity["type"] = "Actor"
             elif (NMO.Material in g.objects(concept, RDF.type)) == True:
                 entity["type"] = "Material"
-            elif (CRM.Period in g.objects(concept, RDF.type)) == True:
+            elif (CRM.E4_Period in g.objects(concept, RDF.type)) == True:
                 entity["type"] = "Period"
             elif (NMO.Mint in g.objects(concept, RDF.type)) == True or (NMO.Region in g.objects(concept, RDF.type)) == True:
                 entity["type"] = "Place"
+            elif (NMO.Monogram in g.objects(concept, RDF.type)) == True or (CRM.E37_Mark in g.objects(concept, RDF.type)) == True:
+                entity["type"] = "Mark"
             elif (SKOS.ConceptScheme in g.objects(concept, RDF.type)) == True:
-                entity["type"] = "AuthorityDocument"
+                entity["type"] = "Set"
             else:
                 entity["type"] = "Type"
             
@@ -89,6 +96,7 @@ def main():
                 entity["classified_as"] = [
                     {
                         "id": "http://vocab.getty.edu/aat/300008347",
+                        "type": "Type",
                         "_label": "inhabited places"
                     }
                 ]
@@ -96,10 +104,46 @@ def main():
                 entity["classified_as"] = [
                     {
                         "id": "http://vocab.getty.edu/aat/300182722",
+                        "type": "Type",
                         "_label": "regions (geographic)"
                     }
                 ]
-                    
+            elif (NMO.Denomination in g.objects(concept, RDF.type)) == True:
+                entity["classified_as"] = [
+                    {
+                        "id": "http://nomisma.org/id/denomination",
+                        "type": "Type",
+                        "_label": "denomination"
+                    }
+                ]
+            
+            classified_as = []
+            for type in g.objects(concept, CRM.p2_has_type):
+                obj = {
+                    "id": type,
+                    "type": "Type"
+                    }
+                classified_as.append(obj)
+                
+            if len(classified_as) > 0:
+                entity["classified_as"] = classified_as
+                
+            
+            for s, p, o in g.triples((concept, None, None)):
+                if p == GEO.location:
+                    spatialThing = o
+                    for s, p, o in g.triples((spatialThing, None, None)):
+                        if p == GEO.lat:
+                            lat = str(o)
+                        if p == GEO.long:
+                            long = str(o)
+                        if p == OSGEO.asGeoJSON:
+                            geoJson = str(o)
+                        
+                    if lat and long:
+                        entity["defined_by"] = f"POINT({long} {lat})"
+            
+            
     
             response.append(entity)
     

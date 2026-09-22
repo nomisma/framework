@@ -53,10 +53,12 @@
 		<type>
 			<xsl:choose>
 				<xsl:when test="$type = 'foaf:Person'">Person</xsl:when>
+				<xsl:when test="$type = 'foaf:Agent'">Actor</xsl:when>
 				<xsl:when test="$type = 'foaf:Group' or $type = 'foaf:Organization' or $type = 'rdac:Family'">Group</xsl:when>
 				<xsl:when test="$type = 'nmo:Mint' or $type = 'nmo:Region'">Place</xsl:when>
 				<xsl:when test="$type = 'nmo:Material'">Material</xsl:when>
 				<xsl:when test="$type = 'crm:E4_Period'">Period</xsl:when>
+				<xsl:when test="$type = 'crm:E37_Mark' or $type = 'nmo:Monongram'">Mark</xsl:when>
 				<xsl:when test="$type = 'skos:ConceptScheme'">AuthorityDocument</xsl:when>
 				<xsl:otherwise>Type</xsl:otherwise>
 			</xsl:choose>
@@ -68,25 +70,45 @@
 					else
 						skos:prefLabel[@xml:lang = 'en']"/>
 		</_label>
+		
+		<xsl:choose>
+			<xsl:when test="$type = 'nmo:Mint'">
+				<classified_as>
+					<_array>
+						<_object>
+							<id>http://vocab.getty.edu/aat/300008347</id>
+							<type>Type</type>
+							<_label>inhabited places</_label>
+						</_object>
+					</_array>
+				</classified_as>
+				
+			</xsl:when>
+			<xsl:when test="$type = 'nmo:Region'">
+				<classified_as>
+					<_array>
+						<_object>
+							<id>http://vocab.getty.edu/aat/300182722</id>
+							<type>Type</type>
+							<_label>regions (geographic)</_label>
+						</_object>
+					</_array>
+				</classified_as>				
+			</xsl:when>
+			<xsl:when test="$type = 'nmo:Denomination'">
+				<classified_as>
+					<_array>
+						<_object>
+							<id>http://nomisma.org/id/denomination</id>
+							<type>Type</type>
+							<_label>denomination</_label>
+						</_object>
+					</_array>
+				</classified_as>				
+			</xsl:when>
+		</xsl:choose>
 
-		<xsl:if test="$type = 'nmo:Mint' or $type = 'nmo:Region'">
-			<classified_as>
-				<_array>
-					<_object>
-						<xsl:choose>
-							<xsl:when test="$type = 'nmo:Mint'">
-								<id>http://vocab.getty.edu/aat/300008347</id>
-								<_label>inhabited places</_label>
-							</xsl:when>
-							<xsl:when test="$type = 'nmo:Region'">
-								<id>http://vocab.getty.edu/aat/300182722</id>
-								<_label>regions (geographic)</_label>
-							</xsl:when>
-						</xsl:choose>
-					</_object>
-				</_array>
-			</classified_as>
-		</xsl:if>
+		
 
 		<xsl:if test="/content/rdf:RDF/org:Membership[org:role]">
 			<classified_as>
