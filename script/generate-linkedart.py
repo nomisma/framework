@@ -6,7 +6,7 @@ Date: September 2026
 Function: Linked Art JSON-LD representation of Nomisma concepts
 """
 
-import sys, json, argparse
+import sys, json, argparse, os
 from edtf import parse_edtf, text_to_edtf, struct_time_to_date
 from shapely.geometry import shape
 from rdflib import Graph, URIRef, Namespace
@@ -21,11 +21,17 @@ WORDNET = Namespace("http://ontologi.es/WordNet/class/")
 RDAC = Namespace("http://www.rdaregistry.info/Elements/c/")
 OSGEO = Namespace("http://data.ordnancesurvey.co.uk/ontology/geometry/")
 
-def main():    
-    
-    response = []
-    
-    print("Parsing RDF/XML")
+RDF_PATH = "/usr/local/projects/nomisma-data"
+
+#------------------------------------------------
+# CONSTRUCT LINKED ART JSON-LD FROM RDF/XML GRAPH
+#------------------------------------------------
+
+def construct_jsonld(path, filename):
+    if filename == 'nomisma.org.rdf':        
+        response = []
+    else:
+        reponse = {}
     g = Graph()
     
     g.bind("rdf", RDF)
@@ -42,10 +48,15 @@ def main():
     g.bind("wordnet", WORDNET)
     g.bind("rdac", RDAC)
     
-    g.parse("/usr/local/projects/nomisma-data/id/augustus.rdf", format='application/rdf+xml')
-    print("Parsing finished")
+    file = os.path.join(path, filename)
+    
+    g.parse(file, format='application/rdf+xml')
     
     for concept in g.subjects(RDF.type, SKOS.Concept):
+        memberships = []
+        occupations = []
+        broaders = []
+        
         scheme = str(g.value(concept, SKOS.inScheme))
         
         #only include concepts from the ID and Symbol namespaces in Linked Art export
@@ -94,46 +105,56 @@ def main():
                     ]
                     
              
-            #classified_as
+            #-------------
+            #CLASSIFIED_AS
+            #-------------
+            classified_as = []
+            
             if (NMO.Mint in g.objects(concept, RDF.type)) == True:
-                entity["classified_as"] = [
+                classified_as.append(
                     {
                         "id": "http://vocab.getty.edu/aat/300008347",
                         "type": "Type",
                         "_label": "inhabited places"
-                    }
-                ]
+                    })
             elif (NMO.Region in g.objects(concept, RDF.type)) == True:
-                entity["classified_as"] = [
+                classified_as.append(
                     {
                         "id": "http://vocab.getty.edu/aat/300182722",
                         "type": "Type",
                         "_label": "regions (geographic)"
-                    }
-                ]
+                    })
             elif (NMO.Denomination in g.objects(concept, RDF.type)) == True:
-                entity["classified_as"] = [
+                classified_as.append(
                     {
                         "id": "http://nomisma.org/id/denomination",
                         "type": "Type",
                         "_label": "denomination"
-                    }
-                ]
-            
-            classified_as = []
+                    })
             for type in g.objects(concept, CRM.p2_has_type):
                 obj = {
                     "id": type,
                     "type": "Type"
                     }
                 classified_as.append(obj)
+            
+            """
+            for fon in g.objects(concept, DCTERMS.isPartOf):
+                uri = str(fon)
                 
+                obj = {
+                    "id": fon,
+                    "type": "Type"
+                    }
+                classified_as.append(obj)  
+            """    
+                
+            #add classified_as property, if applicable
             if len(classified_as) > 0:
                 entity["classified_as"] = classified_as
-                
             
-            memberships = []
-            occupations = []
+            
+     
             
             for s, p, o in g.triples((concept, None, None)):
                 
@@ -221,26 +242,126 @@ def main():
                         }
                         del date
                         
+                        
+                #---------------------------------
+                # RELATIONS TO OTHER SKOS CONCEPTS
+                #---------------------------------        
+                        
                 elif p == ORG.memberOf:
-                    memberships.append(str(o))
+                    uri = str(o)
+                    related_entity = extract_entity(path, uri)
+                    if isinstance(related_entity, dict):
+                        memberships.append(related_entity)
                 
                 #extract occupations and membership organizations from org:Membership
                 elif p == ORG.hasMembership:
-                    node = object
+                    node = o
                     for s, p, o in g.triples((node, None, None)):
                         if p == ORG.role:
-                            occupations.append(str(o))
+                            uri = str(o)
+                            related_entity = extract_entity(path, uri)
+                            if isinstance(related_entity, dict):
+                                occupations.append(related_entity)
                         elif p == ORG.organization:
-                            memberships.append(str(o))
+                            uri = str(o)
+                            related_entity = extract_entity(path, uri)
+                            if isinstance(related_entity, dict):
+                                memberships.append(related_entity)
+                                
+                elif p == SKOS.broader:
+                    uri = str(o)
+                    related_entity = extract_entity(path, uri)
+                    if isinstance(related_entity, dict):
+                        broaders.append(related_entity)
                         
             
             if len(memberships) > 0:
-                for org in memberships:
+                entity["member_of"] = memberships
+                
+            if len(broaders) > 0:
+                if entity["type"] == "Place":
+                    prop = "part_of"
+                elif entity["type"] == "Person" or entity["type"] == "Group" or entity["type"] == "Actor":
+                    prop = "member_of"
+                else:
+                    prop = "broader"
                     
+                entity[prop] = broaders
+                    
+            if filename == 'nomisma.org.rdf':        
+                response.append(entity)
+            else:
+                response = entity
     
-            response.append(entity)
+    print(json.dumps(response, indent=4))
     
-    print(json.dumps(response, indent=4))  
+      
+
+#------------------------------------------------
+# LOAD RDF FILE FOR TARGET URI FROM LOCAL FILESYTEM
+#------------------------------------------------
+def extract_entity(path, uri):
+    filename = uri.split("/")[-1] + ".rdf"
+    
+    file = os.path.join(path, filename)
+    if os.path.exists(file):
+        #print(f"Reading {file}")
+        g = Graph()
+        g.parse(file, format='application/rdf+xml')
+        
+        entity = {}
+        
+        for concept in g.subjects(RDF.type, SKOS.Concept):
+            entity["id"] = str(concept)
+            
+            if (FOAF.Person in g.objects(concept, RDF.type)) == True:
+                entity["type"] = "Person"
+            elif (FOAF.Group in g.objects(concept, RDF.type)) == True or (FOAF.Organization in g.objects(concept, RDF.type)) == True or (RDAC.Family in g.objects(concept, RDF.type)) == True:
+                entity["type"] = "Group"
+            elif (FOAF.Agent in g.objects(concept, RDF.type)) == True:
+                entity["type"] = "Actor"
+            elif (NMO.Material in g.objects(concept, RDF.type)) == True:
+                entity["type"] = "Material"
+            elif (CRM.E4_Period in g.objects(concept, RDF.type)) == True:
+                entity["type"] = "Period"
+            elif (NMO.Mint in g.objects(concept, RDF.type)) == True or (NMO.Region in g.objects(concept, RDF.type)) == True:
+                entity["type"] = "Place"
+            elif (NMO.Monogram in g.objects(concept, RDF.type)) == True or (CRM.E37_Mark in g.objects(concept, RDF.type)) == True:
+                entity["type"] = "Mark"
+            elif (SKOS.ConceptScheme in g.objects(concept, RDF.type)) == True:
+                entity["type"] = "Set"
+            else:
+                entity["type"] = "Type"
+                
+            for label in g.objects(concept, SKOS.prefLabel):
+                if label.language == "en":
+                    entity["_label"] = str(label)
+                    
+        return entity
+        
+    else:
+        print(f"Unable to open {file}")
+
+def main():    
+    parser = argparse.ArgumentParser(
+        description="Transform RDF/XML graph into Linked Art JSON-LD"
+    )
+    parser.add_argument("-p", "--path", default=RDF_PATH, help="Path to the RDF source file")
+    parser.add_argument("-f", "--filename", help="Filename")
+    
+    args = parser.parse_args()
+    
+    if not args.filename:
+        sys.exit("RDF filename not defined.")
+    
+    file = os.path.join(args.path, args.filename)
+    
+    if os.path.exists(file):
+        construct_jsonld(args.path, args.filename)
+    else:
+        sys.exit("File not found.")
+
+    
 
 if __name__=="__main__":
     main()
