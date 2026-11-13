@@ -34,7 +34,7 @@
 									<a href="{$display_path}about/scientific_committee">Scientific Committee</a>
 								</li>
 								<li>
-									<a href="{$display_path}about/working_groups">Working Groups</a>
+									<a href="https://nomisma.hypotheses.org/nomisma-org/nomisma_working_groups">Working Groups</a>
 								</li>
 								<li>
 									<a href="{$display_path}editor/">Editors</a>
